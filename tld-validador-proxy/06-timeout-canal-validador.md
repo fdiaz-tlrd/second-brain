@@ -187,3 +187,88 @@ enviarPostRuteado
   ├─ prefijo en URL_CA_TELERED → sendRequest      → E
   └─ si no → axios.post                           → D
 ```
+
+---
+
+## 6. Diagrama — token, método y reintento
+
+Fuente: `validador.js` (`getAuthHeadersDoLogin`, `validar`, `debeReintentarAuthDinamica`).
+
+```mermaid
+flowchart TD
+  start([validar inicia]) --> auth[getAuthHeadersDoLogin]
+
+  auth --> fijo{tipoAuth fijo?}
+  fijo -->|sí| apiKey[Usa apiKey del canal\nsin HTTP]
+  fijo -->|no| dinamico{tipoAuth dinamico?}
+  dinamico -->|no| errAuth[Error: tipo no soportado]
+
+  dinamico -->|sí| dynamo[getTokenDynamo]
+  dynamo --> forceLogin{forceLogin?}
+  forceLogin -->|sí| pedirToken[POST urlAuth\nsolicitarTokenAlProveedor]
+  forceLogin -->|no| tokenEstado{token en Dynamo?}
+
+  tokenEstado -->|NOT_FOUND o EXPIRED| pedirToken
+  tokenEstado -->|vigente| leerToken[Leer authToken del registro]
+  leerToken --> tokenVacio{authToken vacío?}
+  tokenVacio -->|sí| respaldo[getAuthHeadersDoLogin\nforceLogin=true]
+  respaldo --> pedirToken
+  tokenVacio -->|no| headersListo[Headers listos]
+
+  pedirToken --> headersListo
+  apiKey --> headersListo
+
+  headersListo --> postMetodo["POST urlValidador\n(1.er intento)"]
+  postMetodo --> revisar{debeReintentarAuthDinamica?\ntipoAuth dinamico y\n401/403 o codigoExp}
+
+  revisar -->|no| finOk([Continúa con la respuesta])
+  revisar -->|sí| reintento["ÚNICO reintento:\ngetAuthHeadersDoLogin forceLogin\n→ POST urlAuth\n→ POST urlValidador (2.º intento)"]
+  reintento --> finOk
+```
+
+### Leyenda
+
+| Símbolo en el diagrama | Qué es |
+|------------------------|--------|
+| **POST urlAuth** (`solicitarTokenAlProveedor`) | Primera obtención de token cuando no hay caché válida. **No es reintento.** |
+| **authToken vacío → forceLogin** | Hay registro en Dynamo pero sin token usable. Respaldo; **no** es reintento tras llamar al método. |
+| **debeReintentarAuthDinamica** | Tras el **1.er POST al método**, el validador indica token inválido. **Este sí es el único reintento** del flujo: pide token nuevo y repite el POST al método **una vez**. |
+
+### POST HTTP posibles por invocación (para timeout)
+
+| Situación | POST a `urlAuth` | POST al método | Total POST |
+|-----------|------------------|----------------|------------|
+| Auth fija | 0 | 1 | 1 |
+| Auth dinámica, token en caché, sin reintento | 0 | 1 | 1 |
+| Auth dinámica, token nuevo, sin reintento | 1 | 1 | 2 |
+| Auth dinámica + reintento (token en caché al inicio) | 1 | 2 | 3 |
+| Auth dinámica + reintento (token nuevo al inicio) | 2 | 2 | 4 |
+
+Cada POST usa `readTimeout` (10 s en `template.yaml`). El reintento **no** aplica por timeout; solo por respuesta de auth inválida en el método.
+
+---
+
+## Para el arquitecto (copiar y pegar)
+
+**`tld-validador-proxy` — llamadas HTTP hacia el proveedor y timeout**
+
+En el caso más simple, el proxy hace **1 llamada HTTP**: el método al Canal Validador.
+
+Con **token dinámico**, si no hay token listo en Dynamo, antes hay que **pedir el token**. Eso sube de **1 a 2 llamadas** (token + método).
+
+Además, el código tiene dos situaciones que pueden aumentar las llamadas:
+
+- **Situación que suma 1 llamada:** no hay token usable guardado (no existe, venció o hay que pedirlo). Se hace una llamada extra para obtener el token antes del método.
+
+- **Situación que suma 2 llamadas:** el Canal Validador dice que el token no sirve. El proxy pide token nuevo y vuelve a llamar al método (un solo reintento). Son dos llamadas más en esa misma invocación.
+
+**Resumen**
+
+| Qué pasa | Llamadas HTTP en total |
+|----------|------------------------|
+| Solo el método (auth fija o token ya en caché) | 1 |
+| Pedir token + método | 2 |
+| Lo anterior + reintento (había token en caché al inicio) | 3 |
+| Lo anterior + reintento (hubo que pedir token al inicio) | 4 |
+
+Cada llamada puede tardar hasta **10 segundos** (`HTTP_READ_TIME_OUT` en la configuración). La Lambda está en **11 segundos**. Si hay varias llamadas seguidas cerca del límite de 10 s, la Lambda puede cortarse antes de responder.
