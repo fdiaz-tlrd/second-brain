@@ -10,5 +10,4 @@
 
 ## No confirmado
 
-- Configuración concreta por ambiente (pendiente `samconfig.toml`, `template.yaml`, despliegue).
-- Diferencias de comportamiento entre ambientes.
+- Diferencias de comportamiento de timeout entre ambientes más allá de `UrlCaTelered` en `samconfig.toml` (mismos `HTTP_READ_TIME_OUT` y timeout Lambda en `template.yaml` para todos los perfiles).

@@ -1,18 +1,20 @@
 # Repo `tld-validador-proxy`
 
-## Confirmado (fuente: listado raíz del repo)
+## Confirmado (fuentes: listado raíz + estudio timeout)
 
-Entradas en la raíz:
+**Código y config AWS (lo que despliega SAM):**
 
-- `docs/`
-- `lambdas/`
-- `README.md`
-- `samconfig.toml`
+- `lambdas/` (proxy + layer)
 - `template.yaml`
+- `samconfig.toml`
 
-Ramas remotas vistas en `.git` (nombres solamente): `develop`, `qa`, `sandbox`, `feature/ARQ-225_Refactory`.
+**Raíz del repo:**
+
+- `docs/` (documentación; no usada en estudios de esta sesión salvo pedido explícito)
+- `README.md`
+
+Ramas remotas vistas en `.git` (solo nombres): `develop`, `qa`, `sandbox`, `feature/ARQ-225_Refactory`.
 
 ## No confirmado
 
-- Propósito funcional del proxy (pendiente estudio de código/docs).
-- Contenido de `docs/` (pendiente lectura).
+- Propósito funcional completo del proxy más allá de lo leído en código/config.
