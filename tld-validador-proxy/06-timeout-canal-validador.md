@@ -250,25 +250,49 @@ Cada POST usa `readTimeout` (10 s en `template.yaml`). El reintento **no** aplic
 
 ## Para el arquitecto (copiar y pegar)
 
-**`tld-validador-proxy` — llamadas HTTP hacia el proveedor y timeout**
+**`tld-validador-proxy` — llamadas HTTP hacia el Canal Validador y timeout**
 
-En el caso más simple, el proxy hace **1 llamada HTTP**: el método al Canal Validador.
+Cada llamada HTTP puede tardar hasta **10 segundos** (`HTTP_READ_TIME_OUT`). La Lambda hoy tiene **11 segundos**. Hay que cambiarlo: **11 s no alcanza**.
 
-Con **token dinámico**, si no hay token listo en Dynamo, antes hay que **pedir el token**. Eso sube de **1 a 2 llamadas** (token + método).
+---
 
-Además, el código tiene dos situaciones que pueden aumentar las llamadas:
+**1 llamada** (auth fija, o token dinámico ya guardado y el Canal Validador acepta el token)
 
-- **Situación que suma 1 llamada:** no hay token usable guardado (no existe, venció o hay que pedirlo). Se hace una llamada extra para obtener el token antes del método.
+1. Llamas al método al Canal Validador.
 
-- **Situación que suma 2 llamadas:** el Canal Validador dice que el token no sirve. El proxy pide token nuevo y vuelve a llamar al método (un solo reintento). Son dos llamadas más en esa misma invocación.
+---
 
-**Resumen**
+**2 llamadas** (hay que pedir token antes; sin reintento)
 
-| Qué pasa | Llamadas HTTP en total |
-|----------|------------------------|
-| Solo el método (auth fija o token ya en caché) | 1 |
-| Pedir token + método | 2 |
-| Lo anterior + reintento (había token en caché al inicio) | 3 |
-| Lo anterior + reintento (hubo que pedir token al inicio) | 4 |
+1. Pides el token.
+2. Llamas al método al Canal Validador.
 
-Cada llamada puede tardar hasta **10 segundos** (`HTTP_READ_TIME_OUT` en la configuración). La Lambda está en **11 segundos**. Si hay varias llamadas seguidas cerca del límite de 10 s, la Lambda puede cortarse antes de responder.
+---
+
+**3 llamadas** (token guardado al inicio, pero el Canal Validador lo rechaza; hay reintento)
+
+1. Usas el token guardado (sin llamada HTTP para pedirlo).
+2. Llamas al método al Canal Validador (1.ª llamada HTTP).
+3. El Canal Validador dice que el token no sirve → pides token nuevo (2.ª llamada HTTP).
+4. Vuelves a llamar al método al Canal Validador (3.ª llamada HTTP).
+
+---
+
+**4 llamadas** (no había token guardado y además hay reintento)
+
+1. Pides el token (1.ª llamada HTTP).
+2. Llamas al método al Canal Validador (2.ª llamada HTTP).
+3. El Canal Validador dice que el token no sirve → pides token nuevo (3.ª llamada HTTP).
+4. Vuelves a llamar al método al Canal Validador (4.ª llamada HTTP).
+
+---
+
+Solo en HTTP, en el peor caso: **2 llamadas → 20 s**, **3 → 30 s**, **4 → 40 s**, más DynamoDB, cifrado y telemetría.
+
+**Pregunta para decidir:** ¿qué peor caso cubrimos al subir el timeout de Lambda?
+
+| Opción | Peor caso | Lambda orientativa | A favor | En contra |
+|--------|-----------|-------------------|---------|-----------|
+| Dimensionar para **2** | Pedir token + método | ~25–30 s | Menor timeout y menor latencia | Si el Canal Validador rechaza el token, la transacción **falla**; no hay recuperación en el mismo request |
+| Dimensionar para **3** | Escenario de 3 llamadas arriba | ~35–40 s | Cubre reintento cuando el token ya estaba guardado | Si hace falta el escenario de 4 llamadas, la Lambda puede cortar antes de terminar |
+| Dimensionar para **4** | Escenario de 4 llamadas arriba | ~50–60 s | Cubre todos los caminos del código actual | Peor caso más lento y Lambda más larga |
