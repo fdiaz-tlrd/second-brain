@@ -31,12 +31,12 @@
 | `500` | Error interno | El servicio de autenticación del canal respondió con error HTTP. | Error HTTP al obtener credenciales del canal. |
 | `500` | Error interno | Excepción no controlada en el proxy. | Error interno no controlado en el proxy. |
 | `502` | Error en cifrado para el canal validador | No se pudo cifrar la petición hacia el Canal Validador. | No se pudo cifrar la petición para el Canal Validador. |
-| `509` | Tiempo de espera agotado al llamar al Canal Validador | Timeout al llamar al Canal Validador (POST al método). Compartido con catálogo marketplace adoptado. | Tiempo de espera agotado al llamar al Canal Validador. |
-| `599` | Error inesperado en el Canal Validador | Error de red o TLS al llamar al Canal Validador (sin timeout). | Error de red o TLS al llamar al Canal Validador. |
-| `599` | Error inesperado en el Canal Validador | El Canal Validador respondió con error HTTP en el método. | El Canal Validador respondió con error HTTP. |
-| `599` | Error inesperado en el Canal Validador | El Canal respondió pero el cuerpo no es un objeto utilizable. | La respuesta del Canal Validador no tiene un cuerpo utilizable. |
-| `599` | Error inesperado en el Canal Validador | Falta o está vacío el campo cifrado `respuesta` en la respuesta del Canal. | La respuesta del Canal Validador no incluye el campo cifrado esperado. |
-| `599` | Error inesperado en el Canal Validador | El texto descifrado no es JSON válido. | La respuesta descifrada del Canal Validador no es JSON válido. |
+| `509` | Error inesperado en el Canal Validador | Error de red o TLS al llamar al Canal Validador (sin timeout). | Error de red o TLS al llamar al Canal Validador. |
+| `509` | Error inesperado en el Canal Validador | El Canal Validador respondió con error HTTP en el método. | El Canal Validador respondió con error HTTP. |
+| `509` | Error inesperado en el Canal Validador | El Canal respondió pero el cuerpo no es un objeto utilizable. | La respuesta del Canal Validador no tiene un cuerpo utilizable. |
+| `509` | Error inesperado en el Canal Validador | Falta o está vacío el campo cifrado `respuesta` en la respuesta del Canal. | La respuesta del Canal Validador no incluye el campo cifrado esperado. |
+| `509` | Error inesperado en el Canal Validador | El texto descifrado no es JSON válido. | La respuesta descifrada del Canal Validador no es JSON válido. |
+| `599` | Tiempo de espera agotado al llamar al Canal Validador | Timeout al llamar al Canal Validador (POST al método). Compartido con catálogo marketplace adoptado. | Tiempo de espera agotado al llamar al Canal Validador. |
 
 Alineado con catálogo general en `second-brain/codigosRespuesta/nueva-tabla-codigo-respuesta.md`.
 

@@ -98,7 +98,7 @@
 | 506 | Código HTTP de OAuth 2.0 (`/auth/token`); no se usa en el catálogo `resultado` para evitar confusiones |  |  |  |  |  |  |  |
 | 507 |  |  |  |  |  |  |  |  |
 | 508 |  |  |  |  |  |  |  |  |
-| 509 | Tiempo de espera agotado al llamar al Canal Validador |  | Error inesperado en validador | Error recibido es los escenarios de time-out o tiempo de espera agotado | Error inesperado en validador | Error recibido es los escenarios de time-out o tiempo de espera agotado | Error inesperado en validador | Error recibido es los escenarios de time-out o tiempo de espera agotado |
+| 509 | Error inesperado en el Canal Validador |  | Error inesperado en validador | Error recibido es los escenarios de time-out o tiempo de espera agotado | Error inesperado en validador | Error recibido es los escenarios de time-out o tiempo de espera agotado | Error inesperado en validador | Error recibido es los escenarios de time-out o tiempo de espera agotado |
 | 510 | Número de cuenta incorrecta |  | Número de cuenta incorrecta | Contiene un formato de cuenta inválido o la cantidad de números de la cuenta es incorrecta. |  |  |  |  |
 | 511 | Número de cuenta cerrado |  | Número de cuenta cerrado | La cuenta del Recibidor ha sido cerrada. |  |  |  |  |
 | 512 | Número de cuenta bloqueado |  | Número de cuenta bloqueado | La cuenta del Recibidor se encuentra restringida en la Institución Financiera Recibidora, por ello la consulta es rechazada. |  |  |  |  |
@@ -106,5 +106,5 @@
 | 514 | Falta información obligatoria de consulta |  | Falta información obligatoria de consulta | No se proporcionó información obligatoria para consultar. |  |  |  |  |
 | 515 | Razón regulatoria |  | Razón regulatoria | Por motivos legales o de cumplimiento. |  |  |  |  |
 | 550 |  |  | Error inesperado | Error inesperado |  |  |  |  |
-| 599 | Error inesperado en el Canal Validador |  | Error inesperado en validador | Canal Validador no pudo enviar respuesta. | Error inesperado en validador | Error inesperado | Error inesperado en validador | Error inesperado |
+| 599 | Tiempo de espera agotado al llamar al Canal Validador |  | Error inesperado en validador | Canal Validador no pudo enviar respuesta. | Error inesperado en validador | Error inesperado | Error inesperado en validador | Error inesperado |
 | 999 |  |  | Error inesperado validación | Error inesperado validación | Error inesperado validación | Error inesperado | Error inesperado validación | Error inesperado |
