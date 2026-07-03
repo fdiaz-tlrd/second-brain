@@ -20,25 +20,25 @@
 
 ## Escenarios
 
-| Código | Escenario | `message` |
-|--------|-----------|-----------|
-| `0` | Éxito. El Canal Validador respondió y el proxy entregó la respuesta descifrada. | Solicitud procesada correctamente. |
-| `400` | El cuerpo de la petición no es JSON válido. | El cuerpo de la solicitud no es JSON válido. |
-| `401` | La petición no cumple el contrato de entrada (`idCanal`, `validador`, `peticion`, etc.). | La solicitud no cumple el contrato de entrada del proxy. |
-| `404` | No hay canal configurado en Dynamo para el `validador` indicado. | Canal Validador no configurado. |
-| `500` | Fallo al leer o enriquecer el canal en Dynamo. | No se pudo obtener la configuración del canal. |
-| `500` | El servicio de autenticación del canal respondió con error HTTP. | Error HTTP al obtener credenciales del canal. |
-| `500` | Excepción no controlada en el proxy. | Error interno no controlado en el proxy. |
-| `501` | No se pudo cifrar la petición hacia el Canal Validador. | No se pudo cifrar la petición para el Canal Validador. |
-| `502` | No se pudo descifrar el campo `respuesta`. | No se pudo descifrar la respuesta del Canal Validador. |
-| `509` | Timeout al llamar al Canal Validador (POST al método). Compartido con catálogo marketplace adoptado. | Tiempo de espera agotado al llamar al Canal Validador. |
-| `599` | Error de red o TLS al llamar al Canal Validador (sin timeout). | Error de red o TLS al llamar al Canal Validador. |
-| `599` | El Canal Validador respondió con error HTTP en el método. | El Canal Validador respondió con error HTTP. |
-| `599` | El Canal respondió pero el cuerpo no es un objeto utilizable. | La respuesta del Canal Validador no tiene un cuerpo utilizable. |
-| `599` | Falta o está vacío el campo cifrado `respuesta` en la respuesta del Canal. | La respuesta del Canal Validador no incluye el campo cifrado esperado. |
-| `599` | El texto descifrado no es JSON válido. | La respuesta descifrada del Canal Validador no es JSON válido. |
+| `statusCode` | `message` | Escenario | Texto en log |
+|--------------|-----------|-----------|--------------|
+| `0` | Operación exitosa | El Canal Validador respondió y el proxy entregó la respuesta descifrada. | Solicitud procesada correctamente. |
+| `406` | Error en descifrado canal validador | No se pudo descifrar el campo `respuesta`. | No se pudo descifrar la respuesta del Canal Validador. |
+| `500` | Error interno | El cuerpo de la petición no es JSON válido. | El cuerpo de la solicitud no es JSON válido. |
+| `500` | Error interno | La petición no cumple el contrato de entrada (`idCanal`, `validador`, `peticion`, etc.). | La solicitud no cumple el contrato de entrada del proxy. |
+| `500` | Error interno | No hay canal configurado en Dynamo para el `validador` indicado. | Canal Validador no configurado. |
+| `500` | Error interno | Fallo al leer o enriquecer el canal en Dynamo. | No se pudo obtener la configuración del canal. |
+| `500` | Error interno | El servicio de autenticación del canal respondió con error HTTP. | Error HTTP al obtener credenciales del canal. |
+| `500` | Error interno | Excepción no controlada en el proxy. | Error interno no controlado en el proxy. |
+| `502` | Error en cifrado para el canal validador | No se pudo cifrar la petición hacia el Canal Validador. | No se pudo cifrar la petición para el Canal Validador. |
+| `509` | Tiempo de espera agotado al llamar al Canal Validador | Timeout al llamar al Canal Validador (POST al método). Compartido con catálogo marketplace adoptado. | Tiempo de espera agotado al llamar al Canal Validador. |
+| `599` | Error inesperado en el Canal Validador | Error de red o TLS al llamar al Canal Validador (sin timeout). | Error de red o TLS al llamar al Canal Validador. |
+| `599` | Error inesperado en el Canal Validador | El Canal Validador respondió con error HTTP en el método. | El Canal Validador respondió con error HTTP. |
+| `599` | Error inesperado en el Canal Validador | El Canal respondió pero el cuerpo no es un objeto utilizable. | La respuesta del Canal Validador no tiene un cuerpo utilizable. |
+| `599` | Error inesperado en el Canal Validador | Falta o está vacío el campo cifrado `respuesta` en la respuesta del Canal. | La respuesta del Canal Validador no incluye el campo cifrado esperado. |
+| `599` | Error inesperado en el Canal Validador | El texto descifrado no es JSON válido. | La respuesta descifrada del Canal Validador no es JSON válido. |
 
-Alineado con *Catálogo adoptado* en `second-brain/telered-marketplace-tech-doc/01-codigos-5xx-api-4-6-7.md`. **501** y **502** distinguen cifrado y descifrado en el proxy.
+Alineado con catálogo general en `second-brain/codigosRespuesta/nueva-tabla-codigo-respuesta.md`.
 
 ---
 

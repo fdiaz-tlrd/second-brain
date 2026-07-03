@@ -325,7 +325,8 @@ const html = `<!DOCTYPE html>
       text-transform: uppercase;
       letter-spacing: 0.02em;
       color: var(--muted);
-      white-space: nowrap;
+      white-space: normal;
+      min-width: 100px;
     }
     thead th.col-mp {
       font-size: 0.72rem;
