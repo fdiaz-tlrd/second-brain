@@ -1,13 +1,26 @@
 # Revisión canal **1008** (dev)
 
-**Ambiente:** dev  
-**Fecha inicio:** _______________  
-**Ejecutado por:** _______________
-
-Completa cada paso en orden. Anota **HTTP**, **body** (o lo esencial) y marca si pasó.
+**Ambiente:** dev
 
 ---
 
+## Estado actual (2026-07-04)
+
+**Hecho con el 1008:**
+
+- [x] Canal creado en matriz (`tld-auth-canal`)
+- [x] `apiKey` + `secretKey` generados
+- [x] Token del canal obtenido (Paso 1.1)
+- [x] Grupo `tld-matriz-validador` asignado (Paso 2.2)
+
+**Pendiente:**
+
+- [ ] **Suscripción plan ↔ canal** — respuesta: **NO** (no hay fila en `tld-matriz-planes-canales` para `idCanal=1008`)
+- [ ] Pasos **A → B (si hace falta) → C** abajo
+
+Crear canal y credenciales **no** incluye plan. Eso es aparte en `/auth/planes`.
+
+---
 ## Datos de referencia — canal 1008
 
 | Campo | Valor |
@@ -36,35 +49,32 @@ Completa cada paso en orden. Anota **HTTP**, **body** (o lo esencial) y marca si
 | P2M | `BASE_P2M` = https://tld-api-p2m.dev.telered.internal/p2m |
 
 
-**Token admin matriz** (solo pasos que piden admin — usuario con `tld-matriz-full` o equivalente):
+**Token admin** — obtener con:
 
-| Campo | Valor |
-|-------|--------|
-| `apiKey` admin | c4481f99364a45d1843c475a728894a5 |
-| `secretKey` admin | 6bc9d69a676d9f869ab438c5369ec16388b8b7da6f3ddf |
-| `accessToken` admin | eyJraWQiOiJWTjNkOHlqVGNIcmFOOUw3Wi9pTTlOeHBtZmxIdndlRjNTMlR0N0dnaDBZPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJjYmNhODMyMC0xYjMwLTRhMTMtODBmYi0xNDk0ZTFkM2VjM2IiLCJjb2duaXRvOmdyb3VwcyI6WyJ0bGQtbWF0cml6LXBsYW5lcyIsInRsZC1tYXRyaXotY29uc3VsdGEtZmFjdHVyYWRvciIsInRsZC1tYXRyaXotZnVsbCIsInRsZC1tYXRyaXotZ3J1cG9zLWFwaS1rZXkiXSwiaXNzIjoiaHR0cHM6Ly9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbS91cy1lYXN0LTFfZDBJY1A0RVYyIiwiY2xpZW50X2lkIjoiN2NnNGc4dm9yaXJsaGVsZWJjcmlxbmo5NWEiLCJvcmlnaW5fanRpIjoiZmI0ZTk3ODEtOWNhZS00NWRmLThmYTEtN2YzNTA0MDU3MjJjIiwiZXZlbnRfaWQiOiJhOTJjNTZkZi05NTFiLTRlZDYtOWQwOC1hYjlhNjBjNzk4MmQiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNzgzMjAzMDEyLCJleHAiOjE3ODMyMDY2MTIsImlhdCI6MTc4MzIwMzAxMiwianRpIjoiNGU4MzE4Y2EtNDE4OS00N2RjLWI1YjctNzA5YWJjNjY4YjNlIiwidXNlcm5hbWUiOiJjNDQ4MWY5OTM2NGE0NWQxODQzYzQ3NWE3Mjg4OTRhNSJ9.ZK99BaAfS0bSSKA1lAcjn_JEiWu2fL76ibf4GHYej0TljjPyM43yfs3K_Bj11Y7nHtMXRT5I7I-CBsMS2hDqDlxKOV-iHl3MGT03c472K-9Oj5z6d8A47OSoU6fHBL1IV7oYFXJlsUvxrraxstiZRk2D7XjBIkhp7fFTjEE62IBvor0LBqdbrnG-Lg4pjkRnJmOm8ww0JncaS51S9ISPxL3Ypve-AWHrjwWjXT6hhbpy944ZkCf-vIuUZGCeIXPGph1IzyTgSY2mcJ-xJZtzNCHrKvvo6IctucPsksbmL214And0O08xaBGHJuK3oUjZFzkWNWB0cmbdIIsWv_tqKg |
+POST `https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev/auth/token`
+
+```json
+{
+  "apiKey": "c4481f99364a45d1843c475a728894a5",
+  "secretKey": "6bc9d69a676d9f869ab438c5369ec16388b8b7da6f3ddf"
+}
+```
+
+`accessToken` admin (anotar si renuevas): *(pegado abajo en historial — expira; repite el JSON de arriba)*
 
 ---
-
 ## Parte 1 — Token del canal 1008
 
 ### Paso 1.1 — Obtener token
 
-| Item | Valor |
-|------|--------|
-| **Método** | `POST https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev/auth/token` |
-| **Headers** | `Content-Type: application/json` |
-| **Auth** | Ninguna |
-
-**Request**
+POST `https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev/auth/token`
 
 ```json
 {
   "apiKey": "6e37a4a0b884f305b1a2b59f915a707598a8f0795",
-  "secretKey": "<secretKey del canal 1008>"
+  "secretKey": "<secretKey del canal 1008 — ver Postman/canalesPruebas-dev.json>"
 }
 ```
-
 **Resultado**
 
 ```json
@@ -149,19 +159,14 @@ El grupo que tiene que tener es `tld-matriz-validador`
 
 ### Paso 2.1 — Listar grupos disponibles (políticas)
 
-| Item | Valor |
-|------|--------|
-| **Método** | `POST https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev/auth/planes` |
-| **Headers** | `Content-Type: application/json`, `Authorization: Bearer eyJraWQiOiJWTjNkOHlqVGNIcmFOOUw3Wi9pTTlOeHBtZmxIdndlRjNTMlR0N0dnaDBZPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJjYmNhODMyMC0xYjMwLTRhMTMtODBmYi0xNDk0ZTFkM2VjM2IiLCJjb2duaXRvOmdyb3VwcyI6WyJ0bGQtbWF0cml6LXBsYW5lcyIsInRsZC1tYXRyaXotY29uc3VsdGEtZmFjdHVyYWRvciIsInRsZC1tYXRyaXotZnVsbCIsInRsZC1tYXRyaXotZ3J1cG9zLWFwaS1rZXkiXSwiaXNzIjoiaHR0cHM6Ly9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbS91cy1lYXN0LTFfZDBJY1A0RVYyIiwiY2xpZW50X2lkIjoiN2NnNGc4dm9yaXJsaGVsZWJjcmlxbmo5NWEiLCJvcmlnaW5fanRpIjoiZmI0ZTk3ODEtOWNhZS00NWRmLThmYTEtN2YzNTA0MDU3MjJjIiwiZXZlbnRfaWQiOiJhOTJjNTZkZi05NTFiLTRlZDYtOWQwOC1hYjlhNjBjNzk4MmQiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNzgzMjAzMDEyLCJleHAiOjE3ODMyMDY2MTIsImlhdCI6MTc4MzIwMzAxMiwianRpIjoiNGU4MzE4Y2EtNDE4OS00N2RjLWI1YjctNzA5YWJjNjY4YjNlIiwidXNlcm5hbWUiOiJjNDQ4MWY5OTM2NGE0NWQxODQzYzQ3NWE3Mjg4OTRhNSJ9.ZK99BaAfS0bSSKA1lAcjn_JEiWu2fL76ibf4GHYej0TljjPyM43yfs3K_Bj11Y7nHtMXRT5I7I-CBsMS2hDqDlxKOV-iHl3MGT03c472K-9Oj5z6d8A47OSoU6fHBL1IV7oYFXJlsUvxrraxstiZRk2D7XjBIkhp7fFTjEE62IBvor0LBqdbrnG-Lg4pjkRnJmOm8ww0JncaS51S9ISPxL3Ypve-AWHrjwWjXT6hhbpy944ZkCf-vIuUZGCeIXPGph1IzyTgSY2mcJ-xJZtzNCHrKvvo6IctucPsksbmL214And0O08xaBGHJuK3oUjZFzkWNWB0cmbdIIsWv_tqKg` |
-
-**Request**
+POST `https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev/auth/planes`  
+Header: `Authorization: Bearer <accessToken admin>`
 
 ```json
 {
   "tipoAccion": "consultarPoliticas"
 }
 ```
-
 **Resultado**
 
 ```json
@@ -193,26 +198,19 @@ El grupo que tiene que tener es `tld-matriz-validador`
 
 ---
 
-### Paso 2.2 — (Opcional) Asignar grupo al canal 1008
+### Paso 2.2 — Asignar grupo al canal 1008
 
-Solo si en 1.2 faltaba el grupo para la API que vas a probar.
-
-| Item | Valor |
-|------|--------|
-| **Método** | `POST {BASE_MATRIZ}/auth/grupos-api-key` |
-| **Headers** | `Content-Type: application/json`, `Authorization: Bearer <accessToken admin>` |
-
-**Request** — ajusta `GroupId` según 2.1 (ej. P2M → `tld-api-p2m`)
+POST `https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev/auth/grupos-api-key`  
+Header: `Authorization: Bearer <accessToken admin>`
 
 ```json
 {
   "apiKey": "6e37a4a0b884f305b1a2b59f915a707598a8f0795",
-  "GroupId": "tld-matriz-validador",
+  "GroupId": ["tld-matriz-validador"],
   "accion": "alta",
   "idCanal": "1008"
 }
 ```
-
 **Resultado**
 
 ```json
@@ -246,21 +244,20 @@ Vuelve al **Paso 1.1** y anota los grupos nuevos en **1.2**.
 **Grupos tras el alta:**
 
 ```
-- 
+(vuelve a ejecutar Paso 1.1 y decodifica el JWT — debe aparecer tld-matriz-validador)
 ```
 
 ---
 
-## Parte 3 — Plan de suscripción (matriz)
+## Pendiente — plan para canal 1008
 
-### Paso 3.1 — Listar planes (admin)
+**Suscripción activa:** NO — hay que ejecutar los pasos de abajo.
 
-| Item | Valor |
-|------|--------|
-| **Método** | `POST {BASE_MATRIZ}/auth/planes` |
-| **Headers** | Bearer admin |
+POST `https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev/auth/planes`  
+Header: `Authorization: Bearer <accessToken admin>`
+---
 
-**Request**
+### Paso A — ¿Hay algún plan en catálogo?
 
 ```json
 {
@@ -268,57 +265,72 @@ Vuelve al **Paso 1.1** y anota los grupos nuevos en **1.2**.
 }
 ```
 
-**Resultado — anota `idPlan` candidato y cupo `request`:**
+Si hay planes → copia un `idPlan` de la respuesta y ve al **Paso C**. Si la lista viene vacía → **Paso B**.
 
-| `idPlan` | `namePlan` | `request` (cupo) |
-|----------|------------|------------------|
-| | | |
+**Resultado (pega respuesta):**
 
-**¿OK?** [ ] Sí [ ] No
+```json
 
+```
 ---
 
-### Paso 3.2 — ¿Canal 1008 tiene suscripción activa?
+### Paso B — (Solo si no hay planes) Crear uno de prueba
 
-Revisa en **DynamoDB** tabla `tld-matriz-planes-canales` filtro `idCanal = 1008`, o infiere con el paso 4.2.
+```json
+{
+  "tipoAccion": "agregarPlan",
+  "namePlan": "Plan dev CELEGATO",
+  "planType": "mensual",
+  "request": 999999,
+  "accion": "alta"
+}
+```
 
-| Campo | Anotar |
-|-------|--------|
-| ¿Existe fila plan–canal? | [ ] Sí [ ] No |
-| `idPlan` | |
-| `exitoso` | |
-| `fallido` | |
-| `bloqueado` | |
-| `fechaFin` | |
-| `estatus` | |
+`planType`: `semanal` | `quincenal` | `mensual` | `trimestral` | `semestral` | `anual`
 
-**Si no hay suscripción** — con token admin, `agregarPlanCanal`:
+**Resultado (pega respuesta — anota `idPlan`):**
+
+```json
+
+```
+---
+
+### Paso C — Suscribir el canal 1008 al plan
 
 ```json
 {
   "tipoAccion": "agregarPlanCanal",
-  "idPlan": "<idPlan>",
+  "idPlan": "PEGAR_ID_PLAN_AQUI",
   "idCanal": "1008",
   "accion": "alta"
 }
 ```
 
-**Resultado alta plan–canal:**
+**Resultado (pega respuesta):**
 
-| HTTP | Body / error |
-|------|----------------|
-| | |
-
-**¿OK?** [ ] Sí [ ] No [ ] Ya existía
-
-**Notas:**
+```json
 
 ```
+---
 
+### Paso D — Comprobar (opcional, DynamoDB)
 
+Tabla **`tld-matriz-planes-canales`**, filtro **`idCanal = 1008`**.
 
+| Campo | Valor |
+|-------|--------|
+| idPlan | |
+| exitoso | (debe ser 0 al inicio) |
+| fallido | |
+| fechaFin | |
 
-```
+Con fila presente y contadores en 0, **`validar` debería permitir** transacciones hasta agotar `request`.
+
+---
+
+## Parte 3 — Suscripción plan (referencia)
+
+**¿Canal 1008 tiene suscripción activa?** **NO** — confirmado. Siguiente acción: sección **Pendiente — plan** (pasos A, B, C).
 
 ---
 
@@ -414,9 +426,9 @@ Tabla **`tld-validador-canal`** (o la que use tu stack), clave canal **`1008`** 
 
 | Bloque | Estado |
 |--------|--------|
-| 1. Token canal 1008 | [ ] OK [ ] Falla |
-| 2. Grupos Cognito | [ ] OK [ ] Falta grupo [ ] Omitido |
-| 3. Plan / suscripción | [ ] OK [ ] Sin plan [ ] Cupo agotado |
+| 1. Token canal 1008 | [x] OK |
+| 2. Grupos Cognito | [x] OK |
+| 3. Plan / suscripción | [ ] **NO** — falta A/B/C |
 | 4. API con idCanal 1008 | [ ] OK [ ] Falla plan [ ] Falla otro |
 | 5. Validador | [ ] OK [ ] Desalineado [ ] No revisado |
 
