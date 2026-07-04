@@ -60,6 +60,7 @@ tld-api-base/
 | [05-lib-variablesEntorno.md](./05-lib-variablesEntorno.md) | Diff P2M/P2P y conjunto transversal base |
 | [06-paso-2-lib-completa.md](./06-paso-2-lib-completa.md) | Paso 2: `lib/` completa + `app.js` cableado |
 | [07-sam-deploy.md](./07-sam-deploy.md) | Paso 3: SAM sin tablas ni infra de datos |
+| [08-lib-plan.md](./08-lib-plan.md) | `lib/plan.js`: fix validación suscripción + `CFG_VALIDAR_PLAN_POR_CANAL` |
 
 ## Convención
 

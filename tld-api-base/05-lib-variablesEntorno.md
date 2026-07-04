@@ -49,7 +49,18 @@ Archivos:
 | `DB_DASHBOARD` | `dashboard.js` (pendiente) |
 | `CFG_CONTROL_PLAN_FUNCTION_NAME`, `CFG_ALIAS_API_NAME` | `plan.js` (pendiente) |
 | `CFG_CANAL_VALIDADOR` | `validaciones.js` transversal (pendiente) |
-| `CFG_VALIDAR_PLAN_POR_CANAL`, `CFG_METODOS_LIMITES_JSON` | `app.js` (pendiente cableado) |
+| `CFG_VALIDAR_PLAN_POR_CANAL`, `CFG_METODOS_LIMITES_JSON` | `app.js` |
+
+### `CFG_VALIDAR_PLAN_POR_CANAL` — despliegue (2026-07-04)
+
+| Repo | Valor en `template.yaml` |
+|------|--------------------------|
+| P2M (`tld-api-p2m`) | `"1"` |
+| P2P (`tld-api-alias`) | `"1"` |
+| Base (`tld-api-base`) | parámetro SAM, default `"0"` |
+| VCN | pendiente |
+
+Detalle del fix en `plan.js` y flujo matriz: [../tld-matriz/02-validacion-plan-runtime.md](../tld-matriz/02-validacion-plan-runtime.md), [08-lib-plan.md](./08-lib-plan.md).
 
 `CFG_ALIAS_API_NAME` conserva el nombre histórico de P2M/P2P (`nombreApi` en control de plan); el **valor** lo fija cada deploy (P2M, P2P, VCN).
 
