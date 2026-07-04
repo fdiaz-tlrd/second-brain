@@ -1,4 +1,4 @@
-# `tld-auth-matriz-planes` — explicación para dummies
+# `tld-auth-matriz-planes`
 
 **Fecha:** 2026-07-04  
 **Archivo:** `tld-matriz/lambdas/tld-auth-matriz-planes/index.js`  
@@ -21,7 +21,7 @@ Es el **mostrador de planes de suscripción**: define qué planes existen, cuán
 | “¿Qué APIs/grupos existen?” | `consultarPoliticas` → tabla **políticas** |
 | Lista de canales que pueden suscribirse | Tabla **canales auth** (`CANAL_TABLE`) |
 
-La lambda **`tld-matriz-control-plan`** (otra) es el **portero en cada transacción** de P2M/P2P/VCN/R2P. **Esta** lambda es quien **da de alta** el plan y la suscripción.
+La lambda **`tld-matriz-control-plan`** (otra) es el **portero en cada transacción** de P2M/P2P/VCN/R2P. **Esta** lambda es quien **da de alta** el plan y la suscripción. Documentado en [04-control-plan-index.md](./04-control-plan-index.md).
 
 ---
 

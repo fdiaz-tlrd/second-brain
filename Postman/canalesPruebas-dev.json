@@ -1,0 +1,180 @@
+{
+  "ambiente": "dev",
+  "canales": [
+    {
+      "canal": "1008",
+      "idCanal": "1008",
+      "swiftCode": "CELEGATO",
+      "empresa": "CELEGATO",
+      "banco": "CELEGATO",
+      "nombreCanal": "Celestia Financial Holding",
+      "correo": "fdiaz@telered.com.pa",
+      "fechaCreacion": "2026-05-02 06:36:33",
+      "apiKey": "6e37a4a0b884f305b1a2b59f915a707598a8f0795",
+      "secretKey": "f07Rqvss1tv2cG2e3k23l8T868gae1gisE1jVLeA54rH6ea1b4q2SbtHS5e9BA9Ba8886d873ucG79iR2njKb7",
+      "validador": {
+        "algoritmo": "aes-256-cbc",
+        "algoritmoAes": "aes-256-cbc",
+        "token": "Fijo",
+        "certificado": "CA de confianza"
+      }
+    },
+    {
+      "canal": "1009",
+      "idCanal": "1009",
+      "swiftCode": "ASTRGATO",
+      "empresa": "ASTRGATO",
+      "banco": "ASTRGATO",
+      "nombreCanal": "Astral Rail Capital",
+      "correo": "fdiaz@telered.com.pa",
+      "fechaCreacion": "2026-05-02 08:40:23",
+      "apiKey": "9bdec973bab42c65a4c628873d4f33349aad9a738",
+      "secretKey": "ppsgvdf01t2a102e4b73la58vadae4M5J3i29i1iU4rQg846meD91DVfK5eb9bB8B9986dei9kE8PRkCm5AbuA",
+      "validador": {
+        "algoritmo": "aes-256-cbc",
+        "algoritmoAes": "aes-256-cbc",
+        "token": "Fijo",
+        "certificado": "Autofirmado"
+      }
+    },
+    {
+      "canal": "1011",
+      "idCanal": "1011",
+      "swiftCode": "MIRAGATO",
+      "empresa": "MIRAGATO",
+      "banco": "MIRAGATO",
+      "nombreCanal": "Miraland Asset Management",
+      "correo": "fdiaz@telered.com.pa",
+      "fechaCreacion": "2026-05-02 08:43:50",
+      "apiKey": "fd1973be9bb4e2d59bd5b92b740b7dc0ba913a4c2",
+      "secretKey": "63hcaArR1tkPep2e1pT3lBJ8tBaAe2cp8nGu1L3tF4r5kn9p2kprTqlf45e888988Aaa6dC8upS1r9o7p7hotC",
+      "validador": {
+        "algoritmo": "aes-256-cbc",
+        "algoritmoAes": "aes-256-cbc",
+        "token": "Dinamico",
+        "certificado": "CA de confianza"
+      }
+    },
+    {
+      "canal": "1012",
+      "idCanal": "1012",
+      "swiftCode": "TERAGATO",
+      "empresa": "TERAGATO",
+      "banco": "TERAGATO",
+      "nombreCanal": "Terra Endfield Development Bank",
+      "correo": "fdiaz@telered.com.pa",
+      "fechaCreacion": "2026-05-02 08:44:11",
+      "apiKey": "4979e66f8b942af5a6f1089c28d1e1d7bbac472f4",
+      "secretKey": "74st4gd41tvfeR2e5et3l9aB99jAe7umV3V8qlq6I4r0edGb9N65LMg2v5e8Abaa88986d5k4faipEnn5l37h9",
+      "validador": {
+        "algoritmo": "aes-256-cbc",
+        "algoritmoAes": "aes-256-cbc",
+        "token": "Dinamico",
+        "certificado": "Autofirmado"
+      }
+    },
+    {
+      "canal": "1013",
+      "idCanal": "1013",
+      "swiftCode": "AMIYGATO",
+      "empresa": "AMIYGATO",
+      "banco": "AMIYGATO",
+      "nombreCanal": "Amiya Trust & Clearing",
+      "correo": "fdiaz@telered.com.pa",
+      "fechaCreacion": "2026-05-02 08:44:48",
+      "apiKey": "38932615b8a4f54589ce3b81db024112aab1f1213",
+      "secretKey": "Mnr4bd971t31uD2e4L73l879nBuAe17A1EhIU26CB4rUfHnBhq86fk7Ff5e9b99898ba6dnjsniRou910shRt4",
+      "validador": {
+        "algoritmo": "aes-256-gcm",
+        "algoritmoAes": "aes-256-gcm",
+        "token": "Fijo",
+        "certificado": "CA de confianza"
+      }
+    },
+    {
+      "canal": "1014",
+      "idCanal": "1014",
+      "swiftCode": "CORNGATO",
+      "empresa": "CORNGATO",
+      "banco": "CORNGATO",
+      "nombreCanal": "Cornerstone Everness Banking Group",
+      "correo": "fdiaz@telered.com.pa",
+      "fechaCreacion": "2026-05-02 08:45:10",
+      "apiKey": "2770bdacb89453a59f4207f67113e26dbbadc3355",
+      "secretKey": "1991Lcsb1t20Hr2e7gr3l8192a8aedisovIP23Lhi4r4jS79pA0Kqh41a5e98B99bba96d2L7QpibjLa27aqSU",
+      "validador": {
+        "algoritmo": "aes-256-gcm",
+        "algoritmoAes": "aes-256-gcm",
+        "token": "Fijo",
+        "certificado": "Autofirmado"
+      }
+    },
+    {
+      "canal": "1015",
+      "idCanal": "1015",
+      "swiftCode": "ZONAGATO",
+      "empresa": "ZONAGATO",
+      "banco": "ZONAGATO",
+      "nombreCanal": "Zone Zero Urban Credit Union",
+      "correo": "fdiaz@telered.com.pa",
+      "fechaCreacion": "2026-05-02 08:45:29",
+      "apiKey": "052bbfc9988439c5afd1daff99fb9fc5aab873b0a",
+      "secretKey": "nj4b73Ot1tDG792ejR43lao9oAf9e1vM6V9Mf36514rjso3vlp86cu78I5ea9A8b99986d3umn31Ccm0CF66g8",
+      "validador": {
+        "algoritmo": "aes-256-gcm",
+        "algoritmoAes": "aes-256-gcm",
+        "token": "Dinamico",
+        "certificado": "CA de confianza"
+      }
+    },
+    {
+      "canal": "1016",
+      "idCanal": "1016",
+      "swiftCode": "BELLGATO",
+      "empresa": "BELLGATO",
+      "banco": "BELLGATO",
+      "nombreCanal": "New Eridu Bell Financial Group",
+      "correo": "fdiaz@telered.com.pa",
+      "fechaCreacion": "2026-05-02 08:58:20",
+      "apiKey": "f59f2732bab4fbd5b8d53c1b2e52f9288ba8a8f69",
+      "secretKey": "V02vpr4b1t12Bl2eUDd3l8bAOaq9eCj4trslkb5sI4rh5k48i8celo7Dd5ebb999999b6d5eue74volh9clj1H",
+      "validador": {
+        "algoritmo": "aes-256-gcm",
+        "algoritmoAes": "aes-256-gcm",
+        "token": "Dinamico",
+        "certificado": "Autofirmado"
+      }
+    },
+    {
+      "canal": "1017",
+      "idCanal": "1017",
+      "swiftCode": "TEYVGATO",
+      "empresa": "TEYVGATO",
+      "banco": "TEYVGATO",
+      "nombreCanal": "Teyvat Eternal Vault",
+      "correo": "fdiaz@telered.com.pa",
+      "fechaCreacion": "2026-05-22 07:23:07",
+      "apiKey": null,
+      "secretKey": null,
+      "validador": null
+    },
+    {
+      "canal": "1018",
+      "idCanal": "1018",
+      "swiftCode": "ARCHGATO",
+      "empresa": "ARCHGATO",
+      "banco": "ARCHGATO",
+      "nombreCanal": null,
+      "correo": null,
+      "fechaCreacion": null,
+      "apiKey": null,
+      "secretKey": null,
+      "validador": {
+        "algoritmo": "aes-256-cbc",
+        "algoritmoAes": "aes-256-cbc",
+        "token": null,
+        "certificado": null
+      }
+    }
+  ]
+}

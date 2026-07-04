@@ -1,4 +1,4 @@
-# Canales, API keys y grupos — explicación para dummies
+# Canales, API keys y grupos
 
 **Fecha:** 2026-07-04  
 **Lambdas:**

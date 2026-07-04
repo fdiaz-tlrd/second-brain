@@ -101,7 +101,7 @@ Referencia: `tld-matriz/lambdas/tld-matriz-control-plan/index.js`
 | Lambda | Rol |
 |--------|-----|
 | `tld-auth-matriz-planes` | Backoffice: catálogo, altas canal↔plan (`POST /auth/planes`) — ver [01-auth-matriz-planes-index.md](./01-auth-matriz-planes-index.md) |
-| `tld-matriz-control-plan` | Portero por transacción; lo invoca `plan.js` |
+| `tld-matriz-control-plan` | Portero por transacción; lo invoca `plan.js` — ver [04-control-plan-index.md](./04-control-plan-index.md) |
 
 Variables de entorno en la API:
 
@@ -119,5 +119,6 @@ Variables de entorno en la API:
 
 - Fix: [`../../tld-api-base/lambdas/base/lib/plan.js`](../../tld-api-base/lambdas/base/lib/plan.js)
 - Peaje: [`../../tld-api-p2m/lambdas/p2m/app.js`](../../tld-api-p2m/lambdas/p2m/app.js) (`resolverCanalEmisor`)
-- Control-plan: [`../../tld-matriz/lambdas/tld-matriz-control-plan/index.js`](../../tld-matriz/lambdas/tld-matriz-control-plan/index.js)
+- Control-plan (detalle handler): [04-control-plan-index.md](./04-control-plan-index.md)
+- Control-plan (código): [`../../tld-matriz/lambdas/tld-matriz-control-plan/index.js`](../../tld-matriz/lambdas/tld-matriz-control-plan/index.js)
 - Detalle transversal base: [../tld-api-base/08-lib-plan.md](../tld-api-base/08-lib-plan.md)

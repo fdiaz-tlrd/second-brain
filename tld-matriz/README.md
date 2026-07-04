@@ -19,12 +19,13 @@ Las APIs (P2M, P2P, VCN, R2P) en runtime invocan **`tld-matriz-control-plan`** (
 | Archivo | Contenido |
 |---------|-----------|
 | [README.md](./README.md) | Este índice |
-| [01-auth-matriz-planes-index.md](./01-auth-matriz-planes-index.md) | Qué hace `lambdas/tld-auth-matriz-planes/index.js` (para dummies + diagrama) |
+| [01-auth-matriz-planes-index.md](./01-auth-matriz-planes-index.md) | Qué hace `lambdas/tld-auth-matriz-planes/index.js` |
 | [02-validacion-plan-runtime.md](./02-validacion-plan-runtime.md) | Bug `plan.js`, fix, `CFG_VALIDAR_PLAN_POR_CANAL`, flujo P2M/P2P ↔ control-plan |
 | [03-auth-canal-api-key-grupos.md](./03-auth-canal-api-key-grupos.md) | `crear-canal`, `generar-api-key`, `grupos-api-key` — onboarding canal + credenciales + permisos |
+| [04-control-plan-index.md](./04-control-plan-index.md) | Qué hace `lambdas/tld-matriz-control-plan/index.js` — portero de cupo por transacción |
 
 ## Referencias código
 
 - Lambda planes: [`../../tld-matriz/lambdas/tld-auth-matriz-planes/index.js`](../../tld-matriz/lambdas/tld-auth-matriz-planes/index.js)
 - Lambdas canal/apiKey: [`../../tld-matriz/lambdas/tld-auth-crear-canal/index.js`](../../tld-matriz/lambdas/tld-auth-crear-canal/index.js), [`generar-api-key`](../../tld-matriz/lambdas/tld-auth-generar-api-key/index.js), [`grupos-api-key`](../../tld-matriz/lambdas/tld-auth-grupos-api-key/index.js)
-- Doc repo: `tld-matriz/docs/architecture/tld-auth-matriz/lambdas-tld-auth.md` §5–8
+- Lambda control-plan: [`../../tld-matriz/lambdas/tld-matriz-control-plan/index.js`](../../tld-matriz/lambdas/tld-matriz-control-plan/index.js)
