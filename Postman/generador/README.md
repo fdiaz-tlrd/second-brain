@@ -31,3 +31,7 @@ Metodo/<metodo>/<grupo>/<campo>/<N.N>_<campo>_<condicion>.json
 ```
 
 Cada JSON es un escenario; el ensamblador los combina en una colección Postman v2.1.
+
+## Estudio de referencia
+
+[`estudio-generador.md`](estudio-generador.md) — documentación completa del generador (estructura, flujo, escenarios, scripts, validación). Consultar ahí antes de revisar todos los archivos fuente.
