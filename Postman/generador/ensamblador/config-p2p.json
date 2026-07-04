@@ -1,0 +1,12 @@
+{
+  "coleccion": {
+    "name": "P2P Escenarios error",
+    "description": "Colección generada desde la fuente en P2P Escenarios error/."
+  },
+  "entrada": {
+    "fuente": "../P2P Escenarios error"
+  },
+  "salida": {
+    "archivo": "./salida/P2P Escenarios error.postman_collection.json"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "nombre": "0006.1.2.2. tipoIdentificador — null (419)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 419,
+  "expectedTipo": "parametro",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0006",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "{{IDENTIFICADOR_CELULAR}}",
+            "tipoIdentificador": null,
+            "respuestas": [
+              {
+                "id": "pregunta01",
+                "texto": "respuesta01"
+              },
+              {
+                "id": "pregunta02",
+                "texto": "respuesta02"
+              }
+            ],
+            "banco": "{{SWIFT_CANAL_EMISOR}}",
+            "cuenta": "1234567890",
+            "producto": "PACA"
+          }
+        }
+      ]
+    }
+  }
+}

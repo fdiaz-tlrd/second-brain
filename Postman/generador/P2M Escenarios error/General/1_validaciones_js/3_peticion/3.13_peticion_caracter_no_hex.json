@@ -1,0 +1,27 @@
+{
+  "nombre": "1.3.13. peticion — caracter no hex (400)",
+  "expectedHttpStatus": 400,
+  "expectedCodigoError": 400,
+  "expectedTipo": "general",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "metodo": "0015",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}",
+            "tipoIdentificador": "COMERCIO"
+          }
+        }
+      ],
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}"
+    },
+    "__mutacionPostCifrar": {
+      "peticion": "ZZcd15862edd25126cc4577b988f0ce5.6be3fb860f44768ae56e31463a6a543e0bd2c36a6e9563613709fbdfce80fc47224c066cf7e51511139aa0354749cb38132bdcd66a5d6caea090bc896caf44160737f991711a3277098c5d5585b8c099e31ccfaad1e43f67300f6e64ea1683c73d805b0a7d029302457d0973b6c0e2846ed2b58070a44ab43a6d5bf752b03c624697fd7fa74dfa3f686c8155abb08db3de895be42be4316e98c73a4a82cb9fb040019fab669d6b8eb4cc31cf6faa611cc01c0981cbf1127a4cf4046833db8e844d97b556796bc96ecdf4fb370fdf2ba826f90fb2ce4f96a93dcc491e44033f07053a391137afe09c2899bcfa146559a5e664e6e60c4da09e381410792548ead334298ac1fe386cd948c0c84aaee56cd32200baf21181021c3952c2c053bf2cf4b55fdb9506ea15f2b14e1d1f2e2c1ef2e0b49e5e5b93589e3f6edec5e911f1ed88d51efa1e97520931f38bf19023d1a36bb13758742a45e3fb88c3e7bd3df9887489b6a47fcc57f02f909cdbcfb5ef9a70a00b90b760f336b623af0194fb94dcad7b0bdabfe90cecd792bea0b6272e830ba5fc2f9af5792cad8f30f90eaae44485710a1502111747047667831897ac40c455d6618765ba5736b7f94172ed3d30c48456e4b1a3a30d5e68fc7a412cae25bbc6c4a3e1b9d4c6a31f77981ef858d1ba240500b9f04fe1ebb41054a882178c200034245e8395e92a08ecfed05c9384.21bdf8556d82b9da3ee826bd80240c8b255a870266f9f2c4b16f71830dee4f57228530b10243d0f4927e2bb11375953928f1c5cc7fd0dbcabaecaab290ad414fb9c8342193e54d583bfbbc4a7c3c42beb73ad4fe8f52b6a76433f06e3746da77f98e5995794120e968793808090bddcec15161e4c782a5b90a84e9dff594afffe1a04ff374c9feb9bf6f23e84ae21ed3"
+    }
+  }
+}

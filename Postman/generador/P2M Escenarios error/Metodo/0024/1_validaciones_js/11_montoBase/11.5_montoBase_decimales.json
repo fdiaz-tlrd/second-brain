@@ -1,0 +1,36 @@
+{
+  "nombre": "0024.1.11.5. montoBase — decimales (dinámico) (456)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 456,
+  "expectedTipo": "parametro",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0024",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}",
+            "tipoIdentificador": "COMERCIO",
+            "banco": "{{SWIFT_CANAL_EMISOR}}",
+            "moneda": "840",
+            "qrTipo": 12,
+            "canalPago": "BM",
+            "tipo": "TEXT",
+            "fechaVencimiento": "20991231",
+            "cantidadLecturas": 1,
+            "ciudadComercio": "San Jose",
+            "montoBase": 10.5,
+            "impuesto": 0,
+            "propina": 0,
+            "monto": 1000
+          }
+        }
+      ]
+    }
+  }
+}

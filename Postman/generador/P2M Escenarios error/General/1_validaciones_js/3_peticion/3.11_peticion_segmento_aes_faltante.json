@@ -1,0 +1,27 @@
+{
+  "nombre": "1.3.11. peticion — segmento AES faltante (400)",
+  "expectedHttpStatus": 400,
+  "expectedCodigoError": 400,
+  "expectedTipo": "general",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "metodo": "0015",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}",
+            "tipoIdentificador": "COMERCIO"
+          }
+        }
+      ],
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}"
+    },
+    "__mutacionPostCifrar": {
+      "peticion": "7f24f220329097ded4df41e1319c664a.1739da74a1165c207e82dfe8b9efe29787f0d41b8473fd2f8596de40e5b4216e89e3fc3954b9e1e111e3081c336b2a49339a17f0bc61965904520e79e7a299ecf89d60a55466afa99ea709f8dd0b42a32413110b6d65cf9e0cc2f75b1cca9208fffc7f7949ae9d1cb603724666ec58db1c7247faa5e82fa9cc1a340c7adc64e56fab35d566caca1ca5c1df2091f14796106bc510decd993777f02ffacfaaf7ff94703287e4715258e86ff4bb198e9b290bc2ccb85e4d967c368f44ea8eab9d34dc7655fe505ac7c8ad0dec02c5521882a59593c800ee47794d24c6b6c5e44d32153553e750661c5d5786b6b536e5889b33a8c56d280a401909552a8befb656739eb3d7df68c0b7e0756de615758cd46678f406f50df488f840692bf624e49f242e1769220a23e3e754e2b7a015fc2a19be6915dff9ec3d9c8eaff8c734be5b765b42c04b715ba0bbef5c909c0ec77a2cb16260bd32aa7d17ea5f2aa3fcea4ef927f15c3e52e634585e995ac98ceb8799fbadd59dabe7a3170eaed6c58cc3f4b28a374a949feab4668f79ee886258487d39e7002b46fc1a350cc48d29f5790f1d809768cd93873fb8271e31951771c374f6fff09491a1e22876278d00475cd09ff9bdab0d893a02e87e38b43320ce202a18307de12e4edbf51e032d3219cdf9462355d230c2986a87b0308be592a501e21c1a700591ba7af89ac96eb91e1fe1cf"
+    }
+  }
+}

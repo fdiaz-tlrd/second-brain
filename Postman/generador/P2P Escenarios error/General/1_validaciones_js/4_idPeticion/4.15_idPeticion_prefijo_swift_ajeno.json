@@ -1,0 +1,23 @@
+{
+  "nombre": "1.4.15. idPeticion — prefijo SWIFT ajeno (445)",
+  "expectedHttpStatus": 400,
+  "expectedCodigoError": 445,
+  "expectedTipo": "general",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "metodo": "0002",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "tipoIdentificador": "CELULAR"
+          }
+        }
+      ],
+      "idPeticion": "{{SWIFT_CANAL_AJENO}}0000{{$timestamp}}"
+    }
+  }
+}

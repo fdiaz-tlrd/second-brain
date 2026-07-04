@@ -1,0 +1,31 @@
+{
+  "nombre": "0016.1.9.3. logo — string vacío (449)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 449,
+  "expectedTipo": "parametro",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0016",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}",
+            "tipoIdentificador": "COMERCIO",
+            "banco": "{{SWIFT_CANAL_EMISOR}}",
+            "cuenta": "0000123456",
+            "producto": "PACA",
+            "nombreComercio": "QA Test",
+            "correo": "qa@test.com",
+            "mcc": "7299",
+            "logo": ""
+          }
+        }
+      ]
+    }
+  }
+}

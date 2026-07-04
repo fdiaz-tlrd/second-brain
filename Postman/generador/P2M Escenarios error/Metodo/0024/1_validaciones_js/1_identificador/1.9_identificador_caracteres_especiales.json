@@ -1,0 +1,24 @@
+{
+  "nombre": "0024.1.1.9. identificador — caracteres especiales (409)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 409,
+  "expectedTipo": "parametro",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0024",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "endfield_#$",
+            "tipoIdentificador": "COMERCIO"
+          }
+        }
+      ]
+    }
+  }
+}

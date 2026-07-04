@@ -1,0 +1,31 @@
+{
+  "nombre": "0021.1.3.6. banco — tipo object (414)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 414,
+  "expectedTipo": "parametro",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0021",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}",
+            "tipoIdentificador": "COMERCIO",
+            "cuenta": "0000123456",
+            "producto": "PACA",
+            "nombreComercio": "QA Test",
+            "correo": "qa@test.com",
+            "mcc": "5411",
+            "logo": "{{LOGO_VALIDO_BASE64}}",
+            "banco": {}
+          }
+        }
+      ]
+    }
+  }
+}

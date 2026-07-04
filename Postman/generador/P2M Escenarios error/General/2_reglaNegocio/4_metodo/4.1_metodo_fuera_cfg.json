@@ -1,0 +1,24 @@
+{
+  "nombre": "2.4.1. metodo — no está en CFG_METODOS_LIMITES_JSON (418)",
+  "expectedHttpStatus": 400,
+  "expectedCodigoError": 418,
+  "expectedTipo": "general",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "{{METODO_FUERA_CFG}}",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}",
+            "tipoIdentificador": "COMERCIO"
+          }
+        }
+      ]
+    }
+  }
+}

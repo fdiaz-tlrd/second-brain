@@ -1,0 +1,27 @@
+{
+  "nombre": "2.3.5. peticion — cifrado truncado (405)",
+  "expectedHttpStatus": 400,
+  "expectedCodigoError": 405,
+  "expectedTipo": "general",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "metodo": "0015",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}",
+            "tipoIdentificador": "COMERCIO"
+          }
+        }
+      ],
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}"
+    },
+    "__mutacionPostCifrar": {
+      "peticion": "218fb4d8a7f570d98748376724d5e0e8.864997d96d63c534593c604c24afec0526f5375eb560dea332362e8fc75aa4f88a64a8441871bc12ed38a558c2b07d809c5c0ca3141321a089cb39d5cc059d39d65198123042f20b64834591ec2f24377edd4317b9482da3403883b317bc5025ec6b58a7565b375ae2a2db9247e26e62a22dc129c84038843caf75bbd7fcced4554ab6c71651ff4cf6417666855d36970e4a9f8da101990adc4f8dad38dd3c1452d43eb7b0aed73cc9a60f4f1cdfadb6c69c707fd505e34b2f6a41a2821575a15bbc0373302739e90dfc66ba7b12deb9c93e7598e8aada40e1adf2af890e99e45d3b511c6f7cb747e828d00f636d9a80e27b701ea39cf9890faf29c3e0db393a8a386168e6857ada7923ebb1058c57e50144fc47b0b4d1d7d5c72592ee68df532695bd4f8c7253a0239606e95fd9a82468627bf1ad46022b350bb4e09355b897961ff2b816dd228b3ced0c0746deb9b4935ba2d3a0bc2538de9d27ca2b5f62ab1a9297673b48f2316dd1d46e0639bbf32e4d99581f8d5c274ce1ac90325bc890afa2d88e68def747bdce1a3a5ecee687fe37cb98cc5d292a8350937aff4e9d128cb6e5426c2d38c696b0822c7cd2446ec5436e65d4edb88d30d9bf380f9297a50cfe6d221df3a66007c7e2a4cf13c120c9289911187fc8029af5bc865471e6b69355b91e4aff1158adc501a52fa8d8ec592196726f62972a780989c37ea76691.ae0111ae2636ba3633f075194d079054a4575619851342d9af9727f7c6afd9bab9ed612b48253258d4dc7a09998ffee3322232d90461c9746e57d75f04d1fdc8af3c96d46d4b3b9782d107b079f315a99791884709f9d161856cde137a82d52a7d413a0501634d1c73140845f89cd8774093eb09d007e6a176db5449"
+    }
+  }
+}

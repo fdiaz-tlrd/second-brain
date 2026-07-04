@@ -1,0 +1,27 @@
+{
+  "nombre": "2.3.3. peticion — RSA material no hex (405)",
+  "expectedHttpStatus": 400,
+  "expectedCodigoError": 405,
+  "expectedTipo": "general",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "metodo": "0015",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}",
+            "tipoIdentificador": "COMERCIO"
+          }
+        }
+      ],
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}"
+    },
+    "__mutacionPostCifrar": {
+      "peticion": "e72d95fe8d5843b15e9e7057cfa47a8a.07ce2ecce346cec31cd04c578b8d2b0e698807fdf5d4e54c9f79194405f3aa65b9e02b74db4cf4c7f2eeff646766bedd18d6927d5162d3fd8bbd021b9fb09b4d68cc7629e80f95530330097b5527d8298a4204b4bc2288958cdc8b7856c1694756d191cce61683ab51ae26d3a7d19e87ab2c9e2c229a69148da5765fcc769110b254bb768159593317c77923b5192f87a27971fef54e63df8eec5e8b1dee24d84b3ce3a9ee28ce6c1d57963edc7358dd5f37aaba9c40b656e5a622893aedba9d8b4253112b677c1cfd5bd3f2d14f2d02ed5b5e565294b9fa1b6517acaa93900cc158c5de9647b28285150ecf0faff0681915686bdf8ee1a89f10cd71fdece05f77cb07c59cefb65760dab9603c503c36043f7b4bc419f0d1abd33bf75050a729b6d72d6f8978f83e6e4690d607bc6abcc8f445f15c4a18633d6cc59d629ea11e9c7e172d0f458c7ee3f6957a4d2328c555bdddc8f4677ffcb44231e1306f38aa2208e2898b85dcf8923b661f2cbc023fa28cdae70504ebf5b2c237fb9a44834e2aa5f108a19dcc8bc22ee17dd2959d0bfc763625db7aac4c36ea36055bdfd44fbac5ddb5dd67547ac7925d9cb88f116e05e9d30326052037c8019a632e5653c9b0fdfa0d92bf3629022ee6ef201f52ac18c9e6d36619d5251867ca5523613e3e4f9b760997055f8a09fc45e378c6ab82e753a221f0e8e370bd40d24123a1307e.e215c2e73e345acd331298bb4a71604c2bf784a1ddc2f910ce9392b4b12a3697cbd6a9752ce3e4e1cd53d6e8af143b5d1c6aad02122aac8c64cfec17add66ca9a322823463a979f88681bf5deeb036b8b5392a14fcd5b6a8d6416da308dd3591de9ef9c9de20e603e33dd6eaf98d4e29c74053936d23857d0d836786366285a6028a0bc9e5dbe5529b10a31da63a0fca"
+    }
+  }
+}

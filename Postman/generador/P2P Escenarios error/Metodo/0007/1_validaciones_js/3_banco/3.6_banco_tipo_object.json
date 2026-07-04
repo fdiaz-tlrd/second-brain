@@ -1,0 +1,26 @@
+{
+  "nombre": "0007.1.3.6. banco — tipo object (414)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 414,
+  "expectedTipo": "parametro",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0007",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "{{IDENTIFICADOR_CELULAR}}",
+            "tipoIdentificador": "CELULAR",
+            "banco": {},
+            "tipoBaja": "INDIVIDUAL"
+          }
+        }
+      ]
+    }
+  }
+}

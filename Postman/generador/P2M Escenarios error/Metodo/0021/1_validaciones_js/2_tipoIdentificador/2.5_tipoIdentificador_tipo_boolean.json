@@ -1,0 +1,24 @@
+{
+  "nombre": "0021.1.2.5. tipoIdentificador — tipo boolean (410)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 410,
+  "expectedTipo": "parametro",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0021",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}",
+            "tipoIdentificador": true
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "nombre": "0019.1.3.9. p2mPagoId — sin prefijo P2M (458)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 458,
+  "expectedTipo": "parametro",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0019",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "{{IDENTIFICADOR_CELULAR}}",
+            "tipoIdentificador": "CELULAR",
+            "p2mPagoId": "00000000000000000000000000000000"
+          }
+        }
+      ]
+    }
+  }
+}

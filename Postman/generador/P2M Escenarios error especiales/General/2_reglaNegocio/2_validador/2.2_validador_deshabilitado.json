@@ -1,0 +1,24 @@
+{
+  "nombre": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
+  "expectedHttpStatus": 400,
+  "expectedCodigoError": 402,
+  "expectedTipo": "general",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR_DESHABILITADO}}",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0015",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}",
+            "tipoIdentificador": "COMERCIO"
+          }
+        }
+      ]
+    }
+  }
+}

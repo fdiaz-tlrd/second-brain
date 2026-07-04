@@ -1,0 +1,28 @@
+{
+  "nombre": "0008.1.4.14. banco — SWIFT no coincide con emisor (412)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 412,
+  "expectedTipo": "parametro",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0008",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "identificador": "{{IDENTIFICADOR_CELULAR}}",
+            "tipoIdentificador": "CELULAR",
+            "banco": "{{SWIFT_CANAL_AJENO}}",
+            "cuenta": "1234567890",
+            "producto": "PACA"
+          }
+        }
+      ]
+    }
+  }
+}

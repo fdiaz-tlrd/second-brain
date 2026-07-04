@@ -1,0 +1,26 @@
+{
+  "nombre": "1.3.8. peticion — IV en base64 (400)",
+  "expectedHttpStatus": 400,
+  "expectedCodigoError": 400,
+  "expectedTipo": "general",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "metodo": "0002",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "tipoIdentificador": "CELULAR"
+          }
+        }
+      ],
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}"
+    },
+    "__mutacionPostCifrar": {
+      "peticion": "tbDFZnYQsJEPvZZ2oSeimg==.9586488c17eba023a3d572a1c576de3ef6b1868d1df529c99484353a6f101336d0487e0734b7f78499728c2887171d9c45d70f77552e93fe0e9db0b22fcf8070131d9508573f15a0e16c3424455f3a9496a7086ab6b77ade1c3a061bf3ec814946043a98a9323636be7ded42ba885692c768d9a9c9c0aeb9dbc395cad8dceb8af60aa4104c8d07cb79a2d9546e0a3984362a4eb10abafbbe13f9bfe420197d963d6c8bcd205a8fc2716092d0573aa61e27be0559ab1cbbc580009b1a4deb653fbd9ce068335fe8f1e7ed2339f0d30debf1a2322c8cd1224cc7b8259349f2632aa12e1e676ae1fefeaa97daf4d63ca1e22ba1d292eb8f87224f1d754ec91ed509194e803df7983ca86497104a670aa49e7043e9e22d0edeef2223786f2659ed6888a3d926e2de7c4c93c8f8f7b92827f42f18e8ca58ce37ae29ee29fa127cf41b3131edb1000b213e0d1d18df54ffdb91ae8b5fe9db1994d3ac0500767fa5dba03c71475c6cd2b7fcae665e6cf9cedc3d59ea9a904f0234eb20e35e75ef0fce87aee2ff65822a2f73fceb67c560f92fa00adba94f239424d2dc4be166dd6825ec3825d9d80562116c5ad73c77fea92a43872040bdbd66da18fcb25c9db32239bf31c2437f42c7ea54c58f7ab1eff8dc7b3c568788399f1c7268f49729c3e2d7a101ed195a35c603a886c02135c43109fe2978f9e54a9190785aa5c0c23c6042b8.84963cacf1cbcaafc686808786eb5b3b653fd427772f567cf75ff357bf85bdfc84e39badf4715e8fe8f75b6fa41c4b88e3813b25800e9f99442f03bf5550ad6190c4d326687a83267e46a4037ab5be3557973a9aebfed0d17d10e282051326e188ddd86a7e6026bcdce3b7e6f1b39c41b6fb69d4d81dce5b71f3d4a587c49b31c7714dd61c825554ff3e5734beb20d3f"
+    }
+  }
+}

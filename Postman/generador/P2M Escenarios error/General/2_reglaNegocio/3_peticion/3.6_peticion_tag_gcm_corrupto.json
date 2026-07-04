@@ -1,0 +1,27 @@
+{
+  "nombre": "2.3.6. peticion — tag GCM corrupto (405)",
+  "expectedHttpStatus": 400,
+  "expectedCodigoError": 405,
+  "expectedTipo": "general",
+  "algoritmoCifrado": "aes-256-gcm",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR_GCM}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "metodo": "0015",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}",
+            "tipoIdentificador": "COMERCIO"
+          }
+        }
+      ],
+      "idPeticion": "{{SWIFT_CANAL_EMISOR_GCM}}{{$timestamp}}"
+    },
+    "__mutacionPostCifrar": {
+      "peticion": "6a5c43b392ca3288ac3e868c3b2dc6a94c52ea3a0e2a36afca1f8cb3c8ff60b0deb354440aa74b47375e5602e138da13d5b13e577d2349d28fe1f9a94d2ff6cdcda895f6b809c00cf42a1078bde786cb2e199a4356f8fb4992928a3ef57f69d145fd042aaa4830d5a1718dfbddeec18909cdd9f0bf20ace4f457a3cdc74bdb32e4ac9eb17d623e78cae0eda8175fd1a8498809e7f372896c9afca4c39fa721f58adb87c4334518a32d2956bc34b8448a1444c7e8e3113a2d7cfa073ab43637588c5b929abc4d55281339634bbded29f16c7293c58af0bc26cbb68403e78f32474ed560e33e62c115bdf6b03f84fecfdbad01928c423d83e2e9430456809982a480b4ad96fa5c42bfa342b3c8bee3344b23c66d9a0a05a8890b145250237a85f22a50dc52a14849b355bc87d82e2661ff125b52f0836ca8b801bfa4dd57a5e1d52b08a496aaca463762f6226a6eb66b8d065a8373638c0987ee71f04cbf2da321a6baf2a65896945f9771743f3a7f0678cfc32580a7515488982a44f288891da38aea73cc7d271e813f25302746ebb5042d4e62c341144455f4ec1d94724ae8440736e566c94cfd5c0af06b37ed2f353071eefbc9b261702d77f03f232c3e523265f6f8e4ba2dbebbcc86430a3b4c1687a782750117c6bef1dd681eaca190ce047f3e20c806e4e6dd3c5ad556f75123ae132a796eaee8f6e4875491882c1cd7f920e1ea6af695f014dd55b8d2b19df44e2f3da09ca7b6afc69475527d68c0e6c41997b75fe1e9362118d160b4375b0de5830e1773fa53653170093d2a9c5deb8ea412d09af8a78699311b51c30d139f9a1d15d5b141defade96a516e819d6d93f5ca01036a5e23b881d58f9eae37aba611c98da7ad74143c5bd3dd584f19593ca8165020ba75db779"
+    }
+  }
+}

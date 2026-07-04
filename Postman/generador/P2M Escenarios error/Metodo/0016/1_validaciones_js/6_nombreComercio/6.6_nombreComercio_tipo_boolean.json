@@ -1,0 +1,31 @@
+{
+  "nombre": "0016.1.6.6. nombreComercio — tipo boolean (446)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 446,
+  "expectedTipo": "parametro",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0016",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}",
+            "tipoIdentificador": "COMERCIO",
+            "banco": "{{SWIFT_CANAL_EMISOR}}",
+            "cuenta": "0000123456",
+            "producto": "PACA",
+            "correo": "qa@test.com",
+            "mcc": "5411",
+            "logo": "{{LOGO_VALIDO_BASE64}}",
+            "nombreComercio": true
+          }
+        }
+      ]
+    }
+  }
+}

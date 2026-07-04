@@ -1,0 +1,26 @@
+{
+  "nombre": "0019.1.4.5. estadoCargo — tipo boolean (459)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 459,
+  "expectedTipo": "parametro",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0019",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "{{IDENTIFICADOR_CELULAR}}",
+            "tipoIdentificador": "CELULAR",
+            "p2mPagoId": "{{P2M_PAGO_ID_NO_EXISTE}}",
+            "estadoCargo": true
+          }
+        }
+      ]
+    }
+  }
+}
