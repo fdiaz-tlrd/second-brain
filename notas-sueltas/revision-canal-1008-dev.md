@@ -270,7 +270,147 @@ Si hay planes → copia un `idPlan` de la respuesta y ve al **Paso C**. Si la li
 **Resultado (pega respuesta):**
 
 ```json
-
+{
+    "statusCode": 200,
+    "data": [
+        {
+            "planType": "semanal",
+            "fechaHora": "2023-01-02 01:01:24",
+            "status": "activo",
+            "request": "5000",
+            "idPlan": "2866a90199a4ffa598361a9975046a1b98bea9cfb",
+            "namePlan": "NUEVO TEST"
+        },
+        {
+            "planType": "semanal",
+            "fechaHora": "2022-09-29 03:30:11",
+            "status": "inactivo",
+            "request": "5000",
+            "idPlan": "47df9d6b8a844cb5a5a82e0d9489be85b89ae2eb8",
+            "namePlan": "test"
+        },
+        {
+            "planType": "anual",
+            "fechaHora": "2022-10-11 01:22:17",
+            "status": "activo",
+            "request": "5990",
+            "idPlan": "224b291498a4fe0584e8ba89f3529cf2a8b349391",
+            "namePlan": "nombre de plan"
+        },
+        {
+            "planType": "semanal",
+            "fechaHora": "2022-10-07 02:15:05",
+            "status": "activo",
+            "request": "5000",
+            "idPlan": "4e5ebf5ab8b42425bd21b93d3727095a8b93342df",
+            "namePlan": "test"
+        },
+        {
+            "planType": "anual",
+            "fechaHora": "2022-10-11 01:22:08",
+            "status": "activo",
+            "request": "3990",
+            "idPlan": "21bb8c07b894050589acc7ce4894b9d599951fe7e",
+            "namePlan": "nombre de plan"
+        },
+        {
+            "planType": "anual",
+            "fechaHora": "2022-10-11 01:22:54",
+            "status": "inactivo",
+            "request": "6990",
+            "idPlan": "3bc33f5baa94fdd5b349d66c66193b36b8b216347",
+            "namePlan": "nombre de plan"
+        },
+        {
+            "planType": "semanal",
+            "fechaHora": "2022-09-30 01:18:51",
+            "status": "activo",
+            "request": "5000",
+            "idPlan": "b3dad9c1b984e7659de138bf84073f60999f95f37",
+            "namePlan": "test"
+        },
+        {
+            "planType": "semanal",
+            "fechaHora": "2022-10-14 02:28:03",
+            "status": "activo",
+            "request": "9999",
+            "idPlan": "2b9fa9ef89b4160594584df0d9ed8a8c9bb7894dd",
+            "namePlan": "nombre de plan ejemplo"
+        },
+        {
+            "planType": "semanal",
+            "fechaHora": "2022-10-05 03:20:00",
+            "status": "activo",
+            "request": "5000",
+            "idPlan": "32f67caf9884d6f5a71b03c6f7904244b9a7b81f0",
+            "namePlan": "test"
+        },
+        {
+            "planType": "semanal",
+            "fechaHora": "2022-09-28 10:59:39",
+            "status": "activo",
+            "request": "4999",
+            "idPlan": "a5310c4baab4d2c5b74a940dcfee4e42baa4a7137",
+            "namePlan": "test"
+        },
+        {
+            "planType": "mensual",
+            "fechaHora": "2022-10-05 08:44:18",
+            "status": "activo",
+            "request": "10000",
+            "idPlan": "f83ca67b899486e5803bd419044388cfa89a99699",
+            "namePlan": "test"
+        },
+        {
+            "planType": "anual",
+            "fechaHora": "2022-10-11 01:13:44",
+            "status": "activo",
+            "request": "3990",
+            "idPlan": "4dc97aeca9a48ab585f48871d635c3b0a89cc737b",
+            "namePlan": "test"
+        },
+        {
+            "planType": "semanal",
+            "fechaHora": "2022-10-14 02:28:03",
+            "status": "activo",
+            "request": "8888",
+            "idPlan": "2b9fa9ef89b4160594584df0d1ed8a1c1bb7894dd",
+            "namePlan": "nombre de plan ejemplo1"
+        },
+        {
+            "planType": "anual",
+            "fechaHora": "2022-10-11 01:20:32",
+            "status": "activo",
+            "request": "3990",
+            "idPlan": "08a5b6b8bab42a9585fab5f6861f782a89ad8047b",
+            "namePlan": "test"
+        },
+        {
+            "planType": "semanal",
+            "fechaHora": "2022-09-30 01:16:24",
+            "status": "activo",
+            "request": "5000",
+            "idPlan": "9dc927f099a46555bc01eaa4eeb47e99b9b486905",
+            "namePlan": "test"
+        },
+        {
+            "planType": "semanal",
+            "fechaHora": "2023-01-03 05:53:06",
+            "status": "activo",
+            "request": "5000",
+            "idPlan": "433aa2b28bb44c95a7ecfc564f4c18e089aa3a364",
+            "namePlan": "NUEVO TEST"
+        },
+        {
+            "planType": "semanal",
+            "fechaHora": "2022-10-07 09:26:09",
+            "status": "activo",
+            "request": "5000",
+            "idPlan": "c287707f98a4cb15b6517acd875df03d9a8e8e4b9",
+            "namePlan": "test"
+        }
+    ]
+}
 ```
 ---
 
@@ -279,7 +419,7 @@ Si hay planes → copia un `idPlan` de la respuesta y ve al **Paso C**. Si la li
 ```json
 {
   "tipoAccion": "agregarPlan",
-  "namePlan": "Plan dev CELEGATO",
+  "namePlan": "Plan dev GATO",
   "planType": "mensual",
   "request": 999999,
   "accion": "alta"
@@ -291,7 +431,10 @@ Si hay planes → copia un `idPlan` de la respuesta y ve al **Paso C**. Si la li
 **Resultado (pega respuesta — anota `idPlan`):**
 
 ```json
-
+{
+    "statusCode": 200,
+    "message": "Plan creado de forma exitosa"
+}
 ```
 ---
 
@@ -300,7 +443,7 @@ Si hay planes → copia un `idPlan` de la respuesta y ve al **Paso C**. Si la li
 ```json
 {
   "tipoAccion": "agregarPlanCanal",
-  "idPlan": "PEGAR_ID_PLAN_AQUI",
+  "idPlan": "d5223ccbba94805594e7aa16bdf21f82aabfa7afd",
   "idCanal": "1008",
   "accion": "alta"
 }
@@ -309,7 +452,10 @@ Si hay planes → copia un `idPlan` de la respuesta y ve al **Paso C**. Si la li
 **Resultado (pega respuesta):**
 
 ```json
-
+{
+    "statusCode": 200,
+    "message": "Plan-Canal creado de forma exitosa"
+}
 ```
 ---
 
