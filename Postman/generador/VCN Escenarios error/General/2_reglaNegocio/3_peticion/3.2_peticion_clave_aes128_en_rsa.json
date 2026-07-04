@@ -1,0 +1,26 @@
+{
+  "nombre": "2.3.2. peticion — clave AES-128 en RSA (405)",
+  "expectedHttpStatus": 400,
+  "expectedCodigoError": 405,
+  "expectedTipo": "general",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "metodo": "0001",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "cuenta": "{{CUENTA_VALIDA}}"
+          }
+        }
+      ],
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}"
+    },
+    "__mutacionPostCifrar": {
+      "peticion": "f81473b0e7fe0f80a7e339a7c58b37cd.441ae655c98398589b9abc0cca01e818d8f73de05f0c5303c5300acbce62a80e059e18ce4147d05933cdeb9621e4972377ae56318b3a49f74137f1e904e366acc132846d76a5ec1b3201b31fc949b3ca054cdf022168b2e2be39054b696fb15335be0ea9bf1f245ed46360ae951fe7009641b52f01a88fdeb54881c545a5774b454cbbaad1abef48d928c5f2bc566349d086d4ab330f9b5f45e9f309600f83098ebf3f3cba7edb2aec6831b205de71dc022bc3cf1778836f24bb28748db74f27560dbc11731e5f17c2a13aa2d7090889415db2e9a4746146c0a4e8718542c932596a002d1e9e438071138a91c56f186bbc8d2c46cadd9abaf5454c18c28b0a99a539108816e9d014ac335063c3955991f1fce596b507e8f39f57a239e5c7f4f6e8ca3e2224b5dda431cced44fd2563ef97e16374c0fbe9de78575df18be311c47e0c2d74d9eb833b9e9f41e0a6286990250c5c44047ca5fe9fd0be9a9c0d327d605b60ec6538f22dd635c44c3ca28f64f7e0465150fd82242dbbd812be5b8d1923cad3635a2473b892cd9415de1c2fab2efa83e0d927d833bab0925275191e2c6374f3f8d38695c7e266b90fec31c039c09717bd197d3c73c776cbc8cfde7eb40d4767bc44919c1900ea0e1ebc59af68201e4701f00c234edfb1532888b49d5f6a27a1f56bab280d267dae132204cdf34dd227e28eacc17345ee5b192d11f471.3e474630611556d120c51fde20d742ea73e7d3e6ba2f49ce223f38ca7bde40cff05cd115b56b728028e4d706c6e26fea0f501ab9d3425f9743640a3e02c99214210443d3c089c6bdc868cd59fc0cc88c8ef7552d5de5fbabeb79d4dd578ad990faa89fe24161e38990b224e0a1780e516c684eb74613368f2c02f63c6e06fcc961d262859e36129e6993fa057a9476f6"
+    }
+  }
+}

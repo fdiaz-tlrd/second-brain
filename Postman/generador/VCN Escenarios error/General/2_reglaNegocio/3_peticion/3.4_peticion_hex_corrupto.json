@@ -1,0 +1,26 @@
+{
+  "nombre": "2.3.4. peticion — hex corrupto (405)",
+  "expectedHttpStatus": 400,
+  "expectedCodigoError": 405,
+  "expectedTipo": "general",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "metodo": "0001",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "cuenta": "{{CUENTA_VALIDA}}"
+          }
+        }
+      ],
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}"
+    },
+    "__mutacionPostCifrar": {
+      "peticion": "22effb0c5ddc891542923c49cd8ee08a.354dcfbbc6adfd975d9f60ab993c2a8437984a5418bb66ba71548d7894b2da2b50d6c6137e071897ea7bfb59219a0a9b3b4987b0dc347c5aeb011f7d2156ef6b39641b7848535ea202786315816df93c5c6a382e54ddf8f3dae467276e69a05fdfb97c7b6d46c40bc967df2766dbb6aae1a322842d01a5a87f50cdc352acdde536ca7ea6faf7cd118ae52435937333c80a69d5b1fba3e091cee76e51db620ca78a07649950e948ecd1035c63bda90cfdf3c0328183b3fcbe4f8629fc9918596a4e387c201b52b14f2fe787d7ac984489e1508770f0d4e96f39c66ce2d2589c20cc614ba7b8a41207aedd058c4c761747a95d63b028886e2f09fb46616b405acdbf999c3fd7d3005e3ad7c03abe36b552ab33691a528b00b85837287bf1247e6f5e009d0474d846a002a83232627d9742fe7dcee46e5ef8a6540f965557093056ae1045f0982a43d090543c19177dbb82d39beacb0c781c5dc7f496d3ef69cde7e6be0589736f33c5fe2a5bd2db577f2770b5771afbc2bec68b315b971f3e698e9d5c335ec885e7511d378d7decca5015affad2b6c99f800f30718d7e6b4019cac3bf0ac45431c750ec8dbd66da3e81de18e0b82aba6ef1f82424d23d829089e4de0e7bea8d0b2f9a35fe4e4923dbdb32f08f1a01a54a1e5e30e10184a480c274e904df0c3a5476ccebb34c5bcd1c43d6b980d449c972eab2923e220573ccc888.5524909afdd5a0d1c40b39773bdceebcfdda800bcb6007cf7eedc084a34fa7b8df73c5f36f057a2f5c205a3f609c87d040e7ab497746fe9abf6a47554ea506a04656c9b8dfb17dfb7fdf9f09bfee79d1ae9fc7242b13a0b2804a621a720e2ef9be2d6c7f991198ec939f4b24c99a04ce2f4abb756877d547e194d4f696a8f3040c8be3315654489505c548eb6ab05116"
+    }
+  }
+}

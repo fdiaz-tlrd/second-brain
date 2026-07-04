@@ -1,0 +1,12 @@
+{
+  "coleccion": {
+    "name": "VCN Escenarios error",
+    "description": "Colección generada desde la fuente en VCN Escenarios error/."
+  },
+  "entrada": {
+    "fuente": "../VCN Escenarios error"
+  },
+  "salida": {
+    "archivo": "./salida/VCN Escenarios error.postman_collection.json"
+  }
+}

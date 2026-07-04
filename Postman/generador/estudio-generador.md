@@ -12,7 +12,7 @@ Sistema para **mantener escenarios de prueba en archivos JSON separados** y **ge
 
 Contrario al enfoque del equipo de pruebas (`equipo-pruebas/`: un JSON monolítico de ~27k líneas), aquí cada escenario es un archivo pequeño versionable, agrupado por carpetas.
 
-Dominios actuales: **P2M** (Person-to-Merchant) y **P2P** (Person-to-Person).
+Dominios actuales: **P2M**, **P2P** y **VCN** (Validación Cuenta Nombre — en construcción).
 
 ---
 
@@ -32,6 +32,7 @@ generador/
 ├── P2M Escenarios error/     ← ~593 escenarios fuente P2M
 ├── P2M Escenarios error especiales/  ← 3 escenarios validador (aparte)
 ├── P2P Escenarios error/     ← ~490 escenarios fuente P2P
+├── VCN Escenarios error/     ← ~77 escenarios General (sin Metodo aún)
 ├── entornos/                 ← environments Postman (desarrollo)
 └── README.md                 ← uso rápido
 ```
@@ -62,6 +63,7 @@ El ensamblador configura cada escenario con URL de **descifrar** (`tld=0` por de
 |-------|----------------------------------------|
 | `P2M` (default P2M) | `END_POINT_TLD_P2M` |
 | `P2P` (default P2P) | `END_POINT_TLD_P2P` |
+| `VCN` (pendiente en scripts) | `END_POINT_TLD_VCN` (aún no existe en Pre-request.js) |
 | `MATRIZ` | `END_POINT_TLD_MATRIZ` (+ OAuth Bearer) |
 | `VALIDADOR` | `END_POINT_TLD_VALIDADOR` |
 
@@ -172,6 +174,34 @@ Ordenamiento en colección: por prefijo numérico `N.N` (función `compareScenar
 | 0003–0009 | Generados |
 | 0022, 0023 | Generados (QR, identificador celular, etc.) |
 
+### VCN (`Metodo/` — pendiente)
+
+| Método | Notas |
+|--------|-------|
+| `0001` | Único método VCN (Validación Cuenta Nombre). Ya aplicado en `General/` |
+
+**Origen de VCN Escenarios error:** copia de `P2P Escenarios error` **sin** `Metodo/`, luego `"metodo": "0002"` → `"0001"` en 76 JSON de `General/`. El escenario `4.1_metodo_fuera_cfg` conserva `"metodo": "{{METODO_FUERA_CFG}}"`.
+
+---
+
+## VCN Escenarios error — estado actual
+
+### Qué hay hoy
+
+```
+VCN Escenarios error/
+├── General/           ← 77 escenarios (igual estructura que P2P General)
+├── datosCanales.json  ← copia P2P
+├── Pre-request.js     ← copia P2P (aún dice P2P en comentarios y default endpoint)
+└── Post-response.js   ← copia P2P
+```
+
+No existe aún: `Metodo/0001/`, `config-vcn.json`, environment VCN, salida ensamblada.
+
+### Qué falta para que VCN sea ejecutable
+
+Ver sección **«Lo que estás dejando pasar»** al final de este documento.
+
 ---
 
 ## Scripts de ensamblador
@@ -190,6 +220,7 @@ Ordenamiento en colección: por prefijo numérico `N.N` (función `compareScenar
 ```bash
 node armar-coleccion.js              # P2M
 node armar-coleccion.js config-p2p.json   # P2P
+# node armar-coleccion.js config-vcn.json   # VCN — config aún no creado
 ```
 
 ### Overrides por escenario (soportado, no usado hoy)
@@ -321,9 +352,10 @@ Carpeta separada con **3 escenarios** de validador:
 |--------|-----------------|
 | P2M Escenarios error | ~593 |
 | P2P Escenarios error | ~490 |
+| VCN Escenarios error | 77 (solo General) |
 | P2M Escenarios error especiales | 3 |
 
-Salida generada: `ensamblador/salida/P2M Escenarios error.postman_collection.json` y `P2P Escenarios error.postman_collection.json`.
+Salida generada hoy: `ensamblador/salida/P2M Escenarios error.postman_collection.json` y `P2P Escenarios error.postman_collection.json`. VCN aún no se ensambla.
 
 ---
 
@@ -346,13 +378,40 @@ node armar-coleccion.js config-p2p.json
 
 ## Diferencia con `equipo-pruebas/`
 
-| | Equipo QA (VCN) | Generador propio |
+| | Equipo QA (VCN) | Generador propio (VCN) |
 |---|---|---|
-| Formato | Monolito Postman | Miles de JSON + ensamblador |
-| Flujo | 3–4 requests manuales encadenados | 1 request; Pre-request raíz orquesta |
-| Endpoint | `apigatesb.telered.com.pa` sandbox | Configurable: P2M/P2P/Matriz/Validador dev |
-| Validación | Tests por carpeta QA | `expectedTipo` + `CATALOGO_GENERAL` |
-| Mantenimiento | Export/import manual | Editar JSON + regenerar |
+| Formato | Monolito Postman | JSON por escenario + ensamblador |
+| Flujo | 3–4 requests encadenados | 1 request; Pre-request raíz orquesta |
+| Método | `0001` | `0001` en General (OK); falta `Metodo/0001/` |
+| Parámetros | `cuenta` | Aún `tipoIdentificador: CELULAR` (heredado P2P) |
+| Escenarios método | 510–515, máscaras, PACA/PACC, etc. | No existen en generador aún |
+| Endpoint | `apigatesb.telered.com.pa` sandbox | Falta `END_POINT_TLD_VCN` + environment |
+
+---
+
+## Lo que estás dejando pasar (VCN)
+
+Lista de huecos visibles hoy si solo se copió General y se cambió el método:
+
+1. **`parametros` siguen siendo P2P.** Todos los escenarios General tienen `"tipoIdentificador": "CELULAR"`. VCN método `0001` usa `"cuenta"` (y variables tipo `{{CuentaFeliz}}`). Los escenarios General pueden fallar o validar el error equivocado hasta corregir esto.
+
+2. **`Pre-request.js` y `Post-response.js` son copia P2P.** Default `END_POINT_TLD_P2P`; no hay rama `NIVEL_EJECUCION === 'VCN'` ni variable `END_POINT_TLD_VCN`. Aunque ensamblaras la colección, apuntaría al API P2P, no a cuenta-nombre.
+
+3. **No hay `config-vcn.json`.** Sin config no se genera `salida/VCN Escenarios error.postman_collection.json`.
+
+4. **No hay environment VCN** en `entornos/`. Faltan endpoint cuenta-nombre, canales/validadores VCN, cuentas de prueba (510–515, máscaras, PACA/PACC, etc.).
+
+5. **No existe `Metodo/0001/`.** En QA, la mayoría de escenarios VCN son validaciones de **cuenta** y respuestas de negocio (510, 511, 512, 513, 514, 515, 413, éxito, máscaras 0–6, jurídica, varios titulares…). General solo cubre idCanal, validador, peticion, idPeticion, solicitudes, metodo transversal.
+
+6. **`catalogoGeneral.json` no tiene 510–515.** Tiene `413` (cuenta) pero no los códigos de respuesta del validador/cuenta-nombre que QA valida en escenarios de éxito/error de negocio.
+
+7. **No hay `generar-escenarios-0001-validaciones.js`.** Para VCN hará falta un generador masivo de escenarios de `cuenta` (como existen para identificador/banco en P2P).
+
+8. **`bootstrap-general-p2p.js` no aplica a VCN.** Si alguien lo ejecuta pensando en “sincronizar General”, no toca VCN. VCN quedó como copia puntual; cambios futuros en P2P General no se propagan solos.
+
+9. **Canales en environment/dev.** Escenarios de regla de negocio (`CANAL_EMISOR_SIN_METODO`, `CANAL_EMISOR_SIN_PLAN`, etc.) deben existir en Dynamo/config con método **0001** suscrito para VCN, no solo 0002 P2P.
+
+10. **Referencia QA sin mezclar.** `equipo-pruebas/.../estudio-coleccion-vcn.md` lista ~35 carpetas de escenario; sirve como checklist de cobertura, pero no modificar ese archivo — es del equipo de pruebas.
 
 ---
 
@@ -368,3 +427,5 @@ node armar-coleccion.js config-p2p.json
 | Ejemplo regla negocio | `General/2_reglaNegocio/1_idCanal/1.1_*.json` |
 | Ejemplo mutación cifrado | `General/2_reglaNegocio/3_peticion/3.1_*.json` |
 | Generador masivo | `ensamblador/generar-escenarios-0022-validaciones.js` |
+| VCN General (ejemplo) | `VCN Escenarios error/General/1_validaciones_js/1_idCanal/1.1_*.json` |
+| Referencia QA VCN (no tocar) | `../equipo-pruebas/Validacion Cuenta Nombre/estudio-coleccion-vcn.md` |

@@ -76,6 +76,12 @@
   "500": "Error interno",
   "504": "Petición de validación no existe",
   "509": "Error inesperado en validador",
+  "510": "Número de cuenta incorrecta",
+  "511": "Número de cuenta cerrado",
+  "512": "Número de cuenta bloqueado",
+  "513": "Transacción no permitida",
+  "514": "Falta información obligatoria de consulta",
+  "515": "Razón regulatoria",
   "599": "Error inesperado en validador",
   "600": "Error durante el llamado de la API de preguntas de seguridad",
   "999": "Error inesperado"

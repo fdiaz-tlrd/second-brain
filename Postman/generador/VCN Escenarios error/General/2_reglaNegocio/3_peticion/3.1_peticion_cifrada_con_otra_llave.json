@@ -1,0 +1,26 @@
+{
+  "nombre": "2.3.1. peticion — cifrada con otra llave RSA (405)",
+  "expectedHttpStatus": 400,
+  "expectedCodigoError": 405,
+  "expectedTipo": "general",
+  "algoritmoCifrado": "aes-256-gcm",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR_GCM}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "metodo": "0001",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "cuenta": "{{CUENTA_VALIDA}}"
+          }
+        }
+      ],
+      "idPeticion": "{{SWIFT_CANAL_EMISOR_GCM}}{{$timestamp}}"
+    },
+    "__mutacionPostCifrar": {
+      "peticion": "{{PETICION_CIFRADA_CON_OTRA_LLAVE}}"
+    }
+  }
+}

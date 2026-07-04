@@ -1,0 +1,16 @@
+{
+  "nombre": "1.5.2. solicitudes — arreglo vacío (425)",
+  "expectedHttpStatus": 400,
+  "expectedCodigoError": 425,
+  "expectedTipo": "general",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "metodo": "0001",
+      "solicitudes": [],
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}"
+    }
+  }
+}
