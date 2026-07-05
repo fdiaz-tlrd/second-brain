@@ -11,10 +11,7 @@ No mezclar artefactos recibidos con fuentes generadas.
 
 ## Canales de prueba (dev)
 
-| Archivo | Contenido |
-|---------|-----------|
-| [`canalesPruebas-dev.json`](./canalesPruebas-dev.json) | Datos completos por canal (matriz, credenciales, plan, validador) |
-| [`canalesPruebas-dev.md`](./canalesPruebas-dev.md) | Referencia legible + payloads Postman |
+Carpeta [`canalesPruebas-dev/`](./canalesPruebas-dev/) — datos Dynamo, export AWS, seed operaciones y referencia Postman.
 
 ## Notas propias
 

@@ -1,9 +1,11 @@
 # Canales de prueba — dev
 
 **Ambiente:** dev  
-**Actualizado:** 2026-07-05
+**Actualizado:** 2026-07-05 (export Dynamo `2026-07-05T22:32:27Z`)
 
 Datos maquinables: [`canalesPruebas-dev.json`](./canalesPruebas-dev.json)
+
+Índice carpeta: [`README.md`](./README.md)
 
 ---
 
@@ -17,10 +19,26 @@ Datos maquinables: [`canalesPruebas-dev.json`](./canalesPruebas-dev.json)
 | Matriz grupos | `.../auth/grupos-api-key` |
 | Validador API | `https://tld-api-validador.dev.telered.internal/validar` |
 | Validador VPC | `https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/validar` |
+| Validador dummy | `https://tld-validador-dummy.dev.telered.internal` |
 | VCN | `https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre` |
 | P2P | `https://tld-api-alias.dev.telered.internal/procesar` |
 | P2M | `https://tld-api-p2m.dev.telered.internal/p2m` |
 | R2P | `https://pwkl4tl2lh-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/r2p` |
+
+---
+
+## URL del validador (canal vs operación)
+
+En runtime el proxy resuelve la URL así:
+
+| Origen | Campo |
+|--------|--------|
+| `tld-validador-canal` | `urlValidador` — si está lleno, se usa para todas las operaciones |
+| `tld-validador-canal-operacion` | `urlOperacion` — cuando `urlValidador` del canal está **vacío** |
+
+Operaciones con URL típica en dev: **0001**, **0010**, **0012**, **0014**, **0020**. El resto suele ir con `urlOperacion` vacío (enrutamiento interno).
+
+En [`canalesPruebas-dev.json`](./canalesPruebas-dev.json) cada canal trae el arreglo `validador.operaciones` y, si aplica, `validador.urlOperacion0001`.
 
 ---
 
@@ -85,21 +103,11 @@ POST `.../auth/grupos-api-key` (Bearer admin)
 
 Tras el alta, repetir token del canal y comprobar `cognito:groups` en el JWT (jwt.io). Los canales GATO usan `tld-matriz-validador` + `tld-matriz-default` para enrutar vía validador hacia VCN, P2P, R2P y P2M.
 
-`planType` al crear plan: `semanal` | `quincenal` | `mensual` | `trimestral` | `semestral` | `anual`
-
 ---
 
 ## Políticas dev
 
-POST `.../auth/planes` (Bearer admin)
-
-```json
-{
-  "tipoAccion": "consultarPoliticas"
-}
-```
-
-Lista en dev (2026-07-04): ver `politicasDev` en [`canalesPruebas-dev.json`](./canalesPruebas-dev.json). Grupo relevante para canales de prueba: `tld-matriz-validador`.
+Lista en dev: ver `politicasDev` en [`canalesPruebas-dev.json`](./canalesPruebas-dev.json). Grupo relevante: `tld-matriz-validador`.
 
 ---
 
@@ -107,44 +115,57 @@ Lista en dev (2026-07-04): ver `politicasDev` en [`canalesPruebas-dev.json`](./c
 
 Grupos: token del canal → `cognito:groups` en el JWT.
 
-| idCanal | Swift | AES | Auth validador | Plan GATO | Grupos JWT |
-|---------|-------|-----|----------------|-----------|------------|
-| 1008 | CELEGATO | cbc | fijo | sí (`fallido: 1`) | validador + default |
-| 1009 | ASTRGATO | cbc | fijo | sí | validador + default |
-| 1011 | MIRAGATO | cbc | dinámico | sí | validador + default |
-| 1012 | TERAGATO | cbc | dinámico | sí | validador + default |
-| 1013 | AMIYGATO | gcm | fijo | sí | validador + default |
-| 1014 | CORNGATO | gcm | fijo | **no** | sin registrar |
-| 1015 | ZONAGATO | gcm | dinámico | sí | validador + default |
-| 1016 | BELLGATO | gcm | dinámico | sí | validador + default |
-| 1017 | TEYVGATO | — | fijo | **no** | sin credenciales matriz |
-| 1018 | ARCHGATO | cbc | fijo | sí | validador + default |
-| 1019 | STELGATO | gcm | fijo | **no** | sin registrar |
-| 1020 | NAMEGATO | gcm | fijo | **no** | validador + default |
-| 1021 | HOLLGATO | cbc | fijo | sí | validador + default |
+| idCanal | Swift | AES | Auth | Plan GATO | Op. 0001 (25 total) | Grupos JWT |
+|---------|-------|-----|------|-----------|---------------------|------------|
+| 0001 | MIDLPAPA | gcm | fijo | no | 25 ops, URL 0001 vacía | — |
+| 1008 | CELEGATO | cbc | fijo | sí (`fallido: 1`) | 25, VPC `/validar` | validador + default |
+| 1009 | ASTRGATO | cbc | fijo | sí | 25, dummy `/validar` | validador + default |
+| 1011 | MIRAGATO | cbc | dinámico | sí | 25, VPC `/validar-con-token` | validador + default |
+| 1012 | TERAGATO | cbc | dinámico | sí | 25, dummy `/validar` | validador + default |
+| 1013 | AMIYGATO | gcm | fijo | sí | 25, dummy `/validar` | validador + default |
+| 1014 | CORNGATO | gcm | fijo | **no** | 25, dummy `/validar` | sin registrar |
+| 1015 | ZONAGATO | gcm | dinámico | sí | 25, dummy `/validar` | validador + default |
+| 1016 | BELLGATO | gcm | dinámico | sí | 25, dummy `/validar-con-token` | validador + default |
+| 1017 | TEYVGATO | — | fijo | **no** | **sin filas operación** | sin credenciales matriz |
+| 1018 | ARCHGATO | cbc | fijo | sí | **sin filas operación** | validador + default |
+| 1019 | STELGATO | gcm | fijo | **no** | **sin filas operación** | sin registrar |
+| 1020 | NAMEGATO | gcm | fijo | **no** | **sin filas operación** | validador + default |
+| 1021 | HOLLGATO | cbc | fijo | sí | **sin filas operación** | validador + default |
+
+Conteo operaciones confirmado en export Dynamo 2026-07-05: **212** filas en `tld-validador-canal-operacion` (8 canales × 25 ops + canal 0001).
 
 ### Escenarios de error (Postman)
 
 | Variable entorno | idCanal | Swift | Esperado | Causa |
 |------------------|---------|-------|----------|-------|
+| `CANAL_VALIDADOR` | **0001** | MIDLPAPA | 200 (validador central) | Validador dummy central VCN |
 | `CANAL_EMISOR` | 1008 | CELEGATO | 200 (flujo base) | CBC, plan GATO |
 | `CANAL_EMISOR_GCM` | 1013 | AMIYGATO | 200 (flujo base GCM) | GCM, plan GATO |
 | `CANAL_EMISOR_SIN_PLAN` | **1020** | NAMEGATO | **403** | Sin plan; escenario `1.2` |
 | `CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS` | **1019** | STELGATO | **403** | Sin plan, sin grupos; escenario `1.4` |
-| `CANAL_EMISOR_SIN_METODO` | **1018** | ARCHGATO | error validador | Sin `urlValidador` ni operaciones |
-| `CANAL_EMISOR_MAL_CONFIGURADO` | **1017** | TEYVGATO | **500** | Fila en validador **sin `llaveCifrado`** |
-| `CANAL_VALIDADOR_DESHABILITADO` | **1021** | HOLLGATO | **402** | `estadoValidador` **N** (inactivo) |
-| `CANAL_VALIDADOR_MAL_CONFIGURADO` | **1017** | TEYVGATO | **500** | Mismo canal mal configurado; rol **validador** en escenario 2.2.3 |
+| `CANAL_EMISOR_SIN_METODO` | **1018** | ARCHGATO | error validador | Sin filas en `tld-validador-canal-operacion` |
+| `CANAL_EMISOR_MAL_CONFIGURADO` | **1017** | TEYVGATO | **500** | Sin `llaveCifrado` en `tld-validador-canal` |
+| `CANAL_VALIDADOR_DESHABILITADO` | **1021** | HOLLGATO | **402** | `estadoValidador` **N** |
+| `CANAL_VALIDADOR_MAL_CONFIGURADO` | **1017** | TEYVGATO | **500** | Mismo canal; rol validador escenario 2.2.3 |
 
-**1018 ARCHGATO** — **sin método/operación**: `urlValidador` vacío y sin filas en `tld-validador-canal-operacion`. Cifrado **CBC** (actualizado 2026-07-05).
+**1018 ARCHGATO** — canal en `tld-validador-canal` con `urlValidador` vacío y **cero** filas en `tld-validador-canal-operacion` (export 2026-07-05).
 
-**1021 HOLLGATO** — validador **inactivo** (`estadoValidador` **N**) → `CANAL_VALIDADOR_DESHABILITADO` (escenario VCN **2.2.2**, **402**).
+**1021 HOLLGATO** — `estadoValidador` **N**; plan GATO sí; **sin** operaciones cargadas.
 
-**1019 STELGATO** — sin plan, sin grupos → `CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS` (escenario **`1.4`**).
-
-**1020 NAMEGATO** — sin plan, con grupos → `CANAL_EMISOR_SIN_PLAN` (escenario **`1.2`**).
+**1017 TEYVGATO** — sin plan, sin operaciones, sin credenciales matriz; fila validador incompleta.
 
 En Dynamo, suscripciones plan–canal pueden figurar `estatus: inactivo`; `control-plan` valida por existencia de fila.
+
+### Sin registro en export (2026-07-05)
+
+| idCanal | Tabla |
+|---------|--------|
+| 0001 | `tld-matriz-planes-canales` |
+| 1017 | `tld-validador-canal-operacion`, `tld-matriz-planes-canales` |
+| 1018 | `tld-validador-canal-operacion` |
+| 1019 | `tld-validador-canal-operacion`, `tld-matriz-planes-canales` |
+| 1020 | `tld-validador-canal-operacion`, `tld-matriz-planes-canales` |
+| 1021 | `tld-validador-canal-operacion` |
 
 ---
 
@@ -266,7 +287,7 @@ POST `.../auth/token`
 
 `mrk-fab483954956476787608d9e5eee2c97`
 
-Detalle por canal: [`canalesPruebas-dev.json`](./canalesPruebas-dev.json)
+Detalle por canal, operaciones y planes: [`canalesPruebas-dev.json`](./canalesPruebas-dev.json)
 
 ---
 
@@ -276,8 +297,15 @@ Detalle por canal: [`canalesPruebas-dev.json`](./canalesPruebas-dev.json)
 |---------|---------|
 | Token 400/550 | `apiKey` / `secretKey` del canal |
 | 403 en matriz | Grupos del JWT; política en `tld-auth-politicas` |
-| 403 plan inválido en P2M/P2P | Fila en `tld-matriz-planes-canales`; cupo; `CFG_VALIDAR_PLAN_POR_CANAL` |
+| 403 plan inválido en P2M/P2P | Fila en `tld-matriz-planes-canales`; cupo |
 | Canal emisor no existe | Fila en `tld-validador-canal` |
+| Proxy validador sin URL | `urlValidador` en canal **o** `urlOperacion` en operación 0001 |
 | Error descifrado | CBC vs GCM; certificado; llaves EFS |
 
-Onboarding completo de canal nuevo: [`tld-matriz/03-auth-canal-api-key-grupos.md`](../tld-matriz/03-auth-canal-api-key-grupos.md). Validación plan en runtime: [`tld-matriz/02-validacion-plan-runtime.md`](../tld-matriz/02-validacion-plan-runtime.md).
+---
+
+## Actualizar desde AWS
+
+1. Export: [`cargar-tld-validador-canal-operacion-dev.md`](./cargar-tld-validador-canal-operacion-dev.md) → `canales-dev-dynamo-export.json`
+2. Fusionar: `node actualizar-desde-dynamo-export.js`
+3. Revisar este `.md` y commit

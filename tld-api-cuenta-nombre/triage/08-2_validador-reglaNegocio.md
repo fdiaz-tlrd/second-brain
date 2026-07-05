@@ -85,7 +85,7 @@ Canal **1021** (HOLLGATO, Hollow Ether Reserve):
 
 | Fuente | Detalle |
 |--------|---------|
-| [`canalesPruebas-dev.json`](../../Postman/canalesPruebas-dev.json) | `estadoValidador: "N"`, escenario `CANAL_VALIDADOR_DESHABILITADO` |
+| [`canalesPruebas-dev.json`](../../Postman/canalesPruebas-dev/canalesPruebas-dev.json) | `estadoValidador: "N"`, escenario `CANAL_VALIDADOR_DESHABILITADO` |
 | Env VCN | `CANAL_VALIDADOR_DESHABILITADO` = **`1021`** |
 
 ### P6 — Validador mal configurado: 500 dev vs 404 prod (2026-07-05, **cerrado**)

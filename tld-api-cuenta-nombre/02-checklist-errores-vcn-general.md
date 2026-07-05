@@ -61,7 +61,7 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 
 **Newman:** **3/3** escenarios (18 assertions, run post-deploy A8a); incluido en VCN completo **570/570**.
 
-- [x] **Datos/env** — `CANAL_VALIDADOR_DESHABILITADO` = **1021**; `CANAL_VALIDADOR_MAL_CONFIGURADO` = **1017**; canal 1021 en `canalesPruebas-dev`
+- [x] **Datos/env** — `CANAL_VALIDADOR_DESHABILITADO` = **1021**; `CANAL_VALIDADOR_MAL_CONFIGURADO` = **1017**; canal 1021 en `Postman/canalesPruebas-dev/`
 - [x] **Código A8a** — regla `CFG_CANAL_VALIDADOR` eliminada en dev (`37a5e06`)
 - [x] **2.2.1** — HTTP 400 / `codigoError` **404** en claro; env `9999`
 - [x] **2.2.2** — HTTP 400 / `codigoError` **402** en claro; env **1021**

@@ -4,10 +4,10 @@ Ejecutar en **tu máquina** (con AWS CLI). No es SAM — es `aws dynamodb batch-
 
 DynamoDB acepta **máx. 25 ítems por llamada**; el bloque de abajo hace **8 llamadas** en un solo paste (200 registros).
 
-Desde la carpeta donde está el JSON (p. ej. `second-brain\notas-sueltas` o una copia como `C:\AWSdeploy`):
+Desde esta carpeta (`Postman\canalesPruebas-dev`) o una copia (p. ej. `C:\AWSdeploy`):
 
 ```powershell
-$Region = "us-east-1"; $SeedFile = Join-Path (Get-Location) "tld-validador-canal-operaciones-1008-1016.json"; if (-not (Test-Path $SeedFile)) { throw "No existe: $SeedFile" }; $seed = Get-Content $SeedFile -Raw | ConvertFrom-Json; $utf8 = New-Object System.Text.UTF8Encoding $false; $i = 0; foreach ($lote in $seed.batchWriteLotes) { $i++; $tmp = Join-Path $env:TEMP "validador-operacion-lote-$i.json"; [System.IO.File]::WriteAllText($tmp, ($lote | ConvertTo-Json -Depth 50 -Compress), $utf8); aws dynamodb batch-write-item --region $Region --request-items "file://$($tmp -replace '\\','/')" }; Write-Host "OK - $i lotes"
+$Region = "us-east-1"; $SeedFile = Join-Path (Get-Location) "tld-validador-canal-operaciones-1008-1016.json"; # en esta carpeta if (-not (Test-Path $SeedFile)) { throw "No existe: $SeedFile" }; $seed = Get-Content $SeedFile -Raw | ConvertFrom-Json; $utf8 = New-Object System.Text.UTF8Encoding $false; $i = 0; foreach ($lote in $seed.batchWriteLotes) { $i++; $tmp = Join-Path $env:TEMP "validador-operacion-lote-$i.json"; [System.IO.File]::WriteAllText($tmp, ($lote | ConvertTo-Json -Depth 50 -Compress), $utf8); aws dynamodb batch-write-item --region $Region --request-items "file://$($tmp -replace '\\','/')" }; Write-Host "OK - $i lotes"
 ```
 
 Compatible con **Windows PowerShell 5.1** (sin `-Depth` en `ConvertFrom-Json`, sin `utf8NoBOM`).
@@ -46,7 +46,7 @@ PS C:\AWSdeploy> try {
 >>     "El archivo NO es UTF-8 válido"
 >> }
 El archivo es UTF-8 válido
-PS C:\AWSdeploy> $Region = "us-east-1"; $SeedFile = Join-Path (Get-Location) "tld-validador-canal-operaciones-1008-1016.json"; if (-not (Test-Path $SeedFile)) { throw "No existe: $SeedFile" }; $seed = Get-Content $SeedFile -Raw | ConvertFrom-Json; $utf8 = New-Object System.Text.UTF8Encoding $false; $i = 0; foreach ($lote in $seed.batchWriteLotes) { $i++; $tmp = Join-Path $env:TEMP "validador-operacion-lote-$i.json"; [System.IO.File]::WriteAllText($tmp, ($lote | ConvertTo-Json -Depth 50 -Compress), $utf8); aws dynamodb batch-write-item --region $Region --request-items "file://$($tmp -replace '\\','/')" }; Write-Host "OK - $i lotes"
+PS C:\AWSdeploy> $Region = "us-east-1"; $SeedFile = Join-Path (Get-Location) "tld-validador-canal-operaciones-1008-1016.json"; # en esta carpeta if (-not (Test-Path $SeedFile)) { throw "No existe: $SeedFile" }; $seed = Get-Content $SeedFile -Raw | ConvertFrom-Json; $utf8 = New-Object System.Text.UTF8Encoding $false; $i = 0; foreach ($lote in $seed.batchWriteLotes) { $i++; $tmp = Join-Path $env:TEMP "validador-operacion-lote-$i.json"; [System.IO.File]::WriteAllText($tmp, ($lote | ConvertTo-Json -Depth 50 -Compress), $utf8); aws dynamodb batch-write-item --region $Region --request-items "file://$($tmp -replace '\\','/')" }; Write-Host "OK - $i lotes"
 {
     "UnprocessedItems": {}
 }
@@ -86,7 +86,7 @@ PS C:\AWSdeploy>
 
 # Select — exportar canales desde DynamoDB (dev)
 
-Ejecutar en **tu máquina** (AWS CLI + credenciales dev). Genera un JSON con datos de las tres tablas para actualizar `canalesPruebas-dev.json` / `canalesPruebas-dev.md`.
+Ejecutar en **tu máquina** (AWS CLI + credenciales dev). Genera `canales-dev-dynamo-export.json` en esta carpeta. Luego: `node actualizar-desde-dynamo-export.js` y revisar [`canalesPruebas-dev.md`](./canalesPruebas-dev.md).
 
 **Tablas:**
 
@@ -419,5 +419,4 @@ sinRegistro (avisos):            9
 PS C:\AWSdeploy\X>
 ```
 
-Pega aquí el contenido de `canales-dev-dynamo-export.json` (o súbelo al repo) para actualizar la documentación de canales.
-- `notas-sueltas\canales-dev-dynamo-export.json`
+Tras el export: `node actualizar-desde-dynamo-export.js` → commit de `canalesPruebas-dev.json` y este `.md` si cambió el resumen.
