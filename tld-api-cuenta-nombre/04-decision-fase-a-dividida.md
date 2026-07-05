@@ -89,7 +89,7 @@ flowchart LR
 | | |
 |--|--|
 | **Checklist** | Escenarios 1.4.x, 1.5.x |
-| **Cambio** | `validarParametroIdPeticion`, `validarParametroSolicitudes`; `CFG_METODOS_LIMITES_JSON` = `{ "0001": 1 }`; validación método 0001 en mapa |
+| **Cambio** | `validarParametroIdPeticion`, `validarParametroSolicitudes`; `CFG_METODOS_LIMITES_JSON` = `{ "0001": 1 }` (**temporal `{ "0001": 2 }` en `template.yaml` para Newman — revertir a 1 cuando VCN finalizado**, ver triage 05) |
 | **Triage** | [triage/05-idPeticion-solicitudes.md](./triage/05-idPeticion-solicitudes.md) |
 | **Criterio done** | Bloques 1.4 y 1.5 en verde; **Metodo/0001 cuenta sigue OK** — pendiente Newman |
 
