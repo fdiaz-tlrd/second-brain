@@ -38,4 +38,4 @@ Hasta que esos módulos existan en `tld-api-base/lib/`, `bitacora.js` no es ejec
 
 ## Pendiente en repos consumidores
 
-P2M, P2P y VCN **siguen** usando su `lib/bitacora.js` local. Reemplazar por import desde `tld-api-base` queda para cuando se defina empaquetado (copia, submodule, npm interno).
+P2M, P2P y VCN **siguen** usando su `lib/bitacora.js` local. Para alinear VCN: **copiar/adaptar** desde base o P2M dentro de `tld-api-cuenta-nombre` (repos autónomos; ver [README.md](./README.md)).

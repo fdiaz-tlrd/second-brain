@@ -1,6 +1,6 @@
 # tld-api-cuenta-nombre (VCN)
 
-Espacio de trabajo en `second-brain` para **estudiar y corregir** el repositorio [`tld-api-cuenta-nombre`](../../tld-api-cuenta-nombre).
+Espacio de trabajo en `second-brain` para **estudiar y corregir** el repositorio [`tld-api-cuenta-nombre`](../../tld-api-cuenta-nombre). **Trabajo activo:** VCN.
 
 | API | Repositorio |
 |-----|-------------|
@@ -10,9 +10,11 @@ Espacio de trabajo en `second-brain` para **estudiar y corregir** el repositorio
 
 ## Propósito de esta carpeta
 
-- **Memoria viva** del hilo VCN: todo lo que se analice o decida en chat se documenta aquí para recuperar contexto **sin re-leer** repos ni transcripts.
+- **Memoria viva** del hilo VCN: el agente documenta aquí todo lo analizado o acordado para recuperar contexto **sin re-leer** repos ni transcripts.
 - **No** se mueven archivos de otras rutas (`notas-sueltas/`, `Postman/`, etc.); solo referencias.
 - **No** incluye cambios al generador Postman VCN.
+
+VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De ellos salió `tld-api-base` (**solo estudio, nunca productivo**) — ver [`../tld-api-base/README.md`](../tld-api-base/README.md). **Repos autónomos:** VCN no depende de otros repos; se copia/adapta el patrón adentro de `tld-api-cuenta-nombre`. Los repos de producto y base **NUNCA se ven entre sí**.
 
 ## Documentos
 
@@ -34,6 +36,7 @@ Espacio de trabajo en `second-brain` para **estudiar y corregir** el repositorio
 | 2026-07-04 | Carpeta creada |
 | 2026-07-04 | Enfoque de corrección documentado |
 | 2026-07-05 | Checklist Newman General VCN (`02-checklist-errores-vcn-general.md`, 63 fallos / 15 OK) |
+| 2026-07-05 | Idea común VCN/P2P/P2M + repos autónomos + base solo estudio (enlace a `tld-api-base/`) |
 
 ## Convención de triage
 

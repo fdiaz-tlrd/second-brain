@@ -3,6 +3,8 @@
 **Fecha:** 2026-07-04  
 **Repo:** [`tld-api-base`](../../tld-api-base)
 
+> **`tld-api-base` es solo ayuda de estudios — nunca productivo.** Este documento describe el skeleton SAM del repo de referencia; no implica desplegar `tld-api-base` como API en producción.
+
 ## Alcance del template
 
 `sam deploy` despliega **solo**:

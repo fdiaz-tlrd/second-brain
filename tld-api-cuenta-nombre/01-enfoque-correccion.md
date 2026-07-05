@@ -2,17 +2,28 @@
 
 Documento de referencia acordado en chat (2026-07-04). Actualizar cuando cambie la estrategia.
 
+## Idea común con P2M y P2P
+
+VCN, P2P y P2M comparten **el mismo contrato transversal TLD** (parseo, validaciones JS, canales, petición cifrada, respuestas de error; negocio en `lib/metodos.js`).
+
+- **P2M** (`tld-api-p2m`) y **P2P** (`tld-api-alias`): ya **pulidos** — referencia del contrato Postman General.
+- **VCN** (`tld-api-cuenta-nombre`): **misma idea**, handler transversal **sin actualizar** al mismo nivel.
+
+Se hizo **ingeniería inversa** de P2M/P2P y se extrajo el transversal al repo **`tld-api-base`** (documentado en [`../tld-api-base/README.md`](../tld-api-base/README.md)). Es **solo ayuda de estudios — nunca productivo**. VCN **copia/adapta** el patrón **dentro** de `tld-api-cuenta-nombre`; **no depende** de `tld-api-base` ni de ningún otro repo en runtime.
+
+**Trabajo actual:** solo VCN. Los repos de producto y `tld-api-base` **NUNCA se ven entre sí**.
+
 ## Contexto
 
-P2M, P2P y VCN debían compartir la **misma estructura transversal** (validaciones de entrada, canales, petición cifrada, idPeticion, solicitudes, respuestas de error). P2M y P2P recibieron refactor y mantenimiento; **VCN quedó atrás** en ese esqueleto.
+P2M y P2P recibieron refactor y mantenimiento; **VCN quedó atrás** en el esqueleto transversal.
 
 Las pruebas Postman General sobre VCN fallaron; **Metodo/0001 (validación de `cuenta` → 413) pasó**. Conclusión: la rama de negocio VCN funciona; lo desalineado es el **camino transversal** en `lambdas/cuenta-nombre/app.js` y módulos relacionados.
 
 **Alcance de corrección:** solo `tld-api-cuenta-nombre`. No tocar generador Postman VCN.
 
-## Referencia: P2M y P2P
+## Referencia: P2M, P2P y tld-api-base
 
-Usar P2M/P2P como **especificación viva** del contrato que las pruebas General ejercitan.
+Usar P2M/P2P como **especificación viva** y `tld-api-base/lambdas/base/` como **modelo de estudio** (misma secuencia de fases; base **no** es productivo). Al corregir VCN, el código nuevo vive **solo** en `tld-api-cuenta-nombre`.
 
 Patrón común (post-refactor):
 

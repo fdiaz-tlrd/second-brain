@@ -46,7 +46,8 @@ Cada repo (P2M, P2P, VCN) reemplaza **`lib/metodos.js`** con su implementación 
 
 ## Pendiente (fuera de este paso)
 
-- `template.yaml` / SAM
-- Estrategia de consumo (copia, submodule, paquete npm)
+- `template.yaml` / SAM — ver [07-sam-deploy.md](./07-sam-deploy.md)
 - `.gitignore` / CI
 - Tests locales con mocks DynamoDB/KMS
+
+**Repos autónomos:** cada API TLD de producto y `tld-api-base` **NUNCA se ven entre sí** en runtime; copian/adaptan el patrón en su propio repo (ver [README.md](./README.md)). `tld-api-base` **solo estudio**, nunca productivo.
