@@ -16,8 +16,8 @@
 
 ## Siguiente (A11)
 
-1. **Datos:** [`notas-sueltas/vcn-datos-prueba-dev-metodo-0001-exito.md`](../notas-sueltas/vcn-datos-prueba-dev-metodo-0001-exito.md) — confirmar `Cuenta1`, `Cuenta34`, validador éxito (propuesto **1009**)
-2. Agregar vars faltantes al environment dev (`Variostitulares`, `CANAL_VALIDADOR_EXITO`, …)
+1. **Datos:** [`notas-sueltas/vcn-datos-prueba-dev-metodo-0001-exito.md`](../notas-sueltas/vcn-datos-prueba-dev-metodo-0001-exito.md) — ítems Dynamo A9/A11 + ejemplo `put-item`
+2. Cargar ítems en Dynamo dev + agregar vars al environment (`Variostitulares`, `CANAL_VALIDADOR_EXITO`, `Cuenta1`, `Cuenta34`)
 3. `generar-escenarios-0001-respuesta-exitosa.js` + Newman → actualizar checklist/baseline
 
 ## Pendiente inmediato (usuario VPN) — A11 prep
