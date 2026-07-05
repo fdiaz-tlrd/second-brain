@@ -6,17 +6,19 @@ Fuente de verdad para corrección en `tld-api-cuenta-nombre`. Marcar `[x]` al re
 |-----|-------|
 | Fecha (General completo) | 2026-07-05T05:13:10.017Z |
 | Fecha (1_idCanal verificado) | 2026-07-05T07:12:06.803Z |
-| Carpeta Postman | `General` (completo) / `General/1_validaciones_js/1_idCanal` (A1) |
+| Fecha (2_validador verificado) | 2026-07-05T07:38:17.594Z |
+| Carpeta Postman | `General` / `1_idCanal` (A1) / `2_validador` (A2) |
 | Tests fallidos (General) | 468 (failed: 153) |
 | Tests fallidos (1_idCanal) | 84 (failed: **0**) |
+| Tests fallidos (2_validador) | 90 (failed: **0**) |
 | Resumen Newman | [`Postman/generador/logs/resumen-fallos-vcn.md`](../Postman/generador/logs/resumen-fallos-vcn.md) |
 | Enfoque | [`01-enfoque-correccion.md`](./01-enfoque-correccion.md) |
 
 | Escenarios General | 78 |
-| Fallan (run General 05:13) | 63 → **51** tras cerrar A1 (1_idCanal) |
-| Pasan (run General 05:13) | 15 → **27** tras cerrar A1 |
+| Fallan (run General 05:13) | 63 → **39** tras A1+A2 |
+| Pasan (run General 05:13) | 15 → **39** tras A1+A2 |
 
-**Convención:** *Debe* = contrato Postman (escenario JSON). *Está* = VCN dev. Bloque **1_idCanal** verificado run 07:12; resto aún según run General 05:13.
+**Convención:** *Debe* = contrato Postman. Bloques **1_idCanal** y **2_validador** verificados (runs 07:12 y 07:38); resto según run General 05:13.
 
 Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, orden en `app.js`).
 
@@ -26,103 +28,11 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 
 ## 1_validaciones_js/2_validador
 
-- [ ] **1.2.10. validador — espacio interno, post-trim (400)**
-  - Postman: `General/1_validaciones_js/2_validador`
-  - Escenario: [`1_validaciones_js/2_validador/2.10_validador_espacio_interno.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/2_validador/2.10_validador_espacio_interno.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 404, "mensajeError": "Validador no existe" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 404 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.2.11. validador — símbolo @ no permitido (400)**
-  - Postman: `General/1_validaciones_js/2_validador`
-  - Escenario: [`1_validaciones_js/2_validador/2.11_validador_simbolo_arroba.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/2_validador/2.11_validador_simbolo_arroba.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 404, "mensajeError": "Validador no existe" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 404 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.2.12. validador — paréntesis ( no permitido (400)**
-  - Postman: `General/1_validaciones_js/2_validador`
-  - Escenario: [`1_validaciones_js/2_validador/2.12_validador_parentesis.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/2_validador/2.12_validador_parentesis.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 404, "mensajeError": "Validador no existe" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 404 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.2.13. validador — ¿ no permitido (400)**
-  - Postman: `General/1_validaciones_js/2_validador`
-  - Escenario: [`1_validaciones_js/2_validador/2.13_validador_unicode_interrogacion_apertura.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/2_validador/2.13_validador_unicode_interrogacion_apertura.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 404, "mensajeError": "Validador no existe" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 404 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.2.14. validador — comillas " no permitidas (400)**
-  - Postman: `General/1_validaciones_js/2_validador`
-  - Escenario: [`1_validaciones_js/2_validador/2.14_validador_comillas.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/2_validador/2.14_validador_comillas.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 404, "mensajeError": "Validador no existe" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 404 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.2.15. validador — distinto a {{CANAL_VALIDADOR}} (CANAL_EMISOR) (400)**
-  - Postman: `General/1_validaciones_js/2_validador`
-  - Escenario: [`1_validaciones_js/2_validador/2.15_validador_distinto_canal_configurado.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/2_validador/2.15_validador_distinto_canal_configurado.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{"respuesta":{"idPeticion":"CELEGATO1783228336","respuestas":[{"idSolicitud":"1","resultado":510,"datos":null}]}}` (HTTP descifrar 200)
-  - **Gap:** sin codigoError/mensajeError en body descifrado; mensaje no coincide con catálogo
-
-- [ ] **1.2.4. validador — tipo number (400)**
-  - Postman: `General/1_validaciones_js/2_validador`
-  - Escenario: [`1_validaciones_js/2_validador/2.4_validador_tipo_number.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/2_validador/2.4_validador_tipo_number.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 500, "mensajeError": "ERROR: Excepción no controlada al momento de buscar la información del canal" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 500 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.2.5. validador — tipo boolean (400)**
-  - Postman: `General/1_validaciones_js/2_validador`
-  - Escenario: [`1_validaciones_js/2_validador/2.5_validador_tipo_boolean.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/2_validador/2.5_validador_tipo_boolean.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 500, "mensajeError": "ERROR: Excepción no controlada al momento de buscar la información del canal" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 500 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.2.6. validador — tipo object (400)**
-  - Postman: `General/1_validaciones_js/2_validador`
-  - Escenario: [`1_validaciones_js/2_validador/2.6_validador_tipo_object.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/2_validador/2.6_validador_tipo_object.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 500, "mensajeError": "ERROR: Excepción no controlada al momento de buscar la información del canal" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 500 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.2.7. validador — solo espacios, trim vacío (400)**
-  - Postman: `General/1_validaciones_js/2_validador`
-  - Escenario: [`1_validaciones_js/2_validador/2.7_validador_solo_espacios.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/2_validador/2.7_validador_solo_espacios.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 404, "mensajeError": "Validador no existe" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 404 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.2.8. validador — solo tab, trim vacío (400)**
-  - Postman: `General/1_validaciones_js/2_validador`
-  - Escenario: [`1_validaciones_js/2_validador/2.8_validador_solo_tab.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/2_validador/2.8_validador_solo_tab.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 404, "mensajeError": "Validador no existe" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 404 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.2.9. validador — longitud 5, máximo 4 (400)**
-  - Postman: `General/1_validaciones_js/2_validador`
-  - Escenario: [`1_validaciones_js/2_validador/2.9_validador_longitud_5.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/2_validador/2.9_validador_longitud_5.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 404, "mensajeError": "Validador no existe" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 404 vs 400; mensaje no coincide con catálogo
+**Estado A2 (2026-07-05T07:38Z):** 15/15 en verde — ver sección *Escenarios que pasan* al final.
 
 ## 1_validaciones_js/3_peticion
+
+**Estado A3:** código listo — pendiente Newman tras deploy.
 
 - [ ] **1.3.10. peticion — segmento AES en base64 (400)**
   - Postman: `General/1_validaciones_js/3_peticion`
@@ -464,10 +374,22 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 - [x] 1.1.13. idCanal — ¿ no permitido (400)
 - [x] 1.1.14. idCanal — comillas " no permitidas (400)
 
-### 1_validaciones_js/2_validador
+### 1_validaciones_js/2_validador — A2 cerrada (run 2026-07-05T07:38Z)
 - [x] 1.2.1. validador — propiedad ausente (undefined) (400)
 - [x] 1.2.2. validador — null (400)
 - [x] 1.2.3. validador — string vacío "" (400)
+- [x] 1.2.4. validador — tipo number (400)
+- [x] 1.2.5. validador — tipo boolean (400)
+- [x] 1.2.6. validador — tipo object (400)
+- [x] 1.2.7. validador — solo espacios, trim vacío (400)
+- [x] 1.2.8. validador — solo tab, trim vacío (400)
+- [x] 1.2.9. validador — longitud 5, máximo 4 (400)
+- [x] 1.2.10. validador — espacio interno, post-trim (400)
+- [x] 1.2.11. validador — símbolo @ no permitido (400)
+- [x] 1.2.12. validador — paréntesis ( no permitido (400)
+- [x] 1.2.13. validador — ¿ no permitido (400)
+- [x] 1.2.14. validador — comillas " no permitidas (400)
+- [x] 1.2.15. validador — distinto a {{CANAL_VALIDADOR}} (CANAL_EMISOR) (400)
 
 ### 1_validaciones_js/3_peticion
 - [x] 1.3.1. peticion — propiedad ausente (undefined) (400)

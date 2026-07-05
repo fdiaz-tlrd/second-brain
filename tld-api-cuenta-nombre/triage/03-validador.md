@@ -53,28 +53,16 @@ Cuando el emisor ya está resuelto, el error va **cifrado** al canal (`{ respues
 | A2c | `util.lambdaResult`: si `mensaje` trae `respuesta`, serializar body tal cual (como P2M) | `lib/util.js` | **Hecho** |
 | A2d | Petición ausente sigue 400 sin cifrar; validador ausente pasa por JS + cifrado (alineado a base) | `app.js` | **Hecho** |
 
-**Commit código (repo `tld-api-cuenta-nombre`):** pendiente push/deploy por el usuario.
+**Verificación Newman** (máquina con VPN, 2026-07-05T07:38:17Z):
 
-**Verificación Newman:** pendiente máquina VPN — carpeta `2_validador` + regresión `1_idCanal`.
+| Carpeta | Requests | Assertions | Fallos |
+|---------|----------|------------|--------|
+| `General/1_validaciones_js/2_validador` | 45 | 90 | **0** |
 
-**No tocar aún:** `validarParametroPeticion` (A3), proxy 0001, regla negocio 2.x.
+Log: [`Postman/generador/logs/resumen-fallos-vcn.md`](../../Postman/generador/logs/resumen-fallos-vcn.md) — *Sin fallos.*
 
-## Pruebas
-
-- Newman: `General/1_validaciones_js/2_validador` (17 escenarios; 3 ya pasaban, 14 fallaban run General 05:13).
-- Regresión: `General/1_validaciones_js/1_idCanal` (14/14, run 07:12).
-- Regresión: `Metodo/0001` cuando haya deploy conjunto.
-- Checklist: [02-checklist-errores-vcn-general.md](../02-checklist-errores-vcn-general.md) § `2_validador`.
-- Escenarios ancla: **1.2.10** (404→400), **1.2.15** (510→400), **1.2.4** (500→400).
-
-## Generador
-
-Escenarios unicode `¿` en `2.13` corregidos con `bootstrap-general-vcn.js` (commit `20c960c`). Regenerar VCN General desde P2M si cambia la matriz.
-
-## Verificación
-
-Pendiente Newman en máquina con VPN tras deploy. El agente **no** ejecuta Newman en Lenovo.
+**Estado A2:** **cerrada** (bloque 1.2 checklist en verde).
 
 ## Siguiente
 
-Tras cerrar A2: **A3 petición** — `triage/04-peticion.md` (pendiente).
+**A3 petición** — [triage/04-peticion.md](./04-peticion.md) (en curso).

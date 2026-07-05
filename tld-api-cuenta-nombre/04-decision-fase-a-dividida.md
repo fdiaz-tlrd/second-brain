@@ -65,7 +65,7 @@ flowchart LR
 | **Triage** | Crear `triage/02-idCanal.md` al implementar |
 | **Criterio done** | Bloque 1.1 del checklist en verde tras Newman — **cumplido** (run 2026-07-05T07:12Z, 14/14) |
 
-### A2 — validador (`1.2_validador`) — **en curso 2026-07-05**
+### A2 — validador (`1.2_validador`) — **cerrada 2026-07-05**
 
 | | |
 |--|--|
@@ -73,16 +73,16 @@ flowchart LR
 | **Cambio** | `validarParametroValidador`; `responderValidacionConCifrado`; orden emisor resuelto antes |
 | **Env** | `CFG_CANAL_VALIDADOR` — ya en A1 |
 | **Triage** | [triage/03-validador.md](./triage/03-validador.md) |
-| **Criterio done** | Bloque 1.2 en verde tras Newman |
+| **Criterio done** | Bloque 1.2 en verde — **cumplido** (run 2026-07-05T07:38Z, 15/15) |
 
-### A3 — petición / descifrado (`1.3_peticion`)
+### A3 — petición / descifrado (`1.3_peticion`) — **en curso 2026-07-05**
 
 | | |
 |--|--|
 | **Checklist** | Escenarios 1.3.x |
 | **Cambio** | `validarParametroPeticion`; rama `abrirPaquete` alineada a base (405 vs 400, catálogo) |
-| **Triage** | `triage/04-peticion.md` |
-| **Criterio done** | Bloque 1.3 en verde |
+| **Triage** | [triage/04-peticion.md](./triage/04-peticion.md) |
+| **Criterio done** | Bloque 1.3 en verde tras Newman |
 
 ### A4 — idPeticion + solicitudes (`1.4`, `1.5`)
 

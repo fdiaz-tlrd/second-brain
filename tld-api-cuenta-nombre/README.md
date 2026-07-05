@@ -27,7 +27,8 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | [referencia-produccion.md](./referencia-produccion.md) | Prod congelada — existe; **fuera de alcance ahora**; nunca modificar |
 | [triage/00-estructura-vs-base.md](./triage/00-estructura-vs-base.md) | Triage #0 — inventario VCN dev vs base |
 | [triage/02-idCanal.md](./triage/02-idCanal.md) | Triage #2 — **A1 cerrada** (Newman 14/14) |
-| [triage/03-validador.md](./triage/03-validador.md) | Triage #3 — **A2** validador (código listo; pendiente deploy/Newman) |
+| [triage/03-validador.md](./triage/03-validador.md) | Triage #3 — **A2 cerrada** (Newman 15/15) |
+| [triage/04-peticion.md](./triage/04-peticion.md) | Triage #4 — **A3** petición (código listo; pendiente deploy/Newman) |
 | [triage/01-json-entrada.md](./triage/01-json-entrada.md) | Triage #1 — validar que la entrada sea JSON |
 
 ## Referencias externas
@@ -49,7 +50,8 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | 2026-07-05 | Aclaración prod master: referencia futura, fuera de alcance ahora (no copiar ni parchear) |
 | 2026-07-05 | **A0+A1** código + Newman **14/14** idCanal (run 07:12) |
 | 2026-07-05 | Generador: `bootstrap-general-vcn.js` (UTF-8 escenarios unicode) |
-| 2026-07-05 | **A2** validador — triage `03-validador.md` + código en `app.js`/`util.js`; pendiente deploy/Newman |
+| 2026-07-05 | **A2** validador — Newman **15/15** (run 07:38); commit `4e96a57` |
+| 2026-07-05 | **A3** petición — triage `04-peticion.md` + código en `app.js`; pendiente deploy/Newman |
 
 ## Convención de triage
 
