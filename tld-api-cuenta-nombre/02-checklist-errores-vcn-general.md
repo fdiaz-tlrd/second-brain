@@ -10,6 +10,8 @@ Fuente de verdad para corrección en `tld-api-cuenta-nombre`. Marcar `[x]` al re
 | Fecha (3_peticion verificado) | 2026-07-05T07:53:27.900Z |
 | Fecha (1_validaciones_js verificado) | 2026-07-05T08:17:07.621Z |
 | Fecha (2_reglaNegocio/1_idCanal verificado) | 2026-07-05T09:28:35.067Z |
+| Fecha (2_reglaNegocio/4_metodo verificado) | 2026-07-05T09:37Z (aprox.) |
+| Fecha (1_validaciones_js regresión) | 2026-07-05T09:36:09.865Z |
 | Carpeta Postman | `General` / `1_validaciones_js` (A1–A4) |
 | Tests fallidos (General) | 468 (failed: 153) |
 | Tests fallidos (1_idCanal) | 84 (failed: **0**) |
@@ -19,11 +21,12 @@ Fuente de verdad para corrección en `tld-api-cuenta-nombre`. Marcar `[x]` al re
 | Resumen Newman | [`Postman/generador/logs/resumen-fallos-vcn.md`](../Postman/generador/logs/resumen-fallos-vcn.md) |
 | Enfoque | [`01-enfoque-correccion.md`](./01-enfoque-correccion.md) |
 
-| Escenarios General | 78 |
-| Fallan (run General 05:13) | 63 → **2** (`2_reglaNegocio/4_metodo`) |
-| Pasan (run General 05:13) | 15 → **76** tras A5 cerrada |
+| Escenarios General (baseline 2026-07-05) | 78 |
+| Escenarios General (+ `2_reglaNegocio/2_validador`) | **81** (3 nuevos, sin Newman aún) |
+| Fallan (baseline) | 63 → **0** tras A0–A5 + `4_metodo` |
+| Pasan (baseline) | 15 → **78/78** |
 
-**Convención:** *Debe* = contrato Postman. **`1_validaciones_js`** completo (66/66, run 08:17). **`2_reglaNegocio/1_idCanal`** cerrado A5 (4/4, run 09:28). Pendiente **`4_metodo`** (2.4.1, 2.4.2).
+**Convención:** *Debe* = contrato Postman. **Baseline General cerrado** (78/78): `1_validaciones_js` + `2_reglaNegocio` original. Regresión `1_validaciones_js` OK (396/396, run 09:36). **Nuevo:** `2_reglaNegocio/2_validador` (2.2.1–2.2.3) — escenarios añadidos; pendiente Newman y posible código (404/402 cifrado).
 
 Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, orden en `app.js`).
 
@@ -53,21 +56,15 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 
 ## 2_reglaNegocio/4_metodo
 
-- [ ] **2.4.1. metodo — no está en CFG_METODOS_LIMITES_JSON (418)**
-  - Postman: `General/2_reglaNegocio/4_metodo`
-  - Escenario: [`2_reglaNegocio/4_metodo/4.1_metodo_fuera_cfg.json`](../Postman/generador/VCN Escenarios error/General/2_reglaNegocio/4_metodo/4.1_metodo_fuera_cfg.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `418`, tipo `general`
-  - **Debe mensaje:** `Método no soportado`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 418; mensaje no coincide con catálogo
+**Estado (2026-07-05T09:37Z):** 2/2 en verde — ver sección *Escenarios que pasan*.
 
-- [ ] **2.4.2. metodo — no asociado al canal emisor (418) [CANAL_EMISOR_SIN_METODO]**
-  - Postman: `General/2_reglaNegocio/4_metodo`
-  - Escenario: [`2_reglaNegocio/4_metodo/4.2_metodo_no_asociado_emisor.json`](../Postman/generador/VCN Escenarios error/General/2_reglaNegocio/4_metodo/4.2_metodo_no_asociado_emisor.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `418`, tipo `general`
-  - **Debe mensaje:** `Método no soportado`
-  - **Está:** `{ "codigoError": 405, "mensajeError": "Error en descifrado canal emisor" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 405 vs 418; mensaje no coincide con catálogo
+## 2_reglaNegocio/2_validador (nuevo — regla de negocio)
+
+- [ ] **2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]**
+- [ ] **2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]**
+- [ ] **2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]**
+
+Escenarios: [`Postman/generador/VCN Escenarios error/General/2_reglaNegocio/2_validador/`](../Postman/generador/VCN%20Escenarios%20error/General/2_reglaNegocio/2_validador/). Copiados desde P2M especiales; **pendiente Newman**. Riesgo: VCN devuelve 404/402 en claro (no `responderValidacionConCifrado` como P2M).
 
 ---
 
@@ -154,6 +151,10 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 - [x] 2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]
 - [x] 2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]
 - [x] 2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]
+
+### 2_reglaNegocio/4_metodo (run 2026-07-05T09:37Z)
+- [x] 2.4.1. metodo — no está en CFG_METODOS_LIMITES_JSON (418)
+- [x] 2.4.2. metodo — no asociado al canal emisor (418) [CANAL_EMISOR_SIN_METODO]
 
 ### 2_reglaNegocio/3_peticion
 - [x] 2.3.1. peticion — cifrada con otra llave RSA (405)

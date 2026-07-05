@@ -106,9 +106,10 @@ flowchart LR
 
 | Fase | Cuándo |
 |------|--------|
-| **Pendiente Fase A** | Newman `2_reglaNegocio/4_metodo` (2.4.1, 2.4.2) — **siguiente paso** |
-| **B** — Extraer funciones en `app.js` (`resolverCanalEmisor`, …) | Tras cerrar 4_metodo o en paralelo si estable |
-| **C** — `lib/metodos.js` solo 0001 | Tras B o si 4_metodo exige refactor método |
+| **Pendiente Fase A** | Newman `2_reglaNegocio/2_validador` (3 escenarios nuevos); regresión `Metodo/0001` |
+| **Baseline General** | **78/78 cerrado** (incl. `4_metodo` run 09:37) |
+| **B** — Extraer funciones en `app.js` (`resolverCanalEmisor`, …) | Tras baseline estable |
+| **C** — `lib/metodos.js` solo 0001 | Tras B o en paralelo |
 
 ## Regresión obligatoria en cada subfase
 
@@ -120,9 +121,10 @@ Después de **cada** A1–A5, el usuario (o agente con logs) verifica:
 
 ## Próximo paso concreto
 
-1. Newman: `node run-newman.js vcn --folder "General/2_reglaNegocio/4_metodo"`
-2. Si falla 2.4.x: triage validación método (418 cifrado) en `app.js`
-3. Regresión: `General/1_validaciones_js` + `Metodo/0001`
+1. Newman: `node run-newman.js vcn --folder "General/2_reglaNegocio/2_validador"`
+2. Regresión: `node run-newman.js vcn --folder "Metodo/0001"`
+3. Si falla 2.2.x: alinear `app.js` validador 404/402 con P2M (`responderValidacionConCifrado`)
+4. Al finalizar VCN: revertir TEMP `CFG_METODOS_LIMITES_JSON` → `{"0001":1}`
 
 ## Referencias sagradas / fuera de alcance
 

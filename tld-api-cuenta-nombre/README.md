@@ -58,7 +58,8 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | 2026-07-05 | **A4** idPeticion + solicitudes — Newman **66/66** `1_validaciones_js` (run 08:17); commit `aa87fd2` |
 | 2026-07-05 | **TEMP** `template.yaml` `CFG_METODOS_LIMITES_JSON` → `{"0001":2}` para Newman 5.9; **revertir a 1 cuando VCN finalizado** (triage 05) |
 | 2026-07-05 | **A5 + A7** cerradas — Newman `1_idCanal` **4/4** (run 09:28); commit código `f162fe5` |
-| 2026-07-05 | **Siguiente:** Newman `2_reglaNegocio/4_metodo` (2.4.1, 2.4.2) |
+| 2026-07-05 | **Baseline General 78/78** — Newman `4_metodo` 12/12 + regresión `1_validaciones_js` 396/396 |
+| 2026-07-05 | **Siguiente:** Newman `2_reglaNegocio/2_validador` + `Metodo/0001` |
 
 ## Convención de triage
 
