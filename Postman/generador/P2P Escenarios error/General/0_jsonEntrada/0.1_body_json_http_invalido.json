@@ -1,0 +1,10 @@
+{
+  "nombre": "0.1. body — JSON HTTP inválido (400)",
+  "expectedHttpStatus": 400,
+  "expectedCodigoError": 400,
+  "expectedTipo": "general",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "__envioBodyRawInvalido": "{idCanal:"
+  }
+}

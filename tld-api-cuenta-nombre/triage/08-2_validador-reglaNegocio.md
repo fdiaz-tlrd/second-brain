@@ -2,7 +2,7 @@
 
 **Fecha análisis:** 2026-07-05  
 **Debate cerrado:** 2026-07-05  
-**Estado ejecución:** env + canales **hechos**; escenarios Postman **sin pulir**; Newman **0/3** (run 17:38Z, **pre-A8a deploy**); **1 decisión abierta** (2.2.3 contrato 500 vs prod 404).
+**Estado ejecución:** **cerrado** — Newman **3/3** (18 assertions); VCN completo **570/570** (2026-07-05T19:51Z).
 
 ## Principio rector (acordado 2026-07-05)
 
@@ -29,15 +29,12 @@ Origen borrador: copia P2M especiales → VCN General (`second-brain` `3f9c52a`)
 
 ---
 
-## Newman (último — 2026-07-05T17:38:25Z)
+## Newman
 
-| Campo | Valor |
-|-------|-------|
-| Carpeta | `General/2_reglaNegocio/2_validador` |
-| Tests | 18 (failed: **7**) |
-| Log | [`Postman/generador/logs/resumen-fallos-vcn.md`](../../Postman/generador/logs/resumen-fallos-vcn.md) |
-
-**Nota:** run anterior a deploy de **A8a** (regla `CFG_CANAL_VALIDADOR` aún activa en API desplegada). Fallos 2.2.1/2.2.2: respuesta cifrada genérica *Error en la petición original* en lugar de 404/402 en claro.
+| Run | Carpeta | Resultado |
+|-----|---------|-----------|
+| 2026-07-05T19:02Z (aprox.) | `General/2_reglaNegocio/2_validador` | **18/18** assertions, 0 fallos (post-deploy A8a) |
+| 2026-07-05T19:51:09Z | VCN completo | **570/570** tests, 270 requests — log [`ultimo-run-vcn.json`](../../Postman/generador/logs/ultimo-run-vcn.json) |
 
 ---
 
@@ -48,7 +45,7 @@ Origen borrador: copia P2M especiales → VCN General (`second-brain` `3f9c52a`)
 - Regla de negocio; validador **variable** en VCN.
 - **2.2.1:** env `9999` — canal inexistente — **OK**.
 - **2.2.2:** canal deshabilitado — ver **P5**.
-- Carpeta Postman: borrador P2M; **pendiente pulido** (assertions / contrato).
+- Carpeta Postman: pulida; assertions alineadas con contrato prod/dev acordado.
 
 ### P2 — Regla `validador === CFG_CANAL_VALIDADOR` en VCN (2026-07-05)
 
@@ -76,50 +73,38 @@ Escenario `2.3_validador_error_interno_getCanal.json`: emisor `CANAL_EMISOR`; `v
 
 **Dev refactor** (`app.js` ~L219–247): 404/402 validador **en claro** (alineado prod).
 
-**Acuerdo:** Postman VCN debe esperar **en claro** para 404/402; no cifrado P2M. JSON escenarios ya tienen `expectedTipo: "general"` — verificar ensamblador/assertions tras deploy A8a.
+**Acuerdo:** Postman VCN espera **en claro** para 404/402 — **verificado Newman**.
 
 ### P4b — Orden `getCanal(validador)` vs descifrado (2026-07-05)
 
-**Pregunta:** ¿Dev debe consultar el validador en Dynamo **antes** de descifrar `peticion`, como prod?
-
-**Respuesta:** **Sí — y dev ya lo hace.** Prod y dev: `getCanal(validador)` → 404/402 **antes** de `abrirPaquete` / descifrado. **Sin cambio de código requerido.**
+**Respuesta:** **Sí — y dev ya lo hace.** Prod y dev: `getCanal(validador)` → 404/402 **antes** de `abrirPaquete` / descifrado.
 
 ### P5 — Canal validador deshabilitado (2026-07-05)
 
-**1007 no existe** en canales dev. Creado canal **1021** (HOLLGATO, Hollow Ether Reserve):
+Canal **1021** (HOLLGATO, Hollow Ether Reserve):
 
 | Fuente | Detalle |
 |--------|---------|
 | [`canalesPruebas-dev.json`](../../Postman/canalesPruebas-dev.json) | `estadoValidador: "N"`, escenario `CANAL_VALIDADOR_DESHABILITADO` |
 | Env VCN | `CANAL_VALIDADOR_DESHABILITADO` = **`1021`** |
 
+### P6 — Validador mal configurado: 500 dev vs 404 prod (2026-07-05, **cerrado**)
+
+**Decisión:** dev mantiene **HTTP 500** / `codigoError` **500** / mensaje catálogo **"Error interno"**, respuesta **cifrada al emisor** (`responderValidacionConCifrado`). Operativamente correcto: el emisor recibe error interno; Telered investiga la config del validador.
+
+Prod histórico: mal config → **404** "Validador no existe". **No se replica en dev** — mejora acordada vía A7.
+
+Postman **2.2.3** documenta contrato **dev** — **Newman OK**.
+
 ---
 
-## Escenarios — estado actual
+## Escenarios — estado final
 
-### 2.2.1 — no existe (404) `[CANAL_VALIDADOR_NO_EXISTE=9999]`
-
-| Ítem | Estado |
-|------|--------|
-| JSON + env | **OK** |
-| Código dev | **OK** (post-A8a) — 404 en claro |
-| Newman | **Pendiente** re-run tras deploy |
-
-### 2.2.2 — deshabilitado (402) `[CANAL_VALIDADOR_DESHABILITADO=1021]`
-
-| Ítem | Estado |
-|------|--------|
-| Canal 1021 + env | **Hecho** |
-| Código dev | **OK** — 402 en claro |
-| Newman | **Pendiente** re-run tras deploy |
-
-### 2.2.3 — error getCanal (500) `[CANAL_VALIDADOR_MAL_CONFIGURADO=1017]`
-
-| Ítem | Estado |
-|------|--------|
-| Env + canal 1017 | **Hecho** |
-| **Decisión abierta P6** | Prod: mal config → **404**. Dev (A7): **500 cifrado** al emisor. ¿Postman sigue dev 500 o prod 404? |
-| Newman previo | HTTP 200 / **509** validador (validador `0001` + flujo proxy) |
+| Escenario | Contrato Postman | Newman |
+|-----------|------------------|--------|
+| **2.2.1** — no existe (`9999`) | HTTP 400, `404` en claro | **OK** |
+| **2.2.2** — deshabilitado (`1021`) | HTTP 400, `402` en claro | **OK** |
+| **2.2.3** — getCanal error (`1017`) | HTTP 500, `500` *Error interno*, cifrado | **OK** |
 
 ---
 
@@ -137,16 +122,16 @@ Orden **antes** de descifrar `peticion`:
 
 ---
 
-## Gaps (post-debate)
+## Gaps — resueltos
 
 | # | Gap | Estado |
 |---|-----|--------|
-| G1 | Carpeta Postman borrador P2M | Pendiente pulido + Newman |
+| G1 | Carpeta Postman borrador P2M | **Cerrado** |
 | G2 | Regla `CFG_CANAL_VALIDADOR` JS | **Cerrado** (A8a) |
 | G3 | Datos canal deshabilitado | **Cerrado** (1021 + env) |
 | G4 | Env mal configurado `1017` | **Cerrado** |
-| G5 | Assertions 404/402 en claro | Pendiente verificar tras deploy |
-| G6 | Contrato **2.2.3** (500 dev vs 404 prod) | **Decisión usuario pendiente** |
+| G5 | Assertions 404/402 en claro | **Cerrado** (Newman) |
+| G6 | Contrato **2.2.3** (500 dev vs 404 prod) | **Cerrado** (P6 → dev 500) |
 | G7 | Escenario **`1.2.15`** post-A8a | **Eliminado** VCN 2026-07-05 |
 
 ---
@@ -155,22 +140,19 @@ Orden **antes** de descifrar `peticion`:
 
 | ID | Cambio | Repo | Estado |
 |----|--------|------|--------|
-| A8a | Quitar regla `CFG_CANAL_VALIDADOR` | `tld-api-cuenta-nombre` | **Hecho** (commit `37a5e06`) |
+| A8a | Quitar regla `CFG_CANAL_VALIDADOR` | `tld-api-cuenta-nombre` | **Hecho** (`37a5e06`) |
 | A8b | Env VCN `1021` / `1017` + canales dev | `second-brain` | **Hecho** |
-| A8c | Pulir escenarios Postman + regenerar colección si aplica | `second-brain` | Pendiente |
-| A8d | Deploy dev + Newman `2_validador` | — | Pendiente |
-| A8e | ~~Decidir P6 + revisar `1.2.15`~~ | P6 **500 dev**; **1.2.15 eliminado** |
+| A8c | Pulir escenarios Postman + regenerar colección | `second-brain` | **Hecho** |
+| A8d | Deploy dev + Newman `2_validador` | — | **Hecho** (570/570) |
+| A8e | P6 + `1.2.15` | — | **Hecho** — 500 dev; **1.2.15 eliminado** |
 
 ## Pruebas
 
 ```powershell
 node run-newman.js vcn --folder "General/2_reglaNegocio/2_validador"
-node run-newman.js vcn --folder "Metodo/0001"
+node run-newman.js vcn
 ```
 
 ## Siguiente
 
-1. **Usuario:** P6 — ¿2.2.3 espera **500 cifrado** (dev A7) o **404 en claro** (prod)?  
-2. Deploy A8a si no está en dev desplegado.  
-3. Newman `2_validador`; pulir lo que falle.  
-4. Regresión `Metodo/0001`.
+Bloque **`2_reglaNegocio/2_validador` cerrado.** El usuario propone **nuevos escenarios VCN** cuando corresponda.

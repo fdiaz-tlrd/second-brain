@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "4a0eb47a-663d-4987-8247-86a765cf12b8",
+    "_postman_id": "b7ff7509-fadb-4b81-bcc6-235c2e4abdc0",
     "name": "P2P Escenarios error",
     "description": "Colección generada desde la fuente en P2P Escenarios error/.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -9,6 +9,60 @@
     {
       "name": "General",
       "item": [
+        {
+          "name": "0_jsonEntrada",
+          "item": [
+            {
+              "name": "0.1. body — JSON HTTP inválido (400)",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                  "host": [
+                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                  ],
+                  "path": [
+                    "descifrar"
+                  ],
+                  "query": [
+                    {
+                      "key": "tld",
+                      "value": "0"
+                    },
+                    {
+                      "key": "algoritmoCifrado",
+                      "value": "aes-256-cbc"
+                    }
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"__envioBodyRawInvalido\": \"{idCanal:\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.variables.set('expectedHttpStatus', 400);",
+                      "pm.variables.set('expectedCodigoError', 400);",
+                      "pm.variables.set('expectedTipo', 'general');"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
         {
           "name": "1_validaciones_js",
           "item": [
@@ -24623,6 +24677,43 @@
           "    payload = JSON.parse(resolvedBody);",
           "  } catch (parseError) {",
           "    failFlow('body JSON invalido', parseError.message);",
+          "    return;",
+          "  }",
+          "",
+          "  const bodyRawInvalido =",
+          "    payload && typeof payload.__envioBodyRawInvalido === 'string'",
+          "      ? payload.__envioBodyRawInvalido",
+          "      : null;",
+          "  if (bodyRawInvalido !== null) {",
+          "    const procesarUrlDirecto = endPoint.url;",
+          "    (async function runEnvioBodyRawInvalido() {",
+          "      try {",
+          "        const headersProcesar = { 'Content-Type': 'application/json' };",
+          "        if (endPoint.nivel === 'MATRIZ') {",
+          "          const accessToken = await obtenerTokenMatriz();",
+          "          headersProcesar.Authorization = 'Bearer ' + accessToken;",
+          "        }",
+          "        const resProcesar = await sendRequestAsync({",
+          "          url: procesarUrlDirecto,",
+          "          method: 'POST',",
+          "          header: headersProcesar,",
+          "          body: { mode: 'raw', raw: bodyRawInvalido }",
+          "        });",
+          "        cvSet('FLOW_FAILED', '0');",
+          "        cvSet('FLOW_ERROR', '');",
+          "        cvSet('PROCESAR_STATUS_CODE', String(resProcesar.code));",
+          "        cvSet('PROCESAR_RESPONSE_BODY', resProcesar.text());",
+          "        pm.request.body.update(resProcesar.text());",
+          "        pm.request.headers.upsert({ key: 'Content-Type', value: 'application/json' });",
+          "      } catch (networkError) {",
+          "        failFlow(",
+          "          'error de red enviando body JSON invalido',",
+          "          networkError && networkError.message",
+          "            ? networkError.message",
+          "            : String(networkError)",
+          "        );",
+          "      }",
+          "    })();",
           "    return;",
           "  }",
           "",

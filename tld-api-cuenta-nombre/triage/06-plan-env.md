@@ -63,4 +63,4 @@ Escenarios ancla: **2.4.1** (418 fuera CFG), **2.4.2** (418 sin método en emiso
 
 ## Siguiente
 
-Baseline General **cerrado**. Newman **`2_reglaNegocio/2_validador`** (escenarios nuevos). Luego **Fase B/C** y revert TEMP límite solicitudes.
+General **80/80** y VCN **570/570** cerrados. Siguiente fase: **nuevos escenarios VCN** propuestos por el usuario. Refactor Fase B/C cuando corresponda.

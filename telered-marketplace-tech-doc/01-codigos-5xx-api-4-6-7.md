@@ -30,6 +30,8 @@ Campo: **`resultado`** (o equivalente en respuesta cifrada).
 | Código | Descripción | Observación |
 |--------|-------------|-------------|
 | **500** | Petición de validación no es válida | Inconvenientes en la validación del mensaje |
+
+**Desfase con VCN dev (2026-07-05):** en código y Postman VCN el catálogo **500** ya es **"Error interno"** (`catalogoRespuestas.js`, `catalogoGeneral.json`). `api_4.json` sigue con el texto histórico de marketplace — **pendiente alinear** cuando toque publicar tech doc.
 | **504** | Petición de validación no existe | Cuenta no existe |
 | **509** | Error inesperado en validador | Time-out o tiempo de espera agotado |
 | **550** | Error inesperado | Error inesperado |

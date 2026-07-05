@@ -1,6 +1,8 @@
 # Triage #3 — validador (`validarParametroValidador` + respuesta cifrada)
 
-**Subfase:** A2  
+**Subfase:** A2 — **cerrada** (Newman **14/14**, 2026-07-05)  
+**Nota VCN 2026-07-05:** escenario **1.2.15** (regla P2M `validador === CFG_CANAL_VALIDADOR`) **eliminado** de la colección VCN; sigue en P2M/P2P. Regla de negocio validador variable: [triage/08](./08-2_validador-reglaNegocio.md).
+
 **Fecha:** 2026-07-05  
 **Orden en handler:** tras `idCanal` + `getCanal emisor` + plan; **antes** de `getCanal(validador)` y descifrado de `peticion`.
 
@@ -53,16 +55,10 @@ Cuando el emisor ya está resuelto, el error va **cifrado** al canal (`{ respues
 | A2c | `util.lambdaResult`: si `mensaje` trae `respuesta`, serializar body tal cual (como P2M) | `lib/util.js` | **Hecho** |
 | A2d | Petición ausente sigue 400 sin cifrar; validador ausente pasa por JS + cifrado (alineado a base) | `app.js` | **Hecho** |
 
-**Verificación Newman** (máquina con VPN, 2026-07-05T07:38:17Z):
+**Verificación Newman** (2026-07-05T07:38Z; regresión **14/14** tras eliminar `1.2.15`, run VCN 19:51Z):
 
-| Carpeta | Requests | Assertions | Fallos |
-|---------|----------|------------|--------|
-| `General/1_validaciones_js/2_validador` | 45 | 90 | **0** |
+| Carpeta | Escenarios | Fallos |
+|---------|------------|--------|
+| `General/1_validaciones_js/2_validador` | **14** | **0** |
 
-Log: [`Postman/generador/logs/resumen-fallos-vcn.md`](../../Postman/generador/logs/resumen-fallos-vcn.md) — *Sin fallos.*
-
-**Estado A2:** **cerrada** (bloque 1.2 checklist en verde).
-
-## Siguiente
-
-**A3 petición** — [triage/04-peticion.md](./04-peticion.md) (en curso).
+**Estado A2:** **cerrada** (bloque 1.2 checklist en verde; 14 escenarios VCN).

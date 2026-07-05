@@ -68,36 +68,28 @@ return out(await responderErrorSinCifrado(
 
 **Archivos:** `lambdas/cuenta-nombre/app.js`, `lambdas/cuenta-nombre/lib/response.js`
 
-**Flujo:**
+**Flujo (post A2/A3, 2026-07-05):**
 
-1. `try { body = response.obtenerCuerpo(event) }`
-2. `catch` **solo** si `e.code === 'BAD_JSON'` (no incluye `SyntaxError` genérico en este bloque):
+1. `faseActual = "parsear_entrada"`
+2. `parsearYValidarEntrada(event, bitacora)` → `response.obtenerCuerpo(event)`
+3. Si `JSON.parse` falla → excepción `BAD_JSON`
+4. `catch` del handler, si `faseActual === "parsear_entrada"` y (`BAD_JSON` o `SyntaxError`):
 
 ```javascript
-return response.salidaLambda(event,
-  await util.lambdaResult(
-    400, 400,
-    'Solicitud mal formada: el cuerpo no es JSON válido.',
-    bitacoraJson
-  )
-);
+return responderErrorSinCifrado(event, 400, 400, MSG_CATALOGO[400], bitacora || inicializarBitacora(contextoEjecucion), ...);
 ```
 
-3. `bitacoraJson` mínima: `idCanal: ''`, `idCanalValidador: ''`, fecha manual con `moment`.
+5. Bitácora inicial: `inicializarBitacora` con `idCanal` / `idCanalValidador` = `"undefined"`, `idTransaccion` = `awsRequestId` o UUID.
 
-**Respuesta al cliente (error):**
+**Respuesta al cliente (error JSON inválido):**
 
 | Campo | Valor |
 |-------|-------|
 | HTTP | `400` |
 | `codigoError` | `400` |
-| `mensajeError` | `"Solicitud mal formada: el cuerpo no es JSON válido."` |
+| `mensajeError` | `"Error en la petición original"` |
 
-**`util.lambdaResult` (error):** `body: JSON.stringify({ codigoError, mensajeError })` — misma **forma** envelope que P2M.
-
-**Log:** no usa el mensaje P2M; usa `cuentaNombre.app.inicio` solo si parse OK.
-
-**Post-parse:** no hay fase `parsear_entrada` ni `inicializarBitacora` unificada; la bitácora “real” se crea después en el `try` principal.
+**Postman:** escenario **`General/0_jsonEntrada/0.1_body_json_http_invalido.json`** (VCN, P2M, P2P).
 
 ---
 
@@ -115,13 +107,14 @@ return response.salidaLambda(event,
 
 ## Gap VCN vs P2M/P2P
 
-| # | Gap | Severidad | Notas |
-|---|-----|-----------|-------|
-| G1 | **`mensajeError` distinto** | Media (contrato) | P2M/P2P: catálogo *"Error en la petición original"*. VCN: literal técnico distinto. Postman General con `expectedTipo: general` compararía texto y **fallaría** si existiera escenario de body JSON inválido. |
-| G2 | **Mensaje no pasa por `MSG_CATALOGO`** | Baja | VCN debería usar `MSG_CATALOGO[400]` o `mensajeErrorCanal` como P2M. |
-| G3 | **`catch` no incluye `SyntaxError`** | Baja | En la práctica solo `obtenerCuerpo` lanza `BAD_JSON`; P2M/P2P defensivamente incluyen `SyntaxError`. |
-| G4 | **Sin `faseActual` / handler unificado** | Organizacional | No cambia respuesta JSON inválido hoy, pero dificulta alinear el resto de validaciones. |
-| G5 | **Bitácora distinta en error JSON** | Baja | P2M: `inicializarBitacora` con `idTransaccion`. VCN: bitácora reducida sin `idTransaccion`. |
+| # | Gap | Estado |
+|---|-----|--------|
+| G1 | **`mensajeError` distinto** | **Cerrado** (A1) |
+| G2 | **Mensaje no pasa por `MSG_CATALOGO`** | **Cerrado** (A1) |
+| G3 | **`catch` no incluye `SyntaxError`** | **Cerrado** (A3) |
+| G4 | **Sin `faseActual` / handler unificado** | **Cerrado** (A3) |
+| G5 | **Bitácora distinta en error JSON** | **Cerrado** (A2) |
+| G6 | **Sin escenario Postman** | **Cerrado** (A4) |
 
 **No hay gap en:** HTTP 400, `codigoError` 400, detección de JSON inválido.
 
@@ -139,11 +132,10 @@ Este triage igualmente importa: es la **primera validación** del contrato y deb
 
 | ID | Cambio | Estado |
 |----|--------|--------|
-| A1 | En rama `BAD_JSON`, usar `MSG_CATALOGO[400]` → *"Error en la petición original"* en lugar del literal actual | **Hecho** (2026-07-05, subfase A0) |
-| A2 | Alinear bitácora de error con `inicializarBitacora` (o equivalente) cuando se refactorice el handler | **Pendiente** (puede ir con refactor global) |
-| A3 | Unificar estructura `parsearYValidarEntrada` + `faseActual` como P2M | **Pendiente** (refactor transversal) |
-
-**Cambio mínimo inmediato (solo G1):** una línea de mensaje en `app.js` ~línea 35.
+| A1 | En rama `BAD_JSON`, usar `MSG_CATALOGO[400]` → *"Error en la petición original"* | **Hecho** (2026-07-05, subfase A0) |
+| A2 | Alinear bitácora de error con `inicializarBitacora` | **Hecho** (2026-07-05) |
+| A3 | Unificar estructura `parsearYValidarEntrada` + `faseActual` como P2M | **Hecho** (2026-07-05) |
+| A4 | Escenario Postman `0_jsonEntrada/0.1` (VCN, P2M, P2P) | **Hecho** (2026-07-05) |
 
 ---
 
@@ -168,4 +160,5 @@ HTTP `400`.
 
 ## Siguiente triage
 
-**#2 — idCanal:** [triage/02-idCanal.md](./02-idCanal.md) — **implementado** (pendiente Newman). Siguiente: **A2 validador**.
+**#2 — idCanal:** [triage/02-idCanal.md](./02-idCanal.md) — **cerrada**.  
+**#3 — validador (A2):** **cerrada** (14/14). Regla negocio validador: [triage/08](./08-2_validador-reglaNegocio.md) — **cerrada**.

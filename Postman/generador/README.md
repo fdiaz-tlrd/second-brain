@@ -2,6 +2,20 @@
 
 Copia de `refactoria\Postman`. Fuente de verdad para mantener escenarios en archivos separados y generar colecciones importables en Postman.
 
+---
+
+## Newman y VPN — OBLIGATORIO LEER (agente)
+
+**Regla:** el agente **NO** ejecuta `node run-newman.js` salvo que el usuario confirme **VPN conectada** y pida correr Newman.
+
+Sin VPN, hosts como `tld-validador-dummy.dev.telered.internal` dan `ENOTFOUND`. Eso **no** prueba escenarios ni código. **No** reportar ese error como fallo del escenario. **No** sugerir VPN como si fuera novedad.
+
+Detalle completo: [`../../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md`](../../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md)
+
+**Sin VPN el agente solo:** escenarios, `armar-coleccion.js`, docs. **Newman lo corre el usuario** con VPN y comparte `logs/resumen-fallos-*.md`.
+
+---
+
 ## Estructura
 
 | Carpeta / archivo | Rol |
@@ -26,7 +40,9 @@ La salida queda en `ensamblador/salida/*.postman_collection.json`.
 
 ## Ejecutar y compartir fallos (Newman)
 
-Requiere red hacia dummy/API dev. Desde `Postman/generador`. Copia **una sola línea** (los `#` son comentarios; PowerShell los ignora).
+**Solo con VPN corporativa conectada.** Ver reglas del agente: [`../../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md`](../../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md).
+
+Desde `Postman/generador`. Copia **una sola línea** (los `#` son comentarios; PowerShell los ignora).
 
 **`--folder` con ruta (`General/.../1_idCanal`):** las colecciones ensambladas no tienen ids estables; el runner **extrae esa subcarpeta** del JSON y ejecuta solo esa subcolección. Sin ruta completa, nombres duplicados (p. ej. dos `1_idCanal` en General) ejecutarían **ambas**.
 

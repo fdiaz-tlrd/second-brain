@@ -4,29 +4,22 @@ Fuente de verdad para corrección en `tld-api-cuenta-nombre`. Marcar `[x]` al re
 
 | Run | Valor |
 |-----|-------|
-| Fecha (General completo) | 2026-07-05T05:13:10.017Z |
-| Fecha (1_idCanal verificado) | 2026-07-05T07:12:06.803Z |
-| Fecha (2_validador verificado) | 2026-07-05T07:38:17.594Z |
-| Fecha (3_peticion verificado) | 2026-07-05T07:53:27.900Z |
-| Fecha (1_validaciones_js verificado) | 2026-07-05T08:17:07.621Z |
-| Fecha (2_reglaNegocio/1_idCanal verificado) | 2026-07-05T09:28:35.067Z |
-| Fecha (2_reglaNegocio/4_metodo verificado) | 2026-07-05T09:37Z (aprox.) |
-| Fecha (1_validaciones_js regresión) | 2026-07-05T09:36:09.865Z |
-| Carpeta Postman | `General` / `1_validaciones_js` (A1–A4) |
-| Tests fallidos (General) | 468 (failed: 153) |
-| Tests fallidos (1_idCanal) | 84 (failed: **0**) |
-| Tests fallidos (2_validador) | 90 (failed: **0**) |
-| Tests fallidos (3_peticion) | 78 (failed: **0**) |
-| Tests fallidos (1_validaciones_js) | 396 (failed: **0**) |
+| Fecha (VCN completo) | **2026-07-05T19:51:09.825Z** |
+| Fecha (2_reglaNegocio/2_validador) | 2026-07-05T19:02Z (aprox., post-deploy A8a) |
+| Fecha (1_validaciones_js regresión post-1.2.15) | incluida en run VCN completo |
+| Carpeta Postman | `General` + `Metodo/0001` + resto colección VCN |
+| Requests (VCN completo) | **270** (failed: **0**) |
+| Tests (VCN completo) | **570** (failed: **0**) |
+| Tests (`2_reglaNegocio/2_validador`) | **18** (failed: **0**) |
+| Tests (`1_validaciones_js`) | **390** (failed: **0**, tras eliminar 1.2.15) |
 | Resumen Newman | [`Postman/generador/logs/resumen-fallos-vcn.md`](../Postman/generador/logs/resumen-fallos-vcn.md) |
 | Enfoque | [`01-enfoque-correccion.md`](./01-enfoque-correccion.md) |
 
 | Escenarios General (baseline 2026-07-05) | 78 |
-| Escenarios General (+ `2_reglaNegocio/2_validador`) | **81** (3 nuevos, sin Newman aún) |
-| Fallan (baseline) | 63 → **0** tras A0–A5 + `4_metodo` |
-| Pasan (baseline) | 15 → **78/78** |
+| Escenarios General (+ `2_reglaNegocio/2_validador`, − `1.2.15`, + `0_jsonEntrada`) | **81** |
+| Estado General | **80/80** + regresión VCN completa **570/570** |
 
-**Convención:** *Debe* = contrato Postman. **Baseline General cerrado** (78/78): `1_validaciones_js` + `2_reglaNegocio` original. Regresión `1_validaciones_js` OK (396/396, run 09:36). **Nuevo:** `2_reglaNegocio/2_validador` (2.2.1–2.2.3) — escenarios añadidos; pendiente Newman y posible código (404/402 cifrado).
+**Convención:** *Debe* = contrato Postman. **General:** 81 escenarios (incl. `0_jsonEntrada/0.1`). Verificación Newman: **solo usuario con VPN** — ver [`05-newman-vpn-reglas-agente.md`](./05-newman-vpn-reglas-agente.md).
 
 Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, orden en `app.js`).
 
@@ -34,9 +27,13 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 
 **Estado A1 (2026-07-05T07:12Z):** 14/14 en verde — ver sección *Escenarios que pasan* al final.
 
+## 0_jsonEntrada — triage #1 (2026-07-05)
+
+- [x] **0.1** — body HTTP JSON inválido (400) — escenario + código A2/A3; **Newman pendiente (usuario, VPN + deploy)**
+
 ## 1_validaciones_js/2_validador
 
-**Estado A2 (2026-07-05T07:38Z):** 15/15 en verde — ver sección *Escenarios que pasan* al final.
+**Estado A2 (2026-07-05T07:38Z, regresión 19:51Z):** **14/14** en verde — ver sección *Escenarios que pasan* al final.
 
 ## 1_validaciones_js/3_peticion
 
@@ -58,20 +55,24 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 
 **Estado (2026-07-05T09:37Z):** 2/2 en verde — ver sección *Escenarios que pasan*.
 
-## 2_reglaNegocio/2_validador (nuevo — regla de negocio)
+## 2_reglaNegocio/2_validador — A8 cerrada (2026-07-05)
 
 **Debate cerrado 2026-07-05.** Detalle: [triage/08-2_validador-reglaNegocio.md](./triage/08-2_validador-reglaNegocio.md).
 
-**Newman 2026-07-05T17:38Z:** 0/3 OK (pre-deploy A8a). **Re-run pendiente** tras deploy.
+**Newman:** **3/3** escenarios (18 assertions, run post-deploy A8a); incluido en VCN completo **570/570**.
 
 - [x] **Datos/env** — `CANAL_VALIDADOR_DESHABILITADO` = **1021**; `CANAL_VALIDADOR_MAL_CONFIGURADO` = **1017**; canal 1021 en `canalesPruebas-dev`
 - [x] **Código A8a** — regla `CFG_CANAL_VALIDADOR` eliminada en dev (`37a5e06`)
-- [ ] **2.2.1** — 404, env `9999`; Newman pendiente
-- [ ] **2.2.2** — 402, env **1021**; Newman pendiente
-- [ ] **2.2.3** — **decisión P6:** prod 404 vs dev 500 cifrado; Newman pendiente
+- [x] **2.2.1** — HTTP 400 / `codigoError` **404** en claro; env `9999`
+- [x] **2.2.2** — HTTP 400 / `codigoError` **402** en claro; env **1021**
+- [x] **2.2.3** — **P6 cerrado:** dev **HTTP 500** / `codigoError` **500** / *Error interno* (cifrado al emisor); canal **1017**
+
 ---
 
 ## Escenarios que pasan (no requieren acción ahora)
+
+### 0_jsonEntrada — triage #1 (2026-07-05)
+- [x] 0.1. body — JSON HTTP inválido (400)
 
 ### 1_validaciones_js/1_idCanal — A1 cerrada (run 2026-07-05T07:12Z)
 - [x] 1.1.1. idCanal — propiedad ausente (undefined) (400)
@@ -159,6 +160,11 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 ### 2_reglaNegocio/4_metodo (run 2026-07-05T09:37Z)
 - [x] 2.4.1. metodo — no está en CFG_METODOS_LIMITES_JSON (418)
 - [x] 2.4.2. metodo — no asociado al canal emisor (418) [CANAL_EMISOR_SIN_METODO]
+
+### 2_reglaNegocio/2_validador — A8 cerrada (run post-A8a, regresión 19:51Z)
+- [x] 2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE=9999]
+- [x] 2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO=1021]
+- [x] 2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO=1017]
 
 ### 2_reglaNegocio/3_peticion
 - [x] 2.3.1. peticion — cifrada con otra llave RSA (405)

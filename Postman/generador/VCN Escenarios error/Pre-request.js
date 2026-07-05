@@ -192,6 +192,43 @@
     return;
   }
 
+  const bodyRawInvalido =
+    payload && typeof payload.__envioBodyRawInvalido === 'string'
+      ? payload.__envioBodyRawInvalido
+      : null;
+  if (bodyRawInvalido !== null) {
+    const procesarUrlDirecto = endPoint.url;
+    (async function runEnvioBodyRawInvalido() {
+      try {
+        const headersProcesar = { 'Content-Type': 'application/json' };
+        if (endPoint.nivel === 'MATRIZ') {
+          const accessToken = await obtenerTokenMatriz();
+          headersProcesar.Authorization = 'Bearer ' + accessToken;
+        }
+        const resProcesar = await sendRequestAsync({
+          url: procesarUrlDirecto,
+          method: 'POST',
+          header: headersProcesar,
+          body: { mode: 'raw', raw: bodyRawInvalido }
+        });
+        cvSet('FLOW_FAILED', '0');
+        cvSet('FLOW_ERROR', '');
+        cvSet('PROCESAR_STATUS_CODE', String(resProcesar.code));
+        cvSet('PROCESAR_RESPONSE_BODY', resProcesar.text());
+        pm.request.body.update(resProcesar.text());
+        pm.request.headers.upsert({ key: 'Content-Type', value: 'application/json' });
+      } catch (networkError) {
+        failFlow(
+          'error de red enviando body JSON invalido',
+          networkError && networkError.message
+            ? networkError.message
+            : String(networkError)
+        );
+      }
+    })();
+    return;
+  }
+
   const mutacionPostCifrar = payload.__mutacionPostCifrar || null;
   if (mutacionPostCifrar) {
     delete payload.__mutacionPostCifrar;

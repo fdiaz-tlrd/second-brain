@@ -50,7 +50,7 @@ flowchart LR
 | **Cambio** | Mensaje `BAD_JSON` → `MSG_CATALOGO[400]` (*Error en la petición original*) |
 | **Archivos** | `app.js` (mínimo) |
 | **Newman** | Manual o escenario body inválido |
-| **Triage** | [triage/01-json-entrada.md](./triage/01-json-entrada.md) — acción A1 pendiente |
+| **Triage** | [triage/01-json-entrada.md](./triage/01-json-entrada.md) — mensaje A1 **hecho**; refactor A2/A3 **pendiente** (no bloquea Newman) |
 
 **Nota:** Se puede **fusionar con A1** en el mismo PR (A0 es una línea).
 
@@ -73,7 +73,7 @@ flowchart LR
 | **Cambio** | `validarParametroValidador`; `responderValidacionConCifrado`; orden emisor resuelto antes |
 | **Env** | `CFG_CANAL_VALIDADOR` — ya en A1 |
 | **Triage** | [triage/03-validador.md](./triage/03-validador.md) |
-| **Criterio done** | Bloque 1.2 en verde — **cumplido** (run 2026-07-05T07:38Z, 15/15) |
+| **Criterio done** | Bloque 1.2 en verde — **cumplido** (run 2026-07-05T07:38Z, 15/15; regresión **14/14** tras eliminar `1.2.15`) |
 
 ### A3 — petición / descifrado (`1.3_peticion`) — **cerrada 2026-07-05**
 
@@ -106,25 +106,22 @@ flowchart LR
 
 | Fase | Cuándo |
 |------|--------|
-| **Pendiente Fase A** | Debate + cierre **`2_reglaNegocio/2_validador`** ([triage/08](./triage/08-2_validador-reglaNegocio.md)); regresión `Metodo/0001` |
-| **Baseline General** | **78/78 cerrado** (incl. `4_metodo` run 09:37) |
-| **B** — Extraer funciones en `app.js` (`resolverCanalEmisor`, …) | Tras baseline estable |
+| **Fase A + A8** | **Cerrada** — General **80/80**, VCN completo **570/570** (2026-07-05T19:51Z) |
+| **B** — Extraer funciones en `app.js` (`resolverCanalEmisor`, …) | Tras acuerdo usuario / nuevos escenarios |
 | **C** — `lib/metodos.js` solo 0001 | Tras B o en paralelo |
 
 ## Regresión obligatoria en cada subfase
 
-Después de **cada** A1–A5, el usuario (o agente con logs) verifica:
+Después de **cada** A1–A8, el usuario (o agente con logs) verifica:
 
 1. Newman carpeta **General** del bloque tocado.
-2. Newman **Metodo/0001** (cuenta) — **debe seguir pasando**.
+2. Newman **VCN completo** o **Metodo/0001** según acuerdo.
 3. Marcar checklist en [02-checklist-errores-vcn-general.md](./02-checklist-errores-vcn-general.md).
 
 ## Próximo paso concreto
 
-1. Newman: `node run-newman.js vcn --folder "General/2_reglaNegocio/2_validador"`
-2. Regresión: `node run-newman.js vcn --folder "Metodo/0001"`
-3. Si falla 2.2.x: alinear `app.js` validador 404/402 con P2M (`responderValidacionConCifrado`)
-4. Al finalizar VCN: revertir TEMP `CFG_METODOS_LIMITES_JSON` → `{"0001":1}`
+1. Usuario propone **nuevos escenarios VCN** (fuera del bloque General actual).
+2. Crear → revisar → corregir → Newman → repetir hasta *hemos terminado*.
 
 ## Referencias sagradas / fuera de alcance
 
