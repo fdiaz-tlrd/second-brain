@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "b35d596d-bf58-417c-8679-76407abc6608",
+    "_postman_id": "1b3db321-c0ea-4d05-acfc-6cd901e2c770",
     "name": "VCN Escenarios error",
     "description": "Colección generada desde la fuente en VCN Escenarios error/.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -3334,7 +3334,7 @@
                     "method": "POST",
                     "header": [],
                     "url": {
-                      "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                      "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-gcm",
                       "host": [
                         "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
                       ],
@@ -3348,13 +3348,13 @@
                         },
                         {
                           "key": "algoritmoCifrado",
-                          "value": "aes-256-cbc"
+                          "value": "aes-256-gcm"
                         }
                       ]
                     },
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_SIN_PLAN}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
+                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_SIN_PLAN}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR_SIN_PLAN}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
                       "options": {
                         "raw": {
                           "language": "json"
@@ -3403,7 +3403,7 @@
                     },
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_MAL_CONFIGURADO}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
+                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_MAL_CONFIGURADO}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR_MAL_CONFIGURADO}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
                       "options": {
                         "raw": {
                           "language": "json"
@@ -3420,6 +3420,55 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 500);",
                           "pm.variables.set('expectedCodigoError', 500);",
+                          "pm.variables.set('expectedTipo', 'general');"
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-gcm",
+                      "host": [
+                        "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                      ],
+                      "path": [
+                        "descifrar"
+                      ],
+                      "query": [
+                        {
+                          "key": "tld",
+                          "value": "0"
+                        },
+                        {
+                          "key": "algoritmoCifrado",
+                          "value": "aes-256-gcm"
+                        }
+                      ]
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "response": [],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "pm.variables.set('expectedHttpStatus', 400);",
+                          "pm.variables.set('expectedCodigoError', 403);",
                           "pm.variables.set('expectedTipo', 'general');"
                         ]
                       }

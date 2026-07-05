@@ -378,6 +378,12 @@
     {
       "idCanal": "1017",
       "swiftCode": "TEYVGATO",
+      "malConfigurado": true,
+      "escenarioError": {
+        "variablePostman": "CANAL_EMISOR_MAL_CONFIGURADO",
+        "esperado": "500",
+        "causa": "Sin llaveCifrado en tld-validador-canal"
+      },
       "matriz": {
         "nombreCanal": "Teyvat Eternal Vault",
         "empresa": "TEYVGATO",
@@ -433,6 +439,78 @@
         "estadoValidador": "Y",
         "urlValidador": "",
         "llaveCifrado": "b6a5ca24-5ea7-4984-916f-3fc27650879b",
+        "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97",
+        "validadorApiKey": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
+      }
+    },
+    {
+      "idCanal": "1019",
+      "swiftCode": "STELGATO",
+      "sinPlan": true,
+      "escenarioError": {
+        "variablePostman": "CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS",
+        "esperado": "403",
+        "causa": "Sin fila en tld-matriz-planes-canales"
+      },
+      "matriz": {
+        "nombreCanal": "Stellaron Crisis Fund",
+        "empresa": "STELGATO",
+        "correo": "fdiaz@telered.com.pa",
+        "fechaCreacion": "2026-07-04 10:23:23"
+      },
+      "credenciales": {
+        "apiKey": "bb6f23b6a9a445a5b255a7874c97fb83ab9b34765",
+        "secretKey": "S8hf4nt41tbr342eHH83l9o9U979etgH7Eo4Nfm7r4r6kg7ln8aVeR1eI5e898Aa8Bb86dr8925tuHQJpm4jAD"
+      },
+      "cognito": {
+        "grupos": null
+      },
+      "plan": null,
+      "validador": {
+        "algoritmoCifrado": "aes-256-gcm",
+        "algoritmoAes": "aes-256-gcm",
+        "alias": "STELGATO",
+        "tipoAuth": "fijo",
+        "useCertificado": false,
+        "estadoValidador": "Y",
+        "urlValidador": "",
+        "llaveCifrado": "6468e09f-da25-4992-8f28-9f285c9e510d",
+        "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97",
+        "validadorApiKey": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
+      }
+    },
+    {
+      "idCanal": "1020",
+      "swiftCode": "NAMEGATO",
+      "sinPlan": true,
+      "escenarioError": {
+        "variablePostman": "CANAL_EMISOR_SIN_PLAN",
+        "esperado": "403",
+        "causa": "Sin fila en tld-matriz-planes-canales"
+      },
+      "matriz": {
+        "nombreCanal": "Nameless Trail Finance",
+        "empresa": "NAMEGATO",
+        "correo": "fdiaz@telered.com.pa",
+        "fechaCreacion": "2026-07-04 10:43:12"
+      },
+      "credenciales": {
+        "apiKey": "09f118b3bab407c594ee2c105c67d877988d7bb17",
+        "secretKey": "06j159Mi1tqknj2e5Pn3lb38S969eaeO8Ag28Eqc24rdRoqnuibO8VBc15e8Abaa98bb6d3jrv63u76rlSek3g"
+      },
+      "cognito": {
+        "grupos": ["tld-matriz-default", "tld-matriz-validador"]
+      },
+      "plan": null,
+      "validador": {
+        "algoritmoCifrado": "aes-256-gcm",
+        "algoritmoAes": "aes-256-gcm",
+        "alias": "NAMEGATO",
+        "tipoAuth": "fijo",
+        "useCertificado": false,
+        "estadoValidador": "Y",
+        "urlValidador": "",
+        "llaveCifrado": "15343c1e-e040-437f-8b63-df8a06e8caf9",
         "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97",
         "validadorApiKey": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
       }

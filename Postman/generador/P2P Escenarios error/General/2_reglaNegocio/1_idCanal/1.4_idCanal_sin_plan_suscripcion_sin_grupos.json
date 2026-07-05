@@ -1,20 +1,20 @@
 {
-  "nombre": "2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]",
+  "nombre": "2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]",
   "expectedHttpStatus": 400,
   "expectedCodigoError": 403,
   "expectedTipo": "general",
   "algoritmoCifrado": "aes-256-gcm",
   "body": {
-    "idCanal": "{{CANAL_EMISOR_SIN_PLAN}}",
+    "idCanal": "{{CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS}}",
     "validador": "{{CANAL_VALIDADOR}}",
     "peticion": {
-      "idPeticion": "{{SWIFT_CANAL_EMISOR_SIN_PLAN}}{{$timestamp}}",
-      "metodo": "0001",
+      "idPeticion": "{{SWIFT_CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS}}{{$timestamp}}",
+      "metodo": "0002",
       "solicitudes": [
         {
           "idSolicitud": "1",
           "parametros": {
-            "cuenta": "{{CUENTA_VALIDA}}"
+            "tipoIdentificador": "CELULAR"
           }
         }
       ]

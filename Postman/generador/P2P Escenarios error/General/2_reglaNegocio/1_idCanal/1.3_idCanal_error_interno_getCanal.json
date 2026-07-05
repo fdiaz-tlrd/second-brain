@@ -8,7 +8,7 @@
     "idCanal": "{{CANAL_EMISOR_MAL_CONFIGURADO}}",
     "validador": "{{CANAL_VALIDADOR}}",
     "peticion": {
-      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "idPeticion": "{{SWIFT_CANAL_EMISOR_MAL_CONFIGURADO}}{{$timestamp}}",
       "metodo": "0002",
       "solicitudes": [
         {

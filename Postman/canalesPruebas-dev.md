@@ -119,8 +119,25 @@ Grupos: token del canal → `cognito:groups` en el JWT.
 | 1016 | BELLGATO | gcm | dinámico | sí | validador + default |
 | 1017 | TEYVGATO | — | fijo | **no** | sin credenciales matriz |
 | 1018 | ARCHGATO | gcm | fijo | sí | validador + default |
+| 1019 | STELGATO | gcm | fijo | **no** | sin registrar |
+| 1020 | NAMEGATO | gcm | fijo | **no** | validador + default |
 
-**1018 ARCHGATO** — canal de referencia **sin método/operación**: `urlValidador` vacío y **sin filas** en `tld-validador-canal-operacion` (a diferencia de 1009, 1012, 1013, 1015, que llevan `urlOperacion` en operaciones concretas).
+### Escenarios de error (Postman)
+
+| Variable entorno | idCanal | Swift | Esperado | Causa |
+|------------------|---------|-------|----------|-------|
+| `CANAL_EMISOR` | 1008 | CELEGATO | 200 (flujo base) | CBC, plan GATO |
+| `CANAL_EMISOR_GCM` | 1013 | AMIYGATO | 200 (flujo base GCM) | GCM, plan GATO |
+| `CANAL_EMISOR_SIN_PLAN` | **1020** | NAMEGATO | **403** | Sin plan; escenario `1.2` |
+| `CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS` | **1019** | STELGATO | **403** | Sin plan, sin grupos; escenario `1.4` |
+| `CANAL_EMISOR_SIN_METODO` | **1018** | ARCHGATO | error validador | Sin `urlValidador` ni operaciones |
+| `CANAL_EMISOR_MAL_CONFIGURADO` | **1017** | TEYVGATO | **500** | Fila en validador **sin `llaveCifrado`** |
+
+**1018 ARCHGATO** — **sin método/operación**: `urlValidador` vacío y sin filas en `tld-validador-canal-operacion`.
+
+**1019 STELGATO** — sin plan, sin grupos → `CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS` (escenario **`1.4`**).
+
+**1020 NAMEGATO** — sin plan, con grupos → `CANAL_EMISOR_SIN_PLAN` (escenario **`1.2`**).
 
 En Dynamo, suscripciones plan–canal pueden figurar `estatus: inactivo`; `control-plan` valida por existencia de fila.
 
@@ -208,6 +225,24 @@ POST `.../auth/token`
 {
   "apiKey": "bd3b2952b8846875818f392fe92a0ea0ba992fe55",
   "secretKey": "mAnDudle1tMlaG2eQK73lavb1bk9edBem58dLePVb4rfi95oi9hfvhO6B5eabbbB898a6dDRc34k72qqVciJqs"
+}
+```
+
+**1019 STELGATO** (sin plan, sin grupos)
+
+```json
+{
+  "apiKey": "bb6f23b6a9a445a5b255a7874c97fb83ab9b34765",
+  "secretKey": "S8hf4nt41tbr342eHH83l9o9U979etgH7Eo4Nfm7r4r6kg7ln8aVeR1eI5e898Aa8Bb86dr8925tuHQJpm4jAD"
+}
+```
+
+**1020 NAMEGATO** (sin plan — escenario 403)
+
+```json
+{
+  "apiKey": "09f118b3bab407c594ee2c105c67d877988d7bb17",
+  "secretKey": "06j159Mi1tqknj2e5Pn3lb38S969eaeO8Ag28Eqc24rdRoqnuibO8VBc15e8Abaa98bb6d3jrv63u76rlSek3g"
 }
 ```
 

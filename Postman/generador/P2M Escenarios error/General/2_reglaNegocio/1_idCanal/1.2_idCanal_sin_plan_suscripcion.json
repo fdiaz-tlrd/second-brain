@@ -3,12 +3,12 @@
   "expectedHttpStatus": 400,
   "expectedCodigoError": 403,
   "expectedTipo": "general",
-  "algoritmoCifrado": "aes-256-cbc",
+  "algoritmoCifrado": "aes-256-gcm",
   "body": {
     "idCanal": "{{CANAL_EMISOR_SIN_PLAN}}",
     "validador": "{{CANAL_VALIDADOR}}",
     "peticion": {
-      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "idPeticion": "{{SWIFT_CANAL_EMISOR_SIN_PLAN}}{{$timestamp}}",
       "metodo": "0015",
       "solicitudes": [
         {

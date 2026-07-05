@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "a576675b-0670-4d1c-b32e-f10ebd6034ce",
+    "_postman_id": "6ed56dc0-698e-4b4e-8dfd-7d03ac774a54",
     "name": "P2M Escenarios error",
     "description": "Colección generada desde la fuente en P2M Escenarios error/.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -3334,7 +3334,7 @@
                     "method": "POST",
                     "header": [],
                     "url": {
-                      "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                      "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-gcm",
                       "host": [
                         "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
                       ],
@@ -3348,13 +3348,13 @@
                         },
                         {
                           "key": "algoritmoCifrado",
-                          "value": "aes-256-cbc"
+                          "value": "aes-256-gcm"
                         }
                       ]
                     },
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_SIN_PLAN}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0015\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}\",\n                    \"tipoIdentificador\": \"COMERCIO\"\n                }\n            }\n        ]\n    }\n}",
+                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_SIN_PLAN}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR_SIN_PLAN}}{{$timestamp}}\",\n        \"metodo\": \"0015\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}\",\n                    \"tipoIdentificador\": \"COMERCIO\"\n                }\n            }\n        ]\n    }\n}",
                       "options": {
                         "raw": {
                           "language": "json"
@@ -3403,7 +3403,7 @@
                     },
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_MAL_CONFIGURADO}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0015\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}\",\n                    \"tipoIdentificador\": \"COMERCIO\"\n                }\n            }\n        ]\n    }\n}",
+                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_MAL_CONFIGURADO}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR_MAL_CONFIGURADO}}{{$timestamp}}\",\n        \"metodo\": \"0015\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}\",\n                    \"tipoIdentificador\": \"COMERCIO\"\n                }\n            }\n        ]\n    }\n}",
                       "options": {
                         "raw": {
                           "language": "json"
@@ -3420,6 +3420,55 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 500);",
                           "pm.variables.set('expectedCodigoError', 500);",
+                          "pm.variables.set('expectedTipo', 'general');"
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-gcm",
+                      "host": [
+                        "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                      ],
+                      "path": [
+                        "descifrar"
+                      ],
+                      "query": [
+                        {
+                          "key": "tld",
+                          "value": "0"
+                        },
+                        {
+                          "key": "algoritmoCifrado",
+                          "value": "aes-256-gcm"
+                        }
+                      ]
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS}}{{$timestamp}}\",\n        \"metodo\": \"0015\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}\",\n                    \"tipoIdentificador\": \"COMERCIO\"\n                }\n            }\n        ]\n    }\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "response": [],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "pm.variables.set('expectedHttpStatus', 400);",
+                          "pm.variables.set('expectedCodigoError', 403);",
                           "pm.variables.set('expectedTipo', 'general');"
                         ]
                       }
@@ -30023,7 +30072,7 @@
   "variable": [
     {
       "key": "CATALOGO_GENERAL",
-      "value": "{\"0\":\"Operación exitosa\",\"400\":\"Error en la petición original\",\"401\":\"Canal emisor no existe\",\"402\":\"Canal validador no disponible\",\"403\":\"Canal emisor no tiene un plan de suscripción\",\"404\":\"Validador no existe\",\"405\":\"Error en descifrado canal emisor\",\"406\":\"Error en cifrado canal validador, Error en descifrado canal validador\",\"407\":\"Identificador no se encuentra registrado\",\"408\":\"Identificador o Alias ya está registrado en el directorio.\",\"409\":\"Error al validar el parámetro identificador\",\"410\":\"Error al validar el parámetro tipoIdentificador\",\"411\":\"Identificador dado de baja\",\"412\":\"El valor del parámetro banco no corresponde al canal\",\"413\":\"Error al validar el parámetro cuenta\",\"414\":\"Error al validar el parámetro banco\",\"416\":\"Identificador del alias no registrado\",\"418\":\"Método no soportado\",\"419\":\"Los parámetros identificador y tipoIdentificador son requeridos\",\"420\":\"Respuestas inválidas\",\"421\":\"Error al validar el parámetro producto\",\"423\":\"Identificador del alias ya se encuentra registrado para el banco\",\"424\":\"Cantidad de bancos al máximo\",\"425\":\"Cantidad de solicitudes no permitidas\",\"426\":\"Tipo de baja no soportada\",\"427\":\"Arreglo de respuestas ausente o su contenido es inválido\",\"428\":\"Error al validar el parámetro idPregunta\",\"429\":\"Error al validar el parámetro respuesta\",\"430\":\"Se superó el límite de intentos fallidos en las preguntas de seguridad\",\"431\":\"Campo idSolicitud no cumple con los criterios\",\"432\":\"Error al validar el parámetro ciudadComercio\",\"434\":\"Campo identificador no corresponde a los datos registrados\",\"436\":\"Error al validar el parámetro nombreAcreedor\",\"437\":\"Error al validar el parámetro descripción\",\"438\":\"Identificador del comercio ya se encuentra registrado para el banco\",\"439\":\"Identificador del comercio ya se encuentra registrado\",\"440\":\"Identificador del comercio registrado anteriormente para el banco\",\"441\":\"Identificador del comercio no registrado\",\"442\":\"El identificador del comercio debe corresponder a un comercio activo\",\"443\":\"Error al validar el parámetro estado\",\"444\":\"Error al validar el parámetro id\",\"445\":\"El prefijo Código SWIFT del idPeticion no coincide con el canal emisor\",\"446\":\"Error al validar el parámetro nombreComercio\",\"447\":\"Error al validar el parámetro mcc\",\"448\":\"El mcc no se encuentra registrado\",\"449\":\"Error al validar el parámetro logo\",\"450\":\"Error al validar el parámetro correo\",\"451\":\"Error al validar el parámetro busquedaCantidad\",\"452\":\"Error al validar el parámetro busquedaIdentificadorComercio\",\"453\":\"Error al validar el parámetro busquedaPaginaToken\",\"455\":\"Error al validar el parámetro respuestas\",\"456\":\"Error al validar el parámetro montoBase\",\"457\":\"Error al calcular mdr para el mcc del Comercio\",\"458\":\"Error al validar el parámetro p2mPagoId\",\"459\":\"Error al validar el parámetro estadoCargo\",\"460\":\"El parámetro monto debe ser la suma de los parámetros montoBase, impuesto y propina\",\"462\":\"Error al validar el parámetro fechaVencimiento\",\"463\":\"Error al validar el parámetro cantidadLecturas\",\"464\":\"Error al validar el parámetro qrTipo\",\"465\":\"Error al validar el parámetro monto\",\"466\":\"Error al validar el parámetro impuesto\",\"467\":\"Error al validar el parámetro propina\",\"468\":\"Error al validar el parámetro tipo\",\"470\":\"Error validando en QR Payment\",\"471\":\"Error validando en QR Payment\",\"472\":\"Error al validar el parámetro canalPago\",\"473\":\"Error al validar el campo qrCode\",\"474\":\"Error al validar el parámetro moneda\",\"475\":\"El p2mPagoId no puede corresponder a una Solicitud de Pago procesada\",\"476\":\"Error validando en QR Payment\",\"477\":\"No se encuentra disponible el identificador del acreedor del QR.\",\"478\":\"Error al validar el parámetro busquedaNombreComercio\",\"479\":\"Error al validar el parámetro identificadorComercio\",\"480\":\"No se admite el tipo de identificador con el que se generó el QR.\",\"500\":\"Error interno\",\"504\":\"Petición de validación no existe\",\"509\":\"Error inesperado en validador\",\"599\":\"Error inesperado en validador\",\"600\":\"Error durante el llamado de la API de preguntas de seguridad\",\"999\":\"Error inesperado\"}"
+      "value": "{\"0\":\"Operación exitosa\",\"400\":\"Error en la petición original\",\"401\":\"Canal emisor no existe\",\"402\":\"Canal validador no disponible\",\"403\":\"Canal emisor no tiene un plan de suscripción\",\"404\":\"Validador no existe\",\"405\":\"Error en descifrado canal emisor\",\"406\":\"Error en cifrado canal validador, Error en descifrado canal validador\",\"407\":\"Identificador no se encuentra registrado\",\"408\":\"Identificador o Alias ya está registrado en el directorio.\",\"409\":\"Error al validar el parámetro identificador\",\"410\":\"Error al validar el parámetro tipoIdentificador\",\"411\":\"Identificador dado de baja\",\"412\":\"El valor del parámetro banco no corresponde al canal\",\"413\":\"Error al validar el parámetro cuenta\",\"414\":\"Error al validar el parámetro banco\",\"416\":\"Identificador del alias no registrado\",\"418\":\"Método no soportado\",\"419\":\"Los parámetros identificador y tipoIdentificador son requeridos\",\"420\":\"Respuestas inválidas\",\"421\":\"Error al validar el parámetro producto\",\"423\":\"Identificador del alias ya se encuentra registrado para el banco\",\"424\":\"Cantidad de bancos al máximo\",\"425\":\"Cantidad de solicitudes no permitidas\",\"426\":\"Tipo de baja no soportada\",\"427\":\"Arreglo de respuestas ausente o su contenido es inválido\",\"428\":\"Error al validar el parámetro idPregunta\",\"429\":\"Error al validar el parámetro respuesta\",\"430\":\"Se superó el límite de intentos fallidos en las preguntas de seguridad\",\"431\":\"Campo idSolicitud no cumple con los criterios\",\"432\":\"Error al validar el parámetro ciudadComercio\",\"434\":\"Campo identificador no corresponde a los datos registrados\",\"436\":\"Error al validar el parámetro nombreAcreedor\",\"437\":\"Error al validar el parámetro descripción\",\"438\":\"Identificador del comercio ya se encuentra registrado para el banco\",\"439\":\"Identificador del comercio ya se encuentra registrado\",\"440\":\"Identificador del comercio registrado anteriormente para el banco\",\"441\":\"Identificador del comercio no registrado\",\"442\":\"El identificador del comercio debe corresponder a un comercio activo\",\"443\":\"Error al validar el parámetro estado\",\"444\":\"Error al validar el parámetro id\",\"445\":\"El prefijo Código SWIFT del idPeticion no coincide con el canal emisor\",\"446\":\"Error al validar el parámetro nombreComercio\",\"447\":\"Error al validar el parámetro mcc\",\"448\":\"El mcc no se encuentra registrado\",\"449\":\"Error al validar el parámetro logo\",\"450\":\"Error al validar el parámetro correo\",\"451\":\"Error al validar el parámetro busquedaCantidad\",\"452\":\"Error al validar el parámetro busquedaIdentificadorComercio\",\"453\":\"Error al validar el parámetro busquedaPaginaToken\",\"455\":\"Error al validar el parámetro respuestas\",\"456\":\"Error al validar el parámetro montoBase\",\"457\":\"Error al calcular mdr para el mcc del Comercio\",\"458\":\"Error al validar el parámetro p2mPagoId\",\"459\":\"Error al validar el parámetro estadoCargo\",\"460\":\"El parámetro monto debe ser la suma de los parámetros montoBase, impuesto y propina\",\"462\":\"Error al validar el parámetro fechaVencimiento\",\"463\":\"Error al validar el parámetro cantidadLecturas\",\"464\":\"Error al validar el parámetro qrTipo\",\"465\":\"Error al validar el parámetro monto\",\"466\":\"Error al validar el parámetro impuesto\",\"467\":\"Error al validar el parámetro propina\",\"468\":\"Error al validar el parámetro tipo\",\"470\":\"Error validando en QR Payment\",\"471\":\"Error validando en QR Payment\",\"472\":\"Error al validar el parámetro canalPago\",\"473\":\"Error al validar el campo qrCode\",\"474\":\"Error al validar el parámetro moneda\",\"475\":\"El p2mPagoId no puede corresponder a una Solicitud de Pago procesada\",\"476\":\"Error validando en QR Payment\",\"477\":\"No se encuentra disponible el identificador del acreedor del QR.\",\"478\":\"Error al validar el parámetro busquedaNombreComercio\",\"479\":\"Error al validar el parámetro identificadorComercio\",\"480\":\"No se admite el tipo de identificador con el que se generó el QR.\",\"500\":\"Error interno\",\"504\":\"Petición de validación no existe\",\"509\":\"Error inesperado en validador\",\"510\":\"Número de cuenta incorrecta\",\"511\":\"Número de cuenta cerrado\",\"512\":\"Número de cuenta bloqueado\",\"513\":\"Transacción no permitida\",\"514\":\"Falta información obligatoria de consulta\",\"515\":\"Razón regulatoria\",\"599\":\"Error inesperado en validador\",\"600\":\"Error durante el llamado de la API de preguntas de seguridad\",\"999\":\"Error inesperado\"}"
     }
   ]
 }
