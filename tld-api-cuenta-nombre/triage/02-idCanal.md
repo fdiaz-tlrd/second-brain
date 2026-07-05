@@ -49,7 +49,17 @@ Respuesta esperada: HTTP **400**, `codigoError` **400**, `mensajeError` **`Error
 | A1d | Early return 400 con `mensajeCatalogoCliente` | `app.js` | **Hecho** |
 | A1e | Faltantes `peticion`/`validador` usan `MSG_CATALOGO[400]` | `app.js` | **Hecho** |
 
-**Verificación:** Newman carpeta `General/1_validaciones_js/1_idCanal` + regresión `Metodo/0001`. Marcar checklist tras run en máquina corporativa.
+**Verificación Newman** (máquina con VPN, 2026-07-05T07:12:06Z):
+
+| Carpeta | Requests | Assertions | Fallos |
+|---------|----------|------------|--------|
+| `General/1_validaciones_js/1_idCanal` | 42 | 84 | **0** |
+
+Log: [`Postman/generador/logs/resumen-fallos-vcn.md`](../../Postman/generador/logs/resumen-fallos-vcn.md) — *Sin fallos.*
+
+**1.1.13 (generador):** el único fallo previo al run final no era handler — escenario VCN tenía U+FFFD en `"idCanal": "10�0"`. Corregido con `bootstrap-general-vcn.js` (commit `20c960c`); payload `"10¿0"` → 400/`Error en la petición original`.
+
+**Estado A1:** **cerrada** (bloque 1.1 checklist en verde). Pendiente regresión `Metodo/0001` cuando toque Fase C.
 
 ## Pruebas
 

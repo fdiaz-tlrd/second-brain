@@ -4,117 +4,25 @@ Fuente de verdad para corrección en `tld-api-cuenta-nombre`. Marcar `[x]` al re
 
 | Run | Valor |
 |-----|-------|
-| Fecha | 2026-07-05T05:13:10.017Z |
-| Carpeta Postman | `General` |
-| Tests fallidos | 468 (failed: 153) |
+| Fecha (General completo) | 2026-07-05T05:13:10.017Z |
+| Fecha (1_idCanal verificado) | 2026-07-05T07:12:06.803Z |
+| Carpeta Postman | `General` (completo) / `General/1_validaciones_js/1_idCanal` (A1) |
+| Tests fallidos (General) | 468 (failed: 153) |
+| Tests fallidos (1_idCanal) | 84 (failed: **0**) |
 | Resumen Newman | [`Postman/generador/logs/resumen-fallos-vcn.md`](../Postman/generador/logs/resumen-fallos-vcn.md) |
 | Enfoque | [`01-enfoque-correccion.md`](./01-enfoque-correccion.md) |
 
 | Escenarios General | 78 |
-| Fallan | 63 |
-| Pasan | 15 |
+| Fallan (run General 05:13) | 63 → **51** tras cerrar A1 (1_idCanal) |
+| Pasan (run General 05:13) | 15 → **27** tras cerrar A1 |
 
-**Convención:** *Debe* = contrato Postman (escenario JSON). *Está* = VCN dev, run 2026-07-05.
+**Convención:** *Debe* = contrato Postman (escenario JSON). *Está* = VCN dev. Bloque **1_idCanal** verificado run 07:12; resto aún según run General 05:13.
 
 Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, orden en `app.js`).
 
 ## 1_validaciones_js/1_idCanal
 
-- [ ] **1.1.1. idCanal — propiedad ausente (undefined) (400)**
-  - Postman: `General/1_validaciones_js/1_idCanal`
-  - Escenario: [`1_validaciones_js/1_idCanal/1.1_idCanal_propiedad_ausente.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/1_idCanal/1.1_idCanal_propiedad_ausente.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 400, "mensajeError": "Error al consultar canal-plan por idCanal" }` (HTTP descifrar 200)
-  - **Gap:** mensaje no coincide con catálogo
-
-- [ ] **1.1.10. idCanal — espacio interno, post-trim (400)**
-  - Postman: `General/1_validaciones_js/1_idCanal`
-  - Escenario: [`1_validaciones_js/1_idCanal/1.10_idCanal_espacio_interno.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/1_idCanal/1.10_idCanal_espacio_interno.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 401, "mensajeError": "Canal emisor no existe" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 401 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.1.11. idCanal — símbolo @ no permitido (400)**
-  - Postman: `General/1_validaciones_js/1_idCanal`
-  - Escenario: [`1_validaciones_js/1_idCanal/1.11_idCanal_simbolo_arroba.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/1_idCanal/1.11_idCanal_simbolo_arroba.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 401, "mensajeError": "Canal emisor no existe" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 401 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.1.12. idCanal — paréntesis ( no permitido (400)**
-  - Postman: `General/1_validaciones_js/1_idCanal`
-  - Escenario: [`1_validaciones_js/1_idCanal/1.12_idCanal_parentesis.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/1_idCanal/1.12_idCanal_parentesis.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 401, "mensajeError": "Canal emisor no existe" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 401 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.1.13. idCanal — ¿ no permitido (400)**
-  - Postman: `General/1_validaciones_js/1_idCanal`
-  - Escenario: [`1_validaciones_js/1_idCanal/1.13_idCanal_unicode_interrogacion_apertura.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/1_idCanal/1.13_idCanal_unicode_interrogacion_apertura.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 401, "mensajeError": "Canal emisor no existe" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 401 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.1.14. idCanal — comillas " no permitidas (400)**
-  - Postman: `General/1_validaciones_js/1_idCanal`
-  - Escenario: [`1_validaciones_js/1_idCanal/1.14_idCanal_comillas.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/1_idCanal/1.14_idCanal_comillas.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 401, "mensajeError": "Canal emisor no existe" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 401 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.1.4. idCanal — tipo number (400)**
-  - Postman: `General/1_validaciones_js/1_idCanal`
-  - Escenario: [`1_validaciones_js/1_idCanal/1.4_idCanal_tipo_number.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/1_idCanal/1.4_idCanal_tipo_number.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 500, "mensajeError": "ERROR: Excepción no controlada al momento de buscar la información del canal" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 500 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.1.5. idCanal — tipo boolean (400)**
-  - Postman: `General/1_validaciones_js/1_idCanal`
-  - Escenario: [`1_validaciones_js/1_idCanal/1.5_idCanal_tipo_boolean.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/1_idCanal/1.5_idCanal_tipo_boolean.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 500, "mensajeError": "ERROR: Excepción no controlada al momento de buscar la información del canal" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 500 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.1.6. idCanal — tipo object (400)**
-  - Postman: `General/1_validaciones_js/1_idCanal`
-  - Escenario: [`1_validaciones_js/1_idCanal/1.6_idCanal_tipo_object.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/1_idCanal/1.6_idCanal_tipo_object.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 500, "mensajeError": "ERROR: Excepción no controlada al momento de buscar la información del canal" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 500 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.1.7. idCanal — solo espacios, trim vacío (400)**
-  - Postman: `General/1_validaciones_js/1_idCanal`
-  - Escenario: [`1_validaciones_js/1_idCanal/1.7_idCanal_solo_espacios.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/1_idCanal/1.7_idCanal_solo_espacios.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 401, "mensajeError": "Canal emisor no existe" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 401 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.1.8. idCanal — solo tab, trim vacío (400)**
-  - Postman: `General/1_validaciones_js/1_idCanal`
-  - Escenario: [`1_validaciones_js/1_idCanal/1.8_idCanal_solo_tab.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/1_idCanal/1.8_idCanal_solo_tab.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 401, "mensajeError": "Canal emisor no existe" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 401 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.1.9. idCanal — longitud 5, máximo 4 (400)**
-  - Postman: `General/1_validaciones_js/1_idCanal`
-  - Escenario: [`1_validaciones_js/1_idCanal/1.9_idCanal_longitud_5.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/1_idCanal/1.9_idCanal_longitud_5.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 401, "mensajeError": "Canal emisor no existe" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 401 vs 400; mensaje no coincide con catálogo
+**Estado A1 (2026-07-05T07:12Z):** 14/14 en verde — ver sección *Escenarios que pasan* al final.
 
 ## 1_validaciones_js/2_validador
 
@@ -540,9 +448,21 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 
 ## Escenarios que pasan (no requieren acción ahora)
 
-### 1_validaciones_js/1_idCanal
+### 1_validaciones_js/1_idCanal — A1 cerrada (run 2026-07-05T07:12Z)
+- [x] 1.1.1. idCanal — propiedad ausente (undefined) (400)
 - [x] 1.1.2. idCanal — null (400)
 - [x] 1.1.3. idCanal — string vacío "" (400)
+- [x] 1.1.4. idCanal — tipo number (400)
+- [x] 1.1.5. idCanal — tipo boolean (400)
+- [x] 1.1.6. idCanal — tipo object (400)
+- [x] 1.1.7. idCanal — solo espacios, trim vacío (400)
+- [x] 1.1.8. idCanal — solo tab, trim vacío (400)
+- [x] 1.1.9. idCanal — longitud 5, máximo 4 (400)
+- [x] 1.1.10. idCanal — espacio interno, post-trim (400)
+- [x] 1.1.11. idCanal — símbolo @ no permitido (400)
+- [x] 1.1.12. idCanal — paréntesis ( no permitido (400)
+- [x] 1.1.13. idCanal — ¿ no permitido (400)
+- [x] 1.1.14. idCanal — comillas " no permitidas (400)
 
 ### 1_validaciones_js/2_validador
 - [x] 1.2.1. validador — propiedad ausente (undefined) (400)

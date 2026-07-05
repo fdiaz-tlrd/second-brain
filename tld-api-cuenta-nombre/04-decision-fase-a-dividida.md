@@ -54,7 +54,7 @@ flowchart LR
 
 **Nota:** Se puede **fusionar con A1** en el mismo PR (A0 es una línea).
 
-### A1 — idCanal (Postman `1_validaciones_js/1_idCanal`) ← **primer trabajo de código**
+### A1 — idCanal (Postman `1_validaciones_js/1_idCanal`) — **cerrada 2026-07-05**
 
 | | |
 |--|--|
@@ -63,7 +63,7 @@ flowchart LR
 | **Reorden** | `parse → validarParametroIdCanal → getCanal emisor → validatePlan (temporal en util) → …` |
 | **No tocar aún** | validador, petición post-descifrado, proxy, 0001 |
 | **Triage** | Crear `triage/02-idCanal.md` al implementar |
-| **Criterio done** | Bloque 1.1 del checklist en verde tras Newman |
+| **Criterio done** | Bloque 1.1 del checklist en verde tras Newman — **cumplido** (run 2026-07-05T07:12Z, 14/14) |
 
 ### A2 — validador (`1.2_validador`)
 
