@@ -1,0 +1,23 @@
+{
+  "nombre": "0001.2.1011.515. validador MIRAGATO — Razón regulatoria (515)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 515,
+  "expectedTipo": "metodo",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "1011",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0001",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "cuenta": "5000000515"
+          }
+        }
+      ]
+    }
+  }
+}

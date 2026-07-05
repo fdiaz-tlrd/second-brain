@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "10e15557-d270-46f4-9f69-45ec7e5765df",
+    "_postman_id": "4c385947-64fa-4e58-a4bd-8245f110c846",
     "name": "VCN Escenarios error",
     "description": "Colección generada desde la fuente en VCN Escenarios error/.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -4537,6 +4537,2403 @@
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
                               "pm.variables.set('expectedTipo', 'parametro');"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "2_respuestaCanalValidador",
+              "item": [
+                {
+                  "name": "1008",
+                  "item": [
+                    {
+                      "name": "0001.2.1008.510. validador CELEGATO — Número de cuenta incorrecta (510)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1008\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000510\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 510);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1008.511. validador CELEGATO — Número de cuenta cerrado (511)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1008\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000511\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 511);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1008.512. validador CELEGATO — Número de cuenta bloqueado (512)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1008\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000512\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 512);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1008.513. validador CELEGATO — Transacción no permitida (513)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1008\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000513\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 513);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1008.514. validador CELEGATO — Falta información obligatoria de consulta (514)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1008\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000514\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 514);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1008.515. validador CELEGATO — Razón regulatoria (515)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1008\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000515\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 515);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "1009",
+                  "item": [
+                    {
+                      "name": "0001.2.1009.510. validador ASTRGATO — Número de cuenta incorrecta (510)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1009\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000510\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 510);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1009.511. validador ASTRGATO — Número de cuenta cerrado (511)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1009\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000511\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 511);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1009.512. validador ASTRGATO — Número de cuenta bloqueado (512)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1009\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000512\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 512);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1009.513. validador ASTRGATO — Transacción no permitida (513)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1009\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000513\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 513);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1009.514. validador ASTRGATO — Falta información obligatoria de consulta (514)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1009\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000514\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 514);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1009.515. validador ASTRGATO — Razón regulatoria (515)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1009\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000515\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 515);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "1011",
+                  "item": [
+                    {
+                      "name": "0001.2.1011.510. validador MIRAGATO — Número de cuenta incorrecta (510)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1011\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000510\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 510);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1011.511. validador MIRAGATO — Número de cuenta cerrado (511)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1011\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000511\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 511);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1011.512. validador MIRAGATO — Número de cuenta bloqueado (512)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1011\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000512\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 512);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1011.513. validador MIRAGATO — Transacción no permitida (513)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1011\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000513\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 513);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1011.514. validador MIRAGATO — Falta información obligatoria de consulta (514)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1011\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000514\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 514);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1011.515. validador MIRAGATO — Razón regulatoria (515)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1011\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000515\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 515);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "1012",
+                  "item": [
+                    {
+                      "name": "0001.2.1012.510. validador TERAGATO — Número de cuenta incorrecta (510)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1012\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000510\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 510);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1012.511. validador TERAGATO — Número de cuenta cerrado (511)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1012\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000511\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 511);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1012.512. validador TERAGATO — Número de cuenta bloqueado (512)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1012\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000512\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 512);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1012.513. validador TERAGATO — Transacción no permitida (513)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1012\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000513\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 513);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1012.514. validador TERAGATO — Falta información obligatoria de consulta (514)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1012\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000514\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 514);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1012.515. validador TERAGATO — Razón regulatoria (515)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1012\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000515\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 515);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "1013",
+                  "item": [
+                    {
+                      "name": "0001.2.1013.510. validador AMIYGATO — Número de cuenta incorrecta (510)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1013\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000510\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 510);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1013.511. validador AMIYGATO — Número de cuenta cerrado (511)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1013\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000511\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 511);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1013.512. validador AMIYGATO — Número de cuenta bloqueado (512)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1013\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000512\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 512);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1013.513. validador AMIYGATO — Transacción no permitida (513)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1013\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000513\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 513);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1013.514. validador AMIYGATO — Falta información obligatoria de consulta (514)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1013\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000514\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 514);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1013.515. validador AMIYGATO — Razón regulatoria (515)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1013\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000515\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 515);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "1014",
+                  "item": [
+                    {
+                      "name": "0001.2.1014.510. validador CORNGATO — Número de cuenta incorrecta (510)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1014\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000510\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 510);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1014.511. validador CORNGATO — Número de cuenta cerrado (511)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1014\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000511\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 511);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1014.512. validador CORNGATO — Número de cuenta bloqueado (512)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1014\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000512\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 512);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1014.513. validador CORNGATO — Transacción no permitida (513)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1014\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000513\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 513);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1014.514. validador CORNGATO — Falta información obligatoria de consulta (514)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1014\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000514\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 514);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1014.515. validador CORNGATO — Razón regulatoria (515)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1014\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000515\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 515);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "1015",
+                  "item": [
+                    {
+                      "name": "0001.2.1015.510. validador ZONAGATO — Número de cuenta incorrecta (510)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1015\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000510\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 510);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1015.511. validador ZONAGATO — Número de cuenta cerrado (511)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1015\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000511\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 511);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1015.512. validador ZONAGATO — Número de cuenta bloqueado (512)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1015\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000512\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 512);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1015.513. validador ZONAGATO — Transacción no permitida (513)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1015\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000513\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 513);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1015.514. validador ZONAGATO — Falta información obligatoria de consulta (514)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1015\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000514\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 514);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1015.515. validador ZONAGATO — Razón regulatoria (515)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1015\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000515\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 515);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "1016",
+                  "item": [
+                    {
+                      "name": "0001.2.1016.510. validador BELLGATO — Número de cuenta incorrecta (510)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1016\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000510\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 510);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1016.511. validador BELLGATO — Número de cuenta cerrado (511)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1016\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000511\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 511);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1016.512. validador BELLGATO — Número de cuenta bloqueado (512)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1016\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000512\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 512);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1016.513. validador BELLGATO — Transacción no permitida (513)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1016\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000513\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 513);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1016.514. validador BELLGATO — Falta información obligatoria de consulta (514)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1016\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000514\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 514);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.2.1016.515. validador BELLGATO — Razón regulatoria (515)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"1016\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"5000000515\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 515);",
+                              "pm.variables.set('expectedTipo', 'metodo');"
                             ]
                           }
                         }

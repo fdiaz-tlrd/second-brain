@@ -1,0 +1,23 @@
+{
+  "nombre": "0001.2.1014.513. validador CORNGATO — Transacción no permitida (513)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 513,
+  "expectedTipo": "metodo",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "1014",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0001",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "cuenta": "5000000513"
+          }
+        }
+      ]
+    }
+  }
+}
