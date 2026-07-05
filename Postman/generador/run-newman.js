@@ -15,7 +15,6 @@
 const fs = require("fs");
 const path = require("path");
 const newman = require("newman");
-const { Collection } = require("postman-collection");
 
 const ROOT = __dirname;
 const LOGS = path.join(ROOT, "logs");
@@ -198,30 +197,14 @@ function buildResumenMarkdown(suite, folder, summary, jsonPath, mdPath) {
   return lines.join("\n");
 }
 
-function resolveFolderTarget(collectionPath, folderPath) {
-  if (!folderPath) {
-    return null;
-  }
-  const segments = folderPath
-    .split("/")
-    .map(function (s) {
-      return s.trim();
-    })
-    .filter(Boolean);
-  if (segments.length === 0) {
-    return null;
-  }
-
-  const collection = new Collection(
-    JSON.parse(fs.readFileSync(collectionPath, "utf8"))
-  );
-
-  /** @type {import('postman-collection').ItemGroup} */
-  let current = collection;
+function walkFolderPath(rawItems, segments, collectionPath, folderPath) {
+  let items = rawItems;
+  /** @type {object|null} */
+  let node = null;
   for (let i = 0; i < segments.length; i++) {
     const seg = segments[i];
-    const matches = current.items.filter(function (item) {
-      return item.name === seg && typeof item.items !== "undefined";
+    const matches = items.filter(function (entry) {
+      return entry.name === seg && Array.isArray(entry.item);
     });
     if (matches.length === 0) {
       throw new Error(
@@ -243,21 +226,64 @@ function resolveFolderTarget(collectionPath, folderPath) {
           "`. Usa ruta completa desde la raíz."
       );
     }
-    current = matches[0];
+    node = matches[0];
+    items = node.item;
   }
-
-  return { id: current.id, name: current.name, path: folderPath };
+  return node;
 }
 
-function folderOptionForNewman(collectionPath, folderPath) {
-  if (!folderPath) {
-    return undefined;
+function countRequestsInItems(items) {
+  let total = 0;
+  items.forEach(function (entry) {
+    if (Array.isArray(entry.item)) {
+      total += countRequestsInItems(entry.item);
+    } else if (entry.request) {
+      total += 1;
+    }
+  });
+  return total;
+}
+
+/**
+ * Colecciones ensambladas no traen ids estables; Newman regenera UUID al cargar.
+ * Para rutas anidadas, extraemos la subcolección JSON en lugar de pasar folder id.
+ */
+function buildCollectionForFolderPath(collectionPath, folderPath) {
+  const raw = JSON.parse(fs.readFileSync(collectionPath, "utf8"));
+  const segments = folderPath
+    .split("/")
+    .map(function (s) {
+      return s.trim();
+    })
+    .filter(Boolean);
+  const folderNode = walkFolderPath(raw.item, segments, collectionPath, folderPath);
+  const baseName =
+    raw.info && raw.info.name ? raw.info.name : path.basename(collectionPath, ".json");
+  return {
+    info: Object.assign({}, raw.info, {
+      name: baseName + " — " + folderPath,
+    }),
+    item: [folderNode],
+  };
+}
+
+function resolveFolderTarget(collectionPath, folderPath) {
+  if (!folderPath || !folderPath.includes("/")) {
+    return null;
   }
-  if (folderPath.includes("/")) {
-    const target = resolveFolderTarget(collectionPath, folderPath);
-    return target.id;
-  }
-  return folderPath;
+  const segments = folderPath
+    .split("/")
+    .map(function (s) {
+      return s.trim();
+    })
+    .filter(Boolean);
+  const raw = JSON.parse(fs.readFileSync(collectionPath, "utf8"));
+  const folderNode = walkFolderPath(raw.item, segments, collectionPath, folderPath);
+  return {
+    name: folderNode.name,
+    path: folderPath,
+    requestCount: countRequestsInItems(folderNode.item),
+  };
 }
 
 function runSuite(suiteKey, folder, insecure) {
@@ -289,16 +315,19 @@ function runSuite(suiteKey, folder, insecure) {
     console.log(
       "Carpeta: `" +
         folderTarget.path +
-        "` → id `" +
-        folderTarget.id +
         "` (" +
         folderTarget.name +
-        ")"
+        ", " +
+        folderTarget.requestCount +
+        " requests)"
     );
   }
 
   const options = {
-    collection: cfg.collection,
+    collection:
+      folder && folder.includes("/")
+        ? buildCollectionForFolderPath(cfg.collection, folder)
+        : cfg.collection,
     environment: cfg.environment,
     reporters: ["cli", "json"],
     reporter: {
@@ -309,9 +338,8 @@ function runSuite(suiteKey, folder, insecure) {
     timeoutScript: 60000,
     insecure: insecure,
   };
-  const folderSelection = folderOptionForNewman(cfg.collection, folder);
-  if (folderSelection) {
-    options.folder = folderSelection;
+  if (folder && !folder.includes("/")) {
+    options.folder = folder;
   }
 
   return new Promise(function (resolve, reject) {
