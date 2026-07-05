@@ -24,7 +24,9 @@ Detalle: [`../../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md`](../../tl
 | `P2M Escenarios error/` | Escenarios fuente P2M |
 | `P2M Escenarios error especiales/` | Escenarios especiales P2M |
 | `P2P Escenarios error/` | Escenarios fuente P2P |
+| `VCN Escenarios error/` | Escenarios fuente VCN |
 | `entornos/` | Environments Postman |
+| [`../canalesPruebas-dev/`](../canalesPruebas-dev/) | Canales dev, export Dynamo, operaciones validador |
 
 ## Uso
 
@@ -243,6 +245,7 @@ node run-newman.js p2p --folder "Metodo/0023/1_validaciones_js/2_qrCode"
 node run-newman.js vcn
 # General
 node run-newman.js vcn --folder "General"
+node run-newman.js vcn --folder "General/0_jsonEntrada"
 node run-newman.js vcn --folder "General/1_validaciones_js"
 node run-newman.js vcn --folder "General/1_validaciones_js/1_idCanal"
 node run-newman.js vcn --folder "General/1_validaciones_js/2_validador"
@@ -259,6 +262,15 @@ node run-newman.js vcn --folder "Metodo"
 node run-newman.js vcn --folder "Metodo/0001"
 node run-newman.js vcn --folder "Metodo/0001/1_validaciones_js"
 node run-newman.js vcn --folder "Metodo/0001/1_validaciones_js/1_cuenta"
+node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador"
+node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1008"
+node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1009"
+node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1011"
+node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1012"
+node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1013"
+node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1014"
+node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1015"
+node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1016"
 ```
 
 `--folder` = misma ruta que la carpeta seleccionada en Postman (sin el nombre de la colección). Ejemplo: en Postman seleccionas `General` → `2_reglaNegocio` → `1_idCanal` → usa `General/2_reglaNegocio/1_idCanal`.

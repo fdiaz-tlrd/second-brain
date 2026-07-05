@@ -471,6 +471,7 @@ function runSuite(suiteKey, folder, insecure, nota) {
     );
   }
 
+  // timeout = tope global del run (Newman), no por request. VCN completo ~400+ HTTP ~5–15 min.
   const options = {
     collection:
       folder && folder.includes("/")
@@ -481,7 +482,7 @@ function runSuite(suiteKey, folder, insecure, nota) {
     reporter: {
       json: { export: jsonPath },
     },
-    timeout: 120000,
+    timeout: 1800000,
     timeoutRequest: 120000,
     timeoutScript: 60000,
     insecure: insecure,
