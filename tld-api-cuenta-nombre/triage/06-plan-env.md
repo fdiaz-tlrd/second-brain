@@ -50,7 +50,7 @@ Postman **`2_reglaNegocio/1_idCanal`** (escenarios plan):
 | A5c | `app.js`: `plan.validatePlan` + **403** catálogo | VCN | **Hecho** |
 | A5d | `util.lambdaResult`: tracking vía `plan.js`; quitar `validatePlan` de util | VCN | **Hecho** |
 
-**Verificación Newman:** pendiente — carpetas `2_reglaNegocio/1_idCanal` (2.1.2, 2.1.4) y regresión `1_validaciones_js` + **Metodo/0001**.
+**Verificación Newman:** run **2026-07-05T09:08Z** — `2_reglaNegocio/1_idCanal`: **3/4** (2.1.2, 2.1.4 OK; **2.1.3** falla HTTP/mensaje getCanal). Fix A7 en código; pendiente redeploy + Newman. Ver [triage/07-getCanal-contrato-http.md](./07-getCanal-contrato-http.md).
 
 ## Pruebas
 
@@ -60,7 +60,7 @@ node run-newman.js vcn --folder "General/2_reglaNegocio/4_metodo"
 node run-newman.js vcn --folder "General/1_validaciones_js"
 ```
 
-Escenarios ancla: **2.1.2** (403 plan), **2.1.3** (500 getCanal — sin cambio esperado en A5).
+Escenarios ancla: **2.1.2** (403 plan), **2.1.3** (500 getCanal — fix A7), **2.1.4** (403 plan sin grupos).
 
 ## Siguiente
 

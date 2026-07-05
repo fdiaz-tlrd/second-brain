@@ -101,7 +101,7 @@ flowchart LR
 | **Cambio** | Extraer `lib/plan.js` desde base; sacar `validatePlan` de `util.js`; `CFG_VALIDAR_PLAN_POR_CANAL` |
 | **Riesgo** | Medio si se hace antes de A1 — **por eso va al final de A** |
 | **Triage** | [triage/06-plan-env.md](./triage/06-plan-env.md) |
-| **Criterio done** | Mismo comportamiento que tras A4; escenarios 2.1.2/2.1.4 en verde — pendiente Newman |
+| **Criterio done** | Escenarios 2.1.2/2.1.4 en verde (run 09:08); **2.1.3** pendiente fix A7 + Newman — ver [triage/07-getCanal-contrato-http.md](./triage/07-getCanal-contrato-http.md) |
 
 ## Qué queda fuera de Fase A
 
