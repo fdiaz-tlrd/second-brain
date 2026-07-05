@@ -5,11 +5,11 @@
     },
     "item": [
       {
-        "id": "fd27a045-99e3-4fbc-8341-13dc31d06b9a",
+        "id": "dfb77213-c7e3-47e4-b6d7-ba45955f12b9",
         "name": "2_validador",
         "item": [
           {
-            "id": "dff4fe80-369c-4fac-9980-1952651e1b41",
+            "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
             "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
             "request": {
               "url": {
@@ -47,20 +47,20 @@
               {
                 "listen": "prerequest",
                 "script": {
-                  "id": "ca8ed1f9-78a2-418a-b5b3-eff8613d5b1e",
+                  "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
                   "type": "text/javascript",
                   "exec": [
                     "pm.variables.set('expectedHttpStatus', 400);",
                     "pm.variables.set('expectedCodigoError', 404);",
                     "pm.variables.set('expectedTipo', 'general');"
                   ],
-                  "_lastExecutionId": "78f46488-7458-49e2-b512-ed00e79d63a9"
+                  "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
                 }
               }
             ]
           },
           {
-            "id": "39742fa5-a32f-44e6-9513-3afb2364acd1",
+            "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
             "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
             "request": {
               "url": {
@@ -98,20 +98,20 @@
               {
                 "listen": "prerequest",
                 "script": {
-                  "id": "21df7baf-d7cb-43c8-bc48-69954d09e79e",
+                  "id": "60aac396-1134-45e5-b25a-a1315a10b985",
                   "type": "text/javascript",
                   "exec": [
                     "pm.variables.set('expectedHttpStatus', 400);",
                     "pm.variables.set('expectedCodigoError', 402);",
                     "pm.variables.set('expectedTipo', 'general');"
                   ],
-                  "_lastExecutionId": "f00ae41c-9ee2-4f5d-9554-883128b25d58"
+                  "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
                 }
               }
             ]
           },
           {
-            "id": "c3e4d805-323a-4a8a-b186-8fe679c8f8e7",
+            "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
             "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
             "request": {
               "url": {
@@ -149,14 +149,14 @@
               {
                 "listen": "prerequest",
                 "script": {
-                  "id": "f3696102-d820-4219-ad01-8c9ab32d6f8d",
+                  "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
                   "type": "text/javascript",
                   "exec": [
                     "pm.variables.set('expectedHttpStatus', 500);",
                     "pm.variables.set('expectedCodigoError', 500);",
                     "pm.variables.set('expectedTipo', 'general');"
                   ],
-                  "_lastExecutionId": "fd05ef4f-83ea-4d0b-bb29-793d192908f7"
+                  "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
                 }
               }
             ]
@@ -169,7 +169,7 @@
       {
         "listen": "prerequest",
         "script": {
-          "id": "188f84c2-01ff-4ed9-a7f5-a053e52c62e6",
+          "id": "83878578-388e-46ab-909c-05685f83901e",
           "type": "text/javascript",
           "exec": [
             "// Pre-request de raíz — VCN Escenarios error",
@@ -467,13 +467,13 @@
             "  })();",
             "})();"
           ],
-          "_lastExecutionId": "5b6c3666-c169-4335-b636-9e32607ad81f"
+          "_lastExecutionId": "b2e336f5-faa1-4f7b-a501-ffd4955960f2"
         }
       },
       {
         "listen": "test",
         "script": {
-          "id": "35cce12f-be90-434d-8e81-6b98b8ea7302",
+          "id": "affcb9a1-d362-42e1-9cd8-b548ef38589f",
           "type": "text/javascript",
           "exec": [
             "// Post-response (Tests) de raíz — VCN Escenarios error",
@@ -689,7 +689,7 @@
             "  });",
             "})();"
           ],
-          "_lastExecutionId": "eee3faed-bff8-4bda-98b4-7eb76b92d0c4"
+          "_lastExecutionId": "583cbc7d-a3c5-416d-8d89-85f8bb649077"
         }
       }
     ],
@@ -972,7 +972,7 @@
     ]
   },
   "globals": {
-    "id": "df67012f-242b-4efd-8b42-3b8dfa5ae39f",
+    "id": "3e9e89a3-b731-4eeb-b5b2-053368f5b82b",
     "values": []
   },
   "run": {
@@ -1024,10 +1024,10 @@
       }
     },
     "timings": {
-      "responseAverage": 941,
-      "responseMin": 167,
-      "responseMax": 3100,
-      "responseSd": 1117.5765447312026,
+      "responseAverage": 698.5555555555555,
+      "responseMin": 171,
+      "responseMax": 1898,
+      "responseSd": 603.5522827599042,
       "dnsAverage": 0,
       "dnsMin": 0,
       "dnsMax": 0,
@@ -1036,8 +1036,8 @@
       "firstByteMin": 0,
       "firstByteMax": 0,
       "firstByteSd": 0,
-      "started": 1783272802517,
-      "completed": 1783272811415
+      "started": 1783273098838,
+      "completed": 1783273105479
     },
     "executions": [
       {
@@ -1050,11 +1050,11 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "fe61a444-bf74-437b-9e29-6816c6723101",
-          "httpRequestId": "ae2a911f-a40c-45dc-9769-5103f25eda83"
+          "ref": "a9d831bc-3b70-4bf7-a7ed-aacf41cfbac7",
+          "httpRequestId": "b991ab6d-2599-44f8-a3fe-c87468adb12d"
         },
         "item": {
-          "id": "dff4fe80-369c-4fac-9980-1952651e1b41",
+          "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
           "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
           "request": {
             "url": {
@@ -1092,14 +1092,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "ca8ed1f9-78a2-418a-b5b3-eff8613d5b1e",
+                "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 404);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "78f46488-7458-49e2-b512-ed00e79d63a9"
+                "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
               }
             }
           ]
@@ -1150,7 +1150,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "49e1cf28-f4da-4dbf-a860-c7120cd14aa4",
+              "value": "d23cbdaa-8ae5-4db1-850f-90688c818012",
               "system": true
             },
             {
@@ -1177,11 +1177,11 @@
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\"respuesta\":\"5dfac02e0c60f960c2a6d0356bc03280.0bb94e0a082afb236b1fda2808859d1d4e92b7bef6540ec1a87cd20dcaa98d1c3e3f7f03560874ba6b5c1fe01295f3b5c21b0b06f0c97b7153493d6d4950ffda37569174b58d5f82389ff469baf4d90ec1c8ac866a89ab103063f090f64ca7134a0ab24c45c8fd64d932db87437cb89d1ee5601e177cc97d8e3e44ad2cbe9e21851ee2feac5fae2062231a0d984bda9cd52c9453233eba8de7ece9fc41645e9bbee61172f672dd7468736814df60950ea75f55ba84c5318c08dca435237a6a3aa09d568bc0b671342dbce851cc64b7574245dc88c726958c582391d16e3b695ee28f9d7e1f9fe854a7d9c0db7c29d14dcbc4772a855396489c2ae410cec113608de3703b52eacf9d595a7d967699dc9dca648447e9f56a78390bdf9b4218b12c6050f698c128472b4cc8d888a3e55f31175ef542cbe6fd731c5a9f8421883ab1fa9b7b18007d3cee6f4738e122ded2c2fcbb27cea83a270e9c493af96225f011c2c47aa27fe14b14cc3cfbb9226dc330faed560c75d34470b70e791b9a2083e86c086d50b54c80edcc319a6343074f903d03ebd057447999fc01256959b5b17b91814d8de1910d580c66d119cf48f0a4eef15a5403df70b2029011498befa57670d6819ef4d2d173319e8734f6e690cbfdc224068d1371abc36b02e79b868bc4542264b565735faa5344bbbbad5fea6eb69083c38cd1c3e94af54bdc0cc43ca8.1b0b0fe7ae81da6b8e81709cf65e3ef4038cbe3d04946dd02759d307dd604eb0f3b34242cd1a119a8549aa7dc0e4f0c6212bf910bd8555271d239d77e75c8b411f66cd81fcd257dabc91afd0e198b295\"}"
+            "raw": "{\"respuesta\":\"c2bd827ca5dcadd2f18d4174729ff287.a6e584667981cfbb6176f69256050c7e69d700c9e0ef03ca02fcd558fe1489cdc59bd739dad7d0e34ba7d9740353413339b71b4a80e22a4c57e76a025b7eb2b730078ee47dbd372384191339f5c1207cf65ac5367f7f9407e86f6d047e77116086df1dd161d28d28277fa3a4757b3dc9bd75b16df456c13982138543e3d25c495193cc603affebd79856589f3d27efe351e42303255b1956de63a4b774efda8e848f8eca788743fb84932a59b6f078f6702a4e457b492a29bfeb3cded180ad7d70a628df31dc0ce8e65e041450b85b1c72a6e8e84d8edf42a70e82b339ae743b185a922f7523d7f8ffa67a340028132e78f56fa96db2f240951cf2ee3b53e03fd89cfcaf3bca470624a963111755dc1f678da7bae37b74208054a4672a628c0e548857ac2e834d18039947db363683d4b9b128892d0abc4fb69f9a6ffc6ae3acaeb4755029c176292a405afdf1ad4c52582da9fa86cabdf48dd14300c0303bffd17b74329de6f010a9269d69528f84184df1ea0658590b465465509a5e3da4eb2b18433086679d7f01babd31b02814a4e8ace48f08d947765047b54309515ea36e603ca260991eb45d7410947efee43120e6e885ad7e3d4804f04effb9a4d03b299cd309833324b6565165d5f4b80793b8563fc6328787682e4da3de35dbc705f076a4dfbf06efb8f5b1b244ce52d261f7b24ea5bbf844a509f41fa5d699fb3e.775314e13de43a4460ec567120fa015b3fda9880d1461d2f0c98de8f828b321f313daa9198b9bba961236bcb1ef0e3397a9ff60b62de8c482567f03a2f14b88e3b8745c57b4864100f3c7a5f660a2d65\"}"
           }
         },
         "response": {
-          "id": "b3cd28fb-4557-45ed-be9c-af9d4f916565",
+          "id": "6c4e742d-b26a-4364-ae1e-01ae4a2917fc",
           "status": "OK",
           "code": 200,
           "header": [
@@ -1195,7 +1195,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:33:11 GMT"
+              "value": "Sun, 05 Jul 2026 17:38:07 GMT"
             },
             {
               "key": "Server",
@@ -1203,15 +1203,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ACxFyF-KoAMFkAg="
+              "value": "ACxz-GW-oAMFaPQ="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "6f166f19-ae0e-43b2-9529-d79ff16bba0d"
+              "value": "5e2b850b-3ea6-4627-8729-33e9e5069fbc"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a9557-6b2dba521e38022668966411;Parent=3db56a90a56c9217;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a967f-659349f7705f7c9e27969bc0;Parent=43c8b33d2e40cf1e;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -1305,10 +1305,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 225,
+          "responseTime": 270,
           "responseSize": 81
         },
-        "id": "dff4fe80-369c-4fac-9980-1952651e1b41",
+        "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -1360,11 +1360,11 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "fe61a444-bf74-437b-9e29-6816c6723101",
-          "httpRequestId": "ae2a911f-a40c-45dc-9769-5103f25eda83"
+          "ref": "a9d831bc-3b70-4bf7-a7ed-aacf41cfbac7",
+          "httpRequestId": "b991ab6d-2599-44f8-a3fe-c87468adb12d"
         },
         "item": {
-          "id": "dff4fe80-369c-4fac-9980-1952651e1b41",
+          "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
           "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
           "request": {
             "url": {
@@ -1402,14 +1402,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "ca8ed1f9-78a2-418a-b5b3-eff8613d5b1e",
+                "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 404);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "78f46488-7458-49e2-b512-ed00e79d63a9"
+                "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
               }
             }
           ]
@@ -1460,7 +1460,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "49e1cf28-f4da-4dbf-a860-c7120cd14aa4",
+              "value": "d23cbdaa-8ae5-4db1-850f-90688c818012",
               "system": true
             },
             {
@@ -1487,11 +1487,11 @@
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\"respuesta\":\"5dfac02e0c60f960c2a6d0356bc03280.0bb94e0a082afb236b1fda2808859d1d4e92b7bef6540ec1a87cd20dcaa98d1c3e3f7f03560874ba6b5c1fe01295f3b5c21b0b06f0c97b7153493d6d4950ffda37569174b58d5f82389ff469baf4d90ec1c8ac866a89ab103063f090f64ca7134a0ab24c45c8fd64d932db87437cb89d1ee5601e177cc97d8e3e44ad2cbe9e21851ee2feac5fae2062231a0d984bda9cd52c9453233eba8de7ece9fc41645e9bbee61172f672dd7468736814df60950ea75f55ba84c5318c08dca435237a6a3aa09d568bc0b671342dbce851cc64b7574245dc88c726958c582391d16e3b695ee28f9d7e1f9fe854a7d9c0db7c29d14dcbc4772a855396489c2ae410cec113608de3703b52eacf9d595a7d967699dc9dca648447e9f56a78390bdf9b4218b12c6050f698c128472b4cc8d888a3e55f31175ef542cbe6fd731c5a9f8421883ab1fa9b7b18007d3cee6f4738e122ded2c2fcbb27cea83a270e9c493af96225f011c2c47aa27fe14b14cc3cfbb9226dc330faed560c75d34470b70e791b9a2083e86c086d50b54c80edcc319a6343074f903d03ebd057447999fc01256959b5b17b91814d8de1910d580c66d119cf48f0a4eef15a5403df70b2029011498befa57670d6819ef4d2d173319e8734f6e690cbfdc224068d1371abc36b02e79b868bc4542264b565735faa5344bbbbad5fea6eb69083c38cd1c3e94af54bdc0cc43ca8.1b0b0fe7ae81da6b8e81709cf65e3ef4038cbe3d04946dd02759d307dd604eb0f3b34242cd1a119a8549aa7dc0e4f0c6212bf910bd8555271d239d77e75c8b411f66cd81fcd257dabc91afd0e198b295\"}"
+            "raw": "{\"respuesta\":\"c2bd827ca5dcadd2f18d4174729ff287.a6e584667981cfbb6176f69256050c7e69d700c9e0ef03ca02fcd558fe1489cdc59bd739dad7d0e34ba7d9740353413339b71b4a80e22a4c57e76a025b7eb2b730078ee47dbd372384191339f5c1207cf65ac5367f7f9407e86f6d047e77116086df1dd161d28d28277fa3a4757b3dc9bd75b16df456c13982138543e3d25c495193cc603affebd79856589f3d27efe351e42303255b1956de63a4b774efda8e848f8eca788743fb84932a59b6f078f6702a4e457b492a29bfeb3cded180ad7d70a628df31dc0ce8e65e041450b85b1c72a6e8e84d8edf42a70e82b339ae743b185a922f7523d7f8ffa67a340028132e78f56fa96db2f240951cf2ee3b53e03fd89cfcaf3bca470624a963111755dc1f678da7bae37b74208054a4672a628c0e548857ac2e834d18039947db363683d4b9b128892d0abc4fb69f9a6ffc6ae3acaeb4755029c176292a405afdf1ad4c52582da9fa86cabdf48dd14300c0303bffd17b74329de6f010a9269d69528f84184df1ea0658590b465465509a5e3da4eb2b18433086679d7f01babd31b02814a4e8ace48f08d947765047b54309515ea36e603ca260991eb45d7410947efee43120e6e885ad7e3d4804f04effb9a4d03b299cd309833324b6565165d5f4b80793b8563fc6328787682e4da3de35dbc705f076a4dfbf06efb8f5b1b244ce52d261f7b24ea5bbf844a509f41fa5d699fb3e.775314e13de43a4460ec567120fa015b3fda9880d1461d2f0c98de8f828b321f313daa9198b9bba961236bcb1ef0e3397a9ff60b62de8c482567f03a2f14b88e3b8745c57b4864100f3c7a5f660a2d65\"}"
           }
         },
         "response": {
-          "id": "b3cd28fb-4557-45ed-be9c-af9d4f916565",
+          "id": "6c4e742d-b26a-4364-ae1e-01ae4a2917fc",
           "status": "OK",
           "code": 200,
           "header": [
@@ -1505,7 +1505,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:33:11 GMT"
+              "value": "Sun, 05 Jul 2026 17:38:07 GMT"
             },
             {
               "key": "Server",
@@ -1513,15 +1513,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ACxFyF-KoAMFkAg="
+              "value": "ACxz-GW-oAMFaPQ="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "6f166f19-ae0e-43b2-9529-d79ff16bba0d"
+              "value": "5e2b850b-3ea6-4627-8729-33e9e5069fbc"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a9557-6b2dba521e38022668966411;Parent=3db56a90a56c9217;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a967f-659349f7705f7c9e27969bc0;Parent=43c8b33d2e40cf1e;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -1615,10 +1615,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 225,
+          "responseTime": 270,
           "responseSize": 81
         },
-        "id": "dff4fe80-369c-4fac-9980-1952651e1b41",
+        "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -1670,11 +1670,11 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "fe61a444-bf74-437b-9e29-6816c6723101",
-          "httpRequestId": "ae2a911f-a40c-45dc-9769-5103f25eda83"
+          "ref": "a9d831bc-3b70-4bf7-a7ed-aacf41cfbac7",
+          "httpRequestId": "b991ab6d-2599-44f8-a3fe-c87468adb12d"
         },
         "item": {
-          "id": "dff4fe80-369c-4fac-9980-1952651e1b41",
+          "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
           "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
           "request": {
             "url": {
@@ -1712,14 +1712,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "ca8ed1f9-78a2-418a-b5b3-eff8613d5b1e",
+                "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 404);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "78f46488-7458-49e2-b512-ed00e79d63a9"
+                "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
               }
             }
           ]
@@ -1770,7 +1770,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "49e1cf28-f4da-4dbf-a860-c7120cd14aa4",
+              "value": "d23cbdaa-8ae5-4db1-850f-90688c818012",
               "system": true
             },
             {
@@ -1797,11 +1797,11 @@
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\"respuesta\":\"5dfac02e0c60f960c2a6d0356bc03280.0bb94e0a082afb236b1fda2808859d1d4e92b7bef6540ec1a87cd20dcaa98d1c3e3f7f03560874ba6b5c1fe01295f3b5c21b0b06f0c97b7153493d6d4950ffda37569174b58d5f82389ff469baf4d90ec1c8ac866a89ab103063f090f64ca7134a0ab24c45c8fd64d932db87437cb89d1ee5601e177cc97d8e3e44ad2cbe9e21851ee2feac5fae2062231a0d984bda9cd52c9453233eba8de7ece9fc41645e9bbee61172f672dd7468736814df60950ea75f55ba84c5318c08dca435237a6a3aa09d568bc0b671342dbce851cc64b7574245dc88c726958c582391d16e3b695ee28f9d7e1f9fe854a7d9c0db7c29d14dcbc4772a855396489c2ae410cec113608de3703b52eacf9d595a7d967699dc9dca648447e9f56a78390bdf9b4218b12c6050f698c128472b4cc8d888a3e55f31175ef542cbe6fd731c5a9f8421883ab1fa9b7b18007d3cee6f4738e122ded2c2fcbb27cea83a270e9c493af96225f011c2c47aa27fe14b14cc3cfbb9226dc330faed560c75d34470b70e791b9a2083e86c086d50b54c80edcc319a6343074f903d03ebd057447999fc01256959b5b17b91814d8de1910d580c66d119cf48f0a4eef15a5403df70b2029011498befa57670d6819ef4d2d173319e8734f6e690cbfdc224068d1371abc36b02e79b868bc4542264b565735faa5344bbbbad5fea6eb69083c38cd1c3e94af54bdc0cc43ca8.1b0b0fe7ae81da6b8e81709cf65e3ef4038cbe3d04946dd02759d307dd604eb0f3b34242cd1a119a8549aa7dc0e4f0c6212bf910bd8555271d239d77e75c8b411f66cd81fcd257dabc91afd0e198b295\"}"
+            "raw": "{\"respuesta\":\"c2bd827ca5dcadd2f18d4174729ff287.a6e584667981cfbb6176f69256050c7e69d700c9e0ef03ca02fcd558fe1489cdc59bd739dad7d0e34ba7d9740353413339b71b4a80e22a4c57e76a025b7eb2b730078ee47dbd372384191339f5c1207cf65ac5367f7f9407e86f6d047e77116086df1dd161d28d28277fa3a4757b3dc9bd75b16df456c13982138543e3d25c495193cc603affebd79856589f3d27efe351e42303255b1956de63a4b774efda8e848f8eca788743fb84932a59b6f078f6702a4e457b492a29bfeb3cded180ad7d70a628df31dc0ce8e65e041450b85b1c72a6e8e84d8edf42a70e82b339ae743b185a922f7523d7f8ffa67a340028132e78f56fa96db2f240951cf2ee3b53e03fd89cfcaf3bca470624a963111755dc1f678da7bae37b74208054a4672a628c0e548857ac2e834d18039947db363683d4b9b128892d0abc4fb69f9a6ffc6ae3acaeb4755029c176292a405afdf1ad4c52582da9fa86cabdf48dd14300c0303bffd17b74329de6f010a9269d69528f84184df1ea0658590b465465509a5e3da4eb2b18433086679d7f01babd31b02814a4e8ace48f08d947765047b54309515ea36e603ca260991eb45d7410947efee43120e6e885ad7e3d4804f04effb9a4d03b299cd309833324b6565165d5f4b80793b8563fc6328787682e4da3de35dbc705f076a4dfbf06efb8f5b1b244ce52d261f7b24ea5bbf844a509f41fa5d699fb3e.775314e13de43a4460ec567120fa015b3fda9880d1461d2f0c98de8f828b321f313daa9198b9bba961236bcb1ef0e3397a9ff60b62de8c482567f03a2f14b88e3b8745c57b4864100f3c7a5f660a2d65\"}"
           }
         },
         "response": {
-          "id": "b3cd28fb-4557-45ed-be9c-af9d4f916565",
+          "id": "6c4e742d-b26a-4364-ae1e-01ae4a2917fc",
           "status": "OK",
           "code": 200,
           "header": [
@@ -1815,7 +1815,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:33:11 GMT"
+              "value": "Sun, 05 Jul 2026 17:38:07 GMT"
             },
             {
               "key": "Server",
@@ -1823,15 +1823,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ACxFyF-KoAMFkAg="
+              "value": "ACxz-GW-oAMFaPQ="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "6f166f19-ae0e-43b2-9529-d79ff16bba0d"
+              "value": "5e2b850b-3ea6-4627-8729-33e9e5069fbc"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a9557-6b2dba521e38022668966411;Parent=3db56a90a56c9217;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a967f-659349f7705f7c9e27969bc0;Parent=43c8b33d2e40cf1e;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -1925,10 +1925,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 225,
+          "responseTime": 270,
           "responseSize": 81
         },
-        "id": "dff4fe80-369c-4fac-9980-1952651e1b41",
+        "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -1972,15 +1972,15 @@
       },
       {
         "cursor": {
-          "ref": "88771e7e-4fc8-426d-a1a8-eaf067254652",
+          "ref": "118c92a5-4e56-41d0-91d7-4041708719a7",
           "length": 3,
           "cycles": 1,
           "position": 1,
           "iteration": 0,
-          "httpRequestId": "967f378e-8add-4845-bb39-c30d8e37f591"
+          "httpRequestId": "ff8aca20-c4dd-4718-82e3-14dbddeaa0b5"
         },
         "item": {
-          "id": "39742fa5-a32f-44e6-9513-3afb2364acd1",
+          "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
           "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
           "request": {
             "url": {
@@ -2018,14 +2018,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "21df7baf-d7cb-43c8-bc48-69954d09e79e",
+                "id": "60aac396-1134-45e5-b25a-a1315a10b985",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 402);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "f00ae41c-9ee2-4f5d-9554-883128b25d58"
+                "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
               }
             }
           ]
@@ -2076,7 +2076,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "93de65cd-8e76-45e5-bcfd-4c12f49d0b06",
+              "value": "d62012f4-0935-4dc4-aea5-c102fa4dc097",
               "system": true
             },
             {
@@ -2103,11 +2103,11 @@
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\"respuesta\":\"554d9b0f0ea9b88b913abc8158e966a4.0cade3f5ce2add797eecf4045e92155fc4cbfb48418eef311ab1a3c5f31e517fac8ec810f7d5c9582991591e2e4894b9b9fb18bf904b703ab40b74e7a3ce93fd373ed2449437d5ab6774e09a8c3df7ecb42ce7812bda403c93677f195dea88c06fb963a36b75acc1f3c14f563a1fbfd43fdff9749c847614470119bc5631f91146fb8a5307e8045f6b7627f50a1e56ad2815573cf359856f207440aa14bd728cd41faa44084c65a1c0e6d18d8187210407724fd14f5ac634a196a3d49a7e4891f0332551d738e6bef95fa0aad2a36331d44c37311973cc271a956688876f531e14521e1bf073c8aab4ce287792a054ae866084a20c4f713c8528ade1ee369f3b331e150e7cda5d78c6a5e178a6aaa8f65269a74dbf461ebc0c19e319dc74ca2625ffca1cf21aa419ce0519047bb612c4e3972f99d1ab371d9bb4736b1e5ef5dbd0e8ada6e13b5175f2d815615648918299fe8121e83904798ade393137a124ede91c7001c066e37cdecbadae283655160a853757dced833f76483b27eb8fe203e502035103d46779bef183bbfb6a7f39de46498d32765a7dbac227ad86967491c402b3f7c0650e9a29a961cf3ec1287f32149ac6946729b82a76bafdad3cfaf3796d3e06d2aebb5d94340db48304dd2234974341faa81ecd0d7550f6fa9b9f49a99eac28398e1cf82d30cc87c4a47c56dbc519886edd27f97ee53d17ab063a16.c5c22cc7d076f6aeb89c93ec094c2cf83939ce6f1e8db9c36aaa563f52cf9ee80500448763518bf2983754e61cec10e4ace4a60579b6dbfbd5b7710d2b67589f59ca16f180829de8ec5733b53673df34\"}"
+            "raw": "{\"respuesta\":\"3ed6ee6c192e5924b6816b84162c740c.abc793eb523475768c45fc0e579e03f40cdf607e0aa132c48ffab042fbde184c021d23fac386b13c70b6fa906c361decbf0aad5c91c2e9fd014ae10cdecd948b81ee25eee762afac1f4523eff825bb1e71dc661d241184271e1dac4712a09841f1378393e6f844c148a00e3d0350ca1302613fe03ec9bc0075c875749f33f0a0f71de646fabede13f3748a2ac2ba6dabc1b0984375f185aa9fec7efcb4b8dcaa6c61459570538ccd7fedc55347fc8c635d5fe027d6883522dcb4368700e8fd9352b9e604e0b2276c75952027906e2c7450ad3b6140bff23d1dbfd01d490b3d2e09630d3f24c3d891fe155d2df53137c3635faa7a5928cec821fbbd9b3a9ae3417549e8a469f63ad6b5615b362d01e4c611a6403fd900aaf9b8ed04aa86616fb62041eb83e25ad6b44dcbc8823517d7f7080df46b238f15ed5d6b65c883769406092cae9288e91118dc086e79acdcb61d54cf018ab5de02c5c3cbebc56b479b17193ec94d0202dd90f1aa35b7b36c809b461168761f99be59e3707efdbada461120462dc1141cb069189fa9fb1c5f9b8bfb95f45719fa37da4a51b0e9716dfc926f082dcde6e389220d9c090721651395393cc4f9d0f214cdd18cf7a4ebe69771c7df06821ab25fbf19992062454ede83fe81505ef6fe20e35d36cace2b6a029e08888c88b08d7446230025a9255937756f8a4982af916a56de7ca92e2b5bfdf8.6fed6ec6066cfa55c0dab1ad232aba7412c7de715402f827a95d63e0229dd3d996db310df7f2abb018acd0f45f1258a3624a7be8792fbd764a798ccd4788bdc7e96a0c3af11fc0ccc4356b4d70378709\"}"
           }
         },
         "response": {
-          "id": "a2001c00-6c5f-476a-8ac6-1559fa498083",
+          "id": "0b001753-5d36-468c-823d-1715c025d908",
           "status": "OK",
           "code": 200,
           "header": [
@@ -2121,7 +2121,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:33:13 GMT"
+              "value": "Sun, 05 Jul 2026 17:38:08 GMT"
             },
             {
               "key": "Server",
@@ -2129,15 +2129,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ACxF-FtBIAMFgEA="
+              "value": "ACx0KHKFoAMF1Rg="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "8e5e9cf8-b939-414f-ab0b-d2f9c2b558d1"
+              "value": "b27c028c-33cd-4a2d-bf20-b117696a385c"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a9558-2b4eb70142de85ee3108b832;Parent=3cdf707fa9a87892;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a9680-47d8fc034a63f83e685ddaaf;Parent=1e82cae99a8dc823;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -2231,10 +2231,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 331,
+          "responseTime": 306,
           "responseSize": 81
         },
-        "id": "39742fa5-a32f-44e6-9513-3afb2364acd1",
+        "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -2278,15 +2278,15 @@
       },
       {
         "cursor": {
-          "ref": "88771e7e-4fc8-426d-a1a8-eaf067254652",
+          "ref": "118c92a5-4e56-41d0-91d7-4041708719a7",
           "length": 3,
           "cycles": 1,
           "position": 1,
           "iteration": 0,
-          "httpRequestId": "967f378e-8add-4845-bb39-c30d8e37f591"
+          "httpRequestId": "ff8aca20-c4dd-4718-82e3-14dbddeaa0b5"
         },
         "item": {
-          "id": "39742fa5-a32f-44e6-9513-3afb2364acd1",
+          "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
           "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
           "request": {
             "url": {
@@ -2324,14 +2324,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "21df7baf-d7cb-43c8-bc48-69954d09e79e",
+                "id": "60aac396-1134-45e5-b25a-a1315a10b985",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 402);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "f00ae41c-9ee2-4f5d-9554-883128b25d58"
+                "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
               }
             }
           ]
@@ -2382,7 +2382,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "93de65cd-8e76-45e5-bcfd-4c12f49d0b06",
+              "value": "d62012f4-0935-4dc4-aea5-c102fa4dc097",
               "system": true
             },
             {
@@ -2409,11 +2409,11 @@
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\"respuesta\":\"554d9b0f0ea9b88b913abc8158e966a4.0cade3f5ce2add797eecf4045e92155fc4cbfb48418eef311ab1a3c5f31e517fac8ec810f7d5c9582991591e2e4894b9b9fb18bf904b703ab40b74e7a3ce93fd373ed2449437d5ab6774e09a8c3df7ecb42ce7812bda403c93677f195dea88c06fb963a36b75acc1f3c14f563a1fbfd43fdff9749c847614470119bc5631f91146fb8a5307e8045f6b7627f50a1e56ad2815573cf359856f207440aa14bd728cd41faa44084c65a1c0e6d18d8187210407724fd14f5ac634a196a3d49a7e4891f0332551d738e6bef95fa0aad2a36331d44c37311973cc271a956688876f531e14521e1bf073c8aab4ce287792a054ae866084a20c4f713c8528ade1ee369f3b331e150e7cda5d78c6a5e178a6aaa8f65269a74dbf461ebc0c19e319dc74ca2625ffca1cf21aa419ce0519047bb612c4e3972f99d1ab371d9bb4736b1e5ef5dbd0e8ada6e13b5175f2d815615648918299fe8121e83904798ade393137a124ede91c7001c066e37cdecbadae283655160a853757dced833f76483b27eb8fe203e502035103d46779bef183bbfb6a7f39de46498d32765a7dbac227ad86967491c402b3f7c0650e9a29a961cf3ec1287f32149ac6946729b82a76bafdad3cfaf3796d3e06d2aebb5d94340db48304dd2234974341faa81ecd0d7550f6fa9b9f49a99eac28398e1cf82d30cc87c4a47c56dbc519886edd27f97ee53d17ab063a16.c5c22cc7d076f6aeb89c93ec094c2cf83939ce6f1e8db9c36aaa563f52cf9ee80500448763518bf2983754e61cec10e4ace4a60579b6dbfbd5b7710d2b67589f59ca16f180829de8ec5733b53673df34\"}"
+            "raw": "{\"respuesta\":\"3ed6ee6c192e5924b6816b84162c740c.abc793eb523475768c45fc0e579e03f40cdf607e0aa132c48ffab042fbde184c021d23fac386b13c70b6fa906c361decbf0aad5c91c2e9fd014ae10cdecd948b81ee25eee762afac1f4523eff825bb1e71dc661d241184271e1dac4712a09841f1378393e6f844c148a00e3d0350ca1302613fe03ec9bc0075c875749f33f0a0f71de646fabede13f3748a2ac2ba6dabc1b0984375f185aa9fec7efcb4b8dcaa6c61459570538ccd7fedc55347fc8c635d5fe027d6883522dcb4368700e8fd9352b9e604e0b2276c75952027906e2c7450ad3b6140bff23d1dbfd01d490b3d2e09630d3f24c3d891fe155d2df53137c3635faa7a5928cec821fbbd9b3a9ae3417549e8a469f63ad6b5615b362d01e4c611a6403fd900aaf9b8ed04aa86616fb62041eb83e25ad6b44dcbc8823517d7f7080df46b238f15ed5d6b65c883769406092cae9288e91118dc086e79acdcb61d54cf018ab5de02c5c3cbebc56b479b17193ec94d0202dd90f1aa35b7b36c809b461168761f99be59e3707efdbada461120462dc1141cb069189fa9fb1c5f9b8bfb95f45719fa37da4a51b0e9716dfc926f082dcde6e389220d9c090721651395393cc4f9d0f214cdd18cf7a4ebe69771c7df06821ab25fbf19992062454ede83fe81505ef6fe20e35d36cace2b6a029e08888c88b08d7446230025a9255937756f8a4982af916a56de7ca92e2b5bfdf8.6fed6ec6066cfa55c0dab1ad232aba7412c7de715402f827a95d63e0229dd3d996db310df7f2abb018acd0f45f1258a3624a7be8792fbd764a798ccd4788bdc7e96a0c3af11fc0ccc4356b4d70378709\"}"
           }
         },
         "response": {
-          "id": "a2001c00-6c5f-476a-8ac6-1559fa498083",
+          "id": "0b001753-5d36-468c-823d-1715c025d908",
           "status": "OK",
           "code": 200,
           "header": [
@@ -2427,7 +2427,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:33:13 GMT"
+              "value": "Sun, 05 Jul 2026 17:38:08 GMT"
             },
             {
               "key": "Server",
@@ -2435,15 +2435,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ACxF-FtBIAMFgEA="
+              "value": "ACx0KHKFoAMF1Rg="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "8e5e9cf8-b939-414f-ab0b-d2f9c2b558d1"
+              "value": "b27c028c-33cd-4a2d-bf20-b117696a385c"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a9558-2b4eb70142de85ee3108b832;Parent=3cdf707fa9a87892;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a9680-47d8fc034a63f83e685ddaaf;Parent=1e82cae99a8dc823;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -2537,10 +2537,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 331,
+          "responseTime": 306,
           "responseSize": 81
         },
-        "id": "39742fa5-a32f-44e6-9513-3afb2364acd1",
+        "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -2584,15 +2584,15 @@
       },
       {
         "cursor": {
-          "ref": "88771e7e-4fc8-426d-a1a8-eaf067254652",
+          "ref": "118c92a5-4e56-41d0-91d7-4041708719a7",
           "length": 3,
           "cycles": 1,
           "position": 1,
           "iteration": 0,
-          "httpRequestId": "967f378e-8add-4845-bb39-c30d8e37f591"
+          "httpRequestId": "ff8aca20-c4dd-4718-82e3-14dbddeaa0b5"
         },
         "item": {
-          "id": "39742fa5-a32f-44e6-9513-3afb2364acd1",
+          "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
           "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
           "request": {
             "url": {
@@ -2630,14 +2630,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "21df7baf-d7cb-43c8-bc48-69954d09e79e",
+                "id": "60aac396-1134-45e5-b25a-a1315a10b985",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 402);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "f00ae41c-9ee2-4f5d-9554-883128b25d58"
+                "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
               }
             }
           ]
@@ -2688,7 +2688,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "93de65cd-8e76-45e5-bcfd-4c12f49d0b06",
+              "value": "d62012f4-0935-4dc4-aea5-c102fa4dc097",
               "system": true
             },
             {
@@ -2715,11 +2715,11 @@
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\"respuesta\":\"554d9b0f0ea9b88b913abc8158e966a4.0cade3f5ce2add797eecf4045e92155fc4cbfb48418eef311ab1a3c5f31e517fac8ec810f7d5c9582991591e2e4894b9b9fb18bf904b703ab40b74e7a3ce93fd373ed2449437d5ab6774e09a8c3df7ecb42ce7812bda403c93677f195dea88c06fb963a36b75acc1f3c14f563a1fbfd43fdff9749c847614470119bc5631f91146fb8a5307e8045f6b7627f50a1e56ad2815573cf359856f207440aa14bd728cd41faa44084c65a1c0e6d18d8187210407724fd14f5ac634a196a3d49a7e4891f0332551d738e6bef95fa0aad2a36331d44c37311973cc271a956688876f531e14521e1bf073c8aab4ce287792a054ae866084a20c4f713c8528ade1ee369f3b331e150e7cda5d78c6a5e178a6aaa8f65269a74dbf461ebc0c19e319dc74ca2625ffca1cf21aa419ce0519047bb612c4e3972f99d1ab371d9bb4736b1e5ef5dbd0e8ada6e13b5175f2d815615648918299fe8121e83904798ade393137a124ede91c7001c066e37cdecbadae283655160a853757dced833f76483b27eb8fe203e502035103d46779bef183bbfb6a7f39de46498d32765a7dbac227ad86967491c402b3f7c0650e9a29a961cf3ec1287f32149ac6946729b82a76bafdad3cfaf3796d3e06d2aebb5d94340db48304dd2234974341faa81ecd0d7550f6fa9b9f49a99eac28398e1cf82d30cc87c4a47c56dbc519886edd27f97ee53d17ab063a16.c5c22cc7d076f6aeb89c93ec094c2cf83939ce6f1e8db9c36aaa563f52cf9ee80500448763518bf2983754e61cec10e4ace4a60579b6dbfbd5b7710d2b67589f59ca16f180829de8ec5733b53673df34\"}"
+            "raw": "{\"respuesta\":\"3ed6ee6c192e5924b6816b84162c740c.abc793eb523475768c45fc0e579e03f40cdf607e0aa132c48ffab042fbde184c021d23fac386b13c70b6fa906c361decbf0aad5c91c2e9fd014ae10cdecd948b81ee25eee762afac1f4523eff825bb1e71dc661d241184271e1dac4712a09841f1378393e6f844c148a00e3d0350ca1302613fe03ec9bc0075c875749f33f0a0f71de646fabede13f3748a2ac2ba6dabc1b0984375f185aa9fec7efcb4b8dcaa6c61459570538ccd7fedc55347fc8c635d5fe027d6883522dcb4368700e8fd9352b9e604e0b2276c75952027906e2c7450ad3b6140bff23d1dbfd01d490b3d2e09630d3f24c3d891fe155d2df53137c3635faa7a5928cec821fbbd9b3a9ae3417549e8a469f63ad6b5615b362d01e4c611a6403fd900aaf9b8ed04aa86616fb62041eb83e25ad6b44dcbc8823517d7f7080df46b238f15ed5d6b65c883769406092cae9288e91118dc086e79acdcb61d54cf018ab5de02c5c3cbebc56b479b17193ec94d0202dd90f1aa35b7b36c809b461168761f99be59e3707efdbada461120462dc1141cb069189fa9fb1c5f9b8bfb95f45719fa37da4a51b0e9716dfc926f082dcde6e389220d9c090721651395393cc4f9d0f214cdd18cf7a4ebe69771c7df06821ab25fbf19992062454ede83fe81505ef6fe20e35d36cace2b6a029e08888c88b08d7446230025a9255937756f8a4982af916a56de7ca92e2b5bfdf8.6fed6ec6066cfa55c0dab1ad232aba7412c7de715402f827a95d63e0229dd3d996db310df7f2abb018acd0f45f1258a3624a7be8792fbd764a798ccd4788bdc7e96a0c3af11fc0ccc4356b4d70378709\"}"
           }
         },
         "response": {
-          "id": "a2001c00-6c5f-476a-8ac6-1559fa498083",
+          "id": "0b001753-5d36-468c-823d-1715c025d908",
           "status": "OK",
           "code": 200,
           "header": [
@@ -2733,7 +2733,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:33:13 GMT"
+              "value": "Sun, 05 Jul 2026 17:38:08 GMT"
             },
             {
               "key": "Server",
@@ -2741,15 +2741,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ACxF-FtBIAMFgEA="
+              "value": "ACx0KHKFoAMF1Rg="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "8e5e9cf8-b939-414f-ab0b-d2f9c2b558d1"
+              "value": "b27c028c-33cd-4a2d-bf20-b117696a385c"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a9558-2b4eb70142de85ee3108b832;Parent=3cdf707fa9a87892;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a9680-47d8fc034a63f83e685ddaaf;Parent=1e82cae99a8dc823;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -2843,10 +2843,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 331,
+          "responseTime": 306,
           "responseSize": 81
         },
-        "id": "39742fa5-a32f-44e6-9513-3afb2364acd1",
+        "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -2890,15 +2890,15 @@
       },
       {
         "cursor": {
-          "ref": "90f3275d-2e4c-4b6c-8050-c2a143621e50",
+          "ref": "eea508ee-f2e2-4ee2-a337-89f8921d13fa",
           "length": 3,
           "cycles": 1,
           "position": 2,
           "iteration": 0,
-          "httpRequestId": "81b6ba37-f63a-4723-873a-bb41a419cd8f"
+          "httpRequestId": "6f025cc7-82d5-4179-8af0-b322c6b0689f"
         },
         "item": {
-          "id": "c3e4d805-323a-4a8a-b186-8fe679c8f8e7",
+          "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
           "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
           "request": {
             "url": {
@@ -2936,14 +2936,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "f3696102-d820-4219-ad01-8c9ab32d6f8d",
+                "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 500);",
                   "pm.variables.set('expectedCodigoError', 500);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "fd05ef4f-83ea-4d0b-bb29-793d192908f7"
+                "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
               }
             }
           ]
@@ -2994,7 +2994,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "c1106338-df79-4dd8-98ad-ce5b1fc92cef",
+              "value": "8311ae69-7688-44a4-bf6e-b0b0b6ace76f",
               "system": true
             },
             {
@@ -3025,7 +3025,7 @@
           }
         },
         "response": {
-          "id": "713b29f5-2536-4690-97cf-a0557515e56d",
+          "id": "602a26b9-62d6-49e5-bd3a-0e0ca0bed101",
           "status": "OK",
           "code": 200,
           "header": [
@@ -3039,7 +3039,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:33:16 GMT"
+              "value": "Sun, 05 Jul 2026 17:38:10 GMT"
             },
             {
               "key": "Server",
@@ -3047,15 +3047,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ACxGhHMcoAMFSBA="
+              "value": "ACx0eF-0IAMFjRQ="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "78fa32cf-6c3c-4404-8217-4605e5a83839"
+              "value": "5a73e96e-07dd-4684-9582-d5d1e5fdc686"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a955c-02e78da331369bac0a73ef31;Parent=7fe304d524d5f9b0;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a9682-4fdfd88f2c1779883bff44ab;Parent=7454152e698eb724;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -3143,10 +3143,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 167,
+          "responseTime": 171,
           "responseSize": 75
         },
-        "id": "c3e4d805-323a-4a8a-b186-8fe679c8f8e7",
+        "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 500 (real: 200)",
@@ -3197,15 +3197,15 @@
       },
       {
         "cursor": {
-          "ref": "90f3275d-2e4c-4b6c-8050-c2a143621e50",
+          "ref": "eea508ee-f2e2-4ee2-a337-89f8921d13fa",
           "length": 3,
           "cycles": 1,
           "position": 2,
           "iteration": 0,
-          "httpRequestId": "81b6ba37-f63a-4723-873a-bb41a419cd8f"
+          "httpRequestId": "6f025cc7-82d5-4179-8af0-b322c6b0689f"
         },
         "item": {
-          "id": "c3e4d805-323a-4a8a-b186-8fe679c8f8e7",
+          "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
           "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
           "request": {
             "url": {
@@ -3243,14 +3243,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "f3696102-d820-4219-ad01-8c9ab32d6f8d",
+                "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 500);",
                   "pm.variables.set('expectedCodigoError', 500);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "fd05ef4f-83ea-4d0b-bb29-793d192908f7"
+                "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
               }
             }
           ]
@@ -3301,7 +3301,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "c1106338-df79-4dd8-98ad-ce5b1fc92cef",
+              "value": "8311ae69-7688-44a4-bf6e-b0b0b6ace76f",
               "system": true
             },
             {
@@ -3332,7 +3332,7 @@
           }
         },
         "response": {
-          "id": "713b29f5-2536-4690-97cf-a0557515e56d",
+          "id": "602a26b9-62d6-49e5-bd3a-0e0ca0bed101",
           "status": "OK",
           "code": 200,
           "header": [
@@ -3346,7 +3346,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:33:16 GMT"
+              "value": "Sun, 05 Jul 2026 17:38:10 GMT"
             },
             {
               "key": "Server",
@@ -3354,15 +3354,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ACxGhHMcoAMFSBA="
+              "value": "ACx0eF-0IAMFjRQ="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "78fa32cf-6c3c-4404-8217-4605e5a83839"
+              "value": "5a73e96e-07dd-4684-9582-d5d1e5fdc686"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a955c-02e78da331369bac0a73ef31;Parent=7fe304d524d5f9b0;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a9682-4fdfd88f2c1779883bff44ab;Parent=7454152e698eb724;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -3450,10 +3450,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 167,
+          "responseTime": 171,
           "responseSize": 75
         },
-        "id": "c3e4d805-323a-4a8a-b186-8fe679c8f8e7",
+        "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 500 (real: 200)",
@@ -3504,15 +3504,15 @@
       },
       {
         "cursor": {
-          "ref": "90f3275d-2e4c-4b6c-8050-c2a143621e50",
+          "ref": "eea508ee-f2e2-4ee2-a337-89f8921d13fa",
           "length": 3,
           "cycles": 1,
           "position": 2,
           "iteration": 0,
-          "httpRequestId": "81b6ba37-f63a-4723-873a-bb41a419cd8f"
+          "httpRequestId": "6f025cc7-82d5-4179-8af0-b322c6b0689f"
         },
         "item": {
-          "id": "c3e4d805-323a-4a8a-b186-8fe679c8f8e7",
+          "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
           "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
           "request": {
             "url": {
@@ -3550,14 +3550,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "f3696102-d820-4219-ad01-8c9ab32d6f8d",
+                "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 500);",
                   "pm.variables.set('expectedCodigoError', 500);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "fd05ef4f-83ea-4d0b-bb29-793d192908f7"
+                "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
               }
             }
           ]
@@ -3608,7 +3608,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "c1106338-df79-4dd8-98ad-ce5b1fc92cef",
+              "value": "8311ae69-7688-44a4-bf6e-b0b0b6ace76f",
               "system": true
             },
             {
@@ -3639,7 +3639,7 @@
           }
         },
         "response": {
-          "id": "713b29f5-2536-4690-97cf-a0557515e56d",
+          "id": "602a26b9-62d6-49e5-bd3a-0e0ca0bed101",
           "status": "OK",
           "code": 200,
           "header": [
@@ -3653,7 +3653,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:33:16 GMT"
+              "value": "Sun, 05 Jul 2026 17:38:10 GMT"
             },
             {
               "key": "Server",
@@ -3661,15 +3661,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ACxGhHMcoAMFSBA="
+              "value": "ACx0eF-0IAMFjRQ="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "78fa32cf-6c3c-4404-8217-4605e5a83839"
+              "value": "5a73e96e-07dd-4684-9582-d5d1e5fdc686"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a955c-02e78da331369bac0a73ef31;Parent=7fe304d524d5f9b0;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a9682-4fdfd88f2c1779883bff44ab;Parent=7454152e698eb724;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -3757,10 +3757,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 167,
+          "responseTime": 171,
           "responseSize": 75
         },
-        "id": "c3e4d805-323a-4a8a-b186-8fe679c8f8e7",
+        "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 500 (real: 200)",
@@ -3822,8 +3822,8 @@
           "message": "expected 400 to equal 404",
           "stack": "AssertionError: expected 400 to equal 404\n   at Object.eval sandbox-script.js:5:1)",
           "checksum": "17dc4eaf2f32486ca12e615c714b062f",
-          "id": "f8d4a312-ec47-410c-bfa7-3cf90b0df19a",
-          "timestamp": 1783272806785,
+          "id": "6a1ea46a-c285-4ebe-874f-f361063a6fc1",
+          "timestamp": 1783273102356,
           "stacktrace": [
             {
               "fileName": "sandbox-script.js",
@@ -3838,7 +3838,7 @@
         },
         "at": "assertion:4 in test-script",
         "source": {
-          "id": "dff4fe80-369c-4fac-9980-1952651e1b41",
+          "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
           "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
           "request": {
             "url": {
@@ -3876,24 +3876,24 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "ca8ed1f9-78a2-418a-b5b3-eff8613d5b1e",
+                "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 404);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "78f46488-7458-49e2-b512-ed00e79d63a9"
+                "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
               }
             }
           ]
         },
         "parent": {
-          "id": "fd27a045-99e3-4fbc-8341-13dc31d06b9a",
+          "id": "dfb77213-c7e3-47e4-b6d7-ba45955f12b9",
           "name": "2_validador",
           "item": [
             {
-              "id": "dff4fe80-369c-4fac-9980-1952651e1b41",
+              "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
               "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
               "request": {
                 "url": {
@@ -3931,20 +3931,20 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "ca8ed1f9-78a2-418a-b5b3-eff8613d5b1e",
+                    "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 400);",
                       "pm.variables.set('expectedCodigoError', 404);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "78f46488-7458-49e2-b512-ed00e79d63a9"
+                    "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
                   }
                 }
               ]
             },
             {
-              "id": "39742fa5-a32f-44e6-9513-3afb2364acd1",
+              "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
               "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
               "request": {
                 "url": {
@@ -3982,20 +3982,20 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "21df7baf-d7cb-43c8-bc48-69954d09e79e",
+                    "id": "60aac396-1134-45e5-b25a-a1315a10b985",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 400);",
                       "pm.variables.set('expectedCodigoError', 402);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "f00ae41c-9ee2-4f5d-9554-883128b25d58"
+                    "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
                   }
                 }
               ]
             },
             {
-              "id": "c3e4d805-323a-4a8a-b186-8fe679c8f8e7",
+              "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
               "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
               "request": {
                 "url": {
@@ -4033,14 +4033,14 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "f3696102-d820-4219-ad01-8c9ab32d6f8d",
+                    "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 500);",
                       "pm.variables.set('expectedCodigoError', 500);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "fd05ef4f-83ea-4d0b-bb29-793d192908f7"
+                    "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
                   }
                 }
               ]
@@ -4057,10 +4057,10 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "fe61a444-bf74-437b-9e29-6816c6723101",
-          "httpRequestId": "ae2a911f-a40c-45dc-9769-5103f25eda83",
-          "scriptId": "35cce12f-be90-434d-8e81-6b98b8ea7302",
-          "execution": "13e76d6d-a1be-43b9-9d12-9dd96c097676"
+          "ref": "a9d831bc-3b70-4bf7-a7ed-aacf41cfbac7",
+          "httpRequestId": "b991ab6d-2599-44f8-a3fe-c87468adb12d",
+          "scriptId": "affcb9a1-d362-42e1-9cd8-b548ef38589f",
+          "execution": "06923bec-1e54-4010-bf5a-a1abba31818d"
         }
       },
       {
@@ -4071,8 +4071,8 @@
           "message": "expected 'Error en la petición original' to equal 'Validador no existe'",
           "stack": "AssertionError: expected 'Error en la petición original' to equal 'Validador no existe'\n   at Object.eval sandbox-script.js:6:1)",
           "checksum": "58d7e9e175d62e292e5252c075a71696",
-          "id": "478f24e4-0a55-4f23-86ad-2ca62b8805cd",
-          "timestamp": 1783272806791,
+          "id": "f2160c32-f6d5-43e8-90d5-db4e2c72bdad",
+          "timestamp": 1783273102361,
           "stacktrace": [
             {
               "fileName": "sandbox-script.js",
@@ -4087,7 +4087,7 @@
         },
         "at": "assertion:5 in test-script",
         "source": {
-          "id": "dff4fe80-369c-4fac-9980-1952651e1b41",
+          "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
           "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
           "request": {
             "url": {
@@ -4125,24 +4125,24 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "ca8ed1f9-78a2-418a-b5b3-eff8613d5b1e",
+                "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 404);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "78f46488-7458-49e2-b512-ed00e79d63a9"
+                "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
               }
             }
           ]
         },
         "parent": {
-          "id": "fd27a045-99e3-4fbc-8341-13dc31d06b9a",
+          "id": "dfb77213-c7e3-47e4-b6d7-ba45955f12b9",
           "name": "2_validador",
           "item": [
             {
-              "id": "dff4fe80-369c-4fac-9980-1952651e1b41",
+              "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
               "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
               "request": {
                 "url": {
@@ -4180,20 +4180,20 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "ca8ed1f9-78a2-418a-b5b3-eff8613d5b1e",
+                    "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 400);",
                       "pm.variables.set('expectedCodigoError', 404);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "78f46488-7458-49e2-b512-ed00e79d63a9"
+                    "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
                   }
                 }
               ]
             },
             {
-              "id": "39742fa5-a32f-44e6-9513-3afb2364acd1",
+              "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
               "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
               "request": {
                 "url": {
@@ -4231,20 +4231,20 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "21df7baf-d7cb-43c8-bc48-69954d09e79e",
+                    "id": "60aac396-1134-45e5-b25a-a1315a10b985",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 400);",
                       "pm.variables.set('expectedCodigoError', 402);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "f00ae41c-9ee2-4f5d-9554-883128b25d58"
+                    "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
                   }
                 }
               ]
             },
             {
-              "id": "c3e4d805-323a-4a8a-b186-8fe679c8f8e7",
+              "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
               "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
               "request": {
                 "url": {
@@ -4282,14 +4282,14 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "f3696102-d820-4219-ad01-8c9ab32d6f8d",
+                    "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 500);",
                       "pm.variables.set('expectedCodigoError', 500);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "fd05ef4f-83ea-4d0b-bb29-793d192908f7"
+                    "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
                   }
                 }
               ]
@@ -4306,10 +4306,10 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "fe61a444-bf74-437b-9e29-6816c6723101",
-          "httpRequestId": "ae2a911f-a40c-45dc-9769-5103f25eda83",
-          "scriptId": "35cce12f-be90-434d-8e81-6b98b8ea7302",
-          "execution": "13e76d6d-a1be-43b9-9d12-9dd96c097676"
+          "ref": "a9d831bc-3b70-4bf7-a7ed-aacf41cfbac7",
+          "httpRequestId": "b991ab6d-2599-44f8-a3fe-c87468adb12d",
+          "scriptId": "affcb9a1-d362-42e1-9cd8-b548ef38589f",
+          "execution": "06923bec-1e54-4010-bf5a-a1abba31818d"
         }
       },
       {
@@ -4320,8 +4320,8 @@
           "message": "expected 400 to equal 402",
           "stack": "AssertionError: expected 400 to equal 402\n   at Object.eval sandbox-script.js:5:2)",
           "checksum": "b66f5146e28bedc9a950542f8a1ddf13",
-          "id": "f763468f-2dcc-496a-a69a-10f27bafbbf7",
-          "timestamp": 1783272808018,
+          "id": "f9f41a86-6660-432c-a0b8-14643c6cdbe2",
+          "timestamp": 1783273103606,
           "stacktrace": [
             {
               "fileName": "sandbox-script.js",
@@ -4336,7 +4336,7 @@
         },
         "at": "assertion:4 in test-script",
         "source": {
-          "id": "39742fa5-a32f-44e6-9513-3afb2364acd1",
+          "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
           "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
           "request": {
             "url": {
@@ -4374,24 +4374,24 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "21df7baf-d7cb-43c8-bc48-69954d09e79e",
+                "id": "60aac396-1134-45e5-b25a-a1315a10b985",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 402);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "f00ae41c-9ee2-4f5d-9554-883128b25d58"
+                "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
               }
             }
           ]
         },
         "parent": {
-          "id": "fd27a045-99e3-4fbc-8341-13dc31d06b9a",
+          "id": "dfb77213-c7e3-47e4-b6d7-ba45955f12b9",
           "name": "2_validador",
           "item": [
             {
-              "id": "dff4fe80-369c-4fac-9980-1952651e1b41",
+              "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
               "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
               "request": {
                 "url": {
@@ -4429,20 +4429,20 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "ca8ed1f9-78a2-418a-b5b3-eff8613d5b1e",
+                    "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 400);",
                       "pm.variables.set('expectedCodigoError', 404);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "78f46488-7458-49e2-b512-ed00e79d63a9"
+                    "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
                   }
                 }
               ]
             },
             {
-              "id": "39742fa5-a32f-44e6-9513-3afb2364acd1",
+              "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
               "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
               "request": {
                 "url": {
@@ -4480,20 +4480,20 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "21df7baf-d7cb-43c8-bc48-69954d09e79e",
+                    "id": "60aac396-1134-45e5-b25a-a1315a10b985",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 400);",
                       "pm.variables.set('expectedCodigoError', 402);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "f00ae41c-9ee2-4f5d-9554-883128b25d58"
+                    "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
                   }
                 }
               ]
             },
             {
-              "id": "c3e4d805-323a-4a8a-b186-8fe679c8f8e7",
+              "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
               "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
               "request": {
                 "url": {
@@ -4531,14 +4531,14 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "f3696102-d820-4219-ad01-8c9ab32d6f8d",
+                    "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 500);",
                       "pm.variables.set('expectedCodigoError', 500);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "fd05ef4f-83ea-4d0b-bb29-793d192908f7"
+                    "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
                   }
                 }
               ]
@@ -4547,14 +4547,14 @@
           "event": []
         },
         "cursor": {
-          "ref": "88771e7e-4fc8-426d-a1a8-eaf067254652",
+          "ref": "118c92a5-4e56-41d0-91d7-4041708719a7",
           "length": 3,
           "cycles": 1,
           "position": 1,
           "iteration": 0,
-          "httpRequestId": "967f378e-8add-4845-bb39-c30d8e37f591",
-          "scriptId": "35cce12f-be90-434d-8e81-6b98b8ea7302",
-          "execution": "8bfdc74a-3b38-4707-b6b3-093c7e8e8335"
+          "httpRequestId": "ff8aca20-c4dd-4718-82e3-14dbddeaa0b5",
+          "scriptId": "affcb9a1-d362-42e1-9cd8-b548ef38589f",
+          "execution": "8041592e-7caf-435c-9317-68ac4166edb7"
         }
       },
       {
@@ -4565,8 +4565,8 @@
           "message": "expected 'Error en la petición original' to equal 'Canal validador no disponible'",
           "stack": "AssertionError: expected 'Error en la petición original' to equal 'Canal validador no disponible'\n   at Object.eval sandbox-script.js:6:2)",
           "checksum": "6af65ae541781d9177c75fcb72d4054c",
-          "id": "ae6912f8-7ffe-49a8-9a38-aa5a7c4fe78f",
-          "timestamp": 1783272808019,
+          "id": "75435a7d-51e9-4207-b3f4-dce8f2a9094f",
+          "timestamp": 1783273103607,
           "stacktrace": [
             {
               "fileName": "sandbox-script.js",
@@ -4581,7 +4581,7 @@
         },
         "at": "assertion:5 in test-script",
         "source": {
-          "id": "39742fa5-a32f-44e6-9513-3afb2364acd1",
+          "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
           "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
           "request": {
             "url": {
@@ -4619,24 +4619,24 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "21df7baf-d7cb-43c8-bc48-69954d09e79e",
+                "id": "60aac396-1134-45e5-b25a-a1315a10b985",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 402);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "f00ae41c-9ee2-4f5d-9554-883128b25d58"
+                "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
               }
             }
           ]
         },
         "parent": {
-          "id": "fd27a045-99e3-4fbc-8341-13dc31d06b9a",
+          "id": "dfb77213-c7e3-47e4-b6d7-ba45955f12b9",
           "name": "2_validador",
           "item": [
             {
-              "id": "dff4fe80-369c-4fac-9980-1952651e1b41",
+              "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
               "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
               "request": {
                 "url": {
@@ -4674,20 +4674,20 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "ca8ed1f9-78a2-418a-b5b3-eff8613d5b1e",
+                    "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 400);",
                       "pm.variables.set('expectedCodigoError', 404);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "78f46488-7458-49e2-b512-ed00e79d63a9"
+                    "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
                   }
                 }
               ]
             },
             {
-              "id": "39742fa5-a32f-44e6-9513-3afb2364acd1",
+              "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
               "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
               "request": {
                 "url": {
@@ -4725,20 +4725,20 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "21df7baf-d7cb-43c8-bc48-69954d09e79e",
+                    "id": "60aac396-1134-45e5-b25a-a1315a10b985",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 400);",
                       "pm.variables.set('expectedCodigoError', 402);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "f00ae41c-9ee2-4f5d-9554-883128b25d58"
+                    "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
                   }
                 }
               ]
             },
             {
-              "id": "c3e4d805-323a-4a8a-b186-8fe679c8f8e7",
+              "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
               "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
               "request": {
                 "url": {
@@ -4776,14 +4776,14 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "f3696102-d820-4219-ad01-8c9ab32d6f8d",
+                    "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 500);",
                       "pm.variables.set('expectedCodigoError', 500);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "fd05ef4f-83ea-4d0b-bb29-793d192908f7"
+                    "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
                   }
                 }
               ]
@@ -4792,14 +4792,14 @@
           "event": []
         },
         "cursor": {
-          "ref": "88771e7e-4fc8-426d-a1a8-eaf067254652",
+          "ref": "118c92a5-4e56-41d0-91d7-4041708719a7",
           "length": 3,
           "cycles": 1,
           "position": 1,
           "iteration": 0,
-          "httpRequestId": "967f378e-8add-4845-bb39-c30d8e37f591",
-          "scriptId": "35cce12f-be90-434d-8e81-6b98b8ea7302",
-          "execution": "8bfdc74a-3b38-4707-b6b3-093c7e8e8335"
+          "httpRequestId": "ff8aca20-c4dd-4718-82e3-14dbddeaa0b5",
+          "scriptId": "affcb9a1-d362-42e1-9cd8-b548ef38589f",
+          "execution": "8041592e-7caf-435c-9317-68ac4166edb7"
         }
       },
       {
@@ -4810,8 +4810,8 @@
           "message": "expected 200 to equal 500",
           "stack": "AssertionError: expected 200 to equal 500\n   at Object.eval sandbox-script.js:1:3)",
           "checksum": "bcd4fe8fd65a29932604f69655209335",
-          "id": "02979eed-931d-439c-be8f-5a36c834a263",
-          "timestamp": 1783272811389,
+          "id": "690a162f-936f-41e9-982e-c21ea4d889c5",
+          "timestamp": 1783273105454,
           "stacktrace": [
             {
               "fileName": "sandbox-script.js",
@@ -4826,7 +4826,7 @@
         },
         "at": "assertion:0 in test-script",
         "source": {
-          "id": "c3e4d805-323a-4a8a-b186-8fe679c8f8e7",
+          "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
           "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
           "request": {
             "url": {
@@ -4864,24 +4864,24 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "f3696102-d820-4219-ad01-8c9ab32d6f8d",
+                "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 500);",
                   "pm.variables.set('expectedCodigoError', 500);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "fd05ef4f-83ea-4d0b-bb29-793d192908f7"
+                "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
               }
             }
           ]
         },
         "parent": {
-          "id": "fd27a045-99e3-4fbc-8341-13dc31d06b9a",
+          "id": "dfb77213-c7e3-47e4-b6d7-ba45955f12b9",
           "name": "2_validador",
           "item": [
             {
-              "id": "dff4fe80-369c-4fac-9980-1952651e1b41",
+              "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
               "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
               "request": {
                 "url": {
@@ -4919,20 +4919,20 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "ca8ed1f9-78a2-418a-b5b3-eff8613d5b1e",
+                    "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 400);",
                       "pm.variables.set('expectedCodigoError', 404);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "78f46488-7458-49e2-b512-ed00e79d63a9"
+                    "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
                   }
                 }
               ]
             },
             {
-              "id": "39742fa5-a32f-44e6-9513-3afb2364acd1",
+              "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
               "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
               "request": {
                 "url": {
@@ -4970,20 +4970,20 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "21df7baf-d7cb-43c8-bc48-69954d09e79e",
+                    "id": "60aac396-1134-45e5-b25a-a1315a10b985",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 400);",
                       "pm.variables.set('expectedCodigoError', 402);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "f00ae41c-9ee2-4f5d-9554-883128b25d58"
+                    "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
                   }
                 }
               ]
             },
             {
-              "id": "c3e4d805-323a-4a8a-b186-8fe679c8f8e7",
+              "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
               "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
               "request": {
                 "url": {
@@ -5021,14 +5021,14 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "f3696102-d820-4219-ad01-8c9ab32d6f8d",
+                    "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 500);",
                       "pm.variables.set('expectedCodigoError', 500);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "fd05ef4f-83ea-4d0b-bb29-793d192908f7"
+                    "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
                   }
                 }
               ]
@@ -5037,14 +5037,14 @@
           "event": []
         },
         "cursor": {
-          "ref": "90f3275d-2e4c-4b6c-8050-c2a143621e50",
+          "ref": "eea508ee-f2e2-4ee2-a337-89f8921d13fa",
           "length": 3,
           "cycles": 1,
           "position": 2,
           "iteration": 0,
-          "httpRequestId": "81b6ba37-f63a-4723-873a-bb41a419cd8f",
-          "scriptId": "35cce12f-be90-434d-8e81-6b98b8ea7302",
-          "execution": "eee3faed-bff8-4bda-98b4-7eb76b92d0c4"
+          "httpRequestId": "6f025cc7-82d5-4179-8af0-b322c6b0689f",
+          "scriptId": "affcb9a1-d362-42e1-9cd8-b548ef38589f",
+          "execution": "583cbc7d-a3c5-416d-8d89-85f8bb649077"
         }
       },
       {
@@ -5055,8 +5055,8 @@
           "message": "expected 509 to equal 500",
           "stack": "AssertionError: expected 509 to equal 500\n   at Object.eval sandbox-script.js:5:3)",
           "checksum": "48b9ef16f490f011de78cb4c218d99b8",
-          "id": "8c9e3b65-c382-455d-be27-876a82d4fb9b",
-          "timestamp": 1783272811395,
+          "id": "0e8ac496-9fae-4f13-a8bb-99072422f72c",
+          "timestamp": 1783273105456,
           "stacktrace": [
             {
               "fileName": "sandbox-script.js",
@@ -5071,7 +5071,7 @@
         },
         "at": "assertion:4 in test-script",
         "source": {
-          "id": "c3e4d805-323a-4a8a-b186-8fe679c8f8e7",
+          "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
           "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
           "request": {
             "url": {
@@ -5109,24 +5109,24 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "f3696102-d820-4219-ad01-8c9ab32d6f8d",
+                "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 500);",
                   "pm.variables.set('expectedCodigoError', 500);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "fd05ef4f-83ea-4d0b-bb29-793d192908f7"
+                "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
               }
             }
           ]
         },
         "parent": {
-          "id": "fd27a045-99e3-4fbc-8341-13dc31d06b9a",
+          "id": "dfb77213-c7e3-47e4-b6d7-ba45955f12b9",
           "name": "2_validador",
           "item": [
             {
-              "id": "dff4fe80-369c-4fac-9980-1952651e1b41",
+              "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
               "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
               "request": {
                 "url": {
@@ -5164,20 +5164,20 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "ca8ed1f9-78a2-418a-b5b3-eff8613d5b1e",
+                    "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 400);",
                       "pm.variables.set('expectedCodigoError', 404);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "78f46488-7458-49e2-b512-ed00e79d63a9"
+                    "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
                   }
                 }
               ]
             },
             {
-              "id": "39742fa5-a32f-44e6-9513-3afb2364acd1",
+              "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
               "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
               "request": {
                 "url": {
@@ -5215,20 +5215,20 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "21df7baf-d7cb-43c8-bc48-69954d09e79e",
+                    "id": "60aac396-1134-45e5-b25a-a1315a10b985",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 400);",
                       "pm.variables.set('expectedCodigoError', 402);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "f00ae41c-9ee2-4f5d-9554-883128b25d58"
+                    "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
                   }
                 }
               ]
             },
             {
-              "id": "c3e4d805-323a-4a8a-b186-8fe679c8f8e7",
+              "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
               "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
               "request": {
                 "url": {
@@ -5266,14 +5266,14 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "f3696102-d820-4219-ad01-8c9ab32d6f8d",
+                    "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 500);",
                       "pm.variables.set('expectedCodigoError', 500);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "fd05ef4f-83ea-4d0b-bb29-793d192908f7"
+                    "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
                   }
                 }
               ]
@@ -5282,14 +5282,14 @@
           "event": []
         },
         "cursor": {
-          "ref": "90f3275d-2e4c-4b6c-8050-c2a143621e50",
+          "ref": "eea508ee-f2e2-4ee2-a337-89f8921d13fa",
           "length": 3,
           "cycles": 1,
           "position": 2,
           "iteration": 0,
-          "httpRequestId": "81b6ba37-f63a-4723-873a-bb41a419cd8f",
-          "scriptId": "35cce12f-be90-434d-8e81-6b98b8ea7302",
-          "execution": "eee3faed-bff8-4bda-98b4-7eb76b92d0c4"
+          "httpRequestId": "6f025cc7-82d5-4179-8af0-b322c6b0689f",
+          "scriptId": "affcb9a1-d362-42e1-9cd8-b548ef38589f",
+          "execution": "583cbc7d-a3c5-416d-8d89-85f8bb649077"
         }
       },
       {
@@ -5300,8 +5300,8 @@
           "message": "expected 'Error inesperado en el Canal Validador' to equal 'Error interno'",
           "stack": "AssertionError: expected 'Error inesperado en el Canal Validador' to equal 'Error interno'\n   at Object.eval sandbox-script.js:6:3)",
           "checksum": "49b2b4d35f9a4a1516655f7915f88acf",
-          "id": "fba429db-6260-466a-80cd-74f6daf55c62",
-          "timestamp": 1783272811398,
+          "id": "b01217ee-e39e-45c7-863e-da2caec40341",
+          "timestamp": 1783273105456,
           "stacktrace": [
             {
               "fileName": "sandbox-script.js",
@@ -5316,7 +5316,7 @@
         },
         "at": "assertion:5 in test-script",
         "source": {
-          "id": "c3e4d805-323a-4a8a-b186-8fe679c8f8e7",
+          "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
           "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
           "request": {
             "url": {
@@ -5354,24 +5354,24 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "f3696102-d820-4219-ad01-8c9ab32d6f8d",
+                "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 500);",
                   "pm.variables.set('expectedCodigoError', 500);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "fd05ef4f-83ea-4d0b-bb29-793d192908f7"
+                "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
               }
             }
           ]
         },
         "parent": {
-          "id": "fd27a045-99e3-4fbc-8341-13dc31d06b9a",
+          "id": "dfb77213-c7e3-47e4-b6d7-ba45955f12b9",
           "name": "2_validador",
           "item": [
             {
-              "id": "dff4fe80-369c-4fac-9980-1952651e1b41",
+              "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
               "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
               "request": {
                 "url": {
@@ -5409,20 +5409,20 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "ca8ed1f9-78a2-418a-b5b3-eff8613d5b1e",
+                    "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 400);",
                       "pm.variables.set('expectedCodigoError', 404);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "78f46488-7458-49e2-b512-ed00e79d63a9"
+                    "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
                   }
                 }
               ]
             },
             {
-              "id": "39742fa5-a32f-44e6-9513-3afb2364acd1",
+              "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
               "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
               "request": {
                 "url": {
@@ -5460,20 +5460,20 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "21df7baf-d7cb-43c8-bc48-69954d09e79e",
+                    "id": "60aac396-1134-45e5-b25a-a1315a10b985",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 400);",
                       "pm.variables.set('expectedCodigoError', 402);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "f00ae41c-9ee2-4f5d-9554-883128b25d58"
+                    "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
                   }
                 }
               ]
             },
             {
-              "id": "c3e4d805-323a-4a8a-b186-8fe679c8f8e7",
+              "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
               "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
               "request": {
                 "url": {
@@ -5511,14 +5511,14 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "f3696102-d820-4219-ad01-8c9ab32d6f8d",
+                    "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
                     "type": "text/javascript",
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 500);",
                       "pm.variables.set('expectedCodigoError', 500);",
                       "pm.variables.set('expectedTipo', 'general');"
                     ],
-                    "_lastExecutionId": "fd05ef4f-83ea-4d0b-bb29-793d192908f7"
+                    "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
                   }
                 }
               ]
@@ -5527,14 +5527,14 @@
           "event": []
         },
         "cursor": {
-          "ref": "90f3275d-2e4c-4b6c-8050-c2a143621e50",
+          "ref": "eea508ee-f2e2-4ee2-a337-89f8921d13fa",
           "length": 3,
           "cycles": 1,
           "position": 2,
           "iteration": 0,
-          "httpRequestId": "81b6ba37-f63a-4723-873a-bb41a419cd8f",
-          "scriptId": "35cce12f-be90-434d-8e81-6b98b8ea7302",
-          "execution": "eee3faed-bff8-4bda-98b4-7eb76b92d0c4"
+          "httpRequestId": "6f025cc7-82d5-4179-8af0-b322c6b0689f",
+          "scriptId": "affcb9a1-d362-42e1-9cd8-b548ef38589f",
+          "execution": "583cbc7d-a3c5-416d-8d89-85f8bb649077"
         }
       }
     ],

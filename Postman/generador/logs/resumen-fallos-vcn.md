@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |-------|-------|
-| Fecha | 2026-07-05T17:33:31.586Z |
+| Fecha | 2026-07-05T17:38:25.553Z |
 | Carpeta | `General/2_reglaNegocio/2_validador` |
 | Requests | 9 (failed: 0) |
 | Tests | 18 (failed: 7) |
