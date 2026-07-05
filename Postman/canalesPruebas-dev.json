@@ -1,179 +1,399 @@
 {
   "ambiente": "dev",
+  "actualizado": "2026-07-04",
+  "urls": {
+    "matriz": "https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev",
+    "matrizToken": "https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev/auth/token",
+    "matrizPlanes": "https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev/auth/planes",
+    "matrizGruposApiKey": "https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev/auth/grupos-api-key",
+    "validadorApi": "https://tld-api-validador.dev.telered.internal/validar",
+    "validadorVpc": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/validar",
+    "validadorDummy": "https://tld-validador-dummy.dev.telered.internal",
+    "vcn": "https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre",
+    "p2p": "https://tld-api-alias.dev.telered.internal/procesar",
+    "p2m": "https://tld-api-p2m.dev.telered.internal/p2m",
+    "r2p": "https://pwkl4tl2lh-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/r2p"
+  },
+  "adminMatriz": {
+    "apiKey": "c4481f99364a45d1843c475a728894a5",
+    "secretKey": "6bc9d69a676d9f869ab438c5369ec16388b8b7da6f3ddf",
+    "gruposTipicos": [
+      "tld-matriz-planes",
+      "tld-matriz-consulta-facturador",
+      "tld-matriz-full",
+      "tld-matriz-grupos-api-key"
+    ]
+  },
+  "planDevCompartido": {
+    "idPlan": "d5223ccbba94805594e7aa16bdf21f82aabfa7afd",
+    "namePlan": "Plan dev GATO",
+    "planType": "mensual",
+    "request": 999999,
+    "estatus": "activo",
+    "fechaHora": "2026-07-04 06:11:37",
+    "planTypesPermitidos": ["semanal", "quincenal", "mensual", "trimestral", "semestral", "anual"]
+  },
+  "politicasDev": [
+    "tld-matriz-grupos-api-key",
+    "tld-matriz-consulta-facturador",
+    "tld-matriz-registro-tarjeta",
+    "tld-matriz-gestion-retiro",
+    "tld-matriz-datos-facturadores",
+    "tld-tsp-clave",
+    "tld-matriz-compra",
+    "tld-matriz-generar-api-key",
+    "tld-matriz-planes",
+    "tld-matriz-validador",
+    "tld-matriz-card-block-active",
+    "tld-matriz-saldo-tarjeta",
+    "tld-matriz-card-block-geo",
+    "tld-matriz-crear-canal",
+    "tld-matriz-generacion-retiro",
+    "tld-matriz-pago-facturador",
+    "tld-tokenizacion"
+  ],
   "canales": [
     {
-      "canal": "1008",
       "idCanal": "1008",
       "swiftCode": "CELEGATO",
-      "empresa": "CELEGATO",
-      "banco": "CELEGATO",
-      "nombreCanal": "Celestia Financial Holding",
-      "correo": "fdiaz@telered.com.pa",
-      "fechaCreacion": "2026-05-02 06:36:33",
-      "apiKey": "6e37a4a0b884f305b1a2b59f915a707598a8f0795",
-      "secretKey": "f07Rqvss1tv2cG2e3k23l8T868gae1gisE1jVLeA54rH6ea1b4q2SbtHS5e9BA9Ba8886d873ucG79iR2njKb7",
+      "matriz": {
+        "nombreCanal": "Celestia Financial Holding",
+        "empresa": "CELEGATO",
+        "correo": "fdiaz@telered.com.pa",
+        "fechaCreacion": "2026-05-02 06:36:33"
+      },
+      "credenciales": {
+        "apiKey": "6e37a4a0b884f305b1a2b59f915a707598a8f0795",
+        "secretKey": "f07Rqvss1tv2cG2e3k23l8T868gae1gisE1jVLeA54rH6ea1b4q2SbtHS5e9BA9Ba8886d873ucG79iR2njKb7"
+      },
+      "cognito": {
+        "grupos": ["tld-matriz-validador", "tld-matriz-default"]
+      },
+      "plan": {
+        "idPlan": "d5223ccbba94805594e7aa16bdf21f82aabfa7afd",
+        "idPlanCanal": "09a775c3aa849ee59fa7d68e04ee9ac78ab2fbcd9",
+        "namePlan": "Plan dev GATO",
+        "estatus": "inactivo",
+        "exitoso": 0,
+        "fallido": 1,
+        "bloqueado": 0,
+        "fechaFin": "2026-07-19",
+        "fechaHora": "2026-07-04 06:15:09"
+      },
       "validador": {
-        "algoritmo": "aes-256-cbc",
+        "algoritmoCifrado": "aes-256-cbc",
         "algoritmoAes": "aes-256-cbc",
-        "token": "Fijo",
-        "certificado": "CA de confianza"
+        "alias": "CELEGATO",
+        "tipoAuth": "fijo",
+        "useCertificado": false,
+        "estadoValidador": "Y",
+        "urlValidador": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/validar",
+        "llaveCifrado": "dc987123-4681-4c55-8701-83b4e0608214",
+        "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97",
+        "validadorApiKey": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
       }
     },
     {
-      "canal": "1009",
       "idCanal": "1009",
       "swiftCode": "ASTRGATO",
-      "empresa": "ASTRGATO",
-      "banco": "ASTRGATO",
-      "nombreCanal": "Astral Rail Capital",
-      "correo": "fdiaz@telered.com.pa",
-      "fechaCreacion": "2026-05-02 08:40:23",
-      "apiKey": "9bdec973bab42c65a4c628873d4f33349aad9a738",
-      "secretKey": "ppsgvdf01t2a102e4b73la58vadae4M5J3i29i1iU4rQg846meD91DVfK5eb9bB8B9986dei9kE8PRkCm5AbuA",
+      "matriz": {
+        "nombreCanal": "Astral Rail Capital",
+        "empresa": "ASTRGATO",
+        "correo": "fdiaz@telered.com.pa",
+        "fechaCreacion": "2026-05-02 08:40:23"
+      },
+      "credenciales": {
+        "apiKey": "9bdec973bab42c65a4c628873d4f33349aad9a738",
+        "secretKey": "ppsgvdf01t2a102e4b73la58vadae4M5J3i29i1iU4rQg846meD91DVfK5eb9bB8B9986dei9kE8PRkCm5AbuA"
+      },
+      "cognito": {
+        "grupos": ["tld-matriz-validador", "tld-matriz-default"]
+      },
+      "plan": {
+        "idPlan": "d5223ccbba94805594e7aa16bdf21f82aabfa7afd",
+        "idPlanCanal": "819d23fabaa417c59db97c5ef481f59eb9ac129b3",
+        "namePlan": "Plan dev GATO",
+        "estatus": "inactivo",
+        "exitoso": 0,
+        "fallido": 0,
+        "bloqueado": 0,
+        "fechaFin": "2026-07-19",
+        "fechaHora": "2026-07-04 06:40:10"
+      },
       "validador": {
-        "algoritmo": "aes-256-cbc",
+        "algoritmoCifrado": "aes-256-cbc",
         "algoritmoAes": "aes-256-cbc",
-        "token": "Fijo",
-        "certificado": "Autofirmado"
+        "alias": "ASTRGATO",
+        "tipoAuth": "fijo",
+        "useCertificado": false,
+        "estadoValidador": "Y",
+        "urlValidador": "",
+        "llaveCifrado": "bd1e4ddc-9ce5-459f-8e29-b500ff95a9c8",
+        "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97",
+        "validadorApiKey": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
       }
     },
     {
-      "canal": "1011",
       "idCanal": "1011",
       "swiftCode": "MIRAGATO",
-      "empresa": "MIRAGATO",
-      "banco": "MIRAGATO",
-      "nombreCanal": "Miraland Asset Management",
-      "correo": "fdiaz@telered.com.pa",
-      "fechaCreacion": "2026-05-02 08:43:50",
-      "apiKey": "fd1973be9bb4e2d59bd5b92b740b7dc0ba913a4c2",
-      "secretKey": "63hcaArR1tkPep2e1pT3lBJ8tBaAe2cp8nGu1L3tF4r5kn9p2kprTqlf45e888988Aaa6dC8upS1r9o7p7hotC",
+      "matriz": {
+        "nombreCanal": "Miraland Asset Management",
+        "empresa": "MIRAGATO",
+        "correo": "fdiaz@telered.com.pa",
+        "fechaCreacion": "2026-05-02 08:43:50"
+      },
+      "credenciales": {
+        "apiKey": "fd1973be9bb4e2d59bd5b92b740b7dc0ba913a4c2",
+        "secretKey": "63hcaArR1tkPep2e1pT3lBJ8tBaAe2cp8nGu1L3tF4r5kn9p2kprTqlf45e888988Aaa6dC8upS1r9o7p7hotC"
+      },
+      "cognito": {
+        "grupos": ["tld-matriz-default", "tld-matriz-validador"]
+      },
+      "plan": {
+        "idPlan": "d5223ccbba94805594e7aa16bdf21f82aabfa7afd",
+        "idPlanCanal": "ac8c2c088a84a4758990deb3c9b3cc35bb9c22302",
+        "namePlan": "Plan dev GATO",
+        "estatus": "inactivo",
+        "exitoso": 0,
+        "fallido": 0,
+        "bloqueado": 0,
+        "fechaFin": "2026-07-19",
+        "fechaHora": "2026-07-04 06:40:35"
+      },
       "validador": {
-        "algoritmo": "aes-256-cbc",
+        "algoritmoCifrado": "aes-256-cbc",
         "algoritmoAes": "aes-256-cbc",
-        "token": "Dinamico",
-        "certificado": "CA de confianza"
+        "alias": "MIRAGATO",
+        "tipoAuth": "dinamico",
+        "useCertificado": false,
+        "estadoValidador": "Y",
+        "codigoExp": "403",
+        "urlAuth": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/auth/token",
+        "urlValidador": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/validar-con-token",
+        "jpathToken": "$.accessToken",
+        "jpathTiempo": "$.expiresIn",
+        "llaveCifrado": "2afe63d5-7762-47e9-b5b3-3353adc827da",
+        "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97"
       }
     },
     {
-      "canal": "1012",
       "idCanal": "1012",
       "swiftCode": "TERAGATO",
-      "empresa": "TERAGATO",
-      "banco": "TERAGATO",
-      "nombreCanal": "Terra Endfield Development Bank",
-      "correo": "fdiaz@telered.com.pa",
-      "fechaCreacion": "2026-05-02 08:44:11",
-      "apiKey": "4979e66f8b942af5a6f1089c28d1e1d7bbac472f4",
-      "secretKey": "74st4gd41tvfeR2e5et3l9aB99jAe7umV3V8qlq6I4r0edGb9N65LMg2v5e8Abaa88986d5k4faipEnn5l37h9",
+      "matriz": {
+        "nombreCanal": "Terra Endfield Development Bank",
+        "empresa": "TERAGATO",
+        "correo": "fdiaz@telered.com.pa",
+        "fechaCreacion": "2026-05-02 08:44:11"
+      },
+      "credenciales": {
+        "apiKey": "4979e66f8b942af5a6f1089c28d1e1d7bbac472f4",
+        "secretKey": "74st4gd41tvfeR2e5et3l9aB99jAe7umV3V8qlq6I4r0edGb9N65LMg2v5e8Abaa88986d5k4faipEnn5l37h9"
+      },
+      "cognito": {
+        "grupos": ["tld-matriz-validador", "tld-matriz-default"]
+      },
+      "plan": {
+        "idPlan": "d5223ccbba94805594e7aa16bdf21f82aabfa7afd",
+        "idPlanCanal": "011f08819a84c75584c3d27ca0214ca1aaa876a43",
+        "namePlan": "Plan dev GATO",
+        "estatus": "inactivo",
+        "exitoso": 0,
+        "fallido": 0,
+        "bloqueado": 0,
+        "fechaFin": "2026-07-19",
+        "fechaHora": "2026-07-04 06:40:41"
+      },
       "validador": {
-        "algoritmo": "aes-256-cbc",
+        "algoritmoCifrado": "aes-256-cbc",
         "algoritmoAes": "aes-256-cbc",
-        "token": "Dinamico",
-        "certificado": "Autofirmado"
+        "alias": "TERAGATO",
+        "tipoAuth": "dinamico",
+        "useCertificado": false,
+        "estadoValidador": "Y",
+        "codigoExp": "403",
+        "urlAuth": "https://tld-validador-dummy.dev.telered.internal/auth/token",
+        "urlValidador": "",
+        "jpathToken": "$.accessToken",
+        "jpathTiempo": "$.expiresIn",
+        "llaveCifrado": "481bcb30-874f-42cf-96eb-bfc2402dbb0d",
+        "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97"
       }
     },
     {
-      "canal": "1013",
       "idCanal": "1013",
       "swiftCode": "AMIYGATO",
-      "empresa": "AMIYGATO",
-      "banco": "AMIYGATO",
-      "nombreCanal": "Amiya Trust & Clearing",
-      "correo": "fdiaz@telered.com.pa",
-      "fechaCreacion": "2026-05-02 08:44:48",
-      "apiKey": "38932615b8a4f54589ce3b81db024112aab1f1213",
-      "secretKey": "Mnr4bd971t31uD2e4L73l879nBuAe17A1EhIU26CB4rUfHnBhq86fk7Ff5e9b99898ba6dnjsniRou910shRt4",
+      "matriz": {
+        "nombreCanal": "Amiya Trust & Clearing",
+        "empresa": "AMIYGATO",
+        "correo": "fdiaz@telered.com.pa",
+        "fechaCreacion": "2026-05-02 08:44:48"
+      },
+      "credenciales": {
+        "apiKey": "38932615b8a4f54589ce3b81db024112aab1f1213",
+        "secretKey": "Mnr4bd971t31uD2e4L73l879nBuAe17A1EhIU26CB4rUfHnBhq86fk7Ff5e9b99898ba6dnjsniRou910shRt4"
+      },
+      "cognito": {
+        "grupos": ["tld-matriz-validador", "tld-matriz-default"]
+      },
+      "plan": {
+        "idPlan": "d5223ccbba94805594e7aa16bdf21f82aabfa7afd",
+        "idPlanCanal": "1b3ab8058a9486c59aca7c3ffe777587aaa5d3da7",
+        "namePlan": "Plan dev GATO",
+        "estatus": "inactivo",
+        "exitoso": 0,
+        "fallido": 0,
+        "bloqueado": 0,
+        "fechaFin": "2026-07-19",
+        "fechaHora": "2026-07-04 06:40:47"
+      },
       "validador": {
-        "algoritmo": "aes-256-gcm",
+        "algoritmoCifrado": "aes-256-gcm",
         "algoritmoAes": "aes-256-gcm",
-        "token": "Fijo",
-        "certificado": "CA de confianza"
+        "alias": "AMIYGATO",
+        "tipoAuth": "fijo",
+        "useCertificado": false,
+        "estadoValidador": "Y",
+        "urlValidador": "",
+        "llaveCifrado": "fc8c359b-99f8-4af5-ac19-98a84fa8bad4",
+        "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97",
+        "validadorApiKey": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
       }
     },
     {
-      "canal": "1014",
       "idCanal": "1014",
       "swiftCode": "CORNGATO",
-      "empresa": "CORNGATO",
-      "banco": "CORNGATO",
-      "nombreCanal": "Cornerstone Everness Banking Group",
-      "correo": "fdiaz@telered.com.pa",
-      "fechaCreacion": "2026-05-02 08:45:10",
-      "apiKey": "2770bdacb89453a59f4207f67113e26dbbadc3355",
-      "secretKey": "1991Lcsb1t20Hr2e7gr3l8192a8aedisovIP23Lhi4r4jS79pA0Kqh41a5e98B99bba96d2L7QpibjLa27aqSU",
+      "matriz": {
+        "nombreCanal": "Cornerstone Everness Banking Group",
+        "empresa": "CORNGATO",
+        "correo": "fdiaz@telered.com.pa",
+        "fechaCreacion": "2026-05-02 08:45:10"
+      },
+      "credenciales": {
+        "apiKey": "2770bdacb89453a59f4207f67113e26dbbadc3355",
+        "secretKey": "1991Lcsb1t20Hr2e7gr3l8192a8aedisovIP23Lhi4r4jS79pA0Kqh41a5e98B99bba96d2L7QpibjLa27aqSU"
+      },
+      "cognito": {
+        "grupos": null
+      },
+      "plan": null,
       "validador": {
-        "algoritmo": "aes-256-gcm",
+        "algoritmoCifrado": "aes-256-gcm",
         "algoritmoAes": "aes-256-gcm",
-        "token": "Fijo",
-        "certificado": "Autofirmado"
+        "alias": "CORNGATO",
+        "tipoAuth": "fijo",
+        "useCertificado": false,
+        "estadoValidador": "Y",
+        "urlValidador": "https://tld-validador-dummy.dev.telered.internal/validar",
+        "llaveCifrado": "21105b80-79de-4379-914f-796382080cea",
+        "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97",
+        "validadorApiKey": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
       }
     },
     {
-      "canal": "1015",
       "idCanal": "1015",
       "swiftCode": "ZONAGATO",
-      "empresa": "ZONAGATO",
-      "banco": "ZONAGATO",
-      "nombreCanal": "Zone Zero Urban Credit Union",
-      "correo": "fdiaz@telered.com.pa",
-      "fechaCreacion": "2026-05-02 08:45:29",
-      "apiKey": "052bbfc9988439c5afd1daff99fb9fc5aab873b0a",
-      "secretKey": "nj4b73Ot1tDG792ejR43lao9oAf9e1vM6V9Mf36514rjso3vlp86cu78I5ea9A8b99986d3umn31Ccm0CF66g8",
+      "matriz": {
+        "nombreCanal": "Zone Zero Urban Credit Union",
+        "empresa": "ZONAGATO",
+        "correo": "fdiaz@telered.com.pa",
+        "fechaCreacion": "2026-05-02 08:45:29"
+      },
+      "credenciales": {
+        "apiKey": "052bbfc9988439c5afd1daff99fb9fc5aab873b0a",
+        "secretKey": "nj4b73Ot1tDG792ejR43lao9oAf9e1vM6V9Mf36514rjso3vlp86cu78I5ea9A8b99986d3umn31Ccm0CF66g8"
+      },
+      "cognito": {
+        "grupos": ["tld-matriz-default", "tld-matriz-validador"]
+      },
+      "plan": {
+        "idPlan": "d5223ccbba94805594e7aa16bdf21f82aabfa7afd",
+        "idPlanCanal": "562b6dd6bba462658968f964068802818ab0a6e5b",
+        "namePlan": "Plan dev GATO",
+        "estatus": "inactivo",
+        "exitoso": 0,
+        "fallido": 0,
+        "bloqueado": 0,
+        "fechaFin": "2026-07-19",
+        "fechaHora": "2026-07-04 06:41:00"
+      },
       "validador": {
-        "algoritmo": "aes-256-gcm",
+        "algoritmoCifrado": "aes-256-gcm",
         "algoritmoAes": "aes-256-gcm",
-        "token": "Dinamico",
-        "certificado": "CA de confianza"
+        "alias": "ZONAGATO",
+        "tipoAuth": "dinamico",
+        "useCertificado": false,
+        "estadoValidador": "Y",
+        "codigoExp": "403",
+        "urlAuth": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/auth/token",
+        "urlValidador": "",
+        "jpathToken": "$.accessToken",
+        "jpathTiempo": "$.expiresIn",
+        "llaveCifrado": "9fa44fab-9319-4d9f-90d1-30056b00b09b",
+        "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97"
       }
     },
     {
-      "canal": "1016",
       "idCanal": "1016",
       "swiftCode": "BELLGATO",
-      "empresa": "BELLGATO",
-      "banco": "BELLGATO",
-      "nombreCanal": "New Eridu Bell Financial Group",
-      "correo": "fdiaz@telered.com.pa",
-      "fechaCreacion": "2026-05-02 08:58:20",
-      "apiKey": "f59f2732bab4fbd5b8d53c1b2e52f9288ba8a8f69",
-      "secretKey": "V02vpr4b1t12Bl2eUDd3l8bAOaq9eCj4trslkb5sI4rh5k48i8celo7Dd5ebb999999b6d5eue74volh9clj1H",
+      "matriz": {
+        "nombreCanal": "New Eridu Bell Financial Group",
+        "empresa": "BELLGATO",
+        "correo": "fdiaz@telered.com.pa",
+        "fechaCreacion": "2026-05-02 08:58:20"
+      },
+      "credenciales": {
+        "apiKey": "f59f2732bab4fbd5b8d53c1b2e52f9288ba8a8f69",
+        "secretKey": "V02vpr4b1t12Bl2eUDd3l8bAOaq9eCj4trslkb5sI4rh5k48i8celo7Dd5ebb999999b6d5eue74volh9clj1H"
+      },
+      "cognito": {
+        "grupos": ["tld-matriz-default", "tld-matriz-validador"]
+      },
+      "plan": {
+        "idPlan": "d5223ccbba94805594e7aa16bdf21f82aabfa7afd",
+        "idPlanCanal": "3f6f294d9aa47245b9d910a5082fb268aabbb716d",
+        "namePlan": "Plan dev GATO",
+        "estatus": "inactivo",
+        "exitoso": 0,
+        "fallido": 0,
+        "bloqueado": 0,
+        "fechaFin": "2026-07-19",
+        "fechaHora": "2026-07-04 06:41:06"
+      },
       "validador": {
-        "algoritmo": "aes-256-gcm",
+        "algoritmoCifrado": "aes-256-gcm",
         "algoritmoAes": "aes-256-gcm",
-        "token": "Dinamico",
-        "certificado": "Autofirmado"
+        "alias": "BELLGATO",
+        "tipoAuth": "dinamico",
+        "useCertificado": false,
+        "estadoValidador": "Y",
+        "codigoExp": "403",
+        "urlAuth": "https://tld-validador-dummy.dev.telered.internal/auth/token",
+        "urlValidador": "https://tld-validador-dummy.dev.telered.internal/validar-con-token",
+        "jpathToken": "$.accessToken",
+        "jpathTiempo": "$.expiresIn",
+        "llaveCifrado": "36f79a10-bc85-440a-bc02-08c2fa551315",
+        "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97"
       }
     },
     {
-      "canal": "1017",
       "idCanal": "1017",
       "swiftCode": "TEYVGATO",
-      "empresa": "TEYVGATO",
-      "banco": "TEYVGATO",
-      "nombreCanal": "Teyvat Eternal Vault",
-      "correo": "fdiaz@telered.com.pa",
-      "fechaCreacion": "2026-05-22 07:23:07",
-      "apiKey": null,
-      "secretKey": null,
-      "validador": null
-    },
-    {
-      "canal": "1018",
-      "idCanal": "1018",
-      "swiftCode": "ARCHGATO",
-      "empresa": "ARCHGATO",
-      "banco": "ARCHGATO",
-      "nombreCanal": null,
-      "correo": null,
-      "fechaCreacion": null,
-      "apiKey": null,
-      "secretKey": null,
+      "matriz": {
+        "nombreCanal": "Teyvat Eternal Vault",
+        "empresa": "TEYVGATO",
+        "correo": "fdiaz@telered.com.pa",
+        "fechaCreacion": "2026-05-22 07:23:07"
+      },
+      "credenciales": null,
+      "cognito": {
+        "grupos": null
+      },
+      "plan": null,
       "validador": {
-        "algoritmo": "aes-256-cbc",
-        "algoritmoAes": "aes-256-cbc",
-        "token": null,
-        "certificado": null
+        "alias": "TEYVGATO",
+        "tipoAuth": "fijo",
+        "estadoValidador": "Y",
+        "urlValidador": ""
       }
     }
   ]
