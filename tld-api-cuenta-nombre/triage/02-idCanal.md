@@ -68,4 +68,4 @@ Log: [`Postman/generador/logs/resumen-fallos-vcn.md`](../../Postman/generador/lo
 
 ## Siguiente
 
-**A2 validador** — `triage/03-validador.md` (pendiente).
+**A2 validador** — [triage/03-validador.md](./03-validador.md) (en curso).

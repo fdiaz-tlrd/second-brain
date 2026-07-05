@@ -21,12 +21,13 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | Archivo | Contenido |
 |---------|-----------|
 | [01-enfoque-correccion.md](./01-enfoque-correccion.md) | Estrategia: P2M/P2P como referencia, qué portar a VCN, qué no copiar |
-| [02-checklist-errores-vcn-general.md](./02-checklist-errores-vcn-general.md) | **Checklist vivo** — 63 escenarios General que fallan (debe vs está); marcar al resolver |
+| [02-checklist-errores-vcn-general.md](./02-checklist-errores-vcn-general.md) | **Checklist vivo** — escenarios General; A1 idCanal 14/14 (run 07:12) |
 | [03-estrategia-transversal-vs-parche.md](./03-estrategia-transversal-vs-parche.md) | Opinión: meta transversal = base; ejecución incremental |
-| [04-decision-fase-a-dividida.md](./04-decision-fase-a-dividida.md) | **Decisión:** Fase A en A0–A5; primer código = A0+A1 idCanal |
+| [04-decision-fase-a-dividida.md](./04-decision-fase-a-dividida.md) | **Decisión:** Fase A en A0–A5; A1 cerrada; **A2 validador en curso** |
 | [referencia-produccion.md](./referencia-produccion.md) | Prod congelada — existe; **fuera de alcance ahora**; nunca modificar |
 | [triage/00-estructura-vs-base.md](./triage/00-estructura-vs-base.md) | Triage #0 — inventario VCN dev vs base |
-| [triage/02-idCanal.md](./triage/02-idCanal.md) | Triage #2 — A1 idCanal (implementado; pendiente Newman) |
+| [triage/02-idCanal.md](./triage/02-idCanal.md) | Triage #2 — **A1 cerrada** (Newman 14/14) |
+| [triage/03-validador.md](./triage/03-validador.md) | Triage #3 — **A2** validador (código listo; pendiente deploy/Newman) |
 | [triage/01-json-entrada.md](./triage/01-json-entrada.md) | Triage #1 — validar que la entrada sea JSON |
 
 ## Referencias externas
@@ -46,7 +47,9 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | 2026-07-05 | Triage #0 estructura vs base; estrategia transversal vs parche |
 | 2026-07-05 | Decisión Fase A dividida (A0–A5); próximo código A0+A1 idCanal |
 | 2026-07-05 | Aclaración prod master: referencia futura, fuera de alcance ahora (no copiar ni parchear) |
-| 2026-07-05 | **A0+A1** código en `tld-api-cuenta-nombre` (validaciones idCanal + orden); pendiente Newman |
+| 2026-07-05 | **A0+A1** código + Newman **14/14** idCanal (run 07:12) |
+| 2026-07-05 | Generador: `bootstrap-general-vcn.js` (UTF-8 escenarios unicode) |
+| 2026-07-05 | **A2** validador — triage `03-validador.md` + código en `app.js`/`util.js`; pendiente deploy/Newman |
 
 ## Convención de triage
 

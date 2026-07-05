@@ -65,15 +65,15 @@ flowchart LR
 | **Triage** | Crear `triage/02-idCanal.md` al implementar |
 | **Criterio done** | Bloque 1.1 del checklist en verde tras Newman — **cumplido** (run 2026-07-05T07:12Z, 14/14) |
 
-### A2 — validador (`1.2_validador`)
+### A2 — validador (`1.2_validador`) — **en curso 2026-07-05**
 
 | | |
 |--|--|
 | **Checklist** | Escenarios 1.2.x |
 | **Cambio** | `validarParametroValidador`; `responderValidacionConCifrado`; orden emisor resuelto antes |
-| **Env** | `CFG_CANAL_VALIDADOR` en `variablesEntorno.js` si falta |
-| **Triage** | `triage/03-validador.md` |
-| **Criterio done** | Bloque 1.2 en verde |
+| **Env** | `CFG_CANAL_VALIDADOR` — ya en A1 |
+| **Triage** | [triage/03-validador.md](./triage/03-validador.md) |
+| **Criterio done** | Bloque 1.2 en verde tras Newman |
 
 ### A3 — petición / descifrado (`1.3_peticion`)
 
