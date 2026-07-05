@@ -9,6 +9,6 @@
     "run:all": "node run-newman.js all"
   },
   "devDependencies": {
-    "newman": "^6.2.1"
+    "newman": "^6.2.2"
   }
 }
