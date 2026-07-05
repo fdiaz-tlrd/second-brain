@@ -84,24 +84,24 @@ flowchart LR
 | **Triage** | [triage/04-peticion.md](./triage/04-peticion.md) |
 | **Criterio done** | Bloque 1.3 en verde — **cumplido** (run 2026-07-05T07:53Z, 13/13) |
 
-### A4 — idPeticion + solicitudes (`1.4`, `1.5`) — **en curso 2026-07-05**
+### A4 — idPeticion + solicitudes (`1.4`, `1.5`) — **cerrada 2026-07-05**
 
 | | |
 |--|--|
 | **Checklist** | Escenarios 1.4.x, 1.5.x |
 | **Cambio** | `validarParametroIdPeticion`, `validarParametroSolicitudes`; `CFG_METODOS_LIMITES_JSON` = `{ "0001": 1 }` (**temporal `{ "0001": 2 }` en `template.yaml` para Newman — revertir a 1 cuando VCN finalizado**, ver triage 05) |
 | **Triage** | [triage/05-idPeticion-solicitudes.md](./triage/05-idPeticion-solicitudes.md) |
-| **Criterio done** | Bloques 1.4 y 1.5 en verde; **Metodo/0001 cuenta sigue OK** — pendiente Newman |
+| **Criterio done** | Bloques 1.4 y 1.5 en verde — **cumplido** (run 2026-07-05T08:17Z, 66/66 `1_validaciones_js`) |
 
-### A5 — plan + env (refactor, no nuevo contrato)
+### A5 — plan + env (refactor, no nuevo contrato) — **en curso 2026-07-05**
 
 | | |
 |--|--|
 | **Checklist** | Escenarios que dependan de plan (si quedan tras A1–A4) |
 | **Cambio** | Extraer `lib/plan.js` desde base; sacar `validatePlan` de `util.js`; `CFG_VALIDAR_PLAN_POR_CANAL` |
 | **Riesgo** | Medio si se hace antes de A1 — **por eso va al final de A** |
-| **Triage** | `triage/06-plan-env.md` |
-| **Criterio done** | Mismo comportamiento que tras A4; código sin plan legacy en util |
+| **Triage** | [triage/06-plan-env.md](./triage/06-plan-env.md) |
+| **Criterio done** | Mismo comportamiento que tras A4; escenarios 2.1.2/2.1.4 en verde — pendiente Newman |
 
 ## Qué queda fuera de Fase A
 

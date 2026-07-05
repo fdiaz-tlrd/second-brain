@@ -8,19 +8,21 @@ Fuente de verdad para corrección en `tld-api-cuenta-nombre`. Marcar `[x]` al re
 | Fecha (1_idCanal verificado) | 2026-07-05T07:12:06.803Z |
 | Fecha (2_validador verificado) | 2026-07-05T07:38:17.594Z |
 | Fecha (3_peticion verificado) | 2026-07-05T07:53:27.900Z |
-| Carpeta Postman | `General` / `1_idCanal` (A1) / `2_validador` (A2) / `3_peticion` (A3) |
+| Fecha (1_validaciones_js verificado) | 2026-07-05T08:17:07.621Z |
+| Carpeta Postman | `General` / `1_validaciones_js` (A1–A4) |
 | Tests fallidos (General) | 468 (failed: 153) |
 | Tests fallidos (1_idCanal) | 84 (failed: **0**) |
 | Tests fallidos (2_validador) | 90 (failed: **0**) |
 | Tests fallidos (3_peticion) | 78 (failed: **0**) |
+| Tests fallidos (1_validaciones_js) | 396 (failed: **0**) |
 | Resumen Newman | [`Postman/generador/logs/resumen-fallos-vcn.md`](../Postman/generador/logs/resumen-fallos-vcn.md) |
 | Enfoque | [`01-enfoque-correccion.md`](./01-enfoque-correccion.md) |
 
 | Escenarios General | 78 |
-| Fallan (run General 05:13) | 63 → **29** tras A1+A2+A3 |
-| Pasan (run General 05:13) | 15 → **49** tras A1+A2+A3 |
+| Fallan (run General 05:13) | 63 → **5** tras A1–A4 (solo `2_reglaNegocio`) |
+| Pasan (run General 05:13) | 15 → **73** tras A1–A4 |
 
-**Convención:** *Debe* = contrato Postman. Bloques **1_idCanal**, **2_validador** y **3_peticion** verificados (runs 07:12, 07:38 y 07:53); resto según run General 05:13.
+**Convención:** *Debe* = contrato Postman. Bloque **`1_validaciones_js` completo** verificado (run 08:17, 66/66); pendiente **`2_reglaNegocio`** (5 escenarios).
 
 Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, orden en `app.js`).
 
@@ -38,199 +40,11 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 
 ## 1_validaciones_js/4_idPeticion
 
-- [ ] **1.4.1. idPeticion — propiedad ausente (undefined) (400)**
-  - Postman: `General/1_validaciones_js/4_idPeticion`
-  - Escenario: [`1_validaciones_js/4_idPeticion/4.1_idPeticion_propiedad_ausente.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/4_idPeticion/4.1_idPeticion_propiedad_ausente.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 500, "mensajeError": "Error interno" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 500 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.4.10. idPeticion — longitud 65, máximo 64 (400)**
-  - Postman: `General/1_validaciones_js/4_idPeticion`
-  - Escenario: [`1_validaciones_js/4_idPeticion/4.10_idPeticion_longitud_65.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/4_idPeticion/4.10_idPeticion_longitud_65.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.4.11. idPeticion — espacio interno (400)**
-  - Postman: `General/1_validaciones_js/4_idPeticion`
-  - Escenario: [`1_validaciones_js/4_idPeticion/4.11_idPeticion_espacio_interno.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/4_idPeticion/4.11_idPeticion_espacio_interno.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.4.12. idPeticion — símbolo @ (400)**
-  - Postman: `General/1_validaciones_js/4_idPeticion`
-  - Escenario: [`1_validaciones_js/4_idPeticion/4.12_idPeticion_simbolo_arroba.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/4_idPeticion/4.12_idPeticion_simbolo_arroba.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.4.13. idPeticion — unicode interrogación apertura (400)**
-  - Postman: `General/1_validaciones_js/4_idPeticion`
-  - Escenario: [`1_validaciones_js/4_idPeticion/4.13_idPeticion_unicode_interrogacion_apertura.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/4_idPeticion/4.13_idPeticion_unicode_interrogacion_apertura.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.4.14. idPeticion — comillas (400)**
-  - Postman: `General/1_validaciones_js/4_idPeticion`
-  - Escenario: [`1_validaciones_js/4_idPeticion/4.14_idPeticion_comillas.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/4_idPeticion/4.14_idPeticion_comillas.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.4.15. idPeticion — prefijo SWIFT ajeno (445)**
-  - Postman: `General/1_validaciones_js/4_idPeticion`
-  - Escenario: [`1_validaciones_js/4_idPeticion/4.15_idPeticion_prefijo_swift_ajeno.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/4_idPeticion/4.15_idPeticion_prefijo_swift_ajeno.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `445`, tipo `general`
-  - **Debe mensaje:** `El prefijo Código SWIFT del idPeticio…`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 445; mensaje no coincide con catálogo
-
-- [ ] **1.4.2. idPeticion — null (400)**
-  - Postman: `General/1_validaciones_js/4_idPeticion`
-  - Escenario: [`1_validaciones_js/4_idPeticion/4.2_idPeticion_null.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/4_idPeticion/4.2_idPeticion_null.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 500, "mensajeError": "Error interno" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 500 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.4.3. idPeticion — string vacío (400)**
-  - Postman: `General/1_validaciones_js/4_idPeticion`
-  - Escenario: [`1_validaciones_js/4_idPeticion/4.3_idPeticion_string_vacio.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/4_idPeticion/4.3_idPeticion_string_vacio.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 500, "mensajeError": "Error interno" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 500 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.4.4. idPeticion — tipo number (400)**
-  - Postman: `General/1_validaciones_js/4_idPeticion`
-  - Escenario: [`1_validaciones_js/4_idPeticion/4.4_idPeticion_tipo_number.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/4_idPeticion/4.4_idPeticion_tipo_number.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.4.5. idPeticion — tipo boolean (400)**
-  - Postman: `General/1_validaciones_js/4_idPeticion`
-  - Escenario: [`1_validaciones_js/4_idPeticion/4.5_idPeticion_tipo_boolean.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/4_idPeticion/4.5_idPeticion_tipo_boolean.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.4.6. idPeticion — tipo object (400)**
-  - Postman: `General/1_validaciones_js/4_idPeticion`
-  - Escenario: [`1_validaciones_js/4_idPeticion/4.6_idPeticion_tipo_object.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/4_idPeticion/4.6_idPeticion_tipo_object.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.4.7. idPeticion — solo espacios (400)**
-  - Postman: `General/1_validaciones_js/4_idPeticion`
-  - Escenario: [`1_validaciones_js/4_idPeticion/4.7_idPeticion_solo_espacios.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/4_idPeticion/4.7_idPeticion_solo_espacios.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 500, "mensajeError": "Error interno" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 500 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.4.8. idPeticion — solo tab (400)**
-  - Postman: `General/1_validaciones_js/4_idPeticion`
-  - Escenario: [`1_validaciones_js/4_idPeticion/4.8_idPeticion_solo_tab.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/4_idPeticion/4.8_idPeticion_solo_tab.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 500, "mensajeError": "Error interno" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 500 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.4.9. idPeticion — longitud 7, mínimo 8 (400)**
-  - Postman: `General/1_validaciones_js/4_idPeticion`
-  - Escenario: [`1_validaciones_js/4_idPeticion/4.9_idPeticion_longitud_7.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/4_idPeticion/4.9_idPeticion_longitud_7.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 400; mensaje no coincide con catálogo
+**Estado A4 (2026-07-05T08:17Z):** 15/15 en verde — ver sección *Escenarios que pasan* al final.
 
 ## 1_validaciones_js/5_solicitudes
 
-- [ ] **1.5.1. solicitudes — tipo string (425)**
-  - Postman: `General/1_validaciones_js/5_solicitudes`
-  - Escenario: [`1_validaciones_js/5_solicitudes/5.1_solicitudes_tipo_string.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/5_solicitudes/5.1_solicitudes_tipo_string.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `425`, tipo `general`
-  - **Debe mensaje:** `Cantidad de solicitudes no permitidas`
-  - **Está:** `{"respuesta":{"idPeticion":"CELEGATO1783228369","respuestas":[{"resultado":413,"datos":null}]}}` (HTTP descifrar 200)
-  - **Gap:** sin codigoError/mensajeError en body descifrado; mensaje no coincide con catálogo
-
-- [ ] **1.5.2. solicitudes — arreglo vacío (425)**
-  - Postman: `General/1_validaciones_js/5_solicitudes`
-  - Escenario: [`1_validaciones_js/5_solicitudes/5.2_solicitudes_arreglo_vacio.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/5_solicitudes/5.2_solicitudes_arreglo_vacio.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `425`, tipo `general`
-  - **Debe mensaje:** `Cantidad de solicitudes no permitidas`
-  - **Está:** `{"respuesta":{"idPeticion":"CELEGATO1783228370","respuestas":[{"resultado":413,"datos":null}]}}` (HTTP descifrar 200)
-  - **Gap:** sin codigoError/mensajeError en body descifrado; mensaje no coincide con catálogo
-
-- [ ] **1.5.3. solicitudes — excede límite 0015, 5 solicitudes (425)**
-  - Postman: `General/1_validaciones_js/5_solicitudes`
-  - Escenario: [`1_validaciones_js/5_solicitudes/5.3_solicitudes_excede_limite.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/5_solicitudes/5.3_solicitudes_excede_limite.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `425`, tipo `general`
-  - **Debe mensaje:** `Cantidad de solicitudes no permitidas`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 425; mensaje no coincide con catálogo
-
-- [ ] **1.5.4. solicitudes — sin propiedad idSolicitud (431)**
-  - Postman: `General/1_validaciones_js/5_solicitudes`
-  - Escenario: [`1_validaciones_js/5_solicitudes/5.4_solicitudes_sin_idSolicitud.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/5_solicitudes/5.4_solicitudes_sin_idSolicitud.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `431`, tipo `general`
-  - **Debe mensaje:** `Campo idSolicitud no cumple con los c…`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 431; mensaje no coincide con catálogo
-
-- [ ] **1.5.5. solicitudes — idSolicitud vacío (431)**
-  - Postman: `General/1_validaciones_js/5_solicitudes`
-  - Escenario: [`1_validaciones_js/5_solicitudes/5.5_solicitudes_idSolicitud_vacio.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/5_solicitudes/5.5_solicitudes_idSolicitud_vacio.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `431`, tipo `general`
-  - **Debe mensaje:** `Campo idSolicitud no cumple con los c…`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 431; mensaje no coincide con catálogo
-
-- [ ] **1.5.6. solicitudes — idSolicitud tipo number (431)**
-  - Postman: `General/1_validaciones_js/5_solicitudes`
-  - Escenario: [`1_validaciones_js/5_solicitudes/5.6_solicitudes_idSolicitud_tipo_number.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/5_solicitudes/5.6_solicitudes_idSolicitud_tipo_number.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `431`, tipo `general`
-  - **Debe mensaje:** `Campo idSolicitud no cumple con los c…`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 431; mensaje no coincide con catálogo
-
-- [ ] **1.5.7. solicitudes — idSolicitud solo espacios (431)**
-  - Postman: `General/1_validaciones_js/5_solicitudes`
-  - Escenario: [`1_validaciones_js/5_solicitudes/5.7_solicitudes_idSolicitud_solo_espacios.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/5_solicitudes/5.7_solicitudes_idSolicitud_solo_espacios.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `431`, tipo `general`
-  - **Debe mensaje:** `Campo idSolicitud no cumple con los c…`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 431; mensaje no coincide con catálogo
-
-- [ ] **1.5.8. solicitudes — idSolicitud longitud 65 (431)**
-  - Postman: `General/1_validaciones_js/5_solicitudes`
-  - Escenario: [`1_validaciones_js/5_solicitudes/5.8_solicitudes_idSolicitud_longitud_65.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/5_solicitudes/5.8_solicitudes_idSolicitud_longitud_65.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `431`, tipo `general`
-  - **Debe mensaje:** `Campo idSolicitud no cumple con los c…`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 431; mensaje no coincide con catálogo
-
-- [ ] **1.5.9. solicitudes — idSolicitud duplicado case-insensitive (431) [CFG 0015≥2]**
-  - Postman: `General/1_validaciones_js/5_solicitudes`
-  - Escenario: [`1_validaciones_js/5_solicitudes/5.9_solicitudes_idSolicitud_duplicado.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/5_solicitudes/5.9_solicitudes_idSolicitud_duplicado.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `431`, tipo `general`
-  - **Debe mensaje:** `Campo idSolicitud no cumple con los c…`
-  - **Está:** `{ "codigoError": 509, "mensajeError": "Error inesperado en el Canal Validador" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 509 vs 431; mensaje no coincide con catálogo
+**Estado A4 (2026-07-05T08:17Z):** 9/9 en verde — ver sección *Escenarios que pasan* al final.
 
 ## 2_reglaNegocio/1_idCanal
 
@@ -327,6 +141,34 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 - [x] 1.3.11. peticion — segmento AES faltante (400)
 - [x] 1.3.12. peticion — segmento extra (400)
 - [x] 1.3.13. peticion — caracter no hex (400)
+
+### 1_validaciones_js/4_idPeticion — A4 cerrada (run 2026-07-05T08:17Z)
+- [x] 1.4.1. idPeticion — propiedad ausente (undefined) (400)
+- [x] 1.4.2. idPeticion — null (400)
+- [x] 1.4.3. idPeticion — string vacío (400)
+- [x] 1.4.4. idPeticion — tipo number (400)
+- [x] 1.4.5. idPeticion — tipo boolean (400)
+- [x] 1.4.6. idPeticion — tipo object (400)
+- [x] 1.4.7. idPeticion — solo espacios (400)
+- [x] 1.4.8. idPeticion — solo tab (400)
+- [x] 1.4.9. idPeticion — longitud 7, mínimo 8 (400)
+- [x] 1.4.10. idPeticion — longitud 65, máximo 64 (400)
+- [x] 1.4.11. idPeticion — espacio interno (400)
+- [x] 1.4.12. idPeticion — símbolo @ (400)
+- [x] 1.4.13. idPeticion — unicode interrogación apertura (400)
+- [x] 1.4.14. idPeticion — comillas (400)
+- [x] 1.4.15. idPeticion — prefijo SWIFT ajeno (445)
+
+### 1_validaciones_js/5_solicitudes — A4 cerrada (run 2026-07-05T08:17Z)
+- [x] 1.5.1. solicitudes — tipo string (425)
+- [x] 1.5.2. solicitudes — arreglo vacío (425)
+- [x] 1.5.3. solicitudes — excede límite (425)
+- [x] 1.5.4. solicitudes — sin propiedad idSolicitud (431)
+- [x] 1.5.5. solicitudes — idSolicitud vacío (431)
+- [x] 1.5.6. solicitudes — idSolicitud tipo number (431)
+- [x] 1.5.7. solicitudes — idSolicitud solo espacios (431)
+- [x] 1.5.8. solicitudes — idSolicitud longitud 65 (431)
+- [x] 1.5.9. solicitudes — idSolicitud duplicado case-insensitive (431)
 
 ### 2_reglaNegocio/1_idCanal
 - [x] 2.1.1. idCanal — no existe en BD (401)

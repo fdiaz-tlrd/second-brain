@@ -23,13 +23,14 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | [01-enfoque-correccion.md](./01-enfoque-correccion.md) | Estrategia: P2M/P2P como referencia, qué portar a VCN, qué no copiar |
 | [02-checklist-errores-vcn-general.md](./02-checklist-errores-vcn-general.md) | **Checklist vivo** — A1–A3 cerradas (49/78 escenarios OK) |
 | [03-estrategia-transversal-vs-parche.md](./03-estrategia-transversal-vs-parche.md) | Opinión: meta transversal = base; ejecución incremental |
-| [04-decision-fase-a-dividida.md](./04-decision-fase-a-dividida.md) | **Decisión:** Fase A en A0–A5; A3 cerrada; **A4 en curso** |
+| [04-decision-fase-a-dividida.md](./04-decision-fase-a-dividida.md) | **Decisión:** Fase A en A0–A5; A4 cerrada; **A5 en curso** |
 | [referencia-produccion.md](./referencia-produccion.md) | Prod congelada — existe; **fuera de alcance ahora**; nunca modificar |
 | [triage/00-estructura-vs-base.md](./triage/00-estructura-vs-base.md) | Triage #0 — inventario VCN dev vs base |
 | [triage/02-idCanal.md](./triage/02-idCanal.md) | Triage #2 — **A1 cerrada** (Newman 14/14) |
 | [triage/03-validador.md](./triage/03-validador.md) | Triage #3 — **A2 cerrada** (Newman 15/15) |
 | [triage/04-peticion.md](./triage/04-peticion.md) | Triage #4 — **A3 cerrada** (Newman 13/13) |
-| [triage/05-idPeticion-solicitudes.md](./triage/05-idPeticion-solicitudes.md) | Triage #5 — **A4** idPeticion + solicitudes (código listo; pendiente Newman) |
+| [triage/05-idPeticion-solicitudes.md](./triage/05-idPeticion-solicitudes.md) | Triage #5 — **A4 cerrada** (Newman 66/66 `1_validaciones_js`) |
+| [triage/06-plan-env.md](./triage/06-plan-env.md) | Triage #6 — **A5** plan.js (código listo; pendiente Newman) |
 | [triage/01-json-entrada.md](./triage/01-json-entrada.md) | Triage #1 — validar que la entrada sea JSON |
 
 ## Referencias externas
@@ -53,8 +54,9 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | 2026-07-05 | Generador: `bootstrap-general-vcn.js` (UTF-8 escenarios unicode) |
 | 2026-07-05 | **A2** validador — Newman **15/15** (run 07:38); commit `4e96a57` |
 | 2026-07-05 | **A3** petición — Newman **13/13** (run 07:53); commit `4b599d5` |
-| 2026-07-05 | **A4** idPeticion + solicitudes — triage `05-idPeticion-solicitudes.md` + código; pendiente deploy/Newman |
+| 2026-07-05 | **A4** idPeticion + solicitudes — Newman **66/66** `1_validaciones_js` (run 08:17); commit `aa87fd2` |
 | 2026-07-05 | **TEMP** `template.yaml` `CFG_METODOS_LIMITES_JSON` → `{"0001":2}` para Newman 5.9; **revertir a 1 cuando VCN finalizado** (triage 05) |
+| 2026-07-05 | **A5** plan.js — triage `06-plan-env.md` + código; pendiente deploy/Newman |
 
 ## Convención de triage
 

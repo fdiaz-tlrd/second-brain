@@ -52,7 +52,7 @@ Respuesta: HTTP **400**, cifrada al emisor vía `responderValidacionConCifrado`.
 | A4c | `CFG_METODOS_LIMITES_JSON` en `variablesEntorno.js` + `template.yaml` | VCN | **Hecho** — ver override temporal abajo |
 | A4d | Mantener `metodoDisponible(canalValidador)` en `case "0001"` (regla negocio validador) | `app.js` | Sin cambio |
 
-**Verificación Newman:** pendiente máquina VPN — carpetas `4_idPeticion` (15) y `5_solicitudes` (9).
+**Verificación Newman:** **cumplida** — run `2026-07-05T08:17:07Z`, carpeta `1_validaciones_js` **66/66** (198 requests, 396 assertions, 0 fallos). Log: commit `c74ef05`.
 
 ### Override temporal — `CFG_METODOS_LIMITES_JSON` (revertir obligatorio)
 
@@ -91,4 +91,4 @@ Escenarios ancla: **4.1** (idPeticion ausente), **4.15** (445 SWIFT), **5.1** (t
 
 ## Siguiente
 
-Tras cerrar A4: **A5 plan + env** — `triage/06-plan-env.md` (pendiente).
+Tras cerrar A4: **A5 plan + env** — [triage/06-plan-env.md](./06-plan-env.md) (**código listo**; pendiente deploy/Newman).
