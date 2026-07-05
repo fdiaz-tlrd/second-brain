@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "5de47034-c040-4984-b35c-a70f9c736e7a",
+    "_postman_id": "7f2a5068-27d1-4c64-8c95-8486e2207185",
     "name": "VCN Escenarios error",
     "description": "Colección generada desde la fuente en VCN Escenarios error/.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -3469,6 +3469,158 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 403);",
+                          "pm.variables.set('expectedTipo', 'general');"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "2_validador",
+              "item": [
+                {
+                  "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                      "host": [
+                        "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                      ],
+                      "path": [
+                        "descifrar"
+                      ],
+                      "query": [
+                        {
+                          "key": "tld",
+                          "value": "0"
+                        },
+                        {
+                          "key": "algoritmoCifrado",
+                          "value": "aes-256-cbc"
+                        }
+                      ]
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_NO_EXISTE}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "response": [],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "pm.variables.set('expectedHttpStatus', 400);",
+                          "pm.variables.set('expectedCodigoError', 404);",
+                          "pm.variables.set('expectedTipo', 'general');"
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                      "host": [
+                        "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                      ],
+                      "path": [
+                        "descifrar"
+                      ],
+                      "query": [
+                        {
+                          "key": "tld",
+                          "value": "0"
+                        },
+                        {
+                          "key": "algoritmoCifrado",
+                          "value": "aes-256-cbc"
+                        }
+                      ]
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_DESHABILITADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "response": [],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "pm.variables.set('expectedHttpStatus', 400);",
+                          "pm.variables.set('expectedCodigoError', 402);",
+                          "pm.variables.set('expectedTipo', 'general');"
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                      "host": [
+                        "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                      ],
+                      "path": [
+                        "descifrar"
+                      ],
+                      "query": [
+                        {
+                          "key": "tld",
+                          "value": "0"
+                        },
+                        {
+                          "key": "algoritmoCifrado",
+                          "value": "aes-256-cbc"
+                        }
+                      ]
+                    },
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_MAL_CONFIGURADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "response": [],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "pm.variables.set('expectedHttpStatus', 500);",
+                          "pm.variables.set('expectedCodigoError', 500);",
                           "pm.variables.set('expectedTipo', 'general');"
                         ]
                       }

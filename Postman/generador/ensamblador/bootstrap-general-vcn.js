@@ -12,6 +12,10 @@ const path = require("path");
 
 const BASE = __dirname;
 const SRC_GENERAL = path.join(BASE, "../P2M Escenarios error/General");
+const SRC_ESPECIALES_VALIDADOR = path.join(
+  BASE,
+  "../P2M Escenarios error especiales/General/2_reglaNegocio/2_validador"
+);
 const DST_ROOT = path.join(BASE, "../VCN Escenarios error");
 const DST_GENERAL = path.join(DST_ROOT, "General");
 
@@ -73,6 +77,12 @@ function main() {
     fs.rmSync(DST_GENERAL, { recursive: true, force: true });
   }
   copyGeneralDir(SRC_GENERAL, DST_GENERAL);
+
+  if (fs.existsSync(SRC_ESPECIALES_VALIDADOR)) {
+    const dstValidador = path.join(DST_GENERAL, "2_reglaNegocio/2_validador");
+    copyGeneralDir(SRC_ESPECIALES_VALIDADOR, dstValidador);
+    console.log("2_reglaNegocio/2_validador desde P2M especiales → VCN General");
+  }
 
   copyFileIfExists(
     path.join(BASE, "../P2M Escenarios error/datosCanales.json"),
