@@ -7,6 +7,9 @@
  *   node run-newman.js p2p --folder "General/2_reglaNegocio/1_idCanal"
  *   node run-newman.js vcn
  *   node run-newman.js all
+ *
+ * SSL: por defecto no verifica certificados (como Postman con SSL off en dev).
+ *   --strict-ssl  exige certificado válido
  */
 
 const fs = require("fs");
@@ -54,14 +57,19 @@ const MAX_BODY = 4000;
 function parseArgs(argv) {
   const positional = [];
   let folder = null;
+  let insecure = true;
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === "--folder" && argv[i + 1]) {
       folder = argv[++i];
+    } else if (argv[i] === "--insecure") {
+      insecure = true;
+    } else if (argv[i] === "--strict-ssl") {
+      insecure = false;
     } else if (!argv[i].startsWith("-")) {
       positional.push(argv[i]);
     }
   }
-  return { suite: positional[0], folder };
+  return { suite: positional[0], folder, insecure };
 }
 
 function truncate(text, max) {
@@ -189,7 +197,7 @@ function buildResumenMarkdown(suite, folder, summary, jsonPath, mdPath) {
   return lines.join("\n");
 }
 
-function runSuite(suiteKey, folder) {
+function runSuite(suiteKey, folder, insecure) {
   const cfg = SUITES[suiteKey];
   if (!cfg) {
     return Promise.reject(new Error("Suite desconocida: " + suiteKey));
@@ -220,6 +228,7 @@ function runSuite(suiteKey, folder) {
     timeout: 120000,
     timeoutRequest: 120000,
     timeoutScript: 60000,
+    insecure: insecure,
   };
   if (folder) {
     options.folder = folder.includes("/")
@@ -251,12 +260,16 @@ function runSuite(suiteKey, folder) {
 }
 
 function main() {
-  const { suite, folder } = parseArgs(process.argv.slice(2));
+  const { suite, folder, insecure } = parseArgs(process.argv.slice(2));
   if (!suite || !SUITES[suite] && suite !== "all") {
     console.error(
-      "Uso: node run-newman.js <p2m|p2p|vcn|all> [--folder \"General/2_reglaNegocio/1_idCanal\"]"
+      "Uso: node run-newman.js <p2m|p2p|vcn|all> [--folder \"General/2_reglaNegocio/1_idCanal\"] [--strict-ssl]"
     );
     process.exit(1);
+  }
+
+  if (insecure) {
+    console.log("SSL: verificación desactivada (entorno dev). Usa --strict-ssl para exigir certificado.");
   }
 
   if (!fs.existsSync(LOGS)) {
@@ -270,7 +283,7 @@ function main() {
     for (const key of suites) {
       console.log("\n=== " + key.toUpperCase() + " ===");
       try {
-        const summary = await runSuite(key, folder);
+        const summary = await runSuite(key, folder, insecure);
         const failed =
           summary.run &&
           summary.run.stats &&

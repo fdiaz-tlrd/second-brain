@@ -23,18 +23,230 @@ node armar-coleccion.js config-p2p.json
 
 La salida queda en `ensamblador/salida/*.postman_collection.json`.
 
+
 ## Ejecutar y compartir fallos (Newman)
 
-Desde `Postman/generador` (requiere red hacia dummy/API dev):
+Requiere red hacia dummy/API dev. Desde `Postman/generador`. Copia **una sola línea** (los `#` son comentarios; PowerShell los ignora).
 
 ```powershell
-$env:NODE_OPTIONS="--use-system-ca"   # si npm install falla por certificado corporativo
+# Primera vez
 npm install
-node run-newman.js p2m
-node run-newman.js p2p --folder "General/2_reglaNegocio/1_idCanal"
-node run-newman.js vcn
+
+# P2M + P2P + VCN seguidas
 node run-newman.js all
+
+# P2M
+node run-newman.js p2m
+# General
+node run-newman.js p2m --folder "General"
+node run-newman.js p2m --folder "General/1_validaciones_js"
+node run-newman.js p2m --folder "General/1_validaciones_js/1_idCanal"
+node run-newman.js p2m --folder "General/1_validaciones_js/2_validador"
+node run-newman.js p2m --folder "General/1_validaciones_js/3_peticion"
+node run-newman.js p2m --folder "General/1_validaciones_js/4_idPeticion"
+node run-newman.js p2m --folder "General/1_validaciones_js/5_solicitudes"
+node run-newman.js p2m --folder "General/2_reglaNegocio"
+node run-newman.js p2m --folder "General/2_reglaNegocio/1_idCanal"
+node run-newman.js p2m --folder "General/2_reglaNegocio/3_peticion"
+node run-newman.js p2m --folder "General/2_reglaNegocio/4_metodo"
+node run-newman.js p2m --folder "Metodo"
+# Metodo 0015
+node run-newman.js p2m --folder "Metodo/0015"
+node run-newman.js p2m --folder "Metodo/0015/1_validaciones_js"
+node run-newman.js p2m --folder "Metodo/0015/1_validaciones_js/1_identificador"
+node run-newman.js p2m --folder "Metodo/0015/1_validaciones_js/2_tipoIdentificador"
+# Metodo 0016
+node run-newman.js p2m --folder "Metodo/0016"
+node run-newman.js p2m --folder "Metodo/0016/1_validaciones_js"
+node run-newman.js p2m --folder "Metodo/0016/1_validaciones_js/1_identificador"
+node run-newman.js p2m --folder "Metodo/0016/1_validaciones_js/2_tipoIdentificador"
+node run-newman.js p2m --folder "Metodo/0016/1_validaciones_js/3_banco"
+node run-newman.js p2m --folder "Metodo/0016/1_validaciones_js/4_cuenta"
+node run-newman.js p2m --folder "Metodo/0016/1_validaciones_js/5_producto"
+node run-newman.js p2m --folder "Metodo/0016/1_validaciones_js/6_nombreComercio"
+node run-newman.js p2m --folder "Metodo/0016/1_validaciones_js/7_correo"
+node run-newman.js p2m --folder "Metodo/0016/1_validaciones_js/8_mcc"
+node run-newman.js p2m --folder "Metodo/0016/1_validaciones_js/9_logo"
+# Metodo 0017
+node run-newman.js p2m --folder "Metodo/0017"
+node run-newman.js p2m --folder "Metodo/0017/1_validaciones_js"
+node run-newman.js p2m --folder "Metodo/0017/1_validaciones_js/1_identificador"
+node run-newman.js p2m --folder "Metodo/0017/1_validaciones_js/2_tipoIdentificador"
+node run-newman.js p2m --folder "Metodo/0017/1_validaciones_js/3_busquedaCantidad"
+node run-newman.js p2m --folder "Metodo/0017/1_validaciones_js/4_mcc"
+node run-newman.js p2m --folder "Metodo/0017/1_validaciones_js/5_busquedaIdentificadorComercio"
+node run-newman.js p2m --folder "Metodo/0017/1_validaciones_js/6_busquedaNombreComercio"
+node run-newman.js p2m --folder "Metodo/0017/1_validaciones_js/7_busquedaPaginaToken"
+# Metodo 0018
+node run-newman.js p2m --folder "Metodo/0018"
+node run-newman.js p2m --folder "Metodo/0018/1_validaciones_js"
+node run-newman.js p2m --folder "Metodo/0018/1_validaciones_js/1_identificador"
+node run-newman.js p2m --folder "Metodo/0018/1_validaciones_js/2_tipoIdentificador"
+node run-newman.js p2m --folder "Metodo/0018/1_validaciones_js/3_identificadorComercio"
+node run-newman.js p2m --folder "Metodo/0018/1_validaciones_js/4_montoBase"
+node run-newman.js p2m --folder "Metodo/0018/1_validaciones_js/5_impuesto"
+node run-newman.js p2m --folder "Metodo/0018/1_validaciones_js/6_propina"
+node run-newman.js p2m --folder "Metodo/0018/1_validaciones_js/7_monto"
+node run-newman.js p2m --folder "Metodo/0018/1_validaciones_js/8_descripcion"
+# Metodo 0019
+node run-newman.js p2m --folder "Metodo/0019"
+node run-newman.js p2m --folder "Metodo/0019/1_validaciones_js"
+node run-newman.js p2m --folder "Metodo/0019/1_validaciones_js/1_identificador"
+node run-newman.js p2m --folder "Metodo/0019/1_validaciones_js/2_tipoIdentificador"
+node run-newman.js p2m --folder "Metodo/0019/1_validaciones_js/3_p2mPagoId"
+node run-newman.js p2m --folder "Metodo/0019/1_validaciones_js/4_estadoCargo"
+# Metodo 0021
+node run-newman.js p2m --folder "Metodo/0021"
+node run-newman.js p2m --folder "Metodo/0021/1_validaciones_js"
+node run-newman.js p2m --folder "Metodo/0021/1_validaciones_js/1_identificador"
+node run-newman.js p2m --folder "Metodo/0021/1_validaciones_js/10_estado"
+node run-newman.js p2m --folder "Metodo/0021/1_validaciones_js/2_tipoIdentificador"
+node run-newman.js p2m --folder "Metodo/0021/1_validaciones_js/3_banco"
+node run-newman.js p2m --folder "Metodo/0021/1_validaciones_js/4_cuenta"
+node run-newman.js p2m --folder "Metodo/0021/1_validaciones_js/5_producto"
+node run-newman.js p2m --folder "Metodo/0021/1_validaciones_js/6_nombreComercio"
+node run-newman.js p2m --folder "Metodo/0021/1_validaciones_js/7_correo"
+node run-newman.js p2m --folder "Metodo/0021/1_validaciones_js/8_mcc"
+node run-newman.js p2m --folder "Metodo/0021/1_validaciones_js/9_logo"
+# Metodo 0024
+node run-newman.js p2m --folder "Metodo/0024"
+node run-newman.js p2m --folder "Metodo/0024/1_validaciones_js"
+node run-newman.js p2m --folder "Metodo/0024/1_validaciones_js/1_identificador"
+node run-newman.js p2m --folder "Metodo/0024/1_validaciones_js/10_ciudadComercio"
+node run-newman.js p2m --folder "Metodo/0024/1_validaciones_js/11_montoBase"
+node run-newman.js p2m --folder "Metodo/0024/1_validaciones_js/12_impuesto"
+node run-newman.js p2m --folder "Metodo/0024/1_validaciones_js/13_propina"
+node run-newman.js p2m --folder "Metodo/0024/1_validaciones_js/14_monto"
+node run-newman.js p2m --folder "Metodo/0024/1_validaciones_js/15_descripcion"
+node run-newman.js p2m --folder "Metodo/0024/1_validaciones_js/2_tipoIdentificador"
+node run-newman.js p2m --folder "Metodo/0024/1_validaciones_js/3_banco"
+node run-newman.js p2m --folder "Metodo/0024/1_validaciones_js/4_moneda"
+node run-newman.js p2m --folder "Metodo/0024/1_validaciones_js/5_qrTipo"
+node run-newman.js p2m --folder "Metodo/0024/1_validaciones_js/6_canalPago"
+node run-newman.js p2m --folder "Metodo/0024/1_validaciones_js/7_tipo"
+node run-newman.js p2m --folder "Metodo/0024/1_validaciones_js/8_fechaVencimiento"
+node run-newman.js p2m --folder "Metodo/0024/1_validaciones_js/9_cantidadLecturas"
+# Metodo 0025
+node run-newman.js p2m --folder "Metodo/0025"
+node run-newman.js p2m --folder "Metodo/0025/1_validaciones_js"
+node run-newman.js p2m --folder "Metodo/0025/1_validaciones_js/1_identificador"
+node run-newman.js p2m --folder "Metodo/0025/1_validaciones_js/2_tipoIdentificador"
+node run-newman.js p2m --folder "Metodo/0025/1_validaciones_js/3_qrCode"
+
+# P2P
+node run-newman.js p2p
+# General
+node run-newman.js p2p --folder "General"
+node run-newman.js p2p --folder "General/1_validaciones_js"
+node run-newman.js p2p --folder "General/1_validaciones_js/1_idCanal"
+node run-newman.js p2p --folder "General/1_validaciones_js/2_validador"
+node run-newman.js p2p --folder "General/1_validaciones_js/3_peticion"
+node run-newman.js p2p --folder "General/1_validaciones_js/4_idPeticion"
+node run-newman.js p2p --folder "General/1_validaciones_js/5_solicitudes"
+node run-newman.js p2p --folder "General/2_reglaNegocio"
+node run-newman.js p2p --folder "General/2_reglaNegocio/1_idCanal"
+node run-newman.js p2p --folder "General/2_reglaNegocio/3_peticion"
+node run-newman.js p2p --folder "General/2_reglaNegocio/4_metodo"
+node run-newman.js p2p --folder "Metodo"
+# Metodo 0002
+node run-newman.js p2p --folder "Metodo/0002"
+node run-newman.js p2p --folder "Metodo/0002/1_validaciones_js"
+node run-newman.js p2p --folder "Metodo/0002/1_validaciones_js/1_tipoIdentificador"
+node run-newman.js p2p --folder "Metodo/0002/1_validaciones_js/2_identificador"
+# Metodo 0003
+node run-newman.js p2p --folder "Metodo/0003"
+node run-newman.js p2p --folder "Metodo/0003/1_validaciones_js"
+node run-newman.js p2p --folder "Metodo/0003/1_validaciones_js/1_identificador"
+node run-newman.js p2p --folder "Metodo/0003/1_validaciones_js/2_tipoIdentificador"
+# Metodo 0004
+node run-newman.js p2p --folder "Metodo/0004"
+node run-newman.js p2p --folder "Metodo/0004/1_validaciones_js"
+node run-newman.js p2p --folder "Metodo/0004/1_validaciones_js/1_identificador"
+node run-newman.js p2p --folder "Metodo/0004/1_validaciones_js/2_tipoIdentificador"
+node run-newman.js p2p --folder "Metodo/0004/1_validaciones_js/3_idPregunta"
+node run-newman.js p2p --folder "Metodo/0004/1_validaciones_js/4_respuesta"
+node run-newman.js p2p --folder "Metodo/0004/1_validaciones_js/5_banco"
+node run-newman.js p2p --folder "Metodo/0004/1_validaciones_js/6_cuenta"
+node run-newman.js p2p --folder "Metodo/0004/1_validaciones_js/7_producto"
+# Metodo 0005
+node run-newman.js p2p --folder "Metodo/0005"
+node run-newman.js p2p --folder "Metodo/0005/1_validaciones_js"
+node run-newman.js p2p --folder "Metodo/0005/1_validaciones_js/1_banco"
+# Metodo 0006
+node run-newman.js p2p --folder "Metodo/0006"
+node run-newman.js p2p --folder "Metodo/0006/1_validaciones_js"
+node run-newman.js p2p --folder "Metodo/0006/1_validaciones_js/1_identificador"
+node run-newman.js p2p --folder "Metodo/0006/1_validaciones_js/2_tipoIdentificador"
+node run-newman.js p2p --folder "Metodo/0006/1_validaciones_js/3_respuestas"
+node run-newman.js p2p --folder "Metodo/0006/1_validaciones_js/4_banco"
+node run-newman.js p2p --folder "Metodo/0006/1_validaciones_js/5_cuenta"
+node run-newman.js p2p --folder "Metodo/0006/1_validaciones_js/6_producto"
+# Metodo 0007
+node run-newman.js p2p --folder "Metodo/0007"
+node run-newman.js p2p --folder "Metodo/0007/1_validaciones_js"
+node run-newman.js p2p --folder "Metodo/0007/1_validaciones_js/1_identificador"
+node run-newman.js p2p --folder "Metodo/0007/1_validaciones_js/2_tipoIdentificador"
+node run-newman.js p2p --folder "Metodo/0007/1_validaciones_js/3_banco"
+node run-newman.js p2p --folder "Metodo/0007/1_validaciones_js/4_tipoBaja"
+# Metodo 0008
+node run-newman.js p2p --folder "Metodo/0008"
+node run-newman.js p2p --folder "Metodo/0008/1_validaciones_js"
+node run-newman.js p2p --folder "Metodo/0008/1_validaciones_js/1_id"
+node run-newman.js p2p --folder "Metodo/0008/1_validaciones_js/2_identificador"
+node run-newman.js p2p --folder "Metodo/0008/1_validaciones_js/3_tipoIdentificador"
+node run-newman.js p2p --folder "Metodo/0008/1_validaciones_js/4_banco"
+node run-newman.js p2p --folder "Metodo/0008/1_validaciones_js/5_cuenta"
+node run-newman.js p2p --folder "Metodo/0008/1_validaciones_js/6_producto"
+# Metodo 0009
+node run-newman.js p2p --folder "Metodo/0009"
+node run-newman.js p2p --folder "Metodo/0009/1_validaciones_js"
+node run-newman.js p2p --folder "Metodo/0009/1_validaciones_js/1_identificador"
+node run-newman.js p2p --folder "Metodo/0009/1_validaciones_js/2_tipoIdentificador"
+# Metodo 0022
+node run-newman.js p2p --folder "Metodo/0022"
+node run-newman.js p2p --folder "Metodo/0022/1_validaciones_js"
+node run-newman.js p2p --folder "Metodo/0022/1_validaciones_js/1_identificador"
+node run-newman.js p2p --folder "Metodo/0022/1_validaciones_js/2_nombreAcreedor"
+node run-newman.js p2p --folder "Metodo/0022/1_validaciones_js/3_bancoAcreedor"
+node run-newman.js p2p --folder "Metodo/0022/1_validaciones_js/4_moneda"
+node run-newman.js p2p --folder "Metodo/0022/1_validaciones_js/5_qrTipo"
+node run-newman.js p2p --folder "Metodo/0022/1_validaciones_js/6_canalPago"
+node run-newman.js p2p --folder "Metodo/0022/1_validaciones_js/7_tipo"
+node run-newman.js p2p --folder "Metodo/0022/1_validaciones_js/8_descripcion"
+# Metodo 0023
+node run-newman.js p2p --folder "Metodo/0023"
+node run-newman.js p2p --folder "Metodo/0023/1_validaciones_js"
+node run-newman.js p2p --folder "Metodo/0023/1_validaciones_js/1_identificador"
+node run-newman.js p2p --folder "Metodo/0023/1_validaciones_js/2_qrCode"
+
+# VCN
+node run-newman.js vcn
+# General
+node run-newman.js vcn --folder "General"
+node run-newman.js vcn --folder "General/1_validaciones_js"
+node run-newman.js vcn --folder "General/1_validaciones_js/1_idCanal"
+node run-newman.js vcn --folder "General/1_validaciones_js/2_validador"
+node run-newman.js vcn --folder "General/1_validaciones_js/3_peticion"
+node run-newman.js vcn --folder "General/1_validaciones_js/4_idPeticion"
+node run-newman.js vcn --folder "General/1_validaciones_js/5_solicitudes"
+node run-newman.js vcn --folder "General/2_reglaNegocio"
+node run-newman.js vcn --folder "General/2_reglaNegocio/1_idCanal"
+node run-newman.js vcn --folder "General/2_reglaNegocio/3_peticion"
+node run-newman.js vcn --folder "General/2_reglaNegocio/4_metodo"
+node run-newman.js vcn --folder "Metodo"
+# Metodo 0001
+node run-newman.js vcn --folder "Metodo/0001"
+node run-newman.js vcn --folder "Metodo/0001/1_validaciones_js"
+node run-newman.js vcn --folder "Metodo/0001/1_validaciones_js/1_cuenta"
 ```
+
+`--folder` = misma ruta que la carpeta seleccionada en Postman (sin el nombre de la colección). Ejemplo: en Postman seleccionas `General` → `2_reglaNegocio` → `1_idCanal` → usa `General/2_reglaNegocio/1_idCanal`.
+
+Newman filtra por **nombre** de carpeta: hay dos `1_idCanal` bajo `General` (`1_validaciones_js` y `2_reglaNegocio`); la ruta completa en `--folder` puede incluir ambas.
+
+SSL desactivado por defecto (dev). Añade `--strict-ssl` al final de cualquier línea para exigir certificado.
+
+Si `npm install` falla por certificado corporativo: `$env:NODE_TLS_REJECT_UNAUTHORIZED="0"; npm install`
 
 Comparte con el agente: `logs/resumen-fallos-<suite>.md` (referencia `@Postman/generador/logs/resumen-fallos-p2m.md`).
 
@@ -44,8 +256,6 @@ Genera en `logs/`:
 |---------|----------|
 | `resumen-fallos-<suite>.md` | Pegar o referenciar en el chat con el agente |
 | `ultimo-run-<suite>.json` | Detalle completo Newman |
-
-`<suite>` = `p2m` | `p2p` | `vcn`
 
 ## Convención de escenarios
 
