@@ -152,11 +152,17 @@ function buildResumenMarkdown(suite, folder, summary, jsonPath, mdPath) {
   );
   lines.push(
     "| Tests | " +
-      (stats.assertions ? stats.assertions.total : "?") +
+      (stats.assertions ? stats.assertions.total : stats.tests ? stats.tests.total : "?") +
       " (failed: " +
-      (stats.assertions ? stats.assertions.failed : "?") +
+      (stats.assertions ? stats.assertions.failed : stats.tests ? stats.tests.failed : "?") +
       ") |"
   );
+  if (stats.assertions && stats.assertions.total === 0 && stats.requests && stats.requests.total > 0) {
+    lines.push("");
+    lines.push(
+      "**Atención:** 0 assertions — si usaste `--folder` con ruta, verifica que la subcolección incluya scripts de raíz (`event` de colección). Sin ellos no se ejecuta el flujo cifrar→procesar→descifrar ni las pruebas."
+    );
+  }
   lines.push("| JSON completo | `" + path.relative(ROOT, jsonPath) + "` |");
   lines.push("");
 
@@ -259,12 +265,19 @@ function buildCollectionForFolderPath(collectionPath, folderPath) {
   const folderNode = walkFolderPath(raw.item, segments, collectionPath, folderPath);
   const baseName =
     raw.info && raw.info.name ? raw.info.name : path.basename(collectionPath, ".json");
-  return {
+  const sub = {
     info: Object.assign({}, raw.info, {
       name: baseName + " — " + folderPath,
     }),
     item: [folderNode],
   };
+  if (Array.isArray(raw.event) && raw.event.length > 0) {
+    sub.event = raw.event;
+  }
+  if (Array.isArray(raw.variable) && raw.variable.length > 0) {
+    sub.variable = raw.variable;
+  }
+  return sub;
 }
 
 function resolveFolderTarget(collectionPath, folderPath) {
