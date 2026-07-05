@@ -8,17 +8,22 @@ Snapshot **congelado** de cómo funciona **VCN en producción hoy** (código en 
 
 ## Qué NO es
 
-- **No** es plantilla para copiar ni parchear.
-- **No** es referencia de corrección (esa es P2M/P2P + `tld-api-base` + contrato Postman General).
-- **No** entra en el trabajo **ahora** (Fase A, triage, código en `tld-api-cuenta-nombre`).
+- **No** es plantilla para copiar ni parchear línea a línea.
+- **No** sustituye P2M/P2P + `tld-api-base` para **estructura/código** del refactor.
+- **No** entra en cada triage **salvo** contraste de **reglas de negocio** (como triage #8 validador).
+
+## Principio (acordado 2026-07-05)
+
+**El refactor VCN mejora código; no cambia reglas de negocio con clientes productivos.**  
+Prod define el **contrato de comportamiento** ante clientes; Postman VCN debe converger a eso, no a P2M por defecto.
 
 ## Reglas
 
 | Sí | No |
 |----|-----|
-| Saber que **existe** y dónde está | Abrirlo, diff ni citarlo en triage **salvo que el usuario lo pida** |
-| **NUNCA modificar** el árbol `prod/` | Usarlo para “hacer como prod” o justificar parches |
-| Usarlo **en el futuro** para contrastar prod vs dev vs contrato | Tratarlo como objetivo de deploy |
+| Saber que **existe** y contrastar **reglas de negocio** (solo lectura) | Abrirlo para copiar estructura sin criterio |
+| **NUNCA modificar** el árbol `prod/` | Usarlo para imponer parches o “hacer como P2M” |
+| Contrato productivo vs dev refactor vs Postman | Tratar P2M como contrato VCN |
 
 Si se modifica, deja de ser referencia fiel de producción.
 

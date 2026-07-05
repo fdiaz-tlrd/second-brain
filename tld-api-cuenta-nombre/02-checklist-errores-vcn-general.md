@@ -60,11 +60,11 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 
 ## 2_reglaNegocio/2_validador (nuevo — regla de negocio)
 
-- [ ] **2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]**
-- [ ] **2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]**
-- [ ] **2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]**
+**Newman 2026-07-05T17:38Z:** 0/3 OK. Carpeta **sin pulir** (borrador P2M). Debate: [triage/08-2_validador-reglaNegocio.md](./triage/08-2_validador-reglaNegocio.md).
 
-Escenarios: [`Postman/generador/VCN Escenarios error/General/2_reglaNegocio/2_validador/`](../Postman/generador/VCN%20Escenarios%20error/General/2_reglaNegocio/2_validador/). Copiados desde P2M especiales; **pendiente Newman**. Riesgo: VCN devuelve 404/402 en claro (no `responderValidacionConCifrado` como P2M).
+- [ ] **2.2.1** — 404, env `9999` **OK**; fallo apunta a handler (regla `CFG_CANAL_VALIDADOR`)
+- [ ] **2.2.2** — 402, env `1007` **pendiente revisar datos** canales dev
+- [ ] **2.2.3** — 500 getCanal; env debe ser **`1017`** (hoy `0001` en env)
 
 ---
 

@@ -32,6 +32,7 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | [triage/05-idPeticion-solicitudes.md](./triage/05-idPeticion-solicitudes.md) | Triage #5 — **A4 cerrada** (Newman 66/66 `1_validaciones_js`) |
 | [triage/06-plan-env.md](./triage/06-plan-env.md) | Triage #6 — **A5 cerrada** (Newman 4/4 `1_idCanal`, run 09:28) |
 | [triage/07-getCanal-contrato-http.md](./triage/07-getCanal-contrato-http.md) | Triage #7 — **A7 cerrada** (fix 2.1.3 HTTP 500) |
+| [triage/08-2_validador-reglaNegocio.md](./triage/08-2_validador-reglaNegocio.md) | Triage #8 — **debate abierto** Newman `2_validador` 0/3 (run 17:38Z) |
 | [triage/01-json-entrada.md](./triage/01-json-entrada.md) | Triage #1 — validar que la entrada sea JSON |
 
 ## Referencias externas
@@ -60,6 +61,7 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | 2026-07-05 | **A5 + A7** cerradas — Newman `1_idCanal` **4/4** (run 09:28); commit código `f162fe5` |
 | 2026-07-05 | **Baseline General 78/78** — Newman `4_metodo` 12/12 + regresión `1_validaciones_js` 396/396 |
 | 2026-07-05 | **Siguiente:** Newman `2_reglaNegocio/2_validador` + `Metodo/0001` |
+| 2026-07-05 | **Principio rector:** mejorar código VCN, **no** cambiar reglas de negocio productivas — ver triage `08`, [referencia-produccion.md](./referencia-produccion.md) |
 
 ## Convención de triage
 
