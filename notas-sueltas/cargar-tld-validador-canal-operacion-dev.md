@@ -246,4 +246,178 @@ Write-Host "tld-matriz-planes-canales:     $($matrizPlanesCanales.Count)"
 Write-Host "sinRegistro (avisos):            $($sinRegistro.Count)"
 ```
 
+```powershell
+PS C:\Users\pbmadesarrollo\Documents\GitHub\tld-api-cuenta-nombre> Set-Location C:\AWSdeploy\X
+PS C:\AWSdeploy\X> $Env:AWS_ACCESS_KEY_ID=""
+PS C:\AWSdeploy\X> $Env:AWS_SECRET_ACCESS_KEY=""
+PS C:\AWSdeploy\X> $Env:AWS_SESSION_TOKEN=""
+PS C:\AWSdeploy\X> $Region = "us-east-1"
+PS C:\AWSdeploy\X> $OutputFile = "canales-dev-dynamo-export.json"
+PS C:\AWSdeploy\X> $utf8 = New-Object System.Text.UTF8Encoding $false
+PS C:\AWSdeploy\X>
+PS C:\AWSdeploy\X> # Validadores 510-515 + escenarios error VCN/Postman + validador dummy central
+PS C:\AWSdeploy\X> $Canales = @(
+>>     "0001",
+>>     "1008",
+>>     "1009",
+>>     "1011",
+>>     "1012",
+>>     "1013",
+>>     "1014",
+>>     "1015",
+>>     "1016",
+>>     "1017",
+>>     "1018",
+>>     "1019",
+>>     "1020",
+>>     "1021"
+>> )
+PS C:\AWSdeploy\X>
+PS C:\AWSdeploy\X> function Write-AwsJsonFile {
+>>     param([string]$Path, [string]$Json)
+>>     [System.IO.File]::WriteAllText($Path, $Json, $utf8)
+>> }
+PS C:\AWSdeploy\X>
+PS C:\AWSdeploy\X> function Get-AttrValueFile {
+>>     param([string]$Canal)
+>>     $tmp = Join-Path $env:TEMP "dynamo-attr-$Canal.json"
+>>     Write-AwsJsonFile -Path $tmp -Json (@{ ":v" = @{ S = $Canal } } | ConvertTo-Json -Compress)
+>>     return $tmp
+>> }
+PS C:\AWSdeploy\X>
+PS C:\AWSdeploy\X> function Get-CanalKeyFile {
+>>     param([string]$Canal)
+>>     $tmp = Join-Path $env:TEMP "dynamo-key-$Canal.json"
+>>     Write-AwsJsonFile -Path $tmp -Json (@{ idCanal = @{ S = $Canal } } | ConvertTo-Json -Compress)
+>>     return $tmp
+>> }
+PS C:\AWSdeploy\X>
+PS C:\AWSdeploy\X> $validadorCanal = @()
+PS C:\AWSdeploy\X> $validadorOperacion = @()
+PS C:\AWSdeploy\X> $matrizPlanesCanales = @()
+PS C:\AWSdeploy\X> $sinRegistro = @()
+PS C:\AWSdeploy\X>
+PS C:\AWSdeploy\X> foreach ($Canal in $Canales) {
+>>     Write-Host "Consultando idCanal $Canal ..."
+>>
+>>     $keyFile = Get-CanalKeyFile -Canal $Canal
+>>     $attrFile = Get-AttrValueFile -Canal $Canal
+>>     $attrPath = ($attrFile -replace '\\', '/')
+>>
+>>     $canalItem = aws dynamodb get-item `
+>>         --region $Region `
+>>         --table-name tld-validador-canal `
+>>         --key "file://$($keyFile -replace '\\', '/')" `
+>>         --output json | ConvertFrom-Json
+>>
+>>     if ($canalItem.Item) {
+>>         $validadorCanal += ,@{
+>>             idCanal = $Canal
+>>             item    = $canalItem.Item
+>>         }
+>>     } else {
+>>         $sinRegistro += ,@{
+>>             idCanal = $Canal
+>>             tabla   = "tld-validador-canal"
+>>         }
+>>     }
+>>
+>>     $operItems = aws dynamodb query `
+>>         --region $Region `
+>>         --table-name tld-validador-canal-operacion `
+>>         --key-condition-expression "idCanal = :v" `
+>>         --expression-attribute-values "file://$attrPath" `
+>>         --output json | ConvertFrom-Json
+>>
+>>     if ($operItems.Items -and $operItems.Items.Count -gt 0) {
+>>         foreach ($op in $operItems.Items) {
+>>             $validadorOperacion += ,@{
+>>                 idCanal = $Canal
+>>                 item    = $op
+>>             }
+>>         }
+>>     } else {
+>>         $sinRegistro += ,@{
+>>             idCanal = $Canal
+>>             tabla   = "tld-validador-canal-operacion"
+>>         }
+>>     }
+>>
+>>     $planItems = aws dynamodb scan `
+>>         --region $Region `
+>>         --table-name tld-matriz-planes-canales `
+>>         --filter-expression "idCanal = :v" `
+>>         --expression-attribute-values "file://$attrPath" `
+>>         --output json | ConvertFrom-Json
+>>
+>>     if ($planItems.Items -and $planItems.Items.Count -gt 0) {
+>>         foreach ($pl in $planItems.Items) {
+>>             $matrizPlanesCanales += ,@{
+>>                 idCanal = $Canal
+>>                 item    = $pl
+>>             }
+>>         }
+>>     } else {
+>>         $sinRegistro += ,@{
+>>             idCanal = $Canal
+>>             tabla   = "tld-matriz-planes-canales"
+>>         }
+>>     }
+>> }
+Consultando idCanal 0001 ...
+Consultando idCanal 1008 ...
+Consultando idCanal 1009 ...
+Consultando idCanal 1011 ...
+Consultando idCanal 1012 ...
+Consultando idCanal 1013 ...
+Consultando idCanal 1014 ...
+Consultando idCanal 1015 ...
+Consultando idCanal 1016 ...
+Consultando idCanal 1017 ...
+Consultando idCanal 1018 ...
+Consultando idCanal 1019 ...
+Consultando idCanal 1020 ...
+Consultando idCanal 1021 ...
+PS C:\AWSdeploy\X>
+PS C:\AWSdeploy\X> $export = [ordered]@{
+>>     meta = [ordered]@{
+>>         region           = $Region
+>>         generadoEn       = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+>>         canalesConsultados = $Canales
+>>         tablas           = @(
+>>             "tld-validador-canal",
+>>             "tld-validador-canal-operacion",
+>>             "tld-matriz-planes-canales"
+>>         )
+>>     }
+>>     resumen = [ordered]@{
+>>         "tld-validador-canal"           = $validadorCanal.Count
+>>         "tld-validador-canal-operacion" = $validadorOperacion.Count
+>>         "tld-matriz-planes-canales"     = $matrizPlanesCanales.Count
+>>         sinRegistro                     = $sinRegistro.Count
+>>     }
+>>     "tld-validador-canal"           = $validadorCanal
+>>     "tld-validador-canal-operacion" = $validadorOperacion
+>>     "tld-matriz-planes-canales"     = $matrizPlanesCanales
+>>     sinRegistro                     = $sinRegistro
+>> }
+PS C:\AWSdeploy\X>
+PS C:\AWSdeploy\X> Write-AwsJsonFile -Path (Join-Path (Get-Location) $OutputFile) -Json ($export | ConvertTo-Json -Depth 30)
+PS C:\AWSdeploy\X>
+PS C:\AWSdeploy\X> Write-Host ""
+
+PS C:\AWSdeploy\X> Write-Host "Archivo generado: $OutputFile"
+Archivo generado: canales-dev-dynamo-export.json
+PS C:\AWSdeploy\X> Write-Host "tld-validador-canal:           $($validadorCanal.Count)"
+tld-validador-canal:           14
+PS C:\AWSdeploy\X> Write-Host "tld-validador-canal-operacion: $($validadorOperacion.Count)"
+tld-validador-canal-operacion: 212
+PS C:\AWSdeploy\X> Write-Host "tld-matriz-planes-canales:     $($matrizPlanesCanales.Count)"
+tld-matriz-planes-canales:     10
+PS C:\AWSdeploy\X> Write-Host "sinRegistro (avisos):            $($sinRegistro.Count)"
+sinRegistro (avisos):            9
+PS C:\AWSdeploy\X>
+```
+
 Pega aquí el contenido de `canales-dev-dynamo-export.json` (o súbelo al repo) para actualizar la documentación de canales.
+- `notas-sueltas\canales-dev-dynamo-export.json`
