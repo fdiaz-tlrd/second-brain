@@ -7,18 +7,20 @@ Fuente de verdad para corrección en `tld-api-cuenta-nombre`. Marcar `[x]` al re
 | Fecha (General completo) | 2026-07-05T05:13:10.017Z |
 | Fecha (1_idCanal verificado) | 2026-07-05T07:12:06.803Z |
 | Fecha (2_validador verificado) | 2026-07-05T07:38:17.594Z |
-| Carpeta Postman | `General` / `1_idCanal` (A1) / `2_validador` (A2) |
+| Fecha (3_peticion verificado) | 2026-07-05T07:53:27.900Z |
+| Carpeta Postman | `General` / `1_idCanal` (A1) / `2_validador` (A2) / `3_peticion` (A3) |
 | Tests fallidos (General) | 468 (failed: 153) |
 | Tests fallidos (1_idCanal) | 84 (failed: **0**) |
 | Tests fallidos (2_validador) | 90 (failed: **0**) |
+| Tests fallidos (3_peticion) | 78 (failed: **0**) |
 | Resumen Newman | [`Postman/generador/logs/resumen-fallos-vcn.md`](../Postman/generador/logs/resumen-fallos-vcn.md) |
 | Enfoque | [`01-enfoque-correccion.md`](./01-enfoque-correccion.md) |
 
 | Escenarios General | 78 |
-| Fallan (run General 05:13) | 63 → **39** tras A1+A2 |
-| Pasan (run General 05:13) | 15 → **39** tras A1+A2 |
+| Fallan (run General 05:13) | 63 → **29** tras A1+A2+A3 |
+| Pasan (run General 05:13) | 15 → **49** tras A1+A2+A3 |
 
-**Convención:** *Debe* = contrato Postman. Bloques **1_idCanal** y **2_validador** verificados (runs 07:12 y 07:38); resto según run General 05:13.
+**Convención:** *Debe* = contrato Postman. Bloques **1_idCanal**, **2_validador** y **3_peticion** verificados (runs 07:12, 07:38 y 07:53); resto según run General 05:13.
 
 Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, orden en `app.js`).
 
@@ -32,87 +34,7 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 
 ## 1_validaciones_js/3_peticion
 
-**Estado A3:** código listo — pendiente Newman tras deploy.
-
-- [ ] **1.3.10. peticion — segmento AES en base64 (400)**
-  - Postman: `General/1_validaciones_js/3_peticion`
-  - Escenario: [`1_validaciones_js/3_peticion/3.10_peticion_aes_base64.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/3_peticion/3.10_peticion_aes_base64.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 405, "mensajeError": "Error en descifrado canal emisor" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 405 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.3.11. peticion — segmento AES faltante (400)**
-  - Postman: `General/1_validaciones_js/3_peticion`
-  - Escenario: [`1_validaciones_js/3_peticion/3.11_peticion_segmento_aes_faltante.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/3_peticion/3.11_peticion_segmento_aes_faltante.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 405, "mensajeError": "Error en descifrado canal emisor" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 405 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.3.12. peticion — segmento extra (400)**
-  - Postman: `General/1_validaciones_js/3_peticion`
-  - Escenario: [`1_validaciones_js/3_peticion/3.12_peticion_segmento_extra.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/3_peticion/3.12_peticion_segmento_extra.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 405, "mensajeError": "Error en descifrado canal emisor" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 405 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.3.13. peticion — caracter no hex (400)**
-  - Postman: `General/1_validaciones_js/3_peticion`
-  - Escenario: [`1_validaciones_js/3_peticion/3.13_peticion_caracter_no_hex.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/3_peticion/3.13_peticion_caracter_no_hex.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 405, "mensajeError": "Error en descifrado canal emisor" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 405 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.3.4. peticion — tipo number (400)**
-  - Postman: `General/1_validaciones_js/3_peticion`
-  - Escenario: [`1_validaciones_js/3_peticion/3.4_peticion_tipo_number.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/3_peticion/3.4_peticion_tipo_number.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 405, "mensajeError": "Error en descifrado canal emisor" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 405 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.3.5. peticion — tipo boolean (400)**
-  - Postman: `General/1_validaciones_js/3_peticion`
-  - Escenario: [`1_validaciones_js/3_peticion/3.5_peticion_tipo_boolean.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/3_peticion/3.5_peticion_tipo_boolean.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 405, "mensajeError": "Error en descifrado canal emisor" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 405 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.3.6. peticion — tipo object (400)**
-  - Postman: `General/1_validaciones_js/3_peticion`
-  - Escenario: [`1_validaciones_js/3_peticion/3.6_peticion_tipo_object.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/3_peticion/3.6_peticion_tipo_object.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 405, "mensajeError": "Error en descifrado canal emisor" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 405 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.3.7. peticion — formato hex inválido (400)**
-  - Postman: `General/1_validaciones_js/3_peticion`
-  - Escenario: [`1_validaciones_js/3_peticion/3.7_peticion_formato_hex_invalido.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/3_peticion/3.7_peticion_formato_hex_invalido.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 405, "mensajeError": "Error en descifrado canal emisor" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 405 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.3.8. peticion — IV en base64 (400)**
-  - Postman: `General/1_validaciones_js/3_peticion`
-  - Escenario: [`1_validaciones_js/3_peticion/3.8_peticion_iv_base64.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/3_peticion/3.8_peticion_iv_base64.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 405, "mensajeError": "Error en descifrado canal emisor" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 405 vs 400; mensaje no coincide con catálogo
-
-- [ ] **1.3.9. peticion — IV truncado (400)**
-  - Postman: `General/1_validaciones_js/3_peticion`
-  - Escenario: [`1_validaciones_js/3_peticion/3.9_peticion_iv_truncado.json`](../Postman/generador/VCN Escenarios error/General/1_validaciones_js/3_peticion/3.9_peticion_iv_truncado.json)
-  - **Debe:** HTTP Lambda `400`, `codigoError` `400`, tipo `general`
-  - **Debe mensaje:** `Error en la petición original`
-  - **Está:** `{ "codigoError": 405, "mensajeError": "Error en descifrado canal emisor" }` (HTTP descifrar 200)
-  - **Gap:** codigoError 405 vs 400; mensaje no coincide con catálogo
+**Estado A3 (2026-07-05T07:53Z):** 13/13 en verde — ver sección *Escenarios que pasan* al final.
 
 ## 1_validaciones_js/4_idPeticion
 
@@ -391,10 +313,20 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 - [x] 1.2.14. validador — comillas " no permitidas (400)
 - [x] 1.2.15. validador — distinto a {{CANAL_VALIDADOR}} (CANAL_EMISOR) (400)
 
-### 1_validaciones_js/3_peticion
+### 1_validaciones_js/3_peticion — A3 cerrada (run 2026-07-05T07:53Z)
 - [x] 1.3.1. peticion — propiedad ausente (undefined) (400)
 - [x] 1.3.2. peticion — null (400)
 - [x] 1.3.3. peticion — string vacío (400)
+- [x] 1.3.4. peticion — tipo number (400)
+- [x] 1.3.5. peticion — tipo boolean (400)
+- [x] 1.3.6. peticion — tipo object (400)
+- [x] 1.3.7. peticion — formato hex inválido (400)
+- [x] 1.3.8. peticion — IV en base64 (400)
+- [x] 1.3.9. peticion — IV truncado (400)
+- [x] 1.3.10. peticion — segmento AES en base64 (400)
+- [x] 1.3.11. peticion — segmento AES faltante (400)
+- [x] 1.3.12. peticion — segmento extra (400)
+- [x] 1.3.13. peticion — caracter no hex (400)
 
 ### 2_reglaNegocio/1_idCanal
 - [x] 2.1.1. idCanal — no existe en BD (401)

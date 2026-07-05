@@ -44,7 +44,7 @@ Respuesta esperada: HTTP **400**, `codigoError` **400**, `mensajeError` **`Error
 | A3b | Error → `responderValidacionConCifrado` (reutiliza A2) | `app.js` | **Hecho** |
 | A3c | Mantener early `!body?.peticion` sin cifrar (1.3.1–1.3.3) | `app.js` | Sin cambio |
 
-**Verificación Newman:** pendiente máquina VPN — carpeta `3_peticion` (13 escenarios; 3 ya pasaban).
+**Verificación Newman:** **cumplida** — run `2026-07-05T07:53:27Z`, carpeta `3_peticion` **13/13** (39 requests, 78 assertions, 0 fallos). Log: commit `6b6b844` en `second-brain`.
 
 ## Pruebas
 
@@ -54,4 +54,4 @@ Respuesta esperada: HTTP **400**, `codigoError` **400**, `mensajeError` **`Error
 
 ## Siguiente
 
-Tras cerrar A3: **A4 idPeticion + solicitudes** — `triage/05-idPeticion-solicitudes.md` (pendiente).
+Tras cerrar A3: **A4 idPeticion + solicitudes** — [triage/05-idPeticion-solicitudes.md](./05-idPeticion-solicitudes.md) (**código listo**; pendiente deploy/Newman).

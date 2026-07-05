@@ -75,23 +75,23 @@ flowchart LR
 | **Triage** | [triage/03-validador.md](./triage/03-validador.md) |
 | **Criterio done** | Bloque 1.2 en verde — **cumplido** (run 2026-07-05T07:38Z, 15/15) |
 
-### A3 — petición / descifrado (`1.3_peticion`) — **en curso 2026-07-05**
+### A3 — petición / descifrado (`1.3_peticion`) — **cerrada 2026-07-05**
 
 | | |
 |--|--|
 | **Checklist** | Escenarios 1.3.x |
 | **Cambio** | `validarParametroPeticion`; rama `abrirPaquete` alineada a base (405 vs 400, catálogo) |
 | **Triage** | [triage/04-peticion.md](./triage/04-peticion.md) |
-| **Criterio done** | Bloque 1.3 en verde tras Newman |
+| **Criterio done** | Bloque 1.3 en verde — **cumplido** (run 2026-07-05T07:53Z, 13/13) |
 
-### A4 — idPeticion + solicitudes (`1.4`, `1.5`)
+### A4 — idPeticion + solicitudes (`1.4`, `1.5`) — **en curso 2026-07-05**
 
 | | |
 |--|--|
 | **Checklist** | Escenarios 1.4.x, 1.5.x |
 | **Cambio** | `validarParametroIdPeticion`, `validarParametroSolicitudes`; `CFG_METODOS_LIMITES_JSON` = `{ "0001": 1 }`; validación método 0001 en mapa |
-| **Triage** | `triage/05-idPeticion-solicitudes.md` |
-| **Criterio done** | Bloques 1.4 y 1.5 en verde; **Metodo/0001 cuenta sigue OK** |
+| **Triage** | [triage/05-idPeticion-solicitudes.md](./triage/05-idPeticion-solicitudes.md) |
+| **Criterio done** | Bloques 1.4 y 1.5 en verde; **Metodo/0001 cuenta sigue OK** — pendiente Newman |
 
 ### A5 — plan + env (refactor, no nuevo contrato)
 
