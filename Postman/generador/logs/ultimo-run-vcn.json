@@ -5,11 +5,11 @@
     },
     "item": [
       {
-        "id": "dfb77213-c7e3-47e4-b6d7-ba45955f12b9",
+        "id": "84297f9b-1c19-43ec-a1fe-b6928020d761",
         "name": "2_validador",
         "item": [
           {
-            "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
+            "id": "1fba981a-dc46-4cf0-b993-fa7fe531ac75",
             "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
             "request": {
               "url": {
@@ -47,20 +47,20 @@
               {
                 "listen": "prerequest",
                 "script": {
-                  "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
+                  "id": "43800370-8484-4b40-944f-3bba90bd209f",
                   "type": "text/javascript",
                   "exec": [
                     "pm.variables.set('expectedHttpStatus', 400);",
                     "pm.variables.set('expectedCodigoError', 404);",
                     "pm.variables.set('expectedTipo', 'general');"
                   ],
-                  "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
+                  "_lastExecutionId": "d23bf23d-c559-4e6d-89e7-ce5b3f3d3eb3"
                 }
               }
             ]
           },
           {
-            "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
+            "id": "e94ab860-02e8-498b-bcd8-0fef097ad6eb",
             "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
             "request": {
               "url": {
@@ -98,20 +98,20 @@
               {
                 "listen": "prerequest",
                 "script": {
-                  "id": "60aac396-1134-45e5-b25a-a1315a10b985",
+                  "id": "8e88b0fa-16ca-493b-b914-af5962ca653b",
                   "type": "text/javascript",
                   "exec": [
                     "pm.variables.set('expectedHttpStatus', 400);",
                     "pm.variables.set('expectedCodigoError', 402);",
                     "pm.variables.set('expectedTipo', 'general');"
                   ],
-                  "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
+                  "_lastExecutionId": "2956cd69-26eb-4ec3-b044-06cec5c334a4"
                 }
               }
             ]
           },
           {
-            "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
+            "id": "0ab23943-4299-4f95-834d-44ffc8c54775",
             "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
             "request": {
               "url": {
@@ -149,14 +149,14 @@
               {
                 "listen": "prerequest",
                 "script": {
-                  "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
+                  "id": "8d85aa32-1dcf-412b-962a-900a212234f3",
                   "type": "text/javascript",
                   "exec": [
                     "pm.variables.set('expectedHttpStatus', 500);",
                     "pm.variables.set('expectedCodigoError', 500);",
                     "pm.variables.set('expectedTipo', 'general');"
                   ],
-                  "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
+                  "_lastExecutionId": "5baf2392-2139-4487-bf6a-7665fe2effe1"
                 }
               }
             ]
@@ -169,7 +169,7 @@
       {
         "listen": "prerequest",
         "script": {
-          "id": "83878578-388e-46ab-909c-05685f83901e",
+          "id": "03e8a705-c980-4e02-becc-dad4192fe3df",
           "type": "text/javascript",
           "exec": [
             "// Pre-request de raíz — VCN Escenarios error",
@@ -467,13 +467,13 @@
             "  })();",
             "})();"
           ],
-          "_lastExecutionId": "b2e336f5-faa1-4f7b-a501-ffd4955960f2"
+          "_lastExecutionId": "4e13097c-d494-4ba3-a3d7-a2cf0716e9a1"
         }
       },
       {
         "listen": "test",
         "script": {
-          "id": "affcb9a1-d362-42e1-9cd8-b548ef38589f",
+          "id": "3708469d-d128-42c4-a466-7950b08b9638",
           "type": "text/javascript",
           "exec": [
             "// Post-response (Tests) de raíz — VCN Escenarios error",
@@ -689,7 +689,7 @@
             "  });",
             "})();"
           ],
-          "_lastExecutionId": "583cbc7d-a3c5-416d-8d89-85f8bb649077"
+          "_lastExecutionId": "5ebcdf08-6a5c-4d64-b089-2246a6fe585a"
         }
       }
     ],
@@ -826,12 +826,12 @@
       },
       {
         "type": "any",
-        "value": "1007",
+        "value": "1021",
         "key": "CANAL_VALIDADOR_DESHABILITADO"
       },
       {
         "type": "any",
-        "value": "0001",
+        "value": "1017",
         "key": "CANAL_VALIDADOR_MAL_CONFIGURADO"
       },
       {
@@ -972,7 +972,7 @@
     ]
   },
   "globals": {
-    "id": "3e9e89a3-b731-4eeb-b5b2-053368f5b82b",
+    "id": "c9caf93e-9ec9-4f0f-a0b2-67e29e17e054",
     "values": []
   },
   "run": {
@@ -1010,7 +1010,7 @@
       "assertions": {
         "total": 18,
         "pending": 0,
-        "failed": 7
+        "failed": 0
       },
       "testScripts": {
         "total": 3,
@@ -1024,10 +1024,10 @@
       }
     },
     "timings": {
-      "responseAverage": 698.5555555555555,
-      "responseMin": 171,
-      "responseMax": 1898,
-      "responseSd": 603.5522827599042,
+      "responseAverage": 1109,
+      "responseMin": 191,
+      "responseMax": 4868,
+      "responseSd": 1440.3256576205258,
       "dnsAverage": 0,
       "dnsMin": 0,
       "dnsMax": 0,
@@ -1036,8 +1036,8 @@
       "firstByteMin": 0,
       "firstByteMax": 0,
       "firstByteSd": 0,
-      "started": 1783273098838,
-      "completed": 1783273105479
+      "started": 1783278156459,
+      "completed": 1783278166845
     },
     "executions": [
       {
@@ -1050,11 +1050,11 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "a9d831bc-3b70-4bf7-a7ed-aacf41cfbac7",
-          "httpRequestId": "b991ab6d-2599-44f8-a3fe-c87468adb12d"
+          "ref": "62cc8126-b3e7-4bfc-a5d4-d1b0b4dfe059",
+          "httpRequestId": "0afd3432-6cdb-4bda-915f-83f5075a09bb"
         },
         "item": {
-          "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
+          "id": "1fba981a-dc46-4cf0-b993-fa7fe531ac75",
           "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
           "request": {
             "url": {
@@ -1092,14 +1092,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
+                "id": "43800370-8484-4b40-944f-3bba90bd209f",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 404);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
+                "_lastExecutionId": "d23bf23d-c559-4e6d-89e7-ce5b3f3d3eb3"
               }
             }
           ]
@@ -1150,7 +1150,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "d23cbdaa-8ae5-4db1-850f-90688c818012",
+              "value": "577a49af-02c3-4bbb-8cf4-e87c9645d194",
               "system": true
             },
             {
@@ -1170,18 +1170,18 @@
             },
             {
               "key": "Content-Length",
-              "value": "1234",
+              "value": "56",
               "system": true
             }
           ],
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\"respuesta\":\"c2bd827ca5dcadd2f18d4174729ff287.a6e584667981cfbb6176f69256050c7e69d700c9e0ef03ca02fcd558fe1489cdc59bd739dad7d0e34ba7d9740353413339b71b4a80e22a4c57e76a025b7eb2b730078ee47dbd372384191339f5c1207cf65ac5367f7f9407e86f6d047e77116086df1dd161d28d28277fa3a4757b3dc9bd75b16df456c13982138543e3d25c495193cc603affebd79856589f3d27efe351e42303255b1956de63a4b774efda8e848f8eca788743fb84932a59b6f078f6702a4e457b492a29bfeb3cded180ad7d70a628df31dc0ce8e65e041450b85b1c72a6e8e84d8edf42a70e82b339ae743b185a922f7523d7f8ffa67a340028132e78f56fa96db2f240951cf2ee3b53e03fd89cfcaf3bca470624a963111755dc1f678da7bae37b74208054a4672a628c0e548857ac2e834d18039947db363683d4b9b128892d0abc4fb69f9a6ffc6ae3acaeb4755029c176292a405afdf1ad4c52582da9fa86cabdf48dd14300c0303bffd17b74329de6f010a9269d69528f84184df1ea0658590b465465509a5e3da4eb2b18433086679d7f01babd31b02814a4e8ace48f08d947765047b54309515ea36e603ca260991eb45d7410947efee43120e6e885ad7e3d4804f04effb9a4d03b299cd309833324b6565165d5f4b80793b8563fc6328787682e4da3de35dbc705f076a4dfbf06efb8f5b1b244ce52d261f7b24ea5bbf844a509f41fa5d699fb3e.775314e13de43a4460ec567120fa015b3fda9880d1461d2f0c98de8f828b321f313daa9198b9bba961236bcb1ef0e3397a9ff60b62de8c482567f03a2f14b88e3b8745c57b4864100f3c7a5f660a2d65\"}"
+            "raw": "{\"codigoError\":404,\"mensajeError\":\"Validador no existe\"}"
           }
         },
         "response": {
-          "id": "6c4e742d-b26a-4364-ae1e-01ae4a2917fc",
+          "id": "327d63ab-e1ce-470c-b5d5-5843cff68393",
           "status": "OK",
           "code": 200,
           "header": [
@@ -1195,7 +1195,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:38:07 GMT"
+              "value": "Sun, 05 Jul 2026 19:02:29 GMT"
             },
             {
               "key": "Server",
@@ -1203,15 +1203,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ACxz-GW-oAMFaPQ="
+              "value": "AC-K0FN1IAMF_7w="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "5e2b850b-3ea6-4627-8729-33e9e5069fbc"
+              "value": "d23eb976-33b6-4106-a19e-a06287b7fd5e"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a967f-659349f7705f7c9e27969bc0;Parent=43c8b33d2e40cf1e;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4aaa44-5b80006562f245c50485c59f;Parent=670ea41be28f70a9;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -1221,19 +1221,6 @@
           "stream": {
             "type": "Buffer",
             "data": [
-              123,
-              34,
-              114,
-              101,
-              115,
-              112,
-              117,
-              101,
-              115,
-              116,
-              97,
-              34,
-              58,
               123,
               34,
               99,
@@ -1251,7 +1238,7 @@
               58,
               52,
               48,
-              48,
+              52,
               44,
               34,
               109,
@@ -1269,46 +1256,34 @@
               34,
               58,
               34,
-              69,
-              114,
-              114,
+              86,
+              97,
+              108,
+              105,
+              100,
+              97,
+              100,
               111,
               114,
               32,
-              101,
               110,
+              111,
               32,
-              108,
-              97,
-              32,
-              112,
               101,
+              120,
+              105,
+              115,
               116,
-              105,
-              99,
-              105,
-              195,
-              179,
-              110,
-              32,
-              111,
-              114,
-              105,
-              103,
-              105,
-              110,
-              97,
-              108,
+              101,
               34,
-              125,
               125
             ]
           },
           "cookie": [],
-          "responseTime": 270,
-          "responseSize": 81
+          "responseTime": 1100,
+          "responseSize": 56
         },
-        "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
+        "id": "1fba981a-dc46-4cf0-b993-fa7fe531ac75",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -1328,25 +1303,11 @@
           },
           {
             "assertion": "[General] codigoError = 404",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 4,
-              "test": "[General] codigoError = 404",
-              "message": "expected 400 to equal 404",
-              "stack": "AssertionError: expected 400 to equal 404\n   at Object.eval sandbox-script.js:5:1)"
-            }
+            "skipped": false
           },
           {
             "assertion": "[General] mensajeError = \"Validador no existe\"",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 5,
-              "test": "[General] mensajeError = \"Validador no existe\"",
-              "message": "expected 'Error en la petición original' to equal 'Validador no existe'",
-              "stack": "AssertionError: expected 'Error en la petición original' to equal 'Validador no existe'\n   at Object.eval sandbox-script.js:6:1)"
-            }
+            "skipped": false
           }
         ]
       },
@@ -1360,11 +1321,11 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "a9d831bc-3b70-4bf7-a7ed-aacf41cfbac7",
-          "httpRequestId": "b991ab6d-2599-44f8-a3fe-c87468adb12d"
+          "ref": "62cc8126-b3e7-4bfc-a5d4-d1b0b4dfe059",
+          "httpRequestId": "0afd3432-6cdb-4bda-915f-83f5075a09bb"
         },
         "item": {
-          "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
+          "id": "1fba981a-dc46-4cf0-b993-fa7fe531ac75",
           "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
           "request": {
             "url": {
@@ -1402,14 +1363,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
+                "id": "43800370-8484-4b40-944f-3bba90bd209f",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 404);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
+                "_lastExecutionId": "d23bf23d-c559-4e6d-89e7-ce5b3f3d3eb3"
               }
             }
           ]
@@ -1460,7 +1421,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "d23cbdaa-8ae5-4db1-850f-90688c818012",
+              "value": "577a49af-02c3-4bbb-8cf4-e87c9645d194",
               "system": true
             },
             {
@@ -1480,18 +1441,18 @@
             },
             {
               "key": "Content-Length",
-              "value": "1234",
+              "value": "56",
               "system": true
             }
           ],
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\"respuesta\":\"c2bd827ca5dcadd2f18d4174729ff287.a6e584667981cfbb6176f69256050c7e69d700c9e0ef03ca02fcd558fe1489cdc59bd739dad7d0e34ba7d9740353413339b71b4a80e22a4c57e76a025b7eb2b730078ee47dbd372384191339f5c1207cf65ac5367f7f9407e86f6d047e77116086df1dd161d28d28277fa3a4757b3dc9bd75b16df456c13982138543e3d25c495193cc603affebd79856589f3d27efe351e42303255b1956de63a4b774efda8e848f8eca788743fb84932a59b6f078f6702a4e457b492a29bfeb3cded180ad7d70a628df31dc0ce8e65e041450b85b1c72a6e8e84d8edf42a70e82b339ae743b185a922f7523d7f8ffa67a340028132e78f56fa96db2f240951cf2ee3b53e03fd89cfcaf3bca470624a963111755dc1f678da7bae37b74208054a4672a628c0e548857ac2e834d18039947db363683d4b9b128892d0abc4fb69f9a6ffc6ae3acaeb4755029c176292a405afdf1ad4c52582da9fa86cabdf48dd14300c0303bffd17b74329de6f010a9269d69528f84184df1ea0658590b465465509a5e3da4eb2b18433086679d7f01babd31b02814a4e8ace48f08d947765047b54309515ea36e603ca260991eb45d7410947efee43120e6e885ad7e3d4804f04effb9a4d03b299cd309833324b6565165d5f4b80793b8563fc6328787682e4da3de35dbc705f076a4dfbf06efb8f5b1b244ce52d261f7b24ea5bbf844a509f41fa5d699fb3e.775314e13de43a4460ec567120fa015b3fda9880d1461d2f0c98de8f828b321f313daa9198b9bba961236bcb1ef0e3397a9ff60b62de8c482567f03a2f14b88e3b8745c57b4864100f3c7a5f660a2d65\"}"
+            "raw": "{\"codigoError\":404,\"mensajeError\":\"Validador no existe\"}"
           }
         },
         "response": {
-          "id": "6c4e742d-b26a-4364-ae1e-01ae4a2917fc",
+          "id": "327d63ab-e1ce-470c-b5d5-5843cff68393",
           "status": "OK",
           "code": 200,
           "header": [
@@ -1505,7 +1466,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:38:07 GMT"
+              "value": "Sun, 05 Jul 2026 19:02:29 GMT"
             },
             {
               "key": "Server",
@@ -1513,15 +1474,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ACxz-GW-oAMFaPQ="
+              "value": "AC-K0FN1IAMF_7w="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "5e2b850b-3ea6-4627-8729-33e9e5069fbc"
+              "value": "d23eb976-33b6-4106-a19e-a06287b7fd5e"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a967f-659349f7705f7c9e27969bc0;Parent=43c8b33d2e40cf1e;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4aaa44-5b80006562f245c50485c59f;Parent=670ea41be28f70a9;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -1531,19 +1492,6 @@
           "stream": {
             "type": "Buffer",
             "data": [
-              123,
-              34,
-              114,
-              101,
-              115,
-              112,
-              117,
-              101,
-              115,
-              116,
-              97,
-              34,
-              58,
               123,
               34,
               99,
@@ -1561,7 +1509,7 @@
               58,
               52,
               48,
-              48,
+              52,
               44,
               34,
               109,
@@ -1579,46 +1527,34 @@
               34,
               58,
               34,
-              69,
-              114,
-              114,
+              86,
+              97,
+              108,
+              105,
+              100,
+              97,
+              100,
               111,
               114,
               32,
-              101,
               110,
+              111,
               32,
-              108,
-              97,
-              32,
-              112,
               101,
+              120,
+              105,
+              115,
               116,
-              105,
-              99,
-              105,
-              195,
-              179,
-              110,
-              32,
-              111,
-              114,
-              105,
-              103,
-              105,
-              110,
-              97,
-              108,
+              101,
               34,
-              125,
               125
             ]
           },
           "cookie": [],
-          "responseTime": 270,
-          "responseSize": 81
+          "responseTime": 1100,
+          "responseSize": 56
         },
-        "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
+        "id": "1fba981a-dc46-4cf0-b993-fa7fe531ac75",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -1638,25 +1574,11 @@
           },
           {
             "assertion": "[General] codigoError = 404",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 4,
-              "test": "[General] codigoError = 404",
-              "message": "expected 400 to equal 404",
-              "stack": "AssertionError: expected 400 to equal 404\n   at Object.eval sandbox-script.js:5:1)"
-            }
+            "skipped": false
           },
           {
             "assertion": "[General] mensajeError = \"Validador no existe\"",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 5,
-              "test": "[General] mensajeError = \"Validador no existe\"",
-              "message": "expected 'Error en la petición original' to equal 'Validador no existe'",
-              "stack": "AssertionError: expected 'Error en la petición original' to equal 'Validador no existe'\n   at Object.eval sandbox-script.js:6:1)"
-            }
+            "skipped": false
           }
         ]
       },
@@ -1670,11 +1592,11 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "a9d831bc-3b70-4bf7-a7ed-aacf41cfbac7",
-          "httpRequestId": "b991ab6d-2599-44f8-a3fe-c87468adb12d"
+          "ref": "62cc8126-b3e7-4bfc-a5d4-d1b0b4dfe059",
+          "httpRequestId": "0afd3432-6cdb-4bda-915f-83f5075a09bb"
         },
         "item": {
-          "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
+          "id": "1fba981a-dc46-4cf0-b993-fa7fe531ac75",
           "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
           "request": {
             "url": {
@@ -1712,14 +1634,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
+                "id": "43800370-8484-4b40-944f-3bba90bd209f",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 404);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
+                "_lastExecutionId": "d23bf23d-c559-4e6d-89e7-ce5b3f3d3eb3"
               }
             }
           ]
@@ -1770,7 +1692,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "d23cbdaa-8ae5-4db1-850f-90688c818012",
+              "value": "577a49af-02c3-4bbb-8cf4-e87c9645d194",
               "system": true
             },
             {
@@ -1790,18 +1712,18 @@
             },
             {
               "key": "Content-Length",
-              "value": "1234",
+              "value": "56",
               "system": true
             }
           ],
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\"respuesta\":\"c2bd827ca5dcadd2f18d4174729ff287.a6e584667981cfbb6176f69256050c7e69d700c9e0ef03ca02fcd558fe1489cdc59bd739dad7d0e34ba7d9740353413339b71b4a80e22a4c57e76a025b7eb2b730078ee47dbd372384191339f5c1207cf65ac5367f7f9407e86f6d047e77116086df1dd161d28d28277fa3a4757b3dc9bd75b16df456c13982138543e3d25c495193cc603affebd79856589f3d27efe351e42303255b1956de63a4b774efda8e848f8eca788743fb84932a59b6f078f6702a4e457b492a29bfeb3cded180ad7d70a628df31dc0ce8e65e041450b85b1c72a6e8e84d8edf42a70e82b339ae743b185a922f7523d7f8ffa67a340028132e78f56fa96db2f240951cf2ee3b53e03fd89cfcaf3bca470624a963111755dc1f678da7bae37b74208054a4672a628c0e548857ac2e834d18039947db363683d4b9b128892d0abc4fb69f9a6ffc6ae3acaeb4755029c176292a405afdf1ad4c52582da9fa86cabdf48dd14300c0303bffd17b74329de6f010a9269d69528f84184df1ea0658590b465465509a5e3da4eb2b18433086679d7f01babd31b02814a4e8ace48f08d947765047b54309515ea36e603ca260991eb45d7410947efee43120e6e885ad7e3d4804f04effb9a4d03b299cd309833324b6565165d5f4b80793b8563fc6328787682e4da3de35dbc705f076a4dfbf06efb8f5b1b244ce52d261f7b24ea5bbf844a509f41fa5d699fb3e.775314e13de43a4460ec567120fa015b3fda9880d1461d2f0c98de8f828b321f313daa9198b9bba961236bcb1ef0e3397a9ff60b62de8c482567f03a2f14b88e3b8745c57b4864100f3c7a5f660a2d65\"}"
+            "raw": "{\"codigoError\":404,\"mensajeError\":\"Validador no existe\"}"
           }
         },
         "response": {
-          "id": "6c4e742d-b26a-4364-ae1e-01ae4a2917fc",
+          "id": "327d63ab-e1ce-470c-b5d5-5843cff68393",
           "status": "OK",
           "code": 200,
           "header": [
@@ -1815,7 +1737,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:38:07 GMT"
+              "value": "Sun, 05 Jul 2026 19:02:29 GMT"
             },
             {
               "key": "Server",
@@ -1823,15 +1745,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ACxz-GW-oAMFaPQ="
+              "value": "AC-K0FN1IAMF_7w="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "5e2b850b-3ea6-4627-8729-33e9e5069fbc"
+              "value": "d23eb976-33b6-4106-a19e-a06287b7fd5e"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a967f-659349f7705f7c9e27969bc0;Parent=43c8b33d2e40cf1e;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4aaa44-5b80006562f245c50485c59f;Parent=670ea41be28f70a9;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -1841,19 +1763,6 @@
           "stream": {
             "type": "Buffer",
             "data": [
-              123,
-              34,
-              114,
-              101,
-              115,
-              112,
-              117,
-              101,
-              115,
-              116,
-              97,
-              34,
-              58,
               123,
               34,
               99,
@@ -1871,7 +1780,7 @@
               58,
               52,
               48,
-              48,
+              52,
               44,
               34,
               109,
@@ -1889,46 +1798,34 @@
               34,
               58,
               34,
-              69,
-              114,
-              114,
+              86,
+              97,
+              108,
+              105,
+              100,
+              97,
+              100,
               111,
               114,
               32,
-              101,
               110,
+              111,
               32,
-              108,
-              97,
-              32,
-              112,
               101,
+              120,
+              105,
+              115,
               116,
-              105,
-              99,
-              105,
-              195,
-              179,
-              110,
-              32,
-              111,
-              114,
-              105,
-              103,
-              105,
-              110,
-              97,
-              108,
+              101,
               34,
-              125,
               125
             ]
           },
           "cookie": [],
-          "responseTime": 270,
-          "responseSize": 81
+          "responseTime": 1100,
+          "responseSize": 56
         },
-        "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
+        "id": "1fba981a-dc46-4cf0-b993-fa7fe531ac75",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -1948,39 +1845,25 @@
           },
           {
             "assertion": "[General] codigoError = 404",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 4,
-              "test": "[General] codigoError = 404",
-              "message": "expected 400 to equal 404",
-              "stack": "AssertionError: expected 400 to equal 404\n   at Object.eval sandbox-script.js:5:1)"
-            }
+            "skipped": false
           },
           {
             "assertion": "[General] mensajeError = \"Validador no existe\"",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 5,
-              "test": "[General] mensajeError = \"Validador no existe\"",
-              "message": "expected 'Error en la petición original' to equal 'Validador no existe'",
-              "stack": "AssertionError: expected 'Error en la petición original' to equal 'Validador no existe'\n   at Object.eval sandbox-script.js:6:1)"
-            }
+            "skipped": false
           }
         ]
       },
       {
         "cursor": {
-          "ref": "118c92a5-4e56-41d0-91d7-4041708719a7",
+          "ref": "4cf4853d-1be2-45cb-8a7b-0b9a015ecbd5",
           "length": 3,
           "cycles": 1,
           "position": 1,
           "iteration": 0,
-          "httpRequestId": "ff8aca20-c4dd-4718-82e3-14dbddeaa0b5"
+          "httpRequestId": "d374c753-1d38-4c24-90c7-99439915f2f7"
         },
         "item": {
-          "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
+          "id": "e94ab860-02e8-498b-bcd8-0fef097ad6eb",
           "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
           "request": {
             "url": {
@@ -2018,14 +1901,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "60aac396-1134-45e5-b25a-a1315a10b985",
+                "id": "8e88b0fa-16ca-493b-b914-af5962ca653b",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 402);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
+                "_lastExecutionId": "2956cd69-26eb-4ec3-b044-06cec5c334a4"
               }
             }
           ]
@@ -2076,7 +1959,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "d62012f4-0935-4dc4-aea5-c102fa4dc097",
+              "value": "6c50b295-1b82-4493-950b-22410a1806b0",
               "system": true
             },
             {
@@ -2096,18 +1979,18 @@
             },
             {
               "key": "Content-Length",
-              "value": "1234",
+              "value": "66",
               "system": true
             }
           ],
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\"respuesta\":\"3ed6ee6c192e5924b6816b84162c740c.abc793eb523475768c45fc0e579e03f40cdf607e0aa132c48ffab042fbde184c021d23fac386b13c70b6fa906c361decbf0aad5c91c2e9fd014ae10cdecd948b81ee25eee762afac1f4523eff825bb1e71dc661d241184271e1dac4712a09841f1378393e6f844c148a00e3d0350ca1302613fe03ec9bc0075c875749f33f0a0f71de646fabede13f3748a2ac2ba6dabc1b0984375f185aa9fec7efcb4b8dcaa6c61459570538ccd7fedc55347fc8c635d5fe027d6883522dcb4368700e8fd9352b9e604e0b2276c75952027906e2c7450ad3b6140bff23d1dbfd01d490b3d2e09630d3f24c3d891fe155d2df53137c3635faa7a5928cec821fbbd9b3a9ae3417549e8a469f63ad6b5615b362d01e4c611a6403fd900aaf9b8ed04aa86616fb62041eb83e25ad6b44dcbc8823517d7f7080df46b238f15ed5d6b65c883769406092cae9288e91118dc086e79acdcb61d54cf018ab5de02c5c3cbebc56b479b17193ec94d0202dd90f1aa35b7b36c809b461168761f99be59e3707efdbada461120462dc1141cb069189fa9fb1c5f9b8bfb95f45719fa37da4a51b0e9716dfc926f082dcde6e389220d9c090721651395393cc4f9d0f214cdd18cf7a4ebe69771c7df06821ab25fbf19992062454ede83fe81505ef6fe20e35d36cace2b6a029e08888c88b08d7446230025a9255937756f8a4982af916a56de7ca92e2b5bfdf8.6fed6ec6066cfa55c0dab1ad232aba7412c7de715402f827a95d63e0229dd3d996db310df7f2abb018acd0f45f1258a3624a7be8792fbd764a798ccd4788bdc7e96a0c3af11fc0ccc4356b4d70378709\"}"
+            "raw": "{\"codigoError\":402,\"mensajeError\":\"Canal validador no disponible\"}"
           }
         },
         "response": {
-          "id": "0b001753-5d36-468c-823d-1715c025d908",
+          "id": "d1a69f7e-54ae-4022-90e4-a6be20a22981",
           "status": "OK",
           "code": 200,
           "header": [
@@ -2121,7 +2004,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:38:08 GMT"
+              "value": "Sun, 05 Jul 2026 19:02:30 GMT"
             },
             {
               "key": "Server",
@@ -2129,15 +2012,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ACx0KHKFoAMF1Rg="
+              "value": "AC-LKFtJIAMFrgg="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "b27c028c-33cd-4a2d-bf20-b117696a385c"
+              "value": "9ef5fc4f-44d7-420d-aeaf-1f27519fce7e"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a9680-47d8fc034a63f83e685ddaaf;Parent=1e82cae99a8dc823;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4aaa46-206df76a280a7e0908a03d5c;Parent=5fd41c89d37032f0;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -2147,19 +2030,6 @@
           "stream": {
             "type": "Buffer",
             "data": [
-              123,
-              34,
-              114,
-              101,
-              115,
-              112,
-              117,
-              101,
-              115,
-              116,
-              97,
-              34,
-              58,
               123,
               34,
               99,
@@ -2177,7 +2047,7 @@
               58,
               52,
               48,
-              48,
+              50,
               44,
               34,
               109,
@@ -2195,46 +2065,44 @@
               34,
               58,
               34,
-              69,
-              114,
-              114,
+              67,
+              97,
+              110,
+              97,
+              108,
+              32,
+              118,
+              97,
+              108,
+              105,
+              100,
+              97,
+              100,
               111,
               114,
               32,
-              101,
               110,
+              111,
               32,
-              108,
-              97,
-              32,
+              100,
+              105,
+              115,
               112,
-              101,
-              116,
-              105,
-              99,
-              105,
-              195,
-              179,
-              110,
-              32,
               111,
-              114,
-              105,
-              103,
-              105,
               110,
-              97,
+              105,
+              98,
               108,
+              101,
               34,
-              125,
               125
             ]
           },
           "cookie": [],
-          "responseTime": 306,
-          "responseSize": 81
+          "responseTime": 191,
+          "responseSize": 66
         },
-        "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
+        "id": "e94ab860-02e8-498b-bcd8-0fef097ad6eb",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -2254,39 +2122,25 @@
           },
           {
             "assertion": "[General] codigoError = 402",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 4,
-              "test": "[General] codigoError = 402",
-              "message": "expected 400 to equal 402",
-              "stack": "AssertionError: expected 400 to equal 402\n   at Object.eval sandbox-script.js:5:2)"
-            }
+            "skipped": false
           },
           {
             "assertion": "[General] mensajeError = \"Canal validador no disponible\"",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 5,
-              "test": "[General] mensajeError = \"Canal validador no disponible\"",
-              "message": "expected 'Error en la petición original' to equal 'Canal validador no disponible'",
-              "stack": "AssertionError: expected 'Error en la petición original' to equal 'Canal validador no disponible'\n   at Object.eval sandbox-script.js:6:2)"
-            }
+            "skipped": false
           }
         ]
       },
       {
         "cursor": {
-          "ref": "118c92a5-4e56-41d0-91d7-4041708719a7",
+          "ref": "4cf4853d-1be2-45cb-8a7b-0b9a015ecbd5",
           "length": 3,
           "cycles": 1,
           "position": 1,
           "iteration": 0,
-          "httpRequestId": "ff8aca20-c4dd-4718-82e3-14dbddeaa0b5"
+          "httpRequestId": "d374c753-1d38-4c24-90c7-99439915f2f7"
         },
         "item": {
-          "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
+          "id": "e94ab860-02e8-498b-bcd8-0fef097ad6eb",
           "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
           "request": {
             "url": {
@@ -2324,14 +2178,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "60aac396-1134-45e5-b25a-a1315a10b985",
+                "id": "8e88b0fa-16ca-493b-b914-af5962ca653b",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 402);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
+                "_lastExecutionId": "2956cd69-26eb-4ec3-b044-06cec5c334a4"
               }
             }
           ]
@@ -2382,7 +2236,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "d62012f4-0935-4dc4-aea5-c102fa4dc097",
+              "value": "6c50b295-1b82-4493-950b-22410a1806b0",
               "system": true
             },
             {
@@ -2402,18 +2256,18 @@
             },
             {
               "key": "Content-Length",
-              "value": "1234",
+              "value": "66",
               "system": true
             }
           ],
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\"respuesta\":\"3ed6ee6c192e5924b6816b84162c740c.abc793eb523475768c45fc0e579e03f40cdf607e0aa132c48ffab042fbde184c021d23fac386b13c70b6fa906c361decbf0aad5c91c2e9fd014ae10cdecd948b81ee25eee762afac1f4523eff825bb1e71dc661d241184271e1dac4712a09841f1378393e6f844c148a00e3d0350ca1302613fe03ec9bc0075c875749f33f0a0f71de646fabede13f3748a2ac2ba6dabc1b0984375f185aa9fec7efcb4b8dcaa6c61459570538ccd7fedc55347fc8c635d5fe027d6883522dcb4368700e8fd9352b9e604e0b2276c75952027906e2c7450ad3b6140bff23d1dbfd01d490b3d2e09630d3f24c3d891fe155d2df53137c3635faa7a5928cec821fbbd9b3a9ae3417549e8a469f63ad6b5615b362d01e4c611a6403fd900aaf9b8ed04aa86616fb62041eb83e25ad6b44dcbc8823517d7f7080df46b238f15ed5d6b65c883769406092cae9288e91118dc086e79acdcb61d54cf018ab5de02c5c3cbebc56b479b17193ec94d0202dd90f1aa35b7b36c809b461168761f99be59e3707efdbada461120462dc1141cb069189fa9fb1c5f9b8bfb95f45719fa37da4a51b0e9716dfc926f082dcde6e389220d9c090721651395393cc4f9d0f214cdd18cf7a4ebe69771c7df06821ab25fbf19992062454ede83fe81505ef6fe20e35d36cace2b6a029e08888c88b08d7446230025a9255937756f8a4982af916a56de7ca92e2b5bfdf8.6fed6ec6066cfa55c0dab1ad232aba7412c7de715402f827a95d63e0229dd3d996db310df7f2abb018acd0f45f1258a3624a7be8792fbd764a798ccd4788bdc7e96a0c3af11fc0ccc4356b4d70378709\"}"
+            "raw": "{\"codigoError\":402,\"mensajeError\":\"Canal validador no disponible\"}"
           }
         },
         "response": {
-          "id": "0b001753-5d36-468c-823d-1715c025d908",
+          "id": "d1a69f7e-54ae-4022-90e4-a6be20a22981",
           "status": "OK",
           "code": 200,
           "header": [
@@ -2427,7 +2281,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:38:08 GMT"
+              "value": "Sun, 05 Jul 2026 19:02:30 GMT"
             },
             {
               "key": "Server",
@@ -2435,15 +2289,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ACx0KHKFoAMF1Rg="
+              "value": "AC-LKFtJIAMFrgg="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "b27c028c-33cd-4a2d-bf20-b117696a385c"
+              "value": "9ef5fc4f-44d7-420d-aeaf-1f27519fce7e"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a9680-47d8fc034a63f83e685ddaaf;Parent=1e82cae99a8dc823;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4aaa46-206df76a280a7e0908a03d5c;Parent=5fd41c89d37032f0;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -2453,19 +2307,6 @@
           "stream": {
             "type": "Buffer",
             "data": [
-              123,
-              34,
-              114,
-              101,
-              115,
-              112,
-              117,
-              101,
-              115,
-              116,
-              97,
-              34,
-              58,
               123,
               34,
               99,
@@ -2483,7 +2324,7 @@
               58,
               52,
               48,
-              48,
+              50,
               44,
               34,
               109,
@@ -2501,46 +2342,44 @@
               34,
               58,
               34,
-              69,
-              114,
-              114,
+              67,
+              97,
+              110,
+              97,
+              108,
+              32,
+              118,
+              97,
+              108,
+              105,
+              100,
+              97,
+              100,
               111,
               114,
               32,
-              101,
               110,
+              111,
               32,
-              108,
-              97,
-              32,
+              100,
+              105,
+              115,
               112,
-              101,
-              116,
-              105,
-              99,
-              105,
-              195,
-              179,
-              110,
-              32,
               111,
-              114,
-              105,
-              103,
-              105,
               110,
-              97,
+              105,
+              98,
               108,
+              101,
               34,
-              125,
               125
             ]
           },
           "cookie": [],
-          "responseTime": 306,
-          "responseSize": 81
+          "responseTime": 191,
+          "responseSize": 66
         },
-        "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
+        "id": "e94ab860-02e8-498b-bcd8-0fef097ad6eb",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -2560,39 +2399,25 @@
           },
           {
             "assertion": "[General] codigoError = 402",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 4,
-              "test": "[General] codigoError = 402",
-              "message": "expected 400 to equal 402",
-              "stack": "AssertionError: expected 400 to equal 402\n   at Object.eval sandbox-script.js:5:2)"
-            }
+            "skipped": false
           },
           {
             "assertion": "[General] mensajeError = \"Canal validador no disponible\"",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 5,
-              "test": "[General] mensajeError = \"Canal validador no disponible\"",
-              "message": "expected 'Error en la petición original' to equal 'Canal validador no disponible'",
-              "stack": "AssertionError: expected 'Error en la petición original' to equal 'Canal validador no disponible'\n   at Object.eval sandbox-script.js:6:2)"
-            }
+            "skipped": false
           }
         ]
       },
       {
         "cursor": {
-          "ref": "118c92a5-4e56-41d0-91d7-4041708719a7",
+          "ref": "4cf4853d-1be2-45cb-8a7b-0b9a015ecbd5",
           "length": 3,
           "cycles": 1,
           "position": 1,
           "iteration": 0,
-          "httpRequestId": "ff8aca20-c4dd-4718-82e3-14dbddeaa0b5"
+          "httpRequestId": "d374c753-1d38-4c24-90c7-99439915f2f7"
         },
         "item": {
-          "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
+          "id": "e94ab860-02e8-498b-bcd8-0fef097ad6eb",
           "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
           "request": {
             "url": {
@@ -2630,14 +2455,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "60aac396-1134-45e5-b25a-a1315a10b985",
+                "id": "8e88b0fa-16ca-493b-b914-af5962ca653b",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 402);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
+                "_lastExecutionId": "2956cd69-26eb-4ec3-b044-06cec5c334a4"
               }
             }
           ]
@@ -2688,7 +2513,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "d62012f4-0935-4dc4-aea5-c102fa4dc097",
+              "value": "6c50b295-1b82-4493-950b-22410a1806b0",
               "system": true
             },
             {
@@ -2708,18 +2533,18 @@
             },
             {
               "key": "Content-Length",
-              "value": "1234",
+              "value": "66",
               "system": true
             }
           ],
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\"respuesta\":\"3ed6ee6c192e5924b6816b84162c740c.abc793eb523475768c45fc0e579e03f40cdf607e0aa132c48ffab042fbde184c021d23fac386b13c70b6fa906c361decbf0aad5c91c2e9fd014ae10cdecd948b81ee25eee762afac1f4523eff825bb1e71dc661d241184271e1dac4712a09841f1378393e6f844c148a00e3d0350ca1302613fe03ec9bc0075c875749f33f0a0f71de646fabede13f3748a2ac2ba6dabc1b0984375f185aa9fec7efcb4b8dcaa6c61459570538ccd7fedc55347fc8c635d5fe027d6883522dcb4368700e8fd9352b9e604e0b2276c75952027906e2c7450ad3b6140bff23d1dbfd01d490b3d2e09630d3f24c3d891fe155d2df53137c3635faa7a5928cec821fbbd9b3a9ae3417549e8a469f63ad6b5615b362d01e4c611a6403fd900aaf9b8ed04aa86616fb62041eb83e25ad6b44dcbc8823517d7f7080df46b238f15ed5d6b65c883769406092cae9288e91118dc086e79acdcb61d54cf018ab5de02c5c3cbebc56b479b17193ec94d0202dd90f1aa35b7b36c809b461168761f99be59e3707efdbada461120462dc1141cb069189fa9fb1c5f9b8bfb95f45719fa37da4a51b0e9716dfc926f082dcde6e389220d9c090721651395393cc4f9d0f214cdd18cf7a4ebe69771c7df06821ab25fbf19992062454ede83fe81505ef6fe20e35d36cace2b6a029e08888c88b08d7446230025a9255937756f8a4982af916a56de7ca92e2b5bfdf8.6fed6ec6066cfa55c0dab1ad232aba7412c7de715402f827a95d63e0229dd3d996db310df7f2abb018acd0f45f1258a3624a7be8792fbd764a798ccd4788bdc7e96a0c3af11fc0ccc4356b4d70378709\"}"
+            "raw": "{\"codigoError\":402,\"mensajeError\":\"Canal validador no disponible\"}"
           }
         },
         "response": {
-          "id": "0b001753-5d36-468c-823d-1715c025d908",
+          "id": "d1a69f7e-54ae-4022-90e4-a6be20a22981",
           "status": "OK",
           "code": 200,
           "header": [
@@ -2733,7 +2558,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:38:08 GMT"
+              "value": "Sun, 05 Jul 2026 19:02:30 GMT"
             },
             {
               "key": "Server",
@@ -2741,15 +2566,292 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ACx0KHKFoAMF1Rg="
+              "value": "AC-LKFtJIAMFrgg="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "b27c028c-33cd-4a2d-bf20-b117696a385c"
+              "value": "9ef5fc4f-44d7-420d-aeaf-1f27519fce7e"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a9680-47d8fc034a63f83e685ddaaf;Parent=1e82cae99a8dc823;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4aaa46-206df76a280a7e0908a03d5c;Parent=5fd41c89d37032f0;Sampled=0;Lineage=1:6778dd49:0"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              99,
+              111,
+              100,
+              105,
+              103,
+              111,
+              69,
+              114,
+              114,
+              111,
+              114,
+              34,
+              58,
+              52,
+              48,
+              50,
+              44,
+              34,
+              109,
+              101,
+              110,
+              115,
+              97,
+              106,
+              101,
+              69,
+              114,
+              114,
+              111,
+              114,
+              34,
+              58,
+              34,
+              67,
+              97,
+              110,
+              97,
+              108,
+              32,
+              118,
+              97,
+              108,
+              105,
+              100,
+              97,
+              100,
+              111,
+              114,
+              32,
+              110,
+              111,
+              32,
+              100,
+              105,
+              115,
+              112,
+              111,
+              110,
+              105,
+              98,
+              108,
+              101,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 191,
+          "responseSize": 66
+        },
+        "id": "e94ab860-02e8-498b-bcd8-0fef097ad6eb",
+        "assertions": [
+          {
+            "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
+            "skipped": false
+          },
+          {
+            "assertion": "[Dummy /descifrar] HTTP status 2xx (real: 200)",
+            "skipped": false
+          },
+          {
+            "assertion": "[Dummy /descifrar] respuesta JSON parseable",
+            "skipped": false
+          },
+          {
+            "assertion": "[General] catalogo resuelve mensaje para codigo 402",
+            "skipped": false
+          },
+          {
+            "assertion": "[General] codigoError = 402",
+            "skipped": false
+          },
+          {
+            "assertion": "[General] mensajeError = \"Canal validador no disponible\"",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "35962979-6cbd-45ac-8beb-69f395f58e4a",
+          "length": 3,
+          "cycles": 1,
+          "position": 2,
+          "iteration": 0,
+          "httpRequestId": "e2c41a51-7878-4af9-8398-a77636dfc084"
+        },
+        "item": {
+          "id": "0ab23943-4299-4f95-834d-44ffc8c54775",
+          "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
+          "request": {
+            "url": {
+              "path": [
+                "descifrar"
+              ],
+              "host": [
+                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+              ],
+              "query": [
+                {
+                  "key": "tld",
+                  "value": "0"
+                },
+                {
+                  "key": "algoritmoCifrado",
+                  "value": "aes-256-cbc"
+                }
+              ],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_MAL_CONFIGURADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "8d85aa32-1dcf-412b-962a-900a212234f3",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.variables.set('expectedHttpStatus', 500);",
+                  "pm.variables.set('expectedCodigoError', 500);",
+                  "pm.variables.set('expectedTipo', 'general');"
+                ],
+                "_lastExecutionId": "5baf2392-2139-4487-bf6a-7665fe2effe1"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "https",
+            "path": [
+              "descifrar"
+            ],
+            "host": [
+              "tld-validador-dummy",
+              "dev",
+              "telered",
+              "internal"
+            ],
+            "query": [
+              {
+                "key": "tld",
+                "value": "0"
+              },
+              {
+                "key": "algoritmoCifrado",
+                "value": "aes-256-cbc"
+              }
+            ],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "68e3dc39-9a07-48d7-80b0-59eaa638b217",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "tld-validador-dummy.dev.telered.internal",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "1202",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\"respuesta\":\"50299afc1c0e05a7b62428d541ed5433.c2ae4b9b4697489a4606d881f0c2191fab93cadcdf1940d28ed8d331c0c2b6cc2af11eea341f6120a785dc92055154d836843cf32f10757a724f2c62a98a37e2e572bc83d40f96add10a474e2a11c573a70a53023ac5a92f86cf0688de301ff12f224e4f6ffbdc5f417681e39104630ad88246fe19e5953f12c1ad832afd646596fec3957555a096cf34c0dfb57b46d0b2b4a4f10261caca1a5724935ade5a9c7949073710ff72868b026d7e04954e9816757965d926e3b3521f9fdba114bd8a6451061070cdcd9c8d4131e4a3ff82c1e49272842012c696715ddb70683aa1d799d24c0596867eb2c87df506e376aacc8dc6eddb0b408a1aca48ffb0c194631cd98d3fdf198e1a44073b19f45e93377fcc544ad0e6e163f95a769fec98984b81d24889e9e330dd528c87e3ac65000fd9a083af8ad0d74ad2a8e5cee938e8c1847c8ba7c6d53a456af103e1021b165b3e2061746e1129ff655e3e555243547c83a012ea2f7b4a1522edb50d09409136f6dd98f548a75134556b89f3aeeca5dbd4ea9df377f6265cb65bad7471d9d8cd11d86d105ebc0e7884ff0bb75aa736ec2befa95336f4db2bb92e3450c4108934f5b2ca7ebf535a66895ae7ccf9bbc699856711285e4392968d17a2d360db7a6aa4dc3d0ab3259725db0fa3ab491e7e482450979c8b15ecb5bde10fe64c15439ea420af53cac639b7e4a7d19c1518032a56.fce1615c5f64fdde27d959e98d1a37afcc7cd21eba90262d461b44c2de02b4eeecc9ea83482945471e52f03151048fcbc672b7cb905457f213e0ea724cf69432\"}"
+          }
+        },
+        "response": {
+          "id": "0c9bc251-d082-42bf-ab90-a48136a3d80f",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Date",
+              "value": "Sun, 05 Jul 2026 19:02:31 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "Server"
+            },
+            {
+              "key": "X-Amz-Apigw-Id",
+              "value": "AC-LTFTuIAMF4tw="
+            },
+            {
+              "key": "X-Amzn-Requestid",
+              "value": "50114e62-7c3d-4ae7-9aa5-f95393bd9d22"
+            },
+            {
+              "key": "X-Amzn-Trace-Id",
+              "value": "Root=1-6a4aaa47-3daaa0cf54e134a734e98270;Parent=1c087b0104ef08bf;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -2787,7 +2889,7 @@
               114,
               34,
               58,
-              52,
+              53,
               48,
               48,
               44,
@@ -2813,43 +2915,26 @@
               111,
               114,
               32,
-              101,
+              105,
               110,
-              32,
-              108,
-              97,
-              32,
-              112,
-              101,
               116,
-              105,
-              99,
-              105,
-              195,
-              179,
-              110,
-              32,
-              111,
+              101,
               114,
-              105,
-              103,
-              105,
               110,
-              97,
-              108,
+              111,
               34,
               125,
               125
             ]
           },
           "cookie": [],
-          "responseTime": 306,
-          "responseSize": 81
+          "responseTime": 240,
+          "responseSize": 64
         },
-        "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
+        "id": "0ab23943-4299-4f95-834d-44ffc8c54775",
         "assertions": [
           {
-            "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
+            "assertion": "[Lambda VCN] HTTP status = 500 (real: 500)",
             "skipped": false
           },
           {
@@ -2861,44 +2946,30 @@
             "skipped": false
           },
           {
-            "assertion": "[General] catalogo resuelve mensaje para codigo 402",
+            "assertion": "[General] catalogo resuelve mensaje para codigo 500",
             "skipped": false
           },
           {
-            "assertion": "[General] codigoError = 402",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 4,
-              "test": "[General] codigoError = 402",
-              "message": "expected 400 to equal 402",
-              "stack": "AssertionError: expected 400 to equal 402\n   at Object.eval sandbox-script.js:5:2)"
-            }
+            "assertion": "[General] codigoError = 500",
+            "skipped": false
           },
           {
-            "assertion": "[General] mensajeError = \"Canal validador no disponible\"",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 5,
-              "test": "[General] mensajeError = \"Canal validador no disponible\"",
-              "message": "expected 'Error en la petición original' to equal 'Canal validador no disponible'",
-              "stack": "AssertionError: expected 'Error en la petición original' to equal 'Canal validador no disponible'\n   at Object.eval sandbox-script.js:6:2)"
-            }
+            "assertion": "[General] mensajeError = \"Error interno\"",
+            "skipped": false
           }
         ]
       },
       {
         "cursor": {
-          "ref": "eea508ee-f2e2-4ee2-a337-89f8921d13fa",
+          "ref": "35962979-6cbd-45ac-8beb-69f395f58e4a",
           "length": 3,
           "cycles": 1,
           "position": 2,
           "iteration": 0,
-          "httpRequestId": "6f025cc7-82d5-4179-8af0-b322c6b0689f"
+          "httpRequestId": "e2c41a51-7878-4af9-8398-a77636dfc084"
         },
         "item": {
-          "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
+          "id": "0ab23943-4299-4f95-834d-44ffc8c54775",
           "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
           "request": {
             "url": {
@@ -2936,14 +3007,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
+                "id": "8d85aa32-1dcf-412b-962a-900a212234f3",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 500);",
                   "pm.variables.set('expectedCodigoError', 500);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
+                "_lastExecutionId": "5baf2392-2139-4487-bf6a-7665fe2effe1"
               }
             }
           ]
@@ -2994,7 +3065,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "8311ae69-7688-44a4-bf6e-b0b0b6ace76f",
+              "value": "68e3dc39-9a07-48d7-80b0-59eaa638b217",
               "system": true
             },
             {
@@ -3014,18 +3085,18 @@
             },
             {
               "key": "Content-Length",
-              "value": "75",
+              "value": "1202",
               "system": true
             }
           ],
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\"codigoError\":509,\"mensajeError\":\"Error inesperado en el Canal Validador\"}"
+            "raw": "{\"respuesta\":\"50299afc1c0e05a7b62428d541ed5433.c2ae4b9b4697489a4606d881f0c2191fab93cadcdf1940d28ed8d331c0c2b6cc2af11eea341f6120a785dc92055154d836843cf32f10757a724f2c62a98a37e2e572bc83d40f96add10a474e2a11c573a70a53023ac5a92f86cf0688de301ff12f224e4f6ffbdc5f417681e39104630ad88246fe19e5953f12c1ad832afd646596fec3957555a096cf34c0dfb57b46d0b2b4a4f10261caca1a5724935ade5a9c7949073710ff72868b026d7e04954e9816757965d926e3b3521f9fdba114bd8a6451061070cdcd9c8d4131e4a3ff82c1e49272842012c696715ddb70683aa1d799d24c0596867eb2c87df506e376aacc8dc6eddb0b408a1aca48ffb0c194631cd98d3fdf198e1a44073b19f45e93377fcc544ad0e6e163f95a769fec98984b81d24889e9e330dd528c87e3ac65000fd9a083af8ad0d74ad2a8e5cee938e8c1847c8ba7c6d53a456af103e1021b165b3e2061746e1129ff655e3e555243547c83a012ea2f7b4a1522edb50d09409136f6dd98f548a75134556b89f3aeeca5dbd4ea9df377f6265cb65bad7471d9d8cd11d86d105ebc0e7884ff0bb75aa736ec2befa95336f4db2bb92e3450c4108934f5b2ca7ebf535a66895ae7ccf9bbc699856711285e4392968d17a2d360db7a6aa4dc3d0ab3259725db0fa3ab491e7e482450979c8b15ecb5bde10fe64c15439ea420af53cac639b7e4a7d19c1518032a56.fce1615c5f64fdde27d959e98d1a37afcc7cd21eba90262d461b44c2de02b4eeecc9ea83482945471e52f03151048fcbc672b7cb905457f213e0ea724cf69432\"}"
           }
         },
         "response": {
-          "id": "602a26b9-62d6-49e5-bd3a-0e0ca0bed101",
+          "id": "0c9bc251-d082-42bf-ab90-a48136a3d80f",
           "status": "OK",
           "code": 200,
           "header": [
@@ -3039,7 +3110,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:38:10 GMT"
+              "value": "Sun, 05 Jul 2026 19:02:31 GMT"
             },
             {
               "key": "Server",
@@ -3047,15 +3118,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ACx0eF-0IAMFjRQ="
+              "value": "AC-LTFTuIAMF4tw="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "5a73e96e-07dd-4684-9582-d5d1e5fdc686"
+              "value": "50114e62-7c3d-4ae7-9aa5-f95393bd9d22"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a9682-4fdfd88f2c1779883bff44ab;Parent=7454152e698eb724;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4aaa47-3daaa0cf54e134a734e98270;Parent=1c087b0104ef08bf;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -3065,6 +3136,19 @@
           "stream": {
             "type": "Buffer",
             "data": [
+              123,
+              34,
+              114,
+              101,
+              115,
+              112,
+              117,
+              101,
+              115,
+              116,
+              97,
+              34,
+              58,
               123,
               34,
               99,
@@ -3082,7 +3166,7 @@
               58,
               53,
               48,
-              57,
+              48,
               44,
               34,
               109,
@@ -3108,56 +3192,25 @@
               32,
               105,
               110,
-              101,
-              115,
-              112,
+              116,
               101,
               114,
-              97,
-              100,
-              111,
-              32,
-              101,
               110,
-              32,
-              101,
-              108,
-              32,
-              67,
-              97,
-              110,
-              97,
-              108,
-              32,
-              86,
-              97,
-              108,
-              105,
-              100,
-              97,
-              100,
               111,
-              114,
               34,
+              125,
               125
             ]
           },
           "cookie": [],
-          "responseTime": 171,
-          "responseSize": 75
+          "responseTime": 240,
+          "responseSize": 64
         },
-        "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
+        "id": "0ab23943-4299-4f95-834d-44ffc8c54775",
         "assertions": [
           {
-            "assertion": "[Lambda VCN] HTTP status = 500 (real: 200)",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 0,
-              "test": "[Lambda VCN] HTTP status = 500 (real: 200)",
-              "message": "expected 200 to equal 500",
-              "stack": "AssertionError: expected 200 to equal 500\n   at Object.eval sandbox-script.js:1:3)"
-            }
+            "assertion": "[Lambda VCN] HTTP status = 500 (real: 500)",
+            "skipped": false
           },
           {
             "assertion": "[Dummy /descifrar] HTTP status 2xx (real: 200)",
@@ -3173,39 +3226,25 @@
           },
           {
             "assertion": "[General] codigoError = 500",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 4,
-              "test": "[General] codigoError = 500",
-              "message": "expected 509 to equal 500",
-              "stack": "AssertionError: expected 509 to equal 500\n   at Object.eval sandbox-script.js:5:3)"
-            }
+            "skipped": false
           },
           {
             "assertion": "[General] mensajeError = \"Error interno\"",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 5,
-              "test": "[General] mensajeError = \"Error interno\"",
-              "message": "expected 'Error inesperado en el Canal Validador' to equal 'Error interno'",
-              "stack": "AssertionError: expected 'Error inesperado en el Canal Validador' to equal 'Error interno'\n   at Object.eval sandbox-script.js:6:3)"
-            }
+            "skipped": false
           }
         ]
       },
       {
         "cursor": {
-          "ref": "eea508ee-f2e2-4ee2-a337-89f8921d13fa",
+          "ref": "35962979-6cbd-45ac-8beb-69f395f58e4a",
           "length": 3,
           "cycles": 1,
           "position": 2,
           "iteration": 0,
-          "httpRequestId": "6f025cc7-82d5-4179-8af0-b322c6b0689f"
+          "httpRequestId": "e2c41a51-7878-4af9-8398-a77636dfc084"
         },
         "item": {
-          "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
+          "id": "0ab23943-4299-4f95-834d-44ffc8c54775",
           "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
           "request": {
             "url": {
@@ -3243,14 +3282,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
+                "id": "8d85aa32-1dcf-412b-962a-900a212234f3",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 500);",
                   "pm.variables.set('expectedCodigoError', 500);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
+                "_lastExecutionId": "5baf2392-2139-4487-bf6a-7665fe2effe1"
               }
             }
           ]
@@ -3301,7 +3340,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "8311ae69-7688-44a4-bf6e-b0b0b6ace76f",
+              "value": "68e3dc39-9a07-48d7-80b0-59eaa638b217",
               "system": true
             },
             {
@@ -3321,18 +3360,18 @@
             },
             {
               "key": "Content-Length",
-              "value": "75",
+              "value": "1202",
               "system": true
             }
           ],
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\"codigoError\":509,\"mensajeError\":\"Error inesperado en el Canal Validador\"}"
+            "raw": "{\"respuesta\":\"50299afc1c0e05a7b62428d541ed5433.c2ae4b9b4697489a4606d881f0c2191fab93cadcdf1940d28ed8d331c0c2b6cc2af11eea341f6120a785dc92055154d836843cf32f10757a724f2c62a98a37e2e572bc83d40f96add10a474e2a11c573a70a53023ac5a92f86cf0688de301ff12f224e4f6ffbdc5f417681e39104630ad88246fe19e5953f12c1ad832afd646596fec3957555a096cf34c0dfb57b46d0b2b4a4f10261caca1a5724935ade5a9c7949073710ff72868b026d7e04954e9816757965d926e3b3521f9fdba114bd8a6451061070cdcd9c8d4131e4a3ff82c1e49272842012c696715ddb70683aa1d799d24c0596867eb2c87df506e376aacc8dc6eddb0b408a1aca48ffb0c194631cd98d3fdf198e1a44073b19f45e93377fcc544ad0e6e163f95a769fec98984b81d24889e9e330dd528c87e3ac65000fd9a083af8ad0d74ad2a8e5cee938e8c1847c8ba7c6d53a456af103e1021b165b3e2061746e1129ff655e3e555243547c83a012ea2f7b4a1522edb50d09409136f6dd98f548a75134556b89f3aeeca5dbd4ea9df377f6265cb65bad7471d9d8cd11d86d105ebc0e7884ff0bb75aa736ec2befa95336f4db2bb92e3450c4108934f5b2ca7ebf535a66895ae7ccf9bbc699856711285e4392968d17a2d360db7a6aa4dc3d0ab3259725db0fa3ab491e7e482450979c8b15ecb5bde10fe64c15439ea420af53cac639b7e4a7d19c1518032a56.fce1615c5f64fdde27d959e98d1a37afcc7cd21eba90262d461b44c2de02b4eeecc9ea83482945471e52f03151048fcbc672b7cb905457f213e0ea724cf69432\"}"
           }
         },
         "response": {
-          "id": "602a26b9-62d6-49e5-bd3a-0e0ca0bed101",
+          "id": "0c9bc251-d082-42bf-ab90-a48136a3d80f",
           "status": "OK",
           "code": 200,
           "header": [
@@ -3346,7 +3385,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:38:10 GMT"
+              "value": "Sun, 05 Jul 2026 19:02:31 GMT"
             },
             {
               "key": "Server",
@@ -3354,15 +3393,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ACx0eF-0IAMFjRQ="
+              "value": "AC-LTFTuIAMF4tw="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "5a73e96e-07dd-4684-9582-d5d1e5fdc686"
+              "value": "50114e62-7c3d-4ae7-9aa5-f95393bd9d22"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a9682-4fdfd88f2c1779883bff44ab;Parent=7454152e698eb724;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4aaa47-3daaa0cf54e134a734e98270;Parent=1c087b0104ef08bf;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -3372,6 +3411,19 @@
           "stream": {
             "type": "Buffer",
             "data": [
+              123,
+              34,
+              114,
+              101,
+              115,
+              112,
+              117,
+              101,
+              115,
+              116,
+              97,
+              34,
+              58,
               123,
               34,
               99,
@@ -3389,7 +3441,7 @@
               58,
               53,
               48,
-              57,
+              48,
               44,
               34,
               109,
@@ -3415,56 +3467,25 @@
               32,
               105,
               110,
-              101,
-              115,
-              112,
+              116,
               101,
               114,
-              97,
-              100,
-              111,
-              32,
-              101,
               110,
-              32,
-              101,
-              108,
-              32,
-              67,
-              97,
-              110,
-              97,
-              108,
-              32,
-              86,
-              97,
-              108,
-              105,
-              100,
-              97,
-              100,
               111,
-              114,
               34,
+              125,
               125
             ]
           },
           "cookie": [],
-          "responseTime": 171,
-          "responseSize": 75
+          "responseTime": 240,
+          "responseSize": 64
         },
-        "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
+        "id": "0ab23943-4299-4f95-834d-44ffc8c54775",
         "assertions": [
           {
-            "assertion": "[Lambda VCN] HTTP status = 500 (real: 200)",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 0,
-              "test": "[Lambda VCN] HTTP status = 500 (real: 200)",
-              "message": "expected 200 to equal 500",
-              "stack": "AssertionError: expected 200 to equal 500\n   at Object.eval sandbox-script.js:1:3)"
-            }
+            "assertion": "[Lambda VCN] HTTP status = 500 (real: 500)",
+            "skipped": false
           },
           {
             "assertion": "[Dummy /descifrar] HTTP status 2xx (real: 200)",
@@ -3480,2064 +3501,19 @@
           },
           {
             "assertion": "[General] codigoError = 500",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 4,
-              "test": "[General] codigoError = 500",
-              "message": "expected 509 to equal 500",
-              "stack": "AssertionError: expected 509 to equal 500\n   at Object.eval sandbox-script.js:5:3)"
-            }
+            "skipped": false
           },
           {
             "assertion": "[General] mensajeError = \"Error interno\"",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 5,
-              "test": "[General] mensajeError = \"Error interno\"",
-              "message": "expected 'Error inesperado en el Canal Validador' to equal 'Error interno'",
-              "stack": "AssertionError: expected 'Error inesperado en el Canal Validador' to equal 'Error interno'\n   at Object.eval sandbox-script.js:6:3)"
-            }
-          }
-        ]
-      },
-      {
-        "cursor": {
-          "ref": "eea508ee-f2e2-4ee2-a337-89f8921d13fa",
-          "length": 3,
-          "cycles": 1,
-          "position": 2,
-          "iteration": 0,
-          "httpRequestId": "6f025cc7-82d5-4179-8af0-b322c6b0689f"
-        },
-        "item": {
-          "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
-          "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
-          "request": {
-            "url": {
-              "path": [
-                "descifrar"
-              ],
-              "host": [
-                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-              ],
-              "query": [
-                {
-                  "key": "tld",
-                  "value": "0"
-                },
-                {
-                  "key": "algoritmoCifrado",
-                  "value": "aes-256-cbc"
-                }
-              ],
-              "variable": []
-            },
-            "method": "POST",
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_MAL_CONFIGURADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
-                "type": "text/javascript",
-                "exec": [
-                  "pm.variables.set('expectedHttpStatus', 500);",
-                  "pm.variables.set('expectedCodigoError', 500);",
-                  "pm.variables.set('expectedTipo', 'general');"
-                ],
-                "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
-              }
-            }
-          ]
-        },
-        "request": {
-          "url": {
-            "protocol": "https",
-            "path": [
-              "descifrar"
-            ],
-            "host": [
-              "tld-validador-dummy",
-              "dev",
-              "telered",
-              "internal"
-            ],
-            "query": [
-              {
-                "key": "tld",
-                "value": "0"
-              },
-              {
-                "key": "algoritmoCifrado",
-                "value": "aes-256-cbc"
-              }
-            ],
-            "variable": []
-          },
-          "header": [
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "key": "User-Agent",
-              "value": "PostmanRuntime/7.39.1",
-              "system": true
-            },
-            {
-              "key": "Accept",
-              "value": "*/*",
-              "system": true
-            },
-            {
-              "key": "Cache-Control",
-              "value": "no-cache",
-              "system": true
-            },
-            {
-              "key": "Postman-Token",
-              "value": "8311ae69-7688-44a4-bf6e-b0b0b6ace76f",
-              "system": true
-            },
-            {
-              "key": "Host",
-              "value": "tld-validador-dummy.dev.telered.internal",
-              "system": true
-            },
-            {
-              "key": "Accept-Encoding",
-              "value": "gzip, deflate, br",
-              "system": true
-            },
-            {
-              "key": "Connection",
-              "value": "keep-alive",
-              "system": true
-            },
-            {
-              "key": "Content-Length",
-              "value": "75",
-              "system": true
-            }
-          ],
-          "method": "POST",
-          "body": {
-            "mode": "raw",
-            "raw": "{\"codigoError\":509,\"mensajeError\":\"Error inesperado en el Canal Validador\"}"
-          }
-        },
-        "response": {
-          "id": "602a26b9-62d6-49e5-bd3a-0e0ca0bed101",
-          "status": "OK",
-          "code": 200,
-          "header": [
-            {
-              "key": "Connection",
-              "value": "keep-alive"
-            },
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "key": "Date",
-              "value": "Sun, 05 Jul 2026 17:38:10 GMT"
-            },
-            {
-              "key": "Server",
-              "value": "Server"
-            },
-            {
-              "key": "X-Amz-Apigw-Id",
-              "value": "ACx0eF-0IAMFjRQ="
-            },
-            {
-              "key": "X-Amzn-Requestid",
-              "value": "5a73e96e-07dd-4684-9582-d5d1e5fdc686"
-            },
-            {
-              "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a9682-4fdfd88f2c1779883bff44ab;Parent=7454152e698eb724;Sampled=0;Lineage=1:6778dd49:0"
-            },
-            {
-              "key": "Transfer-Encoding",
-              "value": "chunked"
-            }
-          ],
-          "stream": {
-            "type": "Buffer",
-            "data": [
-              123,
-              34,
-              99,
-              111,
-              100,
-              105,
-              103,
-              111,
-              69,
-              114,
-              114,
-              111,
-              114,
-              34,
-              58,
-              53,
-              48,
-              57,
-              44,
-              34,
-              109,
-              101,
-              110,
-              115,
-              97,
-              106,
-              101,
-              69,
-              114,
-              114,
-              111,
-              114,
-              34,
-              58,
-              34,
-              69,
-              114,
-              114,
-              111,
-              114,
-              32,
-              105,
-              110,
-              101,
-              115,
-              112,
-              101,
-              114,
-              97,
-              100,
-              111,
-              32,
-              101,
-              110,
-              32,
-              101,
-              108,
-              32,
-              67,
-              97,
-              110,
-              97,
-              108,
-              32,
-              86,
-              97,
-              108,
-              105,
-              100,
-              97,
-              100,
-              111,
-              114,
-              34,
-              125
-            ]
-          },
-          "cookie": [],
-          "responseTime": 171,
-          "responseSize": 75
-        },
-        "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
-        "assertions": [
-          {
-            "assertion": "[Lambda VCN] HTTP status = 500 (real: 200)",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 0,
-              "test": "[Lambda VCN] HTTP status = 500 (real: 200)",
-              "message": "expected 200 to equal 500",
-              "stack": "AssertionError: expected 200 to equal 500\n   at Object.eval sandbox-script.js:1:3)"
-            }
-          },
-          {
-            "assertion": "[Dummy /descifrar] HTTP status 2xx (real: 200)",
             "skipped": false
-          },
-          {
-            "assertion": "[Dummy /descifrar] respuesta JSON parseable",
-            "skipped": false
-          },
-          {
-            "assertion": "[General] catalogo resuelve mensaje para codigo 500",
-            "skipped": false
-          },
-          {
-            "assertion": "[General] codigoError = 500",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 4,
-              "test": "[General] codigoError = 500",
-              "message": "expected 509 to equal 500",
-              "stack": "AssertionError: expected 509 to equal 500\n   at Object.eval sandbox-script.js:5:3)"
-            }
-          },
-          {
-            "assertion": "[General] mensajeError = \"Error interno\"",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 5,
-              "test": "[General] mensajeError = \"Error interno\"",
-              "message": "expected 'Error inesperado en el Canal Validador' to equal 'Error interno'",
-              "stack": "AssertionError: expected 'Error inesperado en el Canal Validador' to equal 'Error interno'\n   at Object.eval sandbox-script.js:6:3)"
-            }
           }
         ]
       }
     ],
     "transfers": {
-      "responseTotal": 6875
+      "responseTotal": 5605
     },
-    "failures": [
-      {
-        "error": {
-          "name": "AssertionError",
-          "index": 4,
-          "test": "[General] codigoError = 404",
-          "message": "expected 400 to equal 404",
-          "stack": "AssertionError: expected 400 to equal 404\n   at Object.eval sandbox-script.js:5:1)",
-          "checksum": "17dc4eaf2f32486ca12e615c714b062f",
-          "id": "6a1ea46a-c285-4ebe-874f-f361063a6fc1",
-          "timestamp": 1783273102356,
-          "stacktrace": [
-            {
-              "fileName": "sandbox-script.js",
-              "lineNumber": 5,
-              "functionName": "Object.eval",
-              "typeName": "Object",
-              "methodName": "eval",
-              "columnNumber": 1,
-              "native": false
-            }
-          ]
-        },
-        "at": "assertion:4 in test-script",
-        "source": {
-          "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
-          "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
-          "request": {
-            "url": {
-              "path": [
-                "descifrar"
-              ],
-              "host": [
-                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-              ],
-              "query": [
-                {
-                  "key": "tld",
-                  "value": "0"
-                },
-                {
-                  "key": "algoritmoCifrado",
-                  "value": "aes-256-cbc"
-                }
-              ],
-              "variable": []
-            },
-            "method": "POST",
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_NO_EXISTE}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
-                "type": "text/javascript",
-                "exec": [
-                  "pm.variables.set('expectedHttpStatus', 400);",
-                  "pm.variables.set('expectedCodigoError', 404);",
-                  "pm.variables.set('expectedTipo', 'general');"
-                ],
-                "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
-              }
-            }
-          ]
-        },
-        "parent": {
-          "id": "dfb77213-c7e3-47e4-b6d7-ba45955f12b9",
-          "name": "2_validador",
-          "item": [
-            {
-              "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
-              "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_NO_EXISTE}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 404);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
-              "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_DESHABILITADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "60aac396-1134-45e5-b25a-a1315a10b985",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 402);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
-              "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_MAL_CONFIGURADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 500);",
-                      "pm.variables.set('expectedCodigoError', 500);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
-                  }
-                }
-              ]
-            }
-          ],
-          "event": []
-        },
-        "cursor": {
-          "position": 0,
-          "iteration": 0,
-          "length": 3,
-          "cycles": 1,
-          "empty": false,
-          "eof": false,
-          "bof": true,
-          "cr": false,
-          "ref": "a9d831bc-3b70-4bf7-a7ed-aacf41cfbac7",
-          "httpRequestId": "b991ab6d-2599-44f8-a3fe-c87468adb12d",
-          "scriptId": "affcb9a1-d362-42e1-9cd8-b548ef38589f",
-          "execution": "06923bec-1e54-4010-bf5a-a1abba31818d"
-        }
-      },
-      {
-        "error": {
-          "name": "AssertionError",
-          "index": 5,
-          "test": "[General] mensajeError = \"Validador no existe\"",
-          "message": "expected 'Error en la petición original' to equal 'Validador no existe'",
-          "stack": "AssertionError: expected 'Error en la petición original' to equal 'Validador no existe'\n   at Object.eval sandbox-script.js:6:1)",
-          "checksum": "58d7e9e175d62e292e5252c075a71696",
-          "id": "f2160c32-f6d5-43e8-90d5-db4e2c72bdad",
-          "timestamp": 1783273102361,
-          "stacktrace": [
-            {
-              "fileName": "sandbox-script.js",
-              "lineNumber": 6,
-              "functionName": "Object.eval",
-              "typeName": "Object",
-              "methodName": "eval",
-              "columnNumber": 1,
-              "native": false
-            }
-          ]
-        },
-        "at": "assertion:5 in test-script",
-        "source": {
-          "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
-          "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
-          "request": {
-            "url": {
-              "path": [
-                "descifrar"
-              ],
-              "host": [
-                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-              ],
-              "query": [
-                {
-                  "key": "tld",
-                  "value": "0"
-                },
-                {
-                  "key": "algoritmoCifrado",
-                  "value": "aes-256-cbc"
-                }
-              ],
-              "variable": []
-            },
-            "method": "POST",
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_NO_EXISTE}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
-                "type": "text/javascript",
-                "exec": [
-                  "pm.variables.set('expectedHttpStatus', 400);",
-                  "pm.variables.set('expectedCodigoError', 404);",
-                  "pm.variables.set('expectedTipo', 'general');"
-                ],
-                "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
-              }
-            }
-          ]
-        },
-        "parent": {
-          "id": "dfb77213-c7e3-47e4-b6d7-ba45955f12b9",
-          "name": "2_validador",
-          "item": [
-            {
-              "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
-              "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_NO_EXISTE}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 404);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
-              "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_DESHABILITADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "60aac396-1134-45e5-b25a-a1315a10b985",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 402);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
-              "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_MAL_CONFIGURADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 500);",
-                      "pm.variables.set('expectedCodigoError', 500);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
-                  }
-                }
-              ]
-            }
-          ],
-          "event": []
-        },
-        "cursor": {
-          "position": 0,
-          "iteration": 0,
-          "length": 3,
-          "cycles": 1,
-          "empty": false,
-          "eof": false,
-          "bof": true,
-          "cr": false,
-          "ref": "a9d831bc-3b70-4bf7-a7ed-aacf41cfbac7",
-          "httpRequestId": "b991ab6d-2599-44f8-a3fe-c87468adb12d",
-          "scriptId": "affcb9a1-d362-42e1-9cd8-b548ef38589f",
-          "execution": "06923bec-1e54-4010-bf5a-a1abba31818d"
-        }
-      },
-      {
-        "error": {
-          "name": "AssertionError",
-          "index": 4,
-          "test": "[General] codigoError = 402",
-          "message": "expected 400 to equal 402",
-          "stack": "AssertionError: expected 400 to equal 402\n   at Object.eval sandbox-script.js:5:2)",
-          "checksum": "b66f5146e28bedc9a950542f8a1ddf13",
-          "id": "f9f41a86-6660-432c-a0b8-14643c6cdbe2",
-          "timestamp": 1783273103606,
-          "stacktrace": [
-            {
-              "fileName": "sandbox-script.js",
-              "lineNumber": 5,
-              "functionName": "Object.eval",
-              "typeName": "Object",
-              "methodName": "eval",
-              "columnNumber": 2,
-              "native": false
-            }
-          ]
-        },
-        "at": "assertion:4 in test-script",
-        "source": {
-          "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
-          "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
-          "request": {
-            "url": {
-              "path": [
-                "descifrar"
-              ],
-              "host": [
-                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-              ],
-              "query": [
-                {
-                  "key": "tld",
-                  "value": "0"
-                },
-                {
-                  "key": "algoritmoCifrado",
-                  "value": "aes-256-cbc"
-                }
-              ],
-              "variable": []
-            },
-            "method": "POST",
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_DESHABILITADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "60aac396-1134-45e5-b25a-a1315a10b985",
-                "type": "text/javascript",
-                "exec": [
-                  "pm.variables.set('expectedHttpStatus', 400);",
-                  "pm.variables.set('expectedCodigoError', 402);",
-                  "pm.variables.set('expectedTipo', 'general');"
-                ],
-                "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
-              }
-            }
-          ]
-        },
-        "parent": {
-          "id": "dfb77213-c7e3-47e4-b6d7-ba45955f12b9",
-          "name": "2_validador",
-          "item": [
-            {
-              "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
-              "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_NO_EXISTE}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 404);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
-              "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_DESHABILITADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "60aac396-1134-45e5-b25a-a1315a10b985",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 402);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
-              "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_MAL_CONFIGURADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 500);",
-                      "pm.variables.set('expectedCodigoError', 500);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
-                  }
-                }
-              ]
-            }
-          ],
-          "event": []
-        },
-        "cursor": {
-          "ref": "118c92a5-4e56-41d0-91d7-4041708719a7",
-          "length": 3,
-          "cycles": 1,
-          "position": 1,
-          "iteration": 0,
-          "httpRequestId": "ff8aca20-c4dd-4718-82e3-14dbddeaa0b5",
-          "scriptId": "affcb9a1-d362-42e1-9cd8-b548ef38589f",
-          "execution": "8041592e-7caf-435c-9317-68ac4166edb7"
-        }
-      },
-      {
-        "error": {
-          "name": "AssertionError",
-          "index": 5,
-          "test": "[General] mensajeError = \"Canal validador no disponible\"",
-          "message": "expected 'Error en la petición original' to equal 'Canal validador no disponible'",
-          "stack": "AssertionError: expected 'Error en la petición original' to equal 'Canal validador no disponible'\n   at Object.eval sandbox-script.js:6:2)",
-          "checksum": "6af65ae541781d9177c75fcb72d4054c",
-          "id": "75435a7d-51e9-4207-b3f4-dce8f2a9094f",
-          "timestamp": 1783273103607,
-          "stacktrace": [
-            {
-              "fileName": "sandbox-script.js",
-              "lineNumber": 6,
-              "functionName": "Object.eval",
-              "typeName": "Object",
-              "methodName": "eval",
-              "columnNumber": 2,
-              "native": false
-            }
-          ]
-        },
-        "at": "assertion:5 in test-script",
-        "source": {
-          "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
-          "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
-          "request": {
-            "url": {
-              "path": [
-                "descifrar"
-              ],
-              "host": [
-                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-              ],
-              "query": [
-                {
-                  "key": "tld",
-                  "value": "0"
-                },
-                {
-                  "key": "algoritmoCifrado",
-                  "value": "aes-256-cbc"
-                }
-              ],
-              "variable": []
-            },
-            "method": "POST",
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_DESHABILITADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "60aac396-1134-45e5-b25a-a1315a10b985",
-                "type": "text/javascript",
-                "exec": [
-                  "pm.variables.set('expectedHttpStatus', 400);",
-                  "pm.variables.set('expectedCodigoError', 402);",
-                  "pm.variables.set('expectedTipo', 'general');"
-                ],
-                "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
-              }
-            }
-          ]
-        },
-        "parent": {
-          "id": "dfb77213-c7e3-47e4-b6d7-ba45955f12b9",
-          "name": "2_validador",
-          "item": [
-            {
-              "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
-              "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_NO_EXISTE}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 404);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
-              "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_DESHABILITADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "60aac396-1134-45e5-b25a-a1315a10b985",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 402);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
-              "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_MAL_CONFIGURADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 500);",
-                      "pm.variables.set('expectedCodigoError', 500);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
-                  }
-                }
-              ]
-            }
-          ],
-          "event": []
-        },
-        "cursor": {
-          "ref": "118c92a5-4e56-41d0-91d7-4041708719a7",
-          "length": 3,
-          "cycles": 1,
-          "position": 1,
-          "iteration": 0,
-          "httpRequestId": "ff8aca20-c4dd-4718-82e3-14dbddeaa0b5",
-          "scriptId": "affcb9a1-d362-42e1-9cd8-b548ef38589f",
-          "execution": "8041592e-7caf-435c-9317-68ac4166edb7"
-        }
-      },
-      {
-        "error": {
-          "name": "AssertionError",
-          "index": 0,
-          "test": "[Lambda VCN] HTTP status = 500 (real: 200)",
-          "message": "expected 200 to equal 500",
-          "stack": "AssertionError: expected 200 to equal 500\n   at Object.eval sandbox-script.js:1:3)",
-          "checksum": "bcd4fe8fd65a29932604f69655209335",
-          "id": "690a162f-936f-41e9-982e-c21ea4d889c5",
-          "timestamp": 1783273105454,
-          "stacktrace": [
-            {
-              "fileName": "sandbox-script.js",
-              "lineNumber": 1,
-              "functionName": "Object.eval",
-              "typeName": "Object",
-              "methodName": "eval",
-              "columnNumber": 3,
-              "native": false
-            }
-          ]
-        },
-        "at": "assertion:0 in test-script",
-        "source": {
-          "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
-          "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
-          "request": {
-            "url": {
-              "path": [
-                "descifrar"
-              ],
-              "host": [
-                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-              ],
-              "query": [
-                {
-                  "key": "tld",
-                  "value": "0"
-                },
-                {
-                  "key": "algoritmoCifrado",
-                  "value": "aes-256-cbc"
-                }
-              ],
-              "variable": []
-            },
-            "method": "POST",
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_MAL_CONFIGURADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
-                "type": "text/javascript",
-                "exec": [
-                  "pm.variables.set('expectedHttpStatus', 500);",
-                  "pm.variables.set('expectedCodigoError', 500);",
-                  "pm.variables.set('expectedTipo', 'general');"
-                ],
-                "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
-              }
-            }
-          ]
-        },
-        "parent": {
-          "id": "dfb77213-c7e3-47e4-b6d7-ba45955f12b9",
-          "name": "2_validador",
-          "item": [
-            {
-              "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
-              "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_NO_EXISTE}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 404);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
-              "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_DESHABILITADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "60aac396-1134-45e5-b25a-a1315a10b985",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 402);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
-              "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_MAL_CONFIGURADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 500);",
-                      "pm.variables.set('expectedCodigoError', 500);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
-                  }
-                }
-              ]
-            }
-          ],
-          "event": []
-        },
-        "cursor": {
-          "ref": "eea508ee-f2e2-4ee2-a337-89f8921d13fa",
-          "length": 3,
-          "cycles": 1,
-          "position": 2,
-          "iteration": 0,
-          "httpRequestId": "6f025cc7-82d5-4179-8af0-b322c6b0689f",
-          "scriptId": "affcb9a1-d362-42e1-9cd8-b548ef38589f",
-          "execution": "583cbc7d-a3c5-416d-8d89-85f8bb649077"
-        }
-      },
-      {
-        "error": {
-          "name": "AssertionError",
-          "index": 4,
-          "test": "[General] codigoError = 500",
-          "message": "expected 509 to equal 500",
-          "stack": "AssertionError: expected 509 to equal 500\n   at Object.eval sandbox-script.js:5:3)",
-          "checksum": "48b9ef16f490f011de78cb4c218d99b8",
-          "id": "0e8ac496-9fae-4f13-a8bb-99072422f72c",
-          "timestamp": 1783273105456,
-          "stacktrace": [
-            {
-              "fileName": "sandbox-script.js",
-              "lineNumber": 5,
-              "functionName": "Object.eval",
-              "typeName": "Object",
-              "methodName": "eval",
-              "columnNumber": 3,
-              "native": false
-            }
-          ]
-        },
-        "at": "assertion:4 in test-script",
-        "source": {
-          "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
-          "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
-          "request": {
-            "url": {
-              "path": [
-                "descifrar"
-              ],
-              "host": [
-                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-              ],
-              "query": [
-                {
-                  "key": "tld",
-                  "value": "0"
-                },
-                {
-                  "key": "algoritmoCifrado",
-                  "value": "aes-256-cbc"
-                }
-              ],
-              "variable": []
-            },
-            "method": "POST",
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_MAL_CONFIGURADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
-                "type": "text/javascript",
-                "exec": [
-                  "pm.variables.set('expectedHttpStatus', 500);",
-                  "pm.variables.set('expectedCodigoError', 500);",
-                  "pm.variables.set('expectedTipo', 'general');"
-                ],
-                "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
-              }
-            }
-          ]
-        },
-        "parent": {
-          "id": "dfb77213-c7e3-47e4-b6d7-ba45955f12b9",
-          "name": "2_validador",
-          "item": [
-            {
-              "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
-              "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_NO_EXISTE}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 404);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
-              "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_DESHABILITADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "60aac396-1134-45e5-b25a-a1315a10b985",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 402);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
-              "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_MAL_CONFIGURADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 500);",
-                      "pm.variables.set('expectedCodigoError', 500);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
-                  }
-                }
-              ]
-            }
-          ],
-          "event": []
-        },
-        "cursor": {
-          "ref": "eea508ee-f2e2-4ee2-a337-89f8921d13fa",
-          "length": 3,
-          "cycles": 1,
-          "position": 2,
-          "iteration": 0,
-          "httpRequestId": "6f025cc7-82d5-4179-8af0-b322c6b0689f",
-          "scriptId": "affcb9a1-d362-42e1-9cd8-b548ef38589f",
-          "execution": "583cbc7d-a3c5-416d-8d89-85f8bb649077"
-        }
-      },
-      {
-        "error": {
-          "name": "AssertionError",
-          "index": 5,
-          "test": "[General] mensajeError = \"Error interno\"",
-          "message": "expected 'Error inesperado en el Canal Validador' to equal 'Error interno'",
-          "stack": "AssertionError: expected 'Error inesperado en el Canal Validador' to equal 'Error interno'\n   at Object.eval sandbox-script.js:6:3)",
-          "checksum": "49b2b4d35f9a4a1516655f7915f88acf",
-          "id": "b01217ee-e39e-45c7-863e-da2caec40341",
-          "timestamp": 1783273105456,
-          "stacktrace": [
-            {
-              "fileName": "sandbox-script.js",
-              "lineNumber": 6,
-              "functionName": "Object.eval",
-              "typeName": "Object",
-              "methodName": "eval",
-              "columnNumber": 3,
-              "native": false
-            }
-          ]
-        },
-        "at": "assertion:5 in test-script",
-        "source": {
-          "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
-          "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
-          "request": {
-            "url": {
-              "path": [
-                "descifrar"
-              ],
-              "host": [
-                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-              ],
-              "query": [
-                {
-                  "key": "tld",
-                  "value": "0"
-                },
-                {
-                  "key": "algoritmoCifrado",
-                  "value": "aes-256-cbc"
-                }
-              ],
-              "variable": []
-            },
-            "method": "POST",
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_MAL_CONFIGURADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
-                "type": "text/javascript",
-                "exec": [
-                  "pm.variables.set('expectedHttpStatus', 500);",
-                  "pm.variables.set('expectedCodigoError', 500);",
-                  "pm.variables.set('expectedTipo', 'general');"
-                ],
-                "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
-              }
-            }
-          ]
-        },
-        "parent": {
-          "id": "dfb77213-c7e3-47e4-b6d7-ba45955f12b9",
-          "name": "2_validador",
-          "item": [
-            {
-              "id": "7466361a-8ff5-43a0-9fab-0aa3cfff7c3c",
-              "name": "2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_NO_EXISTE}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "df5d0517-0046-46fd-9133-9dbf4f696fd4",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 404);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "7cea5471-873e-4766-8411-9eb68d5ab298"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "41e8f39f-5bf4-448a-927a-1a9ad5736364",
-              "name": "2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_DESHABILITADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "60aac396-1134-45e5-b25a-a1315a10b985",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 402);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "bf3fbc92-79ef-47a8-b7a4-11b4500765a6"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "f1c95b98-caaf-44b7-b2df-0e6d370a366a",
-              "name": "2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_MAL_CONFIGURADO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "bf572c7e-2fba-462f-89dd-75e517c993c4",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 500);",
-                      "pm.variables.set('expectedCodigoError', 500);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "7d9c446e-72c3-41dc-8574-c0d811bfd229"
-                  }
-                }
-              ]
-            }
-          ],
-          "event": []
-        },
-        "cursor": {
-          "ref": "eea508ee-f2e2-4ee2-a337-89f8921d13fa",
-          "length": 3,
-          "cycles": 1,
-          "position": 2,
-          "iteration": 0,
-          "httpRequestId": "6f025cc7-82d5-4179-8af0-b322c6b0689f",
-          "scriptId": "affcb9a1-d362-42e1-9cd8-b548ef38589f",
-          "execution": "583cbc7d-a3c5-416d-8d89-85f8bb649077"
-        }
-      }
-    ],
+    "failures": [],
     "error": null
   }
 }
