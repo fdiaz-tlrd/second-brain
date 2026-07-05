@@ -139,7 +139,7 @@ Este triage igualmente importa: es la **primera validación** del contrato y deb
 
 | ID | Cambio | Estado |
 |----|--------|--------|
-| A1 | En rama `BAD_JSON`, usar `MSG_CATALOGO[400]` → *"Error en la petición original"* en lugar del literal actual | **Pendiente** |
+| A1 | En rama `BAD_JSON`, usar `MSG_CATALOGO[400]` → *"Error en la petición original"* en lugar del literal actual | **Hecho** (2026-07-05, subfase A0) |
 | A2 | Alinear bitácora de error con `inicializarBitacora` (o equivalente) cuando se refactorice el handler | **Pendiente** (puede ir con refactor global) |
 | A3 | Unificar estructura `parsearYValidarEntrada` + `faseActual` como P2M | **Pendiente** (refactor transversal) |
 
@@ -168,4 +168,4 @@ HTTP `400`.
 
 ## Siguiente triage
 
-**#2 — idCanal:** `validarParametroIdCanal` y orden respecto a `validatePlan` (fallo **1.1.1** y **1.1.7–1.1.14** en `resultado_prueba.md`).
+**#2 — idCanal:** [triage/02-idCanal.md](./02-idCanal.md) — **implementado** (pendiente Newman). Siguiente: **A2 validador**.

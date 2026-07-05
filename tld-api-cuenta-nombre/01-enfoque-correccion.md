@@ -46,7 +46,7 @@ P2M y P2P son **equivalentes** en el tramo transversal (mismo flujo en `app.js`)
 2. **Sí** recorrer las validaciones **en el mismo orden** que P2M/P2P, una por una.
 3. Por cada paso: documentar triage en `triage/NN-….md` (P2M, P2P, VCN, gap, acción).
 4. Usar [`02-checklist-errores-vcn-general.md`](./02-checklist-errores-vcn-general.md) como checklist de escenarios (debe vs está); [`../notas-sueltas/resultado_prueba.md`](../notas-sueltas/resultado_prueba.md) queda como histórico.
-5. Corregir VCN en orden: **orden de validaciones** → **capa `validaciones.js`** → **forma de respuesta** → intacto: **0001 + validador-proxy + cuenta**.
+5. Corregir VCN en orden: **subfases A0–A5** (ver [04-decision-fase-a-dividida.md](./04-decision-fase-a-dividida.md)) → Fase B estructura → Fase C `metodos.js` 0001 → intacto: **0001 + validador-proxy + cuenta**.
 
 ## Qué portar a VCN
 
@@ -75,4 +75,4 @@ P2M y P2P son **equivalentes** en el tramo transversal (mismo flujo en `app.js`)
 
 ## Próximo triage
 
-Ver [triage/01-json-entrada.md](./triage/01-json-entrada.md). Siguiente previsto: **idCanal** (`validarParametroIdCanal` + orden vs plan).
+Ver [triage/02-idCanal.md](./triage/02-idCanal.md) (A1 implementado). **Siguiente:** A2 validador (`triage/03-validador.md`, pendiente).
