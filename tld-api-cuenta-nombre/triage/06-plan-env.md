@@ -63,4 +63,4 @@ Escenarios ancla: **2.4.1** (418 fuera CFG), **2.4.2** (418 sin método en emiso
 
 ## Siguiente
 
-**Newman `4_metodo`** — si falla, triage Fase C / validación método post-descifrado. Tras Fase A completa: **Fase B** (`app.js`) y **Fase C** (`lib/metodos.js` 0001).
+Baseline General **cerrado**. Newman **`2_reglaNegocio/2_validador`** (escenarios nuevos). Luego **Fase B/C** y revert TEMP límite solicitudes.

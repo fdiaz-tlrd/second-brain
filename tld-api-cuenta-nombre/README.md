@@ -21,9 +21,9 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | Archivo | Contenido |
 |---------|-----------|
 | [01-enfoque-correccion.md](./01-enfoque-correccion.md) | Estrategia: P2M/P2P como referencia, qué portar a VCN, qué no copiar |
-| [02-checklist-errores-vcn-general.md](./02-checklist-errores-vcn-general.md) | **Checklist vivo** — A5 cerrada; pendiente **`4_metodo`** (2 escenarios) |
+| [02-checklist-errores-vcn-general.md](./02-checklist-errores-vcn-general.md) | **Checklist vivo** — baseline **78/78**; +3 `2_validador` regla negocio pendientes |
 | [03-estrategia-transversal-vs-parche.md](./03-estrategia-transversal-vs-parche.md) | Opinión: meta transversal = base; ejecución incremental |
-| [04-decision-fase-a-dividida.md](./04-decision-fase-a-dividida.md) | **Decisión:** Fase A — A5 cerrada; **siguiente:** Newman `4_metodo` |
+| [04-decision-fase-a-dividida.md](./04-decision-fase-a-dividida.md) | **Decisión:** Fase A baseline cerrada; **siguiente:** Newman `2_validador` + `Metodo/0001` |
 | [referencia-produccion.md](./referencia-produccion.md) | Prod congelada — existe; **fuera de alcance ahora**; nunca modificar |
 | [triage/00-estructura-vs-base.md](./triage/00-estructura-vs-base.md) | Triage #0 — inventario VCN dev vs base |
 | [triage/02-idCanal.md](./triage/02-idCanal.md) | Triage #2 — **A1 cerrada** (Newman 14/14) |
@@ -58,7 +58,8 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | 2026-07-05 | **A4** idPeticion + solicitudes — Newman **66/66** `1_validaciones_js` (run 08:17); commit `aa87fd2` |
 | 2026-07-05 | **TEMP** `template.yaml` `CFG_METODOS_LIMITES_JSON` → `{"0001":2}` para Newman 5.9; **revertir a 1 cuando VCN finalizado** (triage 05) |
 | 2026-07-05 | **A5 + A7** cerradas — Newman `1_idCanal` **4/4** (run 09:28); commit código `f162fe5` |
-| 2026-07-05 | **Siguiente:** Newman `2_reglaNegocio/4_metodo` (2.4.1, 2.4.2) |
+| 2026-07-05 | **Baseline General 78/78** — Newman `4_metodo` 12/12 + regresión `1_validaciones_js` 396/396 |
+| 2026-07-05 | **Siguiente:** Newman `2_reglaNegocio/2_validador` + `Metodo/0001` |
 
 ## Convención de triage
 
