@@ -248,14 +248,18 @@ SSL desactivado por defecto (dev). Añade `--strict-ssl` al final de cualquier l
 
 Si `npm install` falla por certificado corporativo: `$env:NODE_TLS_REJECT_UNAUTHORIZED="0"; npm install`
 
-Comparte con el agente: `logs/resumen-fallos-<suite>.md` (referencia `@Postman/generador/logs/resumen-fallos-p2m.md`).
+Comparte con el agente vía git (las pruebas se ejecutan en otra máquina):
+
+1. Tras el run: `git add logs/resumen-fallos-<suite>.md logs/ultimo-run-<suite>.json`
+2. Commit + push
+3. En Cursor: `@Postman/generador/logs/resumen-fallos-<suite>.md`
 
 Genera en `logs/`:
 
 | Archivo | Para qué |
 |---------|----------|
-| `resumen-fallos-<suite>.md` | Pegar o referenciar en el chat con el agente |
-| `ultimo-run-<suite>.json` | Detalle completo Newman |
+| `resumen-fallos-<suite>.md` | Commit + push → agente en otra máquina |
+| `ultimo-run-<suite>.json` | Detalle Newman (commit + push si hace falta profundizar) |
 
 ## Convención de escenarios
 
