@@ -19,8 +19,8 @@ Espacio de trabajo en `second-brain` para **estudiar y corregir** el repositorio
 | Archivo | Contenido |
 |---------|-----------|
 | [01-enfoque-correccion.md](./01-enfoque-correccion.md) | Estrategia: P2M/P2P como referencia, qué portar a VCN, qué no copiar |
+| [02-checklist-errores-vcn-general.md](./02-checklist-errores-vcn-general.md) | **Checklist vivo** — 63 escenarios General que fallan (debe vs está); marcar al resolver |
 | [triage/01-json-entrada.md](./triage/01-json-entrada.md) | Triage #1 — validar que la entrada sea JSON |
-| *(próximos)* | `triage/02-idCanal.md`, … según orden de validaciones P2M/P2P |
 
 ## Referencias externas (solo lectura)
 
@@ -33,7 +33,7 @@ Espacio de trabajo en `second-brain` para **estudiar y corregir** el repositorio
 |-------|------|
 | 2026-07-04 | Carpeta creada |
 | 2026-07-04 | Enfoque de corrección documentado |
-| 2026-07-04 | Triage #1 (JSON entrada) documentado |
+| 2026-07-05 | Checklist Newman General VCN (`02-checklist-errores-vcn-general.md`, 63 fallos / 15 OK) |
 
 ## Convención de triage
 

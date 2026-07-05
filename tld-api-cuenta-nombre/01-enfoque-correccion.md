@@ -34,7 +34,7 @@ P2M y P2P son **equivalentes** en el tramo transversal (mismo flujo en `app.js`)
 1. **No** estudiar P2P↔P2M en abstracto durante semanas.
 2. **Sí** recorrer las validaciones **en el mismo orden** que P2M/P2P, una por una.
 3. Por cada paso: documentar triage en `triage/NN-….md` (P2M, P2P, VCN, gap, acción).
-4. Usar [`../notas-sueltas/resultado_prueba.md`](../notas-sueltas/resultado_prueba.md) como checklist de síntomas, no como única fuente de diseño.
+4. Usar [`02-checklist-errores-vcn-general.md`](./02-checklist-errores-vcn-general.md) como checklist de escenarios (debe vs está); [`../notas-sueltas/resultado_prueba.md`](../notas-sueltas/resultado_prueba.md) queda como histórico.
 5. Corregir VCN en orden: **orden de validaciones** → **capa `validaciones.js`** → **forma de respuesta** → intacto: **0001 + validador-proxy + cuenta**.
 
 ## Qué portar a VCN
