@@ -13,8 +13,8 @@ VCN Escenarios error
 
 □ General / 0_jsonEntrada
 └ 0.1. body — JSON HTTP inválido (400)
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 1206ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 576ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 2.3s]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 1535ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -25,11 +25,11 @@ VCN Escenarios error
 □ General / 1_validaciones_js / 1_idCanal
 └ 1.1.1. idCanal — propiedad ausente (undefined) (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292661 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293391 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.71kB, 317ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 205ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 195ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.71kB, 1338ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 207ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 184ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -39,11 +39,11 @@ VCN Escenarios error
 
 └ 1.1.2. idCanal — null (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292662 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293393 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 190ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 187ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 165ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 187ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 420ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 172ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -53,11 +53,11 @@ VCN Escenarios error
 
 └ 1.1.3. idCanal — string vacío "" (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292663 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293394 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 169ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 175ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 164ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 200ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 193ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 160ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -67,11 +67,11 @@ VCN Escenarios error
 
 └ 1.1.4. idCanal — tipo number (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292663 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293394 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 204ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 275ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 161ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 183ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 651ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 549ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -81,11 +81,11 @@ VCN Escenarios error
 
 └ 1.1.5. idCanal — tipo boolean (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292664 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293396 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 179ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 189ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 174ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 222ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 267ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 223ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -95,11 +95,11 @@ VCN Escenarios error
 
 └ 1.1.6. idCanal — tipo object (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292665 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293397 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 187ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 163ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 165ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 176ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 879ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 229ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -109,11 +109,11 @@ VCN Escenarios error
 
 └ 1.1.7. idCanal — solo espacios, trim vacío (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292665 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293398 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 178ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 163ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 177ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 180ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 184ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 188ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -123,11 +123,11 @@ VCN Escenarios error
 
 └ 1.1.8. idCanal — solo tab, trim vacío (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292666 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293399 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 176ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 170ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 170ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 217ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 238ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 208ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -137,10 +137,10 @@ VCN Escenarios error
 
 └ 1.1.9. idCanal — longitud 5, máximo 4 (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292666 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293400 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 183ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 177ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 356ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 185ms]
   POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 165ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
@@ -151,11 +151,11 @@ VCN Escenarios error
 
 └ 1.1.10. idCanal — espacio interno, post-trim (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292667 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293400 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 166ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 176ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 155ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 186ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 186ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 170ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -165,10 +165,10 @@ VCN Escenarios error
 
 └ 1.1.11. idCanal — símbolo @ no permitido (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292668 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293401 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 168ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 176ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 186ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 187ms]
   POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 169ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
@@ -179,11 +179,11 @@ VCN Escenarios error
 
 └ 1.1.12. idCanal — paréntesis ( no permitido (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292668 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293402 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 268ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 165ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 154ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 174ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 189ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 164ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -193,11 +193,11 @@ VCN Escenarios error
 
 └ 1.1.13. idCanal — ¿ no permitido (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292669 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293402 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 167ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 168ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 165ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 175ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 750ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 207ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -207,11 +207,11 @@ VCN Escenarios error
 
 └ 1.1.14. idCanal — comillas " no permitidas (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292670 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293403 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 190ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 337ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 162ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 205ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 190ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 154ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -222,11 +222,11 @@ VCN Escenarios error
 □ General / 1_validaciones_js / 2_validador
 └ 1.2.1. validador — propiedad ausente (undefined) (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292670 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293404 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.71kB, 180ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 1110ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 214ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.71kB, 188ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 2.1s]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 224ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -236,11 +236,11 @@ VCN Escenarios error
 
 └ 1.2.2. validador — null (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292672 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293407 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 184ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 370ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 207ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 241ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 852ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 1048ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -250,11 +250,11 @@ VCN Escenarios error
 
 └ 1.2.3. validador — string vacío "" (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292673 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293409 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 165ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 351ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 205ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 176ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 356ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 255ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -264,11 +264,11 @@ VCN Escenarios error
 
 └ 1.2.4. validador — tipo number (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292674 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293410 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 189ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 333ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 226ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 237ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 425ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 224ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -278,11 +278,11 @@ VCN Escenarios error
 
 └ 1.2.5. validador — tipo boolean (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292674 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293411 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 166ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 325ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 236ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 220ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 363ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 276ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -292,11 +292,11 @@ VCN Escenarios error
 
 └ 1.2.6. validador — tipo object (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292675 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293412 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 186ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 273ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 199ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 208ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 383ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 192ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -306,11 +306,11 @@ VCN Escenarios error
 
 └ 1.2.7. validador — solo espacios, trim vacío (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292676 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293413 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 173ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 303ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 206ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 183ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 382ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 243ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -320,11 +320,11 @@ VCN Escenarios error
 
 └ 1.2.8. validador — solo tab, trim vacío (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292677 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293414 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 169ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 295ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 177ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 219ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 341ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 210ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -334,11 +334,11 @@ VCN Escenarios error
 
 └ 1.2.9. validador — longitud 5, máximo 4 (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292677 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293415 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 184ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 299ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 189ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 179ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 341ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 216ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -348,11 +348,11 @@ VCN Escenarios error
 
 └ 1.2.10. validador — espacio interno, post-trim (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292678 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293415 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 182ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 316ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 221ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 191ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 349ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 210ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -362,11 +362,11 @@ VCN Escenarios error
 
 └ 1.2.11. validador — símbolo @ no permitido (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292679 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293416 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 165ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 315ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 226ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 178ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 370ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 198ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -376,11 +376,11 @@ VCN Escenarios error
 
 └ 1.2.12. validador — paréntesis ( no permitido (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292680 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293417 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 169ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 297ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 215ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 173ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 382ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 258ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -390,11 +390,11 @@ VCN Escenarios error
 
 └ 1.2.13. validador — ¿ no permitido (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292681 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293418 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 164ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 312ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 206ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 192ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 328ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 237ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -404,11 +404,11 @@ VCN Escenarios error
 
 └ 1.2.14. validador — comillas " no permitidas (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292681 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293419 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 186ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 275ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 195ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 166ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 407ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 276ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -419,11 +419,11 @@ VCN Escenarios error
 □ General / 1_validaciones_js / 3_peticion
 └ 1.3.1. peticion — propiedad ausente (undefined) (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292682 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293420 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 173ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 361ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 169ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 236ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 348ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 218ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -433,11 +433,11 @@ VCN Escenarios error
 
 └ 1.3.2. peticion — null (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292683 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293421 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 170ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 326ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 153ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 183ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 363ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 212ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -447,11 +447,11 @@ VCN Escenarios error
 
 └ 1.3.3. peticion — string vacío (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292684 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293422 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 181ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 284ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 165ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 183ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 265ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 160ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -461,11 +461,11 @@ VCN Escenarios error
 
 └ 1.3.4. peticion — tipo number (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292684 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293422 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 180ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 356ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 255ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 185ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 377ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 194ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -475,11 +475,11 @@ VCN Escenarios error
 
 └ 1.3.5. peticion — tipo boolean (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292685 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293423 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 177ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 357ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 218ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 174ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 424ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 221ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -489,11 +489,11 @@ VCN Escenarios error
 
 └ 1.3.6. peticion — tipo object (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292686 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293424 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 158ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 400ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 238ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 203ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 463ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 592ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -503,11 +503,11 @@ VCN Escenarios error
 
 └ 1.3.7. peticion — formato hex inválido (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292687 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293425 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 175ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 314ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 211ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 730ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 372ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 205ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -517,11 +517,11 @@ VCN Escenarios error
 
 └ 1.3.8. peticion — IV en base64 (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292688 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293427 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 169ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 321ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 219ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 180ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 382ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 204ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -531,11 +531,11 @@ VCN Escenarios error
 
 └ 1.3.9. peticion — IV truncado (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292689 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293428 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 167ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 327ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 207ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 172ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 353ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 221ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -545,11 +545,11 @@ VCN Escenarios error
 
 └ 1.3.10. peticion — segmento AES en base64 (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292689 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293429 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 163ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 334ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 216ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 177ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 513ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 223ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -559,11 +559,11 @@ VCN Escenarios error
 
 └ 1.3.11. peticion — segmento AES faltante (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292690 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293430 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 174ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 317ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 217ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 178ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 328ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 291ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -573,11 +573,11 @@ VCN Escenarios error
 
 └ 1.3.12. peticion — segmento extra (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292691 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293430 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 172ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 311ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 207ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 1047ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 532ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 267ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -587,11 +587,11 @@ VCN Escenarios error
 
 └ 1.3.13. peticion — caracter no hex (400)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292692 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293432 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 188ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 393ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 207ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 162ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 444ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 291ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -604,9 +604,9 @@ VCN Escenarios error
   ┌
   │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion= metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.66kB, 171ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 561ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 265ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.66kB, 194ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 439ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 244ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -618,9 +618,9 @@ VCN Escenarios error
   ┌
   │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion= metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 194ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 450ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 275ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 235ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 471ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 266ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -632,9 +632,9 @@ VCN Escenarios error
   ┌
   │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion= metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 250ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 394ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 231ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 203ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 503ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 200ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -646,9 +646,9 @@ VCN Escenarios error
   ┌
   │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=1234567890 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 195ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 455ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 254ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 172ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 946ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 637ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -660,9 +660,9 @@ VCN Escenarios error
   ┌
   │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=true metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 211ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 377ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 225ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 184ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 439ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 192ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -674,9 +674,9 @@ VCN Escenarios error
   ┌
   │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=[object Object] metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 201ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 394ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 215ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 178ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 461ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 225ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -688,9 +688,9 @@ VCN Escenarios error
   ┌
   │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=    metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 162ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 377ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 213ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 203ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 551ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 202ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -702,9 +702,9 @@ VCN Escenarios error
   ┌
   │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=\t\t metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 177ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 386ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 189ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 189ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 927ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 211ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -716,9 +716,9 @@ VCN Escenarios error
   ┌
   │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=ABC1234 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 164ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 376ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 195ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 172ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 387ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 248ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -731,9 +731,9 @@ VCN Escenarios error
   │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA metodo=0001 idSolicitud=1
   │ '
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.82kB, 174ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 530ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 215ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.82kB, 192ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 402ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 252ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -745,9 +745,9 @@ VCN Escenarios error
   ┌
   │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO 001 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 173ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 339ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 238ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 192ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 473ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 244ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -759,9 +759,9 @@ VCN Escenarios error
   ┌
   │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO@001 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 179ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 355ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 218ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 193ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 401ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 252ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -773,9 +773,9 @@ VCN Escenarios error
   ┌
   │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO¿001 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 184ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 382ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 202ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 216ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 352ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 205ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -787,9 +787,9 @@ VCN Escenarios error
   ┌
   │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO"001 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 179ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 374ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 207ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 159ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 504ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 441B, 248ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -799,11 +799,11 @@ VCN Escenarios error
 
 └ 1.4.15. idPeticion — prefijo SWIFT ajeno (445)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=INVAPAPA00001783292705 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=INVAPAPA00001783293448 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.76kB, 181ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.67kB, 348ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 482B, 206ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.76kB, 172ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.67kB, 370ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 482B, 253ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -814,11 +814,11 @@ VCN Escenarios error
 □ General / 1_validaciones_js / 5_solicitudes
 └ 1.5.1. solicitudes — tipo string (425)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292706 metodo=0001 idSolicitud=undefined'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293449 metodo=0001 idSolicitud=undefined'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.66kB, 164ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 365ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 448B, 215ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.66kB, 230ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 353ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 448B, 233ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -828,11 +828,11 @@ VCN Escenarios error
 
 └ 1.5.2. solicitudes — arreglo vacío (425)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292707 metodo=0001 idSolicitud='
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293450 metodo=0001 idSolicitud='
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.63kB, 176ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 351ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 448B, 226ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.63kB, 213ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 433ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 448B, 217ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -842,11 +842,11 @@ VCN Escenarios error
 
 └ 1.5.3. solicitudes — excede límite 0015, 5 solicitudes (425)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292708 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293451 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 2.21kB, 166ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 352ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 448B, 227ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 2.21kB, 207ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.6kB, 393ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 448B, 195ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -856,11 +856,11 @@ VCN Escenarios error
 
 └ 1.5.4. solicitudes — sin propiedad idSolicitud (431)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292709 metodo=0001 idSolicitud=undefined'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293452 metodo=0001 idSolicitud=undefined'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 188ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.64kB, 356ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 456B, 194ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 218ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.64kB, 372ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 456B, 199ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -870,11 +870,11 @@ VCN Escenarios error
 
 └ 1.5.5. solicitudes — idSolicitud vacío (431)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292710 metodo=0001 idSolicitud='
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293452 metodo=0001 idSolicitud='
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 177ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.64kB, 413ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 456B, 184ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 162ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.64kB, 420ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 456B, 192ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -884,11 +884,11 @@ VCN Escenarios error
 
 └ 1.5.6. solicitudes — idSolicitud tipo number (431)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292711 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293453 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 162ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.64kB, 344ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 456B, 210ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 167ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.64kB, 527ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 456B, 607ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -898,11 +898,11 @@ VCN Escenarios error
 
 └ 1.5.7. solicitudes — idSolicitud solo espacios (431)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292711 metodo=0001 idSolicitud=   '
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293455 metodo=0001 idSolicitud=   '
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 177ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.64kB, 378ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 456B, 221ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 163ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.64kB, 490ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 456B, 212ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -912,12 +912,12 @@ VCN Escenarios error
 
 └ 1.5.8. solicitudes — idSolicitud longitud 65 (431)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292712 metodo=0001 idSolicitud=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293456 metodo=0001 idSolicitud=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
   │ AAAAAAAAAAAAAAAAA'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.85kB, 181ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.64kB, 352ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 456B, 225ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.85kB, 183ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.64kB, 625ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 456B, 218ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -927,11 +927,11 @@ VCN Escenarios error
 
 └ 1.5.9. solicitudes — idSolicitud duplicado case-insensitive (431) [CFG 0015≥2]
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292713 metodo=0001 idSolicitud=id-001'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293457 metodo=0001 idSolicitud=id-001'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.85kB, 168ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.64kB, 346ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 456B, 216ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.85kB, 175ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.64kB, 413ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 456B, 200ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -942,11 +942,11 @@ VCN Escenarios error
 □ General / 2_reglaNegocio / 1_idCanal
 └ 2.1.1. idCanal — no existe en BD (401)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292714 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293458 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 168ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 428B, 229ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 419B, 157ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 1175ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 428B, 307ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 419B, 174ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -956,11 +956,11 @@ VCN Escenarios error
 
 └ 2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-gcm idPeticion=NAMEGATO1783292715 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-gcm idPeticion=NAMEGATO1783293459 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-gcm [200 OK, 1.68kB, 169ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 451B, 334ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-gcm [200 OK, 442B, 160ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-gcm [200 OK, 1.68kB, 267ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 451B, 268ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-gcm [200 OK, 442B, 171ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -970,11 +970,11 @@ VCN Escenarios error
 
 └ 2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=TEYVGATO1783292715 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=TEYVGATO1783293460 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 180ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [500 Internal Server Error, 429B, 367ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 410B, 166ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 225ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [500 Internal Server Error, 429B, 279ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 410B, 193ms]
   √  [Lambda VCN] HTTP status = 500 (real: 500)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -984,11 +984,11 @@ VCN Escenarios error
 
 └ 2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-gcm idPeticion=STELGATO1783292716 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-gcm idPeticion=STELGATO1783293461 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-gcm [200 OK, 1.68kB, 191ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 451B, 264ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-gcm [200 OK, 442B, 182ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-gcm [200 OK, 1.68kB, 187ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 451B, 316ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-gcm [200 OK, 442B, 203ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -999,11 +999,11 @@ VCN Escenarios error
 □ General / 2_reglaNegocio / 2_validador
 └ 2.2.1. validador — no existe en BD (404) [CANAL_VALIDADOR_NO_EXISTE]
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292717 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293462 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 218ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 425B, 425ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 416B, 164ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 239ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 425B, 343ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 416B, 224ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1013,11 +1013,11 @@ VCN Escenarios error
 
 └ 2.2.2. validador — deshabilitado (402) [CANAL_VALIDADOR_DESHABILITADO]
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292718 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293463 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 188ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 435B, 292ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 426B, 154ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 212ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 435B, 329ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 426B, 197ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1027,11 +1027,11 @@ VCN Escenarios error
 
 └ 2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292718 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293463 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 167ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [500 Internal Server Error, 1.58kB, 336ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 424B, 227ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 168ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [500 Internal Server Error, 1.58kB, 344ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 424B, 673ms]
   √  [Lambda VCN] HTTP status = 500 (real: 500)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1042,11 +1042,11 @@ VCN Escenarios error
 □ General / 2_reglaNegocio / 3_peticion
 └ 2.3.1. peticion — cifrada con otra llave RSA (405)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-gcm idPeticion=AMIYGATO1783292719 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-gcm idPeticion=AMIYGATO1783293465 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-gcm [200 OK, 1.68kB, 170ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 379ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-gcm [200 OK, 429B, 151ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-gcm [200 OK, 1.68kB, 196ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 406ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-gcm [200 OK, 429B, 154ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1056,11 +1056,11 @@ VCN Escenarios error
 
 └ 2.3.2. peticion — clave AES-128 en RSA (405)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292720 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293466 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 186ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 420ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 161ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 171ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 387ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 179ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1070,11 +1070,11 @@ VCN Escenarios error
 
 └ 2.3.3. peticion — RSA material no hex (405)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292721 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293466 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 183ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 363ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 156ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 173ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 489ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 154ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1084,11 +1084,11 @@ VCN Escenarios error
 
 └ 2.3.4. peticion — hex corrupto (405)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292722 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293467 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 172ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 338ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 162ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 167ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 508ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 163ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1098,11 +1098,11 @@ VCN Escenarios error
 
 └ 2.3.5. peticion — cifrado truncado (405)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292722 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293468 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 171ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 389ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 155ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 245ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 446ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 164ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1112,11 +1112,11 @@ VCN Escenarios error
 
 └ 2.3.6. peticion — tag GCM corrupto (405)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-gcm idPeticion=AMIYGATO1783292723 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-gcm idPeticion=AMIYGATO1783293469 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-gcm [200 OK, 1.68kB, 181ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 332ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-gcm [200 OK, 429B, 159ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-gcm [200 OK, 1.68kB, 174ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 391ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-gcm [200 OK, 429B, 160ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1127,11 +1127,11 @@ VCN Escenarios error
 □ General / 2_reglaNegocio / 4_metodo
 └ 2.4.1. metodo — no está en CFG_METODOS_LIMITES_JSON (418)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292724 metodo=0099 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293470 metodo=0099 idSolicitud=1'
   └
   POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 179ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.57kB, 498ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 431B, 212ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.57kB, 418ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 431B, 211ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1141,11 +1141,11 @@ VCN Escenarios error
 
 └ 2.4.2. metodo — no asociado al canal emisor (418) [CANAL_EMISOR_SIN_METODO]
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=ARCHGATO1783292725 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=ARCHGATO1783293471 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 167ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.57kB, 485ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 431B, 229ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 175ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 1.57kB, 333ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 431B, 186ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1156,11 +1156,11 @@ VCN Escenarios error
 □ Metodo / 0001 / 1_validaciones_js / 1_cuenta
 └ 0001.1.1.1. cuenta — propiedad ausente (413)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292726 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293472 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 171ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 328ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 223ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 162ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 341ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 194ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1173,11 +1173,11 @@ VCN Escenarios error
 
 └ 0001.1.1.2. cuenta — null (413)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292727 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293472 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 160ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 167ms]
   POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 352ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 219ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 208ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1190,11 +1190,11 @@ VCN Escenarios error
 
 └ 0001.1.1.3. cuenta — string vacío (413)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292728 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293473 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 161ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 402ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 235ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 168ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 338ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 213ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1207,11 +1207,11 @@ VCN Escenarios error
 
 └ 0001.1.1.4. cuenta — tipo number (413)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292729 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293474 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 179ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 363ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 187ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 171ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 407ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 219ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1224,11 +1224,11 @@ VCN Escenarios error
 
 └ 0001.1.1.5. cuenta — tipo boolean (413)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292729 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293475 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 171ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 404ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 205ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 166ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 506ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 209ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1241,11 +1241,11 @@ VCN Escenarios error
 
 └ 0001.1.1.6. cuenta — tipo object (413)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292730 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293476 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 177ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 322ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 217ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 204ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 332ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 210ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1258,11 +1258,11 @@ VCN Escenarios error
 
 └ 0001.1.1.7. cuenta — con letras (413)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292731 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293477 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 174ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 403ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 198ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 163ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 449ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 220ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1275,11 +1275,11 @@ VCN Escenarios error
 
 └ 0001.1.1.8. cuenta — solo espacios (413)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292732 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293477 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 183ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 458ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 214ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 171ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 532ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 192ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1292,11 +1292,11 @@ VCN Escenarios error
 
 └ 0001.1.1.9. cuenta — espacio interno (413)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292733 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293478 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 170ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 449ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 222ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 194ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 366ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 197ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1309,11 +1309,11 @@ VCN Escenarios error
 
 └ 0001.1.1.10. cuenta — longitud 35 (413)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292734 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293479 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.79kB, 164ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 423ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 211ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.79kB, 162ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 396ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 209ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1327,11 +1327,11 @@ VCN Escenarios error
 □ Metodo / 0001 / 2_respuestaCanalValidador / 1008
 └ 0001.2.1008.510. validador CELEGATO — Número de cuenta incorrecta (510)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292735 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293480 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 188ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 2s]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 215ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 173ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 4.6s]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 212ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1344,11 +1344,11 @@ VCN Escenarios error
 
 └ 0001.2.1008.511. validador CELEGATO — Número de cuenta cerrado (511)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292737 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293485 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 169ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 952ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 214ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 170ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 1140ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 209ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1361,11 +1361,11 @@ VCN Escenarios error
 
 └ 0001.2.1008.512. validador CELEGATO — Número de cuenta bloqueado (512)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292739 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293487 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 176ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 881ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 200ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 162ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 1000ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 208ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1378,11 +1378,11 @@ VCN Escenarios error
 
 └ 0001.2.1008.513. validador CELEGATO — Transacción no permitida (513)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292740 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293488 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 172ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 771ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 221ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 171ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 914ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 192ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1395,11 +1395,11 @@ VCN Escenarios error
 
 └ 0001.2.1008.514. validador CELEGATO — Falta información obligatoria de consulta (514)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292741 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293490 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 167ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 847ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 216ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 180ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 989ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 200ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1412,11 +1412,11 @@ VCN Escenarios error
 
 └ 0001.2.1008.515. validador CELEGATO — Razón regulatoria (515)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292743 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293491 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 189ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 691ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 225ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 174ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 964ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 211ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1430,10 +1430,10 @@ VCN Escenarios error
 □ Metodo / 0001 / 2_respuestaCanalValidador / 1009
 └ 0001.2.1009.510. validador ASTRGATO — Número de cuenta incorrecta (510)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292744 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293493 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 173ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 862ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 169ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 1268ms]
   POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 211ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
@@ -1447,11 +1447,11 @@ VCN Escenarios error
 
 └ 0001.2.1009.511. validador ASTRGATO — Número de cuenta cerrado (511)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292745 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293494 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 170ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 689ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 188ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 168ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 819ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 189ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1464,11 +1464,11 @@ VCN Escenarios error
 
 └ 0001.2.1009.512. validador ASTRGATO — Número de cuenta bloqueado (512)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292746 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293495 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 168ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.65kB, 690ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 216ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 182ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.65kB, 876ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 208ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1481,11 +1481,11 @@ VCN Escenarios error
 
 └ 0001.2.1009.513. validador ASTRGATO — Transacción no permitida (513)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292748 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293497 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 160ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 1219ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 217ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 168ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 1233ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 253ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1498,11 +1498,11 @@ VCN Escenarios error
 
 └ 0001.2.1009.514. validador ASTRGATO — Falta información obligatoria de consulta (514)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292749 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293499 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 201ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 672ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 197ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 206ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 742ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 209ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1515,11 +1515,11 @@ VCN Escenarios error
 
 └ 0001.2.1009.515. validador ASTRGATO — Razón regulatoria (515)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292750 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293500 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 182ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 788ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 276ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 179ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 1064ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 232ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1533,11 +1533,11 @@ VCN Escenarios error
 □ Metodo / 0001 / 2_respuestaCanalValidador / 1011
 └ 0001.2.1011.510. validador MIRAGATO — Número de cuenta incorrecta (510)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292752 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293501 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 1183ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 1296ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 210ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 173ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 4.3s]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 213ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1550,11 +1550,11 @@ VCN Escenarios error
 
 └ 0001.2.1011.511. validador MIRAGATO — Número de cuenta cerrado (511)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292755 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293506 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 221ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 1199ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 256ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 162ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 1041ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 191ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1567,11 +1567,11 @@ VCN Escenarios error
 
 └ 0001.2.1011.512. validador MIRAGATO — Número de cuenta bloqueado (512)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292756 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293508 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 245ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 1009ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 297ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 161ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 961ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 213ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1584,11 +1584,11 @@ VCN Escenarios error
 
 └ 0001.2.1011.513. validador MIRAGATO — Transacción no permitida (513)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292758 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293509 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 228ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 829ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 252ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 168ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 854ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 190ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1601,11 +1601,11 @@ VCN Escenarios error
 
 └ 0001.2.1011.514. validador MIRAGATO — Falta información obligatoria de consulta (514)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292759 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293510 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 213ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 813ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 265ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 167ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 994ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 198ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1618,11 +1618,11 @@ VCN Escenarios error
 
 └ 0001.2.1011.515. validador MIRAGATO — Razón regulatoria (515)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292761 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293512 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 234ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 824ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 682ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 163ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 879ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 207ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1636,11 +1636,11 @@ VCN Escenarios error
 □ Metodo / 0001 / 2_respuestaCanalValidador / 1012
 └ 0001.2.1012.510. validador TERAGATO — Número de cuenta incorrecta (510)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292763 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293513 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 187ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 878ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 702ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 177ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 847ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 228ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1653,11 +1653,11 @@ VCN Escenarios error
 
 └ 0001.2.1012.511. validador TERAGATO — Número de cuenta cerrado (511)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292764 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293514 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 206ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 752ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 269ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 165ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 771ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 196ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1670,11 +1670,11 @@ VCN Escenarios error
 
 └ 0001.2.1012.512. validador TERAGATO — Número de cuenta bloqueado (512)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292766 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293516 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 211ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 710ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 210ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 169ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 836ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 215ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1687,11 +1687,11 @@ VCN Escenarios error
 
 └ 0001.2.1012.513. validador TERAGATO — Transacción no permitida (513)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292767 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293517 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 172ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 692ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 232ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 166ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 706ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 208ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1704,11 +1704,11 @@ VCN Escenarios error
 
 └ 0001.2.1012.514. validador TERAGATO — Falta información obligatoria de consulta (514)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292768 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293518 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 184ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 633ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 220ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 161ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 762ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 192ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1721,11 +1721,11 @@ VCN Escenarios error
 
 └ 0001.2.1012.515. validador TERAGATO — Razón regulatoria (515)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292769 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293519 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 170ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 727ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 205ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 173ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 771ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 202ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1739,11 +1739,11 @@ VCN Escenarios error
 □ Metodo / 0001 / 2_respuestaCanalValidador / 1013
 └ 0001.2.1013.510. validador AMIYGATO — Número de cuenta incorrecta (510)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292771 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293521 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 169ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 890ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 192ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 173ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 853ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 200ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1756,11 +1756,11 @@ VCN Escenarios error
 
 └ 0001.2.1013.511. validador AMIYGATO — Número de cuenta cerrado (511)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292772 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293522 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 166ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 737ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 207ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 168ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 868ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 210ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1773,11 +1773,11 @@ VCN Escenarios error
 
 └ 0001.2.1013.512. validador AMIYGATO — Número de cuenta bloqueado (512)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292773 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293523 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 166ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 743ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 203ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 173ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 787ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 222ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1790,11 +1790,11 @@ VCN Escenarios error
 
 └ 0001.2.1013.513. validador AMIYGATO — Transacción no permitida (513)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292775 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293525 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 187ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 853ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 201ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 176ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 762ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 203ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1807,11 +1807,11 @@ VCN Escenarios error
 
 └ 0001.2.1013.514. validador AMIYGATO — Falta información obligatoria de consulta (514)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292776 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293526 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 179ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 714ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 236ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 175ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 898ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 200ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1824,11 +1824,11 @@ VCN Escenarios error
 
 └ 0001.2.1013.515. validador AMIYGATO — Razón regulatoria (515)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292777 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293527 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 177ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 888ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 246ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 167ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 858ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 219ms]
   √  [Lambda VCN] HTTP status = 200 (real: 200)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -1842,28 +1842,333 @@ VCN Escenarios error
 □ Metodo / 0001 / 2_respuestaCanalValidador / 1014
 └ 0001.2.1014.510. validador CORNGATO — Número de cuenta incorrecta (510)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783292779 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293528 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 179ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre ―
-┌─────────────────────────┬───────────────────┬───────────────────┐
-│                         │          executed │            failed │
-├─────────────────────────┼───────────────────┼───────────────────┤
-│              iterations │                 0 │                 0 │
-├─────────────────────────┼───────────────────┼───────────────────┤
-│                requests │               363 │                 0 │
-├─────────────────────────┼───────────────────┼───────────────────┤
-│            test-scripts │               121 │                 0 │
-├─────────────────────────┼───────────────────┼───────────────────┤
-│      prerequest-scripts │               242 │                 0 │
-├─────────────────────────┼───────────────────┼───────────────────┤
-│              assertions │               846 │                 0 │
-├─────────────────────────┴───────────────────┴───────────────────┤
-│ total run duration: 0ms                                         │
-├─────────────────────────────────────────────────────────────────┤
-│ total data received: 293.19kB (approx)                          │
-├─────────────────────────────────────────────────────────────────┤
-│ average response time: 296ms [min: 151ms, max: 2s, s.d.: 225ms] │
-└─────────────────────────────────────────────────────────────────┘
-callback timed out
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 156ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 835ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 189ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 510
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 510
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Número de cuenta incorrecta"
+
+└ 0001.2.1014.511. validador CORNGATO — Número de cuenta cerrado (511)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293530 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 164ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 650ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 210ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 511
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 511
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Número de cuenta cerrado"
+
+└ 0001.2.1014.512. validador CORNGATO — Número de cuenta bloqueado (512)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293531 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 181ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 737ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 214ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 512
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 512
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Número de cuenta bloqueado"
+
+└ 0001.2.1014.513. validador CORNGATO — Transacción no permitida (513)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293532 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 173ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 718ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 197ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 513
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 513
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Transacción no permitida"
+
+└ 0001.2.1014.514. validador CORNGATO — Falta información obligatoria de consulta (514)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293533 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 178ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 749ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 211ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 514
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 514
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Falta información obligatoria de consulta"
+
+└ 0001.2.1014.515. validador CORNGATO — Razón regulatoria (515)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293535 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 199ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 885ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 212ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 515
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 515
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Razón regulatoria"
+
+□ Metodo / 0001 / 2_respuestaCanalValidador / 1015
+└ 0001.2.1015.510. validador ZONAGATO — Número de cuenta incorrecta (510)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293536 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 172ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 935ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 216ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 510
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 510
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Número de cuenta incorrecta"
+
+└ 0001.2.1015.511. validador ZONAGATO — Número de cuenta cerrado (511)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293537 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 169ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 751ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 201ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 511
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 511
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Número de cuenta cerrado"
+
+└ 0001.2.1015.512. validador ZONAGATO — Número de cuenta bloqueado (512)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293539 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 160ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 848ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 189ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 512
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 512
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Número de cuenta bloqueado"
+
+└ 0001.2.1015.513. validador ZONAGATO — Transacción no permitida (513)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293540 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 165ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 1068ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 191ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 513
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 513
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Transacción no permitida"
+
+└ 0001.2.1015.514. validador ZONAGATO — Falta información obligatoria de consulta (514)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293541 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 157ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 782ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 193ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 514
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 514
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Falta información obligatoria de consulta"
+
+└ 0001.2.1015.515. validador ZONAGATO — Razón regulatoria (515)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293543 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 165ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 819ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 207ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 515
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 515
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Razón regulatoria"
+
+□ Metodo / 0001 / 2_respuestaCanalValidador / 1016
+└ 0001.2.1016.510. validador BELLGATO — Número de cuenta incorrecta (510)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293544 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 172ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 882ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 220ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 510
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 510
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Número de cuenta incorrecta"
+
+└ 0001.2.1016.511. validador BELLGATO — Número de cuenta cerrado (511)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293545 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 172ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 675ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 211ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 511
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 511
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Número de cuenta cerrado"
+
+└ 0001.2.1016.512. validador BELLGATO — Número de cuenta bloqueado (512)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293546 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 175ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 768ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 221ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 512
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 512
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Número de cuenta bloqueado"
+
+└ 0001.2.1016.513. validador BELLGATO — Transacción no permitida (513)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293548 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 164ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 686ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 233ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 513
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 513
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Transacción no permitida"
+
+└ 0001.2.1016.514. validador BELLGATO — Falta información obligatoria de consulta (514)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293549 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 164ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 677ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 208ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 514
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 514
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Falta información obligatoria de consulta"
+
+└ 0001.2.1016.515. validador BELLGATO — Razón regulatoria (515)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783293550 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 160ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 725ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 203ms]
+  √  [Lambda VCN] HTTP status = 200 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [metodo] catalogo resuelve referencia CloudWatch para codigo 515
+  √  [Dummy /descifrar] estructura inner.respuestas[0] presente
+  √  [metodo] respuestas[0].idSolicitud = "1"
+  √  [metodo] respuestas[0].resultado = 515
+  √  [metodo] respuestas[0].datos es null o ausente
+  √  [metodo] CloudWatch — referencia (no en response): "Razón regulatoria"
+
+┌─────────────────────────┬────────────────────┬────────────────────┐
+│                         │           executed │             failed │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│              iterations │                  1 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│                requests │                416 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│            test-scripts │                139 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│      prerequest-scripts │                278 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│              assertions │               1008 │                  0 │
+├─────────────────────────┴────────────────────┴────────────────────┤
+│ total run duration: 2m 44.1s                                      │
+├───────────────────────────────────────────────────────────────────┤
+│ total data received: 341.8kB (approx)                             │
+├───────────────────────────────────────────────────────────────────┤
+│ average response time: 364ms [min: 154ms, max: 4.6s, s.d.: 403ms] │
+└───────────────────────────────────────────────────────────────────┘
+
+Resumen: logs\resumen-fallos-vcn.md
+JSON:    logs\ultimo-run-vcn.json
+Registro:logs\registro-vcn.md
 PS C:\Versionamiento\GitHub\second-brain\Postman\generador>
