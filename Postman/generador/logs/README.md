@@ -43,7 +43,7 @@ Opcional `--nota "..."` queda en resumen y registro (deploy, commit código, etc
 
 ```powershell
 git add logs/
-git commit -m "Newman VCN — run completo 570/570"
+git commit -m "Newman VCN — run completo 1008/1008"
 git push
 ```
 

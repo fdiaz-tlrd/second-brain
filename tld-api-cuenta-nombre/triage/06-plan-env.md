@@ -63,4 +63,4 @@ Escenarios ancla: **2.4.1** (418 fuera CFG), **2.4.2** (418 sin método en emiso
 
 ## Siguiente
 
-General **80/80** y VCN **570/570** cerrados. Siguiente fase: **nuevos escenarios VCN** propuestos por el usuario. Refactor Fase B/C cuando corresponda.
+General **80/80** y VCN **1008/1008** cerrados (A9 incluida). Siguiente: **otros escenarios Metodo/0001**. Refactor Fase B/C cuando corresponda.

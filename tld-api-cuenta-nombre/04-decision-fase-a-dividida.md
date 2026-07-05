@@ -106,7 +106,7 @@ flowchart LR
 
 | Fase | Cuándo |
 |------|--------|
-| **Fase A + A8** | **Cerrada** — General **80/80**, VCN completo **570/570** (2026-07-05T19:51Z) |
+| **Fase A + A8 + A9** | **Cerrada** — General **80/80**, VCN completo **1008/1008** (2026-07-05T23:19Z); A9 = `2_respuestaCanalValidador` 510–515 |
 | **B** — Extraer funciones en `app.js` (`resolverCanalEmisor`, …) | Tras acuerdo usuario / nuevos escenarios |
 | **C** — `lib/metodos.js` solo 0001 | Tras B o en paralelo |
 
@@ -120,8 +120,8 @@ Después de **cada** A1–A8, el usuario (o agente con logs) verifica:
 
 ## Próximo paso concreto
 
-1. Usuario propone **nuevos escenarios VCN** (fuera del bloque General actual).
-2. Crear → revisar → corregir → Newman → repetir hasta *hemos terminado*.
+1. Definir **siguiente bloque Metodo/0001** (máscaras, PACA/PACC, éxito, 413, jurídica, etc.) — ver [`Postman/generador/estudio-generador.md`](../Postman/generador/estudio-generador.md).
+2. Crear → revisar → corregir → Newman → actualizar checklist/triage → repetir.
 
 ## Referencias sagradas / fuera de alcance
 

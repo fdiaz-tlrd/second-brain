@@ -75,4 +75,4 @@ P2M y P2P son **equivalentes** en el tramo transversal (mismo flujo en `app.js`)
 
 ## Próximo triage
 
-Fases A0–A8 **cerradas** (General **80/80**, VCN **570/570**). Ver [README](./README.md) y [04-decision-fase-a-dividida.md](./04-decision-fase-a-dividida.md). Siguiente: **nuevos escenarios VCN** propuestos por el usuario.
+Fases A0–A9 **cerradas** (General **80/80**, VCN **1008/1008**). Ver [README](./README.md), [04-decision-fase-a-dividida.md](./04-decision-fase-a-dividida.md) y [triage/09-respuesta-canal-validador-510-515.md](./triage/09-respuesta-canal-validador-510-515.md). Siguiente: **otros escenarios Metodo/0001** (máscaras, PACA/PACC, éxito, etc.).

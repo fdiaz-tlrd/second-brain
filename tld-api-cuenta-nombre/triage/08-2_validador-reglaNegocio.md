@@ -2,7 +2,7 @@
 
 **Fecha análisis:** 2026-07-05  
 **Debate cerrado:** 2026-07-05  
-**Estado ejecución:** **cerrado** — Newman **3/3** (18 assertions); VCN completo **570/570** (2026-07-05T19:51Z).
+**Estado ejecución:** **cerrado** — Newman **3/3** (18 assertions); VCN completo **570/570** al cierre A8 (2026-07-05T19:51Z). Regresión post-A9: **1008/1008** (2026-07-05T23:19Z) — [09-respuesta-canal-validador-510-515.md](./09-respuesta-canal-validador-510-515.md).
 
 ## Principio rector (acordado 2026-07-05)
 
@@ -143,7 +143,7 @@ Orden **antes** de descifrar `peticion`:
 | A8a | Quitar regla `CFG_CANAL_VALIDADOR` | `tld-api-cuenta-nombre` | **Hecho** (`37a5e06`) |
 | A8b | Env VCN `1021` / `1017` + canales dev | `second-brain` | **Hecho** |
 | A8c | Pulir escenarios Postman + regenerar colección | `second-brain` | **Hecho** |
-| A8d | Deploy dev + Newman `2_validador` | — | **Hecho** (570/570) |
+| A8d | Deploy dev + Newman `2_validador` | — | **Hecho** (570/570 al cierre A8; regresión **1008/1008** post-A9) |
 | A8e | P6 + `1.2.15` | — | **Hecho** — 500 dev; **1.2.15 eliminado** |
 
 ## Pruebas

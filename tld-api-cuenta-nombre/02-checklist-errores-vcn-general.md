@@ -4,20 +4,25 @@ Fuente de verdad para corrección en `tld-api-cuenta-nombre`. Marcar `[x]` al re
 
 | Run | Valor |
 |-----|-------|
-| Fecha (VCN completo) | **2026-07-05T19:51:09.825Z** |
+| Fecha (VCN completo) | **2026-07-05T23:19:11.745Z** |
+| Fecha (Metodo, post-A9) | **2026-07-05T23:01:33.545Z** |
 | Fecha (2_reglaNegocio/2_validador) | 2026-07-05T19:02Z (aprox., post-deploy A8a) |
 | Fecha (1_validaciones_js regresión post-1.2.15) | incluida en run VCN completo |
-| Carpeta Postman | `General` + `Metodo/0001` + resto colección VCN |
-| Requests (VCN completo) | **270** (failed: **0**) |
-| Tests (VCN completo) | **570** (failed: **0**) |
+| Carpeta Postman | `General` + `Metodo/0001` (incl. `2_respuestaCanalValidador`) + resto colección VCN |
+| Requests (VCN completo) | **416** (failed: **0**) |
+| Tests (VCN completo) | **1008** (failed: **0**) |
+| Tests (`Metodo`) | **522** (failed: **0**) |
+| Tests (`Metodo/0001/2_respuestaCanalValidador`) | **432** (48 escenarios × ~9 asserts) |
 | Tests (`2_reglaNegocio/2_validador`) | **18** (failed: **0**) |
 | Tests (`1_validaciones_js`) | **390** (failed: **0**, tras eliminar 1.2.15) |
 | Resumen Newman | [`Postman/generador/logs/registro-vcn.md`](../Postman/generador/logs/registro-vcn.md) (historial) · [`resumen-fallos-vcn.md`](../Postman/generador/logs/resumen-fallos-vcn.md) (último) |
 | Enfoque | [`01-enfoque-correccion.md`](./01-enfoque-correccion.md) |
+| Triage A9 | [`triage/09-respuesta-canal-validador-510-515.md`](./triage/09-respuesta-canal-validador-510-515.md) |
 
 | Escenarios General (baseline 2026-07-05) | 78 |
 | Escenarios General (+ `2_reglaNegocio/2_validador`, − `1.2.15`, + `0_jsonEntrada`) | **81** |
-| Estado General | **80/80** + regresión VCN completa **570/570** |
+| Escenarios `Metodo/0001/2_respuestaCanalValidador` | **48** |
+| Estado General | **80/80** + regresión VCN completa **1008/1008** |
 
 **Convención:** *Debe* = contrato Postman. Newman verificado vía **`registro-vcn.md`** (usuario: VPN → run → commit/push logs). Ver [`05-newman-vpn-reglas-agente.md`](./05-newman-vpn-reglas-agente.md).
 
@@ -59,7 +64,7 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 
 **Debate cerrado 2026-07-05.** Detalle: [triage/08-2_validador-reglaNegocio.md](./triage/08-2_validador-reglaNegocio.md).
 
-**Newman:** **3/3** escenarios (18 assertions, run post-deploy A8a); incluido en VCN completo **570/570**.
+**Newman:** **3/3** escenarios (18 assertions, run post-deploy A8a); incluido en VCN completo **1008/1008**.
 
 - [x] **Datos/env** — `CANAL_VALIDADOR_DESHABILITADO` = **1021**; `CANAL_VALIDADOR_MAL_CONFIGURADO` = **1017**; canal 1021 en `Postman/canalesPruebas-dev/`
 - [x] **Código A8a** — regla `CFG_CANAL_VALIDADOR` eliminada en dev (`37a5e06`)
@@ -173,3 +178,71 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 - [x] 2.3.4. peticion — hex corrupto (405)
 - [x] 2.3.5. peticion — cifrado truncado (405)
 - [x] 2.3.6. peticion — tag GCM corrupto (405)
+
+## Metodo/0001/2_respuestaCanalValidador — A9 cerrada (2026-07-05T23:19Z)
+
+**48/48** escenarios. Emisor fijo **1008**; validadores **1008–1016** (sin 1010). Detalle: [triage/09-respuesta-canal-validador-510-515.md](./triage/09-respuesta-canal-validador-510-515.md).
+
+### Validador 1008 (CELEGATO)
+- [x] 0001.2.1008.510 — cuenta incorrecta (510)
+- [x] 0001.2.1008.511 — cuenta cerrada (511)
+- [x] 0001.2.1008.512 — cuenta bloqueada (512)
+- [x] 0001.2.1008.513 — transacción no permitida (513)
+- [x] 0001.2.1008.514 — falta info consulta (514)
+- [x] 0001.2.1008.515 — razón regulatoria (515)
+
+### Validador 1009 (ASTRGATO)
+- [x] 0001.2.1009.510 — cuenta incorrecta (510)
+- [x] 0001.2.1009.511 — cuenta cerrada (511)
+- [x] 0001.2.1009.512 — cuenta bloqueada (512)
+- [x] 0001.2.1009.513 — transacción no permitida (513)
+- [x] 0001.2.1009.514 — falta info consulta (514)
+- [x] 0001.2.1009.515 — razón regulatoria (515)
+
+### Validador 1011 (MIRAGATO)
+- [x] 0001.2.1011.510 — cuenta incorrecta (510)
+- [x] 0001.2.1011.511 — cuenta cerrada (511)
+- [x] 0001.2.1011.512 — cuenta bloqueada (512)
+- [x] 0001.2.1011.513 — transacción no permitida (513)
+- [x] 0001.2.1011.514 — falta info consulta (514)
+- [x] 0001.2.1011.515 — razón regulatoria (515)
+
+### Validador 1012 (TERAGATO)
+- [x] 0001.2.1012.510 — cuenta incorrecta (510)
+- [x] 0001.2.1012.511 — cuenta cerrada (511)
+- [x] 0001.2.1012.512 — cuenta bloqueada (512)
+- [x] 0001.2.1012.513 — transacción no permitida (513)
+- [x] 0001.2.1012.514 — falta info consulta (514)
+- [x] 0001.2.1012.515 — razón regulatoria (515)
+
+### Validador 1013 (AMIYGATO)
+- [x] 0001.2.1013.510 — cuenta incorrecta (510)
+- [x] 0001.2.1013.511 — cuenta cerrada (511)
+- [x] 0001.2.1013.512 — cuenta bloqueada (512)
+- [x] 0001.2.1013.513 — transacción no permitida (513)
+- [x] 0001.2.1013.514 — falta info consulta (514)
+- [x] 0001.2.1013.515 — razón regulatoria (515)
+
+### Validador 1014 (CORNGATO)
+- [x] 0001.2.1014.510 — cuenta incorrecta (510)
+- [x] 0001.2.1014.511 — cuenta cerrada (511)
+- [x] 0001.2.1014.512 — cuenta bloqueada (512)
+- [x] 0001.2.1014.513 — transacción no permitida (513)
+- [x] 0001.2.1014.514 — falta info consulta (514)
+- [x] 0001.2.1014.515 — razón regulatoria (515)
+
+### Validador 1015 (ZONAGATO)
+- [x] 0001.2.1015.510 — cuenta incorrecta (510)
+- [x] 0001.2.1015.511 — cuenta cerrada (511)
+- [x] 0001.2.1015.512 — cuenta bloqueada (512)
+- [x] 0001.2.1015.513 — transacción no permitida (513)
+- [x] 0001.2.1015.514 — falta info consulta (514)
+- [x] 0001.2.1015.515 — razón regulatoria (515)
+
+### Validador 1016 (BELLGATO)
+- [x] 0001.2.1016.510 — cuenta incorrecta (510)
+- [x] 0001.2.1016.511 — cuenta cerrada (511)
+- [x] 0001.2.1016.512 — cuenta bloqueada (512)
+- [x] 0001.2.1016.513 — transacción no permitida (513)
+- [x] 0001.2.1016.514 — falta info consulta (514)
+- [x] 0001.2.1016.515 — razón regulatoria (515)

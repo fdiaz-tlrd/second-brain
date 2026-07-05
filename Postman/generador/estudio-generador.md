@@ -384,7 +384,7 @@ node armar-coleccion.js config-p2p.json
 | Flujo | 3–4 requests encadenados | 1 request; Pre-request raíz orquesta |
 | Método | `0001` | `0001` en General (OK); falta `Metodo/0001/` |
 | Parámetros | `cuenta` | Aún `tipoIdentificador: CELULAR` (heredado P2P) |
-| Escenarios método | 510–515, máscaras, PACA/PACC, etc. | No existen en generador aún |
+| Escenarios método | 510–515, máscaras, PACA/PACC, etc. | **510–515** en `Metodo/0001/2_respuestaCanalValidador` (48 esc, A9 cerrada); resto pendiente |
 | Endpoint | `apigatesb.telered.com.pa` sandbox | Falta `END_POINT_TLD_VCN` + environment |
 
 ---
@@ -401,9 +401,9 @@ Lista de huecos visibles hoy si solo se copió General y se cambió el método:
 
 4. **No hay environment VCN** en `entornos/`. Faltan endpoint cuenta-nombre, canales/validadores VCN, cuentas de prueba (510–515, máscaras, PACA/PACC, etc.).
 
-5. **No existe `Metodo/0001/`.** En QA, la mayoría de escenarios VCN son validaciones de **cuenta** y respuestas de negocio (510, 511, 512, 513, 514, 515, 413, éxito, máscaras 0–6, jurídica, varios titulares…). General solo cubre idCanal, validador, peticion, idPeticion, solicitudes, metodo transversal.
+5. **`Metodo/0001/2_respuestaCanalValidador`.** Códigos **510–515** × 8 validadores (**48** escenarios, A9 cerrada 2026-07-05). Pendiente: validación `cuenta` → 413, éxito, máscaras 0–6, jurídica, PACA/PACC, etc.
 
-6. **`catalogoGeneral.json` no tiene 510–515.** Tiene `413` (cuenta) pero no los códigos de respuesta del validador/cuenta-nombre que QA valida en escenarios de éxito/error de negocio.
+6. **`catalogoGeneral.json` y 510–515.** Catálogo usado por `generar-escenarios-0001-respuesta-canal-validador.js`. Otros códigos de negocio (413, éxito, máscaras) siguen pendientes en generador.
 
 7. **No hay `generar-escenarios-0001-validaciones.js`.** Para VCN hará falta un generador masivo de escenarios de `cuenta` (como existen para identificador/banco en P2P).
 
@@ -427,5 +427,7 @@ Lista de huecos visibles hoy si solo se copió General y se cambió el método:
 | Ejemplo regla negocio | `General/2_reglaNegocio/1_idCanal/1.1_*.json` |
 | Ejemplo mutación cifrado | `General/2_reglaNegocio/3_peticion/3.1_*.json` |
 | Generador masivo | `ensamblador/generar-escenarios-0022-validaciones.js` |
+| Generador 510–515 VCN | `ensamblador/generar-escenarios-0001-respuesta-canal-validador.js` |
+| Escenarios 510–515 | `VCN Escenarios error/Metodo/0001/2_respuestaCanalValidador/` |
 | VCN General (ejemplo) | `VCN Escenarios error/General/1_validaciones_js/1_idCanal/1.1_*.json` |
 | Referencia QA VCN (no tocar) | `../equipo-pruebas/Validacion Cuenta Nombre/estudio-coleccion-vcn.md` |

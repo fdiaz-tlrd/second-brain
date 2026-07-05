@@ -14,7 +14,7 @@ Espacio de trabajo en `second-brain` para **estudiar y corregir** el repositorio
 
 - **Memoria viva** del hilo VCN: el agente documenta aquí todo lo analizado o acordado para recuperar contexto **sin re-leer** repos ni transcripts.
 - **No** se mueven archivos de otras rutas (`notas-sueltas/`, `Postman/`, etc.); solo referencias.
-- **No** incluye cambios al generador Postman VCN.
+- Tras cada bloque de escenarios Newman: **actualizar checklist, triage y README** en esta carpeta (no preguntar).
 
 VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De ellos salió `tld-api-base` (**solo estudio, nunca productivo**) — ver [`../tld-api-base/README.md`](../tld-api-base/README.md). **Repos autónomos:** VCN no depende de otros repos; se copia/adapta el patrón adentro de `tld-api-cuenta-nombre`. Los repos de producto y base **NUNCA se ven entre sí**.
 
@@ -23,9 +23,9 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | Archivo | Contenido |
 |---------|-----------|
 | [01-enfoque-correccion.md](./01-enfoque-correccion.md) | Estrategia: P2M/P2P como referencia, qué portar a VCN, qué no copiar |
-| [02-checklist-errores-vcn-general.md](./02-checklist-errores-vcn-general.md) | **Checklist vivo** — General **80/80**; VCN completo **570/570** |
+| [02-checklist-errores-vcn-general.md](./02-checklist-errores-vcn-general.md) | **Checklist vivo** — General **80/80**; VCN completo **1008/1008** |
 | [03-estrategia-transversal-vs-parche.md](./03-estrategia-transversal-vs-parche.md) | Opinión: meta transversal = base; ejecución incremental |
-| [04-decision-fase-a-dividida.md](./04-decision-fase-a-dividida.md) | **Decisión:** Fase A + `2_validador` **cerradas**; siguiente: nuevos escenarios VCN |
+| [04-decision-fase-a-dividida.md](./04-decision-fase-a-dividida.md) | **Decisión:** Fase A + `2_validador` **cerradas**; A9 respuesta canal validador **510–515 cerrada** |
 | [**05-newman-vpn-reglas-agente.md**](./05-newman-vpn-reglas-agente.md) | **OBLIGATORIO agente:** Newman solo con VPN; no interpretar `ENOTFOUND` |
 | [referencia-produccion.md](./referencia-produccion.md) | Prod congelada — existe; **fuera de alcance ahora**; nunca modificar |
 | [triage/00-estructura-vs-base.md](./triage/00-estructura-vs-base.md) | Triage #0 — inventario VCN dev vs base |
@@ -36,6 +36,7 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | [triage/06-plan-env.md](./triage/06-plan-env.md) | Triage #6 — **A5 cerrada** (Newman 4/4 `1_idCanal`, run 09:28) |
 | [triage/07-getCanal-contrato-http.md](./triage/07-getCanal-contrato-http.md) | Triage #7 — **A7 cerrada** (fix 2.1.3 HTTP 500) |
 | [triage/08-2_validador-reglaNegocio.md](./triage/08-2_validador-reglaNegocio.md) | Triage #8 — **A8 cerrada** (Newman 3/3; P6 → 500 dev) |
+| [triage/09-respuesta-canal-validador-510-515.md](./triage/09-respuesta-canal-validador-510-515.md) | Triage #9 — **A9 cerrada** (48 escenarios 510–515 × 8 validadores; VCN **1008/1008**) |
 | [triage/01-json-entrada.md](./triage/01-json-entrada.md) | Triage #1 — validar que la entrada sea JSON |
 
 ## Referencias externas
@@ -65,8 +66,9 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | 2026-07-05 | **A5 + A7** cerradas — Newman `1_idCanal` **4/4** (run 09:28); commit código `f162fe5` |
 | 2026-07-05 | **Baseline General 78/78** — Newman `4_metodo` 12/12 + regresión `1_validaciones_js` 396/396 |
 | 2026-07-05 | **A8** `2_reglaNegocio/2_validador` — debate cerrado; A8a deploy; Newman **3/3** + VCN **570/570** (19:51Z) |
+| 2026-07-05 | **A9** `Metodo/0001/2_respuestaCanalValidador` — 48 escenarios códigos **510–515** × validadores **1008–1016**; Newman Metodo **522/522**, VCN completo **1008/1008** (23:19Z); commits `b4c400c`, `8df6084`, log `aee0972` |
 | 2026-07-05 | **05-newman-vpn-reglas-agente.md** — regla: agente no corre Newman sin VPN |
-| 2026-07-05 | **Siguiente:** nuevos escenarios VCN propuestos por el usuario |
+| 2026-07-05 | **Siguiente:** otros escenarios Metodo/0001 (máscaras, PACA/PACC, éxito, 413, etc.) — ver `estudio-generador.md` |
 | 2026-07-05 | **Principio rector:** mejorar código VCN, **no** cambiar reglas de negocio productivas — ver triage `08`, [referencia-produccion.md](./referencia-produccion.md) |
 
 ## Convención de triage
