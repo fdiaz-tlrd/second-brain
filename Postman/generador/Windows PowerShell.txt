@@ -15,25 +15,25 @@ VCN Escenarios error — General/2_reglaNegocio/1_idCanal
 □ 1_idCanal
 └ 2.1.1. idCanal — no existe en BD (401)
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783241436 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783243702 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 2.2s]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 418B, 2.7s]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 418B, 243ms]
-  1. [Lambda VCN] HTTP status = 400 (real: 200)
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 2.6s]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 428B, 2.4s]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 419B, 1162ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
   √  [General] catalogo resuelve mensaje para codigo 401
-  2. [General] codigoError = 401
-  3. [General] mensajeError = "Canal emisor no existe"
+  √  [General] codigoError = 401
+  √  [General] mensajeError = "Canal emisor no existe"
 
 └ 2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-gcm idPeticion=NAMEGATO1783241442 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-gcm idPeticion=NAMEGATO1783243708 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-gcm [200 OK, 1.68kB, 246ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 451B, 332ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-gcm [200 OK, 442B, 258ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-gcm [200 OK, 1.68kB, 512ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 451B, 2.4s]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-gcm [200 OK, 442B, 926ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -43,25 +43,25 @@ VCN Escenarios error — General/2_reglaNegocio/1_idCanal
 
 └ 2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=TEYVGATO1783241443 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=TEYVGATO1783243712 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 262ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 418B, 278ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 418B, 246ms]
-  4. [Lambda VCN] HTTP status = 500 (real: 200)
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 437ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [500 Internal Server Error, 429B, 413ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 410B, 358ms]
+  √  [Lambda VCN] HTTP status = 500 (real: 500)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
   √  [General] catalogo resuelve mensaje para codigo 500
-  5. [General] codigoError = 500
-  6. [General] mensajeError = "Error interno"
+  √  [General] codigoError = 500
+  √  [General] mensajeError = "Error interno"
 
 └ 2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]
   ┌
-  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-gcm idPeticion=STELGATO1783241444 metodo=0001 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-gcm idPeticion=STELGATO1783243714 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-gcm [200 OK, 1.68kB, 251ms]
-  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 451B, 418ms]
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-gcm [200 OK, 442B, 232ms]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-gcm [200 OK, 1.68kB, 405ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 451B, 531ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-gcm [200 OK, 442B, 369ms]
   √  [Lambda VCN] HTTP status = 400 (real: 400)
   √  [Dummy /descifrar] HTTP status 2xx (real: 200)
   √  [Dummy /descifrar] respuesta JSON parseable
@@ -69,57 +69,25 @@ VCN Escenarios error — General/2_reglaNegocio/1_idCanal
   √  [General] codigoError = 403
   √  [General] mensajeError = "Canal emisor no tiene un plan de suscripción"
 
-┌─────────────────────────┬────────────────────┬────────────────────┐
-│                         │           executed │             failed │
-├─────────────────────────┼────────────────────┼────────────────────┤
-│              iterations │                  1 │                  0 │
-├─────────────────────────┼────────────────────┼────────────────────┤
-│                requests │                 12 │                  0 │
-├─────────────────────────┼────────────────────┼────────────────────┤
-│            test-scripts │                  4 │                  0 │
-├─────────────────────────┼────────────────────┼────────────────────┤
-│      prerequest-scripts │                  8 │                  0 │
-├─────────────────────────┼────────────────────┼────────────────────┤
-│              assertions │                 24 │                  6 │
-├─────────────────────────┴────────────────────┴────────────────────┤
-│ total run duration: 8.2s                                          │
-├───────────────────────────────────────────────────────────────────┤
-│ total data received: 5.94kB (approx)                              │
-├───────────────────────────────────────────────────────────────────┤
-│ average response time: 647ms [min: 232ms, max: 2.7s, s.d.: 838ms] │
-└───────────────────────────────────────────────────────────────────┘
-
-  #  failure                                  detail
-
- 1.  AssertionError                           [Lambda VCN] HTTP status = 400 (real: 200)
-                                              expected 200 to equal 400
-                                              at assertion:0 in test-script
-                                              inside "1_idCanal / 2.1.1. idCanal — no existe en BD (401)"
-
- 2.  AssertionError                           [General] codigoError = 401
-                                              expected 999 to equal 401
-                                              at assertion:4 in test-script
-                                              inside "1_idCanal / 2.1.1. idCanal — no existe en BD (401)"
-
- 3.  AssertionError                           [General] mensajeError = "Canal emisor no existe"
-                                              expected 'Error en la solicitud' to equal 'Canal emisor no existe'
-                                              at assertion:5 in test-script
-                                              inside "1_idCanal / 2.1.1. idCanal — no existe en BD (401)"
-
- 4.  AssertionError                           [Lambda VCN] HTTP status = 500 (real: 200)
-                                              expected 200 to equal 500
-                                              at assertion:0 in test-script
-                                              inside "1_idCanal / 2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]"
-
- 5.  AssertionError                           [General] codigoError = 500
-                                              expected 999 to equal 500
-                                              at assertion:4 in test-script
-                                              inside "1_idCanal / 2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]"
-
- 6.  AssertionError                           [General] mensajeError = "Error interno"
-                                              expected 'Error en la solicitud' to equal 'Error interno'
-                                              at assertion:5 in test-script
-                                              inside "1_idCanal / 2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]"
+┌─────────────────────────┬─────────────────────┬────────────────────┐
+│                         │            executed │             failed │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│              iterations │                   1 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│                requests │                  12 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│            test-scripts │                   4 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│      prerequest-scripts │                   8 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│              assertions │                  24 │                  0 │
+├─────────────────────────┴─────────────────────┴────────────────────┤
+│ total run duration: 13s                                            │
+├────────────────────────────────────────────────────────────────────┤
+│ total data received: 5.92kB (approx)                               │
+├────────────────────────────────────────────────────────────────────┤
+│ average response time: 1050ms [min: 358ms, max: 2.6s, s.d.: 867ms] │
+└────────────────────────────────────────────────────────────────────┘
 
 Resumen: logs\resumen-fallos-vcn.md
 JSON:    logs\ultimo-run-vcn.json

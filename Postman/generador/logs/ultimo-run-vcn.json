@@ -1,15 +1,15 @@
 {
   "collection": {
     "_": {
-      "postman_id": "5de47034-c040-4984-b35c-a70f9c736e7a"
+      "postman_id": "7f2a5068-27d1-4c64-8c95-8486e2207185"
     },
     "item": [
       {
-        "id": "81c5af39-5332-4880-9537-fb0c6018b3a2",
+        "id": "ebb9fa4e-f4b8-48e1-b729-253da329508d",
         "name": "1_idCanal",
         "item": [
           {
-            "id": "ebb96d0d-6543-4c95-9036-89099ef508c0",
+            "id": "cf672eff-561f-41fc-acbd-54341f85011b",
             "name": "2.1.1. idCanal — no existe en BD (401)",
             "request": {
               "url": {
@@ -47,20 +47,20 @@
               {
                 "listen": "prerequest",
                 "script": {
-                  "id": "725d4cef-f7d9-41a5-9d85-aefe5576eb1a",
+                  "id": "fd94556f-05b1-434e-a5b6-751d552828c3",
                   "type": "text/javascript",
                   "exec": [
                     "pm.variables.set('expectedHttpStatus', 400);",
                     "pm.variables.set('expectedCodigoError', 401);",
                     "pm.variables.set('expectedTipo', 'general');"
                   ],
-                  "_lastExecutionId": "f05b6b46-9584-42d7-9d6f-d5a3d9845b56"
+                  "_lastExecutionId": "eab5fc3d-02fd-434f-ad4a-ac476d4a8721"
                 }
               }
             ]
           },
           {
-            "id": "f0658ed9-14c8-498f-9da2-44ca3a9cb933",
+            "id": "801a8846-0aec-4256-9846-c90319ebcd10",
             "name": "2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]",
             "request": {
               "url": {
@@ -98,20 +98,20 @@
               {
                 "listen": "prerequest",
                 "script": {
-                  "id": "a14ba23a-a021-48f9-9ba8-8a4cfa8374b7",
+                  "id": "b7636682-d2d8-4487-8057-9797bfccadb9",
                   "type": "text/javascript",
                   "exec": [
                     "pm.variables.set('expectedHttpStatus', 400);",
                     "pm.variables.set('expectedCodigoError', 403);",
                     "pm.variables.set('expectedTipo', 'general');"
                   ],
-                  "_lastExecutionId": "574c634f-be30-4211-beaa-cf54e9f2a807"
+                  "_lastExecutionId": "95b6fc80-e562-479d-8aef-f2596d03f18f"
                 }
               }
             ]
           },
           {
-            "id": "7019239a-760f-4f55-a52d-6b959228e125",
+            "id": "b64f69dc-8c8a-4a4e-902d-6624fa80f1a3",
             "name": "2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]",
             "request": {
               "url": {
@@ -149,20 +149,20 @@
               {
                 "listen": "prerequest",
                 "script": {
-                  "id": "d73bc659-418e-4c37-8cd5-554e4f645740",
+                  "id": "eb8fcb07-e954-4e8f-a4d2-441814bae74c",
                   "type": "text/javascript",
                   "exec": [
                     "pm.variables.set('expectedHttpStatus', 500);",
                     "pm.variables.set('expectedCodigoError', 500);",
                     "pm.variables.set('expectedTipo', 'general');"
                   ],
-                  "_lastExecutionId": "6b7c0820-cb9e-4d4c-af67-d67e136ea6a4"
+                  "_lastExecutionId": "e6f85830-08a7-4597-9f2b-be146663872b"
                 }
               }
             ]
           },
           {
-            "id": "2a2ab6df-07a3-4e0e-a58f-dcced2b4f7cd",
+            "id": "acdef91d-1df4-4e6e-abe9-10e6c4988aca",
             "name": "2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]",
             "request": {
               "url": {
@@ -200,14 +200,14 @@
               {
                 "listen": "prerequest",
                 "script": {
-                  "id": "0674ecac-2cf2-43c2-a50c-ac841c498dbd",
+                  "id": "9787c59f-38fc-4d23-8c69-e36ff41dc581",
                   "type": "text/javascript",
                   "exec": [
                     "pm.variables.set('expectedHttpStatus', 400);",
                     "pm.variables.set('expectedCodigoError', 403);",
                     "pm.variables.set('expectedTipo', 'general');"
                   ],
-                  "_lastExecutionId": "b5f1ae78-a174-4afe-9275-a818653906db"
+                  "_lastExecutionId": "1b12f656-b567-4b70-971f-79b5b335ec15"
                 }
               }
             ]
@@ -220,7 +220,7 @@
       {
         "listen": "prerequest",
         "script": {
-          "id": "ea8d2961-4584-42ea-98e2-dfd8b28f539f",
+          "id": "2741ea75-a76e-495a-af71-191f358ac518",
           "type": "text/javascript",
           "exec": [
             "// Pre-request de raíz — VCN Escenarios error",
@@ -518,13 +518,13 @@
             "  })();",
             "})();"
           ],
-          "_lastExecutionId": "3e24e1c5-0e2f-412b-9dfe-9eec475a64c8"
+          "_lastExecutionId": "10e76a12-8ab4-412c-87b1-c4dd463a3650"
         }
       },
       {
         "listen": "test",
         "script": {
-          "id": "e61042f7-7790-4f00-872d-af5e4fa926a6",
+          "id": "9ff8cee8-d500-4aba-afac-0b374a9cc91e",
           "type": "text/javascript",
           "exec": [
             "// Post-response (Tests) de raíz — VCN Escenarios error",
@@ -740,7 +740,7 @@
             "  });",
             "})();"
           ],
-          "_lastExecutionId": "8865e39b-2f33-455b-9645-c27d21ada16f"
+          "_lastExecutionId": "5b43ad9e-003f-499d-a635-f6b52e1f1e3a"
         }
       }
     ],
@@ -752,7 +752,7 @@
       }
     ],
     "info": {
-      "_postman_id": "5de47034-c040-4984-b35c-a70f9c736e7a",
+      "_postman_id": "7f2a5068-27d1-4c64-8c95-8486e2207185",
       "name": "VCN Escenarios error — General/2_reglaNegocio/1_idCanal",
       "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
       "description": {
@@ -1023,7 +1023,7 @@
     ]
   },
   "globals": {
-    "id": "d1180112-aff3-450d-802c-953adc4a923d",
+    "id": "514c2403-f57a-44cf-b2fb-dce06d7d8c3b",
     "values": []
   },
   "run": {
@@ -1061,7 +1061,7 @@
       "assertions": {
         "total": 24,
         "pending": 0,
-        "failed": 2
+        "failed": 0
       },
       "testScripts": {
         "total": 4,
@@ -1075,10 +1075,10 @@
       }
     },
     "timings": {
-      "responseAverage": 963.1666666666666,
-      "responseMin": 237,
-      "responseMax": 3180,
-      "responseSd": 1004.5781729440253,
+      "responseAverage": 1050.5833333333333,
+      "responseMin": 358,
+      "responseMax": 2602,
+      "responseSd": 867.6787479950295,
       "dnsAverage": 0,
       "dnsMin": 0,
       "dnsMax": 0,
@@ -1087,8 +1087,8 @@
       "firstByteMin": 0,
       "firstByteMax": 0,
       "firstByteSd": 0,
-      "started": 1783242473394,
-      "completed": 1783242485364
+      "started": 1783243701846,
+      "completed": 1783243714942
     },
     "executions": [
       {
@@ -1101,11 +1101,11 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "c7ddbf9c-1dca-460a-87d1-5c97598e54bf",
-          "httpRequestId": "4e221174-e5d5-4cdc-a674-3969cf522c8f"
+          "ref": "228baf59-0f73-4eed-9878-6a3336593260",
+          "httpRequestId": "dc531a8f-eaf5-4db0-abd2-a2c429af634c"
         },
         "item": {
-          "id": "ebb96d0d-6543-4c95-9036-89099ef508c0",
+          "id": "cf672eff-561f-41fc-acbd-54341f85011b",
           "name": "2.1.1. idCanal — no existe en BD (401)",
           "request": {
             "url": {
@@ -1143,14 +1143,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "725d4cef-f7d9-41a5-9d85-aefe5576eb1a",
+                "id": "fd94556f-05b1-434e-a5b6-751d552828c3",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 401);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "f05b6b46-9584-42d7-9d6f-d5a3d9845b56"
+                "_lastExecutionId": "eab5fc3d-02fd-434f-ad4a-ac476d4a8721"
               }
             }
           ]
@@ -1201,7 +1201,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "58a6a78f-7a73-460c-a151-8be1e1b841d8",
+              "value": "ba8ca809-692f-4237-92bf-83d35b35da38",
               "system": true
             },
             {
@@ -1232,7 +1232,7 @@
           }
         },
         "response": {
-          "id": "f411c263-e8ca-4d1f-9a8d-19006f527aee",
+          "id": "6ebd3a88-6cb4-4ce8-9cb2-556dbea30e40",
           "status": "OK",
           "code": 200,
           "header": [
@@ -1246,7 +1246,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 09:07:44 GMT"
+              "value": "Sun, 05 Jul 2026 09:28:13 GMT"
             },
             {
               "key": "Server",
@@ -1254,15 +1254,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ABnDFFtDIAMFgjQ="
+              "value": "ABqC_GOCIAMFepQ="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "7aaba08a-6845-477e-a2dc-3bb55d47858b"
+              "value": "7348d7c3-7071-4c03-babd-88cd267fa271"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a1ee0-40e3c0af48de558579f6b199;Parent=71b4f52953270418;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a23ac-55cc2c5d413cff167d6b1d3c;Parent=485cc77482baea8b;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -1334,10 +1334,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 1021,
+          "responseTime": 1162,
           "responseSize": 59
         },
-        "id": "ebb96d0d-6543-4c95-9036-89099ef508c0",
+        "id": "cf672eff-561f-41fc-acbd-54341f85011b",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -1375,11 +1375,11 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "c7ddbf9c-1dca-460a-87d1-5c97598e54bf",
-          "httpRequestId": "4e221174-e5d5-4cdc-a674-3969cf522c8f"
+          "ref": "228baf59-0f73-4eed-9878-6a3336593260",
+          "httpRequestId": "dc531a8f-eaf5-4db0-abd2-a2c429af634c"
         },
         "item": {
-          "id": "ebb96d0d-6543-4c95-9036-89099ef508c0",
+          "id": "cf672eff-561f-41fc-acbd-54341f85011b",
           "name": "2.1.1. idCanal — no existe en BD (401)",
           "request": {
             "url": {
@@ -1417,14 +1417,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "725d4cef-f7d9-41a5-9d85-aefe5576eb1a",
+                "id": "fd94556f-05b1-434e-a5b6-751d552828c3",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 401);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "f05b6b46-9584-42d7-9d6f-d5a3d9845b56"
+                "_lastExecutionId": "eab5fc3d-02fd-434f-ad4a-ac476d4a8721"
               }
             }
           ]
@@ -1475,7 +1475,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "58a6a78f-7a73-460c-a151-8be1e1b841d8",
+              "value": "ba8ca809-692f-4237-92bf-83d35b35da38",
               "system": true
             },
             {
@@ -1506,7 +1506,7 @@
           }
         },
         "response": {
-          "id": "f411c263-e8ca-4d1f-9a8d-19006f527aee",
+          "id": "6ebd3a88-6cb4-4ce8-9cb2-556dbea30e40",
           "status": "OK",
           "code": 200,
           "header": [
@@ -1520,7 +1520,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 09:07:44 GMT"
+              "value": "Sun, 05 Jul 2026 09:28:13 GMT"
             },
             {
               "key": "Server",
@@ -1528,15 +1528,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ABnDFFtDIAMFgjQ="
+              "value": "ABqC_GOCIAMFepQ="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "7aaba08a-6845-477e-a2dc-3bb55d47858b"
+              "value": "7348d7c3-7071-4c03-babd-88cd267fa271"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a1ee0-40e3c0af48de558579f6b199;Parent=71b4f52953270418;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a23ac-55cc2c5d413cff167d6b1d3c;Parent=485cc77482baea8b;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -1608,10 +1608,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 1021,
+          "responseTime": 1162,
           "responseSize": 59
         },
-        "id": "ebb96d0d-6543-4c95-9036-89099ef508c0",
+        "id": "cf672eff-561f-41fc-acbd-54341f85011b",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -1649,11 +1649,11 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "c7ddbf9c-1dca-460a-87d1-5c97598e54bf",
-          "httpRequestId": "4e221174-e5d5-4cdc-a674-3969cf522c8f"
+          "ref": "228baf59-0f73-4eed-9878-6a3336593260",
+          "httpRequestId": "dc531a8f-eaf5-4db0-abd2-a2c429af634c"
         },
         "item": {
-          "id": "ebb96d0d-6543-4c95-9036-89099ef508c0",
+          "id": "cf672eff-561f-41fc-acbd-54341f85011b",
           "name": "2.1.1. idCanal — no existe en BD (401)",
           "request": {
             "url": {
@@ -1691,14 +1691,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "725d4cef-f7d9-41a5-9d85-aefe5576eb1a",
+                "id": "fd94556f-05b1-434e-a5b6-751d552828c3",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 401);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "f05b6b46-9584-42d7-9d6f-d5a3d9845b56"
+                "_lastExecutionId": "eab5fc3d-02fd-434f-ad4a-ac476d4a8721"
               }
             }
           ]
@@ -1749,7 +1749,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "58a6a78f-7a73-460c-a151-8be1e1b841d8",
+              "value": "ba8ca809-692f-4237-92bf-83d35b35da38",
               "system": true
             },
             {
@@ -1780,7 +1780,7 @@
           }
         },
         "response": {
-          "id": "f411c263-e8ca-4d1f-9a8d-19006f527aee",
+          "id": "6ebd3a88-6cb4-4ce8-9cb2-556dbea30e40",
           "status": "OK",
           "code": 200,
           "header": [
@@ -1794,7 +1794,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 09:07:44 GMT"
+              "value": "Sun, 05 Jul 2026 09:28:13 GMT"
             },
             {
               "key": "Server",
@@ -1802,15 +1802,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ABnDFFtDIAMFgjQ="
+              "value": "ABqC_GOCIAMFepQ="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "7aaba08a-6845-477e-a2dc-3bb55d47858b"
+              "value": "7348d7c3-7071-4c03-babd-88cd267fa271"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a1ee0-40e3c0af48de558579f6b199;Parent=71b4f52953270418;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a23ac-55cc2c5d413cff167d6b1d3c;Parent=485cc77482baea8b;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -1882,10 +1882,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 1021,
+          "responseTime": 1162,
           "responseSize": 59
         },
-        "id": "ebb96d0d-6543-4c95-9036-89099ef508c0",
+        "id": "cf672eff-561f-41fc-acbd-54341f85011b",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -1915,15 +1915,15 @@
       },
       {
         "cursor": {
-          "ref": "8ab81bd7-81b2-47b1-8055-096fdd83061e",
+          "ref": "9a3a9695-cc02-467a-a441-b11d65b05646",
           "length": 4,
           "cycles": 1,
           "position": 1,
           "iteration": 0,
-          "httpRequestId": "054ab68d-e03e-4ada-a0ef-14611455a452"
+          "httpRequestId": "b7c08881-fc40-45d0-ae19-7f291a8f6364"
         },
         "item": {
-          "id": "f0658ed9-14c8-498f-9da2-44ca3a9cb933",
+          "id": "801a8846-0aec-4256-9846-c90319ebcd10",
           "name": "2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]",
           "request": {
             "url": {
@@ -1961,14 +1961,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "a14ba23a-a021-48f9-9ba8-8a4cfa8374b7",
+                "id": "b7636682-d2d8-4487-8057-9797bfccadb9",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 403);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "574c634f-be30-4211-beaa-cf54e9f2a807"
+                "_lastExecutionId": "95b6fc80-e562-479d-8aef-f2596d03f18f"
               }
             }
           ]
@@ -2019,7 +2019,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "12a0f749-d37a-4d0c-b49d-e5bed189d7b4",
+              "value": "ea9d38ba-b54e-40ee-88e7-e5f8a9d10405",
               "system": true
             },
             {
@@ -2050,7 +2050,7 @@
           }
         },
         "response": {
-          "id": "99598d9f-3348-4d46-b0ba-c1aca7240ee5",
+          "id": "8d37f499-af99-48ac-bf47-04afdf4b8c55",
           "status": "OK",
           "code": 200,
           "header": [
@@ -2064,7 +2064,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 09:07:47 GMT"
+              "value": "Sun, 05 Jul 2026 09:28:16 GMT"
             },
             {
               "key": "Server",
@@ -2072,15 +2072,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ABnDrFyXoAMFvmQ="
+              "value": "ABqDpGlNIAMF4Sg="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "925eb752-bbe4-4232-8004-d8684cf1e9bb"
+              "value": "8e1ad6b2-7b7f-438b-af8a-441973506a9e"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a1ee3-372326147234149779ae2499;Parent=615e9ced5d119b53;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a23b0-120ee4266e6d3b026016bb43;Parent=677b492fdcdcffc5;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -2175,10 +2175,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 251,
+          "responseTime": 926,
           "responseSize": 82
         },
-        "id": "f0658ed9-14c8-498f-9da2-44ca3a9cb933",
+        "id": "801a8846-0aec-4256-9846-c90319ebcd10",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -2208,15 +2208,15 @@
       },
       {
         "cursor": {
-          "ref": "8ab81bd7-81b2-47b1-8055-096fdd83061e",
+          "ref": "9a3a9695-cc02-467a-a441-b11d65b05646",
           "length": 4,
           "cycles": 1,
           "position": 1,
           "iteration": 0,
-          "httpRequestId": "054ab68d-e03e-4ada-a0ef-14611455a452"
+          "httpRequestId": "b7c08881-fc40-45d0-ae19-7f291a8f6364"
         },
         "item": {
-          "id": "f0658ed9-14c8-498f-9da2-44ca3a9cb933",
+          "id": "801a8846-0aec-4256-9846-c90319ebcd10",
           "name": "2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]",
           "request": {
             "url": {
@@ -2254,14 +2254,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "a14ba23a-a021-48f9-9ba8-8a4cfa8374b7",
+                "id": "b7636682-d2d8-4487-8057-9797bfccadb9",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 403);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "574c634f-be30-4211-beaa-cf54e9f2a807"
+                "_lastExecutionId": "95b6fc80-e562-479d-8aef-f2596d03f18f"
               }
             }
           ]
@@ -2312,7 +2312,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "12a0f749-d37a-4d0c-b49d-e5bed189d7b4",
+              "value": "ea9d38ba-b54e-40ee-88e7-e5f8a9d10405",
               "system": true
             },
             {
@@ -2343,7 +2343,7 @@
           }
         },
         "response": {
-          "id": "99598d9f-3348-4d46-b0ba-c1aca7240ee5",
+          "id": "8d37f499-af99-48ac-bf47-04afdf4b8c55",
           "status": "OK",
           "code": 200,
           "header": [
@@ -2357,7 +2357,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 09:07:47 GMT"
+              "value": "Sun, 05 Jul 2026 09:28:16 GMT"
             },
             {
               "key": "Server",
@@ -2365,15 +2365,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ABnDrFyXoAMFvmQ="
+              "value": "ABqDpGlNIAMF4Sg="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "925eb752-bbe4-4232-8004-d8684cf1e9bb"
+              "value": "8e1ad6b2-7b7f-438b-af8a-441973506a9e"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a1ee3-372326147234149779ae2499;Parent=615e9ced5d119b53;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a23b0-120ee4266e6d3b026016bb43;Parent=677b492fdcdcffc5;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -2468,10 +2468,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 251,
+          "responseTime": 926,
           "responseSize": 82
         },
-        "id": "f0658ed9-14c8-498f-9da2-44ca3a9cb933",
+        "id": "801a8846-0aec-4256-9846-c90319ebcd10",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -2501,15 +2501,15 @@
       },
       {
         "cursor": {
-          "ref": "8ab81bd7-81b2-47b1-8055-096fdd83061e",
+          "ref": "9a3a9695-cc02-467a-a441-b11d65b05646",
           "length": 4,
           "cycles": 1,
           "position": 1,
           "iteration": 0,
-          "httpRequestId": "054ab68d-e03e-4ada-a0ef-14611455a452"
+          "httpRequestId": "b7c08881-fc40-45d0-ae19-7f291a8f6364"
         },
         "item": {
-          "id": "f0658ed9-14c8-498f-9da2-44ca3a9cb933",
+          "id": "801a8846-0aec-4256-9846-c90319ebcd10",
           "name": "2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]",
           "request": {
             "url": {
@@ -2547,14 +2547,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "a14ba23a-a021-48f9-9ba8-8a4cfa8374b7",
+                "id": "b7636682-d2d8-4487-8057-9797bfccadb9",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 403);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "574c634f-be30-4211-beaa-cf54e9f2a807"
+                "_lastExecutionId": "95b6fc80-e562-479d-8aef-f2596d03f18f"
               }
             }
           ]
@@ -2605,7 +2605,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "12a0f749-d37a-4d0c-b49d-e5bed189d7b4",
+              "value": "ea9d38ba-b54e-40ee-88e7-e5f8a9d10405",
               "system": true
             },
             {
@@ -2636,7 +2636,7 @@
           }
         },
         "response": {
-          "id": "99598d9f-3348-4d46-b0ba-c1aca7240ee5",
+          "id": "8d37f499-af99-48ac-bf47-04afdf4b8c55",
           "status": "OK",
           "code": 200,
           "header": [
@@ -2650,7 +2650,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 09:07:47 GMT"
+              "value": "Sun, 05 Jul 2026 09:28:16 GMT"
             },
             {
               "key": "Server",
@@ -2658,15 +2658,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ABnDrFyXoAMFvmQ="
+              "value": "ABqDpGlNIAMF4Sg="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "925eb752-bbe4-4232-8004-d8684cf1e9bb"
+              "value": "8e1ad6b2-7b7f-438b-af8a-441973506a9e"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a1ee3-372326147234149779ae2499;Parent=615e9ced5d119b53;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a23b0-120ee4266e6d3b026016bb43;Parent=677b492fdcdcffc5;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -2761,10 +2761,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 251,
+          "responseTime": 926,
           "responseSize": 82
         },
-        "id": "f0658ed9-14c8-498f-9da2-44ca3a9cb933",
+        "id": "801a8846-0aec-4256-9846-c90319ebcd10",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -2794,15 +2794,15 @@
       },
       {
         "cursor": {
-          "ref": "09c67457-ea19-41ef-bc82-2ec60c593b98",
+          "ref": "5bc1a92b-fe72-45ba-9611-dbccb0314480",
           "length": 4,
           "cycles": 1,
           "position": 2,
           "iteration": 0,
-          "httpRequestId": "fdd3e13d-6642-4f7d-827a-50922b186f93"
+          "httpRequestId": "977a9cd6-1028-4e02-8f25-792dce6cf327"
         },
         "item": {
-          "id": "7019239a-760f-4f55-a52d-6b959228e125",
+          "id": "b64f69dc-8c8a-4a4e-902d-6624fa80f1a3",
           "name": "2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]",
           "request": {
             "url": {
@@ -2840,14 +2840,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "d73bc659-418e-4c37-8cd5-554e4f645740",
+                "id": "eb8fcb07-e954-4e8f-a4d2-441814bae74c",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 500);",
                   "pm.variables.set('expectedCodigoError', 500);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "6b7c0820-cb9e-4d4c-af67-d67e136ea6a4"
+                "_lastExecutionId": "e6f85830-08a7-4597-9f2b-be146663872b"
               }
             }
           ]
@@ -2898,7 +2898,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "c1230733-591e-4523-a90f-3a90cc32d565",
+              "value": "0754f7a0-0699-4951-b2a0-4982625d692d",
               "system": true
             },
             {
@@ -2918,18 +2918,18 @@
             },
             {
               "key": "Content-Length",
-              "value": "115",
+              "value": "50",
               "system": true
             }
           ],
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\"codigoError\":500,\"mensajeError\":\"ERROR: Excepción no controlada al momento de buscar la información del canal\"}"
+            "raw": "{\"codigoError\":500,\"mensajeError\":\"Error interno\"}"
           }
         },
         "response": {
-          "id": "84be1d99-5ac9-4d07-a3e7-52dafbc864fe",
+          "id": "5feeb9ef-ef60-4629-a4d3-793dc4ada48d",
           "status": "OK",
           "code": 200,
           "header": [
@@ -2943,7 +2943,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 09:07:48 GMT"
+              "value": "Sun, 05 Jul 2026 09:28:18 GMT"
             },
             {
               "key": "Server",
@@ -2951,15 +2951,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ABnD2GhooAMFQdA="
+              "value": "ABqD8GNQIAMF69Q="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "8d7e9bc5-aeb4-4bde-b272-a4c40e02d1e0"
+              "value": "98478a9d-7842-41ad-9fda-e5a7ed069612"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a1ee4-2d31166a487cbe996c02bb3c;Parent=7984cd4a07dd8de4;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a23b2-6c688d227f2e4bb930504b30;Parent=6b40e09f50a92f4f;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -3005,103 +3005,31 @@
               58,
               34,
               69,
-              82,
-              82,
-              79,
-              82,
-              58,
+              114,
+              114,
+              111,
+              114,
               32,
-              69,
-              120,
-              99,
-              101,
-              112,
-              99,
               105,
-              195,
-              179,
-              110,
-              32,
-              110,
-              111,
-              32,
-              99,
-              111,
               110,
               116,
-              114,
-              111,
-              108,
-              97,
-              100,
-              97,
-              32,
-              97,
-              108,
-              32,
-              109,
-              111,
-              109,
               101,
-              110,
-              116,
-              111,
-              32,
-              100,
-              101,
-              32,
-              98,
-              117,
-              115,
-              99,
-              97,
               114,
-              32,
-              108,
-              97,
-              32,
-              105,
               110,
-              102,
               111,
-              114,
-              109,
-              97,
-              99,
-              105,
-              195,
-              179,
-              110,
-              32,
-              100,
-              101,
-              108,
-              32,
-              99,
-              97,
-              110,
-              97,
-              108,
               34,
               125
             ]
           },
           "cookie": [],
-          "responseTime": 247,
-          "responseSize": 115
+          "responseTime": 358,
+          "responseSize": 50
         },
-        "id": "7019239a-760f-4f55-a52d-6b959228e125",
+        "id": "b64f69dc-8c8a-4a4e-902d-6624fa80f1a3",
         "assertions": [
           {
-            "assertion": "[Lambda VCN] HTTP status = 500 (real: 400)",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 0,
-              "test": "[Lambda VCN] HTTP status = 500 (real: 400)",
-              "message": "expected 400 to equal 500",
-              "stack": "AssertionError: expected 400 to equal 500\n   at Object.eval sandbox-script.js:1:3)"
-            }
+            "assertion": "[Lambda VCN] HTTP status = 500 (real: 500)",
+            "skipped": false
           },
           {
             "assertion": "[Dummy /descifrar] HTTP status 2xx (real: 200)",
@@ -3121,28 +3049,21 @@
           },
           {
             "assertion": "[General] mensajeError = \"Error interno\"",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 5,
-              "test": "[General] mensajeError = \"Error interno\"",
-              "message": "expected 'ERROR: Excepción no controlada al mom…' to equal 'Error interno'",
-              "stack": "AssertionError: expected 'ERROR: Excepción no controlada al mom…' to equal 'Error interno'\n   at Object.eval sandbox-script.js:6:3)"
-            }
+            "skipped": false
           }
         ]
       },
       {
         "cursor": {
-          "ref": "09c67457-ea19-41ef-bc82-2ec60c593b98",
+          "ref": "5bc1a92b-fe72-45ba-9611-dbccb0314480",
           "length": 4,
           "cycles": 1,
           "position": 2,
           "iteration": 0,
-          "httpRequestId": "fdd3e13d-6642-4f7d-827a-50922b186f93"
+          "httpRequestId": "977a9cd6-1028-4e02-8f25-792dce6cf327"
         },
         "item": {
-          "id": "7019239a-760f-4f55-a52d-6b959228e125",
+          "id": "b64f69dc-8c8a-4a4e-902d-6624fa80f1a3",
           "name": "2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]",
           "request": {
             "url": {
@@ -3180,14 +3101,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "d73bc659-418e-4c37-8cd5-554e4f645740",
+                "id": "eb8fcb07-e954-4e8f-a4d2-441814bae74c",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 500);",
                   "pm.variables.set('expectedCodigoError', 500);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "6b7c0820-cb9e-4d4c-af67-d67e136ea6a4"
+                "_lastExecutionId": "e6f85830-08a7-4597-9f2b-be146663872b"
               }
             }
           ]
@@ -3238,7 +3159,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "c1230733-591e-4523-a90f-3a90cc32d565",
+              "value": "0754f7a0-0699-4951-b2a0-4982625d692d",
               "system": true
             },
             {
@@ -3258,18 +3179,18 @@
             },
             {
               "key": "Content-Length",
-              "value": "115",
+              "value": "50",
               "system": true
             }
           ],
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\"codigoError\":500,\"mensajeError\":\"ERROR: Excepción no controlada al momento de buscar la información del canal\"}"
+            "raw": "{\"codigoError\":500,\"mensajeError\":\"Error interno\"}"
           }
         },
         "response": {
-          "id": "84be1d99-5ac9-4d07-a3e7-52dafbc864fe",
+          "id": "5feeb9ef-ef60-4629-a4d3-793dc4ada48d",
           "status": "OK",
           "code": 200,
           "header": [
@@ -3283,7 +3204,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 09:07:48 GMT"
+              "value": "Sun, 05 Jul 2026 09:28:18 GMT"
             },
             {
               "key": "Server",
@@ -3291,15 +3212,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ABnD2GhooAMFQdA="
+              "value": "ABqD8GNQIAMF69Q="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "8d7e9bc5-aeb4-4bde-b272-a4c40e02d1e0"
+              "value": "98478a9d-7842-41ad-9fda-e5a7ed069612"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a1ee4-2d31166a487cbe996c02bb3c;Parent=7984cd4a07dd8de4;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a23b2-6c688d227f2e4bb930504b30;Parent=6b40e09f50a92f4f;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -3345,103 +3266,31 @@
               58,
               34,
               69,
-              82,
-              82,
-              79,
-              82,
-              58,
+              114,
+              114,
+              111,
+              114,
               32,
-              69,
-              120,
-              99,
-              101,
-              112,
-              99,
               105,
-              195,
-              179,
-              110,
-              32,
-              110,
-              111,
-              32,
-              99,
-              111,
               110,
               116,
-              114,
-              111,
-              108,
-              97,
-              100,
-              97,
-              32,
-              97,
-              108,
-              32,
-              109,
-              111,
-              109,
               101,
-              110,
-              116,
-              111,
-              32,
-              100,
-              101,
-              32,
-              98,
-              117,
-              115,
-              99,
-              97,
               114,
-              32,
-              108,
-              97,
-              32,
-              105,
               110,
-              102,
               111,
-              114,
-              109,
-              97,
-              99,
-              105,
-              195,
-              179,
-              110,
-              32,
-              100,
-              101,
-              108,
-              32,
-              99,
-              97,
-              110,
-              97,
-              108,
               34,
               125
             ]
           },
           "cookie": [],
-          "responseTime": 247,
-          "responseSize": 115
+          "responseTime": 358,
+          "responseSize": 50
         },
-        "id": "7019239a-760f-4f55-a52d-6b959228e125",
+        "id": "b64f69dc-8c8a-4a4e-902d-6624fa80f1a3",
         "assertions": [
           {
-            "assertion": "[Lambda VCN] HTTP status = 500 (real: 400)",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 0,
-              "test": "[Lambda VCN] HTTP status = 500 (real: 400)",
-              "message": "expected 400 to equal 500",
-              "stack": "AssertionError: expected 400 to equal 500\n   at Object.eval sandbox-script.js:1:3)"
-            }
+            "assertion": "[Lambda VCN] HTTP status = 500 (real: 500)",
+            "skipped": false
           },
           {
             "assertion": "[Dummy /descifrar] HTTP status 2xx (real: 200)",
@@ -3461,28 +3310,21 @@
           },
           {
             "assertion": "[General] mensajeError = \"Error interno\"",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 5,
-              "test": "[General] mensajeError = \"Error interno\"",
-              "message": "expected 'ERROR: Excepción no controlada al mom…' to equal 'Error interno'",
-              "stack": "AssertionError: expected 'ERROR: Excepción no controlada al mom…' to equal 'Error interno'\n   at Object.eval sandbox-script.js:6:3)"
-            }
+            "skipped": false
           }
         ]
       },
       {
         "cursor": {
-          "ref": "09c67457-ea19-41ef-bc82-2ec60c593b98",
+          "ref": "5bc1a92b-fe72-45ba-9611-dbccb0314480",
           "length": 4,
           "cycles": 1,
           "position": 2,
           "iteration": 0,
-          "httpRequestId": "fdd3e13d-6642-4f7d-827a-50922b186f93"
+          "httpRequestId": "977a9cd6-1028-4e02-8f25-792dce6cf327"
         },
         "item": {
-          "id": "7019239a-760f-4f55-a52d-6b959228e125",
+          "id": "b64f69dc-8c8a-4a4e-902d-6624fa80f1a3",
           "name": "2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]",
           "request": {
             "url": {
@@ -3520,14 +3362,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "d73bc659-418e-4c37-8cd5-554e4f645740",
+                "id": "eb8fcb07-e954-4e8f-a4d2-441814bae74c",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 500);",
                   "pm.variables.set('expectedCodigoError', 500);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "6b7c0820-cb9e-4d4c-af67-d67e136ea6a4"
+                "_lastExecutionId": "e6f85830-08a7-4597-9f2b-be146663872b"
               }
             }
           ]
@@ -3578,7 +3420,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "c1230733-591e-4523-a90f-3a90cc32d565",
+              "value": "0754f7a0-0699-4951-b2a0-4982625d692d",
               "system": true
             },
             {
@@ -3598,18 +3440,18 @@
             },
             {
               "key": "Content-Length",
-              "value": "115",
+              "value": "50",
               "system": true
             }
           ],
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\"codigoError\":500,\"mensajeError\":\"ERROR: Excepción no controlada al momento de buscar la información del canal\"}"
+            "raw": "{\"codigoError\":500,\"mensajeError\":\"Error interno\"}"
           }
         },
         "response": {
-          "id": "84be1d99-5ac9-4d07-a3e7-52dafbc864fe",
+          "id": "5feeb9ef-ef60-4629-a4d3-793dc4ada48d",
           "status": "OK",
           "code": 200,
           "header": [
@@ -3623,7 +3465,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 09:07:48 GMT"
+              "value": "Sun, 05 Jul 2026 09:28:18 GMT"
             },
             {
               "key": "Server",
@@ -3631,15 +3473,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ABnD2GhooAMFQdA="
+              "value": "ABqD8GNQIAMF69Q="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "8d7e9bc5-aeb4-4bde-b272-a4c40e02d1e0"
+              "value": "98478a9d-7842-41ad-9fda-e5a7ed069612"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a1ee4-2d31166a487cbe996c02bb3c;Parent=7984cd4a07dd8de4;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a23b2-6c688d227f2e4bb930504b30;Parent=6b40e09f50a92f4f;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -3685,103 +3527,31 @@
               58,
               34,
               69,
-              82,
-              82,
-              79,
-              82,
-              58,
+              114,
+              114,
+              111,
+              114,
               32,
-              69,
-              120,
-              99,
-              101,
-              112,
-              99,
               105,
-              195,
-              179,
-              110,
-              32,
-              110,
-              111,
-              32,
-              99,
-              111,
               110,
               116,
-              114,
-              111,
-              108,
-              97,
-              100,
-              97,
-              32,
-              97,
-              108,
-              32,
-              109,
-              111,
-              109,
               101,
-              110,
-              116,
-              111,
-              32,
-              100,
-              101,
-              32,
-              98,
-              117,
-              115,
-              99,
-              97,
               114,
-              32,
-              108,
-              97,
-              32,
-              105,
               110,
-              102,
               111,
-              114,
-              109,
-              97,
-              99,
-              105,
-              195,
-              179,
-              110,
-              32,
-              100,
-              101,
-              108,
-              32,
-              99,
-              97,
-              110,
-              97,
-              108,
               34,
               125
             ]
           },
           "cookie": [],
-          "responseTime": 247,
-          "responseSize": 115
+          "responseTime": 358,
+          "responseSize": 50
         },
-        "id": "7019239a-760f-4f55-a52d-6b959228e125",
+        "id": "b64f69dc-8c8a-4a4e-902d-6624fa80f1a3",
         "assertions": [
           {
-            "assertion": "[Lambda VCN] HTTP status = 500 (real: 400)",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 0,
-              "test": "[Lambda VCN] HTTP status = 500 (real: 400)",
-              "message": "expected 400 to equal 500",
-              "stack": "AssertionError: expected 400 to equal 500\n   at Object.eval sandbox-script.js:1:3)"
-            }
+            "assertion": "[Lambda VCN] HTTP status = 500 (real: 500)",
+            "skipped": false
           },
           {
             "assertion": "[Dummy /descifrar] HTTP status 2xx (real: 200)",
@@ -3801,28 +3571,21 @@
           },
           {
             "assertion": "[General] mensajeError = \"Error interno\"",
-            "skipped": false,
-            "error": {
-              "name": "AssertionError",
-              "index": 5,
-              "test": "[General] mensajeError = \"Error interno\"",
-              "message": "expected 'ERROR: Excepción no controlada al mom…' to equal 'Error interno'",
-              "stack": "AssertionError: expected 'ERROR: Excepción no controlada al mom…' to equal 'Error interno'\n   at Object.eval sandbox-script.js:6:3)"
-            }
+            "skipped": false
           }
         ]
       },
       {
         "cursor": {
-          "ref": "a61621d2-e12f-42ec-9bf8-774c1ef3322f",
+          "ref": "cba4a878-75ec-438d-b055-4b9cf10e5625",
           "length": 4,
           "cycles": 1,
           "position": 3,
           "iteration": 0,
-          "httpRequestId": "e91eec26-7ea9-4c89-8b88-3bfac972824b"
+          "httpRequestId": "d2202190-b5b9-496b-aff4-7312f75b724d"
         },
         "item": {
-          "id": "2a2ab6df-07a3-4e0e-a58f-dcced2b4f7cd",
+          "id": "acdef91d-1df4-4e6e-abe9-10e6c4988aca",
           "name": "2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]",
           "request": {
             "url": {
@@ -3860,14 +3623,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "0674ecac-2cf2-43c2-a50c-ac841c498dbd",
+                "id": "9787c59f-38fc-4d23-8c69-e36ff41dc581",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 403);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "b5f1ae78-a174-4afe-9275-a818653906db"
+                "_lastExecutionId": "1b12f656-b567-4b70-971f-79b5b335ec15"
               }
             }
           ]
@@ -3918,7 +3681,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "b83c8e21-a669-458f-b257-b1d09f37c877",
+              "value": "179bebe5-7342-4539-b707-72bfe419f8af",
               "system": true
             },
             {
@@ -3949,7 +3712,7 @@
           }
         },
         "response": {
-          "id": "6a92214c-1c39-42f3-9932-88b46ee9d3cb",
+          "id": "7f202171-c2c9-4a1d-adab-6fecb0ce5bfe",
           "status": "OK",
           "code": 200,
           "header": [
@@ -3963,7 +3726,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 09:07:50 GMT"
+              "value": "Sun, 05 Jul 2026 09:28:19 GMT"
             },
             {
               "key": "Server",
@@ -3971,15 +3734,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ABnECHPrIAMFx2Q="
+              "value": "ABqEKGNcoAMFxWw="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "37173b5b-8d72-481f-a0da-a43e4a88f61d"
+              "value": "235811ba-3f31-4ee4-9a5f-9d666ac63016"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a1ee6-16720eb005daa82778182523;Parent=4dd6b45800bc100a;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a23b3-4822bad361dacc6674c36be9;Parent=049839ce78f8177c;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -4074,10 +3837,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 237,
+          "responseTime": 369,
           "responseSize": 82
         },
-        "id": "2a2ab6df-07a3-4e0e-a58f-dcced2b4f7cd",
+        "id": "acdef91d-1df4-4e6e-abe9-10e6c4988aca",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -4107,15 +3870,15 @@
       },
       {
         "cursor": {
-          "ref": "a61621d2-e12f-42ec-9bf8-774c1ef3322f",
+          "ref": "cba4a878-75ec-438d-b055-4b9cf10e5625",
           "length": 4,
           "cycles": 1,
           "position": 3,
           "iteration": 0,
-          "httpRequestId": "e91eec26-7ea9-4c89-8b88-3bfac972824b"
+          "httpRequestId": "d2202190-b5b9-496b-aff4-7312f75b724d"
         },
         "item": {
-          "id": "2a2ab6df-07a3-4e0e-a58f-dcced2b4f7cd",
+          "id": "acdef91d-1df4-4e6e-abe9-10e6c4988aca",
           "name": "2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]",
           "request": {
             "url": {
@@ -4153,14 +3916,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "0674ecac-2cf2-43c2-a50c-ac841c498dbd",
+                "id": "9787c59f-38fc-4d23-8c69-e36ff41dc581",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 403);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "b5f1ae78-a174-4afe-9275-a818653906db"
+                "_lastExecutionId": "1b12f656-b567-4b70-971f-79b5b335ec15"
               }
             }
           ]
@@ -4211,7 +3974,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "b83c8e21-a669-458f-b257-b1d09f37c877",
+              "value": "179bebe5-7342-4539-b707-72bfe419f8af",
               "system": true
             },
             {
@@ -4242,7 +4005,7 @@
           }
         },
         "response": {
-          "id": "6a92214c-1c39-42f3-9932-88b46ee9d3cb",
+          "id": "7f202171-c2c9-4a1d-adab-6fecb0ce5bfe",
           "status": "OK",
           "code": 200,
           "header": [
@@ -4256,7 +4019,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 09:07:50 GMT"
+              "value": "Sun, 05 Jul 2026 09:28:19 GMT"
             },
             {
               "key": "Server",
@@ -4264,15 +4027,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ABnECHPrIAMFx2Q="
+              "value": "ABqEKGNcoAMFxWw="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "37173b5b-8d72-481f-a0da-a43e4a88f61d"
+              "value": "235811ba-3f31-4ee4-9a5f-9d666ac63016"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a1ee6-16720eb005daa82778182523;Parent=4dd6b45800bc100a;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a23b3-4822bad361dacc6674c36be9;Parent=049839ce78f8177c;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -4367,10 +4130,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 237,
+          "responseTime": 369,
           "responseSize": 82
         },
-        "id": "2a2ab6df-07a3-4e0e-a58f-dcced2b4f7cd",
+        "id": "acdef91d-1df4-4e6e-abe9-10e6c4988aca",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -4400,15 +4163,15 @@
       },
       {
         "cursor": {
-          "ref": "a61621d2-e12f-42ec-9bf8-774c1ef3322f",
+          "ref": "cba4a878-75ec-438d-b055-4b9cf10e5625",
           "length": 4,
           "cycles": 1,
           "position": 3,
           "iteration": 0,
-          "httpRequestId": "e91eec26-7ea9-4c89-8b88-3bfac972824b"
+          "httpRequestId": "d2202190-b5b9-496b-aff4-7312f75b724d"
         },
         "item": {
-          "id": "2a2ab6df-07a3-4e0e-a58f-dcced2b4f7cd",
+          "id": "acdef91d-1df4-4e6e-abe9-10e6c4988aca",
           "name": "2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]",
           "request": {
             "url": {
@@ -4446,14 +4209,14 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "0674ecac-2cf2-43c2-a50c-ac841c498dbd",
+                "id": "9787c59f-38fc-4d23-8c69-e36ff41dc581",
                 "type": "text/javascript",
                 "exec": [
                   "pm.variables.set('expectedHttpStatus', 400);",
                   "pm.variables.set('expectedCodigoError', 403);",
                   "pm.variables.set('expectedTipo', 'general');"
                 ],
-                "_lastExecutionId": "b5f1ae78-a174-4afe-9275-a818653906db"
+                "_lastExecutionId": "1b12f656-b567-4b70-971f-79b5b335ec15"
               }
             }
           ]
@@ -4504,7 +4267,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "b83c8e21-a669-458f-b257-b1d09f37c877",
+              "value": "179bebe5-7342-4539-b707-72bfe419f8af",
               "system": true
             },
             {
@@ -4535,7 +4298,7 @@
           }
         },
         "response": {
-          "id": "6a92214c-1c39-42f3-9932-88b46ee9d3cb",
+          "id": "7f202171-c2c9-4a1d-adab-6fecb0ce5bfe",
           "status": "OK",
           "code": 200,
           "header": [
@@ -4549,7 +4312,7 @@
             },
             {
               "key": "Date",
-              "value": "Sun, 05 Jul 2026 09:07:50 GMT"
+              "value": "Sun, 05 Jul 2026 09:28:19 GMT"
             },
             {
               "key": "Server",
@@ -4557,15 +4320,15 @@
             },
             {
               "key": "X-Amz-Apigw-Id",
-              "value": "ABnECHPrIAMFx2Q="
+              "value": "ABqEKGNcoAMFxWw="
             },
             {
               "key": "X-Amzn-Requestid",
-              "value": "37173b5b-8d72-481f-a0da-a43e4a88f61d"
+              "value": "235811ba-3f31-4ee4-9a5f-9d666ac63016"
             },
             {
               "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6a4a1ee6-16720eb005daa82778182523;Parent=4dd6b45800bc100a;Sampled=0;Lineage=1:6778dd49:0"
+              "value": "Root=1-6a4a23b3-4822bad361dacc6674c36be9;Parent=049839ce78f8177c;Sampled=0;Lineage=1:6778dd49:0"
             },
             {
               "key": "Transfer-Encoding",
@@ -4660,10 +4423,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 237,
+          "responseTime": 369,
           "responseSize": 82
         },
-        "id": "2a2ab6df-07a3-4e0e-a58f-dcced2b4f7cd",
+        "id": "acdef91d-1df4-4e6e-abe9-10e6c4988aca",
         "assertions": [
           {
             "assertion": "[Lambda VCN] HTTP status = 400 (real: 400)",
@@ -4693,602 +4456,9 @@
       }
     ],
     "transfers": {
-      "responseTotal": 6052
+      "responseTotal": 5922
     },
-    "failures": [
-      {
-        "error": {
-          "name": "AssertionError",
-          "index": 0,
-          "test": "[Lambda VCN] HTTP status = 500 (real: 400)",
-          "message": "expected 400 to equal 500",
-          "stack": "AssertionError: expected 400 to equal 500\n   at Object.eval sandbox-script.js:1:3)",
-          "checksum": "001a7161e1228265aa8eeabb88dacb13",
-          "id": "3f010ea9-c082-4220-8884-e0c29a09bd29",
-          "timestamp": 1783242484122,
-          "stacktrace": [
-            {
-              "fileName": "sandbox-script.js",
-              "lineNumber": 1,
-              "functionName": "Object.eval",
-              "typeName": "Object",
-              "methodName": "eval",
-              "columnNumber": 3,
-              "native": false
-            }
-          ]
-        },
-        "at": "assertion:0 in test-script",
-        "source": {
-          "id": "7019239a-760f-4f55-a52d-6b959228e125",
-          "name": "2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]",
-          "request": {
-            "url": {
-              "path": [
-                "descifrar"
-              ],
-              "host": [
-                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-              ],
-              "query": [
-                {
-                  "key": "tld",
-                  "value": "0"
-                },
-                {
-                  "key": "algoritmoCifrado",
-                  "value": "aes-256-cbc"
-                }
-              ],
-              "variable": []
-            },
-            "method": "POST",
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_MAL_CONFIGURADO}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR_MAL_CONFIGURADO}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "d73bc659-418e-4c37-8cd5-554e4f645740",
-                "type": "text/javascript",
-                "exec": [
-                  "pm.variables.set('expectedHttpStatus', 500);",
-                  "pm.variables.set('expectedCodigoError', 500);",
-                  "pm.variables.set('expectedTipo', 'general');"
-                ],
-                "_lastExecutionId": "6b7c0820-cb9e-4d4c-af67-d67e136ea6a4"
-              }
-            }
-          ]
-        },
-        "parent": {
-          "id": "81c5af39-5332-4880-9537-fb0c6018b3a2",
-          "name": "1_idCanal",
-          "item": [
-            {
-              "id": "ebb96d0d-6543-4c95-9036-89099ef508c0",
-              "name": "2.1.1. idCanal — no existe en BD (401)",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"9999\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "725d4cef-f7d9-41a5-9d85-aefe5576eb1a",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 401);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "f05b6b46-9584-42d7-9d6f-d5a3d9845b56"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "f0658ed9-14c8-498f-9da2-44ca3a9cb933",
-              "name": "2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-gcm"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_SIN_PLAN}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR_SIN_PLAN}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "a14ba23a-a021-48f9-9ba8-8a4cfa8374b7",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 403);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "574c634f-be30-4211-beaa-cf54e9f2a807"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "7019239a-760f-4f55-a52d-6b959228e125",
-              "name": "2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_MAL_CONFIGURADO}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR_MAL_CONFIGURADO}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "d73bc659-418e-4c37-8cd5-554e4f645740",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 500);",
-                      "pm.variables.set('expectedCodigoError', 500);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "6b7c0820-cb9e-4d4c-af67-d67e136ea6a4"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "2a2ab6df-07a3-4e0e-a58f-dcced2b4f7cd",
-              "name": "2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-gcm"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "0674ecac-2cf2-43c2-a50c-ac841c498dbd",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 403);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "b5f1ae78-a174-4afe-9275-a818653906db"
-                  }
-                }
-              ]
-            }
-          ],
-          "event": []
-        },
-        "cursor": {
-          "ref": "09c67457-ea19-41ef-bc82-2ec60c593b98",
-          "length": 4,
-          "cycles": 1,
-          "position": 2,
-          "iteration": 0,
-          "httpRequestId": "fdd3e13d-6642-4f7d-827a-50922b186f93",
-          "scriptId": "e61042f7-7790-4f00-872d-af5e4fa926a6",
-          "execution": "f8fa4585-a9b8-4125-8614-b55607b22f76"
-        }
-      },
-      {
-        "error": {
-          "name": "AssertionError",
-          "index": 5,
-          "test": "[General] mensajeError = \"Error interno\"",
-          "message": "expected 'ERROR: Excepción no controlada al mom…' to equal 'Error interno'",
-          "stack": "AssertionError: expected 'ERROR: Excepción no controlada al mom…' to equal 'Error interno'\n   at Object.eval sandbox-script.js:6:3)",
-          "checksum": "a4679b6a47a4afc1752a854a797a9d3c",
-          "id": "12092fd8-8aaa-4e5e-bb8e-3c230dd634e3",
-          "timestamp": 1783242484128,
-          "stacktrace": [
-            {
-              "fileName": "sandbox-script.js",
-              "lineNumber": 6,
-              "functionName": "Object.eval",
-              "typeName": "Object",
-              "methodName": "eval",
-              "columnNumber": 3,
-              "native": false
-            }
-          ]
-        },
-        "at": "assertion:5 in test-script",
-        "source": {
-          "id": "7019239a-760f-4f55-a52d-6b959228e125",
-          "name": "2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]",
-          "request": {
-            "url": {
-              "path": [
-                "descifrar"
-              ],
-              "host": [
-                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-              ],
-              "query": [
-                {
-                  "key": "tld",
-                  "value": "0"
-                },
-                {
-                  "key": "algoritmoCifrado",
-                  "value": "aes-256-cbc"
-                }
-              ],
-              "variable": []
-            },
-            "method": "POST",
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_MAL_CONFIGURADO}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR_MAL_CONFIGURADO}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "d73bc659-418e-4c37-8cd5-554e4f645740",
-                "type": "text/javascript",
-                "exec": [
-                  "pm.variables.set('expectedHttpStatus', 500);",
-                  "pm.variables.set('expectedCodigoError', 500);",
-                  "pm.variables.set('expectedTipo', 'general');"
-                ],
-                "_lastExecutionId": "6b7c0820-cb9e-4d4c-af67-d67e136ea6a4"
-              }
-            }
-          ]
-        },
-        "parent": {
-          "id": "81c5af39-5332-4880-9537-fb0c6018b3a2",
-          "name": "1_idCanal",
-          "item": [
-            {
-              "id": "ebb96d0d-6543-4c95-9036-89099ef508c0",
-              "name": "2.1.1. idCanal — no existe en BD (401)",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"9999\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "725d4cef-f7d9-41a5-9d85-aefe5576eb1a",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 401);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "f05b6b46-9584-42d7-9d6f-d5a3d9845b56"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "f0658ed9-14c8-498f-9da2-44ca3a9cb933",
-              "name": "2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-gcm"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_SIN_PLAN}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR_SIN_PLAN}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "a14ba23a-a021-48f9-9ba8-8a4cfa8374b7",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 403);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "574c634f-be30-4211-beaa-cf54e9f2a807"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "7019239a-760f-4f55-a52d-6b959228e125",
-              "name": "2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-cbc"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_MAL_CONFIGURADO}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR_MAL_CONFIGURADO}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "d73bc659-418e-4c37-8cd5-554e4f645740",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 500);",
-                      "pm.variables.set('expectedCodigoError', 500);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "6b7c0820-cb9e-4d4c-af67-d67e136ea6a4"
-                  }
-                }
-              ]
-            },
-            {
-              "id": "2a2ab6df-07a3-4e0e-a58f-dcced2b4f7cd",
-              "name": "2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]",
-              "request": {
-                "url": {
-                  "path": [
-                    "descifrar"
-                  ],
-                  "host": [
-                    "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "tld",
-                      "value": "0"
-                    },
-                    {
-                      "key": "algoritmoCifrado",
-                      "value": "aes-256-gcm"
-                    }
-                  ],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "response": [],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "0674ecac-2cf2-43c2-a50c-ac841c498dbd",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.variables.set('expectedHttpStatus', 400);",
-                      "pm.variables.set('expectedCodigoError', 403);",
-                      "pm.variables.set('expectedTipo', 'general');"
-                    ],
-                    "_lastExecutionId": "b5f1ae78-a174-4afe-9275-a818653906db"
-                  }
-                }
-              ]
-            }
-          ],
-          "event": []
-        },
-        "cursor": {
-          "ref": "09c67457-ea19-41ef-bc82-2ec60c593b98",
-          "length": 4,
-          "cycles": 1,
-          "position": 2,
-          "iteration": 0,
-          "httpRequestId": "fdd3e13d-6642-4f7d-827a-50922b186f93",
-          "scriptId": "e61042f7-7790-4f00-872d-af5e4fa926a6",
-          "execution": "f8fa4585-a9b8-4125-8614-b55607b22f76"
-        }
-      }
-    ],
+    "failures": [],
     "error": null
   }
 }
