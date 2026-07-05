@@ -93,23 +93,22 @@ flowchart LR
 | **Triage** | [triage/05-idPeticion-solicitudes.md](./triage/05-idPeticion-solicitudes.md) |
 | **Criterio done** | Bloques 1.4 y 1.5 en verde — **cumplido** (run 2026-07-05T08:17Z, 66/66 `1_validaciones_js`) |
 
-### A5 — plan + env (refactor, no nuevo contrato) — **en curso 2026-07-05**
+### A5 — plan + env (refactor, no nuevo contrato) — **cerrada 2026-07-05**
 
 | | |
 |--|--|
-| **Checklist** | Escenarios que dependan de plan (si quedan tras A1–A4) |
-| **Cambio** | Extraer `lib/plan.js` desde base; sacar `validatePlan` de `util.js`; `CFG_VALIDAR_PLAN_POR_CANAL` |
-| **Riesgo** | Medio si se hace antes de A1 — **por eso va al final de A** |
-| **Triage** | [triage/06-plan-env.md](./triage/06-plan-env.md) |
-| **Criterio done** | Escenarios 2.1.2/2.1.4 en verde (run 09:08); **2.1.3** pendiente fix A7 + Newman — ver [triage/07-getCanal-contrato-http.md](./triage/07-getCanal-contrato-http.md) |
+| **Checklist** | `2_reglaNegocio/1_idCanal` 2.1.x |
+| **Cambio** | `lib/plan.js`; `CFG_VALIDAR_PLAN_POR_CANAL`; fix A7 getCanal HTTP 500 |
+| **Triage** | [triage/06-plan-env.md](./triage/06-plan-env.md), [triage/07-getCanal-contrato-http.md](./triage/07-getCanal-contrato-http.md) |
+| **Criterio done** | Newman `1_idCanal` **4/4** (run 2026-07-05T09:28Z) — **cumplido** |
 
 ## Qué queda fuera de Fase A
 
 | Fase | Cuándo |
 |------|--------|
-| **B** — Extraer funciones en `app.js` (`resolverCanalEmisor`, …) | Tras A5 estable |
-| **C** — `lib/metodos.js` solo 0001 | Tras B o en paralelo si A estable |
-| **2.x reglas negocio** | Tras transversal 1.x; revisar checklist sección 2 |
+| **Pendiente Fase A** | Newman `2_reglaNegocio/4_metodo` (2.4.1, 2.4.2) — **siguiente paso** |
+| **B** — Extraer funciones en `app.js` (`resolverCanalEmisor`, …) | Tras cerrar 4_metodo o en paralelo si estable |
+| **C** — `lib/metodos.js` solo 0001 | Tras B o si 4_metodo exige refactor método |
 
 ## Regresión obligatoria en cada subfase
 
@@ -121,11 +120,9 @@ Después de **cada** A1–A5, el usuario (o agente con logs) verifica:
 
 ## Próximo paso concreto
 
-**Implementar A0 + A1** cuando el usuario lo pida:
-
-1. Documentar triage `02-idCanal.md`.
-2. Código en `tld-api-cuenta-nombre` únicamente.
-3. Commit; usuario corre Newman en corporativo; `git pull` aquí para leer logs.
+1. Newman: `node run-newman.js vcn --folder "General/2_reglaNegocio/4_metodo"`
+2. Si falla 2.4.x: triage validación método (418 cifrado) en `app.js`
+3. Regresión: `General/1_validaciones_js` + `Metodo/0001`
 
 ## Referencias sagradas / fuera de alcance
 

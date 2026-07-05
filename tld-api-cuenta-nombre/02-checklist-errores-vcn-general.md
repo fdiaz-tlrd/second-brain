@@ -9,7 +9,7 @@ Fuente de verdad para corrección en `tld-api-cuenta-nombre`. Marcar `[x]` al re
 | Fecha (2_validador verificado) | 2026-07-05T07:38:17.594Z |
 | Fecha (3_peticion verificado) | 2026-07-05T07:53:27.900Z |
 | Fecha (1_validaciones_js verificado) | 2026-07-05T08:17:07.621Z |
-| Fecha (2_reglaNegocio/1_idCanal parcial) | 2026-07-05T09:08:05.437Z |
+| Fecha (2_reglaNegocio/1_idCanal verificado) | 2026-07-05T09:28:35.067Z |
 | Carpeta Postman | `General` / `1_validaciones_js` (A1–A4) |
 | Tests fallidos (General) | 468 (failed: 153) |
 | Tests fallidos (1_idCanal) | 84 (failed: **0**) |
@@ -20,10 +20,10 @@ Fuente de verdad para corrección en `tld-api-cuenta-nombre`. Marcar `[x]` al re
 | Enfoque | [`01-enfoque-correccion.md`](./01-enfoque-correccion.md) |
 
 | Escenarios General | 78 |
-| Fallan (run General 05:13) | 63 → **1** tras A5 parcial (`2.1.3` pendiente fix deploy) |
-| Pasan (run General 05:13) | 15 → **77** tras A1–A5 parcial |
+| Fallan (run General 05:13) | 63 → **2** (`2_reglaNegocio/4_metodo`) |
+| Pasan (run General 05:13) | 15 → **76** tras A5 cerrada |
 
-**Convención:** *Debe* = contrato Postman. Bloque **`1_validaciones_js` completo** verificado (run 08:17, 66/66). **`2_reglaNegocio/1_idCanal`:** 3/4 en verde (run 09:08); pendiente **2.1.3** tras deploy fix A7 ([triage/07-getCanal-contrato-http.md](./triage/07-getCanal-contrato-http.md)).
+**Convención:** *Debe* = contrato Postman. **`1_validaciones_js`** completo (66/66, run 08:17). **`2_reglaNegocio/1_idCanal`** cerrado A5 (4/4, run 09:28). Pendiente **`4_metodo`** (2.4.1, 2.4.2).
 
 Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, orden en `app.js`).
 
@@ -49,13 +49,7 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 
 ## 2_reglaNegocio/1_idCanal
 
-- [ ] **2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]**
-  - Postman: `General/2_reglaNegocio/1_idCanal`
-  - Escenario: [`2_reglaNegocio/1_idCanal/1.3_idCanal_error_interno_getCanal.json`](../Postman/generador/VCN Escenarios error/General/2_reglaNegocio/1_idCanal/1.3_idCanal_error_interno_getCanal.json)
-  - **Debe:** HTTP Lambda `500`, `codigoError` `500`, tipo `general`, mensaje `Error interno`
-  - **Estaba (run 09:08, pre-A7):** HTTP `400`, `codigoError` `500`, mensaje crudo de `canal.js`
-  - **Fix A7:** patrón P2M en `app.js` — HTTP 500 + `mensajeErrorCanal` → `MSG_CATALOGO[500]` ([triage/07](./triage/07-getCanal-contrato-http.md))
-  - **Estado:** código listo; **pendiente deploy + Newman**
+**Estado A5 (2026-07-05T09:28Z):** 4/4 en verde — ver sección *Escenarios que pasan*.
 
 ## 2_reglaNegocio/4_metodo
 
@@ -155,9 +149,10 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 - [x] 1.5.8. solicitudes — idSolicitud longitud 65 (431)
 - [x] 1.5.9. solicitudes — idSolicitud duplicado case-insensitive (431)
 
-### 2_reglaNegocio/1_idCanal — A5 parcial (run 2026-07-05T09:08Z)
+### 2_reglaNegocio/1_idCanal — A5 cerrada (run 2026-07-05T09:28Z)
 - [x] 2.1.1. idCanal — no existe en BD (401)
 - [x] 2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]
+- [x] 2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]
 - [x] 2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]
 
 ### 2_reglaNegocio/3_peticion

@@ -50,18 +50,17 @@ Postman **`2_reglaNegocio/1_idCanal`** (escenarios plan):
 | A5c | `app.js`: `plan.validatePlan` + **403** catálogo | VCN | **Hecho** |
 | A5d | `util.lambdaResult`: tracking vía `plan.js`; quitar `validatePlan` de util | VCN | **Hecho** |
 
-**Verificación Newman:** run **2026-07-05T09:08Z** — `2_reglaNegocio/1_idCanal`: **3/4** (2.1.2, 2.1.4 OK; **2.1.3** falla HTTP/mensaje getCanal). Fix A7 en código; pendiente redeploy + Newman. Ver [triage/07-getCanal-contrato-http.md](./07-getCanal-contrato-http.md).
+**Verificación Newman:** run **2026-07-05T09:28Z** — `2_reglaNegocio/1_idCanal`: **4/4** (A5 + A7 cerradas). Log: [`resumen-fallos-vcn.md`](../../Postman/generador/logs/resumen-fallos-vcn.md).
 
 ## Pruebas
 
 ```powershell
-node run-newman.js vcn --folder "General/2_reglaNegocio/1_idCanal"
 node run-newman.js vcn --folder "General/2_reglaNegocio/4_metodo"
 node run-newman.js vcn --folder "General/1_validaciones_js"
 ```
 
-Escenarios ancla: **2.1.2** (403 plan), **2.1.3** (500 getCanal — fix A7), **2.1.4** (403 plan sin grupos).
+Escenarios ancla: **2.4.1** (418 fuera CFG), **2.4.2** (418 sin método en emisor).
 
 ## Siguiente
 
-Tras cerrar A5: **Fase B** — extraer funciones en `app.js` (`resolverCanalEmisor`, …). **Fase C** — `lib/metodos.js` 0001.
+**Newman `4_metodo`** — si falla, triage Fase C / validación método post-descifrado. Tras Fase A completa: **Fase B** (`app.js`) y **Fase C** (`lib/metodos.js` 0001).
