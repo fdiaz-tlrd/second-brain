@@ -106,7 +106,7 @@ flowchart LR
 
 | Fase | Cuándo |
 |------|--------|
-| **Pendiente Fase A** | Newman `2_reglaNegocio/2_validador` (3 escenarios nuevos); regresión `Metodo/0001` |
+| **Pendiente Fase A** | Debate + cierre **`2_reglaNegocio/2_validador`** ([triage/08](./triage/08-2_validador-reglaNegocio.md)); regresión `Metodo/0001` |
 | **Baseline General** | **78/78 cerrado** (incl. `4_metodo` run 09:37) |
 | **B** — Extraer funciones en `app.js` (`resolverCanalEmisor`, …) | Tras baseline estable |
 | **C** — `lib/metodos.js` solo 0001 | Tras B o en paralelo |

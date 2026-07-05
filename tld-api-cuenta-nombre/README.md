@@ -32,7 +32,7 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | [triage/05-idPeticion-solicitudes.md](./triage/05-idPeticion-solicitudes.md) | Triage #5 — **A4 cerrada** (Newman 66/66 `1_validaciones_js`) |
 | [triage/06-plan-env.md](./triage/06-plan-env.md) | Triage #6 — **A5 cerrada** (Newman 4/4 `1_idCanal`, run 09:28) |
 | [triage/07-getCanal-contrato-http.md](./triage/07-getCanal-contrato-http.md) | Triage #7 — **A7 cerrada** (fix 2.1.3 HTTP 500) |
-| [triage/08-2_validador-reglaNegocio.md](./triage/08-2_validador-reglaNegocio.md) | Triage #8 — **debate abierto** Newman `2_validador` 0/3 (run 17:38Z) |
+| [triage/08-2_validador-reglaNegocio.md](./triage/08-2_validador-reglaNegocio.md) | Triage #8 — debate **cerrado**; Newman `2_validador` pendiente (P6: 2.2.3) |
 | [triage/01-json-entrada.md](./triage/01-json-entrada.md) | Triage #1 — validar que la entrada sea JSON |
 
 ## Referencias externas

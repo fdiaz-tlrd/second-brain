@@ -60,11 +60,16 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 
 ## 2_reglaNegocio/2_validador (nuevo — regla de negocio)
 
-**Newman 2026-07-05T17:38Z:** 0/3 OK. Carpeta **sin pulir** (borrador P2M). Debate: [triage/08-2_validador-reglaNegocio.md](./triage/08-2_validador-reglaNegocio.md).
+**Debate cerrado 2026-07-05.** Detalle: [triage/08-2_validador-reglaNegocio.md](./triage/08-2_validador-reglaNegocio.md).
 
-- [ ] **2.2.1** — 404, env `9999` **OK**; fallo apunta a handler (regla `CFG_CANAL_VALIDADOR`)
-- [ ] **2.2.2** — 402, env `1007` **pendiente revisar datos** canales dev
-- [ ] **2.2.3** — 500 getCanal; env debe ser **`1017`** (hoy `0001` en env)
+**Newman 2026-07-05T17:38Z:** 0/3 OK (pre-deploy A8a). **Re-run pendiente** tras deploy.
+
+- [x] **Datos/env** — `CANAL_VALIDADOR_DESHABILITADO` = **1021**; `CANAL_VALIDADOR_MAL_CONFIGURADO` = **1017**; canal 1021 en `canalesPruebas-dev`
+- [x] **Código A8a** — regla `CFG_CANAL_VALIDADOR` eliminada en dev (`37a5e06`)
+- [ ] **2.2.1** — 404, env `9999`; Newman pendiente
+- [ ] **2.2.2** — 402, env **1021**; Newman pendiente
+- [ ] **2.2.3** — **decisión P6:** prod 404 vs dev 500 cifrado; Newman pendiente
+- [ ] **1.2.15** — revisar tras quitar regla P2M en VCN
 
 ---
 

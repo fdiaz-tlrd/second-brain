@@ -1,7 +1,7 @@
 # Canales de prueba — dev
 
 **Ambiente:** dev  
-**Actualizado:** 2026-07-04
+**Actualizado:** 2026-07-05
 
 Datos maquinables: [`canalesPruebas-dev.json`](./canalesPruebas-dev.json)
 
@@ -118,9 +118,10 @@ Grupos: token del canal → `cognito:groups` en el JWT.
 | 1015 | ZONAGATO | gcm | dinámico | sí | validador + default |
 | 1016 | BELLGATO | gcm | dinámico | sí | validador + default |
 | 1017 | TEYVGATO | — | fijo | **no** | sin credenciales matriz |
-| 1018 | ARCHGATO | gcm | fijo | sí | validador + default |
+| 1018 | ARCHGATO | cbc | fijo | sí | validador + default |
 | 1019 | STELGATO | gcm | fijo | **no** | sin registrar |
 | 1020 | NAMEGATO | gcm | fijo | **no** | validador + default |
+| 1021 | HOLLGATO | cbc | fijo | sí | validador + default |
 
 ### Escenarios de error (Postman)
 
@@ -132,8 +133,12 @@ Grupos: token del canal → `cognito:groups` en el JWT.
 | `CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS` | **1019** | STELGATO | **403** | Sin plan, sin grupos; escenario `1.4` |
 | `CANAL_EMISOR_SIN_METODO` | **1018** | ARCHGATO | error validador | Sin `urlValidador` ni operaciones |
 | `CANAL_EMISOR_MAL_CONFIGURADO` | **1017** | TEYVGATO | **500** | Fila en validador **sin `llaveCifrado`** |
+| `CANAL_VALIDADOR_DESHABILITADO` | **1021** | HOLLGATO | **402** | `estadoValidador` **N** (inactivo) |
+| `CANAL_VALIDADOR_MAL_CONFIGURADO` | **1017** | TEYVGATO | **500** | Mismo canal mal configurado; rol **validador** en escenario 2.2.3 |
 
-**1018 ARCHGATO** — **sin método/operación**: `urlValidador` vacío y sin filas en `tld-validador-canal-operacion`.
+**1018 ARCHGATO** — **sin método/operación**: `urlValidador` vacío y sin filas en `tld-validador-canal-operacion`. Cifrado **CBC** (actualizado 2026-07-05).
+
+**1021 HOLLGATO** — validador **inactivo** (`estadoValidador` **N**) → `CANAL_VALIDADOR_DESHABILITADO` (escenario VCN **2.2.2**, **402**).
 
 **1019 STELGATO** — sin plan, sin grupos → `CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS` (escenario **`1.4`**).
 
@@ -243,6 +248,15 @@ POST `.../auth/token`
 {
   "apiKey": "09f118b3bab407c594ee2c105c67d877988d7bb17",
   "secretKey": "06j159Mi1tqknj2e5Pn3lb38S969eaeO8Ag28Eqc24rdRoqnuibO8VBc15e8Abaa98bb6d3jrv63u76rlSek3g"
+}
+```
+
+**1021 HOLLGATO** (validador inactivo — escenario 402)
+
+```json
+{
+  "apiKey": "e1616581a99400e5b68fc8c5079b3f719989065b0",
+  "secretKey": "tuaohb6j1t18bq2e7963l9bbdAk8e333j9a8ktf6J4rjmv4mu9u2O16u05eA8a9Ab9996dp5sCn629pgQ8DpNq"
 }
 ```
 

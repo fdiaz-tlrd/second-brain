@@ -1,6 +1,6 @@
 {
   "ambiente": "dev",
-  "actualizado": "2026-07-04",
+  "actualizado": "2026-07-05",
   "urls": {
     "matriz": "https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev",
     "matrizToken": "https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev/auth/token",
@@ -431,14 +431,63 @@
         "fechaHora": "2026-07-04 09:56:05"
       },
       "validador": {
-        "algoritmoCifrado": "aes-256-gcm",
-        "algoritmoAes": "aes-256-gcm",
+        "algoritmoCifrado": "aes-256-cbc",
+        "algoritmoAes": "aes-256-cbc",
         "alias": "ARCHGATO",
         "tipoAuth": "fijo",
         "useCertificado": false,
         "estadoValidador": "Y",
         "urlValidador": "",
         "llaveCifrado": "b6a5ca24-5ea7-4984-916f-3fc27650879b",
+        "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97",
+        "validadorApiKey": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
+      }
+    },
+    {
+      "idCanal": "1021",
+      "swiftCode": "HOLLGATO",
+      "validadorInactivo": true,
+      "escenarioError": {
+        "variablePostman": "CANAL_VALIDADOR_DESHABILITADO",
+        "esperado": "402",
+        "causa": "estadoValidador N en tld-validador-canal"
+      },
+      "matriz": {
+        "nombreCanal": "Hollow Ether Reserve",
+        "empresa": "HOLLGATO",
+        "correo": "fdiaz@telered.com.pa",
+        "fechaCreacion": "2026-07-05 01:20:06"
+      },
+      "credenciales": {
+        "apiKey": "e1616581a99400e5b68fc8c5079b3f719989065b0",
+        "secretKey": "tuaohb6j1t18bq2e7963l9bbdAk8e333j9a8ktf6J4rjmv4mu9u2O16u05eA8a9Ab9996dp5sCn629pgQ8DpNq"
+      },
+      "cognito": {
+        "grupos": ["tld-matriz-default", "tld-matriz-validador"]
+      },
+      "plan": {
+        "idPlan": "d5223ccbba94805594e7aa16bdf21f82aabfa7afd",
+        "idPlanCanal": "b0d357c1baa4c36595ebc43b05385956aab16c58c",
+        "namePlan": "Plan dev GATO",
+        "estatus": "inactivo",
+        "exitoso": 0,
+        "fallido": 0,
+        "bloqueado": 0,
+        "fechaFin": "2026-07-20",
+        "fechaHora": "2026-07-05 01:26:43",
+        "idTransaccionAutopista": 833111783276003
+      },
+      "validador": {
+        "algoritmoCifrado": "aes-256-cbc",
+        "algoritmoAes": "aes-256-cbc",
+        "alias": "HOLLGATO",
+        "nombre": "Hollow Ether Reserve",
+        "canalNombre": "1021-Hollow Ether Reserve",
+        "tipoAuth": "fijo",
+        "useCertificado": false,
+        "estadoValidador": "N",
+        "urlValidador": "",
+        "llaveCifrado": "b11cc9ac-5ada-47fc-a898-3942b098f577",
         "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97",
         "validadorApiKey": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
       }
