@@ -1,6 +1,6 @@
 # Triage #10 — Metodo/0001/1_validaciones_js/1_cuenta (413)
 
-**Estado:** **escenarios listos** — Newman **pendiente** (usuario, VPN).
+**Estado:** **cerrado** — Newman **20/20**; VCN completo **1098/1098** (2026-07-05T23:40Z).
 
 ## Qué valida
 
@@ -46,8 +46,8 @@ node run-newman.js vcn --folder "Metodo/0001/1_validaciones_js/1_cuenta"
 | ID | Acción | Estado |
 |----|--------|--------|
 | A10a | Ampliar 413 a 20 escenarios + generador | **Hecho** (commit pendiente) |
-| A10b | Newman `1_cuenta` + regresión VCN completo | **Pendiente** — VPN |
-| A10c | Checklist + baseline tests | **Pendiente** tras Newman |
+| A10b | Newman `1_cuenta` + regresión VCN completo | **Hecho** — 1098/1098 — log `ad4d28f` |
+| A10c | Checklist + baseline tests | **Hecho** |
 
 ## Regresión previa
 

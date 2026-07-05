@@ -25,7 +25,7 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | Archivo | Contenido |
 |---------|-----------|
 | [01-enfoque-correccion.md](./01-enfoque-correccion.md) | Estrategia: P2M/P2P como referencia, qué portar a VCN, qué no copiar |
-| [02-checklist-errores-vcn-general.md](./02-checklist-errores-vcn-general.md) | **Checklist vivo** — General **80/80**; VCN completo **1008/1008** |
+| [02-checklist-errores-vcn-general.md](./02-checklist-errores-vcn-general.md) | **Checklist vivo** — General **80/80**; VCN completo **1098/1098** |
 | [03-estrategia-transversal-vs-parche.md](./03-estrategia-transversal-vs-parche.md) | Opinión: meta transversal = base; ejecución incremental |
 | [04-decision-fase-a-dividida.md](./04-decision-fase-a-dividida.md) | **Decisión:** Fase A + `2_validador` **cerradas**; A9 respuesta canal validador **510–515 cerrada** |
 | [**05-newman-vpn-reglas-agente.md**](./05-newman-vpn-reglas-agente.md) | **OBLIGATORIO agente:** Newman solo con VPN; no interpretar `ENOTFOUND` |
@@ -39,7 +39,7 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | [triage/07-getCanal-contrato-http.md](./triage/07-getCanal-contrato-http.md) | Triage #7 — **A7 cerrada** (fix 2.1.3 HTTP 500) |
 | [triage/08-2_validador-reglaNegocio.md](./triage/08-2_validador-reglaNegocio.md) | Triage #8 — **A8 cerrada** (Newman 3/3; P6 → 500 dev) |
 | [triage/09-respuesta-canal-validador-510-515.md](./triage/09-respuesta-canal-validador-510-515.md) | Triage #9 — **A9 cerrada** (48 escenarios 510–515 × 8 validadores; VCN **1008/1008**) |
-| [triage/10-cuenta-413-validaciones-js.md](./triage/10-cuenta-413-validaciones-js.md) | Triage #10 — **A10 en curso** (20 escenarios 413; Newman pendiente) |
+| [triage/10-cuenta-413-validaciones-js.md](./triage/10-cuenta-413-validaciones-js.md) | Triage #10 — **A10 cerrada** (20 escenarios 413; VCN **1098/1098**) |
 | [triage/11-respuesta-exitosa-metodo-0001.md](./triage/11-respuesta-exitosa-metodo-0001.md) | Triage #11 — **A11 planificado** (`3_respuestaExitosa`, tipo `exito`) |
 | [**ESTADO-ACTUAL.md**](./ESTADO-ACTUAL.md) | **Handoff** — qué sigue si se corta la sesión |
 | [triage/01-json-entrada.md](./triage/01-json-entrada.md) | Triage #1 — validar que la entrada sea JSON |
@@ -48,6 +48,7 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 
 - Producción (solo awareness; no en alcance ahora): [referencia-produccion.md](./referencia-produccion.md)
 - Resultado pruebas Postman: [`../notas-sueltas/resultado_prueba.md`](../notas-sueltas/resultado_prueba.md)
+- **Datos prueba dev A11:** [`../notas-sueltas/vcn-datos-prueba-dev-metodo-0001-exito.md`](../notas-sueltas/vcn-datos-prueba-dev-metodo-0001-exito.md)
 - QA equipo: [`../Postman/equipo-pruebas/Validacion Cuenta Nombre/`](../Postman/equipo-pruebas/Validacion%20Cuenta%20Nombre/) — no modificar `estudio-coleccion-vcn.md`
 
 ## Estado
@@ -72,7 +73,7 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | 2026-07-05 | **Baseline General 78/78** — Newman `4_metodo` 12/12 + regresión `1_validaciones_js` 396/396 |
 | 2026-07-05 | **A8** `2_reglaNegocio/2_validador` — debate cerrado; A8a deploy; Newman **3/3** + VCN **570/570** (19:51Z) |
 | 2026-07-05 | **A9** `Metodo/0001/2_respuestaCanalValidador` — 48 escenarios códigos **510–515** × validadores **1008–1016**; Newman Metodo **522/522**, VCN completo **1008/1008** (23:19Z); commits `b4c400c`, `8df6084`, log `aee0972` |
-| 2026-07-05 | **A10** `1_cuenta` 413 — ampliado a **20** escenarios + generador; **Newman pendiente** (VPN) |
+| 2026-07-05 | **A10** `1_cuenta` 413 — **20/20**; Newman **1098/1098** (23:40Z); datos A11 en `notas-sueltas/vcn-datos-prueba-dev-metodo-0001-exito.md` |
 | 2026-07-05 | **A11** plan — `3_respuestaExitosa` en misma colección; `expectedTipo: exito` en Post-response |
 | 2026-07-05 | **Principio rector:** mejorar código VCN, **no** cambiar reglas de negocio productivas — ver triage `08`, [referencia-produccion.md](./referencia-produccion.md) |
 

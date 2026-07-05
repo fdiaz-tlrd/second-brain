@@ -4,13 +4,13 @@ Fuente de verdad para corrección en `tld-api-cuenta-nombre`. Marcar `[x]` al re
 
 | Run | Valor |
 |-----|-------|
-| Fecha (VCN completo) | **2026-07-05T23:19:11.745Z** |
+| Fecha (VCN completo) | **2026-07-05T23:40:23.023Z** |
 | Fecha (Metodo, post-A9) | **2026-07-05T23:01:33.545Z** |
 | Fecha (2_reglaNegocio/2_validador) | 2026-07-05T19:02Z (aprox., post-deploy A8a) |
 | Fecha (1_validaciones_js regresión post-1.2.15) | incluida en run VCN completo |
 | Carpeta Postman | `General` + `Metodo/0001` (incl. `2_respuestaCanalValidador`) + resto colección VCN |
-| Requests (VCN completo) | **416** (failed: **0**) |
-| Tests (VCN completo) | **1008** (failed: **0**) |
+| Requests (VCN completo) | **446** (failed: **0**) |
+| Tests (VCN completo) | **1098** (failed: **0**) |
 | Tests (`Metodo`) | **522** (failed: **0**) |
 | Tests (`Metodo/0001/2_respuestaCanalValidador`) | **432** (48 escenarios × ~9 asserts) |
 | Tests (`2_reglaNegocio/2_validador`) | **18** (failed: **0**) |
@@ -21,9 +21,9 @@ Fuente de verdad para corrección en `tld-api-cuenta-nombre`. Marcar `[x]` al re
 
 | Escenarios General (baseline 2026-07-05) | 78 |
 | Escenarios General (+ `2_reglaNegocio/2_validador`, − `1.2.15`, + `0_jsonEntrada`) | **81** |
-| Escenarios `Metodo/0001/1_validaciones_js/1_cuenta` | **20** (413) — 10 verificados, 10 Newman pendiente |
+| Escenarios `Metodo/0001/1_validaciones_js/1_cuenta` | **20** (413) — **20/20** verificados |
 | Escenarios `Metodo/0001/2_respuestaCanalValidador` | **48** |
-| Estado General | **80/80** + regresión VCN completa **1008/1008** |
+| Estado General | **80/80** + regresión VCN completa **1098/1098** |
 
 **Convención:** *Debe* = contrato Postman. Newman verificado vía **`registro-vcn.md`** (usuario: VPN → run → commit/push logs). Ver [`05-newman-vpn-reglas-agente.md`](./05-newman-vpn-reglas-agente.md).
 
@@ -180,11 +180,9 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 - [x] 2.3.5. peticion — cifrado truncado (405)
 - [x] 2.3.6. peticion — tag GCM corrupto (405)
 
-## Metodo/0001/1_validaciones_js/1_cuenta — A10 (2026-07-05)
+## Metodo/0001/1_validaciones_js/1_cuenta — A10 cerrada (2026-07-05T23:40Z)
 
-**20** escenarios → `resultado` **413**. Detalle: [triage/10-cuenta-413-validaciones-js.md](./triage/10-cuenta-413-validaciones-js.md).
-
-**Newman:** 1.1–1.10 verificados en VCN **1008/1008** (23:19Z). **1.11–1.20 pendientes** (escenarios nuevos, sin run aún).
+**20/20** escenarios → `resultado` **413**. Detalle: [triage/10-cuenta-413-validaciones-js.md](./triage/10-cuenta-413-validaciones-js.md).
 
 - [x] 1.1. cuenta — propiedad ausente (413)
 - [x] 1.2. cuenta — null (413)
@@ -196,16 +194,16 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 - [x] 1.8. cuenta — solo espacios (413)
 - [x] 1.9. cuenta — espacio interno (413)
 - [x] 1.10. cuenta — longitud 35 (413)
-- [ ] 1.11. cuenta — solo tab (413) — *Newman pendiente*
-- [ ] 1.12. cuenta — símbolo @ (413) — *Newman pendiente*
-- [ ] 1.13. cuenta — paréntesis (413) — *Newman pendiente*
-- [ ] 1.14. cuenta — unicode ¿ (413) — *Newman pendiente*
-- [ ] 1.15. cuenta — comillas (413) — *Newman pendiente*
-- [ ] 1.16. cuenta — guión (413) — *Newman pendiente*
-- [ ] 1.17. cuenta — decimal (413) — *Newman pendiente*
-- [ ] 1.18. cuenta — tipo array (413) — *Newman pendiente*
-- [ ] 1.19. cuenta — espacio al inicio (413) — *Newman pendiente*
-- [ ] 1.20. cuenta — espacio al final (413) — *Newman pendiente*
+- [x] 1.11. cuenta — solo tab (413)
+- [x] 1.12. cuenta — símbolo @ (413)
+- [x] 1.13. cuenta — paréntesis (413)
+- [x] 1.14. cuenta — unicode ¿ (413)
+- [x] 1.15. cuenta — comillas (413)
+- [x] 1.16. cuenta — guión (413)
+- [x] 1.17. cuenta — decimal (413)
+- [x] 1.18. cuenta — tipo array (413)
+- [x] 1.19. cuenta — espacio al inicio (413)
+- [x] 1.20. cuenta — espacio al final (413)
 
 ## Metodo/0001/2_respuestaCanalValidador — A9 cerrada (2026-07-05T23:19Z)
 

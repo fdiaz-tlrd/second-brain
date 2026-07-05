@@ -36,6 +36,6 @@ Ver README en esa carpeta para subcarpetas planificadas.
 
 ## Cuentas / env
 
-Variables en `entornos/VCN Escenarios error - desarrollo.postman_environment.json`: `CuentaFeliz`, `PACA`, `PACC`, `Cuentajuridica`, `Variostitulares`, `mascara0`–`mascara6`, etc.
+Variables y cuentas: [`notas-sueltas/vcn-datos-prueba-dev-metodo-0001-exito.md`](../../notas-sueltas/vcn-datos-prueba-dev-metodo-0001-exito.md).
 
 Validar en dev que dummy/validador devuelve datos reales para esas cuentas antes de fijar asserts estrictos.

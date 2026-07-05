@@ -5,37 +5,24 @@
 | Campo | Valor |
 |-------|-------|
 | **Última actualización** | 2026-07-05 |
-| **Baseline Newman verificado** | VCN completo **1008/1008** (416 req) — log `aee0972`, 2026-07-05T23:19Z |
-| **Bloque cerrado** | A9 — `2_respuestaCanalValidador` 510–515 × 8 validadores (48 esc.) |
-| **Bloque en curso** | A10 — endurecer `1_cuenta` 413 (10 → **20** escenarios) |
-| **Siguiente bloque** | A11 — `3_respuestaExitosa` (resultado 0) |
+| **Baseline Newman verificado** | VCN completo **1098/1098** (446 req) — log `ad4d28f`, 2026-07-05T23:40Z |
+| **Bloque cerrado** | A10 — `1_cuenta` 413 (**20/20** escenarios) |
+| **Bloque en curso** | A11 — `3_respuestaExitosa` (resultado 0) |
 
-## Qué acaba de hacerse (A10)
+## Qué acaba de hacerse (A10) — cerrado
 
-1. Generador `generar-escenarios-0001-cuenta-413.js` — **20** JSON en `Metodo/0001/1_validaciones_js/1_cuenta/`
-2. `Post-response.js`: tipo **`exito`** para escenarios de éxito (A11)
-3. Carpeta `Metodo/0001/3_respuestaExitosa/` + README (plan A11)
-4. Triage [`10-cuenta-413`](./triage/10-cuenta-413-validaciones-js.md), [`11-respuesta-exitosa`](./triage/11-respuesta-exitosa-metodo-0001.md)
-5. Colección regenerada (`armar-coleccion.js config-vcn.json`)
+1. Generador `generar-escenarios-0001-cuenta-413.js` — **20** JSON
+2. Newman **1098/1098** completo (2026-07-05T23:40Z) — commit log `ad4d28f`
 
-## Pendiente inmediato (usuario VPN)
+## Siguiente (A11)
 
-```powershell
-cd Postman/generador
-node run-newman.js vcn --folder "Metodo/0001/1_validaciones_js/1_cuenta"
-node run-newman.js vcn
-git add logs/ Postman/generador/
-git commit -m "Newman VCN — 1_cuenta 20/20 + regresión completa"
-git push
-```
+1. **Datos:** [`notas-sueltas/vcn-datos-prueba-dev-metodo-0001-exito.md`](../notas-sueltas/vcn-datos-prueba-dev-metodo-0001-exito.md) — confirmar `Cuenta1`, `Cuenta34`, validador éxito (propuesto **1009**)
+2. Agregar vars faltantes al environment dev (`Variostitulares`, `CANAL_VALIDADOR_EXITO`, …)
+3. `generar-escenarios-0001-respuesta-exitosa.js` + Newman → actualizar checklist/baseline
 
-Tras push: actualizar baseline en [`02-checklist-errores-vcn-general.md`](./02-checklist-errores-vcn-general.md) y fila superior de este archivo.
+## Pendiente inmediato (usuario VPN) — A11 prep
 
-## Después de A10 (A11)
-
-1. Implementar `generar-escenarios-0001-respuesta-exitosa.js`
-2. JSON bajo `3_respuestaExitosa/` (básico → PACA/PACC → jurídica → máscaras → límites)
-3. Newman por subcarpeta → completo → commit logs → actualizar checklist/triage/ESTADO-ACTUAL
+Validar manualmente una cuenta feliz con validador **1009** (ver notas-sueltas). Luego implementar generador éxito.
 
 ## Reglas agente
 
