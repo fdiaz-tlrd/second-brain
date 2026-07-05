@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "1b3db321-c0ea-4d05-acfc-6cd901e2c770",
+    "_postman_id": "5de47034-c040-4984-b35c-a70f9c736e7a",
     "name": "VCN Escenarios error",
     "description": "Colección generada desde la fuente en VCN Escenarios error/.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -629,7 +629,7 @@
                     },
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    },\n    \"idCanal\": \"10�0\"\n}",
+                      "raw": "{\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    },\n    \"idCanal\": \"10¿0\"\n}",
                       "options": {
                         "raw": {
                           "language": "json"
@@ -1320,7 +1320,7 @@
                     },
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    },\n    \"validador\": \"10�0\"\n}",
+                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ]\n    },\n    \"validador\": \"10¿0\"\n}",
                       "options": {
                         "raw": {
                           "language": "json"
@@ -2702,7 +2702,7 @@
                     },
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ],\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}�001\"\n    }\n}",
+                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CUENTA_VALIDA}}\"\n                }\n            }\n        ],\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}¿001\"\n    }\n}",
                       "options": {
                         "raw": {
                           "language": "json"

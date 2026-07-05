@@ -17,7 +17,7 @@
           }
         }
       ],
-      "idPeticion": "{{SWIFT_CANAL_EMISOR}}�001"
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}¿001"
     }
   }
 }
