@@ -28,6 +28,8 @@ La salida queda en `ensamblador/salida/*.postman_collection.json`.
 
 Requiere red hacia dummy/API dev. Desde `Postman/generador`. Copia **una sola línea** (los `#` son comentarios; PowerShell los ignora).
 
+**`--folder` con ruta (`General/.../1_idCanal`):** Newman no entiende rutas anidadas como array; el runner resuelve la ruta en la colección y pasa el **id** único de esa carpeta. Sin ruta completa, nombres duplicados (p. ej. dos carpetas `1_idCanal` en General) ejecutarían **ambas**.
+
 ```powershell
 # Primera vez
 npm install

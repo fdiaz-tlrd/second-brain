@@ -15,6 +15,7 @@
 const fs = require("fs");
 const path = require("path");
 const newman = require("newman");
+const { Collection } = require("postman-collection");
 
 const ROOT = __dirname;
 const LOGS = path.join(ROOT, "logs");
@@ -197,6 +198,68 @@ function buildResumenMarkdown(suite, folder, summary, jsonPath, mdPath) {
   return lines.join("\n");
 }
 
+function resolveFolderTarget(collectionPath, folderPath) {
+  if (!folderPath) {
+    return null;
+  }
+  const segments = folderPath
+    .split("/")
+    .map(function (s) {
+      return s.trim();
+    })
+    .filter(Boolean);
+  if (segments.length === 0) {
+    return null;
+  }
+
+  const collection = new Collection(
+    JSON.parse(fs.readFileSync(collectionPath, "utf8"))
+  );
+
+  /** @type {import('postman-collection').ItemGroup} */
+  let current = collection;
+  for (let i = 0; i < segments.length; i++) {
+    const seg = segments[i];
+    const matches = current.items.filter(function (item) {
+      return item.name === seg && typeof item.items !== "undefined";
+    });
+    if (matches.length === 0) {
+      throw new Error(
+        'Carpeta "' +
+          seg +
+          '" no encontrada en ruta `' +
+          folderPath +
+          "` (colección " +
+          path.basename(collectionPath) +
+          ")"
+      );
+    }
+    if (matches.length > 1) {
+      throw new Error(
+        'Nombre de carpeta ambiguo "' +
+          seg +
+          '" en `' +
+          folderPath +
+          "`. Usa ruta completa desde la raíz."
+      );
+    }
+    current = matches[0];
+  }
+
+  return { id: current.id, name: current.name, path: folderPath };
+}
+
+function folderOptionForNewman(collectionPath, folderPath) {
+  if (!folderPath) {
+    return undefined;
+  }
+  if (folderPath.includes("/")) {
+    const target = resolveFolderTarget(collectionPath, folderPath);
+    return target.id;
+  }
+  return folderPath;
+}
+
 function runSuite(suiteKey, folder, insecure) {
   const cfg = SUITES[suiteKey];
   if (!cfg) {
@@ -218,6 +281,22 @@ function runSuite(suiteKey, folder, insecure) {
   const jsonPath = path.join(LOGS, "ultimo-run-" + suiteKey + ".json");
   const mdPath = path.join(LOGS, "resumen-fallos-" + suiteKey + ".md");
 
+  const folderTarget =
+    folder && folder.includes("/")
+      ? resolveFolderTarget(cfg.collection, folder)
+      : null;
+  if (folderTarget) {
+    console.log(
+      "Carpeta: `" +
+        folderTarget.path +
+        "` → id `" +
+        folderTarget.id +
+        "` (" +
+        folderTarget.name +
+        ")"
+    );
+  }
+
   const options = {
     collection: cfg.collection,
     environment: cfg.environment,
@@ -230,12 +309,9 @@ function runSuite(suiteKey, folder, insecure) {
     timeoutScript: 60000,
     insecure: insecure,
   };
-  if (folder) {
-    options.folder = folder.includes("/")
-      ? folder.split("/").map(function (s) {
-          return s.trim();
-        })
-      : folder;
+  const folderSelection = folderOptionForNewman(cfg.collection, folder);
+  if (folderSelection) {
+    options.folder = folderSelection;
   }
 
   return new Promise(function (resolve, reject) {
