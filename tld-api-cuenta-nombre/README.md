@@ -21,9 +21,9 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | Archivo | Contenido |
 |---------|-----------|
 | [01-enfoque-correccion.md](./01-enfoque-correccion.md) | Estrategia: P2M/P2P como referencia, qué portar a VCN, qué no copiar |
-| [02-checklist-errores-vcn-general.md](./02-checklist-errores-vcn-general.md) | **Checklist vivo** — A5 cerrada; pendiente **`4_metodo`** (2 escenarios) |
+| [02-checklist-errores-vcn-general.md](./02-checklist-errores-vcn-general.md) | **Checklist vivo** — baseline **78/78**; +3 `2_validador` regla negocio pendientes |
 | [03-estrategia-transversal-vs-parche.md](./03-estrategia-transversal-vs-parche.md) | Opinión: meta transversal = base; ejecución incremental |
-| [04-decision-fase-a-dividida.md](./04-decision-fase-a-dividida.md) | **Decisión:** Fase A — A5 cerrada; **siguiente:** Newman `4_metodo` |
+| [04-decision-fase-a-dividida.md](./04-decision-fase-a-dividida.md) | **Decisión:** Fase A baseline cerrada; **siguiente:** Newman `2_validador` + `Metodo/0001` |
 | [referencia-produccion.md](./referencia-produccion.md) | Prod congelada — existe; **fuera de alcance ahora**; nunca modificar |
 | [triage/00-estructura-vs-base.md](./triage/00-estructura-vs-base.md) | Triage #0 — inventario VCN dev vs base |
 | [triage/02-idCanal.md](./triage/02-idCanal.md) | Triage #2 — **A1 cerrada** (Newman 14/14) |
