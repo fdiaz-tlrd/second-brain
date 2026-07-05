@@ -54,7 +54,7 @@ Origen borrador: copia P2M especiales → VCN General (`second-brain` `3f9c52a`)
 
 **No aplica en VCN.** **Hecho en dev** (`37a5e06`): eliminada rama en `lib/validaciones.js`. `CFG_CANAL_VALIDADOR` permanece en SAM; no valida en JS.
 
-**Regresión posible:** escenario **`1.2.15`** (validador distinto a `CANAL_VALIDADOR`) probaba regla P2M eliminada — **revisar aparte**.
+**Regresión Postman:** escenario **`1.2.15`** (regla P2M) **eliminado** en VCN (2026-07-05).
 
 ### P3 — `CANAL_VALIDADOR_MAL_CONFIGURADO` (2026-07-05)
 
@@ -147,7 +147,7 @@ Orden **antes** de descifrar `peticion`:
 | G4 | Env mal configurado `1017` | **Cerrado** |
 | G5 | Assertions 404/402 en claro | Pendiente verificar tras deploy |
 | G6 | Contrato **2.2.3** (500 dev vs 404 prod) | **Decisión usuario pendiente** |
-| G7 | Escenario **`1.2.15`** post-A8a | Pendiente revisar |
+| G7 | Escenario **`1.2.15`** post-A8a | **Eliminado** VCN 2026-07-05 |
 
 ---
 
@@ -159,7 +159,7 @@ Orden **antes** de descifrar `peticion`:
 | A8b | Env VCN `1021` / `1017` + canales dev | `second-brain` | **Hecho** |
 | A8c | Pulir escenarios Postman + regenerar colección si aplica | `second-brain` | Pendiente |
 | A8d | Deploy dev + Newman `2_validador` | — | Pendiente |
-| A8e | Decidir P6 (2.2.3) + revisar `1.2.15` | — | Pendiente |
+| A8e | ~~Decidir P6 + revisar `1.2.15`~~ | P6 **500 dev**; **1.2.15 eliminado** |
 
 ## Pruebas
 

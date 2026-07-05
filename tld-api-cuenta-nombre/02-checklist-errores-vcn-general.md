@@ -69,8 +69,6 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 - [ ] **2.2.1** — 404, env `9999`; Newman pendiente
 - [ ] **2.2.2** — 402, env **1021**; Newman pendiente
 - [ ] **2.2.3** — **decisión P6:** prod 404 vs dev 500 cifrado; Newman pendiente
-- [ ] **1.2.15** — revisar tras quitar regla P2M en VCN
-
 ---
 
 ## Escenarios que pasan (no requieren acción ahora)
@@ -106,7 +104,8 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 - [x] 1.2.12. validador — paréntesis ( no permitido (400)
 - [x] 1.2.13. validador — ¿ no permitido (400)
 - [x] 1.2.14. validador — comillas " no permitidas (400)
-- [x] 1.2.15. validador — distinto a {{CANAL_VALIDADOR}} (CANAL_EMISOR) (400)
+
+**Nota:** **1.2.15** eliminado en VCN (2026-07-05) — regla P2M `validador === 0001` no aplica; escenario obsoleto.
 
 ### 1_validaciones_js/3_peticion — A3 cerrada (run 2026-07-05T07:53Z)
 - [x] 1.3.1. peticion — propiedad ausente (undefined) (400)
