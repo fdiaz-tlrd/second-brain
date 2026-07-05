@@ -118,6 +118,9 @@ Grupos: token del canal → `cognito:groups` en el JWT.
 | 1015 | ZONAGATO | gcm | dinámico | sí | validador + default |
 | 1016 | BELLGATO | gcm | dinámico | sí | validador + default |
 | 1017 | TEYVGATO | — | fijo | **no** | sin credenciales matriz |
+| 1018 | ARCHGATO | gcm | fijo | sí | validador + default |
+
+**1018 ARCHGATO** — canal de referencia **sin método/operación**: `urlValidador` vacío y **sin filas** en `tld-validador-canal-operacion` (a diferencia de 1009, 1012, 1013, 1015, que llevan `urlOperacion` en operaciones concretas).
 
 En Dynamo, suscripciones plan–canal pueden figurar `estatus: inactivo`; `control-plan` valida por existencia de fila.
 
@@ -196,6 +199,15 @@ POST `.../auth/token`
 {
   "apiKey": "f59f2732bab4fbd5b8d53c1b2e52f9288ba8a8f69",
   "secretKey": "V02vpr4b1t12Bl2eUDd3l8bAOaq9eCj4trslkb5sI4rh5k48i8celo7Dd5ebb999999b6d5eue74volh9clj1H"
+}
+```
+
+**1018 ARCHGATO** (sin operaciones en validador)
+
+```json
+{
+  "apiKey": "bd3b2952b8846875818f392fe92a0ea0ba992fe55",
+  "secretKey": "mAnDudle1tMlaG2eQK73lavb1bk9edBem58dLePVb4rfi95oi9hfvhO6B5eabbbB898a6dDRc34k72qqVciJqs"
 }
 ```
 

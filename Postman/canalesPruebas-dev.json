@@ -395,6 +395,47 @@
         "estadoValidador": "Y",
         "urlValidador": ""
       }
+    },
+    {
+      "idCanal": "1018",
+      "swiftCode": "ARCHGATO",
+      "sinOperacion": true,
+      "matriz": {
+        "nombreCanal": "Archon Sovereign Banking",
+        "empresa": "ARCHGATO",
+        "correo": "fdiaz@telered.com.pa",
+        "fechaCreacion": "2026-07-04 09:49:54"
+      },
+      "credenciales": {
+        "apiKey": "bd3b2952b8846875818f392fe92a0ea0ba992fe55",
+        "secretKey": "mAnDudle1tMlaG2eQK73lavb1bk9edBem58dLePVb4rfi95oi9hfvhO6B5eabbbB898a6dDRc34k72qqVciJqs"
+      },
+      "cognito": {
+        "grupos": ["tld-matriz-validador", "tld-matriz-default"]
+      },
+      "plan": {
+        "idPlan": "d5223ccbba94805594e7aa16bdf21f82aabfa7afd",
+        "idPlanCanal": "7e87a84aaa842b159ae0f4407776e2c1b9a408718",
+        "namePlan": "Plan dev GATO",
+        "estatus": "inactivo",
+        "exitoso": 0,
+        "fallido": 0,
+        "bloqueado": 0,
+        "fechaFin": "2026-07-19",
+        "fechaHora": "2026-07-04 09:56:05"
+      },
+      "validador": {
+        "algoritmoCifrado": "aes-256-gcm",
+        "algoritmoAes": "aes-256-gcm",
+        "alias": "ARCHGATO",
+        "tipoAuth": "fijo",
+        "useCertificado": false,
+        "estadoValidador": "Y",
+        "urlValidador": "",
+        "llaveCifrado": "b6a5ca24-5ea7-4984-916f-3fc27650879b",
+        "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97",
+        "validadorApiKey": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
+      }
     }
   ]
 }
