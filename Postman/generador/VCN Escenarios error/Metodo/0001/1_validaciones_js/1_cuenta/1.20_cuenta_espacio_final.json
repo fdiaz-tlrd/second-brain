@@ -1,5 +1,5 @@
 {
-  "nombre": "0001.1.1.9. cuenta — espacio interno (413)",
+  "nombre": "0001.1.1.20. cuenta — espacio al final (413)",
   "expectedHttpStatus": 200,
   "expectedCodigoError": 413,
   "expectedTipo": "parametro",
@@ -14,7 +14,7 @@
         {
           "idSolicitud": "1",
           "parametros": {
-            "cuenta": "110000 1328"
+            "cuenta": "1100001328 "
           }
         }
       ]

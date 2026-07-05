@@ -14,7 +14,9 @@
         {
           "idSolicitud": "1",
           "parametros": {
-            "cuenta": {}
+            "cuenta": {
+              "n": 1
+            }
           }
         }
       ]

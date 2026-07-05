@@ -401,11 +401,10 @@ Lista de huecos visibles hoy si solo se copió General y se cambió el método:
 
 4. **No hay environment VCN** en `entornos/`. Faltan endpoint cuenta-nombre, canales/validadores VCN, cuentas de prueba (510–515, máscaras, PACA/PACC, etc.).
 
-5. **`Metodo/0001/2_respuestaCanalValidador`.** Códigos **510–515** × 8 validadores (**48** escenarios, A9 cerrada 2026-07-05). Pendiente: validación `cuenta` → 413, éxito, máscaras 0–6, jurídica, PACA/PACC, etc.
+5. **`Metodo/0001/1_validaciones_js/1_cuenta`.** **20** escenarios → **413** (A10). Generador: `generar-escenarios-0001-cuenta-413.js`. **`Metodo/0001/2_respuestaCanalValidador`:** 510–515 × 8 validadores (A9 cerrada). **`Metodo/0001/3_respuestaExitosa`:** plan A11 (resultado 0).
 
-6. **`catalogoGeneral.json` y 510–515.** Catálogo usado por `generar-escenarios-0001-respuesta-canal-validador.js`. Otros códigos de negocio (413, éxito, máscaras) siguen pendientes en generador.
-
-7. **No hay `generar-escenarios-0001-validaciones.js`.** Para VCN hará falta un generador masivo de escenarios de `cuenta` (como existen para identificador/banco en P2P).
+6. **`catalogoGeneral.json`.** Incluye **413** y **510–515**; usado por generadores 0001.
+7. **Generadores Metodo/0001:** `generar-escenarios-0001-cuenta-413.js`, `generar-escenarios-0001-respuesta-canal-validador.js`; pendiente `generar-escenarios-0001-respuesta-exitosa.js`.
 
 8. **`bootstrap-general-p2p.js` no aplica a VCN.** Si alguien lo ejecuta pensando en “sincronizar General”, no toca VCN. VCN quedó como copia puntual; cambios futuros en P2P General no se propagan solos.
 
@@ -427,7 +426,10 @@ Lista de huecos visibles hoy si solo se copió General y se cambió el método:
 | Ejemplo regla negocio | `General/2_reglaNegocio/1_idCanal/1.1_*.json` |
 | Ejemplo mutación cifrado | `General/2_reglaNegocio/3_peticion/3.1_*.json` |
 | Generador masivo | `ensamblador/generar-escenarios-0022-validaciones.js` |
+| Generador 413 cuenta VCN | `ensamblador/generar-escenarios-0001-cuenta-413.js` |
 | Generador 510–515 VCN | `ensamblador/generar-escenarios-0001-respuesta-canal-validador.js` |
+| Escenarios 413 cuenta | `VCN Escenarios error/Metodo/0001/1_validaciones_js/1_cuenta/` |
 | Escenarios 510–515 | `VCN Escenarios error/Metodo/0001/2_respuestaCanalValidador/` |
+| Plan escenarios éxito | `VCN Escenarios error/Metodo/0001/3_respuestaExitosa/README.md` |
 | VCN General (ejemplo) | `VCN Escenarios error/General/1_validaciones_js/1_idCanal/1.1_*.json` |
 | Referencia QA VCN (no tocar) | `../equipo-pruebas/Validacion Cuenta Nombre/estudio-coleccion-vcn.md` |

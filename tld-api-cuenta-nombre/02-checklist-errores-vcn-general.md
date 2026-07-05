@@ -21,6 +21,7 @@ Fuente de verdad para corrección en `tld-api-cuenta-nombre`. Marcar `[x]` al re
 
 | Escenarios General (baseline 2026-07-05) | 78 |
 | Escenarios General (+ `2_reglaNegocio/2_validador`, − `1.2.15`, + `0_jsonEntrada`) | **81** |
+| Escenarios `Metodo/0001/1_validaciones_js/1_cuenta` | **20** (413) — 10 verificados, 10 Newman pendiente |
 | Escenarios `Metodo/0001/2_respuestaCanalValidador` | **48** |
 | Estado General | **80/80** + regresión VCN completa **1008/1008** |
 
@@ -178,6 +179,33 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 - [x] 2.3.4. peticion — hex corrupto (405)
 - [x] 2.3.5. peticion — cifrado truncado (405)
 - [x] 2.3.6. peticion — tag GCM corrupto (405)
+
+## Metodo/0001/1_validaciones_js/1_cuenta — A10 (2026-07-05)
+
+**20** escenarios → `resultado` **413**. Detalle: [triage/10-cuenta-413-validaciones-js.md](./triage/10-cuenta-413-validaciones-js.md).
+
+**Newman:** 1.1–1.10 verificados en VCN **1008/1008** (23:19Z). **1.11–1.20 pendientes** (escenarios nuevos, sin run aún).
+
+- [x] 1.1. cuenta — propiedad ausente (413)
+- [x] 1.2. cuenta — null (413)
+- [x] 1.3. cuenta — string vacío (413)
+- [x] 1.4. cuenta — tipo number (413)
+- [x] 1.5. cuenta — tipo boolean (413)
+- [x] 1.6. cuenta — tipo object (413)
+- [x] 1.7. cuenta — con letras (413)
+- [x] 1.8. cuenta — solo espacios (413)
+- [x] 1.9. cuenta — espacio interno (413)
+- [x] 1.10. cuenta — longitud 35 (413)
+- [ ] 1.11. cuenta — solo tab (413) — *Newman pendiente*
+- [ ] 1.12. cuenta — símbolo @ (413) — *Newman pendiente*
+- [ ] 1.13. cuenta — paréntesis (413) — *Newman pendiente*
+- [ ] 1.14. cuenta — unicode ¿ (413) — *Newman pendiente*
+- [ ] 1.15. cuenta — comillas (413) — *Newman pendiente*
+- [ ] 1.16. cuenta — guión (413) — *Newman pendiente*
+- [ ] 1.17. cuenta — decimal (413) — *Newman pendiente*
+- [ ] 1.18. cuenta — tipo array (413) — *Newman pendiente*
+- [ ] 1.19. cuenta — espacio al inicio (413) — *Newman pendiente*
+- [ ] 1.20. cuenta — espacio al final (413) — *Newman pendiente*
 
 ## Metodo/0001/2_respuestaCanalValidador — A9 cerrada (2026-07-05T23:19Z)
 

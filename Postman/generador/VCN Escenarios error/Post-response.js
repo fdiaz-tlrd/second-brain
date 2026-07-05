@@ -206,7 +206,60 @@
     return;
   }
 
+  if (tipo === 'exito') {
+    pm.test('[Dummy /descifrar] estructura inner.respuestas[0] presente', function () {
+      pm.expect(inner)
+        .to.have.property('respuestas')
+        .that.is.an('array')
+        .with.lengthOf.at.least(1);
+    });
+
+    const r0 = inner.respuestas && inner.respuestas[0];
+    if (!r0) {
+      return;
+    }
+
+    const idSolEsperado = cvGet('PAYLOAD_ID_SOLICITUD_0');
+    const productoEsperado = pm.variables.get('expectedProducto');
+
+    pm.test(
+      '[exito] respuestas[0].idSolicitud = "' + idSolEsperado + '"',
+      function () {
+        pm.expect(r0.idSolicitud).to.equal(idSolEsperado);
+      }
+    );
+    pm.test('[exito] respuestas[0].resultado = 0', function () {
+      pm.expect(r0.resultado).to.equal(0);
+    });
+    pm.test('[exito] respuestas[0].datos es objeto', function () {
+      pm.expect(r0.datos).to.be.an('object').and.not.null;
+    });
+    pm.test(
+      '[exito] datos incluye banco, cuenta, producto, estadoCuenta, titulares',
+      function () {
+        pm.expect(r0.datos).to.include.keys(
+          'banco',
+          'cuenta',
+          'producto',
+          'estadoCuenta',
+          'titulares'
+        );
+        pm.expect(r0.datos.titulares).to.be.an('array').that.is.not.empty;
+        pm.expect(r0.datos.estadoCuenta).to.equal('0');
+      }
+    );
+    if (productoEsperado) {
+      pm.test(
+        '[exito] datos.producto = "' + productoEsperado + '"',
+        function () {
+          pm.expect(r0.datos.producto).to.equal(productoEsperado);
+        }
+      );
+    }
+    return;
+  }
+
   pm.test('expectedTipo invalido: "' + tipo + '"', function () {
-    pm.expect.fail('Usar general, parametro o metodo');
+    pm.expect.fail('Usar general, parametro, metodo o exito');
   });
 })();
