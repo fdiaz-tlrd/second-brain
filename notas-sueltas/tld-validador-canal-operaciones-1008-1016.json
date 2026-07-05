@@ -1,0 +1,5768 @@
+{
+  "tabla": "tld-validador-canal-operacion",
+  "ambiente": "dev",
+  "canales": [
+    "1008",
+    "1009",
+    "1011",
+    "1012",
+    "1013",
+    "1014",
+    "1015",
+    "1016"
+  ],
+  "operaciones": [
+    "0001",
+    "0002",
+    "0003",
+    "0004",
+    "0005",
+    "0006",
+    "0007",
+    "0008",
+    "0009",
+    "0010",
+    "0011",
+    "0012",
+    "0013",
+    "0014",
+    "0015",
+    "0016",
+    "0017",
+    "0018",
+    "0019",
+    "0020",
+    "0021",
+    "0022",
+    "0023",
+    "0024",
+    "0025"
+  ],
+  "reglas": {
+    "urlEnOperacion": "Solo canales con urlValidador vacio en tld-validador-canal",
+    "operacionesConUrl": [
+      "0001",
+      "0010",
+      "0012",
+      "0014",
+      "0020"
+    ],
+    "operacionesSinUrl": [
+      "0002",
+      "0003",
+      "0004",
+      "0005",
+      "0006",
+      "0007",
+      "0008",
+      "0009",
+      "0011",
+      "0013",
+      "0015",
+      "0016",
+      "0017",
+      "0018",
+      "0019",
+      "0021",
+      "0022",
+      "0023",
+      "0024",
+      "0025"
+    ],
+    "ubicacionUrl": "urlValidador lleno -> urlOperacion vacio; urlValidador vacio -> urlOperacion en 0001/0010/0012/0014/0020"
+  },
+  "metaPorCanal": {
+    "1008": {
+      "swift": "CELEGATO",
+      "aes": "cbc",
+      "tipoAuth": "fijo",
+      "ca": "AWS",
+      "urlEnOperacion": false
+    },
+    "1009": {
+      "swift": "ASTRGATO",
+      "aes": "cbc",
+      "tipoAuth": "fijo",
+      "ca": "Telered",
+      "urlEnOperacion": true
+    },
+    "1011": {
+      "swift": "MIRAGATO",
+      "aes": "cbc",
+      "tipoAuth": "dinamico",
+      "ca": "AWS",
+      "urlEnOperacion": false
+    },
+    "1012": {
+      "swift": "TERAGATO",
+      "aes": "cbc",
+      "tipoAuth": "dinamico",
+      "ca": "Telered",
+      "urlEnOperacion": true
+    },
+    "1013": {
+      "swift": "AMIYGATO",
+      "aes": "gcm",
+      "tipoAuth": "fijo",
+      "ca": "AWS",
+      "urlEnOperacion": true
+    },
+    "1014": {
+      "swift": "CORNGATO",
+      "aes": "gcm",
+      "tipoAuth": "fijo",
+      "ca": "Telered",
+      "urlEnOperacion": false
+    },
+    "1015": {
+      "swift": "ZONAGATO",
+      "aes": "gcm",
+      "tipoAuth": "dinamico",
+      "ca": "AWS",
+      "urlEnOperacion": true
+    },
+    "1016": {
+      "swift": "BELLGATO",
+      "aes": "gcm",
+      "tipoAuth": "dinamico",
+      "ca": "Telered",
+      "urlEnOperacion": false
+    }
+  },
+  "registros": [
+    {
+      "idCanal": "1008",
+      "operacion": "0001",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0002",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0003",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0004",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0005",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0006",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0007",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0008",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0009",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0010",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0011",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0012",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0013",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0014",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0015",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0016",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0017",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0018",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0019",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0020",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0021",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0022",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0023",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0024",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1008",
+      "operacion": "0025",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0001",
+      "estado": "Y",
+      "urlOperacion": "https://tld-validador-dummy.dev.telered.internal/validar",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0002",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0003",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0004",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0005",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0006",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0007",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0008",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0009",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0010",
+      "estado": "Y",
+      "urlOperacion": "https://tld-validador-dummy.dev.telered.internal/validar",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0011",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0012",
+      "estado": "Y",
+      "urlOperacion": "https://tld-validador-dummy.dev.telered.internal/r2p",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0013",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0014",
+      "estado": "Y",
+      "urlOperacion": "https://tld-validador-dummy.dev.telered.internal/r2p",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0015",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0016",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0017",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0018",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0019",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0020",
+      "estado": "Y",
+      "urlOperacion": "https://tld-validador-dummy.dev.telered.internal/p2m",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0021",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0022",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0023",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0024",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1009",
+      "operacion": "0025",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0001",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0002",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0003",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0004",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0005",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0006",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0007",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0008",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0009",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0010",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0011",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0012",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0013",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0014",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0015",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0016",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0017",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0018",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0019",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0020",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0021",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0022",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0023",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0024",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1011",
+      "operacion": "0025",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0001",
+      "estado": "Y",
+      "urlOperacion": "https://tld-validador-dummy.dev.telered.internal/validar-con-token",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0002",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0003",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0004",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0005",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0006",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0007",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0008",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0009",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0010",
+      "estado": "Y",
+      "urlOperacion": "https://tld-validador-dummy.dev.telered.internal/validar-con-token",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0011",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0012",
+      "estado": "Y",
+      "urlOperacion": "https://tld-validador-dummy.dev.telered.internal/r2p",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0013",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0014",
+      "estado": "Y",
+      "urlOperacion": "https://tld-validador-dummy.dev.telered.internal/r2p",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0015",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0016",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0017",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0018",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0019",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0020",
+      "estado": "Y",
+      "urlOperacion": "https://tld-validador-dummy.dev.telered.internal/p2m",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0021",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0022",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0023",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0024",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1012",
+      "operacion": "0025",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0001",
+      "estado": "Y",
+      "urlOperacion": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/validar",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0002",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0003",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0004",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0005",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0006",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0007",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0008",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0009",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0010",
+      "estado": "Y",
+      "urlOperacion": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/validar",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0011",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0012",
+      "estado": "Y",
+      "urlOperacion": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/r2p",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0013",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0014",
+      "estado": "Y",
+      "urlOperacion": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/r2p",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0015",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0016",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0017",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0018",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0019",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0020",
+      "estado": "Y",
+      "urlOperacion": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/p2m",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0021",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0022",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0023",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0024",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1013",
+      "operacion": "0025",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0001",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0002",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0003",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0004",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0005",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0006",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0007",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0008",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0009",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0010",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0011",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0012",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0013",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0014",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0015",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0016",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0017",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0018",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0019",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0020",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0021",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0022",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0023",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0024",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1014",
+      "operacion": "0025",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0001",
+      "estado": "Y",
+      "urlOperacion": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/validar-con-token",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0002",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0003",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0004",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0005",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0006",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0007",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0008",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0009",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0010",
+      "estado": "Y",
+      "urlOperacion": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/validar-con-token",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0011",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0012",
+      "estado": "Y",
+      "urlOperacion": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/r2p",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0013",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0014",
+      "estado": "Y",
+      "urlOperacion": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/r2p",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0015",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0016",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0017",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0018",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0019",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0020",
+      "estado": "Y",
+      "urlOperacion": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/p2m",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0021",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0022",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0023",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0024",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1015",
+      "operacion": "0025",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0001",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0002",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0003",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0004",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0005",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0006",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0007",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0008",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0009",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0010",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0011",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0012",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0013",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0014",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0015",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0016",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0017",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0018",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0019",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0020",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0021",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0022",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0023",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0024",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    },
+    {
+      "idCanal": "1016",
+      "operacion": "0025",
+      "estado": "Y",
+      "urlOperacion": "",
+      "validarEnmascaramiento": "Y"
+    }
+  ],
+  "batchWriteLotes": [
+    {
+      "tld-validador-canal-operacion": [
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0001"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0002"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0003"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0004"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0005"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0006"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0007"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0008"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0009"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0010"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0011"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0012"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0013"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0014"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0015"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0016"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0017"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0018"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0019"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0020"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0021"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0022"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0023"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0024"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1008"
+              },
+              "operacion": {
+                "S": "0025"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "tld-validador-canal-operacion": [
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0001"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://tld-validador-dummy.dev.telered.internal/validar"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0002"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0003"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0004"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0005"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0006"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0007"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0008"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0009"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0010"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://tld-validador-dummy.dev.telered.internal/validar"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0011"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0012"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://tld-validador-dummy.dev.telered.internal/r2p"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0013"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0014"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://tld-validador-dummy.dev.telered.internal/r2p"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0015"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0016"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0017"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0018"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0019"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0020"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://tld-validador-dummy.dev.telered.internal/p2m"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0021"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0022"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0023"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0024"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1009"
+              },
+              "operacion": {
+                "S": "0025"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "tld-validador-canal-operacion": [
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0001"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0002"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0003"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0004"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0005"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0006"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0007"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0008"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0009"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0010"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0011"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0012"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0013"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0014"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0015"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0016"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0017"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0018"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0019"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0020"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0021"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0022"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0023"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0024"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1011"
+              },
+              "operacion": {
+                "S": "0025"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "tld-validador-canal-operacion": [
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0001"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://tld-validador-dummy.dev.telered.internal/validar-con-token"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0002"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0003"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0004"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0005"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0006"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0007"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0008"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0009"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0010"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://tld-validador-dummy.dev.telered.internal/validar-con-token"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0011"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0012"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://tld-validador-dummy.dev.telered.internal/r2p"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0013"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0014"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://tld-validador-dummy.dev.telered.internal/r2p"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0015"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0016"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0017"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0018"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0019"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0020"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://tld-validador-dummy.dev.telered.internal/p2m"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0021"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0022"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0023"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0024"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1012"
+              },
+              "operacion": {
+                "S": "0025"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "tld-validador-canal-operacion": [
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0001"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/validar"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0002"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0003"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0004"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0005"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0006"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0007"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0008"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0009"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0010"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/validar"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0011"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0012"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/r2p"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0013"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0014"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/r2p"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0015"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0016"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0017"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0018"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0019"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0020"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/p2m"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0021"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0022"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0023"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0024"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1013"
+              },
+              "operacion": {
+                "S": "0025"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "tld-validador-canal-operacion": [
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0001"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0002"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0003"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0004"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0005"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0006"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0007"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0008"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0009"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0010"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0011"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0012"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0013"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0014"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0015"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0016"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0017"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0018"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0019"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0020"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0021"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0022"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0023"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0024"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1014"
+              },
+              "operacion": {
+                "S": "0025"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "tld-validador-canal-operacion": [
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0001"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/validar-con-token"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0002"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0003"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0004"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0005"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0006"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0007"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0008"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0009"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0010"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/validar-con-token"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0011"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0012"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/r2p"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0013"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0014"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/r2p"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0015"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0016"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0017"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0018"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0019"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0020"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/p2m"
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0021"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0022"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0023"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0024"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1015"
+              },
+              "operacion": {
+                "S": "0025"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "tld-validador-canal-operacion": [
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0001"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0002"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0003"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0004"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0005"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0006"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0007"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0008"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0009"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0010"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0011"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0012"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0013"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0014"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0015"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0016"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0017"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0018"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0019"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0020"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0021"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0022"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0023"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0024"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        },
+        {
+          "PutRequest": {
+            "Item": {
+              "idCanal": {
+                "S": "1016"
+              },
+              "operacion": {
+                "S": "0025"
+              },
+              "estado": {
+                "S": "Y"
+              },
+              "urlOperacion": {
+                "S": ""
+              },
+              "validarEnmascaramiento": {
+                "S": "Y"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
