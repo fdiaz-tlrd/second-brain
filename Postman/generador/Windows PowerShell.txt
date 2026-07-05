@@ -5,178 +5,6 @@ Instale la versión más reciente de PowerShell para obtener nuevas característ
 
 PS C:\Users\fdiaz> Set-Location C:\Versionamiento\GitHub\second-brain\Postman\generador
 PS C:\Versionamiento\GitHub\second-brain\Postman\generador> npm install
-npm warn deprecated har-validator@5.1.5: this library is no longer supported
-npm warn deprecated uuid@3.4.0: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
-npm warn deprecated uuid@8.3.2: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
-npm warn deprecated @faker-js/faker@5.5.3: Please update to a newer version.
-
-added 148 packages, and audited 149 packages in 58s
-
-21 packages are looking for funding
-  run `npm fund` for details
-
-17 vulnerabilities (7 moderate, 9 high, 1 critical)
-
-To address all issues (including breaking changes), run:
-  npm audit fix --force
-
-Run `npm audit` for details.
-PS C:\Versionamiento\GitHub\second-brain\Postman\generador> npx npm-check-updates -u
-Upgrading C:\Versionamiento\GitHub\second-brain\Postman\generador\package.json
-[====================] 1/1 100%
-
- newman  ^6.2.1  →  ^6.2.2
-
-Run npm install to install new versions.
-PS C:\Versionamiento\GitHub\second-brain\Postman\generador> npm install
-
-up to date, audited 149 packages in 7s
-
-21 packages are looking for funding
-  run `npm fund` for details
-
-17 vulnerabilities (7 moderate, 9 high, 1 critical)
-
-To address all issues (including breaking changes), run:
-  npm audit fix --force
-
-Run `npm audit` for details.
-PS C:\Versionamiento\GitHub\second-brain\Postman\generador> npm audit fix
-
-up to date, audited 149 packages in 11s
-
-21 packages are looking for funding
-  run `npm fund` for details
-
-# npm audit report
-
-flatted  <=3.4.1
-Severity: high
-flatted vulnerable to unbounded recursion DoS in parse() revive phase - https://github.com/advisories/GHSA-25h7-pfq9-p65f
-Prototype Pollution via parse() in NodeJS flatted - https://github.com/advisories/GHSA-rf6f-7fwh-wjgh
-fix available via `npm audit fix --force`
-Will install newman@2.1.2, which is a breaking change
-node_modules/flatted
-  uvm  >=1.7.5
-  Depends on vulnerable versions of flatted
-  node_modules/uvm
-    postman-sandbox  *
-    Depends on vulnerable versions of lodash
-    Depends on vulnerable versions of postman-collection
-    Depends on vulnerable versions of uvm
-    node_modules/postman-sandbox
-      postman-runtime  >=2.4.3
-      Depends on vulnerable versions of handlebars
-      Depends on vulnerable versions of httpntlm
-      Depends on vulnerable versions of jose
-      Depends on vulnerable versions of lodash
-      Depends on vulnerable versions of node-forge
-      Depends on vulnerable versions of postman-collection
-      Depends on vulnerable versions of postman-request
-      Depends on vulnerable versions of postman-sandbox
-      Depends on vulnerable versions of serialised-error
-      Depends on vulnerable versions of uuid
-      node_modules/postman-runtime
-        newman  >=3.0.0-beta.1
-        Depends on vulnerable versions of lodash
-        Depends on vulnerable versions of postman-collection
-        Depends on vulnerable versions of postman-collection-transformer
-        Depends on vulnerable versions of postman-request
-        Depends on vulnerable versions of postman-runtime
-        Depends on vulnerable versions of serialised-error
-        node_modules/newman
-
-handlebars  4.0.0 - 4.7.8
-Severity: critical
-Handlebars.js has JavaScript Injection via AST Type Confusion by tampering @partial-block - https://github.com/advisories/GHSA-3mfm-83xf-c92r
-Handlebars.js has JavaScript Injection via AST Type Confusion - https://github.com/advisories/GHSA-2w6w-674q-4c4q
-Handlebars.js has Prototype Pollution Leading to XSS through Partial Template Injection - https://github.com/advisories/GHSA-2qvq-rjwj-gvw9
-Handlebars.js has a Prototype Method Access Control Gap via Missing __lookupSetter__ Blocklist Entry - https://github.com/advisories/GHSA-7rx3-28cr-v5wh
-Handlebars.js has a Property Access Validation Bypass in container.lookup - https://github.com/advisories/GHSA-442j-39wm-28r2
-Handlebars.js has JavaScript Injection via AST Type Confusion when passing an object as dynamic partial - https://github.com/advisories/GHSA-xhpv-hc6g-r9c6
-Handlebars.js has Denial of Service via Malformed Decorator Syntax in Template Compilation - https://github.com/advisories/GHSA-9cx6-37pm-9jff
-Handlebars.js has JavaScript Injection in CLI Precompiler via Unescaped Names and Options - https://github.com/advisories/GHSA-xjpj-3mr7-gcpf
-fix available via `npm audit fix --force`
-Will install newman@2.1.2, which is a breaking change
-node_modules/handlebars
-
-jose  3.0.0 - 4.15.4
-Severity: moderate
-jose vulnerable to resource exhaustion via specifically crafted JWE with compressed plaintext - https://github.com/advisories/GHSA-hhhv-q57g-882q
-fix available via `npm audit fix --force`
-Will install newman@2.1.2, which is a breaking change
-node_modules/jose
-
-lodash  <=4.17.23
-Severity: high
-lodash vulnerable to Code Injection via `_.template` imports key names - https://github.com/advisories/GHSA-r5fr-rjxr-66jc
-lodash vulnerable to Prototype Pollution via array path bypass in `_.unset` and `_.omit` - https://github.com/advisories/GHSA-f23m-r3pf-42rh
-Lodash has Prototype Pollution Vulnerability in `_.unset` and `_.omit` functions - https://github.com/advisories/GHSA-xxjr-mmjv-4gpg
-fix available via `npm audit fix --force`
-Will install newman@2.1.2, which is a breaking change
-node_modules/lodash
-  postman-collection  >=0.5.1
-  Depends on vulnerable versions of lodash
-  Depends on vulnerable versions of uuid
-  node_modules/postman-collection
-  postman-collection-transformer  >=2.2.0-beta.1
-  Depends on vulnerable versions of lodash
-  node_modules/postman-collection-transformer
-
-node-forge  <=1.3.3
-Severity: high
-node-forge has ASN.1 Unbounded Recursion - https://github.com/advisories/GHSA-554w-wpv2-vw27
-node-forge has an Interpretation Conflict vulnerability via its ASN.1 Validator Desynchronization - https://github.com/advisories/GHSA-5gfm-wpxj-wjgq
-node-forge is vulnerable to ASN.1 OID Integer Truncation - https://github.com/advisories/GHSA-65ch-62r8-g69g
-Forge has a basicConstraints bypass in its certificate chain verification (RFC 5280 violation) - https://github.com/advisories/GHSA-2328-f5f3-gj25
-Forge has signature forgery in Ed25519 due to missing S > L check - https://github.com/advisories/GHSA-q67f-28xg-22rw
-Forge has Denial of Service via Infinite Loop in BigInteger.modInverse() with Zero Input - https://github.com/advisories/GHSA-5m6q-g25r-mvwx
-Forge has signature forgery in RSA-PKCS due to ASN.1 extra field   - https://github.com/advisories/GHSA-ppp5-5v6c-4jwp
-fix available via `npm audit fix --force`
-Will install newman@2.1.2, which is a breaking change
-node_modules/node-forge
-
-qs  <=6.15.1
-Severity: moderate
-qs's arrayLimit bypass in its bracket notation allows DoS via memory exhaustion - https://github.com/advisories/GHSA-6rw7-vpxm-498p
-qs has a remotely triggerable DoS: qs.stringify crashes with TypeError on null/undefined entries in comma-format arrays when encodeValuesOnly is set - https://github.com/advisories/GHSA-q8mj-m7cp-5q26
-fix available via `npm audit fix --force`
-Will install newman@2.1.2, which is a breaking change
-node_modules/postman-runtime/node_modules/qs
-node_modules/qs
-  postman-request  *
-  Depends on vulnerable versions of qs
-  Depends on vulnerable versions of qs
-  Depends on vulnerable versions of uuid
-  node_modules/postman-request
-  node_modules/postman-runtime/node_modules/postman-request
-
-underscore  <=1.13.7
-Severity: high
-Underscore has unlimited recursion in _.flatten and _.isEqual, potential for DoS attack - https://github.com/advisories/GHSA-qpx9-hpmf-5gmw
-fix available via `npm audit fix --force`
-Will install newman@2.1.2, which is a breaking change
-node_modules/underscore
-  httpntlm  >=1.5.0
-  Depends on vulnerable versions of underscore
-  node_modules/httpntlm
-
-uuid  <11.1.1
-Severity: moderate
-uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided - https://github.com/advisories/GHSA-w5hq-g745-h8pq
-fix available via `npm audit fix --force`
-Will install newman@2.1.2, which is a breaking change
-node_modules/serialised-error/node_modules/uuid
-node_modules/uuid
-  serialised-error  >=1.1.3
-  Depends on vulnerable versions of uuid
-  node_modules/serialised-error
-
-17 vulnerabilities (7 moderate, 9 high, 1 critical)
-
-To address all issues (including breaking changes), run:
-  npm audit fix --force
-PS C:\Versionamiento\GitHub\second-brain\Postman\generador> npm install
 
 up to date, audited 149 packages in 5s
 
@@ -189,584 +17,1903 @@ To address all issues (including breaking changes), run:
   npm audit fix --force
 
 Run `npm audit` for details.
-PS C:\Versionamiento\GitHub\second-brain\Postman\generador> node run-newman.js p2p --folder "General/2_reglaNegocio/1_idCanal"
+PS C:\Versionamiento\GitHub\second-brain\Postman\generador> node run-newman.js vcn --folder "General"
+SSL: verificación desactivada (entorno dev). Usa --strict-ssl para exigir certificado.
 
-=== P2P ===
+=== VCN ===
 newman
 
-P2P Escenarios error
+VCN Escenarios error
 
 □ General / 1_validaciones_js / 1_idCanal
 └ 1.1.1. idCanal — propiedad ausente (undefined) (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227269 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228307 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  3. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.71kB, 1804ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 447B, 3s]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 438B, 1042ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+  √  [General] codigoError = 400
+  1. [General] mensajeError = "Error en la petición original"
 
 └ 1.1.2. idCanal — null (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227270 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228313 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  6. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 236ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 1121ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 205ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+  √  [General] codigoError = 400
+  √  [General] mensajeError = "Error en la petición original"
 
 └ 1.1.3. idCanal — string vacío "" (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227270 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228315 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  9. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 193ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 284ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 185ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+  √  [General] codigoError = 400
+  √  [General] mensajeError = "Error en la petición original"
 
 └ 1.1.4. idCanal — tipo number (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227271 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228316 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 12. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 201ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 484B, 521ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 475B, 172ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+  2. [General] codigoError = 400
+  3. [General] mensajeError = "Error en la petición original"
 
 └ 1.1.5. idCanal — tipo boolean (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227272 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228317 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 15. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 189ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 484B, 277ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 475B, 171ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+  4. [General] codigoError = 400
+  5. [General] mensajeError = "Error en la petición original"
 
 └ 1.1.6. idCanal — tipo object (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227272 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228317 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 18. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 202ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 484B, 260ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 475B, 189ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+  6. [General] codigoError = 400
+  7. [General] mensajeError = "Error en la petición original"
 
 └ 1.1.7. idCanal — solo espacios, trim vacío (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227273 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228318 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 21. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 200ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 428B, 412ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 419B, 196ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+  8. [General] codigoError = 400
+  9. [General] mensajeError = "Error en la petición original"
 
 └ 1.1.8. idCanal — solo tab, trim vacío (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227274 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228319 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 24. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 192ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 428B, 504ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 419B, 168ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 10. [General] codigoError = 400
+ 11. [General] mensajeError = "Error en la petición original"
 
 └ 1.1.9. idCanal — longitud 5, máximo 4 (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227274 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228320 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 27. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 200ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 428B, 288ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 419B, 174ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 12. [General] codigoError = 400
+ 13. [General] mensajeError = "Error en la petición original"
 
 └ 1.1.10. idCanal — espacio interno, post-trim (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227275 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228321 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 30. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 193ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 428B, 305ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 419B, 176ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 14. [General] codigoError = 400
+ 15. [General] mensajeError = "Error en la petición original"
 
 └ 1.1.11. idCanal — símbolo @ no permitido (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227276 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228321 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 33. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 184ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 428B, 259ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 419B, 177ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 16. [General] codigoError = 400
+ 17. [General] mensajeError = "Error en la petición original"
 
 └ 1.1.12. idCanal — paréntesis ( no permitido (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227276 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228322 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 36. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 198ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 428B, 272ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 419B, 173ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 18. [General] codigoError = 400
+ 19. [General] mensajeError = "Error en la petición original"
 
 └ 1.1.13. idCanal — ¿ no permitido (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227277 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228323 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 39. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 192ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 428B, 269ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 419B, 173ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 20. [General] codigoError = 400
+ 21. [General] mensajeError = "Error en la petición original"
 
 └ 1.1.14. idCanal — comillas " no permitidas (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227278 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228324 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 42. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 191ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 428B, 247ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 419B, 179ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 22. [General] codigoError = 400
+ 23. [General] mensajeError = "Error en la petición original"
 
 □ General / 1_validaciones_js / 2_validador
 └ 1.2.1. validador — propiedad ausente (undefined) (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227278 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228324 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 45. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.71kB, 189ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 356ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 189ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+  √  [General] codigoError = 400
+  √  [General] mensajeError = "Error en la petición original"
 
 └ 1.2.2. validador — null (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227279 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228325 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 48. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 185ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 453ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 174ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+  √  [General] codigoError = 400
+  √  [General] mensajeError = "Error en la petición original"
 
 └ 1.2.3. validador — string vacío "" (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227280 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228326 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 51. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 193ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 305ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 189ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+  √  [General] codigoError = 400
+  √  [General] mensajeError = "Error en la petición original"
 
 └ 1.2.4. validador — tipo number (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227280 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228327 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 54. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 181ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 484B, 461ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 475B, 178ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 24. [General] codigoError = 400
+ 25. [General] mensajeError = "Error en la petición original"
 
 └ 1.2.5. validador — tipo boolean (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227281 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228328 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 57. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 198ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 484B, 430ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 475B, 172ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 26. [General] codigoError = 400
+ 27. [General] mensajeError = "Error en la petición original"
 
 └ 1.2.6. validador — tipo object (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227282 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228329 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 60. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 171ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 484B, 348ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 475B, 179ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 28. [General] codigoError = 400
+ 29. [General] mensajeError = "Error en la petición original"
 
 └ 1.2.7. validador — solo espacios, trim vacío (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227282 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228329 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 63. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.72kB, 182ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 425B, 391ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 416B, 177ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 30. [General] codigoError = 400
+ 31. [General] mensajeError = "Error en la petición original"
 
 └ 1.2.8. validador — solo tab, trim vacío (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227283 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228330 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 66. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 187ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 425B, 389ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 416B, 171ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 32. [General] codigoError = 400
+ 33. [General] mensajeError = "Error en la petición original"
 
 └ 1.2.9. validador — longitud 5, máximo 4 (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227284 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228331 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 69. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 177ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 425B, 400ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 416B, 176ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 34. [General] codigoError = 400
+ 35. [General] mensajeError = "Error en la petición original"
 
 └ 1.2.10. validador — espacio interno, post-trim (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227284 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228332 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 72. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 208ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 425B, 448ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 416B, 177ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 36. [General] codigoError = 400
+ 37. [General] mensajeError = "Error en la petición original"
 
 └ 1.2.11. validador — símbolo @ no permitido (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227285 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228333 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 75. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 193ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 425B, 379ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 416B, 178ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 38. [General] codigoError = 400
+ 39. [General] mensajeError = "Error en la petición original"
 
 └ 1.2.12. validador — paréntesis ( no permitido (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227286 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228334 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 78. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 200ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 425B, 417ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 416B, 174ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 40. [General] codigoError = 400
+ 41. [General] mensajeError = "Error en la petición original"
 
 └ 1.2.13. validador — ¿ no permitido (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227286 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228334 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 81. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 179ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 425B, 405ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 416B, 201ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 42. [General] codigoError = 400
+ 43. [General] mensajeError = "Error en la petición original"
 
 └ 1.2.14. validador — comillas " no permitidas (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227287 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228335 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 84. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 185ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 425B, 461ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 416B, 182ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 44. [General] codigoError = 400
+ 45. [General] mensajeError = "Error en la petición original"
 
 └ 1.2.15. validador — distinto a {{CANAL_VALIDADOR}} (CANAL_EMISOR) (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227288 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228336 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 87. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 180ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.66kB, 5.1s]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 473B, 261ms]
+ 46. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 47. [General] codigoError = 400
+ 48. [General] mensajeError = "Error en la petición original"
 
 □ General / 1_validaciones_js / 3_peticion
 └ 1.3.1. peticion — propiedad ausente (undefined) (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227289 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228342 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 90. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 201ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 277ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 174ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+  √  [General] codigoError = 400
+  √  [General] mensajeError = "Error en la petición original"
 
 └ 1.3.2. peticion — null (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227289 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228343 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 93. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 183ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 264ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 170ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+  √  [General] codigoError = 400
+  √  [General] mensajeError = "Error en la petición original"
 
 └ 1.3.3. peticion — string vacío (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227290 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228343 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 96. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 176ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 436B, 334ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 427B, 174ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+  √  [General] codigoError = 400
+  √  [General] mensajeError = "Error en la petición original"
 
 └ 1.3.4. peticion — tipo number (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227291 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228344 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
- 99. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 202ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 531ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 171ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 49. [General] codigoError = 400
+ 50. [General] mensajeError = "Error en la petición original"
 
 └ 1.3.5. peticion — tipo boolean (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227291 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228345 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-102. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 186ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 542ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 178ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 51. [General] codigoError = 400
+ 52. [General] mensajeError = "Error en la petición original"
 
 └ 1.3.6. peticion — tipo object (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227292 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228346 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-105. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 179ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 466ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 178ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 53. [General] codigoError = 400
+ 54. [General] mensajeError = "Error en la petición original"
 
 └ 1.3.7. peticion — formato hex inválido (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227292 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228347 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-108. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 207ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 454ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 195ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 55. [General] codigoError = 400
+ 56. [General] mensajeError = "Error en la petición original"
 
 └ 1.3.8. peticion — IV en base64 (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227293 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228348 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-111. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 193ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 493ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 181ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 57. [General] codigoError = 400
+ 58. [General] mensajeError = "Error en la petición original"
 
 └ 1.3.9. peticion — IV truncado (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227294 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228349 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-114. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 189ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 377ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 176ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 59. [General] codigoError = 400
+ 60. [General] mensajeError = "Error en la petición original"
 
 └ 1.3.10. peticion — segmento AES en base64 (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227295 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228350 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-117. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 179ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 457ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 175ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 61. [General] codigoError = 400
+ 62. [General] mensajeError = "Error en la petición original"
 
 └ 1.3.11. peticion — segmento AES faltante (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227295 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228351 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-120. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 181ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 403ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 178ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 63. [General] codigoError = 400
+ 64. [General] mensajeError = "Error en la petición original"
 
 └ 1.3.12. peticion — segmento extra (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227296 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228351 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-123. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 183ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 447ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 174ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 65. [General] codigoError = 400
+ 66. [General] mensajeError = "Error en la petición original"
 
 └ 1.3.13. peticion — caracter no hex (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783227296 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228352 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-126. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 195ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 367ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 174ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 67. [General] codigoError = 400
+ 68. [General] mensajeError = "Error en la petición original"
 
 □ General / 1_validaciones_js / 4_idPeticion
 └ 1.4.1. idPeticion — propiedad ausente (undefined) (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion= metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion= metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-129. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.66kB, 182ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 410B, 564ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 410B, 177ms]
+ 69. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 70. [General] codigoError = 400
+ 71. [General] mensajeError = "Error en la petición original"
 
 └ 1.4.2. idPeticion — null (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion= metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion= metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-132. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 190ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 410B, 639ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 410B, 177ms]
+ 72. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 73. [General] codigoError = 400
+ 74. [General] mensajeError = "Error en la petición original"
 
 └ 1.4.3. idPeticion — string vacío (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion= metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion= metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-135. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 188ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 410B, 493ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 410B, 168ms]
+ 75. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 76. [General] codigoError = 400
+ 77. [General] mensajeError = "Error en la petición original"
 
 └ 1.4.4. idPeticion — tipo number (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=1234567890 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=1234567890 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-138. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 179ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 641ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 185ms]
+ 78. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 79. [General] codigoError = 400
+ 80. [General] mensajeError = "Error en la petición original"
 
 └ 1.4.5. idPeticion — tipo boolean (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=true metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=true metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-141. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 217ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 607ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 184ms]
+ 81. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 82. [General] codigoError = 400
+ 83. [General] mensajeError = "Error en la petición original"
 
 └ 1.4.6. idPeticion — tipo object (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=[object Object] metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=[object Object] metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-144. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 189ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 626ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 170ms]
+ 84. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 85. [General] codigoError = 400
+ 86. [General] mensajeError = "Error en la petición original"
 
 └ 1.4.7. idPeticion — solo espacios (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=    metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=    metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-147. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 187ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 410B, 571ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 410B, 173ms]
+ 87. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 88. [General] codigoError = 400
+ 89. [General] mensajeError = "Error en la petición original"
 
 └ 1.4.8. idPeticion — solo tab (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=\t\t metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=\t\t metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-150. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 183ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 410B, 474ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 410B, 176ms]
+ 90. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 91. [General] codigoError = 400
+ 92. [General] mensajeError = "Error en la petición original"
 
 └ 1.4.9. idPeticion — longitud 7, mínimo 8 (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=ABC1234 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=ABC1234 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-153. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 179ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 634ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 171ms]
+ 93. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 94. [General] codigoError = 400
+ 95. [General] mensajeError = "Error en la petición original"
 
 └ 1.4.10. idPeticion — longitud 65, máximo 64 (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA metodo=0002 idSolicitud=1
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA metodo=0001 idSolicitud=1
   │ '
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-156. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.82kB, 177ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 606ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 165ms]
+ 96. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+ 97. [General] codigoError = 400
+ 98. [General] mensajeError = "Error en la petición original"
 
 └ 1.4.11. idPeticion — espacio interno (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO 001 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO 001 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-159. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 176ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 584ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 186ms]
+ 99. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+100. [General] codigoError = 400
+101. [General] mensajeError = "Error en la petición original"
 
 └ 1.4.12. idPeticion — símbolo @ (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO@001 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO@001 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-162. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 202ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 674ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 174ms]
+102. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+103. [General] codigoError = 400
+104. [General] mensajeError = "Error en la petición original"
 
 └ 1.4.13. idPeticion — unicode interrogación apertura (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO¿001 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO�001 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-165. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 178ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 580ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 167ms]
+105. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+106. [General] codigoError = 400
+107. [General] mensajeError = "Error en la petición original"
 
 └ 1.4.14. idPeticion — comillas (400)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO"001 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO"001 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [errored]
-     self-signed certificate in certificate chain
-168. [Flujo raiz] fallo antes de /descifrar — error de red en flujo raiz: [object Object]
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 187ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 685ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 176ms]
+108. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 400
+109. [General] codigoError = 400
+110. [General] mensajeError = "Error en la petición original"
 
 └ 1.4.15. idPeticion — prefijo SWIFT ajeno (445)
   ┌
-  │ '[P2P raiz] NIVEL_EJECUCION=P2P END_POINT_TLD desde END_POINT_TLD_P2P ALGORITMO_AES=aes-256-cbc idPeticion=INVAPAPA00001783227306 metodo=0002 idSolicitud=1'
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=INVAPAPA00001783228368 metodo=0001 idSolicitud=1'
   └
-  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc ―
-PS C:\Versionamiento\GitHub\second-brain\Postman\generador> $env:NODE_OPTIONS="--use-system-ca"
-PS C:\Versionamiento\GitHub\second-brain\Postman\generador> node run-newman.js p2p --folder "General/2_reglaNegocio/1_idCanal"
-C:\Aplicaciones\nodejs\node.exe: --use-system-ca is not allowed in NODE_OPTIONS
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.76kB, 180ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 572ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 174ms]
+111. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 445
+112. [General] codigoError = 445
+113. [General] mensajeError = "El prefijo Código SWIFT del idPeticion no coincide con el canal emisor"
+
+□ General / 1_validaciones_js / 5_solicitudes
+└ 1.5.1. solicitudes — tipo string (425)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228369 metodo=0001 idSolicitud=undefined'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.66kB, 171ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.63kB, 365ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 455B, 243ms]
+114. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 425
+115. [General] codigoError = 425
+116. [General] mensajeError = "Cantidad de solicitudes no permitidas"
+
+└ 1.5.2. solicitudes — arreglo vacío (425)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228370 metodo=0001 idSolicitud='
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.63kB, 185ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 1.63kB, 717ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 455B, 239ms]
+117. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 425
+118. [General] codigoError = 425
+119. [General] mensajeError = "Cantidad de solicitudes no permitidas"
+
+└ 1.5.3. solicitudes — excede límite 0015, 5 solicitudes (425)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228371 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 2.21kB, 181ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 553ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 176ms]
+120. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 425
+121. [General] codigoError = 425
+122. [General] mensajeError = "Cantidad de solicitudes no permitidas"
+
+└ 1.5.4. solicitudes — sin propiedad idSolicitud (431)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228372 metodo=0001 idSolicitud=undefined'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.69kB, 183ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 565ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 172ms]
+123. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 431
+124. [General] codigoError = 431
+125. [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
+
+└ 1.5.5. solicitudes — idSolicitud vacío (431)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228373 metodo=0001 idSolicitud='
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 182ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 605ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 180ms]
+126. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 431
+127. [General] codigoError = 431
+128. [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
+
+└ 1.5.6. solicitudes — idSolicitud tipo number (431)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228374 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 187ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 644ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 175ms]
+129. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 431
+130. [General] codigoError = 431
+131. [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
+
+└ 1.5.7. solicitudes — idSolicitud solo espacios (431)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228375 metodo=0001 idSolicitud=   '
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 185ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 582ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 177ms]
+132. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 431
+133. [General] codigoError = 431
+134. [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
+
+└ 1.5.8. solicitudes — idSolicitud longitud 65 (431)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228376 metodo=0001 idSolicitud=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+  │ AAAAAAAAAAAAAAAAA'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.85kB, 191ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 657ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 176ms]
+135. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 431
+136. [General] codigoError = 431
+137. [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
+
+└ 1.5.9. solicitudes — idSolicitud duplicado case-insensitive (431) [CFG 0015≥2]
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228378 metodo=0001 idSolicitud=id-001'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.85kB, 189ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 933ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 186ms]
+138. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 431
+139. [General] codigoError = 431
+140. [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
+
+□ General / 2_reglaNegocio / 1_idCanal
+└ 2.1.1. idCanal — no existe en BD (401)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228379 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 187ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 428B, 234ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 419B, 177ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 401
+  √  [General] codigoError = 401
+  √  [General] mensajeError = "Canal emisor no existe"
+
+└ 2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-gcm idPeticion=NAMEGATO1783228380 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-gcm [200 OK, 1.68kB, 196ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 717ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-gcm [200 OK, 435B, 163ms]
+141. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 403
+142. [General] codigoError = 403
+143. [General] mensajeError = "Canal emisor no tiene un plan de suscripción"
+
+└ 2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=TEYVGATO1783228381 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 173ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 484B, 276ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 475B, 180ms]
+144. [Lambda VCN] HTTP status = 500 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 500
+  √  [General] codigoError = 500
+145. [General] mensajeError = "Error interno"
+
+└ 2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-gcm idPeticion=STELGATO1783228381 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-gcm [200 OK, 1.68kB, 174ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 513ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-gcm [200 OK, 435B, 182ms]
+146. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 403
+147. [General] codigoError = 403
+148. [General] mensajeError = "Canal emisor no tiene un plan de suscripción"
+
+□ General / 2_reglaNegocio / 3_peticion
+└ 2.3.1. peticion — cifrada con otra llave RSA (405)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-gcm idPeticion=AMIYGATO1783228382 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-gcm [200 OK, 1.68kB, 188ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 543ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-gcm [200 OK, 429B, 173ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 405
+  √  [General] codigoError = 405
+  √  [General] mensajeError = "Error en descifrado canal emisor"
+
+└ 2.3.2. peticion — clave AES-128 en RSA (405)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228383 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 186ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 374ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 174ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 405
+  √  [General] codigoError = 405
+  √  [General] mensajeError = "Error en descifrado canal emisor"
+
+└ 2.3.3. peticion — RSA material no hex (405)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228384 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 191ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 385ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 169ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 405
+  √  [General] codigoError = 405
+  √  [General] mensajeError = "Error en descifrado canal emisor"
+
+└ 2.3.4. peticion — hex corrupto (405)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228385 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 185ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 434ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 178ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 405
+  √  [General] codigoError = 405
+  √  [General] mensajeError = "Error en descifrado canal emisor"
+
+└ 2.3.5. peticion — cifrado truncado (405)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228386 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 190ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 415ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 178ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 405
+  √  [General] codigoError = 405
+  √  [General] mensajeError = "Error en descifrado canal emisor"
+
+└ 2.3.6. peticion — tag GCM corrupto (405)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-gcm idPeticion=AMIYGATO1783228387 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-gcm [200 OK, 1.68kB, 188ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 394ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-gcm [200 OK, 429B, 175ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 405
+  √  [General] codigoError = 405
+  √  [General] mensajeError = "Error en descifrado canal emisor"
+
+□ General / 2_reglaNegocio / 4_metodo
+└ 2.4.1. metodo — no está en CFG_METODOS_LIMITES_JSON (418)
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=CELEGATO1783228388 metodo=0099 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 186ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [200 OK, 435B, 538ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 435B, 179ms]
+149. [Lambda VCN] HTTP status = 400 (real: 200)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 418
+150. [General] codigoError = 418
+151. [General] mensajeError = "Método no soportado"
+
+└ 2.4.2. metodo — no asociado al canal emisor (418) [CANAL_EMISOR_SIN_METODO]
+  ┌
+  │ '[VCN raiz] NIVEL_EJECUCION=VCN END_POINT_TLD desde END_POINT_TLD_VCN ALGORITMO_AES=aes-256-cbc idPeticion=ARCHGATO1783228389 metodo=0001 idSolicitud=1'
+  └
+  POST https://tld-validador-dummy.dev.telered.internal/cifrar?tld=1&algoritmoCifrado=aes-256-cbc [200 OK, 1.73kB, 179ms]
+  POST https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre [400 Bad Request, 438B, 370ms]
+  POST https://tld-validador-dummy.dev.telered.internal/descifrar?tld=0&algoritmoCifrado=aes-256-cbc [200 OK, 429B, 169ms]
+  √  [Lambda VCN] HTTP status = 400 (real: 400)
+  √  [Dummy /descifrar] HTTP status 2xx (real: 200)
+  √  [Dummy /descifrar] respuesta JSON parseable
+  √  [General] catalogo resuelve mensaje para codigo 418
+152. [General] codigoError = 418
+153. [General] mensajeError = "Método no soportado"
+
+┌─────────────────────────┬────────────────────┬────────────────────┐
+│                         │           executed │             failed │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│              iterations │                  1 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│                requests │                234 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│            test-scripts │                 78 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│      prerequest-scripts │                156 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│              assertions │                468 │                153 │
+├─────────────────────────┴────────────────────┴────────────────────┤
+│ total run duration: 1m 22.3s                                      │
+├───────────────────────────────────────────────────────────────────┤
+│ total data received: 121.43kB (approx)                            │
+├───────────────────────────────────────────────────────────────────┤
+│ average response time: 321ms [min: 163ms, max: 5.1s, s.d.: 412ms] │
+└───────────────────────────────────────────────────────────────────┘
+
+    #  failure                                 detail
+
+ 001.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error al consultar canal-plan por idC…' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.1. idCanal — propiedad ausente (undefined) (400)"
+
+ 002.  AssertionError                          [General] codigoError = 400
+                                               expected 500 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.4. idCanal — tipo number (400)"
+
+ 003.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'ERROR: Excepción no controlada al mom…' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.4. idCanal — tipo number (400)"
+
+ 004.  AssertionError                          [General] codigoError = 400
+                                               expected 500 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.5. idCanal — tipo boolean (400)"
+
+ 005.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'ERROR: Excepción no controlada al mom…' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.5. idCanal — tipo boolean (400)"
+
+ 006.  AssertionError                          [General] codigoError = 400
+                                               expected 500 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.6. idCanal — tipo object (400)"
+
+ 007.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'ERROR: Excepción no controlada al mom…' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.6. idCanal — tipo object (400)"
+
+ 008.  AssertionError                          [General] codigoError = 400
+                                               expected 401 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.7. idCanal — solo espacios, trim vacío (400)"
+
+ 009.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Canal emisor no existe' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.7. idCanal — solo espacios, trim vacío (400)"
+
+ 010.  AssertionError                          [General] codigoError = 400
+                                               expected 401 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.8. idCanal — solo tab, trim vacío (400)"
+
+ 011.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Canal emisor no existe' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.8. idCanal — solo tab, trim vacío (400)"
+
+ 012.  AssertionError                          [General] codigoError = 400
+                                               expected 401 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.9. idCanal — longitud 5, máximo 4 (400)"
+
+ 013.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Canal emisor no existe' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.9. idCanal — longitud 5, máximo 4 (400)"
+
+ 014.  AssertionError                          [General] codigoError = 400
+                                               expected 401 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.10. idCanal — espacio interno, post-trim (400)"
+
+ 015.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Canal emisor no existe' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.10. idCanal — espacio interno, post-trim (400)"
+
+ 016.  AssertionError                          [General] codigoError = 400
+                                               expected 401 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.11. idCanal — símbolo @ no permitido (400)"
+
+ 017.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Canal emisor no existe' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.11. idCanal — símbolo @ no permitido (400)"
+
+ 018.  AssertionError                          [General] codigoError = 400
+                                               expected 401 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.12. idCanal — paréntesis ( no permitido (400)"
+
+ 019.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Canal emisor no existe' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.12. idCanal — paréntesis ( no permitido (400)"
+
+ 020.  AssertionError                          [General] codigoError = 400
+                                               expected 401 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.13. idCanal — ¿ no permitido (400)"
+
+ 021.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Canal emisor no existe' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.13. idCanal — ¿ no permitido (400)"
+
+ 022.  AssertionError                          [General] codigoError = 400
+                                               expected 401 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.14. idCanal — comillas " no permitidas (400)"
+
+ 023.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Canal emisor no existe' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 1_idCanal / 1.1.14. idCanal — comillas " no permitidas (400)"
+
+ 024.  AssertionError                          [General] codigoError = 400
+                                               expected 500 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.4. validador — tipo number (400)"
+
+ 025.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'ERROR: Excepción no controlada al mom…' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.4. validador — tipo number (400)"
+
+ 026.  AssertionError                          [General] codigoError = 400
+                                               expected 500 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.5. validador — tipo boolean (400)"
+
+ 027.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'ERROR: Excepción no controlada al mom…' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.5. validador — tipo boolean (400)"
+
+ 028.  AssertionError                          [General] codigoError = 400
+                                               expected 500 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.6. validador — tipo object (400)"
+
+ 029.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'ERROR: Excepción no controlada al mom…' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.6. validador — tipo object (400)"
+
+ 030.  AssertionError                          [General] codigoError = 400
+                                               expected 404 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.7. validador — solo espacios, trim vacío (400)"
+
+ 031.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Validador no existe' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.7. validador — solo espacios, trim vacío (400)"
+
+ 032.  AssertionError                          [General] codigoError = 400
+                                               expected 404 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.8. validador — solo tab, trim vacío (400)"
+
+ 033.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Validador no existe' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.8. validador — solo tab, trim vacío (400)"
+
+ 034.  AssertionError                          [General] codigoError = 400
+                                               expected 404 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.9. validador — longitud 5, máximo 4 (400)"
+
+ 035.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Validador no existe' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.9. validador — longitud 5, máximo 4 (400)"
+
+ 036.  AssertionError                          [General] codigoError = 400
+                                               expected 404 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.10. validador — espacio interno, post-trim (400)"
+
+ 037.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Validador no existe' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.10. validador — espacio interno, post-trim (400)"
+
+ 038.  AssertionError                          [General] codigoError = 400
+                                               expected 404 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.11. validador — símbolo @ no permitido (400)"
+
+ 039.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Validador no existe' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.11. validador — símbolo @ no permitido (400)"
+
+ 040.  AssertionError                          [General] codigoError = 400
+                                               expected 404 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.12. validador — paréntesis ( no permitido (400)"
+
+ 041.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Validador no existe' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.12. validador — paréntesis ( no permitido (400)"
+
+ 042.  AssertionError                          [General] codigoError = 400
+                                               expected 404 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.13. validador — ¿ no permitido (400)"
+
+ 043.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Validador no existe' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.13. validador — ¿ no permitido (400)"
+
+ 044.  AssertionError                          [General] codigoError = 400
+                                               expected 404 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.14. validador — comillas " no permitidas (400)"
+
+ 045.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Validador no existe' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.14. validador — comillas " no permitidas (400)"
+
+ 046.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.15. validador — distinto a {{CANAL_VALIDADOR}} (CANAL_EMISOR) (400)"
+
+ 047.  AssertionError                          [General] codigoError = 400
+                                               expected undefined to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.15. validador — distinto a {{CANAL_VALIDADOR}} (CANAL_EMISOR) (400)"
+
+ 048.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected undefined to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 2_validador / 1.2.15. validador — distinto a {{CANAL_VALIDADOR}} (CANAL_EMISOR) (400)"
+
+ 049.  AssertionError                          [General] codigoError = 400
+                                               expected 405 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.4. peticion — tipo number (400)"
+
+ 050.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.4. peticion — tipo number (400)"
+
+ 051.  AssertionError                          [General] codigoError = 400
+                                               expected 405 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.5. peticion — tipo boolean (400)"
+
+ 052.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.5. peticion — tipo boolean (400)"
+
+ 053.  AssertionError                          [General] codigoError = 400
+                                               expected 405 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.6. peticion — tipo object (400)"
+
+ 054.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.6. peticion — tipo object (400)"
+
+ 055.  AssertionError                          [General] codigoError = 400
+                                               expected 405 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.7. peticion — formato hex inválido (400)"
+
+ 056.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.7. peticion — formato hex inválido (400)"
+
+ 057.  AssertionError                          [General] codigoError = 400
+                                               expected 405 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.8. peticion — IV en base64 (400)"
+
+ 058.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.8. peticion — IV en base64 (400)"
+
+ 059.  AssertionError                          [General] codigoError = 400
+                                               expected 405 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.9. peticion — IV truncado (400)"
+
+ 060.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.9. peticion — IV truncado (400)"
+
+ 061.  AssertionError                          [General] codigoError = 400
+                                               expected 405 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.10. peticion — segmento AES en base64 (400)"
+
+ 062.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.10. peticion — segmento AES en base64 (400)"
+
+ 063.  AssertionError                          [General] codigoError = 400
+                                               expected 405 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.11. peticion — segmento AES faltante (400)"
+
+ 064.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.11. peticion — segmento AES faltante (400)"
+
+ 065.  AssertionError                          [General] codigoError = 400
+                                               expected 405 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.12. peticion — segmento extra (400)"
+
+ 066.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.12. peticion — segmento extra (400)"
+
+ 067.  AssertionError                          [General] codigoError = 400
+                                               expected 405 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.13. peticion — caracter no hex (400)"
+
+ 068.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 3_peticion / 1.3.13. peticion — caracter no hex (400)"
+
+ 069.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.1. idPeticion — propiedad ausente (undefined) (400)"
+
+ 070.  AssertionError                          [General] codigoError = 400
+                                               expected 500 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.1. idPeticion — propiedad ausente (undefined) (400)"
+
+ 071.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error interno' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.1. idPeticion — propiedad ausente (undefined) (400)"
+
+ 072.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.2. idPeticion — null (400)"
+
+ 073.  AssertionError                          [General] codigoError = 400
+                                               expected 500 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.2. idPeticion — null (400)"
+
+ 074.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error interno' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.2. idPeticion — null (400)"
+
+ 075.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.3. idPeticion — string vacío (400)"
+
+ 076.  AssertionError                          [General] codigoError = 400
+                                               expected 500 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.3. idPeticion — string vacío (400)"
+
+ 077.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error interno' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.3. idPeticion — string vacío (400)"
+
+ 078.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.4. idPeticion — tipo number (400)"
+
+ 079.  AssertionError                          [General] codigoError = 400
+                                               expected 509 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.4. idPeticion — tipo number (400)"
+
+ 080.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.4. idPeticion — tipo number (400)"
+
+ 081.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.5. idPeticion — tipo boolean (400)"
+
+ 082.  AssertionError                          [General] codigoError = 400
+                                               expected 509 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.5. idPeticion — tipo boolean (400)"
+
+ 083.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.5. idPeticion — tipo boolean (400)"
+
+ 084.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.6. idPeticion — tipo object (400)"
+
+ 085.  AssertionError                          [General] codigoError = 400
+                                               expected 509 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.6. idPeticion — tipo object (400)"
+
+ 086.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.6. idPeticion — tipo object (400)"
+
+ 087.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.7. idPeticion — solo espacios (400)"
+
+ 088.  AssertionError                          [General] codigoError = 400
+                                               expected 500 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.7. idPeticion — solo espacios (400)"
+
+ 089.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error interno' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.7. idPeticion — solo espacios (400)"
+
+ 090.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.8. idPeticion — solo tab (400)"
+
+ 091.  AssertionError                          [General] codigoError = 400
+                                               expected 500 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.8. idPeticion — solo tab (400)"
+
+ 092.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error interno' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.8. idPeticion — solo tab (400)"
+
+ 093.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.9. idPeticion — longitud 7, mínimo 8 (400)"
+
+ 094.  AssertionError                          [General] codigoError = 400
+                                               expected 509 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.9. idPeticion — longitud 7, mínimo 8 (400)"
+
+ 095.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.9. idPeticion — longitud 7, mínimo 8 (400)"
+
+ 096.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.10. idPeticion — longitud 65, máximo 64 (400)"
+
+ 097.  AssertionError                          [General] codigoError = 400
+                                               expected 509 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.10. idPeticion — longitud 65, máximo 64 (400)"
+
+ 098.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.10. idPeticion — longitud 65, máximo 64 (400)"
+
+ 099.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.11. idPeticion — espacio interno (400)"
+
+ 100.  AssertionError                          [General] codigoError = 400
+                                               expected 509 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.11. idPeticion — espacio interno (400)"
+
+ 101.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.11. idPeticion — espacio interno (400)"
+
+ 102.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.12. idPeticion — símbolo @ (400)"
+
+ 103.  AssertionError                          [General] codigoError = 400
+                                               expected 509 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.12. idPeticion — símbolo @ (400)"
+
+ 104.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.12. idPeticion — símbolo @ (400)"
+
+ 105.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.13. idPeticion — unicode interrogación apertura (400)"
+
+ 106.  AssertionError                          [General] codigoError = 400
+                                               expected 509 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.13. idPeticion — unicode interrogación apertura (400)"
+
+ 107.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.13. idPeticion — unicode interrogación apertura (400)"
+
+ 108.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.14. idPeticion — comillas (400)"
+
+ 109.  AssertionError                          [General] codigoError = 400
+                                               expected 509 to equal 400
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.14. idPeticion — comillas (400)"
+
+ 110.  AssertionError                          [General] mensajeError = "Error en la petición original"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Error en la petición original'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.14. idPeticion — comillas (400)"
+
+ 111.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.15. idPeticion — prefijo SWIFT ajeno (445)"
+
+ 112.  AssertionError                          [General] codigoError = 445
+                                               expected 509 to equal 445
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.15. idPeticion — prefijo SWIFT ajeno (445)"
+
+ 113.  AssertionError                          [General] mensajeError = "El prefijo Código SWIFT del idPeticion no coincide con el canal emisor"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'El prefijo Código SWIFT del idPeticio…'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 4_idPeticion / 1.4.15. idPeticion — prefijo SWIFT ajeno (445)"
+
+ 114.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.1. solicitudes — tipo string (425)"
+
+ 115.  AssertionError                          [General] codigoError = 425
+                                               expected undefined to equal 425
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.1. solicitudes — tipo string (425)"
+
+ 116.  AssertionError                          [General] mensajeError = "Cantidad de solicitudes no permitidas"
+                                               expected undefined to equal 'Cantidad de solicitudes no permitidas'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.1. solicitudes — tipo string (425)"
+
+ 117.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.2. solicitudes — arreglo vacío (425)"
+
+ 118.  AssertionError                          [General] codigoError = 425
+                                               expected undefined to equal 425
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.2. solicitudes — arreglo vacío (425)"
+
+ 119.  AssertionError                          [General] mensajeError = "Cantidad de solicitudes no permitidas"
+                                               expected undefined to equal 'Cantidad de solicitudes no permitidas'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.2. solicitudes — arreglo vacío (425)"
+
+ 120.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.3. solicitudes — excede límite 0015, 5 solicitudes (425)"
+
+ 121.  AssertionError                          [General] codigoError = 425
+                                               expected 509 to equal 425
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.3. solicitudes — excede límite 0015, 5 solicitudes (425)"
+
+ 122.  AssertionError                          [General] mensajeError = "Cantidad de solicitudes no permitidas"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Cantidad de solicitudes no permitidas'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.3. solicitudes — excede límite 0015, 5 solicitudes (425)"
+
+ 123.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.4. solicitudes — sin propiedad idSolicitud (431)"
+
+ 124.  AssertionError                          [General] codigoError = 431
+                                               expected 509 to equal 431
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.4. solicitudes — sin propiedad idSolicitud (431)"
+
+ 125.  AssertionError                          [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Campo idSolicitud no cumple con los c…'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.4. solicitudes — sin propiedad idSolicitud (431)"
+
+ 126.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.5. solicitudes — idSolicitud vacío (431)"
+
+ 127.  AssertionError                          [General] codigoError = 431
+                                               expected 509 to equal 431
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.5. solicitudes — idSolicitud vacío (431)"
+
+ 128.  AssertionError                          [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Campo idSolicitud no cumple con los c…'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.5. solicitudes — idSolicitud vacío (431)"
+
+ 129.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.6. solicitudes — idSolicitud tipo number (431)"
+
+ 130.  AssertionError                          [General] codigoError = 431
+                                               expected 509 to equal 431
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.6. solicitudes — idSolicitud tipo number (431)"
+
+ 131.  AssertionError                          [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Campo idSolicitud no cumple con los c…'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.6. solicitudes — idSolicitud tipo number (431)"
+
+ 132.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.7. solicitudes — idSolicitud solo espacios (431)"
+
+ 133.  AssertionError                          [General] codigoError = 431
+                                               expected 509 to equal 431
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.7. solicitudes — idSolicitud solo espacios (431)"
+
+ 134.  AssertionError                          [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Campo idSolicitud no cumple con los c…'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.7. solicitudes — idSolicitud solo espacios (431)"
+
+ 135.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.8. solicitudes — idSolicitud longitud 65 (431)"
+
+ 136.  AssertionError                          [General] codigoError = 431
+                                               expected 509 to equal 431
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.8. solicitudes — idSolicitud longitud 65 (431)"
+
+ 137.  AssertionError                          [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Campo idSolicitud no cumple con los c…'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.8. solicitudes — idSolicitud longitud 65 (431)"
+
+ 138.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.9. solicitudes — idSolicitud duplicado case-insensitive (431) [CFG 0015≥2]"
+
+ 139.  AssertionError                          [General] codigoError = 431
+                                               expected 509 to equal 431
+                                               at assertion:4 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.9. solicitudes — idSolicitud duplicado case-insensitive (431) [CFG 0015≥2]"
+
+ 140.  AssertionError                          [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Campo idSolicitud no cumple con los c…'
+                                               at assertion:5 in test-script
+                                               inside "General / 1_validaciones_js / 5_solicitudes / 1.5.9. solicitudes — idSolicitud duplicado case-insensitive (431) [CFG 0015≥2]"
+
+ 141.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 2_reglaNegocio / 1_idCanal / 2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]"
+
+ 142.  AssertionError                          [General] codigoError = 403
+                                               expected 509 to equal 403
+                                               at assertion:4 in test-script
+                                               inside "General / 2_reglaNegocio / 1_idCanal / 2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]"
+
+ 143.  AssertionError                          [General] mensajeError = "Canal emisor no tiene un plan de suscripción"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Canal emisor no tiene un plan de susc…'
+                                               at assertion:5 in test-script
+                                               inside "General / 2_reglaNegocio / 1_idCanal / 2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]"
+
+ 144.  AssertionError                          [Lambda VCN] HTTP status = 500 (real: 400)
+                                               expected 400 to equal 500
+                                               at assertion:0 in test-script
+                                               inside "General / 2_reglaNegocio / 1_idCanal / 2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]"
+
+ 145.  AssertionError                          [General] mensajeError = "Error interno"
+                                               expected 'ERROR: Excepción no controlada al mom…' to equal 'Error interno'
+                                               at assertion:5 in test-script
+                                               inside "General / 2_reglaNegocio / 1_idCanal / 2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]"
+
+ 146.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 2_reglaNegocio / 1_idCanal / 2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]"
+
+ 147.  AssertionError                          [General] codigoError = 403
+                                               expected 509 to equal 403
+                                               at assertion:4 in test-script
+                                               inside "General / 2_reglaNegocio / 1_idCanal / 2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]"
+
+ 148.  AssertionError                          [General] mensajeError = "Canal emisor no tiene un plan de suscripción"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Canal emisor no tiene un plan de susc…'
+                                               at assertion:5 in test-script
+                                               inside "General / 2_reglaNegocio / 1_idCanal / 2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]"
+
+ 149.  AssertionError                          [Lambda VCN] HTTP status = 400 (real: 200)
+                                               expected 200 to equal 400
+                                               at assertion:0 in test-script
+                                               inside "General / 2_reglaNegocio / 4_metodo / 2.4.1. metodo — no está en CFG_METODOS_LIMITES_JSON (418)"
+
+ 150.  AssertionError                          [General] codigoError = 418
+                                               expected 509 to equal 418
+                                               at assertion:4 in test-script
+                                               inside "General / 2_reglaNegocio / 4_metodo / 2.4.1. metodo — no está en CFG_METODOS_LIMITES_JSON (418)"
+
+ 151.  AssertionError                          [General] mensajeError = "Método no soportado"
+                                               expected 'Error inesperado en el Canal Validador' to equal 'Método no soportado'
+                                               at assertion:5 in test-script
+                                               inside "General / 2_reglaNegocio / 4_metodo / 2.4.1. metodo — no está en CFG_METODOS_LIMITES_JSON (418)"
+
+ 152.  AssertionError                          [General] codigoError = 418
+                                               expected 405 to equal 418
+                                               at assertion:4 in test-script
+                                               inside "General / 2_reglaNegocio / 4_metodo / 2.4.2. metodo — no asociado al canal emisor (418) [CANAL_EMISOR_SIN_METODO]"
+
+ 153.  AssertionError                          [General] mensajeError = "Método no soportado"
+                                               expected 'Error en descifrado canal emisor' to equal 'Método no soportado'
+                                               at assertion:5 in test-script
+                                               inside "General / 2_reglaNegocio / 4_metodo / 2.4.2. metodo — no asociado al canal emisor (418) [CANAL_EMISOR_SIN_METODO]"
+
+Resumen: logs\resumen-fallos-vcn.md
+JSON:    logs\ultimo-run-vcn.json
 PS C:\Versionamiento\GitHub\second-brain\Postman\generador>
