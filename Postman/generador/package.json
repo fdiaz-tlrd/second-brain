@@ -1,0 +1,14 @@
+{
+  "name": "postman-generador",
+  "private": true,
+  "description": "Ensamblador y runner Newman para colecciones Postman del generador",
+  "scripts": {
+    "run:p2m": "node run-newman.js p2m",
+    "run:p2p": "node run-newman.js p2p",
+    "run:vcn": "node run-newman.js vcn",
+    "run:all": "node run-newman.js all"
+  },
+  "devDependencies": {
+    "newman": "^6.2.1"
+  }
+}

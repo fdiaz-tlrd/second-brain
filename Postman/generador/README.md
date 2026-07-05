@@ -23,6 +23,30 @@ node armar-coleccion.js config-p2p.json
 
 La salida queda en `ensamblador/salida/*.postman_collection.json`.
 
+## Ejecutar y compartir fallos (Newman)
+
+Desde `Postman/generador` (requiere red hacia dummy/API dev):
+
+```powershell
+$env:NODE_OPTIONS="--use-system-ca"   # si npm install falla por certificado corporativo
+npm install
+node run-newman.js p2m
+node run-newman.js p2p --folder "General/2_reglaNegocio/1_idCanal"
+node run-newman.js vcn
+node run-newman.js all
+```
+
+Comparte con el agente: `logs/resumen-fallos-<suite>.md` (referencia `@Postman/generador/logs/resumen-fallos-p2m.md`).
+
+Genera en `logs/`:
+
+| Archivo | Para qué |
+|---------|----------|
+| `resumen-fallos-<suite>.md` | Pegar o referenciar en el chat con el agente |
+| `ultimo-run-<suite>.json` | Detalle completo Newman |
+
+`<suite>` = `p2m` | `p2p` | `vcn`
+
 ## Convención de escenarios
 
 ```
