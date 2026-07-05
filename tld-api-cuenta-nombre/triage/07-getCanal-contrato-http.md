@@ -54,15 +54,7 @@ Newman run **2026-07-05T09:08Z** (`resumen-fallos-vcn.md`): **2.1.3** — 2 asse
 
 **No** cambiar `lib/canal.js`: el mensaje crudo queda en logs; al cliente solo catálogo.
 
-## Verificación Newman (pendiente deploy)
-
-```powershell
-node run-newman.js vcn --folder "General/2_reglaNegocio/1_idCanal"
-```
-
-Escenario ancla: **2.1.3**. Regresión: **2.1.1** (401/400), **2.1.2** y **2.1.4** (403 plan).
-
-**Criterio done A5 + A7:** carpeta `2_reglaNegocio/1_idCanal` **4/4** en verde → marcar checklist y cerrar subfase A5 en `04-decision-fase-a-dividida.md`.
+**Verificación Newman:** run **2026-07-05T09:28Z** — **2.1.3** OK (HTTP 500 + `Error interno`). **A7 cerrada.**
 
 ## Relación con otras subfases
 
@@ -71,4 +63,4 @@ Escenario ancla: **2.1.3**. Regresión: **2.1.1** (401/400), **2.1.2** y **2.1.4
 
 ## Siguiente
 
-Tras Newman 1_idCanal OK: **`2_reglaNegocio/4_metodo`** (2.4.1, 2.4.2 — Fase C / `metodos.js`, no este triage).
+Newman **`2_reglaNegocio/4_metodo`** (2.4.1, 2.4.2). Si falla: revisar validación método post-descifrado en `app.js` (418 + catálogo cifrado).
