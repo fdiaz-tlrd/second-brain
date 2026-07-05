@@ -6,13 +6,13 @@ Copia de `refactoria\Postman`. Fuente de verdad para mantener escenarios en arch
 
 ## Newman y VPN — OBLIGATORIO LEER (agente)
 
-**Regla:** el agente **NO** ejecuta `node run-newman.js` salvo que el usuario confirme **VPN conectada** y pida correr Newman.
+**Regla:** el agente **NO** ejecuta `node run-newman.js` en Lenovo. Newman lo corre el usuario en la **otra máquina (VPN)**, hace **commit + push de `logs/`** entero, y avisa aquí.
 
-Sin VPN, hosts como `tld-validador-dummy.dev.telered.internal` dan `ENOTFOUND`. Eso **no** prueba escenarios ni código. **No** reportar ese error como fallo del escenario. **No** sugerir VPN como si fuera novedad.
+Sin VPN, `ENOTFOUND` no prueba nada. **No** `git restore logs/`. **No** decir «no se ejecutó Newman» si `registro-vcn.md` tiene run nuevo del usuario.
 
-Detalle completo: [`../../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md`](../../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md)
+Detalle: [`../../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md`](../../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md) · [`logs/README.md`](logs/README.md) · [`logs/registro-vcn.md`](logs/registro-vcn.md)
 
-**Sin VPN el agente solo:** escenarios, `armar-coleccion.js`, docs. **Newman lo corre el usuario** con VPN y comparte `logs/resumen-fallos-*.md`.
+**Tras cada run (máquina VPN):** `git add logs/` → commit → push. Opcional: `--nota "post-deploy …"` en el comando Newman.
 
 ---
 
@@ -40,7 +40,9 @@ La salida queda en `ensamblador/salida/*.postman_collection.json`.
 
 ## Ejecutar y compartir fallos (Newman)
 
-**Solo con VPN corporativa conectada.** Ver reglas del agente: [`../../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md`](../../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md).
+**Solo en la máquina con VPN** (no en Lenovo). Tras el run: **`git add logs/`** → commit → push.
+
+Registro: `logs/registro-<suite>.md` (últimas 8 ejecuciones) + `logs/historial/<suite>/`.
 
 Desde `Postman/generador`. Copia **una sola línea** (los `#` son comentarios; PowerShell los ignora).
 

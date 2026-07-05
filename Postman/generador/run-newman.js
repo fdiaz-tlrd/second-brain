@@ -58,9 +58,12 @@ function parseArgs(argv) {
   const positional = [];
   let folder = null;
   let insecure = true;
+  let nota = "";
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === "--folder" && argv[i + 1]) {
       folder = argv[++i];
+    } else if (argv[i] === "--nota" && argv[i + 1]) {
+      nota = argv[++i];
     } else if (argv[i] === "--insecure") {
       insecure = true;
     } else if (argv[i] === "--strict-ssl") {
@@ -69,7 +72,7 @@ function parseArgs(argv) {
       positional.push(argv[i]);
     }
   }
-  return { suite: positional[0], folder, insecure };
+  return { suite: positional[0], folder, insecure, nota };
 }
 
 function truncate(text, max) {
@@ -128,20 +131,26 @@ function dedupeFailures(failures) {
   return Array.from(byKey.values());
 }
 
-function buildResumenMarkdown(suite, folder, summary, jsonPath, mdPath) {
+function buildResumenMarkdown(suite, folder, summary, jsonPath, mdPath, nota) {
   const run = summary.run || {};
   const stats = run.stats || {};
   const failures = dedupeFailures(run.failures || []);
   const executions = run.executions || [];
   const lines = [];
+  const fechaIso = new Date().toISOString();
 
   lines.push("# Resumen de fallos — " + suite.toUpperCase());
   lines.push("");
   lines.push("| Campo | Valor |");
   lines.push("|-------|-------|");
-  lines.push("| Fecha | " + new Date().toISOString() + " |");
+  lines.push("| Fecha | " + fechaIso + " |");
   if (folder) {
     lines.push("| Carpeta | `" + folder + "` |");
+  } else {
+    lines.push("| Carpeta | `(completo)` |");
+  }
+  if (nota) {
+    lines.push("| Nota | " + nota.replace(/\|/g, "\\|") + " |");
   }
   lines.push(
     "| Requests | " +
@@ -201,6 +210,132 @@ function buildResumenMarkdown(suite, folder, summary, jsonPath, mdPath) {
   });
 
   return lines.join("\n");
+}
+
+const HISTORIAL_MAX = 8;
+
+function isoTimestampForFilename(d) {
+  return d.toISOString().replace(/:/g, "-").replace(/\.\d{3}Z$/, "Z");
+}
+
+function folderSlug(folder) {
+  if (!folder) {
+    return "completo";
+  }
+  return folder
+    .replace(/[^a-zA-Z0-9._-]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .replace(/-+/g, "-");
+}
+
+function pruneHistorial(histDir, maxRuns) {
+  const entries = fs
+    .readdirSync(histDir)
+    .filter(function (name) {
+      return name.endsWith(".json");
+    })
+    .map(function (name) {
+      const full = path.join(histDir, name);
+      return { name: name, mtime: fs.statSync(full).mtimeMs };
+    })
+    .sort(function (a, b) {
+      return b.mtime - a.mtime;
+    });
+
+  entries.slice(maxRuns).forEach(function (entry) {
+    const base = entry.name.replace(/\.json$/, "");
+    const jsonFile = path.join(histDir, base + ".json");
+    const mdFile = path.join(histDir, base + ".md");
+    if (fs.existsSync(jsonFile)) {
+      fs.unlinkSync(jsonFile);
+    }
+    if (fs.existsSync(mdFile)) {
+      fs.unlinkSync(mdFile);
+    }
+  });
+}
+
+function updateRegistro(suiteKey, entry) {
+  const regPath = path.join(LOGS, "registro-" + suiteKey + ".md");
+  const header = [
+    "# Registro de ejecuciones Newman — " + suiteKey.toUpperCase(),
+    "",
+    "Orden: **más reciente arriba**. Commitear `logs/` tras cada run en la **máquina con VPN**.",
+    "",
+    "| Fecha (UTC) | Carpeta | Requests | Tests | Resultado | Historial | Nota |",
+    "|-------------|---------|----------|-------|-----------|-----------|------|",
+  ];
+
+  let existingRows = [];
+  if (fs.existsSync(regPath)) {
+    const text = fs.readFileSync(regPath, "utf8");
+    existingRows = text
+      .split("\n")
+      .filter(function (line) {
+        return line.startsWith("| 20");
+      });
+  }
+
+  const row =
+    "| " +
+    entry.fecha +
+    " | `" +
+    entry.folder +
+    "` | " +
+    entry.requests +
+    " | " +
+    entry.tests +
+    " | **" +
+    entry.resultado +
+    "** | [`" +
+    path.basename(entry.json) +
+    "`](./" +
+    entry.json.replace(/\\/g, "/") +
+    ") | " +
+    (entry.nota || "—") +
+    " |";
+
+  const rows = [row].concat(existingRows).slice(0, HISTORIAL_MAX);
+  fs.writeFileSync(regPath, header.concat(rows).concat(["", ""]).join("\n"), "utf8");
+}
+
+function archiveRun(suiteKey, folder, jsonPath, mdPath, summary, nota) {
+  const histDir = path.join(LOGS, "historial", suiteKey);
+  fs.mkdirSync(histDir, { recursive: true });
+  const ts = isoTimestampForFilename(new Date());
+  const slug = folderSlug(folder);
+  const base = ts + "_" + slug;
+  const histJson = path.join(histDir, base + ".json");
+  const histMd = path.join(histDir, base + ".md");
+  fs.copyFileSync(jsonPath, histJson);
+  fs.copyFileSync(mdPath, histMd);
+
+  const stats = summary.run && summary.run.stats ? summary.run.stats : {};
+  const reqTotal = stats.requests ? stats.requests.total : "?";
+  const reqFailed = stats.requests ? stats.requests.failed : 0;
+  const testTotal = stats.assertions
+    ? stats.assertions.total
+    : stats.tests
+      ? stats.tests.total
+      : "?";
+  const testFailed = stats.assertions
+    ? stats.assertions.failed
+    : stats.tests
+      ? stats.tests.failed
+      : 0;
+
+  updateRegistro(suiteKey, {
+    fecha: new Date().toISOString(),
+    folder: folder || "(completo)",
+    requests: reqTotal + " (fail " + reqFailed + ")",
+    tests: testTotal + " (fail " + testFailed + ")",
+    resultado: testFailed === 0 && reqFailed === 0 ? "OK" : "FALLÓ",
+    json: path.relative(LOGS, histJson),
+    md: path.relative(LOGS, histMd),
+    nota: nota,
+  });
+
+  pruneHistorial(histDir, HISTORIAL_MAX);
 }
 
 function walkFolderPath(rawItems, segments, collectionPath, folderPath) {
@@ -299,7 +434,7 @@ function resolveFolderTarget(collectionPath, folderPath) {
   };
 }
 
-function runSuite(suiteKey, folder, insecure) {
+function runSuite(suiteKey, folder, insecure, nota) {
   const cfg = SUITES[suiteKey];
   if (!cfg) {
     return Promise.reject(new Error("Suite desconocida: " + suiteKey));
@@ -366,21 +501,25 @@ function runSuite(suiteKey, folder, insecure) {
         folder,
         summary,
         jsonPath,
-        mdPath
+        mdPath,
+        nota
       );
       fs.writeFileSync(mdPath, md, "utf8");
+      archiveRun(suiteKey, folder, jsonPath, mdPath, summary, nota);
+      const regPath = path.join(LOGS, "registro-" + suiteKey + ".md");
       console.log("\nResumen: " + path.relative(ROOT, mdPath));
       console.log("JSON:    " + path.relative(ROOT, jsonPath));
+      console.log("Registro:" + path.relative(ROOT, regPath));
       resolve(summary);
     });
   });
 }
 
 function main() {
-  const { suite, folder, insecure } = parseArgs(process.argv.slice(2));
+  const { suite, folder, insecure, nota } = parseArgs(process.argv.slice(2));
   if (!suite || !SUITES[suite] && suite !== "all") {
     console.error(
-      "Uso: node run-newman.js <p2m|p2p|vcn|all> [--folder \"General/2_reglaNegocio/1_idCanal\"] [--strict-ssl]"
+      'Uso: node run-newman.js <p2m|p2p|vcn|all> [--folder "General/2_reglaNegocio/1_idCanal"] [--nota "post-deploy c47a264"] [--strict-ssl]'
     );
     process.exit(1);
   }
@@ -400,7 +539,7 @@ function main() {
     for (const key of suites) {
       console.log("\n=== " + key.toUpperCase() + " ===");
       try {
-        const summary = await runSuite(key, folder, insecure);
+        const summary = await runSuite(key, folder, insecure, nota);
         const failed =
           summary.run &&
           summary.run.stats &&

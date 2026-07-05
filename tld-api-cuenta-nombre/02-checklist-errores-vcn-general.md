@@ -12,14 +12,14 @@ Fuente de verdad para corrección en `tld-api-cuenta-nombre`. Marcar `[x]` al re
 | Tests (VCN completo) | **570** (failed: **0**) |
 | Tests (`2_reglaNegocio/2_validador`) | **18** (failed: **0**) |
 | Tests (`1_validaciones_js`) | **390** (failed: **0**, tras eliminar 1.2.15) |
-| Resumen Newman | [`Postman/generador/logs/resumen-fallos-vcn.md`](../Postman/generador/logs/resumen-fallos-vcn.md) |
+| Resumen Newman | [`Postman/generador/logs/registro-vcn.md`](../Postman/generador/logs/registro-vcn.md) (historial) · [`resumen-fallos-vcn.md`](../Postman/generador/logs/resumen-fallos-vcn.md) (último) |
 | Enfoque | [`01-enfoque-correccion.md`](./01-enfoque-correccion.md) |
 
 | Escenarios General (baseline 2026-07-05) | 78 |
 | Escenarios General (+ `2_reglaNegocio/2_validador`, − `1.2.15`, + `0_jsonEntrada`) | **81** |
 | Estado General | **80/80** + regresión VCN completa **570/570** |
 
-**Convención:** *Debe* = contrato Postman. **General:** 81 escenarios (incl. `0_jsonEntrada/0.1`). Verificación Newman: **solo usuario con VPN** — ver [`05-newman-vpn-reglas-agente.md`](./05-newman-vpn-reglas-agente.md).
+**Convención:** *Debe* = contrato Postman. Newman verificado vía **`registro-vcn.md`** (usuario: VPN → run → commit/push logs). Ver [`05-newman-vpn-reglas-agente.md`](./05-newman-vpn-reglas-agente.md).
 
 Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, orden en `app.js`).
 

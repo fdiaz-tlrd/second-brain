@@ -1,21 +1,62 @@
 # Logs de ejecución Newman
 
-Salida de `run-newman.js`. **Commitear y pushear** tras cada run en la máquina donde ejecutas las pruebas (VPN/red dev). El agente los lee en la otra máquina vía git.
+## Dos máquinas — flujo obligatorio
 
-**Máquina Lenovo (`c:\Users\Lenovo\GitHub`): sin VPN ni red dev.** El agente **no** ejecuta Newman ni llama al dummy desde ahí. Solo el usuario, en la máquina con acceso.
+| Máquina | Rol |
+|---------|-----|
+| **Lenovo** (`c:\Users\Lenovo\GitHub`) | Agente: código, escenarios, `armar-coleccion.js`, docs. **Sin VPN. No Newman.** |
+| **Otra máquina (VPN)** | Usuario: `node run-newman.js …`, luego **commit + push de `logs/`** |
+
+El agente **no ejecuta Newman** en Lenovo. Cuando el usuario dice «ya corrí Newman», el agente lee **`registro-<suite>.md`** y los archivos en git tras `git pull` — **no** infiere «no se ejecutó» por fecha vieja si el usuario acaba de pushear.
+
+**Prohibido para el agente:** `git restore logs/`, excluir logs del commit, o borrar runs del usuario para «limpiar» fallos de red locales en Lenovo.
+
+---
+
+## Archivos
 
 | Archivo | Contenido |
 |---------|-----------|
-| `ultimo-run-<suite>.json` | Reporte Newman completo |
-| `resumen-fallos-<suite>.md` | Solo fallos — referencia para el agente |
+| `ultimo-run-<suite>.json` | Último reporte Newman (completo) |
+| `resumen-fallos-<suite>.md` | Último resumen legible |
+| `registro-<suite>.md` | **Historial de las últimas 8 ejecuciones** (tabla) |
+| `historial/<suite>/` | Copia archivada por run (`{timestamp}_{carpeta}.json/.md`) |
 
 `<suite>` = `p2m` | `p2p` | `vcn`
 
-Flujo:
+---
+
+## Comando (máquina con VPN)
+
+Desde `Postman/generador`:
 
 ```powershell
-node run-newman.js vcn --folder "General"
-git add logs/resumen-fallos-vcn.md logs/ultimo-run-vcn.json
-git commit -m "VCN run General — resultados Newman"
+node run-newman.js vcn
+node run-newman.js vcn --folder "General/0_jsonEntrada" --nota "post-deploy c47a264"
+```
+
+Opcional `--nota "..."` queda en resumen y registro (deploy, commit código, etc.).
+
+---
+
+## Commit después de cada run (máquina VPN)
+
+```powershell
+git add logs/
+git commit -m "Newman VCN — run completo 570/570"
 git push
 ```
+
+Incluir **siempre** `ultimo-run-*`, `resumen-fallos-*`, `registro-*` y `historial/`.
+
+En Lenovo: `git pull` y avisar al agente «puse los logs».
+
+---
+
+## Agente: qué leer
+
+1. `registro-vcn.md` — últimas ejecuciones verificadas
+2. `resumen-fallos-vcn.md` — detalle del último run
+3. `historial/vcn/` — runs anteriores si hace falta comparar
+
+Si `registro-vcn.md` tiene fila nueva con **OK**, el run **ocurrió** aunque el agente no lo haya corrido.

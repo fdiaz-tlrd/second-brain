@@ -1,6 +1,8 @@
 *
 !.gitignore
-!.gitkeep
 !README.md
 !resumen-fallos-*.md
 !ultimo-run-*.json
+!registro-*.md
+!historial/
+!historial/**
