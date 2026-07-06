@@ -101,6 +101,57 @@ function buildExpectedPreRequestExec(escenario) {
   } else {
     lines.push("pm.variables.unset('expectedProducto');");
   }
+
+  const exitoVars = [
+    ["expectedCuenta", escenario.expectedCuenta],
+    ["expectedBanco", escenario.expectedBanco],
+    ["expectedValidador", escenario.expectedValidador],
+    ["expectedCuentaLongitud", escenario.expectedCuentaLongitud],
+  ];
+  for (const [key, value] of exitoVars) {
+    if (value != null && value !== "") {
+      lines.push(
+        "pm.variables.set('" + key + "', '" + String(value) + "');"
+      );
+    } else {
+      lines.push("pm.variables.unset('" + key + "');");
+    }
+  }
+
+  if (escenario.expectedEnmascarado === true) {
+    lines.push("pm.variables.set('expectedEnmascarado', 'true');");
+  } else if (escenario.expectedEnmascarado === false) {
+    lines.push("pm.variables.set('expectedEnmascarado', 'false');");
+  } else {
+    lines.push("pm.variables.unset('expectedEnmascarado');");
+  }
+
+  if (escenario.verificarUnicode === true) {
+    lines.push("pm.variables.set('verificarUnicode', 'true');");
+  } else {
+    lines.push("pm.variables.unset('verificarUnicode');");
+  }
+
+  if (escenario.titularesClaro && escenario.titularesClaro.length > 0) {
+    lines.push(
+      "pm.variables.set('expectedTitularesClaro', " +
+        JSON.stringify(JSON.stringify(escenario.titularesClaro)) +
+        ");"
+    );
+  } else {
+    lines.push("pm.variables.unset('expectedTitularesClaro');");
+  }
+
+  if (escenario.expectedTitularesExactos != null) {
+    lines.push(
+      "pm.variables.set('expectedTitularesExactos', '" +
+        escenario.expectedTitularesExactos +
+        "');"
+    );
+  } else {
+    lines.push("pm.variables.unset('expectedTitularesExactos');");
+  }
+
   return lines;
 }
 

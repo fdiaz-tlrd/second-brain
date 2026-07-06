@@ -31,8 +31,8 @@ Ver README en esa carpeta para subcarpetas planificadas.
 | ID | Acción | Estado |
 |----|--------|--------|
 | A11a | Decisión estructura + `exito` en Post-response | **Hecho** |
-| A11b | Generador + JSON éxito (básico, PACA, PACC, jurídica, máscaras, límites) | **Hecho** |
-| A11c | Newman + checklist | **Siguiente** (VPN) |
+| A11b | Generador + JSON éxito × 8 validadores (112 escenarios) | **Hecho** |
+| A11c | Newman 112 + checklist | **Siguiente** (VPN) |
 
 ## Cuentas / env
 

@@ -1,0 +1,32 @@
+{
+  "nombre": "0001.3.1014.2.1. validador CORNGATO — producto PACA (exito)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 0,
+  "expectedTipo": "exito",
+  "expectedCuenta": "1100001161",
+  "expectedBanco": "TLRDPAPA",
+  "expectedEnmascarado": true,
+  "expectedValidador": "1014",
+  "titularesClaro": [
+    "Lynette Snezhevna"
+  ],
+  "expectedTitularesExactos": 1,
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "1014",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0001",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "cuenta": "{{PACA}}"
+          }
+        }
+      ]
+    }
+  },
+  "expectedProducto": "PACA"
+}

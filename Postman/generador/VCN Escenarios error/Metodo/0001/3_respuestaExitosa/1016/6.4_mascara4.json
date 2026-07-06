@@ -1,0 +1,33 @@
+{
+  "nombre": "0001.3.1016.6.4. validador BELLGATO — máscara largo 4 (exito)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 0,
+  "expectedTipo": "exito",
+  "expectedCuenta": "1100015294",
+  "expectedBanco": "TLRDPAPA",
+  "expectedEnmascarado": true,
+  "expectedValidador": "1016",
+  "titularesClaro": [
+    "Niño Muñoz Larrañaga"
+  ],
+  "expectedTitularesExactos": 1,
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "1016",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0001",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "cuenta": "{{mascara4}}"
+          }
+        }
+      ]
+    }
+  },
+  "expectedProducto": "PACA",
+  "verificarUnicode": true
+}

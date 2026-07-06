@@ -206,6 +206,44 @@
     return;
   }
 
+  function enmascararTitular(titular) {
+    return titular
+      .split(' ')
+      .filter(function (word) {
+        return word.length > 0;
+      })
+      .map(function (word) {
+        const len = word.length;
+        if (len === 1) {
+          return word;
+        }
+        const cantAsteriscos = Math.trunc(len / 2);
+        if (cantAsteriscos === 0) {
+          return word;
+        }
+        return (
+          word.slice(0, len - cantAsteriscos) + '*'.repeat(cantAsteriscos)
+        );
+      })
+      .join(' ');
+  }
+
+  function parseTitularesClaro() {
+    const raw = pm.variables.get('expectedTitularesClaro');
+    if (!raw) {
+      return null;
+    }
+    try {
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed) || parsed.length === 0) {
+        return null;
+      }
+      return parsed;
+    } catch (e) {
+      return null;
+    }
+  }
+
   if (tipo === 'exito') {
     pm.test('[Dummy /descifrar] estructura inner.respuestas[0] presente', function () {
       pm.expect(inner)
@@ -221,6 +259,15 @@
 
     const idSolEsperado = cvGet('PAYLOAD_ID_SOLICITUD_0');
     const productoEsperado = pm.variables.get('expectedProducto');
+    const cuentaEsperada = pm.variables.get('expectedCuenta');
+    const bancoEsperado = pm.variables.get('expectedBanco');
+    const enmascarado =
+      pm.variables.get('expectedEnmascarado') === 'true';
+    const titularesClaro = parseTitularesClaro();
+    const titularesExactos = pm.variables.get('expectedTitularesExactos');
+    const cuentaLongitud = pm.variables.get('expectedCuentaLongitud');
+    const verificarUnicode = pm.variables.get('verificarUnicode') === 'true';
+    const datos = r0.datos;
 
     pm.test(
       '[exito] respuestas[0].idSolicitud = "' + idSolEsperado + '"',
@@ -232,30 +279,173 @@
       pm.expect(r0.resultado).to.equal(0);
     });
     pm.test('[exito] respuestas[0].datos es objeto', function () {
-      pm.expect(r0.datos).to.be.an('object').and.not.null;
+      pm.expect(datos).to.be.an('object').and.not.null;
     });
     pm.test(
       '[exito] datos incluye banco, cuenta, producto, estadoCuenta, titulares',
       function () {
-        pm.expect(r0.datos).to.include.keys(
+        pm.expect(datos).to.include.keys(
           'banco',
           'cuenta',
           'producto',
           'estadoCuenta',
           'titulares'
         );
-        pm.expect(r0.datos.titulares).to.be.an('array').that.is.not.empty;
-        pm.expect(r0.datos.estadoCuenta).to.equal('0');
+        pm.expect(datos.titulares).to.be.an('array').that.is.not.empty;
+        pm.expect(datos.estadoCuenta).to.equal('0');
       }
     );
+
+    if (cuentaEsperada) {
+      pm.test(
+        '[exito] datos.cuenta = cuenta pedida "' + cuentaEsperada + '"',
+        function () {
+          pm.expect(String(datos.cuenta)).to.equal(String(cuentaEsperada));
+        }
+      );
+    }
+
+    if (bancoEsperado) {
+      pm.test(
+        '[exito] datos.banco = "' + bancoEsperado + '"',
+        function () {
+          pm.expect(datos.banco).to.equal(bancoEsperado);
+        }
+      );
+    }
+
+    pm.test('[exito] datos.cuenta solo digitos', function () {
+      pm.expect(String(datos.cuenta)).to.match(/^\d+$/);
+    });
+
+    if (cuentaLongitud) {
+      pm.test(
+        '[exito] datos.cuenta longitud = ' + cuentaLongitud,
+        function () {
+          pm.expect(String(datos.cuenta).length).to.equal(
+            Number(cuentaLongitud)
+          );
+        }
+      );
+    }
+
     if (productoEsperado) {
       pm.test(
         '[exito] datos.producto = "' + productoEsperado + '"',
         function () {
-          pm.expect(r0.datos.producto).to.equal(productoEsperado);
+          pm.expect(datos.producto).to.equal(productoEsperado);
+        }
+      );
+    } else {
+      pm.test('[exito] datos.producto es PACA o PACC', function () {
+        pm.expect(datos.producto).to.be.oneOf(['PACA', 'PACC']);
+      });
+    }
+
+    if (titularesExactos) {
+      pm.test(
+        '[exito] titulares.length = ' + titularesExactos,
+        function () {
+          pm.expect(datos.titulares.length).to.equal(
+            Number(titularesExactos)
+          );
         }
       );
     }
+
+    pm.test('[exito] cada titular no vacio', function () {
+      datos.titulares.forEach(function (titular, index) {
+        pm.expect(
+          titular,
+          'titulares[' + index + '] vacio o no string'
+        )
+          .to.be.a('string')
+          .and.not.empty;
+        pm.expect(titular.trim(), 'titulares[' + index + '] solo espacios')
+          .to.not.equal('');
+      });
+    });
+
+    if (verificarUnicode) {
+      pm.test(
+        '[exito] titulares sin corrupcion Unicode (±, Ã, Â)',
+        function () {
+          datos.titulares.forEach(function (titular, index) {
+            pm.expect(
+              titular,
+              'titulares[' + index + '] contiene ±'
+            ).to.not.include('±');
+            pm.expect(
+              titular,
+              'titulares[' + index + '] contiene Ã'
+            ).to.not.include('Ã');
+            pm.expect(
+              titular,
+              'titulares[' + index + '] contiene Â'
+            ).to.not.include('Â');
+          });
+        }
+      );
+    }
+
+    if (titularesClaro) {
+      pm.test(
+        '[exito] titulares.length coincide con seed Dynamo',
+        function () {
+          pm.expect(datos.titulares.length).to.equal(titularesClaro.length);
+        }
+      );
+
+      if (enmascarado) {
+        pm.test(
+          '[exito] titulares enmascarados segun util.js (floor(len/2) por palabra)',
+          function () {
+            const esperados = titularesClaro.map(enmascararTitular);
+            pm.expect(datos.titulares).to.deep.equal(esperados);
+          }
+        );
+
+        pm.test(
+          '[exito] titulares no vienen en claro (enmascaramiento aplicado)',
+          function () {
+            titularesClaro.forEach(function (claro, index) {
+              pm.expect(
+                datos.titulares[index],
+                'titular[' + index + '] igual al seed en claro'
+              ).to.not.equal(claro);
+            });
+          }
+        );
+
+        pm.test(
+          '[exito] cada titular contiene asteriscos de enmascaramiento',
+          function () {
+            datos.titulares.forEach(function (titular, index) {
+              const claro = titularesClaro[index];
+              const tienePalabraEnmascarable = claro
+                .split(' ')
+                .some(function (word) {
+                  return word.length > 1 && Math.trunc(word.length / 2) > 0;
+                });
+              if (tienePalabraEnmascarable) {
+                pm.expect(
+                  titular,
+                  'titulares[' + index + '] sin asteriscos'
+                ).to.include('*');
+              }
+            });
+          }
+        );
+      } else {
+        pm.test(
+          '[exito] titulares en claro segun seed Dynamo',
+          function () {
+            pm.expect(datos.titulares).to.deep.equal(titularesClaro);
+          }
+        );
+      }
+    }
+
     return;
   }
 

@@ -272,10 +272,10 @@ node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1013"
 node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1014"
 node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1015"
 node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1016"
-# Metodo 0001/3_respuestaExitosa — pendiente A11 (generador)
+# Metodo 0001/3_respuestaExitosa (8 validadores x 14 cuentas = 112)
 node run-newman.js vcn --folder "Metodo/0001/3_respuestaExitosa"
-node run-newman.js vcn --folder "Metodo/0001/3_respuestaExitosa/1_cuentaBasica"
-node run-newman.js vcn --folder "Metodo/0001/3_respuestaExitosa/6_mascaras"
+node run-newman.js vcn --folder "Metodo/0001/3_respuestaExitosa/1009"
+node run-newman.js vcn --folder "Metodo/0001/3_respuestaExitosa/1011"
 ```
 
 ### VCN — baseline `Metodo/0001` (VPN, 2026-07-06)
@@ -283,9 +283,10 @@ node run-newman.js vcn --folder "Metodo/0001/3_respuestaExitosa/6_mascaras"
 | Run | Comando | Escenarios | Assertions | Requests HTTP |
 |-----|---------|------------|------------|---------------|
 | **OK** | `node run-newman.js vcn --folder "Metodo/0001"` | 68 | **612/612** | 204 |
-| *(nuevo)* | `node run-newman.js vcn --folder "Metodo/0001/3_respuestaExitosa"` | 14 | *pendiente VPN* | 42 |
+| *(previo)* | `Metodo/0001/3_respuestaExitosa` (solo 1009) | 14 | **114/114** | 42 |
+| *(nuevo)* | `Metodo/0001/3_respuestaExitosa` (8 validadores) | **112** | *pendiente VPN* | 336 |
 
-Bloques en fuente: `1_cuenta` (20×413), `2_respuestaCanalValidador` (48×510–515), **`3_respuestaExitosa` (14×exito)**. Baseline colección completa sube **+14 escenarios** tras Newman VPN — [`logs/registro-vcn.md`](logs/registro-vcn.md).
+Bloques `Metodo/0001`: `1_cuenta` (20), `2_respuestaCanalValidador` (48), **`3_respuestaExitosa` (112)**.
 
 **Dynamo dev** (`tld-validador-dummy`, 25 cuentas): pegar JSON desde [`notas-sueltas/tld-validador-dummy-cuentas-vcn-dev.json`](../../notas-sueltas/tld-validador-dummy-cuentas-vcn-dev.json) y cargar con `file://` ([instrucciones](../../notas-sueltas/cargar-tld-validador-dummy-cuentas-vcn-dev.md)).
 
