@@ -75,14 +75,14 @@
   "480": "No se admite el tipo de identificador con el que se generó el QR.",
   "500": "Error interno",
   "504": "Petición de validación no existe",
-  "509": "Error inesperado en validador",
+  "509": "Error inesperado en el Canal Validador",
   "510": "Número de cuenta incorrecta",
   "511": "Número de cuenta cerrado",
   "512": "Número de cuenta bloqueado",
   "513": "Transacción no permitida",
   "514": "Falta información obligatoria de consulta",
   "515": "Razón regulatoria",
-  "599": "Error inesperado en validador",
+  "599": "Tiempo de espera agotado al llamar al Canal Validador",
   "600": "Error durante el llamado de la API de preguntas de seguridad",
   "999": "Error inesperado"
 }
