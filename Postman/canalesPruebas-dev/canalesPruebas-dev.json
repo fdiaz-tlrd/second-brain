@@ -1,6 +1,6 @@
 {
   "ambiente": "dev",
-  "actualizado": "2026-07-05",
+  "actualizado": "2026-07-06",
   "urls": {
     "matriz": "https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev",
     "matrizToken": "https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev/auth/token",
@@ -9,6 +9,8 @@
     "validadorApi": "https://tld-api-validador.dev.telered.internal/validar",
     "validadorVpc": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/validar",
     "validadorDummy": "https://tld-validador-dummy.dev.telered.internal",
+    "validadorDummyFallos": "https://tld-validador-dummy.dev.telered.internal/validar-fallos",
+    "validadorDummyFallosVpc": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/validar-fallos-con-token",
     "vcn": "https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre",
     "p2p": "https://tld-api-alias.dev.telered.internal/procesar",
     "p2m": "https://tld-api-p2m.dev.telered.internal/p2m",
@@ -1968,15 +1970,154 @@
         "canalNombre": "1021-Hollow Ether Reserve",
         "validadorApiKey": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
       }
+    },
+    {
+      "idCanal": "1022",
+      "swiftCode": "PROXGATO",
+      "escenarioValidadorFallos": {
+        "uso": "solo canal validador (no emisor)",
+        "metodos": [
+          "0001"
+        ],
+        "rol": "validador → dummy /validar-fallos (API key fija)",
+        "endpoint": "https://tld-validador-dummy.dev.telered.internal/validar-fallos",
+        "cuentasTrampa": [
+          "5000000516",
+          "5000000517",
+          "5000000518"
+        ]
+      },
+      "matriz": {
+        "nombreCanal": "Proxy Risk Management Group ",
+        "empresa": "PROXGATO",
+        "correo": "fdiaz@telered.com.pa",
+        "fechaCreacion": "2026-07-06 12:03:50"
+      },
+      "credenciales": {
+        "apiKey": "1bcb766498b42d25aef8196e206313eb88ad1a661",
+        "secretKey": "j7Gu49oc1tc71p2eH993l8h93Bi8eQf8jkLo79msk4rmtAe1eskab251R5e8a99899896do5d5muCA66cU97pe"
+      },
+      "cognito": {
+        "grupos": [
+          "tld-matriz-default",
+          "tld-matriz-validador"
+        ]
+      },
+      "plan": {
+        "idPlan": "d5223ccbba94805594e7aa16bdf21f82aabfa7afd",
+        "idPlanCanal": "8b6c297f988451e5aca367e8f1a32445a8966ddec",
+        "namePlan": "Plan dev GATO",
+        "estatus": "inactivo",
+        "exitoso": 0,
+        "fallido": 0,
+        "bloqueado": 0,
+        "fechaFin": "2026-07-21",
+        "fechaHora": "2026-07-06 12:08:39",
+        "idTransaccionAutopista": 502921783314519
+      },
+      "validador": {
+        "algoritmoCifrado": "aes-256-cbc",
+        "algoritmoAes": "aes-256-cbc",
+        "alias": "PROXGATO",
+        "tipoAuth": "fijo",
+        "useCertificado": false,
+        "estadoValidador": "Y",
+        "urlValidador": "https://tld-validador-dummy.dev.telered.internal/validar-fallos",
+        "llaveCifrado": "ba71cd57-f47d-41e4-a7b2-6abfb90a9aaa",
+        "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97",
+        "nombre": "Proxy Risk Management Group ",
+        "canalNombre": "1022-Proxy Risk Management Group ",
+        "validadorApiKey": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39",
+        "operaciones": [
+          {
+            "operacion": "0001",
+            "estado": "Y",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          }
+        ],
+        "urlOperacion0001": "https://tld-validador-dummy.dev.telered.internal/validar-fallos"
+      }
+    },
+    {
+      "idCanal": "1023",
+      "swiftCode": "OUTFGATO",
+      "escenarioValidadorFallos": {
+        "uso": "solo canal validador (no emisor)",
+        "metodos": [
+          "0001"
+        ],
+        "rol": "validador → dummy /validar-fallos-con-token (auth dinámico)",
+        "endpoint": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/validar-fallos-con-token",
+        "cuentasTrampa": [
+          "5000000516",
+          "5000000517",
+          "5000000518"
+        ]
+      },
+      "matriz": {
+        "nombreCanal": "Outfit Heritage Trust",
+        "empresa": "OUTFGATO",
+        "correo": "fdiaz@telered.com.pa",
+        "fechaCreacion": "2026-07-06 12:26:07"
+      },
+      "credenciales": {
+        "apiKey": "ebbedf2aab947225a2a0cb1e215e7ff5b9a99964c",
+        "secretKey": "CuO0eS9l1t7FDr2en8v3l929U9N8e5cv1U0vbtv0e4r1Fn8It43f5oMk65e8Aa89a9A96d6IsvNm4tqqhmtsq5"
+      },
+      "cognito": {
+        "grupos": [
+          "tld-matriz-validador",
+          "tld-matriz-default"
+        ]
+      },
+      "plan": {
+        "idPlan": "d5223ccbba94805594e7aa16bdf21f82aabfa7afd",
+        "idPlanCanal": "2165e0f2aa94dae5b9a8ba612808f151998f326c7",
+        "namePlan": "Plan dev GATO",
+        "estatus": "inactivo",
+        "exitoso": 0,
+        "fallido": 0,
+        "bloqueado": 0,
+        "fechaFin": "2026-07-21",
+        "fechaHora": "2026-07-06 12:28:10",
+        "idTransaccionAutopista": 675601783315690
+      },
+      "validador": {
+        "algoritmoCifrado": "aes-256-cbc",
+        "algoritmoAes": "aes-256-cbc",
+        "alias": "OUTFGATO",
+        "tipoAuth": "dinamico",
+        "useCertificado": false,
+        "estadoValidador": "Y",
+        "urlValidador": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/validar-fallos-con-token",
+        "llaveCifrado": "",
+        "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97",
+        "nombre": "Outfit Heritage Trust",
+        "canalNombre": "1023-Outfit Heritage Trust",
+        "codigoExp": "403",
+        "urlAuth": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/auth/token",
+        "jpathToken": "$.accessToken",
+        "jpathTiempo": "$.expiresIn",
+        "operaciones": [
+          {
+            "operacion": "0001",
+            "estado": "Y",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          }
+        ],
+        "urlOperacion0001": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/validar-fallos-con-token"
+      }
     }
   ],
   "dynamoExport": {
     "generadoEn": "2026-07-05T22:32:27Z",
     "region": "us-east-1",
     "resumen": {
-      "tld-validador-canal": 14,
-      "tld-validador-canal-operacion": 212,
-      "tld-matriz-planes-canales": 10,
+      "tld-validador-canal": 16,
+      "tld-validador-canal-operacion": 214,
+      "tld-matriz-planes-canales": 12,
       "sinRegistro": 9
     },
     "sinRegistro": [

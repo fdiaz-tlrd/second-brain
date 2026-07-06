@@ -1,7 +1,7 @@
 # Canales de prueba — dev
 
 **Ambiente:** dev  
-**Actualizado:** 2026-07-05 (export Dynamo `2026-07-05T22:32:27Z`)
+**Actualizado:** 2026-07-06 (canales 1022–1023 validar-fallos; export Dynamo pendiente)
 
 Datos maquinables: [`canalesPruebas-dev.json`](./canalesPruebas-dev.json)
 
@@ -20,6 +20,8 @@ Datos maquinables: [`canalesPruebas-dev.json`](./canalesPruebas-dev.json)
 | Validador API | `https://tld-api-validador.dev.telered.internal/validar` |
 | Validador VPC | `https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/validar` |
 | Validador dummy | `https://tld-validador-dummy.dev.telered.internal` |
+| Validador dummy fallos (fijo) | `https://tld-validador-dummy.dev.telered.internal/validar-fallos` |
+| Validador dummy fallos (token VPC) | `https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/validar-fallos-con-token` |
 | VCN | `https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre` |
 | P2P | `https://tld-api-alias.dev.telered.internal/procesar` |
 | P2M | `https://tld-api-p2m.dev.telered.internal/p2m` |
@@ -131,6 +133,8 @@ Grupos: token del canal → `cognito:groups` en el JWT.
 | 1019 | STELGATO | gcm | fijo | **no** | **sin filas operación** | sin registrar |
 | 1020 | NAMEGATO | gcm | fijo | **no** | **sin filas operación** | validador + default |
 | 1021 | HOLLGATO | cbc | fijo | sí | **sin filas operación** | validador + default |
+| 1022 | PROXGATO | cbc | fijo | sí | **solo 0001** (validador fallos) | validador + default |
+| 1023 | OUTFGATO | cbc | dinámico | sí | **solo 0001** (validador fallos) | validador + default |
 
 Conteo operaciones confirmado en export Dynamo 2026-07-05: **212** filas en `tld-validador-canal-operacion` (8 canales × 25 ops + canal 0001).
 
@@ -151,6 +155,8 @@ Conteo operaciones confirmado en export Dynamo 2026-07-05: **212** filas en `tld
 **1018 ARCHGATO** — canal en `tld-validador-canal` con `urlValidador` vacío y **cero** filas en `tld-validador-canal-operacion` (export 2026-07-05).
 
 **1021 HOLLGATO** — `estadoValidador` **N**; plan GATO sí; **sin** operaciones cargadas.
+
+**1022 PROXGATO** / **1023 OUTFGATO** — **solo rol validador** en método **0001** (VCN cuenta-nombre); apuntan a lambda `validar-fallos` del dummy. **No** requieren operaciones 0002–0025 ni uso como emisor. Cuentas trampa: `5000000516` (demora), `5000000517` (cifrado invertido), `5000000518` (respuesta inválida). Documentación lambda: repo `tld-validador-dummy`, `lambdas/validar-fallos/README.md`.
 
 **1017 TEYVGATO** — sin plan, sin operaciones, sin credenciales matriz; fila validador incompleta.
 
@@ -278,6 +284,24 @@ POST `.../auth/token`
 {
   "apiKey": "e1616581a99400e5b68fc8c5079b3f719989065b0",
   "secretKey": "tuaohb6j1t18bq2e7963l9bbdAk8e333j9a8ktf6J4rjmv4mu9u2O16u05eA8a9Ab9996dp5sCn629pgQ8DpNq"
+}
+```
+
+**1022 PROXGATO** (validador → `/validar-fallos`, auth fijo)
+
+```json
+{
+  "apiKey": "1bcb766498b42d25aef8196e206313eb88ad1a661",
+  "secretKey": "j7Gu49oc1tc71p2eH993l8h93Bi8eQf8jkLo79msk4rmtAe1eskab251R5e8a99899896do5d5muCA66cU97pe"
+}
+```
+
+**1023 OUTFGATO** (validador → `/validar-fallos-con-token`, auth dinámico)
+
+```json
+{
+  "apiKey": "ebbedf2aab947225a2a0cb1e215e7ff5b9a99964c",
+  "secretKey": "CuO0eS9l1t7FDr2en8v3l929U9N8e5cv1U0vbtv0e4r1Fn8It43f5oMk65e8Aa89a9A96d6IsvNm4tqqhmtsq5"
 }
 ```
 
