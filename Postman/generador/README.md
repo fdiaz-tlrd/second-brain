@@ -287,7 +287,7 @@ node run-newman.js vcn --folder "Metodo/0001/3_respuestaExitosa/6_mascaras"
 
 Bloques en fuente: `1_cuenta` (20×413), `2_respuestaCanalValidador` (48×510–515), **`3_respuestaExitosa` (14×exito)**. Baseline colección completa sube **+14 escenarios** tras Newman VPN — [`logs/registro-vcn.md`](logs/registro-vcn.md).
 
-**Dynamo dev** (`tld-validador-dummy`, 25 cuentas): pegar JSON desde [`notas-sueltas/tld-validador-dummy-cuentas-vcn-dev.json`](../../notas-sueltas/tld-validador-dummy-cuentas-vcn-dev.json) y cargar con **`fileb://`** ([instrucciones](../../notas-sueltas/cargar-tld-validador-dummy-cuentas-vcn-dev.md)). Titulares con **ñ**: verificar cuenta `1100015294` tras carga.
+**Dynamo dev** (`tld-validador-dummy`, 25 cuentas): pegar JSON desde [`notas-sueltas/tld-validador-dummy-cuentas-vcn-dev.json`](../../notas-sueltas/tld-validador-dummy-cuentas-vcn-dev.json) y cargar con `file://` ([instrucciones](../../notas-sueltas/cargar-tld-validador-dummy-cuentas-vcn-dev.md)).
 
 `--folder` = misma ruta que la carpeta seleccionada en Postman (sin el nombre de la colección). Ejemplo: en Postman seleccionas `General` → `2_reglaNegocio` → `1_idCanal` → usa `General/2_reglaNegocio/1_idCanal`.
 
