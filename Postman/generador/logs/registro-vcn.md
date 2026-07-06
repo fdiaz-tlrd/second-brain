@@ -4,6 +4,7 @@ Orden: **más reciente arriba**. Commitear `logs/` tras cada run en la **máquin
 
 | Fecha (UTC) | Carpeta | Requests | Tests | Resultado | Historial | Nota |
 |-------------|---------|----------|-------|-----------|-----------|------|
+| 2026-07-06T02:32:38.365Z | `Metodo/0001/3_respuestaExitosa` | 336 (fail 0) | 2074 (fail 0) | **OK** | [`2026-07-06T02-32-38Z_Metodo-0001-3_respuestaExitosa.json`](./historial/vcn/2026-07-06T02-32-38Z_Metodo-0001-3_respuestaExitosa.json) | — |
 | 2026-07-06T01:41:15.188Z | `Metodo/0001/3_respuestaExitosa` | 42 (fail 0) | 114 (fail 0) | **OK** | [`2026-07-06T01-41-15Z_Metodo-0001-3_respuestaExitosa.json`](./historial/vcn/2026-07-06T01-41-15Z_Metodo-0001-3_respuestaExitosa.json) | — |
 | 2026-07-06T01:40:07.342Z | `Metodo/0001/3_respuestaExitosa/6_mascaras` | 21 (fail 0) | 56 (fail 0) | **OK** | [`2026-07-06T01-40-07Z_Metodo-0001-3_respuestaExitosa-6_mascaras.json`](./historial/vcn/2026-07-06T01-40-07Z_Metodo-0001-3_respuestaExitosa-6_mascaras.json) | — |
 | 2026-07-06T01:39:12.346Z | `Metodo/0001/3_respuestaExitosa/1_cuentaBasica` | 3 (fail 0) | 8 (fail 0) | **OK** | [`2026-07-06T01-39-12Z_Metodo-0001-3_respuestaExitosa-1_cuentaBasica.json`](./historial/vcn/2026-07-06T01-39-12Z_Metodo-0001-3_respuestaExitosa-1_cuentaBasica.json) | — |
@@ -11,5 +12,4 @@ Orden: **más reciente arriba**. Commitear `logs/` tras cada run en la **máquin
 | 2026-07-05T23:43:08.779Z | `General/1_validaciones_js` | 195 (fail 0) | 390 (fail 0) | **OK** | [`2026-07-05T23-43-08Z_General-1_validaciones_js.json`](./historial/vcn/2026-07-05T23-43-08Z_General-1_validaciones_js.json) | — |
 | 2026-07-05T23:40:23.023Z | `(completo)` | 446 (fail 0) | 1098 (fail 0) | **OK** | [`2026-07-05T23-40-22Z_completo.json`](./historial/vcn/2026-07-05T23-40-22Z_completo.json) | — |
 | 2026-07-05T23:19:11.745Z | `(completo)` | 416 (fail 0) | 1008 (fail 0) | **OK** | [`2026-07-05T23-19-11Z_completo.json`](./historial/vcn/2026-07-05T23-19-11Z_completo.json) | — |
-| 2026-07-05T23:01:33.545Z | `Metodo` | 174 (fail 0) | 522 (fail 0) | **OK** | [`2026-07-05T23-01-33Z_Metodo.json`](./historial/vcn/2026-07-05T23-01-33Z_Metodo.json) | — |
 
