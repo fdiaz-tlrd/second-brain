@@ -6,7 +6,7 @@
   "403": "Canal emisor no tiene un plan de suscripción",
   "404": "Validador no existe",
   "405": "Error en descifrado canal emisor",
-  "406": "Error en cifrado canal validador, Error en descifrado canal validador",
+  "406": "Error en descifrado canal validador",
   "407": "Identificador no se encuentra registrado",
   "408": "Identificador o Alias ya está registrado en el directorio.",
   "409": "Error al validar el parámetro identificador",
