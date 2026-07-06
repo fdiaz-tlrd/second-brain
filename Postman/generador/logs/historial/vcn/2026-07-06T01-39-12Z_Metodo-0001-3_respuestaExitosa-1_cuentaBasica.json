@@ -1,0 +1,2436 @@
+{
+  "collection": {
+    "_": {
+      "postman_id": "b2d2d42a-8ad2-4425-aeba-5a1612af1d6c"
+    },
+    "item": [
+      {
+        "id": "d9d812a4-7164-4b60-8cb0-0d99480751fd",
+        "name": "1_cuentaBasica",
+        "item": [
+          {
+            "id": "a104d4d3-e6af-4d37-93de-d5493fd4bdef",
+            "name": "0001.3.1.1. cuenta feliz (exito)",
+            "request": {
+              "url": {
+                "path": [
+                  "descifrar"
+                ],
+                "host": [
+                  "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                ],
+                "query": [
+                  {
+                    "key": "tld",
+                    "value": "0"
+                  },
+                  {
+                    "key": "algoritmoCifrado",
+                    "value": "aes-256-cbc"
+                  }
+                ],
+                "variable": []
+              },
+              "method": "POST",
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CuentaFeliz}}\"\n                }\n            }\n        ]\n    }\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "prerequest",
+                "script": {
+                  "id": "33a16aba-9fec-4fa5-bc2d-5c62e02fb4d3",
+                  "type": "text/javascript",
+                  "exec": [
+                    "pm.variables.set('expectedHttpStatus', 200);",
+                    "pm.variables.set('expectedCodigoError', 0);",
+                    "pm.variables.set('expectedTipo', 'exito');",
+                    "pm.variables.unset('expectedProducto');"
+                  ],
+                  "_lastExecutionId": "f394a7cf-05df-41d4-87eb-d8b12ad0fe48"
+                }
+              }
+            ]
+          }
+        ],
+        "event": []
+      }
+    ],
+    "event": [
+      {
+        "listen": "prerequest",
+        "script": {
+          "id": "6d8c8cb8-94db-4315-94cc-6020316d8eda",
+          "type": "text/javascript",
+          "exec": [
+            "// Pre-request de raíz — VCN Escenarios error",
+            "// Basado en Postman_documentacion/referenciaBase + Postman_documentacion/documentacion/scriptsRaizReferencia.md",
+            "",
+            "(function () {",
+            "  const TIMEOUT_MS = 60000;",
+            "",
+            "  function cvSet(key, value) {",
+            "    pm.collectionVariables.set(key, value);",
+            "  }",
+            "",
+            "  function cvGet(key) {",
+            "    return pm.collectionVariables.get(key);",
+            "  }",
+            "",
+            "  function resetRuntime() {",
+            "    [",
+            "      'PROCESAR_STATUS_CODE',",
+            "      'PROCESAR_RESPONSE_BODY',",
+            "      'PAYLOAD_ID_PETICION',",
+            "      'PAYLOAD_METODO',",
+            "      'PAYLOAD_ID_SOLICITUD_0',",
+            "      'FLOW_FAILED',",
+            "      'FLOW_ERROR',",
+            "      'END_POINT_TLD'",
+            "    ].forEach(function (key) {",
+            "      cvSet(key, '');",
+            "    });",
+            "  }",
+            "",
+            "  function resolveEndPointTld() {",
+            "    const nivel = String(pm.environment.get('NIVEL_EJECUCION') || '')",
+            "      .trim()",
+            "      .toUpperCase();",
+            "    let sourceKey = 'END_POINT_TLD_VCN';",
+            "",
+            "    if (nivel === 'MATRIZ') {",
+            "      sourceKey = 'END_POINT_TLD_MATRIZ';",
+            "    } else if (nivel === 'VALIDADOR') {",
+            "      sourceKey = 'END_POINT_TLD_VALIDADOR';",
+            "    } else if (nivel === 'VCN') {",
+            "      sourceKey = 'END_POINT_TLD_VCN';",
+            "    }",
+            "",
+            "    const url = pm.environment.get(sourceKey) || '';",
+            "    cvSet('END_POINT_TLD', url);",
+            "    return { nivel: nivel, sourceKey: sourceKey, url: url };",
+            "  }",
+            "",
+            "  function failFlow(error, detalle) {",
+            "    const body = JSON.stringify({ _error: error, _detalle: detalle });",
+            "    cvSet('FLOW_FAILED', '1');",
+            "    cvSet('FLOW_ERROR', body);",
+            "    cvSet('PROCESAR_STATUS_CODE', '-1');",
+            "    cvSet('PROCESAR_RESPONSE_BODY', body);",
+            "  }",
+            "",
+            "  function is2xx(code) {",
+            "    return code >= 200 && code < 300;",
+            "  }",
+            "",
+            "  function sendRequestAsync(options) {",
+            "    return new Promise(function (resolve, reject) {",
+            "      pm.sendRequest(",
+            "        Object.assign({}, options, { timeout: TIMEOUT_MS }),",
+            "        function (err, res) {",
+            "          if (err) {",
+            "            reject(err);",
+            "            return;",
+            "          }",
+            "          resolve(res);",
+            "        }",
+            "      );",
+            "    });",
+            "  }",
+            "",
+            "  async function obtenerTokenMatriz() {",
+            "    const authUrl = pm.environment.get('MATRIZ_AUTH_TOKEN_URL') || '';",
+            "    const apiKey = pm.environment.get('MATRIZ_API_KEY') || '';",
+            "    const secretKey = pm.environment.get('MATRIZ_SECRET_KEY') || '';",
+            "",
+            "    const resToken = await sendRequestAsync({",
+            "      url: authUrl,",
+            "      method: 'POST',",
+            "      header: { 'Content-Type': 'application/json' },",
+            "      body: {",
+            "        mode: 'raw',",
+            "        raw: JSON.stringify({ apiKey: apiKey, secretKey: secretKey })",
+            "      }",
+            "    });",
+            "",
+            "    if (!is2xx(resToken.code)) {",
+            "      throw new Error(",
+            "        'fallo /auth/token HTTP ' + resToken.code + ': ' + resToken.text()",
+            "      );",
+            "    }",
+            "",
+            "    let tokenPayload;",
+            "    try {",
+            "      tokenPayload = resToken.json();",
+            "    } catch (parseError) {",
+            "      throw new Error('respuesta /auth/token no es JSON valido');",
+            "    }",
+            "",
+            "    const accessToken = tokenPayload && tokenPayload.accessToken;",
+            "    if (!accessToken || String(accessToken).trim() === '') {",
+            "      throw new Error('respuesta /auth/token sin accessToken');",
+            "    }",
+            "",
+            "    return String(accessToken);",
+            "  }",
+            "",
+            "  function aplicarMutacionPostCifrar(obj, mutacion) {",
+            "    if (!mutacion || typeof mutacion !== 'object') {",
+            "      return;",
+            "    }",
+            "    if (mutacion.$eliminar) {",
+            "      const keys = Array.isArray(mutacion.$eliminar)",
+            "        ? mutacion.$eliminar",
+            "        : [mutacion.$eliminar];",
+            "      keys.forEach(function (key) {",
+            "        delete obj[key];",
+            "      });",
+            "    }",
+            "    Object.keys(mutacion).forEach(function (key) {",
+            "      if (key === '$eliminar') {",
+            "        return;",
+            "      }",
+            "      obj[key] = mutacion[key];",
+            "    });",
+            "  }",
+            "",
+            "  resetRuntime();",
+            "",
+            "  const rawBody =",
+            "    pm.request.body && pm.request.body.raw ? pm.request.body.raw : null;",
+            "  if (!rawBody) {",
+            "    return;",
+            "  }",
+            "",
+            "  const param = pm.request.url.query.get('algoritmoCifrado');",
+            "  const algoritmoAes = pm.variables.replaceIn(param || '');",
+            "  pm.environment.set('ALGORITMO_AES', algoritmoAes);",
+            "",
+            "  const envRequired = [",
+            "    { key: 'DOMAIN_TLD_VALIDADOR_DUMMY', value: pm.environment.get('DOMAIN_TLD_VALIDADOR_DUMMY') }",
+            "  ];",
+            "  const envMissing = envRequired",
+            "    .filter(function (item) {",
+            "      return !item.value || String(item.value).trim() === '';",
+            "    })",
+            "    .map(function (item) {",
+            "      return item.key;",
+            "    });",
+            "",
+            "  if (!algoritmoAes) {",
+            "    envMissing.push('query algoritmoCifrado');",
+            "  }",
+            "",
+            "  const endPoint = resolveEndPointTld();",
+            "  if (!endPoint.url || String(endPoint.url).trim() === '') {",
+            "    envMissing.push(endPoint.sourceKey);",
+            "  }",
+            "",
+            "  if (endPoint.nivel === 'MATRIZ') {",
+            "    [",
+            "      'MATRIZ_AUTH_TOKEN_URL',",
+            "      'MATRIZ_API_KEY',",
+            "      'MATRIZ_SECRET_KEY'",
+            "    ].forEach(function (key) {",
+            "      const value = pm.environment.get(key);",
+            "      if (!value || String(value).trim() === '') {",
+            "        envMissing.push(key);",
+            "      }",
+            "    });",
+            "  }",
+            "",
+            "  if (envMissing.length > 0) {",
+            "    failFlow(",
+            "      'configuracion incompleta',",
+            "      'Faltan variables de entorno: ' + envMissing.join(', ')",
+            "    );",
+            "    return;",
+            "  }",
+            "",
+            "  const resolvedBody = pm.variables.replaceIn(rawBody);",
+            "  let payload = null;",
+            "",
+            "  try {",
+            "    payload = JSON.parse(resolvedBody);",
+            "  } catch (parseError) {",
+            "    failFlow('body JSON invalido', parseError.message);",
+            "    return;",
+            "  }",
+            "",
+            "  const bodyRawInvalido =",
+            "    payload && typeof payload.__envioBodyRawInvalido === 'string'",
+            "      ? payload.__envioBodyRawInvalido",
+            "      : null;",
+            "  if (bodyRawInvalido !== null) {",
+            "    const procesarUrlDirecto = endPoint.url;",
+            "    (async function runEnvioBodyRawInvalido() {",
+            "      try {",
+            "        const headersProcesar = { 'Content-Type': 'application/json' };",
+            "        if (endPoint.nivel === 'MATRIZ') {",
+            "          const accessToken = await obtenerTokenMatriz();",
+            "          headersProcesar.Authorization = 'Bearer ' + accessToken;",
+            "        }",
+            "        const resProcesar = await sendRequestAsync({",
+            "          url: procesarUrlDirecto,",
+            "          method: 'POST',",
+            "          header: headersProcesar,",
+            "          body: { mode: 'raw', raw: bodyRawInvalido }",
+            "        });",
+            "        cvSet('FLOW_FAILED', '0');",
+            "        cvSet('FLOW_ERROR', '');",
+            "        cvSet('PROCESAR_STATUS_CODE', String(resProcesar.code));",
+            "        cvSet('PROCESAR_RESPONSE_BODY', resProcesar.text());",
+            "        pm.request.body.update(resProcesar.text());",
+            "        pm.request.headers.upsert({ key: 'Content-Type', value: 'application/json' });",
+            "      } catch (networkError) {",
+            "        failFlow(",
+            "          'error de red enviando body JSON invalido',",
+            "          networkError && networkError.message",
+            "            ? networkError.message",
+            "            : String(networkError)",
+            "        );",
+            "      }",
+            "    })();",
+            "    return;",
+            "  }",
+            "",
+            "  const mutacionPostCifrar = payload.__mutacionPostCifrar || null;",
+            "  if (mutacionPostCifrar) {",
+            "    delete payload.__mutacionPostCifrar;",
+            "  }",
+            "",
+            "  const bodyParaCifrar = JSON.stringify(payload);",
+            "",
+            "  const idPeticion =",
+            "    payload && payload.peticion && payload.peticion.idPeticion",
+            "      ? payload.peticion.idPeticion",
+            "      : '';",
+            "  const metodo =",
+            "    payload && payload.peticion && payload.peticion.metodo",
+            "      ? payload.peticion.metodo",
+            "      : '';",
+            "  const idSolicitud =",
+            "    payload &&",
+            "    payload.peticion &&",
+            "    payload.peticion.solicitudes &&",
+            "    payload.peticion.solicitudes[0]",
+            "      ? payload.peticion.solicitudes[0].idSolicitud",
+            "      : '';",
+            "",
+            "  cvSet('PAYLOAD_ID_PETICION', idPeticion);",
+            "  cvSet('PAYLOAD_METODO', metodo);",
+            "  cvSet('PAYLOAD_ID_SOLICITUD_0', idSolicitud);",
+            "",
+            "  console.info(",
+            "    '[VCN raiz] NIVEL_EJECUCION=' +",
+            "      (endPoint.nivel || '(default VCN)') +",
+            "      ' END_POINT_TLD desde ' +",
+            "      endPoint.sourceKey +",
+            "      ' ALGORITMO_AES=' +",
+            "      algoritmoAes +",
+            "      ' idPeticion=' +",
+            "      idPeticion +",
+            "      ' metodo=' +",
+            "      metodo +",
+            "      ' idSolicitud=' +",
+            "      idSolicitud",
+            "  );",
+            "",
+            "  const cifrarUrl = pm.variables.replaceIn(",
+            "    '{{DOMAIN_TLD_VALIDADOR_DUMMY}}/cifrar?tld=1&algoritmoCifrado={{ALGORITMO_AES}}'",
+            "  );",
+            "  const procesarUrl = endPoint.url;",
+            "",
+            "  (async function runFlow() {",
+            "    try {",
+            "      const resCifrar = await sendRequestAsync({",
+            "        url: cifrarUrl,",
+            "        method: 'POST',",
+            "        header: { 'Content-Type': 'application/json' },",
+            "        body: { mode: 'raw', raw: bodyParaCifrar }",
+            "      });",
+            "",
+            "      if (!is2xx(resCifrar.code)) {",
+            "        failFlow(",
+            "          'fallo /cifrar',",
+            "          'HTTP ' + resCifrar.code + ': ' + resCifrar.text()",
+            "        );",
+            "        return;",
+            "      }",
+            "",
+            "      let bodyProcesar = resCifrar.text();",
+            "      if (mutacionPostCifrar) {",
+            "        const cifrado = JSON.parse(bodyProcesar);",
+            "        aplicarMutacionPostCifrar(cifrado, mutacionPostCifrar);",
+            "        bodyProcesar = JSON.stringify(cifrado);",
+            "      }",
+            "",
+            "      const headersProcesar = { 'Content-Type': 'application/json' };",
+            "      if (endPoint.nivel === 'MATRIZ') {",
+            "        const accessToken = await obtenerTokenMatriz();",
+            "        headersProcesar.Authorization = 'Bearer ' + accessToken;",
+            "      }",
+            "",
+            "      const resProcesar = await sendRequestAsync({",
+            "        url: procesarUrl,",
+            "        method: 'POST',",
+            "        header: headersProcesar,",
+            "        body: { mode: 'raw', raw: bodyProcesar }",
+            "      });",
+            "",
+            "      cvSet('FLOW_FAILED', '0');",
+            "      cvSet('FLOW_ERROR', '');",
+            "      cvSet('PROCESAR_STATUS_CODE', String(resProcesar.code));",
+            "      cvSet('PROCESAR_RESPONSE_BODY', resProcesar.text());",
+            "      pm.request.body.update(resProcesar.text());",
+            "      pm.request.headers.upsert({ key: 'Content-Type', value: 'application/json' });",
+            "    } catch (networkError) {",
+            "      failFlow(",
+            "        'error de red en flujo raiz',",
+            "        networkError && networkError.message",
+            "          ? networkError.message",
+            "          : String(networkError)",
+            "      );",
+            "    }",
+            "  })();",
+            "})();"
+          ],
+          "_lastExecutionId": "1fd5a055-7990-4a3c-a019-01ca099f2bc9"
+        }
+      },
+      {
+        "listen": "test",
+        "script": {
+          "id": "b276a79d-1a5c-46ee-855d-3d5bfe27b6c6",
+          "type": "text/javascript",
+          "exec": [
+            "// Post-response (Tests) de raíz — VCN Escenarios error",
+            "// Basado en Postman_documentacion/referenciaBase + Postman_documentacion/documentacion/scriptsRaizReferencia.md",
+            "",
+            "(function () {",
+            "  function cvGet(key) {",
+            "    return pm.collectionVariables.get(key);",
+            "  }",
+            "",
+            "  function isVarMissing(name) {",
+            "    const value = pm.variables.get(name);",
+            "    return value === undefined || value === null || String(value).trim() === '';",
+            "  }",
+            "",
+            "  function parseFlowError(raw) {",
+            "    if (!raw) {",
+            "      return 'sin detalle';",
+            "    }",
+            "    try {",
+            "      const parsed = JSON.parse(raw);",
+            "      if (parsed._error) {",
+            "        return parsed._error + ': ' + (parsed._detalle || '');",
+            "      }",
+            "    } catch (e) {",
+            "      // usar texto tal cual",
+            "    }",
+            "    return raw;",
+            "  }",
+            "",
+            "  function resolveMensajeCatalogo(codigo) {",
+            "    const raw = cvGet('CATALOGO_GENERAL');",
+            "    if (!raw) {",
+            "      return {",
+            "        ok: false,",
+            "        error: 'Falta CATALOGO_GENERAL (regenerar coleccion con ensamblador)',",
+            "      };",
+            "    }",
+            "    let catalogo;",
+            "    try {",
+            "      catalogo = JSON.parse(raw);",
+            "    } catch (e) {",
+            "      return { ok: false, error: 'CATALOGO_GENERAL no es JSON valido' };",
+            "    }",
+            "    const mensaje = catalogo[String(codigo)];",
+            "    if (!mensaje) {",
+            "      return {",
+            "        ok: false,",
+            "        error: 'Codigo ' + codigo + ' no esta en CATALOGO_GENERAL',",
+            "      };",
+            "    }",
+            "    return { ok: true, mensaje: mensaje };",
+            "  }",
+            "",
+            "  const requiredVars = [",
+            "    'expectedHttpStatus',",
+            "    'expectedCodigoError',",
+            "    'expectedTipo',",
+            "  ];",
+            "  const missingVars = requiredVars.filter(isVarMissing);",
+            "  const tipo = pm.variables.get('expectedTipo');",
+            "",
+            "  if (missingVars.length > 0) {",
+            "    pm.test(",
+            "      'Request mal configurado: faltan ' + missingVars.join(', '),",
+            "      function () {",
+            "        pm.expect.fail(",
+            "          'Definir en Pre-request del request: ' + missingVars.join(', ')",
+            "        );",
+            "      }",
+            "    );",
+            "    return;",
+            "  }",
+            "",
+            "  const httpEsperado = Number(pm.variables.get('expectedHttpStatus'));",
+            "  const codigoEsperado = Number(pm.variables.get('expectedCodigoError'));",
+            "",
+            "  if (cvGet('FLOW_FAILED') === '1') {",
+            "    const detalle = parseFlowError(",
+            "      cvGet('FLOW_ERROR') || cvGet('PROCESAR_RESPONSE_BODY')",
+            "    );",
+            "    pm.test('[Flujo raiz] fallo antes de /descifrar — ' + detalle, function () {",
+            "      pm.expect.fail(detalle);",
+            "    });",
+            "    return;",
+            "  }",
+            "",
+            "  const httpReal = Number(cvGet('PROCESAR_STATUS_CODE'));",
+            "  pm.test(",
+            "    '[Lambda VCN] HTTP status = ' + httpEsperado + ' (real: ' + httpReal + ')',",
+            "    function () {",
+            "      pm.expect(httpReal).to.equal(httpEsperado);",
+            "    }",
+            "  );",
+            "",
+            "  pm.test(",
+            "    '[Dummy /descifrar] HTTP status 2xx (real: ' + pm.response.code + ')',",
+            "    function () {",
+            "      pm.expect(pm.response.code).to.be.at.least(200).and.below(300);",
+            "    }",
+            "  );",
+            "",
+            "  let json = null;",
+            "  try {",
+            "    json = pm.response.json();",
+            "  } catch (e) {",
+            "    // queda null",
+            "  }",
+            "",
+            "  pm.test('[Dummy /descifrar] respuesta JSON parseable', function () {",
+            "    pm.expect(json, 'pm.response.json() fallo').to.not.be.null;",
+            "  });",
+            "",
+            "  if (!json) {",
+            "    return;",
+            "  }",
+            "",
+            "  const inner = (json && json.respuesta) || json;",
+            "",
+            "  if (tipo === 'general') {",
+            "    const resolved = resolveMensajeCatalogo(codigoEsperado);",
+            "    pm.test(",
+            "      '[General] catalogo resuelve mensaje para codigo ' + codigoEsperado,",
+            "      function () {",
+            "        if (!resolved.ok) {",
+            "          pm.expect.fail(resolved.error);",
+            "        }",
+            "      }",
+            "    );",
+            "    if (!resolved.ok) {",
+            "      return;",
+            "    }",
+            "",
+            "    const mensajeEsperado = resolved.mensaje;",
+            "",
+            "    pm.test('[General] codigoError = ' + codigoEsperado, function () {",
+            "      pm.expect(inner.codigoError).to.equal(codigoEsperado);",
+            "    });",
+            "    pm.test('[General] mensajeError = \"' + mensajeEsperado + '\"', function () {",
+            "      pm.expect(inner.mensajeError).to.equal(mensajeEsperado);",
+            "    });",
+            "    return;",
+            "  }",
+            "",
+            "  if (tipo === 'parametro' || tipo === 'metodo') {",
+            "    const resolved = resolveMensajeCatalogo(codigoEsperado);",
+            "    pm.test(",
+            "      '[' +",
+            "        tipo +",
+            "        '] catalogo resuelve referencia CloudWatch para codigo ' +",
+            "        codigoEsperado,",
+            "      function () {",
+            "        if (!resolved.ok) {",
+            "          pm.expect.fail(resolved.error);",
+            "        }",
+            "      }",
+            "    );",
+            "    if (!resolved.ok) {",
+            "      return;",
+            "    }",
+            "",
+            "    const mensajeCloudWatch = resolved.mensaje;",
+            "",
+            "    pm.test('[Dummy /descifrar] estructura inner.respuestas[0] presente', function () {",
+            "      pm.expect(inner)",
+            "        .to.have.property('respuestas')",
+            "        .that.is.an('array')",
+            "        .with.lengthOf.at.least(1);",
+            "    });",
+            "",
+            "    const r0 = inner.respuestas && inner.respuestas[0];",
+            "    if (!r0) {",
+            "      return;",
+            "    }",
+            "",
+            "    const idSolEsperado = cvGet('PAYLOAD_ID_SOLICITUD_0');",
+            "",
+            "    pm.test(",
+            "      '[' + tipo + '] respuestas[0].idSolicitud = \"' + idSolEsperado + '\"',",
+            "      function () {",
+            "        pm.expect(r0.idSolicitud).to.equal(idSolEsperado);",
+            "      }",
+            "    );",
+            "    pm.test(",
+            "      '[' + tipo + '] respuestas[0].resultado = ' + codigoEsperado,",
+            "      function () {",
+            "        pm.expect(r0.resultado).to.equal(codigoEsperado);",
+            "      }",
+            "    );",
+            "    pm.test('[' + tipo + '] respuestas[0].datos es null o ausente', function () {",
+            "      pm.expect(r0.datos == null).to.be.true;",
+            "    });",
+            "    pm.test(",
+            "      '[' +",
+            "        tipo +",
+            "        '] CloudWatch — referencia (no en response): \"' +",
+            "        mensajeCloudWatch +",
+            "        '\"',",
+            "      function () {",
+            "        pm.expect(",
+            "          mensajeCloudWatch,",
+            "          'Referencia informativa para buscar en CloudWatch'",
+            "        )",
+            "          .to.be.a('string')",
+            "          .and.not.empty;",
+            "      }",
+            "    );",
+            "    return;",
+            "  }",
+            "",
+            "  if (tipo === 'exito') {",
+            "    pm.test('[Dummy /descifrar] estructura inner.respuestas[0] presente', function () {",
+            "      pm.expect(inner)",
+            "        .to.have.property('respuestas')",
+            "        .that.is.an('array')",
+            "        .with.lengthOf.at.least(1);",
+            "    });",
+            "",
+            "    const r0 = inner.respuestas && inner.respuestas[0];",
+            "    if (!r0) {",
+            "      return;",
+            "    }",
+            "",
+            "    const idSolEsperado = cvGet('PAYLOAD_ID_SOLICITUD_0');",
+            "    const productoEsperado = pm.variables.get('expectedProducto');",
+            "",
+            "    pm.test(",
+            "      '[exito] respuestas[0].idSolicitud = \"' + idSolEsperado + '\"',",
+            "      function () {",
+            "        pm.expect(r0.idSolicitud).to.equal(idSolEsperado);",
+            "      }",
+            "    );",
+            "    pm.test('[exito] respuestas[0].resultado = 0', function () {",
+            "      pm.expect(r0.resultado).to.equal(0);",
+            "    });",
+            "    pm.test('[exito] respuestas[0].datos es objeto', function () {",
+            "      pm.expect(r0.datos).to.be.an('object').and.not.null;",
+            "    });",
+            "    pm.test(",
+            "      '[exito] datos incluye banco, cuenta, producto, estadoCuenta, titulares',",
+            "      function () {",
+            "        pm.expect(r0.datos).to.include.keys(",
+            "          'banco',",
+            "          'cuenta',",
+            "          'producto',",
+            "          'estadoCuenta',",
+            "          'titulares'",
+            "        );",
+            "        pm.expect(r0.datos.titulares).to.be.an('array').that.is.not.empty;",
+            "        pm.expect(r0.datos.estadoCuenta).to.equal('0');",
+            "      }",
+            "    );",
+            "    if (productoEsperado) {",
+            "      pm.test(",
+            "        '[exito] datos.producto = \"' + productoEsperado + '\"',",
+            "        function () {",
+            "          pm.expect(r0.datos.producto).to.equal(productoEsperado);",
+            "        }",
+            "      );",
+            "    }",
+            "    return;",
+            "  }",
+            "",
+            "  pm.test('expectedTipo invalido: \"' + tipo + '\"', function () {",
+            "    pm.expect.fail('Usar general, parametro, metodo o exito');",
+            "  });",
+            "})();"
+          ],
+          "_lastExecutionId": "9da78d82-b089-436e-8a69-8c095f03f92f"
+        }
+      }
+    ],
+    "variable": [
+      {
+        "type": "any",
+        "value": "{\"0\":\"Operación exitosa\",\"400\":\"Error en la petición original\",\"401\":\"Canal emisor no existe\",\"402\":\"Canal validador no disponible\",\"403\":\"Canal emisor no tiene un plan de suscripción\",\"404\":\"Validador no existe\",\"405\":\"Error en descifrado canal emisor\",\"406\":\"Error en cifrado canal validador, Error en descifrado canal validador\",\"407\":\"Identificador no se encuentra registrado\",\"408\":\"Identificador o Alias ya está registrado en el directorio.\",\"409\":\"Error al validar el parámetro identificador\",\"410\":\"Error al validar el parámetro tipoIdentificador\",\"411\":\"Identificador dado de baja\",\"412\":\"El valor del parámetro banco no corresponde al canal\",\"413\":\"Error al validar el parámetro cuenta\",\"414\":\"Error al validar el parámetro banco\",\"416\":\"Identificador del alias no registrado\",\"418\":\"Método no soportado\",\"419\":\"Los parámetros identificador y tipoIdentificador son requeridos\",\"420\":\"Respuestas inválidas\",\"421\":\"Error al validar el parámetro producto\",\"423\":\"Identificador del alias ya se encuentra registrado para el banco\",\"424\":\"Cantidad de bancos al máximo\",\"425\":\"Cantidad de solicitudes no permitidas\",\"426\":\"Tipo de baja no soportada\",\"427\":\"Arreglo de respuestas ausente o su contenido es inválido\",\"428\":\"Error al validar el parámetro idPregunta\",\"429\":\"Error al validar el parámetro respuesta\",\"430\":\"Se superó el límite de intentos fallidos en las preguntas de seguridad\",\"431\":\"Campo idSolicitud no cumple con los criterios\",\"432\":\"Error al validar el parámetro ciudadComercio\",\"434\":\"Campo identificador no corresponde a los datos registrados\",\"436\":\"Error al validar el parámetro nombreAcreedor\",\"437\":\"Error al validar el parámetro descripción\",\"438\":\"Identificador del comercio ya se encuentra registrado para el banco\",\"439\":\"Identificador del comercio ya se encuentra registrado\",\"440\":\"Identificador del comercio registrado anteriormente para el banco\",\"441\":\"Identificador del comercio no registrado\",\"442\":\"El identificador del comercio debe corresponder a un comercio activo\",\"443\":\"Error al validar el parámetro estado\",\"444\":\"Error al validar el parámetro id\",\"445\":\"El prefijo Código SWIFT del idPeticion no coincide con el canal emisor\",\"446\":\"Error al validar el parámetro nombreComercio\",\"447\":\"Error al validar el parámetro mcc\",\"448\":\"El mcc no se encuentra registrado\",\"449\":\"Error al validar el parámetro logo\",\"450\":\"Error al validar el parámetro correo\",\"451\":\"Error al validar el parámetro busquedaCantidad\",\"452\":\"Error al validar el parámetro busquedaIdentificadorComercio\",\"453\":\"Error al validar el parámetro busquedaPaginaToken\",\"455\":\"Error al validar el parámetro respuestas\",\"456\":\"Error al validar el parámetro montoBase\",\"457\":\"Error al calcular mdr para el mcc del Comercio\",\"458\":\"Error al validar el parámetro p2mPagoId\",\"459\":\"Error al validar el parámetro estadoCargo\",\"460\":\"El parámetro monto debe ser la suma de los parámetros montoBase, impuesto y propina\",\"462\":\"Error al validar el parámetro fechaVencimiento\",\"463\":\"Error al validar el parámetro cantidadLecturas\",\"464\":\"Error al validar el parámetro qrTipo\",\"465\":\"Error al validar el parámetro monto\",\"466\":\"Error al validar el parámetro impuesto\",\"467\":\"Error al validar el parámetro propina\",\"468\":\"Error al validar el parámetro tipo\",\"470\":\"Error validando en QR Payment\",\"471\":\"Error validando en QR Payment\",\"472\":\"Error al validar el parámetro canalPago\",\"473\":\"Error al validar el campo qrCode\",\"474\":\"Error al validar el parámetro moneda\",\"475\":\"El p2mPagoId no puede corresponder a una Solicitud de Pago procesada\",\"476\":\"Error validando en QR Payment\",\"477\":\"No se encuentra disponible el identificador del acreedor del QR.\",\"478\":\"Error al validar el parámetro busquedaNombreComercio\",\"479\":\"Error al validar el parámetro identificadorComercio\",\"480\":\"No se admite el tipo de identificador con el que se generó el QR.\",\"500\":\"Error interno\",\"504\":\"Petición de validación no existe\",\"509\":\"Error inesperado en validador\",\"510\":\"Número de cuenta incorrecta\",\"511\":\"Número de cuenta cerrado\",\"512\":\"Número de cuenta bloqueado\",\"513\":\"Transacción no permitida\",\"514\":\"Falta información obligatoria de consulta\",\"515\":\"Razón regulatoria\",\"599\":\"Error inesperado en validador\",\"600\":\"Error durante el llamado de la API de preguntas de seguridad\",\"999\":\"Error inesperado\"}",
+        "key": "CATALOGO_GENERAL"
+      }
+    ],
+    "info": {
+      "_postman_id": "b2d2d42a-8ad2-4425-aeba-5a1612af1d6c",
+      "name": "VCN Escenarios error — Metodo/0001/3_respuestaExitosa/1_cuentaBasica",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "description": {
+        "content": "Colección generada desde la fuente en VCN Escenarios error/.",
+        "type": "text/plain"
+      }
+    }
+  },
+  "environment": {
+    "_": {
+      "postman_variable_scope": "environment",
+      "postman_exported_at": "2026-07-04T17:10:00.000Z",
+      "postman_exported_using": "Postman/12.12.6"
+    },
+    "id": "a8f3c2e1-4b5d-6e7f-8a9b-0c1d2e3f4a5b",
+    "name": "VCN Escenarios error - desarrollo",
+    "values": [
+      {
+        "type": "any",
+        "value": "https://tld-validador-dummy.dev.telered.internal",
+        "key": "DOMAIN_TLD_VALIDADOR_DUMMY"
+      },
+      {
+        "type": "any",
+        "value": "https://kgkis7ekbj-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/cuenta-nombre",
+        "key": "END_POINT_TLD_VCN"
+      },
+      {
+        "type": "any",
+        "value": "https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev/validador/validar",
+        "key": "END_POINT_TLD_MATRIZ"
+      },
+      {
+        "type": "any",
+        "value": "https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev/auth/token",
+        "key": "MATRIZ_AUTH_TOKEN_URL"
+      },
+      {
+        "type": "any",
+        "value": "c4481f99364a45d1843c475a728894a5",
+        "key": "MATRIZ_API_KEY"
+      },
+      {
+        "type": "any",
+        "value": "6bc9d69a676d9f869ab438c5369ec16388b8b7da6f3ddf",
+        "key": "MATRIZ_SECRET_KEY"
+      },
+      {
+        "type": "any",
+        "value": "https://tld-api-validador.dev.telered.internal/validar",
+        "key": "END_POINT_TLD_VALIDADOR"
+      },
+      {
+        "type": "any",
+        "value": "VCN",
+        "key": "NIVEL_EJECUCION"
+      },
+      {
+        "type": "any",
+        "value": "1008",
+        "key": "CANAL_EMISOR"
+      },
+      {
+        "type": "any",
+        "value": "1013",
+        "key": "CANAL_EMISOR_GCM"
+      },
+      {
+        "type": "any",
+        "value": "1020",
+        "key": "CANAL_EMISOR_SIN_PLAN"
+      },
+      {
+        "type": "any",
+        "value": "1019",
+        "key": "CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS"
+      },
+      {
+        "type": "any",
+        "value": "1018",
+        "key": "CANAL_EMISOR_SIN_METODO"
+      },
+      {
+        "type": "any",
+        "value": "ARCHGATO",
+        "key": "SWIFT_CANAL_EMISOR_SIN_METODO"
+      },
+      {
+        "type": "any",
+        "value": "NAMEGATO",
+        "key": "SWIFT_CANAL_EMISOR_SIN_PLAN"
+      },
+      {
+        "type": "any",
+        "value": "STELGATO",
+        "key": "SWIFT_CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS"
+      },
+      {
+        "type": "any",
+        "value": "TEYVGATO",
+        "key": "SWIFT_CANAL_EMISOR_MAL_CONFIGURADO"
+      },
+      {
+        "type": "any",
+        "value": "0099",
+        "key": "METODO_FUERA_CFG"
+      },
+      {
+        "type": "any",
+        "value": "1017",
+        "key": "CANAL_EMISOR_MAL_CONFIGURADO"
+      },
+      {
+        "type": "any",
+        "value": "0001",
+        "key": "CANAL_VALIDADOR"
+      },
+      {
+        "type": "any",
+        "value": "1009",
+        "key": "CANAL_VALIDADOR_EXITO"
+      },
+      {
+        "type": "any",
+        "value": "9999",
+        "key": "CANAL_VALIDADOR_NO_EXISTE"
+      },
+      {
+        "type": "any",
+        "value": "1021",
+        "key": "CANAL_VALIDADOR_DESHABILITADO"
+      },
+      {
+        "type": "any",
+        "value": "1017",
+        "key": "CANAL_VALIDADOR_MAL_CONFIGURADO"
+      },
+      {
+        "type": "any",
+        "value": "CELEGATO",
+        "key": "SWIFT_CANAL_EMISOR"
+      },
+      {
+        "type": "any",
+        "value": "AMIYGATO",
+        "key": "SWIFT_CANAL_EMISOR_GCM"
+      },
+      {
+        "type": "any",
+        "value": "INVAPAPA",
+        "key": "SWIFT_CANAL_AJENO"
+      },
+      {
+        "type": "any",
+        "value": "1100001328",
+        "key": "CUENTA_VALIDA"
+      },
+      {
+        "type": "any",
+        "value": "1100001328",
+        "key": "CuentaFeliz"
+      },
+      {
+        "type": "any",
+        "value": "1100000239",
+        "key": "C511"
+      },
+      {
+        "type": "any",
+        "value": "1100000411",
+        "key": "C512"
+      },
+      {
+        "type": "any",
+        "value": "1100024932",
+        "key": "C513"
+      },
+      {
+        "type": "any",
+        "value": "",
+        "key": "C514"
+      },
+      {
+        "type": "any",
+        "value": "1100003126",
+        "key": "C515"
+      },
+      {
+        "type": "any",
+        "value": "1100108552",
+        "key": "mascara0"
+      },
+      {
+        "type": "any",
+        "value": "1200218707",
+        "key": "mascara1"
+      },
+      {
+        "type": "any",
+        "value": "1100207446",
+        "key": "mascara2"
+      },
+      {
+        "type": "any",
+        "value": "1100023371",
+        "key": "mascara3"
+      },
+      {
+        "type": "any",
+        "value": "1100015294",
+        "key": "mascara4"
+      },
+      {
+        "type": "any",
+        "value": "1100015294",
+        "key": "mascara5"
+      },
+      {
+        "type": "any",
+        "value": "1200135000",
+        "key": "mascara6"
+      },
+      {
+        "type": "any",
+        "value": "1100001161",
+        "key": "PACA"
+      },
+      {
+        "type": "any",
+        "value": "1200130811",
+        "key": "PACC"
+      },
+      {
+        "type": "any",
+        "value": "1100029543",
+        "key": "Cuentajuridica"
+      },
+      {
+        "type": "any",
+        "value": "1100236049",
+        "key": "Variostitulares"
+      },
+      {
+        "type": "any",
+        "value": "1",
+        "key": "Cuenta1"
+      },
+      {
+        "type": "any",
+        "value": "1234567890123456789012345678901234",
+        "key": "Cuenta34"
+      },
+      {
+        "type": "any",
+        "value": "a5317444259ff6c7ce144d762c23a165287909e3662a6bb88ebe57276f32810255150bc91f4605eab6c72615141bfb9456fc3ae3ca85907ff30c65e8531ff8ac8ec419bdb7a7dedf90ce8c885652e017a19091133448b394fa446cb80cd3b377fe0cc83eae00cd1408e513d2fa72355007700b952737bb1f23c962601f5140b83ed7a51ad6333b8c4c2ef6a78f71b3a43fb8b01353f62a9670a00284d3b3fd844f6e2118be502f08b277e79a84c3d8d3e898330d7cc2c1214d74d52ebfc7fe2a4e848692e7216526171c93095542c4ccd3c80e6d90b276e298bca0150a4c38de385a39eaa376538ecb7072e4fe74176137071292c646499b0988d83d02786ba665d89218c6a31a528bbbd932a4a94e667036177ec2548321c0cf8914b48e66619b87b79e65ba2a42c072101239f6a6ef0de68328b50501e9a3c2daed4826fec24407995f375730b9a57abfb21871d0f6e07786514cb34743336be7939e33ef6454c5a11ff574151a2089a44c29e09f601dc1f75d9d1de0d586d519822965ba77f1b656c88f5da7df2d97471ae03ac2cf17b193129a0cf79eb7289649e5287a58fe58b8b3a3339577d72f003f034536060acb1387c4475c80aec451aeedafe6c99ff5e09a2fd506a002685143f0e29844dcbd97f226d34bedd2cccea05f9a9084dd0629f9f8b28c7d579aa89f692c8512c6b7225283b137bed88f19b08ebe1ab247ea31b1954a6ae62b94152bc7ca7e945709e12fe67615a481ac11de6b7c4098ded5f189349067df062330745d96954b42470835800fcf4fcb0a4cf9f67835431c6027c5dce89a641a911a68322d6dacd3c814c11455e019629abf4e9bcbd242b48b7659278eb5f0868ad9ca091253561ba231519b6ce09777357eed783a6ed80110ed117a1d80563a06063886af0808c4f95a813087cd3a1981b42156a5f247cf025ef838c3ec",
+        "key": "PETICION_CIFRADA_CON_OTRA_LLAVE"
+      },
+      {
+        "type": "any",
+        "value": "",
+        "key": "PROCESAR_STATUS_CODE"
+      },
+      {
+        "type": "any",
+        "value": "",
+        "key": "PROCESAR_RESPONSE_BODY"
+      },
+      {
+        "type": "any",
+        "value": "",
+        "key": "PAYLOAD_ID_PETICION"
+      },
+      {
+        "type": "any",
+        "value": "",
+        "key": "PAYLOAD_METODO"
+      },
+      {
+        "type": "any",
+        "value": "",
+        "key": "PAYLOAD_ID_SOLICITUD_0"
+      },
+      {
+        "type": "any",
+        "value": "aes-256-cbc",
+        "key": "ALGORITMO_AES"
+      }
+    ]
+  },
+  "globals": {
+    "id": "3e49b49c-b74d-4a7b-b0d6-2cd55ab42086",
+    "values": []
+  },
+  "run": {
+    "stats": {
+      "iterations": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "items": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "scripts": {
+        "total": 3,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequests": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "requests": {
+        "total": 3,
+        "pending": 0,
+        "failed": 0
+      },
+      "tests": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "assertions": {
+        "total": 8,
+        "pending": 0,
+        "failed": 0
+      },
+      "testScripts": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequestScripts": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      }
+    },
+    "timings": {
+      "responseAverage": 4145.333333333333,
+      "responseMin": 1417,
+      "responseMax": 9033,
+      "responseSd": 3463.8999536489055,
+      "dnsAverage": 0,
+      "dnsMin": 0,
+      "dnsMax": 0,
+      "dnsSd": 0,
+      "firstByteAverage": 0,
+      "firstByteMin": 0,
+      "firstByteMax": 0,
+      "firstByteSd": 0,
+      "started": 1783301939605,
+      "completed": 1783301952188
+    },
+    "executions": [
+      {
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 1,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "170ad450-b5ec-427e-bffa-ae276fb8ab51",
+          "httpRequestId": "d87a7963-edb5-4f55-a61e-bed246ee7fa7"
+        },
+        "item": {
+          "id": "a104d4d3-e6af-4d37-93de-d5493fd4bdef",
+          "name": "0001.3.1.1. cuenta feliz (exito)",
+          "request": {
+            "url": {
+              "path": [
+                "descifrar"
+              ],
+              "host": [
+                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+              ],
+              "query": [
+                {
+                  "key": "tld",
+                  "value": "0"
+                },
+                {
+                  "key": "algoritmoCifrado",
+                  "value": "aes-256-cbc"
+                }
+              ],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CuentaFeliz}}\"\n                }\n            }\n        ]\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "33a16aba-9fec-4fa5-bc2d-5c62e02fb4d3",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.variables.set('expectedHttpStatus', 200);",
+                  "pm.variables.set('expectedCodigoError', 0);",
+                  "pm.variables.set('expectedTipo', 'exito');",
+                  "pm.variables.unset('expectedProducto');"
+                ],
+                "_lastExecutionId": "f394a7cf-05df-41d4-87eb-d8b12ad0fe48"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "https",
+            "path": [
+              "descifrar"
+            ],
+            "host": [
+              "tld-validador-dummy",
+              "dev",
+              "telered",
+              "internal"
+            ],
+            "query": [
+              {
+                "key": "tld",
+                "value": "0"
+              },
+              {
+                "key": "algoritmoCifrado",
+                "value": "aes-256-cbc"
+              }
+            ],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "5e50fdfd-dbd1-4490-ae21-924b31661898",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "tld-validador-dummy.dev.telered.internal",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "1522",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\"respuesta\":\"e29e3bf3c8f45a810eaab51f6cda59dd.956cbb2f92945510fbc13d62cb5747c8a402ca6f990a1b4e573df9bccbcbcb6cf0fe44ff2f60aa7affe1a8a4df3283a9a6a8ca92aabf24116a0fe444fd55de8a079f76c8155f99396c206568d70b85f3af61258359b4ab952b3dd6ba8345a650b5948a5acbd6f6cdcd0d853524c9706a12bda7ea158e15cf462d635e9d6937ffdb5d2dd4e8c79b58ae4bf9f12e86f5d59a22f3186671daf0de74a3305f7f59610bb26d30b5ebd6515efc5f814ac1d0d4ccfa486d3de127d19c26b8defbe40c4a6f851096915641b688411497f3f87c2b9f107feaa440fe78a3f8b6dc694dba2e207bd1db1ff4145a5b7311d0fddcc8a3902926b161257bd80cb9bfaf6cdd882e283e01fe89ea6224123122468681586462648ba881dd19d6e53f7dfaa5279cdfbff4ef85073603668e94607b9ea75a58384dfb51129df83a69aa6c14508ff5872d19edb411fa276207023984cff253e592287741214eddd3f069d54bb0293a4edb66c40b10e1c51e748d3f5b9d85f29b7682b088770ed70d60ff12a8a4176ddcbd2476f17101d9b61df4f906544de1fb760ed7d8eef16db9a81954701eb2f7d5105474c4ddc91b23edc571bcf1163810aa821885f728226d47e6fd1bcee3b0620f7062cf02bf1152f35171a6919a44b7d69a443d1d46c94bb275ebf3e58325c3325bbe805172c83797b3b4fbf56bc1482cd533aa9a32d1d01f56211ff519770a.a13c2c24f9a4a4da4fecc4b28feff9c4abc0f94d5520092cffc96d2c34d58e922a3cd3f552d49768970a7c4a5f3a4621196b7ea8a8ee87554106c0bbb7c7bf38def172bd026c20771494b1975fc8650ded81098c2d3aa46250a508d0238d0e37480f75457abf5253f4a1b22f9cad645da2490eb6e35eb3f96099a37c80cce9aab33a2cef9eae098890fa558125e435782bd8905ab81ac18544ab60fb22a97c68df3e57e6c99a344b4330290774b20c8e73fdd6e340eeb518a805a20056cd4a6d4544ece5bbfe809d07e788c48473159bbf50f73c2244cb9c16fe5ac2812e6a5f\"}"
+          }
+        },
+        "response": {
+          "id": "eae01001-d5e2-4675-abd5-b957726ddb1c",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 06 Jul 2026 01:38:57 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "Server"
+            },
+            {
+              "key": "X-Amz-Apigw-Id",
+              "value": "AD4PmERIoAMF-tg="
+            },
+            {
+              "key": "X-Amzn-Requestid",
+              "value": "7b4bfb78-90d1-48c6-b4b8-99cd1c5287db"
+            },
+            {
+              "key": "X-Amzn-Trace-Id",
+              "value": "Root=1-6a4b0730-52fa124c66f03c4b0c0e0940;Parent=59f5f11d94137b2e;Sampled=0;Lineage=1:6778dd49:0"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              114,
+              101,
+              115,
+              112,
+              117,
+              101,
+              115,
+              116,
+              97,
+              34,
+              58,
+              123,
+              34,
+              105,
+              100,
+              80,
+              101,
+              116,
+              105,
+              99,
+              105,
+              111,
+              110,
+              34,
+              58,
+              34,
+              67,
+              69,
+              76,
+              69,
+              71,
+              65,
+              84,
+              79,
+              49,
+              55,
+              56,
+              51,
+              51,
+              48,
+              49,
+              57,
+              52,
+              48,
+              34,
+              44,
+              34,
+              114,
+              101,
+              115,
+              112,
+              117,
+              101,
+              115,
+              116,
+              97,
+              115,
+              34,
+              58,
+              91,
+              123,
+              34,
+              105,
+              100,
+              83,
+              111,
+              108,
+              105,
+              99,
+              105,
+              116,
+              117,
+              100,
+              34,
+              58,
+              34,
+              49,
+              34,
+              44,
+              34,
+              114,
+              101,
+              115,
+              117,
+              108,
+              116,
+              97,
+              100,
+              111,
+              34,
+              58,
+              48,
+              44,
+              34,
+              100,
+              97,
+              116,
+              111,
+              115,
+              34,
+              58,
+              123,
+              34,
+              98,
+              97,
+              110,
+              99,
+              111,
+              34,
+              58,
+              34,
+              84,
+              76,
+              82,
+              68,
+              80,
+              65,
+              80,
+              65,
+              34,
+              44,
+              34,
+              99,
+              117,
+              101,
+              110,
+              116,
+              97,
+              34,
+              58,
+              34,
+              49,
+              49,
+              48,
+              48,
+              48,
+              48,
+              49,
+              51,
+              50,
+              56,
+              34,
+              44,
+              34,
+              112,
+              114,
+              111,
+              100,
+              117,
+              99,
+              116,
+              111,
+              34,
+              58,
+              34,
+              80,
+              65,
+              67,
+              65,
+              34,
+              44,
+              34,
+              101,
+              115,
+              116,
+              97,
+              100,
+              111,
+              67,
+              117,
+              101,
+              110,
+              116,
+              97,
+              34,
+              58,
+              34,
+              48,
+              34,
+              44,
+              34,
+              116,
+              105,
+              116,
+              117,
+              108,
+              97,
+              114,
+              101,
+              115,
+              34,
+              58,
+              91,
+              34,
+              70,
+              105,
+              115,
+              42,
+              42,
+              42,
+              32,
+              118,
+              111,
+              42,
+              32,
+              76,
+              117,
+              102,
+              116,
+              115,
+              99,
+              42,
+              42,
+              42,
+              42,
+              42,
+              32,
+              78,
+              97,
+              114,
+              102,
+              105,
+              42,
+              42,
+              42,
+              42,
+              34,
+              93,
+              125,
+              125,
+              93,
+              125,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 1417,
+          "responseSize": 235
+        },
+        "id": "a104d4d3-e6af-4d37-93de-d5493fd4bdef",
+        "assertions": [
+          {
+            "assertion": "[Lambda VCN] HTTP status = 200 (real: 200)",
+            "skipped": false
+          },
+          {
+            "assertion": "[Dummy /descifrar] HTTP status 2xx (real: 200)",
+            "skipped": false
+          },
+          {
+            "assertion": "[Dummy /descifrar] respuesta JSON parseable",
+            "skipped": false
+          },
+          {
+            "assertion": "[Dummy /descifrar] estructura inner.respuestas[0] presente",
+            "skipped": false
+          },
+          {
+            "assertion": "[exito] respuestas[0].idSolicitud = \"1\"",
+            "skipped": false
+          },
+          {
+            "assertion": "[exito] respuestas[0].resultado = 0",
+            "skipped": false
+          },
+          {
+            "assertion": "[exito] respuestas[0].datos es objeto",
+            "skipped": false
+          },
+          {
+            "assertion": "[exito] datos incluye banco, cuenta, producto, estadoCuenta, titulares",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 1,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "170ad450-b5ec-427e-bffa-ae276fb8ab51",
+          "httpRequestId": "d87a7963-edb5-4f55-a61e-bed246ee7fa7"
+        },
+        "item": {
+          "id": "a104d4d3-e6af-4d37-93de-d5493fd4bdef",
+          "name": "0001.3.1.1. cuenta feliz (exito)",
+          "request": {
+            "url": {
+              "path": [
+                "descifrar"
+              ],
+              "host": [
+                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+              ],
+              "query": [
+                {
+                  "key": "tld",
+                  "value": "0"
+                },
+                {
+                  "key": "algoritmoCifrado",
+                  "value": "aes-256-cbc"
+                }
+              ],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CuentaFeliz}}\"\n                }\n            }\n        ]\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "33a16aba-9fec-4fa5-bc2d-5c62e02fb4d3",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.variables.set('expectedHttpStatus', 200);",
+                  "pm.variables.set('expectedCodigoError', 0);",
+                  "pm.variables.set('expectedTipo', 'exito');",
+                  "pm.variables.unset('expectedProducto');"
+                ],
+                "_lastExecutionId": "f394a7cf-05df-41d4-87eb-d8b12ad0fe48"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "https",
+            "path": [
+              "descifrar"
+            ],
+            "host": [
+              "tld-validador-dummy",
+              "dev",
+              "telered",
+              "internal"
+            ],
+            "query": [
+              {
+                "key": "tld",
+                "value": "0"
+              },
+              {
+                "key": "algoritmoCifrado",
+                "value": "aes-256-cbc"
+              }
+            ],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "5e50fdfd-dbd1-4490-ae21-924b31661898",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "tld-validador-dummy.dev.telered.internal",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "1522",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\"respuesta\":\"e29e3bf3c8f45a810eaab51f6cda59dd.956cbb2f92945510fbc13d62cb5747c8a402ca6f990a1b4e573df9bccbcbcb6cf0fe44ff2f60aa7affe1a8a4df3283a9a6a8ca92aabf24116a0fe444fd55de8a079f76c8155f99396c206568d70b85f3af61258359b4ab952b3dd6ba8345a650b5948a5acbd6f6cdcd0d853524c9706a12bda7ea158e15cf462d635e9d6937ffdb5d2dd4e8c79b58ae4bf9f12e86f5d59a22f3186671daf0de74a3305f7f59610bb26d30b5ebd6515efc5f814ac1d0d4ccfa486d3de127d19c26b8defbe40c4a6f851096915641b688411497f3f87c2b9f107feaa440fe78a3f8b6dc694dba2e207bd1db1ff4145a5b7311d0fddcc8a3902926b161257bd80cb9bfaf6cdd882e283e01fe89ea6224123122468681586462648ba881dd19d6e53f7dfaa5279cdfbff4ef85073603668e94607b9ea75a58384dfb51129df83a69aa6c14508ff5872d19edb411fa276207023984cff253e592287741214eddd3f069d54bb0293a4edb66c40b10e1c51e748d3f5b9d85f29b7682b088770ed70d60ff12a8a4176ddcbd2476f17101d9b61df4f906544de1fb760ed7d8eef16db9a81954701eb2f7d5105474c4ddc91b23edc571bcf1163810aa821885f728226d47e6fd1bcee3b0620f7062cf02bf1152f35171a6919a44b7d69a443d1d46c94bb275ebf3e58325c3325bbe805172c83797b3b4fbf56bc1482cd533aa9a32d1d01f56211ff519770a.a13c2c24f9a4a4da4fecc4b28feff9c4abc0f94d5520092cffc96d2c34d58e922a3cd3f552d49768970a7c4a5f3a4621196b7ea8a8ee87554106c0bbb7c7bf38def172bd026c20771494b1975fc8650ded81098c2d3aa46250a508d0238d0e37480f75457abf5253f4a1b22f9cad645da2490eb6e35eb3f96099a37c80cce9aab33a2cef9eae098890fa558125e435782bd8905ab81ac18544ab60fb22a97c68df3e57e6c99a344b4330290774b20c8e73fdd6e340eeb518a805a20056cd4a6d4544ece5bbfe809d07e788c48473159bbf50f73c2244cb9c16fe5ac2812e6a5f\"}"
+          }
+        },
+        "response": {
+          "id": "eae01001-d5e2-4675-abd5-b957726ddb1c",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 06 Jul 2026 01:38:57 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "Server"
+            },
+            {
+              "key": "X-Amz-Apigw-Id",
+              "value": "AD4PmERIoAMF-tg="
+            },
+            {
+              "key": "X-Amzn-Requestid",
+              "value": "7b4bfb78-90d1-48c6-b4b8-99cd1c5287db"
+            },
+            {
+              "key": "X-Amzn-Trace-Id",
+              "value": "Root=1-6a4b0730-52fa124c66f03c4b0c0e0940;Parent=59f5f11d94137b2e;Sampled=0;Lineage=1:6778dd49:0"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              114,
+              101,
+              115,
+              112,
+              117,
+              101,
+              115,
+              116,
+              97,
+              34,
+              58,
+              123,
+              34,
+              105,
+              100,
+              80,
+              101,
+              116,
+              105,
+              99,
+              105,
+              111,
+              110,
+              34,
+              58,
+              34,
+              67,
+              69,
+              76,
+              69,
+              71,
+              65,
+              84,
+              79,
+              49,
+              55,
+              56,
+              51,
+              51,
+              48,
+              49,
+              57,
+              52,
+              48,
+              34,
+              44,
+              34,
+              114,
+              101,
+              115,
+              112,
+              117,
+              101,
+              115,
+              116,
+              97,
+              115,
+              34,
+              58,
+              91,
+              123,
+              34,
+              105,
+              100,
+              83,
+              111,
+              108,
+              105,
+              99,
+              105,
+              116,
+              117,
+              100,
+              34,
+              58,
+              34,
+              49,
+              34,
+              44,
+              34,
+              114,
+              101,
+              115,
+              117,
+              108,
+              116,
+              97,
+              100,
+              111,
+              34,
+              58,
+              48,
+              44,
+              34,
+              100,
+              97,
+              116,
+              111,
+              115,
+              34,
+              58,
+              123,
+              34,
+              98,
+              97,
+              110,
+              99,
+              111,
+              34,
+              58,
+              34,
+              84,
+              76,
+              82,
+              68,
+              80,
+              65,
+              80,
+              65,
+              34,
+              44,
+              34,
+              99,
+              117,
+              101,
+              110,
+              116,
+              97,
+              34,
+              58,
+              34,
+              49,
+              49,
+              48,
+              48,
+              48,
+              48,
+              49,
+              51,
+              50,
+              56,
+              34,
+              44,
+              34,
+              112,
+              114,
+              111,
+              100,
+              117,
+              99,
+              116,
+              111,
+              34,
+              58,
+              34,
+              80,
+              65,
+              67,
+              65,
+              34,
+              44,
+              34,
+              101,
+              115,
+              116,
+              97,
+              100,
+              111,
+              67,
+              117,
+              101,
+              110,
+              116,
+              97,
+              34,
+              58,
+              34,
+              48,
+              34,
+              44,
+              34,
+              116,
+              105,
+              116,
+              117,
+              108,
+              97,
+              114,
+              101,
+              115,
+              34,
+              58,
+              91,
+              34,
+              70,
+              105,
+              115,
+              42,
+              42,
+              42,
+              32,
+              118,
+              111,
+              42,
+              32,
+              76,
+              117,
+              102,
+              116,
+              115,
+              99,
+              42,
+              42,
+              42,
+              42,
+              42,
+              32,
+              78,
+              97,
+              114,
+              102,
+              105,
+              42,
+              42,
+              42,
+              42,
+              34,
+              93,
+              125,
+              125,
+              93,
+              125,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 1417,
+          "responseSize": 235
+        },
+        "id": "a104d4d3-e6af-4d37-93de-d5493fd4bdef",
+        "assertions": [
+          {
+            "assertion": "[Lambda VCN] HTTP status = 200 (real: 200)",
+            "skipped": false
+          },
+          {
+            "assertion": "[Dummy /descifrar] HTTP status 2xx (real: 200)",
+            "skipped": false
+          },
+          {
+            "assertion": "[Dummy /descifrar] respuesta JSON parseable",
+            "skipped": false
+          },
+          {
+            "assertion": "[Dummy /descifrar] estructura inner.respuestas[0] presente",
+            "skipped": false
+          },
+          {
+            "assertion": "[exito] respuestas[0].idSolicitud = \"1\"",
+            "skipped": false
+          },
+          {
+            "assertion": "[exito] respuestas[0].resultado = 0",
+            "skipped": false
+          },
+          {
+            "assertion": "[exito] respuestas[0].datos es objeto",
+            "skipped": false
+          },
+          {
+            "assertion": "[exito] datos incluye banco, cuenta, producto, estadoCuenta, titulares",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 1,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "170ad450-b5ec-427e-bffa-ae276fb8ab51",
+          "httpRequestId": "d87a7963-edb5-4f55-a61e-bed246ee7fa7"
+        },
+        "item": {
+          "id": "a104d4d3-e6af-4d37-93de-d5493fd4bdef",
+          "name": "0001.3.1.1. cuenta feliz (exito)",
+          "request": {
+            "url": {
+              "path": [
+                "descifrar"
+              ],
+              "host": [
+                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+              ],
+              "query": [
+                {
+                  "key": "tld",
+                  "value": "0"
+                },
+                {
+                  "key": "algoritmoCifrado",
+                  "value": "aes-256-cbc"
+                }
+              ],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CuentaFeliz}}\"\n                }\n            }\n        ]\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "33a16aba-9fec-4fa5-bc2d-5c62e02fb4d3",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.variables.set('expectedHttpStatus', 200);",
+                  "pm.variables.set('expectedCodigoError', 0);",
+                  "pm.variables.set('expectedTipo', 'exito');",
+                  "pm.variables.unset('expectedProducto');"
+                ],
+                "_lastExecutionId": "f394a7cf-05df-41d4-87eb-d8b12ad0fe48"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "https",
+            "path": [
+              "descifrar"
+            ],
+            "host": [
+              "tld-validador-dummy",
+              "dev",
+              "telered",
+              "internal"
+            ],
+            "query": [
+              {
+                "key": "tld",
+                "value": "0"
+              },
+              {
+                "key": "algoritmoCifrado",
+                "value": "aes-256-cbc"
+              }
+            ],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "5e50fdfd-dbd1-4490-ae21-924b31661898",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "tld-validador-dummy.dev.telered.internal",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "1522",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\"respuesta\":\"e29e3bf3c8f45a810eaab51f6cda59dd.956cbb2f92945510fbc13d62cb5747c8a402ca6f990a1b4e573df9bccbcbcb6cf0fe44ff2f60aa7affe1a8a4df3283a9a6a8ca92aabf24116a0fe444fd55de8a079f76c8155f99396c206568d70b85f3af61258359b4ab952b3dd6ba8345a650b5948a5acbd6f6cdcd0d853524c9706a12bda7ea158e15cf462d635e9d6937ffdb5d2dd4e8c79b58ae4bf9f12e86f5d59a22f3186671daf0de74a3305f7f59610bb26d30b5ebd6515efc5f814ac1d0d4ccfa486d3de127d19c26b8defbe40c4a6f851096915641b688411497f3f87c2b9f107feaa440fe78a3f8b6dc694dba2e207bd1db1ff4145a5b7311d0fddcc8a3902926b161257bd80cb9bfaf6cdd882e283e01fe89ea6224123122468681586462648ba881dd19d6e53f7dfaa5279cdfbff4ef85073603668e94607b9ea75a58384dfb51129df83a69aa6c14508ff5872d19edb411fa276207023984cff253e592287741214eddd3f069d54bb0293a4edb66c40b10e1c51e748d3f5b9d85f29b7682b088770ed70d60ff12a8a4176ddcbd2476f17101d9b61df4f906544de1fb760ed7d8eef16db9a81954701eb2f7d5105474c4ddc91b23edc571bcf1163810aa821885f728226d47e6fd1bcee3b0620f7062cf02bf1152f35171a6919a44b7d69a443d1d46c94bb275ebf3e58325c3325bbe805172c83797b3b4fbf56bc1482cd533aa9a32d1d01f56211ff519770a.a13c2c24f9a4a4da4fecc4b28feff9c4abc0f94d5520092cffc96d2c34d58e922a3cd3f552d49768970a7c4a5f3a4621196b7ea8a8ee87554106c0bbb7c7bf38def172bd026c20771494b1975fc8650ded81098c2d3aa46250a508d0238d0e37480f75457abf5253f4a1b22f9cad645da2490eb6e35eb3f96099a37c80cce9aab33a2cef9eae098890fa558125e435782bd8905ab81ac18544ab60fb22a97c68df3e57e6c99a344b4330290774b20c8e73fdd6e340eeb518a805a20056cd4a6d4544ece5bbfe809d07e788c48473159bbf50f73c2244cb9c16fe5ac2812e6a5f\"}"
+          }
+        },
+        "response": {
+          "id": "eae01001-d5e2-4675-abd5-b957726ddb1c",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 06 Jul 2026 01:38:57 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "Server"
+            },
+            {
+              "key": "X-Amz-Apigw-Id",
+              "value": "AD4PmERIoAMF-tg="
+            },
+            {
+              "key": "X-Amzn-Requestid",
+              "value": "7b4bfb78-90d1-48c6-b4b8-99cd1c5287db"
+            },
+            {
+              "key": "X-Amzn-Trace-Id",
+              "value": "Root=1-6a4b0730-52fa124c66f03c4b0c0e0940;Parent=59f5f11d94137b2e;Sampled=0;Lineage=1:6778dd49:0"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              114,
+              101,
+              115,
+              112,
+              117,
+              101,
+              115,
+              116,
+              97,
+              34,
+              58,
+              123,
+              34,
+              105,
+              100,
+              80,
+              101,
+              116,
+              105,
+              99,
+              105,
+              111,
+              110,
+              34,
+              58,
+              34,
+              67,
+              69,
+              76,
+              69,
+              71,
+              65,
+              84,
+              79,
+              49,
+              55,
+              56,
+              51,
+              51,
+              48,
+              49,
+              57,
+              52,
+              48,
+              34,
+              44,
+              34,
+              114,
+              101,
+              115,
+              112,
+              117,
+              101,
+              115,
+              116,
+              97,
+              115,
+              34,
+              58,
+              91,
+              123,
+              34,
+              105,
+              100,
+              83,
+              111,
+              108,
+              105,
+              99,
+              105,
+              116,
+              117,
+              100,
+              34,
+              58,
+              34,
+              49,
+              34,
+              44,
+              34,
+              114,
+              101,
+              115,
+              117,
+              108,
+              116,
+              97,
+              100,
+              111,
+              34,
+              58,
+              48,
+              44,
+              34,
+              100,
+              97,
+              116,
+              111,
+              115,
+              34,
+              58,
+              123,
+              34,
+              98,
+              97,
+              110,
+              99,
+              111,
+              34,
+              58,
+              34,
+              84,
+              76,
+              82,
+              68,
+              80,
+              65,
+              80,
+              65,
+              34,
+              44,
+              34,
+              99,
+              117,
+              101,
+              110,
+              116,
+              97,
+              34,
+              58,
+              34,
+              49,
+              49,
+              48,
+              48,
+              48,
+              48,
+              49,
+              51,
+              50,
+              56,
+              34,
+              44,
+              34,
+              112,
+              114,
+              111,
+              100,
+              117,
+              99,
+              116,
+              111,
+              34,
+              58,
+              34,
+              80,
+              65,
+              67,
+              65,
+              34,
+              44,
+              34,
+              101,
+              115,
+              116,
+              97,
+              100,
+              111,
+              67,
+              117,
+              101,
+              110,
+              116,
+              97,
+              34,
+              58,
+              34,
+              48,
+              34,
+              44,
+              34,
+              116,
+              105,
+              116,
+              117,
+              108,
+              97,
+              114,
+              101,
+              115,
+              34,
+              58,
+              91,
+              34,
+              70,
+              105,
+              115,
+              42,
+              42,
+              42,
+              32,
+              118,
+              111,
+              42,
+              32,
+              76,
+              117,
+              102,
+              116,
+              115,
+              99,
+              42,
+              42,
+              42,
+              42,
+              42,
+              32,
+              78,
+              97,
+              114,
+              102,
+              105,
+              42,
+              42,
+              42,
+              42,
+              34,
+              93,
+              125,
+              125,
+              93,
+              125,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 1417,
+          "responseSize": 235
+        },
+        "id": "a104d4d3-e6af-4d37-93de-d5493fd4bdef",
+        "assertions": [
+          {
+            "assertion": "[Lambda VCN] HTTP status = 200 (real: 200)",
+            "skipped": false
+          },
+          {
+            "assertion": "[Dummy /descifrar] HTTP status 2xx (real: 200)",
+            "skipped": false
+          },
+          {
+            "assertion": "[Dummy /descifrar] respuesta JSON parseable",
+            "skipped": false
+          },
+          {
+            "assertion": "[Dummy /descifrar] estructura inner.respuestas[0] presente",
+            "skipped": false
+          },
+          {
+            "assertion": "[exito] respuestas[0].idSolicitud = \"1\"",
+            "skipped": false
+          },
+          {
+            "assertion": "[exito] respuestas[0].resultado = 0",
+            "skipped": false
+          },
+          {
+            "assertion": "[exito] respuestas[0].datos es objeto",
+            "skipped": false
+          },
+          {
+            "assertion": "[exito] datos incluye banco, cuenta, producto, estadoCuenta, titulares",
+            "skipped": false
+          }
+        ]
+      }
+    ],
+    "transfers": {
+      "responseTotal": 3122
+    },
+    "failures": [],
+    "error": null
+  }
+}
