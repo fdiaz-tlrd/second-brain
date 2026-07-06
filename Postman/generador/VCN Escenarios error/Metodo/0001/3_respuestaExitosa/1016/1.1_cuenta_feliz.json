@@ -1,11 +1,11 @@
 {
-  "nombre": "0001.3.1016.1.1. validador BELLGATO — cuenta feliz (exito)",
+  "nombre": "0001.3.1016.1.1. validador BELLGATO — cuenta feliz (exito) — sin enmascaramiento",
   "expectedHttpStatus": 200,
   "expectedCodigoError": 0,
   "expectedTipo": "exito",
   "expectedCuenta": "1100001328",
   "expectedBanco": "TLRDPAPA",
-  "expectedEnmascarado": true,
+  "expectedEnmascarado": false,
   "expectedValidador": "1016",
   "titularesClaro": [
     "Fischl von Luftschloss Narfidort"

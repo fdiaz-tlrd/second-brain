@@ -18,15 +18,20 @@ const VALIDADORES = [
   ["1016", "BELLGATO"],
 ];
 
+/** validarEnmascaramiento !== Y en tld-validador-canal-operacion (0001) */
+const VALIDADORES_SIN_ENMASCARAMIENTO_0001 = new Set(["1016"]);
+
 function buildDoc(validador, swift, def) {
+  const enmascarado = !VALIDADORES_SIN_ENMASCARAMIENTO_0001.has(validador);
+  const sufijoEnmascara = enmascarado ? "" : " — sin enmascaramiento";
   const doc = {
-    nombre: `0001.3.${validador}.${def.bloque}.${def.seq}. validador ${swift} — ${def.label} (exito)`,
+    nombre: `0001.3.${validador}.${def.bloque}.${def.seq}. validador ${swift} — ${def.label} (exito)${sufijoEnmascara}`,
     expectedHttpStatus: 200,
     expectedCodigoError: 0,
     expectedTipo: "exito",
     expectedCuenta: def.cuenta,
     expectedBanco: EXPECTED_BANCO,
-    expectedEnmascarado: true,
+    expectedEnmascarado: enmascarado,
     expectedValidador: validador,
     titularesClaro: def.titularesClaro,
     expectedTitularesExactos: def.expectedTitularesExactos,

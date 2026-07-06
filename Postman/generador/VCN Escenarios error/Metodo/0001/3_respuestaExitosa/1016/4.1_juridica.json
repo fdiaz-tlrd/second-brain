@@ -1,11 +1,11 @@
 {
-  "nombre": "0001.3.1016.4.1. validador BELLGATO — cuenta jurídica (exito)",
+  "nombre": "0001.3.1016.4.1. validador BELLGATO — cuenta jurídica (exito) — sin enmascaramiento",
   "expectedHttpStatus": 200,
   "expectedCodigoError": 0,
   "expectedTipo": "exito",
   "expectedCuenta": "1100029543",
   "expectedBanco": "TLRDPAPA",
-  "expectedEnmascarado": true,
+  "expectedEnmascarado": false,
   "expectedValidador": "1016",
   "titularesClaro": [
     "Luciana de Montefio"

@@ -443,6 +443,18 @@
             pm.expect(datos.titulares).to.deep.equal(titularesClaro);
           }
         );
+
+        pm.test(
+          '[exito] titulares sin enmascaramiento (sin asteriscos)',
+          function () {
+            datos.titulares.forEach(function (titular, index) {
+              pm.expect(
+                titular,
+                'titulares[' + index + '] contiene mascara'
+              ).to.not.include('*');
+            });
+          }
+        );
       }
     }
 

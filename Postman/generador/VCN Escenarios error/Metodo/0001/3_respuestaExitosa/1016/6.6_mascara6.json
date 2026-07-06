@@ -1,11 +1,11 @@
 {
-  "nombre": "0001.3.1016.6.6. validador BELLGATO — máscara largo 6 (exito)",
+  "nombre": "0001.3.1016.6.6. validador BELLGATO — máscara largo 6 (exito) — sin enmascaramiento",
   "expectedHttpStatus": 200,
   "expectedCodigoError": 0,
   "expectedTipo": "exito",
   "expectedCuenta": "1200135000",
   "expectedBanco": "TLRDPAPA",
-  "expectedEnmascarado": true,
+  "expectedEnmascarado": false,
   "expectedValidador": "1016",
   "titularesClaro": [
     "Peña García Niño"

@@ -1,11 +1,11 @@
 {
-  "nombre": "0001.3.1016.2.1. validador BELLGATO — producto PACA (exito)",
+  "nombre": "0001.3.1016.2.1. validador BELLGATO — producto PACA (exito) — sin enmascaramiento",
   "expectedHttpStatus": 200,
   "expectedCodigoError": 0,
   "expectedTipo": "exito",
   "expectedCuenta": "1100001161",
   "expectedBanco": "TLRDPAPA",
-  "expectedEnmascarado": true,
+  "expectedEnmascarado": false,
   "expectedValidador": "1016",
   "titularesClaro": [
     "Lynette Snezhevna"

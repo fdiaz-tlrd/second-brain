@@ -1,11 +1,11 @@
 {
-  "nombre": "0001.3.1016.6.0. validador BELLGATO — máscara largo 0 (exito)",
+  "nombre": "0001.3.1016.6.0. validador BELLGATO — máscara largo 0 (exito) — sin enmascaramiento",
   "expectedHttpStatus": 200,
   "expectedCodigoError": 0,
   "expectedTipo": "exito",
   "expectedCuenta": "1100108552",
   "expectedBanco": "TLRDPAPA",
-  "expectedEnmascarado": true,
+  "expectedEnmascarado": false,
   "expectedValidador": "1016",
   "titularesClaro": [
     "María Niño Peña"

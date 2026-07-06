@@ -1,11 +1,11 @@
 {
-  "nombre": "0001.3.1016.7.1. validador BELLGATO — cuenta 1 dígito (exito)",
+  "nombre": "0001.3.1016.7.1. validador BELLGATO — cuenta 1 dígito (exito) — sin enmascaramiento",
   "expectedHttpStatus": 200,
   "expectedCodigoError": 0,
   "expectedTipo": "exito",
   "expectedCuenta": "1",
   "expectedBanco": "TLRDPAPA",
-  "expectedEnmascarado": true,
+  "expectedEnmascarado": false,
   "expectedValidador": "1016",
   "titularesClaro": [
     "Mona Megistus"

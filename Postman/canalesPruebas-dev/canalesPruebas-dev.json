@@ -1609,7 +1609,7 @@
             "operacion": "0001",
             "estado": "Y",
             "urlOperacion": "",
-            "validarEnmascaramiento": "Y"
+            "validarEnmascaramiento": "N"
           },
           {
             "operacion": "0002",

@@ -1360,7 +1360,7 @@
       "operacion": "0001",
       "estado": "Y",
       "urlOperacion": "",
-      "validarEnmascaramiento": "Y"
+      "validarEnmascaramiento": "N"
     },
     {
       "idCanal": "1016",
@@ -5253,7 +5253,7 @@
                 "S": ""
               },
               "validarEnmascaramiento": {
-                "S": "Y"
+                "S": "N"
               }
             }
           }

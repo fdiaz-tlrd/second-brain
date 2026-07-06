@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "64c3d984-4561-421e-a586-62c6a610abb8",
+    "_postman_id": "b2a2f1a5-1109-450c-bcbd-a8af1e88e3d3",
     "name": "VCN Escenarios error",
     "description": "Colección generada desde la fuente en VCN Escenarios error/.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -14500,7 +14500,7 @@
                   "name": "1016",
                   "item": [
                     {
-                      "name": "0001.3.1016.1.1. validador BELLGATO — cuenta feliz (exito)",
+                      "name": "0001.3.1016.1.1. validador BELLGATO — cuenta feliz (exito) — sin enmascaramiento",
                       "request": {
                         "method": "POST",
                         "header": [],
@@ -14548,7 +14548,7 @@
                               "pm.variables.set('expectedBanco', 'TLRDPAPA');",
                               "pm.variables.set('expectedValidador', '1016');",
                               "pm.variables.unset('expectedCuentaLongitud');",
-                              "pm.variables.set('expectedEnmascarado', 'true');",
+                              "pm.variables.set('expectedEnmascarado', 'false');",
                               "pm.variables.unset('verificarUnicode');",
                               "pm.variables.set('expectedTitularesClaro', \"[\\\"Fischl von Luftschloss Narfidort\\\"]\");",
                               "pm.variables.set('expectedTitularesExactos', '1');"
@@ -14558,7 +14558,7 @@
                       ]
                     },
                     {
-                      "name": "0001.3.1016.2.1. validador BELLGATO — producto PACA (exito)",
+                      "name": "0001.3.1016.2.1. validador BELLGATO — producto PACA (exito) — sin enmascaramiento",
                       "request": {
                         "method": "POST",
                         "header": [],
@@ -14606,7 +14606,7 @@
                               "pm.variables.set('expectedBanco', 'TLRDPAPA');",
                               "pm.variables.set('expectedValidador', '1016');",
                               "pm.variables.unset('expectedCuentaLongitud');",
-                              "pm.variables.set('expectedEnmascarado', 'true');",
+                              "pm.variables.set('expectedEnmascarado', 'false');",
                               "pm.variables.unset('verificarUnicode');",
                               "pm.variables.set('expectedTitularesClaro', \"[\\\"Lynette Snezhevna\\\"]\");",
                               "pm.variables.set('expectedTitularesExactos', '1');"
@@ -14616,7 +14616,7 @@
                       ]
                     },
                     {
-                      "name": "0001.3.1016.3.1. validador BELLGATO — producto PACC (exito)",
+                      "name": "0001.3.1016.3.1. validador BELLGATO — producto PACC (exito) — sin enmascaramiento",
                       "request": {
                         "method": "POST",
                         "header": [],
@@ -14664,7 +14664,7 @@
                               "pm.variables.set('expectedBanco', 'TLRDPAPA');",
                               "pm.variables.set('expectedValidador', '1016');",
                               "pm.variables.unset('expectedCuentaLongitud');",
-                              "pm.variables.set('expectedEnmascarado', 'true');",
+                              "pm.variables.set('expectedEnmascarado', 'false');",
                               "pm.variables.unset('verificarUnicode');",
                               "pm.variables.set('expectedTitularesClaro', \"[\\\"Alexandrina Sebastiane\\\"]\");",
                               "pm.variables.set('expectedTitularesExactos', '1');"
@@ -14674,7 +14674,7 @@
                       ]
                     },
                     {
-                      "name": "0001.3.1016.4.1. validador BELLGATO — cuenta jurídica (exito)",
+                      "name": "0001.3.1016.4.1. validador BELLGATO — cuenta jurídica (exito) — sin enmascaramiento",
                       "request": {
                         "method": "POST",
                         "header": [],
@@ -14722,7 +14722,7 @@
                               "pm.variables.set('expectedBanco', 'TLRDPAPA');",
                               "pm.variables.set('expectedValidador', '1016');",
                               "pm.variables.unset('expectedCuentaLongitud');",
-                              "pm.variables.set('expectedEnmascarado', 'true');",
+                              "pm.variables.set('expectedEnmascarado', 'false');",
                               "pm.variables.unset('verificarUnicode');",
                               "pm.variables.set('expectedTitularesClaro', \"[\\\"Luciana de Montefio\\\"]\");",
                               "pm.variables.set('expectedTitularesExactos', '1');"
@@ -14732,7 +14732,7 @@
                       ]
                     },
                     {
-                      "name": "0001.3.1016.5.1. validador BELLGATO — varios titulares (exito)",
+                      "name": "0001.3.1016.5.1. validador BELLGATO — varios titulares (exito) — sin enmascaramiento",
                       "request": {
                         "method": "POST",
                         "header": [],
@@ -14780,7 +14780,7 @@
                               "pm.variables.set('expectedBanco', 'TLRDPAPA');",
                               "pm.variables.set('expectedValidador', '1016');",
                               "pm.variables.unset('expectedCuentaLongitud');",
-                              "pm.variables.set('expectedEnmascarado', 'true');",
+                              "pm.variables.set('expectedEnmascarado', 'false');",
                               "pm.variables.unset('verificarUnicode');",
                               "pm.variables.set('expectedTitularesClaro', \"[\\\"Mona Megistus\\\",\\\"Pelageya Sergeyevna\\\"]\");",
                               "pm.variables.set('expectedTitularesExactos', '2');"
@@ -14790,7 +14790,7 @@
                       ]
                     },
                     {
-                      "name": "0001.3.1016.6.0. validador BELLGATO — máscara largo 0 (exito)",
+                      "name": "0001.3.1016.6.0. validador BELLGATO — máscara largo 0 (exito) — sin enmascaramiento",
                       "request": {
                         "method": "POST",
                         "header": [],
@@ -14838,7 +14838,7 @@
                               "pm.variables.set('expectedBanco', 'TLRDPAPA');",
                               "pm.variables.set('expectedValidador', '1016');",
                               "pm.variables.unset('expectedCuentaLongitud');",
-                              "pm.variables.set('expectedEnmascarado', 'true');",
+                              "pm.variables.set('expectedEnmascarado', 'false');",
                               "pm.variables.set('verificarUnicode', 'true');",
                               "pm.variables.set('expectedTitularesClaro', \"[\\\"María Niño Peña\\\"]\");",
                               "pm.variables.set('expectedTitularesExactos', '1');"
@@ -14848,7 +14848,7 @@
                       ]
                     },
                     {
-                      "name": "0001.3.1016.6.1. validador BELLGATO — máscara largo 1 (exito)",
+                      "name": "0001.3.1016.6.1. validador BELLGATO — máscara largo 1 (exito) — sin enmascaramiento",
                       "request": {
                         "method": "POST",
                         "header": [],
@@ -14896,7 +14896,7 @@
                               "pm.variables.set('expectedBanco', 'TLRDPAPA');",
                               "pm.variables.set('expectedValidador', '1016');",
                               "pm.variables.unset('expectedCuentaLongitud');",
-                              "pm.variables.set('expectedEnmascarado', 'true');",
+                              "pm.variables.set('expectedEnmascarado', 'false');",
                               "pm.variables.set('verificarUnicode', 'true');",
                               "pm.variables.set('expectedTitularesClaro', \"[\\\"Soledad Muñoz Ibañez\\\"]\");",
                               "pm.variables.set('expectedTitularesExactos', '1');"
@@ -14906,7 +14906,7 @@
                       ]
                     },
                     {
-                      "name": "0001.3.1016.6.2. validador BELLGATO — máscara largo 2 (exito)",
+                      "name": "0001.3.1016.6.2. validador BELLGATO — máscara largo 2 (exito) — sin enmascaramiento",
                       "request": {
                         "method": "POST",
                         "header": [],
@@ -14954,7 +14954,7 @@
                               "pm.variables.set('expectedBanco', 'TLRDPAPA');",
                               "pm.variables.set('expectedValidador', '1016');",
                               "pm.variables.unset('expectedCuentaLongitud');",
-                              "pm.variables.set('expectedEnmascarado', 'true');",
+                              "pm.variables.set('expectedEnmascarado', 'false');",
                               "pm.variables.set('verificarUnicode', 'true');",
                               "pm.variables.set('expectedTitularesClaro', \"[\\\"Agustín Dañino\\\"]\");",
                               "pm.variables.set('expectedTitularesExactos', '1');"
@@ -14964,7 +14964,7 @@
                       ]
                     },
                     {
-                      "name": "0001.3.1016.6.3. validador BELLGATO — máscara largo 3 (exito)",
+                      "name": "0001.3.1016.6.3. validador BELLGATO — máscara largo 3 (exito) — sin enmascaramiento",
                       "request": {
                         "method": "POST",
                         "header": [],
@@ -15012,7 +15012,7 @@
                               "pm.variables.set('expectedBanco', 'TLRDPAPA');",
                               "pm.variables.set('expectedValidador', '1016');",
                               "pm.variables.unset('expectedCuentaLongitud');",
-                              "pm.variables.set('expectedEnmascarado', 'true');",
+                              "pm.variables.set('expectedEnmascarado', 'false');",
                               "pm.variables.set('verificarUnicode', 'true');",
                               "pm.variables.set('expectedTitularesClaro', \"[\\\"Concepción Niño de Peña\\\"]\");",
                               "pm.variables.set('expectedTitularesExactos', '1');"
@@ -15022,7 +15022,7 @@
                       ]
                     },
                     {
-                      "name": "0001.3.1016.6.4. validador BELLGATO — máscara largo 4 (exito)",
+                      "name": "0001.3.1016.6.4. validador BELLGATO — máscara largo 4 (exito) — sin enmascaramiento",
                       "request": {
                         "method": "POST",
                         "header": [],
@@ -15070,7 +15070,7 @@
                               "pm.variables.set('expectedBanco', 'TLRDPAPA');",
                               "pm.variables.set('expectedValidador', '1016');",
                               "pm.variables.unset('expectedCuentaLongitud');",
-                              "pm.variables.set('expectedEnmascarado', 'true');",
+                              "pm.variables.set('expectedEnmascarado', 'false');",
                               "pm.variables.set('verificarUnicode', 'true');",
                               "pm.variables.set('expectedTitularesClaro', \"[\\\"Niño Muñoz Larrañaga\\\"]\");",
                               "pm.variables.set('expectedTitularesExactos', '1');"
@@ -15080,7 +15080,7 @@
                       ]
                     },
                     {
-                      "name": "0001.3.1016.6.5. validador BELLGATO — máscara largo 5 (exito)",
+                      "name": "0001.3.1016.6.5. validador BELLGATO — máscara largo 5 (exito) — sin enmascaramiento",
                       "request": {
                         "method": "POST",
                         "header": [],
@@ -15128,7 +15128,7 @@
                               "pm.variables.set('expectedBanco', 'TLRDPAPA');",
                               "pm.variables.set('expectedValidador', '1016');",
                               "pm.variables.unset('expectedCuentaLongitud');",
-                              "pm.variables.set('expectedEnmascarado', 'true');",
+                              "pm.variables.set('expectedEnmascarado', 'false');",
                               "pm.variables.set('verificarUnicode', 'true');",
                               "pm.variables.set('expectedTitularesClaro', \"[\\\"Niño Muñoz Larrañaga\\\"]\");",
                               "pm.variables.set('expectedTitularesExactos', '1');"
@@ -15138,7 +15138,7 @@
                       ]
                     },
                     {
-                      "name": "0001.3.1016.6.6. validador BELLGATO — máscara largo 6 (exito)",
+                      "name": "0001.3.1016.6.6. validador BELLGATO — máscara largo 6 (exito) — sin enmascaramiento",
                       "request": {
                         "method": "POST",
                         "header": [],
@@ -15186,7 +15186,7 @@
                               "pm.variables.set('expectedBanco', 'TLRDPAPA');",
                               "pm.variables.set('expectedValidador', '1016');",
                               "pm.variables.unset('expectedCuentaLongitud');",
-                              "pm.variables.set('expectedEnmascarado', 'true');",
+                              "pm.variables.set('expectedEnmascarado', 'false');",
                               "pm.variables.set('verificarUnicode', 'true');",
                               "pm.variables.set('expectedTitularesClaro', \"[\\\"Peña García Niño\\\"]\");",
                               "pm.variables.set('expectedTitularesExactos', '1');"
@@ -15196,7 +15196,7 @@
                       ]
                     },
                     {
-                      "name": "0001.3.1016.7.1. validador BELLGATO — cuenta 1 dígito (exito)",
+                      "name": "0001.3.1016.7.1. validador BELLGATO — cuenta 1 dígito (exito) — sin enmascaramiento",
                       "request": {
                         "method": "POST",
                         "header": [],
@@ -15244,7 +15244,7 @@
                               "pm.variables.set('expectedBanco', 'TLRDPAPA');",
                               "pm.variables.set('expectedValidador', '1016');",
                               "pm.variables.set('expectedCuentaLongitud', '1');",
-                              "pm.variables.set('expectedEnmascarado', 'true');",
+                              "pm.variables.set('expectedEnmascarado', 'false');",
                               "pm.variables.unset('verificarUnicode');",
                               "pm.variables.set('expectedTitularesClaro', \"[\\\"Mona Megistus\\\"]\");",
                               "pm.variables.set('expectedTitularesExactos', '1');"
@@ -15254,7 +15254,7 @@
                       ]
                     },
                     {
-                      "name": "0001.3.1016.7.2. validador BELLGATO — cuenta 34 dígitos (exito)",
+                      "name": "0001.3.1016.7.2. validador BELLGATO — cuenta 34 dígitos (exito) — sin enmascaramiento",
                       "request": {
                         "method": "POST",
                         "header": [],
@@ -15302,7 +15302,7 @@
                               "pm.variables.set('expectedBanco', 'TLRDPAPA');",
                               "pm.variables.set('expectedValidador', '1016');",
                               "pm.variables.set('expectedCuentaLongitud', '34');",
-                              "pm.variables.set('expectedEnmascarado', 'true');",
+                              "pm.variables.set('expectedEnmascarado', 'false');",
                               "pm.variables.unset('verificarUnicode');",
                               "pm.variables.set('expectedTitularesClaro', \"[\\\"Fischl von Luftschloss Narfidort\\\"]\");",
                               "pm.variables.set('expectedTitularesExactos', '1');"
@@ -16108,6 +16108,18 @@
           "          '[exito] titulares en claro segun seed Dynamo',",
           "          function () {",
           "            pm.expect(datos.titulares).to.deep.equal(titularesClaro);",
+          "          }",
+          "        );",
+          "",
+          "        pm.test(",
+          "          '[exito] titulares sin enmascaramiento (sin asteriscos)',",
+          "          function () {",
+          "            datos.titulares.forEach(function (titular, index) {",
+          "              pm.expect(",
+          "                titular,",
+          "                'titulares[' + index + '] contiene mascara'",
+          "              ).to.not.include('*');",
+          "            });",
           "          }",
           "        );",
           "      }",

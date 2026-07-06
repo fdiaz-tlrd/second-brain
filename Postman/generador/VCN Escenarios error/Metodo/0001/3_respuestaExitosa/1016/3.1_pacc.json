@@ -1,11 +1,11 @@
 {
-  "nombre": "0001.3.1016.3.1. validador BELLGATO — producto PACC (exito)",
+  "nombre": "0001.3.1016.3.1. validador BELLGATO — producto PACC (exito) — sin enmascaramiento",
   "expectedHttpStatus": 200,
   "expectedCodigoError": 0,
   "expectedTipo": "exito",
   "expectedCuenta": "1200130811",
   "expectedBanco": "TLRDPAPA",
-  "expectedEnmascarado": true,
+  "expectedEnmascarado": false,
   "expectedValidador": "1016",
   "titularesClaro": [
     "Alexandrina Sebastiane"

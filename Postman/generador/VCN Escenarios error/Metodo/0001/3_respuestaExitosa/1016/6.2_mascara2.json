@@ -1,11 +1,11 @@
 {
-  "nombre": "0001.3.1016.6.2. validador BELLGATO — máscara largo 2 (exito)",
+  "nombre": "0001.3.1016.6.2. validador BELLGATO — máscara largo 2 (exito) — sin enmascaramiento",
   "expectedHttpStatus": 200,
   "expectedCodigoError": 0,
   "expectedTipo": "exito",
   "expectedCuenta": "1100207446",
   "expectedBanco": "TLRDPAPA",
-  "expectedEnmascarado": true,
+  "expectedEnmascarado": false,
   "expectedValidador": "1016",
   "titularesClaro": [
     "Agustín Dañino"
