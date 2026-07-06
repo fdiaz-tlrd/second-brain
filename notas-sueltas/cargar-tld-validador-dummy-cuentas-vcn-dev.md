@@ -37,3 +37,50 @@ aws dynamodb get-item --region us-east-1 --table-name tld-validador-dummy --key 
 ```
 
 Esperado: `Niño Muñoz Larrañaga`.
+
+
+```powershell
+PS C:\AWSdeploy\X> $SeedFile = Join-Path (Get-Location) "tld-validador-dummy-cuentas-vcn-dev.json"
+PS C:\AWSdeploy\X> if (-not (Select-String -Path $SeedFile -Pattern '"tld-validador-dummy"' -Quiet)) { throw "JSON viejo o incompleto (falta tld-validador-dummy)" }
+PS C:\AWSdeploy\X> if (-not (Select-String -Path $SeedFile -Pattern '\\u00f1' -Quiet)) { throw "Faltan escapes \\u00f1  pegar JSON del repo d9799c6+" }
+PS C:\AWSdeploy\X> "OK estructura"
+OK estructura
+PS C:\AWSdeploy\X> $Region = "us-east-1"
+PS C:\AWSdeploy\X> $SeedFile = Join-Path (Get-Location) "tld-validador-dummy-cuentas-vcn-dev.json"
+PS C:\AWSdeploy\X> aws dynamodb batch-write-item --region $Region --request-items "file://$($SeedFile -replace '\\','/')"
+{
+    "UnprocessedItems": {}
+}
+
+PS C:\AWSdeploy\X> $keyFile = Join-Path $env:TEMP "dynamo-key-1100015294.json"
+PS C:\AWSdeploy\X> '{"cuenta":{"S":"1100015294"}}' | Set-Content -Path $keyFile -Encoding ascii -NoNewline
+PS C:\AWSdeploy\X> aws dynamodb get-item --region us-east-1 --table-name tld-validador-dummy --key "file://$($keyFile -replace '\\','/')"
+{
+    "Item": {
+        "resultado": {
+            "N": "0"
+        },
+        "tipoCuenta": {
+            "S": "PACA"
+        },
+        "titulares": {
+            "L": [
+                {
+                    "S": "Ni±o Mu±oz Larra±aga"
+                }
+            ]
+        },
+        "estadoCuenta": {
+            "S": "0"
+        },
+        "cuenta": {
+            "S": "1100015294"
+        },
+        "banco": {
+            "S": "TLRDPAPA"
+        }
+    }
+}
+
+PS C:\AWSdeploy\X>
+```
