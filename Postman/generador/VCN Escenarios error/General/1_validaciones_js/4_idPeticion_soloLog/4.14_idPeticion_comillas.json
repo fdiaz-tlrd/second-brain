@@ -1,0 +1,32 @@
+{
+  "nombre": "1.4.14. idPeticion — comillas (soloLog / exito)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 0,
+  "expectedTipo": "exito",
+  "expectedCuenta": "1100001328",
+  "expectedBanco": "TLRDPAPA",
+  "expectedEnmascarado": true,
+  "expectedValidador": "1009",
+  "expectedProducto": "PACA",
+  "titularesClaro": [
+    "Fischl von Luftschloss Narfidort"
+  ],
+  "expectedTitularesExactos": 1,
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR_EXITO}}",
+    "peticion": {
+      "metodo": "0001",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "cuenta": "{{CuentaFeliz}}"
+          }
+        }
+      ],
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}\"001"
+    }
+  }
+}

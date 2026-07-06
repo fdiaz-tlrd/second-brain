@@ -16,6 +16,7 @@
     [
       'PROCESAR_STATUS_CODE',
       'PROCESAR_RESPONSE_BODY',
+      'PROCESAR_RESPONSE_TIME_MS',
       'PAYLOAD_ID_PETICION',
       'PAYLOAD_METODO',
       'PAYLOAD_ID_SOLICITUD_0',
@@ -25,6 +26,65 @@
     ].forEach(function (key) {
       cvSet(key, '');
     });
+  }
+
+  const ID_SOLICITUD_MAX64 =
+    'TLRDPAPA34920492304344343442424324244242443434434343443434434344';
+
+  function pad2(n) {
+    return String(n).padStart(2, '0');
+  }
+
+  function buildTimestampLocal() {
+    const now = new Date();
+    return (
+      String(now.getFullYear()) +
+      pad2(now.getMonth() + 1) +
+      pad2(now.getDate()) +
+      pad2(now.getHours()) +
+      pad2(now.getMinutes()) +
+      pad2(now.getSeconds())
+    );
+  }
+
+  function aplicarGenerarIds(payload, spec) {
+    if (!spec || !payload.peticion) {
+      return;
+    }
+    const pet = payload.peticion;
+    const sol0 =
+      pet.solicitudes && pet.solicitudes[0] ? pet.solicitudes[0] : null;
+
+    if (spec.idPeticion === 'max64') {
+      const seq = String(
+        Number(pm.environment.get('QA_SEQ_COUNTER') || '1')
+      ).padStart(42, '0');
+      pet.idPeticion = 'TLRDPAPA' + seq + buildTimestampLocal();
+      pm.environment.set(
+        'QA_SEQ_COUNTER',
+        String(Number(pm.environment.get('QA_SEQ_COUNTER') || '1') + 1)
+      );
+    } else if (spec.idPeticion === 'min1') {
+      pet.idPeticion = String.fromCharCode(
+        Math.floor(Math.random() * 26) + 65
+      );
+    }
+
+    if (sol0) {
+      if (spec.idSolicitud === 'max64') {
+        sol0.idSolicitud = ID_SOLICITUD_MAX64;
+      } else if (spec.idSolicitud === 'min1') {
+        sol0.idSolicitud = '1';
+      }
+    }
+  }
+
+  function guardarTiemposProcesar(resProcesar) {
+    const tiempo =
+      resProcesar && resProcesar.responseTime != null
+        ? Number(resProcesar.responseTime)
+        : -1;
+    cvSet('PROCESAR_RESPONSE_TIME_MS', String(tiempo));
   }
 
   function resolveEndPointTld() {
@@ -215,6 +275,7 @@
         cvSet('FLOW_ERROR', '');
         cvSet('PROCESAR_STATUS_CODE', String(resProcesar.code));
         cvSet('PROCESAR_RESPONSE_BODY', resProcesar.text());
+        guardarTiemposProcesar(resProcesar);
         pm.request.body.update(resProcesar.text());
         pm.request.headers.upsert({ key: 'Content-Type', value: 'application/json' });
       } catch (networkError) {
@@ -232,6 +293,12 @@
   const mutacionPostCifrar = payload.__mutacionPostCifrar || null;
   if (mutacionPostCifrar) {
     delete payload.__mutacionPostCifrar;
+  }
+
+  const generarIds = payload.__generarIds || null;
+  if (generarIds) {
+    delete payload.__generarIds;
+    aplicarGenerarIds(payload, generarIds);
   }
 
   const bodyParaCifrar = JSON.stringify(payload);
@@ -317,6 +384,7 @@
       cvSet('FLOW_ERROR', '');
       cvSet('PROCESAR_STATUS_CODE', String(resProcesar.code));
       cvSet('PROCESAR_RESPONSE_BODY', resProcesar.text());
+      guardarTiemposProcesar(resProcesar);
       pm.request.body.update(resProcesar.text());
       pm.request.headers.upsert({ key: 'Content-Type', value: 'application/json' });
     } catch (networkError) {

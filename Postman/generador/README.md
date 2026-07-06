@@ -244,7 +244,7 @@ node run-newman.js p2p --folder "Metodo/0023/1_validaciones_js/2_qrCode"
 
 # VCN
 node run-newman.js vcn
-# General
+# General (run completo y carpetas padre omiten 4_idPeticion_soloLog)
 node run-newman.js vcn --folder "General"
 node run-newman.js vcn --folder "General/0_jsonEntrada"
 node run-newman.js vcn --folder "General/1_validaciones_js"
@@ -252,6 +252,7 @@ node run-newman.js vcn --folder "General/1_validaciones_js/1_idCanal"
 node run-newman.js vcn --folder "General/1_validaciones_js/2_validador"
 node run-newman.js vcn --folder "General/1_validaciones_js/3_peticion"
 node run-newman.js vcn --folder "General/1_validaciones_js/4_idPeticion"
+node run-newman.js vcn --folder "General/1_validaciones_js/4_idPeticion_soloLog"
 node run-newman.js vcn --folder "General/1_validaciones_js/5_solicitudes"
 node run-newman.js vcn --folder "General/2_reglaNegocio"
 node run-newman.js vcn --folder "General/2_reglaNegocio/1_idCanal"
@@ -291,6 +292,8 @@ Bloques `Metodo/0001`: `1_cuenta` (20), `2_respuestaCanalValidador` (48), **`3_r
 **Dynamo dev** (`tld-validador-dummy`, 25 cuentas): pegar JSON desde [`notas-sueltas/tld-validador-dummy-cuentas-vcn-dev.json`](../../notas-sueltas/tld-validador-dummy-cuentas-vcn-dev.json) y cargar con `file://` ([instrucciones](../../notas-sueltas/cargar-tld-validador-dummy-cuentas-vcn-dev.md)).
 
 `--folder` = misma ruta que la carpeta seleccionada en Postman (sin el nombre de la colección). Ejemplo: en Postman seleccionas `General` → `2_reglaNegocio` → `1_idCanal` → usa `General/2_reglaNegocio/1_idCanal`.
+
+**VCN `idPeticion`:** `4_idPeticion` = error duro (paridad Validador prod). `4_idPeticion_soloLog` = prod no rechaza; VCN dev solo log + Newman aserta **exito**; excluida del run `vcn` completo; correr con `--folder "General/1_validaciones_js/4_idPeticion_soloLog"` y revisar CloudWatch (`advertenciaSinRechazo`).
 
 Newman filtra por **nombre** de carpeta: hay dos `1_idCanal` bajo `General` (`1_validaciones_js` y `2_reglaNegocio`); la ruta completa en `--folder` puede incluir ambas.
 

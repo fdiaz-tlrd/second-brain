@@ -129,13 +129,15 @@ URL de token: `https://apigatesb.telered.com.pa/auth/token`
 
 ## Generación de idPeticion e idSolicitud
 
-Pre-request script del paso "Cifrar":
+Pre-request script del paso "Cifrar" (mismos scripts que `VCN REGRESIÓN`):
 
 - `seqCounter`: contador secuencial persistente en env, se incrementa en +1 cada ejecución.
-- `idPeticion = "TLRDPAPA" + padStart(seqCounter, 5, '0') + "YYYYMMDDHHMMSS"`
+- **Código exportado:** `idPeticion = "TLRDPAPA" + padStart(seqCounter, 5, '0') + "YYYYMMDDHHMMSS"` — **no** usa `pm.environment.get("banco")`.
 - `idSolicitud = "IDSOL" + padStart(seqCounter, 5, '0') + "YYYYMMDDHHMMSS"`
 
 Ejemplo: `TLRDPAPA0022820260520104432`
+
+**Análisis completo** (asserts por carpeta, validadores reales, XPRESS vs VCN, implicaciones SWIFT): ver sección *«`idPeticion` y prefijo SWIFT / banco»* en [`../Collecciones y Variables Cuenta Nombre y Xpress/estudio-coleccion-vcn-regresion.md`](../Collecciones%20y%20Variables%20Cuenta%20Nombre%20y%20Xpress/estudio-coleccion-vcn-regresion.md#idpeticion-y-prefijo-swift--banco--qué-validan-realmente).
 
 ---
 
@@ -251,11 +253,11 @@ Ambos envs tienen `C514` vacío, por lo que el escenario "Cuenta con informació
 | estadoCuenta = "0" | cuenta activa |
 | producto | "PACA" o "PACC" |
 | resultado = 0 | operación exitosa |
-| idPeticion formato | `/^TLRDPAPA\d{5}\d+$/` |
-| idSolicitud formato | `/^IDSOL\d{5}\d+$/` |
+| idPeticion formato (estándar) | `/^TLRDPAPA\d{5}\d+$/` — ver matriz en estudio REGRESIÓN; **no** en todos los escenarios |
+| idSolicitud formato (estándar) | `/^IDSOL\d{5}\d+$/` |
 | idPeticion ≠ idSolicitud | valores distintos |
 | Enmascaramiento titulares | largo máscara = floor(len(palabra) / 2) |
-| banco = env.banco | correspondencia canal |
+| `datos.banco` = env.banco | banco **de la cuenta** en respuesta; **no** prefijo de `idPeticion` |
 
 ### En "API Matriz-Resp Exitosa"
 
@@ -317,6 +319,7 @@ Los tests de "idCanal no existente" y "Validador no existente" validan:
 
 ## Notas de implementación
 
+- **`idPeticion` vs SWIFT:** detalle en [`estudio-coleccion-vcn-regresion.md`](../Collecciones%20y%20Variables%20Cuenta%20Nombre%20y%20Xpress/estudio-coleccion-vcn-regresion.md#idpeticion-y-prefijo-swift--banco--qué-validan-realmente). Resumen: prefijo TLRDPAPA hardcodeado en scripts; env `banco` solo para `datos.banco`.
 - Los escenarios de máscara 4 y 5 en CANALBANK usan la misma cuenta (`1100015294`).
 - `validadorC` es copia de `validador` para uso en el paso Cifrar (que va al dummy).
 - El dummy cifrador/descifrador es interno (`*.sand.telered.internal`), no expuesto a internet.

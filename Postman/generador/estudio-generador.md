@@ -414,6 +414,19 @@ Lista de huecos visibles hoy si solo se copió General y se cambió el método:
 
 ---
 
+## VCN: `idPeticion`, emisor y validador (contrato de negocio + lambda)
+
+Documentación completa (QA, lambda prod vs dev, ejemplo `1008`/`1012`): [`../equipo-pruebas/Collecciones y Variables Cuenta Nombre y Xpress/estudio-coleccion-vcn-regresion.md`](../equipo-pruebas/Collecciones%20y%20Variables%20Cuenta%20Nombre%20y%20Xpress/estudio-coleccion-vcn-regresion.md#modelo-de-negocio-emisor-vs-canal-validador-aclaración-operativa).
+
+Resumen para el generador:
+
+- **`idCanal`** = emisor (ej. `1008` `CELEGATO`). Genera `idPeticion` con prefijo `SWIFT_CANAL_EMISOR` (`CELEGATO…`).
+- **`validador`** = canal al que se consulta la cuenta (ej. `1012` `TERAGATO`). Define de qué banco vienen los titulares.
+- **`datos.banco`** en éxito = SWIFT del **validador**, no del emisor. `expectedBanco` en A11 debe venir del seed/cuenta del validador usado.
+- **Lambda dev** (`tld-api-cuenta-nombre`): valida que los 8 primeros chars de `idPeticion` = `alias` del **emisor** (código 445 si no). **Lambda prod master**: no valida `idPeticion` (solo formato de cuenta en 0001).
+
+---
+
 ## Archivos clave para profundizar
 
 | Tema | Archivo |
@@ -434,3 +447,5 @@ Lista de huecos visibles hoy si solo se copió General y se cambió el método:
 | Plan escenarios éxito | `VCN Escenarios error/Metodo/0001/3_respuestaExitosa/README.md` |
 | VCN General (ejemplo) | `VCN Escenarios error/General/1_validaciones_js/1_idCanal/1.1_*.json` |
 | Referencia QA VCN (no tocar) | `../equipo-pruebas/Validacion Cuenta Nombre/estudio-coleccion-vcn.md` |
+| idPeticion / emisor / lambda | `../equipo-pruebas/.../estudio-coleccion-vcn-regresion.md` (secciones SWIFT + modelo emisor/validador) |
+| Lambda dev validaciones | `tld-api-cuenta-nombre/lambdas/cuenta-nombre/lib/validaciones.js` |

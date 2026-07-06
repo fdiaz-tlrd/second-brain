@@ -91,6 +91,30 @@
     }
   );
 
+  const maxTiempoRaw = pm.environment.get('MAX_TIEMPO_PROCESAR_MS');
+  if (maxTiempoRaw != null && String(maxTiempoRaw).trim() !== '') {
+    const maxTiempo = Number(maxTiempoRaw);
+    const tiempoReal = Number(cvGet('PROCESAR_RESPONSE_TIME_MS'));
+    const nivelEjec = String(pm.environment.get('NIVEL_EJECUCION') || 'VCN')
+      .trim()
+      .toUpperCase();
+    pm.test(
+      '[Procesar ' +
+        nivelEjec +
+        '] tiempo respuesta < ' +
+        maxTiempo +
+        ' ms (real: ' +
+        tiempoReal +
+        ' ms)',
+      function () {
+        pm.expect(tiempoReal, 'tiempo de /procesar no capturado').to.be.at.least(
+          0
+        );
+        pm.expect(tiempoReal).to.be.below(maxTiempo);
+      }
+    );
+  }
+
   pm.test(
     '[Dummy /descifrar] HTTP status 2xx (real: ' + pm.response.code + ')',
     function () {

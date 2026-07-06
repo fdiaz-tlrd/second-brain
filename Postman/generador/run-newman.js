@@ -54,6 +54,9 @@ const SUITES = {
 
 const MAX_BODY = 4000;
 
+/** VCN: escenarios que prod no rechaza; fuera del run completo hasta alinear lambda dev. */
+const VCN_SOLO_LOG_FOLDER = "4_idPeticion_soloLog";
+
 function parseArgs(argv) {
   const positional = [];
   let folder = null;
@@ -338,6 +341,64 @@ function archiveRun(suiteKey, folder, jsonPath, mdPath, summary, nota) {
   pruneHistorial(histDir, HISTORIAL_MAX);
 }
 
+function shouldExcludeVcnSoloLogFolders(suiteKey, folder) {
+  if (suiteKey !== "vcn") {
+    return false;
+  }
+  if (folder && folder.indexOf(VCN_SOLO_LOG_FOLDER) !== -1) {
+    return false;
+  }
+  return true;
+}
+
+function filterItemsExcludingFolderNames(items, namesToExclude) {
+  return items
+    .filter(function (entry) {
+      if (Array.isArray(entry.item) && namesToExclude.indexOf(entry.name) !== -1) {
+        return false;
+      }
+      return true;
+    })
+    .map(function (entry) {
+      if (Array.isArray(entry.item)) {
+        return Object.assign({}, entry, {
+          item: filterItemsExcludingFolderNames(entry.item, namesToExclude),
+        });
+      }
+      return entry;
+    });
+}
+
+function applyVcnSoloLogExclusion(collection, suiteKey, folder) {
+  if (!shouldExcludeVcnSoloLogFolders(suiteKey, folder)) {
+    return collection;
+  }
+  if (typeof collection === "string") {
+    const raw = JSON.parse(fs.readFileSync(collection, "utf8"));
+    return Object.assign({}, raw, {
+      item: filterItemsExcludingFolderNames(raw.item, [VCN_SOLO_LOG_FOLDER]),
+    });
+  }
+  if (Array.isArray(collection.item)) {
+    return Object.assign({}, collection, {
+      item: filterItemsExcludingFolderNames(collection.item, [VCN_SOLO_LOG_FOLDER]),
+    });
+  }
+  return collection;
+}
+
+function resolveCollectionForRun(suiteKey, collectionPath, folder) {
+  let collection;
+  if (folder && folder.includes("/")) {
+    collection = buildCollectionForFolderPath(collectionPath, folder);
+  } else if (folder) {
+    return collectionPath;
+  } else {
+    collection = collectionPath;
+  }
+  return applyVcnSoloLogExclusion(collection, suiteKey, folder);
+}
+
 function walkFolderPath(rawItems, segments, collectionPath, folderPath) {
   let items = rawItems;
   /** @type {object|null} */
@@ -471,12 +532,19 @@ function runSuite(suiteKey, folder, insecure, nota) {
     );
   }
 
+  if (shouldExcludeVcnSoloLogFolders(suiteKey, folder)) {
+    console.log(
+      "VCN: omitiendo `" +
+        VCN_SOLO_LOG_FOLDER +
+        "` (run manual: --folder \"General/1_validaciones_js/" +
+        VCN_SOLO_LOG_FOLDER +
+        '").'
+    );
+  }
+
   // timeout = tope global del run (Newman), no por request. VCN completo ~400+ HTTP ~5–15 min.
   const options = {
-    collection:
-      folder && folder.includes("/")
-        ? buildCollectionForFolderPath(cfg.collection, folder)
-        : cfg.collection,
+    collection: resolveCollectionForRun(suiteKey, cfg.collection, folder),
     environment: cfg.environment,
     reporters: ["cli", "json"],
     reporter: {

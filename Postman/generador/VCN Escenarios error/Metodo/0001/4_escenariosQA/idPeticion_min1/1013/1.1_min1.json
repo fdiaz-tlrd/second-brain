@@ -1,0 +1,35 @@
+{
+  "nombre": "0001.4.1013. idPeticion MIN1 (QA) — validador AMIYGATO (exito)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 0,
+  "expectedTipo": "exito",
+  "expectedCuenta": "1100001328",
+  "expectedBanco": "TLRDPAPA",
+  "expectedEnmascarado": true,
+  "expectedValidador": "1013",
+  "expectedProducto": "PACA",
+  "titularesClaro": [
+    "Fischl von Luftschloss Narfidort"
+  ],
+  "expectedTitularesExactos": 1,
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "1013",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0001",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "cuenta": "{{CuentaFeliz}}"
+          }
+        }
+      ]
+    },
+    "__generarIds": {
+      "idPeticion": "min1"
+    }
+  }
+}
