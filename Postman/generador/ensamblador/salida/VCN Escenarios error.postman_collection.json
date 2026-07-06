@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "bdeab6bc-a08e-46fd-b0cb-86876acf77d4",
+    "_postman_id": "b2d2d42a-8ad2-4425-aeba-5a1612af1d6c",
     "name": "VCN Escenarios error",
     "description": "Colección generada desde la fuente en VCN Escenarios error/.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -55,7 +55,8 @@
                     "exec": [
                       "pm.variables.set('expectedHttpStatus', 400);",
                       "pm.variables.set('expectedCodigoError', 400);",
-                      "pm.variables.set('expectedTipo', 'general');"
+                      "pm.variables.set('expectedTipo', 'general');",
+                      "pm.variables.unset('expectedProducto');"
                     ]
                   }
                 }
@@ -112,7 +113,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -161,7 +163,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -210,7 +213,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -259,7 +263,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -308,7 +313,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -357,7 +363,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -406,7 +413,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -455,7 +463,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -504,7 +513,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -553,7 +563,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -602,7 +613,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -651,7 +663,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -700,7 +713,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -749,7 +763,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -803,7 +818,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -852,7 +868,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -901,7 +918,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -950,7 +968,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -999,7 +1018,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1048,7 +1068,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1097,7 +1118,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1146,7 +1168,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1195,7 +1218,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1244,7 +1268,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1293,7 +1318,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1342,7 +1368,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1391,7 +1418,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1440,7 +1468,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1494,7 +1523,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1543,7 +1573,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1592,7 +1623,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1641,7 +1673,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1690,7 +1723,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1739,7 +1773,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1788,7 +1823,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1837,7 +1873,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1886,7 +1923,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1935,7 +1973,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -1984,7 +2023,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2033,7 +2073,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2082,7 +2123,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2136,7 +2178,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2185,7 +2228,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2234,7 +2278,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2283,7 +2328,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2332,7 +2378,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2381,7 +2428,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2430,7 +2478,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2479,7 +2528,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2528,7 +2578,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2577,7 +2628,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2626,7 +2678,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2675,7 +2728,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2724,7 +2778,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2773,7 +2828,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 400);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2822,7 +2878,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 445);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2876,7 +2933,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 425);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2925,7 +2983,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 425);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -2974,7 +3033,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 425);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3023,7 +3083,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 431);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3072,7 +3133,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 431);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3121,7 +3183,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 431);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3170,7 +3233,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 431);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3219,7 +3283,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 431);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3268,7 +3333,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 431);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3327,7 +3393,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 401);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3376,7 +3443,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 403);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3425,7 +3493,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 500);",
                           "pm.variables.set('expectedCodigoError', 500);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3474,7 +3543,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 403);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3528,7 +3598,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 404);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3577,7 +3648,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 402);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3626,7 +3698,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 500);",
                           "pm.variables.set('expectedCodigoError', 500);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3680,7 +3753,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 405);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3729,7 +3803,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 405);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3778,7 +3853,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 405);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3827,7 +3903,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 405);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3876,7 +3953,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 405);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3925,7 +4003,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 405);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -3979,7 +4058,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 418);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -4028,7 +4108,8 @@
                         "exec": [
                           "pm.variables.set('expectedHttpStatus', 400);",
                           "pm.variables.set('expectedCodigoError', 418);",
-                          "pm.variables.set('expectedTipo', 'general');"
+                          "pm.variables.set('expectedTipo', 'general');",
+                          "pm.variables.unset('expectedProducto');"
                         ]
                       }
                     }
@@ -4095,7 +4176,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4144,7 +4226,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4193,7 +4276,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4242,7 +4326,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4291,7 +4376,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4340,7 +4426,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4389,7 +4476,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4438,7 +4526,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4487,7 +4576,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4536,7 +4626,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4585,7 +4676,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4634,7 +4726,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4683,7 +4776,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4732,7 +4826,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4781,7 +4876,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4830,7 +4926,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4879,7 +4976,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4928,7 +5026,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -4977,7 +5076,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5026,7 +5126,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 413);",
-                              "pm.variables.set('expectedTipo', 'parametro');"
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5085,7 +5186,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 510);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5134,7 +5236,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 511);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5183,7 +5286,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 512);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5232,7 +5336,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 513);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5281,7 +5386,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 514);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5330,7 +5436,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 515);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5384,7 +5491,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 510);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5433,7 +5541,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 511);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5482,7 +5591,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 512);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5531,7 +5641,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 513);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5580,7 +5691,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 514);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5629,7 +5741,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 515);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5683,7 +5796,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 510);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5732,7 +5846,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 511);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5781,7 +5896,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 512);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5830,7 +5946,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 513);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5879,7 +5996,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 514);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5928,7 +6046,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 515);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -5982,7 +6101,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 510);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6031,7 +6151,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 511);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6080,7 +6201,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 512);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6129,7 +6251,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 513);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6178,7 +6301,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 514);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6227,7 +6351,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 515);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6281,7 +6406,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 510);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6330,7 +6456,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 511);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6379,7 +6506,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 512);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6428,7 +6556,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 513);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6477,7 +6606,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 514);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6526,7 +6656,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 515);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6580,7 +6711,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 510);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6629,7 +6761,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 511);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6678,7 +6811,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 512);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6727,7 +6861,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 513);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6776,7 +6911,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 514);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6825,7 +6961,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 515);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6879,7 +7016,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 510);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6928,7 +7066,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 511);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -6977,7 +7116,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 512);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -7026,7 +7166,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 513);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -7075,7 +7216,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 514);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -7124,7 +7266,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 515);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -7178,7 +7321,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 510);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -7227,7 +7371,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 511);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -7276,7 +7421,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 512);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -7325,7 +7471,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 513);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -7374,7 +7521,8 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 514);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }
@@ -7423,7 +7571,783 @@
                             "exec": [
                               "pm.variables.set('expectedHttpStatus', 200);",
                               "pm.variables.set('expectedCodigoError', 515);",
-                              "pm.variables.set('expectedTipo', 'metodo');"
+                              "pm.variables.set('expectedTipo', 'metodo');",
+                              "pm.variables.unset('expectedProducto');"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "3_respuestaExitosa",
+              "item": [
+                {
+                  "name": "1_cuentaBasica",
+                  "item": [
+                    {
+                      "name": "0001.3.1.1. cuenta feliz (exito)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{CuentaFeliz}}\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 0);",
+                              "pm.variables.set('expectedTipo', 'exito');",
+                              "pm.variables.unset('expectedProducto');"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "2_productoPaca",
+                  "item": [
+                    {
+                      "name": "0001.3.2.1. producto PACA (exito)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{PACA}}\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 0);",
+                              "pm.variables.set('expectedTipo', 'exito');",
+                              "pm.variables.set('expectedProducto', 'PACA');"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "3_productoPacc",
+                  "item": [
+                    {
+                      "name": "0001.3.3.1. producto PACC (exito)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{PACC}}\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 0);",
+                              "pm.variables.set('expectedTipo', 'exito');",
+                              "pm.variables.set('expectedProducto', 'PACC');"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "4_juridica",
+                  "item": [
+                    {
+                      "name": "0001.3.4.1. cuenta jurídica (exito)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{Cuentajuridica}}\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 0);",
+                              "pm.variables.set('expectedTipo', 'exito');",
+                              "pm.variables.unset('expectedProducto');"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "5_variosTitulares",
+                  "item": [
+                    {
+                      "name": "0001.3.5.1. varios titulares (exito)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{Variostitulares}}\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 0);",
+                              "pm.variables.set('expectedTipo', 'exito');",
+                              "pm.variables.unset('expectedProducto');"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "6_mascaras",
+                  "item": [
+                    {
+                      "name": "0",
+                      "item": [
+                        {
+                          "name": "0001.3.6.0. máscara largo 0 (exito)",
+                          "request": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                              "host": [
+                                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                              ],
+                              "path": [
+                                "descifrar"
+                              ],
+                              "query": [
+                                {
+                                  "key": "tld",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "algoritmoCifrado",
+                                  "value": "aes-256-cbc"
+                                }
+                              ]
+                            },
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{mascara0}}\"\n                }\n            }\n        ]\n    }\n}",
+                              "options": {
+                                "raw": {
+                                  "language": "json"
+                                }
+                              }
+                            }
+                          },
+                          "response": [],
+                          "event": [
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                  "pm.variables.set('expectedHttpStatus', 200);",
+                                  "pm.variables.set('expectedCodigoError', 0);",
+                                  "pm.variables.set('expectedTipo', 'exito');",
+                                  "pm.variables.unset('expectedProducto');"
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "1",
+                      "item": [
+                        {
+                          "name": "0001.3.6.1. máscara largo 1 (exito)",
+                          "request": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                              "host": [
+                                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                              ],
+                              "path": [
+                                "descifrar"
+                              ],
+                              "query": [
+                                {
+                                  "key": "tld",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "algoritmoCifrado",
+                                  "value": "aes-256-cbc"
+                                }
+                              ]
+                            },
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{mascara1}}\"\n                }\n            }\n        ]\n    }\n}",
+                              "options": {
+                                "raw": {
+                                  "language": "json"
+                                }
+                              }
+                            }
+                          },
+                          "response": [],
+                          "event": [
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                  "pm.variables.set('expectedHttpStatus', 200);",
+                                  "pm.variables.set('expectedCodigoError', 0);",
+                                  "pm.variables.set('expectedTipo', 'exito');",
+                                  "pm.variables.unset('expectedProducto');"
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "2",
+                      "item": [
+                        {
+                          "name": "0001.3.6.2. máscara largo 2 (exito)",
+                          "request": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                              "host": [
+                                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                              ],
+                              "path": [
+                                "descifrar"
+                              ],
+                              "query": [
+                                {
+                                  "key": "tld",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "algoritmoCifrado",
+                                  "value": "aes-256-cbc"
+                                }
+                              ]
+                            },
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{mascara2}}\"\n                }\n            }\n        ]\n    }\n}",
+                              "options": {
+                                "raw": {
+                                  "language": "json"
+                                }
+                              }
+                            }
+                          },
+                          "response": [],
+                          "event": [
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                  "pm.variables.set('expectedHttpStatus', 200);",
+                                  "pm.variables.set('expectedCodigoError', 0);",
+                                  "pm.variables.set('expectedTipo', 'exito');",
+                                  "pm.variables.unset('expectedProducto');"
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "3",
+                      "item": [
+                        {
+                          "name": "0001.3.6.3. máscara largo 3 (exito)",
+                          "request": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                              "host": [
+                                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                              ],
+                              "path": [
+                                "descifrar"
+                              ],
+                              "query": [
+                                {
+                                  "key": "tld",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "algoritmoCifrado",
+                                  "value": "aes-256-cbc"
+                                }
+                              ]
+                            },
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{mascara3}}\"\n                }\n            }\n        ]\n    }\n}",
+                              "options": {
+                                "raw": {
+                                  "language": "json"
+                                }
+                              }
+                            }
+                          },
+                          "response": [],
+                          "event": [
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                  "pm.variables.set('expectedHttpStatus', 200);",
+                                  "pm.variables.set('expectedCodigoError', 0);",
+                                  "pm.variables.set('expectedTipo', 'exito');",
+                                  "pm.variables.unset('expectedProducto');"
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "4",
+                      "item": [
+                        {
+                          "name": "0001.3.6.4. máscara largo 4 (exito)",
+                          "request": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                              "host": [
+                                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                              ],
+                              "path": [
+                                "descifrar"
+                              ],
+                              "query": [
+                                {
+                                  "key": "tld",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "algoritmoCifrado",
+                                  "value": "aes-256-cbc"
+                                }
+                              ]
+                            },
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{mascara4}}\"\n                }\n            }\n        ]\n    }\n}",
+                              "options": {
+                                "raw": {
+                                  "language": "json"
+                                }
+                              }
+                            }
+                          },
+                          "response": [],
+                          "event": [
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                  "pm.variables.set('expectedHttpStatus', 200);",
+                                  "pm.variables.set('expectedCodigoError', 0);",
+                                  "pm.variables.set('expectedTipo', 'exito');",
+                                  "pm.variables.unset('expectedProducto');"
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "5",
+                      "item": [
+                        {
+                          "name": "0001.3.6.5. máscara largo 5 (exito)",
+                          "request": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                              "host": [
+                                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                              ],
+                              "path": [
+                                "descifrar"
+                              ],
+                              "query": [
+                                {
+                                  "key": "tld",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "algoritmoCifrado",
+                                  "value": "aes-256-cbc"
+                                }
+                              ]
+                            },
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{mascara5}}\"\n                }\n            }\n        ]\n    }\n}",
+                              "options": {
+                                "raw": {
+                                  "language": "json"
+                                }
+                              }
+                            }
+                          },
+                          "response": [],
+                          "event": [
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                  "pm.variables.set('expectedHttpStatus', 200);",
+                                  "pm.variables.set('expectedCodigoError', 0);",
+                                  "pm.variables.set('expectedTipo', 'exito');",
+                                  "pm.variables.unset('expectedProducto');"
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "6",
+                      "item": [
+                        {
+                          "name": "0001.3.6.6. máscara largo 6 (exito)",
+                          "request": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                              "host": [
+                                "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                              ],
+                              "path": [
+                                "descifrar"
+                              ],
+                              "query": [
+                                {
+                                  "key": "tld",
+                                  "value": "0"
+                                },
+                                {
+                                  "key": "algoritmoCifrado",
+                                  "value": "aes-256-cbc"
+                                }
+                              ]
+                            },
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{mascara6}}\"\n                }\n            }\n        ]\n    }\n}",
+                              "options": {
+                                "raw": {
+                                  "language": "json"
+                                }
+                              }
+                            }
+                          },
+                          "response": [],
+                          "event": [
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                  "pm.variables.set('expectedHttpStatus', 200);",
+                                  "pm.variables.set('expectedCodigoError', 0);",
+                                  "pm.variables.set('expectedTipo', 'exito');",
+                                  "pm.variables.unset('expectedProducto');"
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "7_limitesFormato",
+                  "item": [
+                    {
+                      "name": "0001.3.7.1. cuenta 1 dígito (exito)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{Cuenta1}}\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 0);",
+                              "pm.variables.set('expectedTipo', 'exito');",
+                              "pm.variables.unset('expectedProducto');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0001.3.7.2. cuenta 34 dígitos (exito)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR_EXITO}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0001\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"cuenta\": \"{{Cuenta34}}\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 0);",
+                              "pm.variables.set('expectedTipo', 'exito');",
+                              "pm.variables.unset('expectedProducto');"
                             ]
                           }
                         }

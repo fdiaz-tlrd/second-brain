@@ -401,10 +401,10 @@ Lista de huecos visibles hoy si solo se copió General y se cambió el método:
 
 4. **No hay environment VCN** en `entornos/`. Faltan endpoint cuenta-nombre, canales/validadores VCN, cuentas de prueba (510–515, máscaras, PACA/PACC, etc.).
 
-5. **`Metodo/0001/1_validaciones_js/1_cuenta`.** **20** escenarios → **413** (A10). Generador: `generar-escenarios-0001-cuenta-413.js`. **`Metodo/0001/2_respuestaCanalValidador`:** 510–515 × 8 validadores (A9 cerrada). **`Metodo/0001/3_respuestaExitosa`:** plan A11 (resultado 0).
+5. **`Metodo/0001/1_validaciones_js/1_cuenta`.** **20** escenarios → **413** (A10). Generador: `generar-escenarios-0001-cuenta-413.js`. **`Metodo/0001/2_respuestaCanalValidador`:** 510–515 × 8 validadores (A9 cerrada). **`Metodo/0001/3_respuestaExitosa`:** **14** escenarios → **exito** (A11).
 
 6. **`catalogoGeneral.json`.** Incluye **413** y **510–515**; usado por generadores 0001.
-7. **Generadores Metodo/0001:** `generar-escenarios-0001-cuenta-413.js`, `generar-escenarios-0001-respuesta-canal-validador.js`; pendiente `generar-escenarios-0001-respuesta-exitosa.js`.
+7. **Generadores Metodo/0001:** `generar-escenarios-0001-cuenta-413.js`, `generar-escenarios-0001-respuesta-canal-validador.js`, `generar-escenarios-0001-respuesta-exitosa.js`.
 
 8. **`bootstrap-general-p2p.js` no aplica a VCN.** Si alguien lo ejecuta pensando en “sincronizar General”, no toca VCN. VCN quedó como copia puntual; cambios futuros en P2P General no se propagan solos.
 
@@ -428,6 +428,7 @@ Lista de huecos visibles hoy si solo se copió General y se cambió el método:
 | Generador masivo | `ensamblador/generar-escenarios-0022-validaciones.js` |
 | Generador 413 cuenta VCN | `ensamblador/generar-escenarios-0001-cuenta-413.js` |
 | Generador 510–515 VCN | `ensamblador/generar-escenarios-0001-respuesta-canal-validador.js` |
+| Generador exito 0001 VCN | `ensamblador/generar-escenarios-0001-respuesta-exitosa.js` |
 | Escenarios 413 cuenta | `VCN Escenarios error/Metodo/0001/1_validaciones_js/1_cuenta/` |
 | Escenarios 510–515 | `VCN Escenarios error/Metodo/0001/2_respuestaCanalValidador/` |
 | Plan escenarios éxito | `VCN Escenarios error/Metodo/0001/3_respuestaExitosa/README.md` |

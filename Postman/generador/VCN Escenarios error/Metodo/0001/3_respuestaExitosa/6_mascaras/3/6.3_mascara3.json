@@ -1,0 +1,23 @@
+{
+  "nombre": "0001.3.6.3. máscara largo 3 (exito)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 0,
+  "expectedTipo": "exito",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR_EXITO}}",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0001",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "cuenta": "{{mascara3}}"
+          }
+        }
+      ]
+    }
+  }
+}

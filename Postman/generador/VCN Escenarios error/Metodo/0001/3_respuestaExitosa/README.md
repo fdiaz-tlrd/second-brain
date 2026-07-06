@@ -10,9 +10,9 @@ Escenarios **resultado = 0** con `datos` completos. Misma colección `VCN Escena
 | `expectedCodigoError` | **0** |
 | `expectedTipo` | **`exito`** |
 | Emisor | `{{CANAL_EMISOR}}` (1008) |
-| Validador | `{{CANAL_VALIDADOR}}` o literal según escenario |
+| Validador | `{{CANAL_VALIDADOR_EXITO}}` (**1009**) |
 
-## Subcarpetas planificadas (A11 — pendiente implementación JSON)
+## Subcarpetas planificadas (A11 — implementado)
 
 | Carpeta | Referencia QA | Variables env |
 |---------|---------------|---------------|
@@ -24,6 +24,6 @@ Escenarios **resultado = 0** con `datos` completos. Misma colección `VCN Escena
 | `6_mascaras/0` … `6` | Largo máscara 0–6 | `{{mascara0}}` … `{{mascara6}}` |
 | `7_limitesFormato/` | Cuenta 1 dígito, 34 dígitos | `{{Cuenta1}}`, `{{Cuenta34}}` |
 
-Generador previsto: `ensamblador/generar-escenarios-0001-respuesta-exitosa.js`.
+Generador: `ensamblador/generar-escenarios-0001-respuesta-exitosa.js` (**14** escenarios).
 
 Triage: [`../../../../../../tld-api-cuenta-nombre/triage/11-respuesta-exitosa-metodo-0001.md`](../../../../../../tld-api-cuenta-nombre/triage/11-respuesta-exitosa-metodo-0001.md).

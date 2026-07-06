@@ -1,6 +1,6 @@
 # Triage #11 — Metodo/0001/3_respuestaExitosa (resultado 0)
 
-**Estado:** **planificado** — carpeta creada; JSON **pendiente**.
+**Estado:** **JSON generado** (14 escenarios) — Newman **pendiente VPN**.
 
 ## Decisión: no renombrar `VCN Escenarios error`
 
@@ -31,11 +31,9 @@ Ver README en esa carpeta para subcarpetas planificadas.
 | ID | Acción | Estado |
 |----|--------|--------|
 | A11a | Decisión estructura + `exito` en Post-response | **Hecho** |
-| A11b | Generador + JSON éxito (básico, PACA, PACC, jurídica, máscaras, límites) | **Siguiente** |
-| A11c | Newman + checklist | Tras A11b |
+| A11b | Generador + JSON éxito (básico, PACA, PACC, jurídica, máscaras, límites) | **Hecho** |
+| A11c | Newman + checklist | **Siguiente** (VPN) |
 
 ## Cuentas / env
 
-Variables y cuentas: [`notas-sueltas/vcn-datos-prueba-dev-metodo-0001-exito.md`](../../notas-sueltas/vcn-datos-prueba-dev-metodo-0001-exito.md).
-
-Validar en dev que dummy/validador devuelve datos reales para esas cuentas antes de fijar asserts estrictos.
+Variables env: [`Postman/generador/entornos/VCN Escenarios error - desarrollo.postman_environment.json`](../../Postman/generador/entornos/VCN%20Escenarios%20error%20-%20desarrollo.postman_environment.json) (`CANAL_VALIDADOR_EXITO`, `Variostitulares`, `Cuenta1`, `Cuenta34`). Dynamo: [`notas-sueltas/cargar-tld-validador-dummy-cuentas-vcn-dev.md`](../../notas-sueltas/cargar-tld-validador-dummy-cuentas-vcn-dev.md).

@@ -83,7 +83,7 @@ function buildDescifrarUrl(algoritmoCifrado, tld) {
 }
 
 function buildExpectedPreRequestExec(escenario) {
-  return [
+  const lines = [
     "pm.variables.set('expectedHttpStatus', " +
       escenario.expectedHttpStatus +
       ");",
@@ -92,6 +92,16 @@ function buildExpectedPreRequestExec(escenario) {
       ");",
     "pm.variables.set('expectedTipo', '" + escenario.expectedTipo + "');",
   ];
+  if (escenario.expectedProducto) {
+    lines.push(
+      "pm.variables.set('expectedProducto', '" +
+        escenario.expectedProducto +
+        "');"
+    );
+  } else {
+    lines.push("pm.variables.unset('expectedProducto');");
+  }
+  return lines;
 }
 
 function buildRequestItemFromJson(jsonPath) {

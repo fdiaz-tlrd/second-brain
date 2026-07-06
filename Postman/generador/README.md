@@ -27,6 +27,7 @@ Detalle: [`../../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md`](../../tl
 | `VCN Escenarios error/` | Escenarios fuente VCN |
 | `entornos/` | Environments Postman |
 | [`../canalesPruebas-dev/`](../canalesPruebas-dev/) | Canales dev, export Dynamo, operaciones validador |
+| [`../../notas-sueltas/`](../../notas-sueltas/) | Seed Dynamo `tld-validador-dummy` (cuentas VCN dev) — ver [`cargar-tld-validador-dummy-cuentas-vcn-dev.md`](../../notas-sueltas/cargar-tld-validador-dummy-cuentas-vcn-dev.md) |
 
 ## Uso
 
@@ -262,7 +263,6 @@ node run-newman.js vcn --folder "Metodo"
 node run-newman.js vcn --folder "Metodo/0001"
 node run-newman.js vcn --folder "Metodo/0001/1_validaciones_js"
 node run-newman.js vcn --folder "Metodo/0001/1_validaciones_js/1_cuenta"
-node run-newman.js vcn --folder "Metodo/0001/1_validaciones_js/1_cuenta"
 node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador"
 node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1008"
 node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1009"
@@ -272,7 +272,22 @@ node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1013"
 node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1014"
 node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1015"
 node run-newman.js vcn --folder "Metodo/0001/2_respuestaCanalValidador/1016"
+# Metodo 0001/3_respuestaExitosa — pendiente A11 (generador)
+node run-newman.js vcn --folder "Metodo/0001/3_respuestaExitosa"
+node run-newman.js vcn --folder "Metodo/0001/3_respuestaExitosa/1_cuentaBasica"
+node run-newman.js vcn --folder "Metodo/0001/3_respuestaExitosa/6_mascaras"
 ```
+
+### VCN — baseline `Metodo/0001` (VPN, 2026-07-06)
+
+| Run | Comando | Escenarios | Assertions | Requests HTTP |
+|-----|---------|------------|------------|---------------|
+| **OK** | `node run-newman.js vcn --folder "Metodo/0001"` | 68 | **612/612** | 204 |
+| *(nuevo)* | `node run-newman.js vcn --folder "Metodo/0001/3_respuestaExitosa"` | 14 | *pendiente VPN* | 42 |
+
+Bloques en fuente: `1_cuenta` (20×413), `2_respuestaCanalValidador` (48×510–515), **`3_respuestaExitosa` (14×exito)**. Baseline colección completa sube **+14 escenarios** tras Newman VPN — [`logs/registro-vcn.md`](logs/registro-vcn.md).
+
+**Dynamo dev** (`tld-validador-dummy`, 25 cuentas): pegar JSON desde [`notas-sueltas/tld-validador-dummy-cuentas-vcn-dev.json`](../../notas-sueltas/tld-validador-dummy-cuentas-vcn-dev.json) y cargar con **`fileb://`** ([instrucciones](../../notas-sueltas/cargar-tld-validador-dummy-cuentas-vcn-dev.md)). Titulares con **ñ**: verificar cuenta `1100015294` tras carga.
 
 `--folder` = misma ruta que la carpeta seleccionada en Postman (sin el nombre de la colección). Ejemplo: en Postman seleccionas `General` → `2_reglaNegocio` → `1_idCanal` → usa `General/2_reglaNegocio/1_idCanal`.
 
