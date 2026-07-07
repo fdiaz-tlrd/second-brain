@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Informe canal 1577 — Sandbox</title>
+  <style>
+    :root {
+      --bg: #f8f9fb;
+      --card: #fff;
+      --text: #1a1d23;
+      --muted: #5c6570;
+      --border: #dde2e8;
+      --accent: #0b5fff;
+      --code-bg: #eef1f5;
+      --pre-bg: #1e2430;
+      --pre-fg: #e8ecf1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 1.5rem;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--text);
+      background: var(--bg);
+    }
+    .wrap {
+      max-width: 52rem;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,.06);
+    }
+    h1 { font-size: 1.65rem; margin-top: 0; border-bottom: 2px solid var(--border); padding-bottom: .5rem; }
+    h2 { font-size: 1.2rem; margin-top: 2rem; color: #0d3d8c; }
+    h3 { font-size: 1.05rem; margin-top: 1.25rem; }
+    p { margin: .65rem 0; }
+    hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+    code {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: .9em;
+      background: var(--code-bg);
+      padding: .1em .35em;
+      border-radius: 3px;
+    }
+    pre {
+      background: var(--pre-bg);
+      color: var(--pre-fg);
+      padding: 1rem 1.1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: .82rem;
+      line-height: 1.45;
+    }
+    pre code { background: none; padding: 0; color: inherit; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: .92rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: .5rem .65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f0f3f7; font-weight: 600; }
+    a { color: var(--accent); }
+    ul, ol { margin: .5rem 0 .75rem 1.25rem; }
+    li { margin: .25rem 0; }
+    .footer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: .85rem;
+      color: var(--muted);
+    }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .wrap { box-shadow: none; border: none; max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+<h1>Informe: fallo canal validador 1577 en Sandbox</h1>
+<p><strong>Fecha:</strong> 2026-07-07  </p>
+<p><strong>Ambiente:</strong> Sandbox  </p>
+<p><strong>Canal validador:</strong> <code>1577</code> (alias PAC / nombre banco: <code>AUTOMATI</code>)  </p>
+<p><strong>Evidencia cruda (logs):</strong> <a href="./canalValidacion1577.md"><code>canalValidacion1577.md</code></a></p>
+<hr>
+<h2>Resumen ejecutivo</h2>
+<p>El escenario de regresión <strong>TELERED VCN Resp Sin enmascarar</strong> falla en Sandbox por una <strong>configuración incorrecta en el PAC</strong> del canal <code>1577</code>: la llave pública <strong>activa</strong> para cifrado (<code>1577-publicOrlando.pem</code>) no corresponde al validador al que apunta el canal (<code>tld-validador-dummy</code>). El procesador cifra con una pública que el dummy no puede descifrar; el validador devuelve error genérico y el proxy responde <strong>509</strong> (<code>error_validador_campo_respuesta</code>).</p>
+<p><strong>Acción solicitada:</strong> en el PAC de Sandbox, canal <code>1577</code>, activar la llave <strong><code>1577-dummy-public (1).pem</code></strong> en lugar de <strong><code>1577-publicOrlando.pem</code></strong>.</p>
+<hr>
+<h2>Síntoma</h2>
+<table><thead><tr><th>Campo</th><th>Valor</th></tr></thead><tbody><tr><td>Carpeta Postman</td><td><code>TELERED VCN Resp Sin enmascarar</code></td></tr><tr><td>Colección</td><td><code>VCN REGRESIÓN.postman_collection.json</code></td></tr><tr><td>Environment</td><td><code>SANDBOX VCN.postman_environment.json</code></td></tr><tr><td>Comportamiento</td><td>La colección se detiene en el paso <strong>API Matriz</strong> (fallo de aserciones / bail)</td></tr><tr><td>Respuesta al cliente</td><td>HTTP <strong>509</strong> — «La respuesta del validador no incluye el campo cifrado <code>respuesta</code> esperado»</td></tr></tbody></table>
+<hr>
+<h2>Reproducción</h2>
+<h3>Flujo Postman (equipo de pruebas)</h3>
+<ol>
+<li><strong>Cifrar</strong> — <code>POST {{URLC}}</code> (<code>tld-validador-dummy.sand.telered.internal/cifrar</code>)</li>
+</ol>
+<p>   - Body usa <code>&quot;validador&quot;: &quot;{{validadorNOMASKRA}}&quot;</code> → <strong><code>1577</code></strong></p>
+<ol>
+<li><strong>API Matriz</strong> — <code>POST {{URLM}}</code> (<code>apigatesb.telered.com.pa/validador/validar</code>)</li>
+</ol>
+<p>   - Body usa <code>&quot;validador&quot;: &quot;{{validador}}&quot;</code> (valor propagado en runtime; ver sección Postman)</p>
+<ol>
+<li><strong>Descifrar</strong> — no se alcanza si falla el paso 2</li>
+</ol>
+<h3>Llamada directa al proxy (confirmación)</h3>
+<p>Invocación directa a <code>tld-validador-proxy</code> <code>/sandbox/procesar</code> con <code>idCanal: 1000</code>, <code>validador: 1577</code>, método <code>0001</code> reproduce el mismo patrón: validador HTTP 200 con <code>{ &quot;Code&quot;: 999, &quot;message&quot;: &quot;Error en la solicitud&quot; }</code> y proxy 509.</p>
+<p>Detalle en <a href="./canalValidacion1577.md"><code>canalValidacion1577.md</code></a>.</p>
+<hr>
+<h2>Cadena de causa (confirmada)</h2>
+<pre><code>PAC / DynamoDB (canal 1577)
+  → llave activa: 1577-publicOrlando.pem
+       ↓
+tld-validador-proxy cifra petición con esa pública
+       ↓
+tld-validador-dummy recibe POST /validar
+       ↓
+descifra con dummy-private.pem (par de dummy-public / 1577-dummy-public)
+       ↓
+FALLO: error:02000079:rsa routines::oaep decoding error
+       ↓
+peticion = null → TypeError (metodo)
+       ↓
+respuesta al proxy: { Code: 999, message: &quot;Error en la solicitud&quot; }
+       ↓
+proxy: 509 error_validador_campo_respuesta (sin campo &quot;respuesta&quot; cifrado)</code></pre>
+<hr>
+<h2>Evidencia de llaves</h2>
+<p>Archivos comparados en esta carpeta y en <code>tld-validador-dummy</code>:</p>
+<table><thead><tr><th>Archivo</th><th>Rol</th><th>Coincide con dummy</th></tr></thead><tbody><tr><td><code>1577-dummy-public (1).pem</code></td><td>Pública entregada para dummy / Sandbox</td><td><strong>Sí</strong> — idéntica a <code>tld-validador-dummy/lambdas/validar/dummy-public.pem</code></td></tr><tr><td><code>1577-publicOrlando.pem</code></td><td>Pública activa en PAC al momento del incidente</td><td><strong>No</strong> — par RSA distinto</td></tr></tbody></table>
+<p>En logs del proxy (<code>canalValidacion1577.md</code>):</p>
+<ul>
+<li><code>llaveCifrado.archivo</code>: <strong><code>1577-publicOrlando.pem</code></strong></li>
+<ul>
+<li><code>urlValidador</code>: <code>https://tld-validador-dummy.sand.telered.internal/validar</code></li>
+</ul>
+<p>En logs del dummy (<code>canalValidacion1577.md</code>):</p>
+<ul>
+<li>Descifrado con <strong><code>dummy-private.pem</code></strong></li>
+<ul>
+<li>Error: <strong><code>oaep decoding error</code></strong></li>
+</ul>
+<hr>
+<h2>Configuración PAC / DynamoDB (canal 1577)</h2>
+<table><thead><tr><th>Campo</th><th>Valor observado</th></tr></thead><tbody><tr><td><code>idCanal</code></td><td><code>1577</code></td></tr><tr><td><code>alias</code></td><td><code>AUTOMATI</code></td></tr><tr><td><code>canalNombre</code></td><td><code>1577-Canal para marketplace</code></td></tr><tr><td><code>urlValidador</code></td><td><code>https://tld-validador-dummy.sand.telered.internal/validar</code></td></tr><tr><td><code>estadoValidador</code></td><td><code>Y</code></td></tr><tr><td><code>algoritmoCifrado</code></td><td><code>aes-256-cbc</code></td></tr><tr><td>Llaves cargadas en PAC</td><td><code>1577-publicOrlando.pem</code>, <code>1577-dummy-public (1).pem</code></td></tr><tr><td>Llave activa (incorrecta para dummy)</td><td><strong><code>1577-publicOrlando.pem</code></strong></td></tr></tbody></table>
+<p><strong>Desalineación:</strong> URL apunta al <strong>dummy</strong>, pero la llave activa corresponde a <strong>otro par</strong> (probable escenario histórico / validador real asociado al nombre «Orlando»). Para Sandbox con dummy, la activa debe ser <strong><code>1577-dummy-public (1).pem</code></strong>.</p>
+<hr>
+<h2>Variables Postman: <code>validador</code> vs <code>validadorNOMASKRA</code></h2>
+<p>Confusión frecuente al inspeccionar el environment en Postman <strong>después</strong> de ejecutar la colección.</p>
+<h3>Valores en el archivo exportado (<code>SANDBOX VCN.postman_environment.json</code>)</h3>
+<table><thead><tr><th>Variable</th><th>Valor inicial</th></tr></thead><tbody><tr><td><code>validador</code></td><td><strong><code>1000</code></strong></td></tr><tr><td><code>validadorNOMASKRA</code></td><td><strong><code>1577</code></strong></td></tr></tbody></table>
+<p>Verificado: cerrar Postman, reimportar el environment sin ejecutar nada → <code>validador = 1000</code>, <code>validadorNOMASKRA = 1577</code>.</p>
+<h3>Por qué a veces se ve <code>validador = 1577</code> en la UI</h3>
+<p>En <strong>TELERED VCN Resp Sin enmascarar</strong>:</p>
+<ol>
+<li>El paso <strong>Cifrar</strong> envía <code>&quot;validador&quot;: &quot;{{validadorNOMASKRA}}&quot;</code> (<code>1577</code>).</li>
+<ol>
+<li>El script de test del Cifrar hace <code>pm.environment.set(&quot;validador&quot;, jsonData.validador)</code> — el dummy devuelve <code>1577</code> y <strong>sobrescribe</strong> <code>validador</code>.</li>
+<ol>
+<li>El paso <strong>API Matriz</strong> usa <code>&quot;validador&quot;: &quot;{{validador}}&quot;</code> → en ese momento vale <strong>1577</strong>.</li>
+</ol>
+<p>El <code>1577</code> <strong>no</strong> viene del valor por defecto de <code>validador</code> en el JSON exportado; viene de <strong><code>validadorNOMASKRA</code></strong> y se propaga en runtime.</p>
+<hr>
+<h2>Qué no es la causa (para este incidente)</h2>
+<table><thead><tr><th>Hipótesis</th><th>Valoración</th></tr></thead><tbody><tr><td>Bug nuevo en lógica de negocio del dummy</td><td>No — falla en descifrado RSA antes de procesar <code>metodo</code></td></tr><tr><td>El proxy elige la llave por código en deploy</td><td>No — lee <code>llaveCifrado</code> desde DynamoDB / PAC (<code>1577-publicOrlando.pem</code> en logs)</td></tr><tr><td>Error en la colección Postman (validador equivocado)</td><td>No — <code>1577</code> es el canal previsto para «sin enmascarar» en Sandbox</td></tr><tr><td>Variable <code>validador</code> mal definida en el environment exportado</td><td>No — el escenario usa <code>validadorNOMASKRA</code>; <code>validador</code> se actualiza en ejecución</td></tr></tbody></table>
+<p>Los despliegues de <code>tld-validador-proxy</code> y mejoras a <code>tld-validador-dummy</code> <strong>no explican</strong> qué llave queda activa en el PAC; eso lo administra el sitio PAC.</p>
+<hr>
+<h2>Acción requerida</h2>
+<p><strong>Responsable:</strong> administración del PAC / configuración de canales en Sandbox (equipo que opera el PAC).</p>
+<p><strong>Cambio:</strong></p>
+<ol>
+<li>Canal <strong><code>1577</code></strong></li>
+<ol>
+<li>Activar llave pública <strong><code>1577-dummy-public (1).pem</code></strong></li>
+<ol>
+<li>Desactivar (o no usar para cifrado) <strong><code>1577-publicOrlando.pem</code></strong> mientras <code>urlValidador</code> apunte a <code>tld-validador-dummy.sand.telered.internal</code></li>
+</ol>
+<p><strong>Verificación post-cambio:</strong></p>
+<ol>
+<li>Ejecutar carpeta <strong>TELERED VCN Resp Sin enmascarar</strong> con <code>SANDBOX VCN</code></li>
+<ol>
+<li>O llamada directa a <code>tld-validador-proxy</code> con <code>validador: 1577</code>, método <code>0001</code></li>
+<ol>
+<li>Esperado: respuesta con campo <code>respuesta</code> cifrado; sin 509 ni <code>Code: 999</code> por fallo de descifrado</li>
+</ol>
+<hr>
+<h2>Artefactos de referencia</h2>
+<table><thead><tr><th>Artefacto</th><th>Ubicación</th></tr></thead><tbody><tr><td>Logs proxy + dummy + DynamoDB</td><td><a href="./canalValidacion1577.md"><code>canalValidacion1577.md</code></a></td></tr><tr><td>Llave dummy (PAC)</td><td><a href="./1577-dummy-public%20(1"><code>1577-dummy-public (1).pem</code></a>.pem)</td></tr><tr><td>Llave Orlando (PAC, activa al incidente)</td><td><a href="./1577-publicOrlando.pem"><code>1577-publicOrlando.pem</code></a></td></tr><tr><td>Llave pública dummy (repo)</td><td><code>tld-validador-dummy/lambdas/validar/dummy-public.pem</code></td></tr><tr><td>Colección regresión</td><td><code>second-brain/Postman/equipo-pruebas/.../VCN REGRESIÓN.postman_collection.json</code></td></tr><tr><td>Environment Sandbox</td><td><code>second-brain/Postman/equipo-pruebas/.../SANDBOX VCN.postman_environment.json</code></td></tr><tr><td>Estudio colección</td><td><code>second-brain/Postman/equipo-pruebas/.../estudio-coleccion-vcn-regresion.md</code></td></tr></tbody></table>
+<hr>
+<h2>Conclusión</h2>
+<p>Con certeza técnica (logs + comparación de llaves + reproducción Postman): el error en Sandbox para el canal <strong>1577</strong> es producto de <strong>configuración PAC</strong> — llave pública activa incompatible con el validador dummy configurado. La corrección es cambiar la llave activa a <strong><code>1577-dummy-public (1).pem</code></strong>.</p>
+    <p class="footer">Generado desde informe-canal-1577-llave-pac-sandbox.md — 2026-07-07</p>
+  </div>
+</body>
+</html>
