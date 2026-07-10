@@ -4,7 +4,7 @@
 
 ## Resumen en una frase
 
-El código del repo está listo en rama `feature/ARQ-256_Bajar_a_premisa_P2M`; premisa PA_ACH se instaló parcialmente en un ambiente; **faltan GRANT y sinónimo público** (usuario ejecutor sin privilegios); streams P2M en `samconfig.toml` siguen con placeholder `REEMPLAZAR` en la mayoría de perfiles.
+El código del repo está listo en rama `feature/ARQ-256_Bajar_a_premisa_P2M`; premisa PA_ACH instalada parcialmente; **faltan GRANT y sinónimo público** en Oracle; **streams P2M Sandbox ya cargados** en `samconfig.toml` (`[sandbox]` y `[sandbox-oregon]`); otros ambientes siguen con `REEMPLAZAR`.
 
 ## Qué ya está hecho en código
 
@@ -64,14 +64,21 @@ El código del repo está listo en rama `feature/ARQ-256_Bajar_a_premisa_P2M`; p
    ```
    Sin esto, lambdas conectadas como AWSDATA fallan con `PLS-00201` al llamar el package sin prefijo de esquema.
 
-2. **Completar ARNs de stream P2M** en `samconfig.toml` por perfil/ambiente:
-   - `DynamoDBStreamIDP2m`
-   - `DynamoDBStreamIDP2mCuenta`
-   - `DynamoDBStreamIDP2mMcc`
-   Obtener con `aws dynamodb describe-table --table-name <tabla> --query "Table.LatestStreamArn"`.
+2. ~~**Completar ARNs de stream P2M en Sandbox**~~ **HECHO** (julio 2026). Perfiles `[sandbox]` (us-east-1) y `[sandbox-oregon]` (us-west-2), cuenta `807262913923`:
 
+   | Perfil | Parámetro | Stream suffix |
+   |--------|-----------|---------------|
+   | sandbox | DynamoDBStreamIDP2m | 2026-04-27T21:28:18.815 |
+   | sandbox | DynamoDBStreamIDP2mCuenta | 2026-04-27T21:28:18.804 |
+   | sandbox | DynamoDBStreamIDP2mMcc | 2026-06-20T22:28:43.215 |
+   | sandbox-oregon | DynamoDBStreamIDP2m | 2026-07-10T09:43:09.626 |
+   | sandbox-oregon | DynamoDBStreamIDP2mCuenta | 2026-07-10T10:01:09.027 |
+   | sandbox-oregon | DynamoDBStreamIDP2mMcc | 2026-07-10T10:03:42.343 |
 
-**EJECUTADO** **INICIO** Revisión
+   Streams MAC en Sandbox ya coincidían; no se modificaron. `tld-alias-replicacion` no va en `samconfig.toml` (tabla del stack, no parámetro de stream).
+
+   **Pendiente mismo trabajo** en dev, qa, prod (otras cuentas AWS).
+
 
 - Sandbox
 Comandos a ejecutar
@@ -146,13 +153,25 @@ PS C:\Users\pbmadesarrollo>
 
 **EJECUTADO** **FIN** Revisión
 
+3. **Desplegar** stack `tld-api-p2m` en Sandbox si aún no está (streams P2M ya existen en cuenta; Oregon con fechas 2026-07-10).
 
+4. **Crear/completar secreto** `ach-directo-v2/oracle` en Secrets Manager Sandbox.
 
-3. **Desplegar** stack `tld-api-p2m` (si `tld-p2m-mcc` no tiene stream activo).
+5. **Desplegar** stack `tld-onpremise-data` en Sandbox (perfil `sandbox` o `sandbox-oregon`).
 
-4. **Crear/completar secreto** `ach-directo-v2/oracle` en Secrets Manager del ambiente.
+## Listo para deploy Sandbox (AWS)
 
-5. **Desplegar** stack `tld-onpremise-data` en el ambiente objetivo.
+| Requisito deploy SAM | Sandbox |
+|---------------------|---------|
+| Rama `feature/ARQ-256_Bajar_a_premisa_P2M` | Sí |
+| ARNs P2M en `samconfig.toml` | Sí (`[sandbox]` y `[sandbox-oregon]`) |
+| ARNs MAC en `samconfig.toml` | Ya estaban |
+| Secreto `alias-replica/oracle` | Debe existir en cuenta (flujo MAC) |
+| Secreto `ach-directo-v2/oracle` | **Verificar** antes de deploy |
+| Premisa PA_MAC / PA_ACH (packages) | Instalados (log conocido) |
+| GRANT + sinónimo AWSDATA | **Pendiente** — el deploy puede completar; la **réplica fallará en runtime** hasta aplicarlos |
+
+En el servidor de despliegues: `git pull` de `tld-onpremise-data`, perfil SAM `sandbox` (Virginia) o `sandbox-oregon` (Oregon), desplegar stack. El bloqueante de streams P2M para Sandbox **ya no aplica**.
 
 ## Decisiones cerradas (no reabrir sin pedido explícito)
 
@@ -168,6 +187,6 @@ PS C:\Users\pbmadesarrollo>
 
 ## Riesgos a recordar
 
-- Desplegar `tld-onpremise-data` con streams `REEMPLAZAR` → lambdas P2M no procesan o deploy falla.
+- Desplegar con streams `REEMPLAZAR` en perfiles distintos a Sandbox → lambdas P2M no procesan o deploy falla (dev/qa/prod aún pendientes).
 - Re-ejecutar install sin backup de `TLRD_RTP_SQL`: los inserts hacen DELETE+INSERT por `code` (aceptable, pero pierde fila anterior de ese code).
 - Usuario admin sin `SELECT` en catálogo (`ALL_TABLES`): verificaciones de prerrequisito fallan aunque las tablas existan.
