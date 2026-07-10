@@ -119,11 +119,10 @@ AWSDATA ejecuta `PCK_PA_*_AWS` sin prefijo. Necesita EXECUTE + sinónimo públic
 
 ### Comportamiento actual del script
 
-```sql
--- GRANT: si USER = dueño O tiene GRANT ANY OBJECT PRIVILEGE
--- SYNONYM: si tiene CREATE PUBLIC SYNONYM
--- Si no: DBMS_OUTPUT AVISO con SQL manual, NO aborta
-```
+Verifica grants en **`ALL_TAB_PRIVS`** con columna **`TABLE_SCHEMA`** (no `OWNER` — en Oracle 19c+ `ALL_TAB_PRIVS` no expone `OWNER`; usar `TABLE_SCHEMA` o `DBA_TAB_PRIVS` si hay acceso DBA).
+
+- **GRANT:** si el privilegio ya existe → «ya existe, se omite»; si no, intenta otorgar si `USER` = dueño o tiene `GRANT ANY OBJECT PRIVILEGE`; si no → AVISO con SQL manual (no aborta).
+- **SYNONYM:** consulta `ALL_SYNONYMS`; si apunta bien → omite; si no puede crear → AVISO.
 
 ### Error visto en log (antes del fix de avisos)
 
