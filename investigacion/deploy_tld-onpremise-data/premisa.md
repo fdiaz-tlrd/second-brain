@@ -1,4 +1,4 @@
-AWS Sandbox P2M - Premisa
+# AWS Sandbox P2M - Premisa
 Host:Port 172.28.56.40:1598
 Service Name ACHTEST
 User FDIAZ
@@ -80,3 +80,66 @@ ORA-06512: en línea 11
 
 Commit complete.
 
+# AWS Sandbox P2P - Premisa
+Host:Port 172.28.56.40:1598
+Service Name ACHTEST
+User FDIAZ
+Esquema donde se ejecuta el script de instalación: PA_MAC
+Script: \tld-onpremise-data\premisa\ARQ-256_Bajar_a_premisa_P2M\install.sql
+
+Package created.
+Package body created.
+Columna SERVICIOSASOCIADOS ya existe, se omite
+ PL/SQL procedure successfully completed.
+ PL/SQL procedure successfully completed.
+ PL/SQL procedure successfully completed.
+ PL/SQL procedure successfully completed.
+--- GRANT / SINONIMO PA_MAC -> AWSDATA ---
+  Usuario conectado: FDIAZ
+ PL/SQL procedure successfully completed.
+>> DECLARE
+  n_grant NUMBER;
+  n_priv  NUMBER;
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('');
+  DBMS_OUTPUT.PUT_LINE('  [1/2] GRANT EXECUTE ON PA_MAC.PCK_PA_MAC_AWS TO AWSDATA');
+  DBMS_OUTPUT.PUT_LINE('        Consultando ALL_TAB_PRIVS (grantee=AWSDATA, privilege=EXECUTE)...');
+
+  SELECT COUNT(*) INTO n_grant
+    FROM all_tab_privs
+   WHERE grantee = 'AWSDATA'
+     AND owner = 'PA_MAC'
+     AND table_name = 'PCK_PA_MAC_AWS'
+     AND privilege = 'EXECUTE';
+
+  DBMS_OUTPUT.PUT_LINE('        Registros encontrados: ' || n_grant);
+
+  IF n_grant > 0 THEN
+    DBMS_OUTPUT.PUT_LINE('        RESULTADO: ya existe, se omite');
+  ELSE
+    SELECT COUNT(*) INTO n_priv FROM session_privs WHERE privilege = 'GRANT ANY OBJECT PRIVILEGE';
+    DBMS_OUTPUT.PUT_LINE('        Privilegio GRANT ANY OBJECT PRIVILEGE: ' || CASE WHEN n_priv > 0 OR USER = 'PA_MAC' THEN 'SI' ELSE 'NO' END);
+
+    IF USER = 'PA_MAC' OR n_priv > 0 THEN
+      EXECUTE IMMEDIATE 'GRANT EXECUTE ON PA_MAC.PCK_PA_MAC_AWS TO AWSDATA';
+      DBMS_OUTPUT.PUT_LINE('        RESULTADO: GRANT aplicado OK');
+    ELSE
+      DBMS_OUTPUT.PUT_LINE('        RESULTADO: AVISO — no se pudo otorgar');
+      DBMS_OUTPUT.PUT_LINE('        Accion manual: GRANT EXECUTE ON PA_MAC.PCK_PA_MAC_AWS TO AWSDATA;');
+    END IF;
+  END IF;
+END;
+Error at line 10
+ORA-06550: línea 12, columna 10:
+PL/SQL: ORA-00904: "OWNER": identificador no válido
+ORA-06550: línea 9, columna 3:
+PL/SQL: SQL Statement ignored
+
+  [2/2] PUBLIC SYNONYM PCK_PA_MAC_AWS
+        Consultando ALL_SYNONYMS (owner=PUBLIC)...
+        Registros encontrados: 1
+        Apunta a: PA_MAC.PCK_PA_MAC_AWS
+        RESULTADO: ya existe correcto, se omite
+ PL/SQL procedure successfully completed.
+--- FIN GRANT / SINONIMO PA_MAC ---
+ PL/SQL procedure successfully completed.
