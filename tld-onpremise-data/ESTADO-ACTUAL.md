@@ -29,7 +29,7 @@ El código del repo está listo en rama `feature/ARQ-256_Bajar_a_premisa_P2M`; p
 ### Scripts premisa (calidad)
 
 - Instalación **idempotente**: tablas y ALTER solo si no existen (`ALL_TABLES` / `ALL_TAB_COLUMNS` con `OWNER` explícito).
-- PA_ACH verifica **4 tablas prerrequisito** antes de instalar; aborta con mensaje si falta alguna.
+- PA_ACH `install.sql` crea **7 tablas** si no existen (incluye `MENSAJE_RECIBIDO`, `RTP_SQL`, `ALIAS_P2M`, `MCC`); QA las omite, Sandbox premisa las crea.
 - Includes con `@@` para rutas relativas al script.
 - Inserts RTP grandes: variable `CLOB` + bind (no literal inline en INSERT SQL).
 - `GRANT/AWSDATA.sql`: verifica privilegios; si no puede, imprime AVISO con SQL manual (no aborta).
@@ -46,7 +46,7 @@ El código del repo está listo en rama `feature/ARQ-256_Bajar_a_premisa_P2M`; p
 
 ### `ARQ-256/install_PA_ACH.sql` (PA_ACH)
 
-- Prerrequisitos (4 tablas): OK.
+- Prerrequisitos (4 tablas): en QA ya existían → omitidas; en Sandbox premisa el install **las creará** al re-ejecutar (cambio julio 2026).
 - Tablas propias: ya existían, omitidas.
 - Inserts RTP P2M: OK (tras fix CLOB).
 - Package: OK.
@@ -183,7 +183,7 @@ En el servidor de despliegues: `git pull` de `tld-onpremise-data`, perfil SAM `s
 | Campo `logo` | **No** baja a premisa (strip en lambda) |
 | Validación `tld-p2m-mcc` | Solo campos que bajan: `mcc`, `descripcion` |
 | Columna `CONTROL` en alias/mcc | **No** existe en tablas destino; no se llena |
-| Tablas prerrequisito PA_ACH | `TLRD_MENSAJE_RECIBIDO`, `TLRD_RTP_SQL`, `TLRD_ALIAS_P2M`, `TLRD_MCC` — responsabilidad externa, no las crea nuestro install |
+| Tablas infra/datos PA_ACH | Install crea si no existen (`MENSAJE_RECIBIDO`, `RTP_SQL`, `ALIAS_P2M`, `MCC`); QA omite, Sandbox crea |
 
 ## Riesgos a recordar
 

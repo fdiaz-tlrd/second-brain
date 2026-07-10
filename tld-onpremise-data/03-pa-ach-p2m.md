@@ -4,7 +4,7 @@
 
 ```
 premisa/PA_ACH/
-├── TABLE/           Solo tablas que crea este cambio
+├── TABLE/           DDL tablas (7 tablas, idempotentes)
 ├── PACKAGE/         PCK_PA_ACH_AWS.pks / .pkb
 ├── DATA/TLRD_RTP_SQL/
 ├── GRANT/AWSDATA.sql
@@ -23,28 +23,27 @@ premisa/ARQ-256_Bajar_a_premisa_P2M/install_PA_ACH.sql  →  llama @@../PA_ACH/i
 - **Contrato:** idéntico a PA_MAC (`PRC_DOWNDATA_AWS_TLRD`)
 - **Kindred RTP:** `P2M_UP_DATA_PRM`
 
-## Tablas que SÍ crea nuestro install
+## Tablas que crea el install (todas idempotentes)
 
-| Tabla | PK | Notas |
-|-------|-----|-------|
-| TLRD_VALIDADOR_CANAL | IDCANAL | Incluye SERVICIOSASOCIADOS, CONTROL (JSON) |
+Si la tabla **ya existe** (ej. QA premisa) → se omite. Si **no existe** (ej. Sandbox premisa vacío) → se crea con DDL alineado a premisa PA_ACH.
+
+| Tabla | PK | Origen / notas |
+|-------|-----|----------------|
+| TLRD_MENSAJE_RECIBIDO | (ID, CODE) | Infra auditoría; índices + LOB SECUREFILE |
+| TLRD_RTP_SQL | SQL_ID | Infra scripts; trigger `TRG_TLRD_RTP_SQL` |
+| TLRD_ALIAS_P2M | ID | Destino `tld-p2m-cuenta` |
+| TLRD_MCC | CODIGOMCC | Destino `tld-p2m-mcc` |
+| TLRD_VALIDADOR_CANAL | IDCANAL | SERVICIOSASOCIADOS, CONTROL (JSON) |
 | TLRD_VALIDADOR_BITACORA | IDTRANSACCION | CONTROL (JSON) |
-| TLRD_P2M | P2MPAGOID | Pagos P2M; no hay tabla impuesta alternativa |
+| TLRD_P2M | P2MPAGOID | Pagos P2M |
 
-Creación idempotente: `ALL_TABLES WHERE owner='PA_ACH'`.
+Creación: `ALL_TABLES WHERE owner='PA_ACH'`; si `COUNT=0` → `EXECUTE IMMEDIATE`.
 
-## Tablas prerrequisito (NO las crea nuestro install)
+### Contexto QA vs Sandbox premisa
 
-Responsabilidad de otra persona/equipo. El install **verifica** que existan; si falta alguna, aborta con mensaje:
+- **QA:** las 4 tablas infra/datos (`MENSAJE_RECIBIDO`, `RTP_SQL`, `ALIAS_P2M`, `MCC`) ya existían → install las omite y solo actualiza package/RTP/tablas propias del cambio.
+- **Sandbox premisa:** esas 4 **no existían** → el install las crea; permite probar nube→premisa sin depender de otro equipo.
 
-| Tabla | Uso |
-|-------|-----|
-| TLRD_MENSAJE_RECIBIDO | Auditoría mensajes |
-| TLRD_RTP_SQL | Configuración scripts |
-| TLRD_ALIAS_P2M | Destino réplica comercios (cuenta P2M) |
-| TLRD_MCC | Destino réplica códigos MCC |
-
-### DDL relevante tablas existentes
 
 **TLRD_ALIAS_P2M** — PK en `ID`:
 

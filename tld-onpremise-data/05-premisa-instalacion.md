@@ -38,28 +38,30 @@ Requisito: el usuario necesita ver el diccionario (rol `SELECT_CATALOG_ROLE` o e
 
 | Objeto | Comportamiento |
 |--------|----------------|
-| Tablas PA_ACH propias | Crear solo si no existe en `ALL_TABLES` |
+| Tablas PA_ACH (7) | Crear solo si no existe en `ALL_TABLES` |
 | ALTER SERVICIOSASOCIADOS | Solo si columna no existe |
 | Package | `CREATE OR REPLACE` |
 | RTP inserts | `DELETE WHERE code = ...` + `INSERT` |
-| Prerrequisitos PA_ACH | Solo lectura; aborta si falta tabla |
 | Grant/sinónimo | Verifica privilegio; aviso si no puede |
 
-Mensajes `DBMS_OUTPUT`: "creada", "ya existe, se omite", "Prerrequisitos OK", "AVISO: ...".
+Mensajes `DBMS_OUTPUT`: "creada", "ya existe, se omite", "AVISO: ...".
 
 `SET SERVEROUTPUT ON` en installs relevantes.
 
 ## PA_ACH/install.sql — secuencia
 
-1. Bloque verificación 4 tablas prerrequisito (`WHENEVER SQLERROR EXIT FAILURE`).
-2. `@@TABLE/TLRD_VALIDADOR_CANAL.sql`
-3. `@@TABLE/TLRD_VALIDADOR_BITACORA.sql`
-4. `@@TABLE/TLRD_P2M.sql`
-5. `@@DATA/TLRD_RTP_SQL/install.sql` (6 inserts P2M)
-6. Package pks/pkb
-7. `@@GRANT/AWSDATA.sql`
+1. `@@TABLE/TLRD_MENSAJE_RECIBIDO.sql`
+2. `@@TABLE/TLRD_RTP_SQL.sql` (+ trigger)
+3. `@@TABLE/TLRD_ALIAS_P2M.sql`
+4. `@@TABLE/TLRD_MCC.sql`
+5. `@@TABLE/TLRD_VALIDADOR_CANAL.sql`
+6. `@@TABLE/TLRD_VALIDADOR_BITACORA.sql`
+7. `@@TABLE/TLRD_P2M.sql`
+8. `@@DATA/TLRD_RTP_SQL/install.sql` (6 inserts P2M)
+9. Package pks/pkb
+10. `@@GRANT/AWSDATA.sql`
 
-**No crea:** `TLRD_MENSAJE_RECIBIDO`, `TLRD_RTP_SQL`, `TLRD_ALIAS_P2M`, `TLRD_MCC`.
+Las 4 primeras tablas se crean en Sandbox premisa vacío; en QA premisa existentes se omiten.
 
 ## ARQ-256/install.sql (PA_MAC) — secuencia
 
