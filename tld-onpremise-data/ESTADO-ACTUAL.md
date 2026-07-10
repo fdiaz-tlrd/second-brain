@@ -46,13 +46,12 @@ El código del repo está listo en rama `feature/ARQ-256_Bajar_a_premisa_P2M`; p
 
 ### `ARQ-256/install_PA_ACH.sql` (PA_ACH)
 
-- Prerrequisitos (4 tablas): en QA ya existían → omitidas; en Sandbox premisa el install **las creará** al re-ejecutar (cambio julio 2026).
-- Tablas propias: ya existían, omitidas.
-- Inserts RTP P2M: OK (tras fix CLOB).
-- Package: OK.
-- **GRANT EXECUTE a AWSDATA:** ORA-01031 (antes del fix de avisos; con script nuevo debería mostrar AVISO, no error crudo).
+- **Sandbox premisa (2026-07-10):** `FDIAZ` → **ORA-01031** en paso 1/7 al crear `TLRD_MENSAJE_RECIBIDO` (sin privilegios DDL en `PA_ACH`). Install **no completó**. Ver [07-premisa-permisos-dba.md](./07-premisa-permisos-dba.md) (Opción A: grants a FDIAZ; Opción B: DBA ejecuta install).
+- **QA (anterior):** prerrequisitos (4 tablas) ya existían → omitidas; tablas propias omitidas; inserts RTP P2M OK; package OK; GRANT/sinónimo ORA-01031 o AVISO.
 
 ## Pendiente operativo (bloqueantes o post-install)
+
+0. **Sandbox premisa — install PA_ACH:** pendiente grants a `FDIAZ` o que DBA ejecute `@install_PA_ACH.sql`. Detalle: [07-premisa-permisos-dba.md](./07-premisa-permisos-dba.md).
 
 1. **Ejecutar manualmente** (como dueño PA_MAC/PA_ACH o DBA):
    ```sql

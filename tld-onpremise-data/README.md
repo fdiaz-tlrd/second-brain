@@ -38,6 +38,7 @@ Canal y bitácora comparten **un solo stream** DynamoDB cada una; hay **dos lamb
 | [04-lambdas-y-filtros.md](./04-lambdas-y-filtros.md) | Lambdas, filtros, logo, colas, llamada Oracle |
 | [05-premisa-instalacion.md](./05-premisa-instalacion.md) | Scripts install, idempotencia, ORA-01704, grants, usuario ejecutor |
 | [06-despliegue-aws.md](./06-despliegue-aws.md) | Orden despliegue, streams, samconfig, secretos, comprobaciones |
+| [07-premisa-permisos-dba.md](./07-premisa-permisos-dba.md) | Opción A (grants FDIAZ) u Opción B (DBA instala); justificación trigger |
 
 ## Scripts de instalación premisa (punto de entrada ARQ-256)
 

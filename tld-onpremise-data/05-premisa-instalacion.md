@@ -42,7 +42,7 @@ Requisito: el usuario necesita ver el diccionario (rol `SELECT_CATALOG_ROLE` o e
 | ALTER SERVICIOSASOCIADOS | Solo si columna no existe |
 | Package | `CREATE OR REPLACE` |
 | RTP inserts | `DELETE WHERE code = ...` + `INSERT` |
-| Grant/sinónimo | Verifica privilegio; aviso si no puede |
+| Grant/sinónimo | Verifica si AWSDATA ya tiene EXECUTE y si el sinónimo público ya existe; si el DBA ya lo aplicó, informa "ya existe, se omite" |
 
 Mensajes `DBMS_OUTPUT`: "creada", "ya existe, se omite", "AVISO: ...".
 
