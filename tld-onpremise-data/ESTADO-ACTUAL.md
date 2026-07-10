@@ -4,7 +4,7 @@
 
 ## Resumen en una frase
 
-El código del repo está listo en rama `feature/ARQ-256_Bajar_a_premisa_P2M`; premisa PA_ACH instalada parcialmente; **faltan GRANT y sinónimo público** en Oracle; **streams P2M Sandbox ya cargados** en `samconfig.toml` (`[sandbox]` y `[sandbox-oregon]`); otros ambientes siguen con `REEMPLAZAR`.
+El código del repo está listo en rama `feature/ARQ-256_Bajar_a_premisa_P2M`; premisa PA_ACH Sandbox pendiente de permisos DBA; **streams P2M Sandbox y QA cargados** en `samconfig.toml`; dev/prod siguen con `REEMPLAZAR`.
 
 ## Qué ya está hecho en código
 
@@ -63,7 +63,7 @@ El código del repo está listo en rama `feature/ARQ-256_Bajar_a_premisa_P2M`; p
    ```
    Sin esto, lambdas conectadas como AWSDATA fallan con `PLS-00201` al llamar el package sin prefijo de esquema.
 
-2. ~~**Completar ARNs de stream P2M en Sandbox**~~ **HECHO** (julio 2026). Perfiles `[sandbox]` (us-east-1) y `[sandbox-oregon]` (us-west-2), cuenta `807262913923`:
+2. ~~**Completar ARNs de stream P2M en Sandbox**~~ **HECHO** (julio 2026). Perfiles `[sandbox]` y `[sandbox-oregon]`, cuenta `807262913923`:
 
    | Perfil | Parámetro | Stream suffix |
    |--------|-----------|---------------|
@@ -74,9 +74,22 @@ El código del repo está listo en rama `feature/ARQ-256_Bajar_a_premisa_P2M`; p
    | sandbox-oregon | DynamoDBStreamIDP2mCuenta | 2026-07-10T10:01:09.027 |
    | sandbox-oregon | DynamoDBStreamIDP2mMcc | 2026-07-10T10:03:42.343 |
 
-   Streams MAC en Sandbox ya coincidían; no se modificaron. `tld-alias-replicacion` no va en `samconfig.toml` (tabla del stack, no parámetro de stream).
+3. ~~**Completar ARNs de stream P2M en QA**~~ **HECHO** (2026-07-10). Perfiles `[qa]` y `[qa-oregon]`, cuenta `823638603844`:
 
-   **Pendiente mismo trabajo** en dev, qa, prod (otras cuentas AWS).
+   | Perfil | Parámetro | Stream suffix |
+   |--------|-----------|---------------|
+   | qa | DynamoDBStreamIDP2m | 2026-06-25T03:04:01.975 |
+   | qa | DynamoDBStreamIDP2mCuenta | 2026-06-25T03:04:01.994 |
+   | qa | DynamoDBStreamIDP2mMcc | 2026-06-25T03:04:01.915 |
+   | qa-oregon | DynamoDBStreamIDP2m | 2026-07-10T16:08:53.816 |
+   | qa-oregon | DynamoDBStreamIDP2mCuenta | 2026-07-10T16:37:46.291 |
+   | qa-oregon | DynamoDBStreamIDP2mMcc | 2026-07-10T16:51:26.200 |
+
+   Streams MAC en Sandbox y QA ya coincidían con `samconfig.toml`; no se modificaron. `tld-alias-replicacion` no va en `samconfig.toml` (tabla del stack, no parámetro de stream).
+
+   **Pendiente mismo trabajo** en dev y prod.
+
+   Log crudo de recolección: sección «Ejecución Sandbox / QA» más abajo en este archivo (servidor despliegues, julio 2026).
 
 
 - Sandbox
@@ -199,7 +212,7 @@ PS C:\Users\pbmadesarrollo>
 ```
 
 
-**EJECUTADO** **FIN** Revisión
+**EJECUTADO** **FIN** Revisión streams QA — ARNs cargados en `samconfig.toml` `[qa]` / `[qa-oregon]`.
 
 3. **Desplegar** stack `tld-api-p2m` en Sandbox si aún no está (streams P2M ya existen en cuenta; Oregon con fechas 2026-07-10).
 
@@ -221,6 +234,19 @@ PS C:\Users\pbmadesarrollo>
 
 En el servidor de despliegues: `git pull` de `tld-onpremise-data`, perfil SAM `sandbox` (Virginia) o `sandbox-oregon` (Oregon), desplegar stack. El bloqueante de streams P2M para Sandbox **ya no aplica**.
 
+## Listo para deploy QA (AWS)
+
+| Requisito deploy SAM | QA |
+|---------------------|-----|
+| Rama `feature/ARQ-256_Bajar_a_premisa_P2M` | Sí |
+| ARNs P2M en `samconfig.toml` | Sí (`[qa]` y `[qa-oregon]`) |
+| ARNs MAC en `samconfig.toml` | Ya estaban (coinciden con describe-table 2026-07-10) |
+| Secreto `ach-directo-v2/oracle` | **Verificar** en cuenta `823638603844` |
+| Premisa PA_ACH (package + RTP) | Instalado en QA (log anterior) |
+| GRANT + sinónimo AWSDATA | **Verificar** — mismo riesgo runtime que Sandbox |
+
+Perfil SAM: `qa` (us-east-1) o `qa-oregon` (us-west-2). Oregon P2M con streams recientes (2026-07-10) — coherente con habilitación reciente de stream en tablas P2M.
+
 ## Decisiones cerradas (no reabrir sin pedido explícito)
 
 | Tema | Decisión |
@@ -235,6 +261,6 @@ En el servidor de despliegues: `git pull` de `tld-onpremise-data`, perfil SAM `s
 
 ## Riesgos a recordar
 
-- Desplegar con streams `REEMPLAZAR` en perfiles distintos a Sandbox → lambdas P2M no procesan o deploy falla (dev/qa/prod aún pendientes).
+- Desplegar con streams `REEMPLAZAR` en perfiles **dev** o **prod** → lambdas P2M no procesan o deploy falla (Sandbox y QA ya resueltos).
 - Re-ejecutar install sin backup de `TLRD_RTP_SQL`: los inserts hacen DELETE+INSERT por `code` (aceptable, pero pierde fila anterior de ese code).
 - Usuario admin sin `SELECT` en catálogo (`ALL_TABLES`): verificaciones de prerrequisito fallan aunque las tablas existan.
