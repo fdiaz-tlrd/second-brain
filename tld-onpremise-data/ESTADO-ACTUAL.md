@@ -100,7 +100,7 @@ aws dynamodb describe-table --table-name tld-p2m-cuenta --query "Table.LatestStr
 aws dynamodb describe-table --table-name tld-p2m-mcc --query "Table.LatestStreamArn"
 ```
 
-Ejecución
+Ejecución Sandbox
 ```powershell
 PS C:\Users\pbmadesarrollo>  $env:AWS_REGION="us-east-1"
 PS C:\Users\pbmadesarrollo> aws dynamodb describe-table --table-name tld-alias-cuenta --query "Table.LatestStreamArn"
@@ -145,6 +145,55 @@ PS C:\Users\pbmadesarrollo> aws dynamodb describe-table --table-name tld-p2m-cue
 
 PS C:\Users\pbmadesarrollo> aws dynamodb describe-table --table-name tld-p2m-mcc --query "Table.LatestStreamArn"
 "arn:aws:dynamodb:us-west-2:807262913923:table/tld-p2m-mcc/stream/2026-07-10T10:03:42.343"
+
+PS C:\Users\pbmadesarrollo>
+```
+
+Ejecución QA
+```powershell
+PS C:\Users\pbmadesarrollo>  $env:AWS_REGION="us-east-1"
+PS C:\Users\pbmadesarrollo> aws dynamodb describe-table --table-name tld-alias-cuenta --query "Table.LatestStreamArn"
+"arn:aws:dynamodb:us-east-1:823638603844:table/tld-alias-cuenta/stream/2023-03-13T21:15:40.804"
+
+PS C:\Users\pbmadesarrollo> aws dynamodb describe-table --table-name tld-alias-replicacion --query "Table.LatestStreamArn"
+"arn:aws:dynamodb:us-east-1:823638603844:table/tld-alias-replicacion/stream/2026-05-11T17:04:49.096"
+
+PS C:\Users\pbmadesarrollo> aws dynamodb describe-table --table-name tld-validador-bitacora --query "Table.LatestStreamArn"
+"arn:aws:dynamodb:us-east-1:823638603844:table/tld-validador-bitacora/stream/2022-11-15T16:57:54.270"
+
+PS C:\Users\pbmadesarrollo> aws dynamodb describe-table --table-name tld-validador-canal --query "Table.LatestStreamArn"
+"arn:aws:dynamodb:us-east-1:823638603844:table/tld-validador-canal/stream/2023-08-24T20:04:52.672"
+
+PS C:\Users\pbmadesarrollo> aws dynamodb describe-table --table-name tld-p2m --query "Table.LatestStreamArn"
+"arn:aws:dynamodb:us-east-1:823638603844:table/tld-p2m/stream/2026-06-25T03:04:01.975"
+
+PS C:\Users\pbmadesarrollo> aws dynamodb describe-table --table-name tld-p2m-cuenta --query "Table.LatestStreamArn"
+"arn:aws:dynamodb:us-east-1:823638603844:table/tld-p2m-cuenta/stream/2026-06-25T03:04:01.994"
+
+PS C:\Users\pbmadesarrollo> aws dynamodb describe-table --table-name tld-p2m-mcc --query "Table.LatestStreamArn"
+"arn:aws:dynamodb:us-east-1:823638603844:table/tld-p2m-mcc/stream/2026-06-25T03:04:01.915"
+
+PS C:\Users\pbmadesarrollo>  $env:AWS_REGION="us-west-2"
+PS C:\Users\pbmadesarrollo> aws dynamodb describe-table --table-name tld-alias-cuenta --query "Table.LatestStreamArn"
+"arn:aws:dynamodb:us-west-2:823638603844:table/tld-alias-cuenta/stream/2023-03-13T21:32:25.276"
+
+PS C:\Users\pbmadesarrollo> aws dynamodb describe-table --table-name tld-alias-replicacion --query "Table.LatestStreamArn"
+"arn:aws:dynamodb:us-west-2:823638603844:table/tld-alias-replicacion/stream/2026-05-29T21:01:05.664"
+
+PS C:\Users\pbmadesarrollo> aws dynamodb describe-table --table-name tld-validador-bitacora --query "Table.LatestStreamArn"
+"arn:aws:dynamodb:us-west-2:823638603844:table/tld-validador-bitacora/stream/2022-11-15T18:07:31.079"
+
+PS C:\Users\pbmadesarrollo> aws dynamodb describe-table --table-name tld-validador-canal --query "Table.LatestStreamArn"
+"arn:aws:dynamodb:us-west-2:823638603844:table/tld-validador-canal/stream/2022-11-15T18:08:03.971"
+
+PS C:\Users\pbmadesarrollo> aws dynamodb describe-table --table-name tld-p2m --query "Table.LatestStreamArn"
+"arn:aws:dynamodb:us-west-2:823638603844:table/tld-p2m/stream/2026-07-10T16:08:53.816"
+
+PS C:\Users\pbmadesarrollo> aws dynamodb describe-table --table-name tld-p2m-cuenta --query "Table.LatestStreamArn"
+"arn:aws:dynamodb:us-west-2:823638603844:table/tld-p2m-cuenta/stream/2026-07-10T16:37:46.291"
+
+PS C:\Users\pbmadesarrollo> aws dynamodb describe-table --table-name tld-p2m-mcc --query "Table.LatestStreamArn"
+"arn:aws:dynamodb:us-west-2:823638603844:table/tld-p2m-mcc/stream/2026-07-10T16:51:26.200"
 
 PS C:\Users\pbmadesarrollo>
 ```
