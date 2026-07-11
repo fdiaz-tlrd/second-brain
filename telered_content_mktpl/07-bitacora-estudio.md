@@ -190,7 +190,23 @@ documentación. El agente debe tratar esto como restricción dura.
 
 ---
 
-### 2026-07-11 — ReDoc offline en `generador-openapi/vendor/` (v2.1.5)
+### 2026-07-11 — Rediseño presentación Canal Validador (VCN, v1)
+
+**Qué se hizo:**
+- Plantilla `especificacion-para-canal-validador.html` reestructurada: secciones con `h2`/`h3`/`h4`,
+  listas unificadas, tabla de tiempos de espera, anexos legibles.
+- **Tablas contractuales del método 0001, ejemplos JSON y sección ENMASCARADO:** copiadas sin cambio
+  desde el baseline (información preservada).
+- `armar-vcn.js` → actualiza `tech_doc/api_4.json` + `tech_doc_html/api_4.html`.
+- `comparar-vcn.js --solo-esquema` → **ESQUEMA OK** (paths/schemas sin cambio).
+- Comparación completa difiere solo en `tagDescriptions` del Canal Validador (esperado: presentación).
+- Añadido flag `--solo-esquema` al comparador para validar cambios de presentación HTML.
+- Script auxiliar: `redisenar-canal-validador.js` (extrae bloques contractuales del baseline).
+
+**Pendiente (futuro, no en esta v1):** llevar tablas del método 0001 a estructura más plana (estilo
+api_7 paths); requiere decisión de alcance.
+
+---
 
 **Decisión:** empaquetar ReDoc en el repo (mejor que CDN para `tech_doc_html/` — funciona sin internet,
 versión fija, no depende de red/firewall).

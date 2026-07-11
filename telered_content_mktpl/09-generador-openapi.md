@@ -231,7 +231,7 @@ sitio del marketplace → buscar la doc).
 | Contenido generado == `tech_doc/api_4.json` actual (diff estructural profundo = **0**) | ✅ verificado |
 | `comparar-vcn.js` → **CONTRATO OK** (baseline vs `tech_doc/api_4.json`) | ✅ |
 | Vista previa ReDoc en `generador-openapi/_generated/preview/` (ignorado) | ✅ |
-| Rediseñar presentación Canal Validador en plantillas | Pendiente |
-| Regenerar `tech_doc/api_4.json` con el rediseño (revisar `git diff`) | Pendiente |
+| Rediseñar presentación Canal Validador en plantillas | ✅ v1 (secciones h2/h3, listas, anexos; tablas contractuales intactas) |
+| Regenerar `tech_doc/api_4.json` con el rediseño (revisar `git diff`) | ✅ — `comparar-vcn.js --solo-esquema` → **ESQUEMA OK** |
 
 Comandos y detalle operativo: `telered_content_mktpl/generador-openapi/README.md`.
