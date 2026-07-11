@@ -2,7 +2,7 @@
 
 Memoria viva del repositorio **tld-onpremise-data**: lambdas SAM que consumen streams DynamoDB y cargan datos en Oracle on‑premise (esquemas **PA_MAC** para P2P y **PA_ACH** para P2M).
 
-**Handoff de sesión:** leer primero [`ESTADO-ACTUAL.md`](./ESTADO-ACTUAL.md).
+**Handoff de sesión:** leer primero [`ESTADO-ACTUAL.md`](./ESTADO-ACTUAL.md). Si vuelves tras pausa de pruebas Sandbox: [`08-retomar-pruebas-sandbox.md`](./08-retomar-pruebas-sandbox.md).
 
 ## Rama de trabajo
 
@@ -39,6 +39,7 @@ Canal y bitácora comparten **un solo stream** DynamoDB cada una; hay **dos lamb
 | [05-premisa-instalacion.md](./05-premisa-instalacion.md) | Scripts install, idempotencia, ORA-01704, grants, usuario ejecutor |
 | [06-despliegue-aws.md](./06-despliegue-aws.md) | Orden despliegue, streams, samconfig, secretos, comprobaciones |
 | [07-premisa-permisos-dba.md](./07-premisa-permisos-dba.md) | Opción A (grants FDIAZ) u Opción B (DBA instala); justificación trigger |
+| [08-retomar-pruebas-sandbox.md](./08-retomar-pruebas-sandbox.md) | Checklist al volver: secretos, GRANT, matriz pruebas P2P/P2M |
 
 ## Scripts de instalación premisa (punto de entrada ARQ-256)
 

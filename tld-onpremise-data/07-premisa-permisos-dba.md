@@ -99,3 +99,11 @@ Al finalizar, pedir el **log completo** (`DBMS_OUTPUT`) hasta el banner `# FIN i
 | Log | `second-brain/investigacion/deploy_tld-onpremise-data/premisa.md` |
 
 Install **no completó** — pendiente Opción A u Opción B.
+
+---
+
+## Resolución (2026-07-10)
+
+Usuario confirmó **install premisa Sandbox completado** (PA_MAC + PA_ACH) tras gestión con Base de Datos y/o re-ejecución. Deploy AWS Sandbox también completado.
+
+Al retomar pruebas: verificar GRANT EXECUTE AWSDATA y secreto `ach-directo-v2/oracle` — [08-retomar-pruebas-sandbox.md](./08-retomar-pruebas-sandbox.md).

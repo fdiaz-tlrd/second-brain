@@ -90,11 +90,38 @@ Logs: CloudWatch grupos `tld-replica-*`, `tld-*-reintento`.
 
 Premisa: `TLRD_MENSAJE_RECIBIDO`, mensajes de error vía `gv_error` del package.
 
-## Despliegue observado (sandbox)
+## Despliegue Sandbox — completado (2026-07-10)
 
-Registro en julio 2026: deploy vía `deployNewVersion.ps1` con rama `feature/ARQ-256_Bajar_a_premisa_P2M`, hash `bf50a342...`, ambiente sandbox, perfiles Desarrolladores.
+Deploy exitoso vía `deployNewVersion.ps1` en servidor despliegues (`pbmadesarrollo`):
 
-Verificar que el perfil SAM usado tenga ARNs P2M reales antes de considerar P2M operativo.
+| Campo | Valor |
+|-------|-------|
+| Rama | `feature/ARQ-256_Bajar_a_premisa_P2M` |
+| Hash inicial log | `1c7d760` (samconfig ARNs P2M Sandbox) |
+| Perfiles SAM | `sandbox` (us-east-1), `sandbox-oregon` (us-west-2) |
+| Stack | `tld-alias-replica` |
+| Cuenta | `807262913923` |
+| Duración log | ~6 min (build + 2 regiones) |
+
+**Recursos nuevos:** 6 lambdas ACH, `TablaAchReplicacion`, mappings a streams P2M/canal/bitácora, log groups, `SecretAchReplica`.
+
+**Post-deploy obligatorio:** completar valor del secreto **`ach-directo-v2/oracle`** (CloudFormation puede haber creado el secret vacío).
+
+Log completo: [`investigacion/deploy_tld-onpremise-data/deploy_tld-onpremise-data.md`](../investigacion/deploy_tld-onpremise-data/deploy_tld-onpremise-data.md).
+
+Handoff pruebas: [08-retomar-pruebas-sandbox.md](./08-retomar-pruebas-sandbox.md).
+
+## Estado samconfig — streams P2M (julio 2026)
+
+| Perfil | Cuenta | P2M cargados |
+|--------|--------|--------------|
+| `sandbox`, `sandbox-oregon` | 807262913923 | Sí |
+| `qa`, `qa-oregon` | 823638603844 | Sí |
+| dev, prod, tlrd-highway | varias | **`REEMPLAZAR`** |
+
+## Despliegue observado (histórico)
+
+Registro anterior (pre-ACH): deploy con hash `bf50a342...`. Superseded por deploy 2026-07-10 arriba.
 
 ## Newman / VPN
 
@@ -106,4 +133,4 @@ En máquina Lenovo del usuario (sin VPN dev): **no ejecutar** lambdas contra amb
 
 - No hace backfill histórico DynamoDB → premisa.
 - No crea esquema/usuario PA_ACH en Oracle (solo objetos dentro del esquema).
-- No crea las 4 tablas prerrequisito PA_ACH (mensaje_recibido, rtp_sql, alias_p2m, mcc).
+- No crea las 4 tablas prerrequisito PA_ACH en Oracle — el **install premisa** las crea si no existen (Sandbox); en QA ya existían.
