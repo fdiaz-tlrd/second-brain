@@ -1,7 +1,7 @@
 {
-  "nombre": "0006.1.3.15. respuestas — id duplicado (455)",
+  "nombre": "0004.1.3.11. idPregunta — punto (428)",
   "expectedHttpStatus": 200,
-  "expectedCodigoError": 455,
+  "expectedCodigoError": 428,
   "expectedTipo": "parametro",
   "algoritmoCifrado": "aes-256-cbc",
   "body": {
@@ -9,23 +9,15 @@
     "validador": "{{CANAL_VALIDADOR}}",
     "peticion": {
       "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
-      "metodo": "0006",
+      "metodo": "0004",
       "solicitudes": [
         {
           "idSolicitud": "1",
           "parametros": {
             "identificador": "{{IDENTIFICADOR_CELULAR}}",
             "tipoIdentificador": "CELULAR",
-            "respuestas": [
-              {
-                "id": "01",
-                "texto": "respuesta01"
-              },
-              {
-                "id": "01",
-                "texto": "respuesta02"
-              }
-            ],
+            "idPregunta": "01.2",
+            "respuesta": "respuesta01",
             "banco": "{{SWIFT_CANAL_EMISOR}}",
             "cuenta": "1234567890",
             "producto": "PACA"

@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "fbc63d00-348e-4136-b62d-c8b4c99c9d97",
+    "_postman_id": "85218cd1-7ea3-4ded-bc26-6f29446ecbd3",
     "name": "P2P Escenarios error",
     "description": "Colección generada desde la fuente en P2P Escenarios error/.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -9871,6 +9871,760 @@
                           }
                         }
                       ]
+                    },
+                    {
+                      "name": "0004.1.3.10. idPregunta — guion bajo (428)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0004\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"idPregunta\": \"0_1\",\n                    \"respuesta\": \"respuesta01\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 428);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0004.1.3.11. idPregunta — punto (428)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0004\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"idPregunta\": \"01.2\",\n                    \"respuesta\": \"respuesta01\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 428);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0004.1.3.12. idPregunta — barra (428)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0004\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"idPregunta\": \"01/2\",\n                    \"respuesta\": \"respuesta01\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 428);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0004.1.3.13. idPregunta — comillas (428)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0004\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"idPregunta\": \"01\\\"\",\n                    \"respuesta\": \"respuesta01\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 428);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0004.1.3.14. idPregunta — unicode (428)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0004\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"idPregunta\": \"0¿1\",\n                    \"respuesta\": \"respuesta01\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 428);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0004.1.3.15. idPregunta — espacio al inicio (428)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0004\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"idPregunta\": \" 01\",\n                    \"respuesta\": \"respuesta01\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 428);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0004.1.3.16. idPregunta — espacio al final (428)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0004\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"idPregunta\": \"01 \",\n                    \"respuesta\": \"respuesta01\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 428);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0004.1.3.17. idPregunta — un solo dígito (428)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0004\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"idPregunta\": \"1\",\n                    \"respuesta\": \"respuesta01\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 428);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0004.1.3.18. idPregunta — tres dígitos (428)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0004\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"idPregunta\": \"001\",\n                    \"respuesta\": \"respuesta01\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 428);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0004.1.3.19. idPregunta — solo letras (428)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0004\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"idPregunta\": \"ab\",\n                    \"respuesta\": \"respuesta01\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 428);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0004.1.3.20. idPregunta — tipo array (428)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0004\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"idPregunta\": [\n                        \"01\"\n                    ],\n                    \"respuesta\": \"respuesta01\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 428);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0004.1.3.21. idPregunta — tipo boolean false (428)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0004\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"idPregunta\": false,\n                    \"respuesta\": \"respuesta01\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 428);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0004.1.3.22. idPregunta — un solo guion (428)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0004\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"idPregunta\": \"-\",\n                    \"respuesta\": \"respuesta01\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 428);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
                     }
                   ]
                 },
@@ -15269,7 +16023,7 @@
                       ]
                     },
                     {
-                      "name": "0006.1.3.15. respuestas — id duplicado case-insensitive (455)",
+                      "name": "0006.1.3.15. respuestas — id duplicado (455)",
                       "request": {
                         "method": "POST",
                         "header": [],
@@ -15294,7 +16048,7 @@
                         },
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"pregunta01\",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"PREGUNTA01\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"01\",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"01\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
                           "options": {
                             "raw": {
                               "language": "json"
@@ -15353,6 +16107,1050 @@
                         "body": {
                           "mode": "raw",
                           "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"pregunta01\",\n                            \"texto\": \"respuesta01\",\n                            \"extra\": \"x\"\n                        },\n                        {\n                            \"id\": \"pregunta02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.17. respuestas — id guion bajo (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"0_1\",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.18. respuestas — id arroba (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"0@1\",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.19. respuestas — id espacio interno (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"01 2\",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.20. respuestas — id espacio al inicio (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \" 01\",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.21. respuestas — id espacio al final (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"01 \",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.22. respuestas — id unicode (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"0¿1\",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.23. respuestas — id punto (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"01.2\",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.24. respuestas — id barra (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"01/2\",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.25. respuestas — id comillas (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"01\\\"\",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.26. respuestas — id un solo dígito (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"1\",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.27. respuestas — id tres dígitos (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"001\",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.28. respuestas — id solo letras (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"ab\",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.29. respuestas — id tipo boolean true (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": true,\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.30. respuestas — id tipo boolean false (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": false,\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.31. respuestas — id tipo object (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": {\n                                \"x\": 1\n                            },\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.32. respuestas — id tipo array (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": [\n                                \"01\"\n                            ],\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.33. respuestas — elemento null en arreglo (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        null,\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        }
+                      },
+                      "response": [],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "type": "text/javascript",
+                            "exec": [
+                              "pm.variables.set('expectedHttpStatus', 200);",
+                              "pm.variables.set('expectedCodigoError', 455);",
+                              "pm.variables.set('expectedTipo', 'parametro');",
+                              "pm.variables.unset('expectedProducto');",
+                              "pm.variables.unset('expectedCuenta');",
+                              "pm.variables.unset('expectedBanco');",
+                              "pm.variables.unset('expectedValidador');",
+                              "pm.variables.unset('expectedCuentaLongitud');",
+                              "pm.variables.unset('expectedEnmascarado');",
+                              "pm.variables.unset('verificarUnicode');",
+                              "pm.variables.unset('expectedTitularesClaro');",
+                              "pm.variables.unset('expectedTitularesExactos');"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "name": "0006.1.3.34. respuestas — texto solo espacios (455)",
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{DOMAIN_TLD_VALIDADOR_DUMMY}}/descifrar?tld=0&algoritmoCifrado=aes-256-cbc",
+                          "host": [
+                            "{{DOMAIN_TLD_VALIDADOR_DUMMY}}"
+                          ],
+                          "path": [
+                            "descifrar"
+                          ],
+                          "query": [
+                            {
+                              "key": "tld",
+                              "value": "0"
+                            },
+                            {
+                              "key": "algoritmoCifrado",
+                              "value": "aes-256-cbc"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"01\",\n                            \"texto\": \"   \"\n                        },\n                        {\n                            \"id\": \"02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
                           "options": {
                             "raw": {
                               "language": "json"
