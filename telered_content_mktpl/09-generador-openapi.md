@@ -201,8 +201,9 @@ sitio del marketplace → buscar la doc).
 
 - `html-tech-doc.js` renderiza **cada** `tech_doc/api_*.json` a `tech_doc_html/api_#.html` (ReDoc,
   spec embebido). Aplica a los tres (`api_4/6/7`), no solo VCN.
+- **ReDoc empaquetado offline:** `generador-openapi/vendor/redoc.standalone.js` (**v2.1.5**). Los HTML
+  apuntan con ruta relativa; **no requieren internet** para renderizar.
 - **Versionado** (siempre disponible en local). `armar-vcn.js` refresca `api_4.html` al generar.
-- Requiere internet para renderizar (ReDoc se carga desde `cdn.redoc.ly`); el spec va embebido en el HTML.
 
 ### 7.2 Flujo (3 comandos)
 

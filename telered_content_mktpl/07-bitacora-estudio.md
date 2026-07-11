@@ -190,6 +190,20 @@ documentación. El agente debe tratar esto como restricción dura.
 
 ---
 
+### 2026-07-11 — ReDoc offline en `generador-openapi/vendor/` (v2.1.5)
+
+**Decisión:** empaquetar ReDoc en el repo (mejor que CDN para `tech_doc_html/` — funciona sin internet,
+versión fija, no depende de red/firewall).
+
+**Qué se hizo:**
+- `generador-openapi/vendor/redoc.standalone.js` (ReDoc **2.1.5**, ~908 KB) + `vendor/README.md`.
+- `preview-redoc.js`: ruta relativa configurable (`redocScriptSrc`).
+- `tech_doc_html/*.html` → `../generador-openapi/vendor/redoc.standalone.js`.
+- Preview de trabajo → `../../vendor/redoc.standalone.js`.
+- Regenerados los tres HTML.
+
+---
+
 ### 2026-07-11 — `tech_doc_html/` (versión HTML local de cada API)
 
 **Necesidad del usuario:** ver en cualquier momento cómo se ve un `api_#.json` en HTML, sin el
@@ -201,11 +215,10 @@ del marketplace → buscar la doc). Quiere tener **siempre** la versión HTML de
 - `lib/render-html.js` + `scripts/html-tech-doc.js`: renderizan `tech_doc/api_*.json` → HTML ReDoc
   (spec embebido). Sirve para los **tres** APIs, no solo VCN.
 - `armar-vcn.js` refresca `tech_doc_html/api_4.html` al regenerar, para que HTML y JSON no se desfasen.
-- Se limpió `preview-redoc.js` (quitado `<script>` ReDoc duplicado, añadido `charset`).
+- **ReDoc offline:** empaquetado en `generador-openapi/vendor/redoc.standalone.js` (v2.1.5); los HTML
+  ya no dependen de CDN.
 
 **Notas:**
-- El HTML carga ReDoc desde CDN (`cdn.redoc.ly`) → requiere internet para renderizar; el contrato va
-  embebido en el propio HTML.
 - Es una pieza más de la herramienta nueva `generador-openapi/` (sin precedente en el repo).
 
 ---

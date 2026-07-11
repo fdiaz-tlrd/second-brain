@@ -17,7 +17,7 @@
 | `tech_doc/api_*.json` | OpenAPI 3.0 **finales** (refactorizados). Solo `api_4`, `api_6`, `api_7` |
 | `tech_doc_baseline/api_*.json` | **Base «antes del refactory»** — `api_4/6/7`. **NO se modifican**; solo para comparar. **TEMPORAL: se elimina al terminar el refactor.** `api_4` = versión JSON válida (arreglada) |
 | `generador-openapi/` | **Herramienta nueva** (no existía en el repo): arma `tech_doc/api_*.json` desde plantillas HTML. Salida final → `tech_doc/`. Ver `09-generador-openapi.md` |
-| `tech_doc_html/api_#.html` | **Versión HTML (ReDoc) de cada `tech_doc/api_*.json`**, versionada. Para ver el API en local sin subir a S3/CloudFront/sitio. Se regenera con `html-tech-doc.js` |
+| `tech_doc_html/api_#.html` | **Versión HTML (ReDoc) de cada `tech_doc/api_*.json`**, versionada. Ver el API en local sin S3/CloudFront/sitio. ReDoc **offline** (`generador-openapi/vendor/`) |
 | `archived/tech_doc/` | OpenAPI archivados fuera de alcance (`api_1`, `api_2`, `api_3`, `api_5`) — sin mantenimiento |
 | `archived/comr_doc/` | HTML comercial archivado (`1_index`, `2_index`, `3_index`, `5_index`) — sin mantenimiento |
 | `archived/mkt.api.images/` | Imágenes/logos/diagramas de APIs archivadas (1, 2, 3, 5) — sin mantenimiento |
