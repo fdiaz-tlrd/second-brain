@@ -4,6 +4,8 @@ Documentación **para retomar contexto** del repo [`telered_content_mktpl`](../.
 
 **Alcance actual del estudio:** solo `tech_doc/api_4.json` (VCN), `api_6.json` (P2P), `api_7.json` (R2P).
 
+> **➡️ Para RETOMAR este tema:** leer primero **[14-estado-y-retomo.md](./14-estado-y-retomo.md)** (estado consolidado, ramas/commits, mapa de archivos, pendientes).
+
 | Archivo | Contenido |
 |---------|-----------|
 | [00-fuentes-y-alcance.md](./00-fuentes-y-alcance.md) | Repo, archivos fuente, qué no entra aún |
@@ -20,6 +22,7 @@ Documentación **para retomar contexto** del repo [`telered_content_mktpl`](../.
 | [11-modelo-documental-protocolo-cifrado.md](./11-modelo-documental-protocolo-cifrado.md) | Modelo para documentar endpoints cifrados + métodos lógicos/payload descifrado sin fingir URLs reales |
 | [12-api_4-para-dummies.md](./12-api_4-para-dummies.md) | **Para Dummies, muy gráfico:** qué quiere transmitir `api_4.json` (VCN) — personajes, una puerta, caja con candado |
 | [13-api_4-estructura-propuesta.md](./13-api_4-estructura-propuesta.md) | Árboles de estructura propuesta (navegación, anatomía mensaje, dos caras del 0001) — Árbol 1 implementado en generador |
+| [14-estado-y-retomo.md](./14-estado-y-retomo.md) | **Estado y retomo:** punto único para volver al tema — ramas/commits, mapa de archivos, decisiones, pendientes |
 
 ## Cómo usar (agente)
 
@@ -42,3 +45,4 @@ Documentación **para retomar contexto** del repo [`telered_content_mktpl`](../.
 | 2026-07-11 | Aclarado alcance crítico: **no cambiar contrato productivo**; solo presentación/mantenimiento. api_6 tiene la guía correcta de cifrado/descifrado GCM + CBC obsoleto; api_4/api_7 la tendrán eventualmente. PoC generador: VCN. |
 | 2026-07-11 | **PoC generador VCN** en `generador-openapi/` — bootstrap, plantillas HTML, salida final → `tech_doc/api_4.json`, comparar contrato OK. `tech_doc_baseline/` temporal para comparar |
 | 2026-07-11 | Definido modelo documental para protocolo cifrado/multiplexado: endpoint real, envelope cifrado, payload descifrado y método lógico son capas separadas. Ver `11-modelo-documental-protocolo-cifrado.md` |
+| 2026-07-11 | Cifrado api_4 = api_6 (GCM vigente + CBC obsoleto); Canal Validador espejo de Telered (envelope + descifrado, opción A); navegación rearmada según Árbol 1 de `13` (tagGroups, Personajes, Enmascarado, timeouts por lado). **Se cambia de tema:** estado consolidado en `14-estado-y-retomo.md` |
