@@ -441,7 +441,25 @@ regenerar, comparar, y solo entonces considerar reemplazo del productivo.
 - Bug JS en el ejemplo: `decryptTextRSA: function(encryptedText) => {` mezcla `function` con arrow `=>` (sintaxis inválida).
 - Error conceptual en el texto: «cifrado asimétrico mediante AES-256-cbc» (AES es **simétrico**).
 
-**Decisión pendiente del usuario:** ¿VCN se queda en CBC (solo corregir defectos/typos) o migra a GCM como P2P (cambio de contrato, requiere alinear schemas/ejemplos/tablas)?
+**Decisión pendiente del usuario:** ¿VCN se queda en CBC (solo corregir defectos/typos) o migra a GCM como P2P (cambio de contrato, requiere alinear schemas/ejemplos/tablas)? → **RESUELTA** en la entrada siguiente.
+
+---
+
+### 2026-07-11 — Cifrado api_4 alineado a api_6 (dos guías coexisten)
+
+**Decisión del usuario:** el cifrado de api_4 **debe documentarse igual que api_6**. La teoría: alguien debía migrar api_4 al esquema de api_6 y **nunca lo hizo**. **Los dos cifrados coexisten** (como en api_6): **GCM vigente** + **CBC (Obsoleto)**. Opción elegida: **C (fiel a api_6, con `x-tagGroups`)**.
+
+**Clave que desbloqueó el cambio sin tocar contrato:** api_6 conserva **ambas** guías, y su **CBC (Obsoleto)** describe **exactamente** el formato que api_4 ya usa (`iv.secreto.cifrado`, 3 partes con punto, solo el secreto por RSA). Por eso **no hace falta tocar** schemas/ejemplos/tablas de api_4: el formato punto-separado sigue siendo válido (es el obsoleto que coexiste). El contrato de paths/schemas queda **intacto**.
+
+**Qué se hizo:**
+- Extraídas **verbatim** las dos guías de `tech_doc/api_6.json` → `generador-openapi/plantillas/vcn/tags/guia-cifrado-hibrido-gcm.html` (29.6 k) y `…-cbc-obsoleto.html` (27.3 k). Módulo **aislado y reutilizable**: cada `api_#` tendrá su propia copia (las APIs nunca se referencian entre sí).
+- Eliminada la guía CBC vieja de api_4 (`cifrado-y-descifrado-de-datos.html`). La CBC nueva (versión limpia de api_6) **corrige** de paso los dos defectos detectados: bug de arrow function y el "asimétrico".
+- Generador: soporte de **`x-tagGroups`** (`build-vcn.js` emite `doc['x-tagGroups']` desde `cfg.tagGroups`).
+- `apis/vcn.json`: el tag único de cifrado se reemplaza por los dos tags de guía; añadido `tagGroups` con el grupo **"Cifrado y Descifrado de datos"** (mantiene válidas las referencias de schema "sección 'Cifrado y Descifrado'").
+
+**Verificación:** `armar-vcn.js` → 10 tags, `JSON.parse OK`, HTML refrescado. `comparar-vcn.js --solo-esquema` → única diferencia **`contract.tagNames`** (esperado y aprobado); paths/schemas/campos **intactos**.
+
+**Archivos second-brain actualizados:** `09-generador-openapi.md` (§1, §6 nueva decisión, §7.4 progreso), este `07`.
 
 ---
 

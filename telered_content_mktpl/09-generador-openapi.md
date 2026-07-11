@@ -20,8 +20,8 @@ Evidencia del estudio:
 - La **operación** OpenAPI de cada método tiene forma fija: `tags, summary, description, operationId,
   requestBody→RequestXXXX, responses.200→ResponseXXXX, responses.400→Response400`.
 - Bloques **compartidos** entre APIs: `/auth/token`, securityScheme bearer JWT, términos, requisitos.
-  Para cifrado/descifrado, api_6 es el bloque canónico futuro; no se copia a APIs productivas sin
-  decisión explícita de migración documental.
+  Para cifrado/descifrado, api_6 es el bloque canónico; se copia a otra API solo con decisión
+  explícita del usuario (ya hecha para api_4 — ver §6 "cifrado api_4 = api_6").
 - El **truco del path** (`/validador/validar` + N espacios para unicidad) es mecánico: N = índice del
   método. Un generador lo produce sin intervención manual.
 
@@ -145,6 +145,23 @@ usarse para **nuevas** APIs/métodos, no para reescribir contratos ya publicados
 - `api_6.json` tiene la guía correcta de **cifrado y descifrado**: GCM actual + CBC obsoleto.
 - Si el agente considera VCN como mejor PoC, avanzar con VCN.
 
+### Decisión cerrada (jul-2026) — cifrado api_4 = api_6
+
+- **api_4 debe documentar el cifrado igual que api_6.** La teoría del usuario: alguien debía haber
+  migrado api_4 al esquema de api_6 y **nunca se hizo**; api_4 quedó con una sola guía CBC desactualizada.
+- **Los dos cifrados coexisten** (igual que api_6): guía **GCM vigente** + guía **CBC (Obsoleto)**.
+  El formato en cable de la CBC (`iv.secreto.cifrado`, 3 partes con punto, solo el secreto por RSA) es
+  idéntico al que api_4 ya usaba, así que **schemas/ejemplos no cambian** (el contrato de paths/schemas
+  queda intacto; solo cambian nombres de tags → `contract.tagNames`, aprobado).
+- **Estructura:** opción C (fiel a api_6) — dos tags de guía agrupados con `x-tagGroups` bajo
+  `Cifrado y Descifrado de datos`, de modo que las referencias de los schemas ("sección
+  'Cifrado y Descifrado'") siguen resolviendo al grupo.
+- Las dos guías son un **módulo aislado y reutilizable**: cada `api_#` tendrá **su propia copia**
+  (las APIs nunca se referencian entre sí). Se copiaron **verbatim** desde api_6 a
+  `plantillas/vcn/tags/guia-cifrado-hibrido-{gcm,cbc-obsoleto}.html`. De paso, la CBC nueva (versión
+  limpia de api_6) **corrige** los dos defectos que tenía la guía CBC vieja de api_4 (bug de arrow
+  function y el "asimétrico").
+
 ### Decisiones cerradas (jul-2026, tras alinear con el usuario)
 
 - **Salida = `tech_doc/api_4.json`** (el final). `armar-vcn.js` escribe directo ahí: «cada vez que se
@@ -235,5 +252,8 @@ sitio del marketplace → buscar la doc).
 | Regenerar `tech_doc/api_4.json` con el rediseño (revisar `git diff`) | ✅ — `comparar-vcn.js --solo-esquema` → **ESQUEMA OK** |
 | Exponer método 0001 Canal Validador como `POST /0001` + tag `CANAL VALIDADOR` | ✅ v2 — tablas en description de operación; tag Especificación recortado |
 | `comparar-vcn.js --solo-esquema` solo paths/schemas baseline (aditivos OK) | ✅ |
+| Soporte `x-tagGroups` en el generador (`cfg.tagGroups` → `doc['x-tagGroups']`) | ✅ |
+| Cifrado api_4 alineado a api_6: 2 guías (GCM vigente + CBC Obsoleto) copiadas verbatim, agrupadas bajo `Cifrado y Descifrado de datos` | ✅ v1 — decisión explícita del usuario (opción C) |
+| `comparar-vcn.js --solo-esquema` tras cifrado: única diferencia = `contract.tagNames` (esperado); paths/schemas intactos | ✅ |
 
 Comandos y detalle operativo: `telered_content_mktpl/generador-openapi/README.md`.
