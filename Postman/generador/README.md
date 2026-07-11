@@ -69,6 +69,27 @@ node run-newman.js all
 
 Opcional: `--nota "texto"` al final. SSL estricto: `--strict-ssl`.
 
+### Versión de código desplegada (prod vs dev)
+
+Para comparar cómo responde el código **productivo** frente al **en desarrollo** (mismo AWS dev, distinto código en las lambdas), etiquetar cada run:
+
+```powershell
+node run-newman.js vcn --codigo-fuente prod --nota "prod tld-validador-api-main"
+node run-newman.js vcn --codigo-fuente dev  --nota "feature/ARQ-225 comoAxiosData"
+```
+
+O fijando la variable una vez en la sesión: `$env:NEWMAN_CODIGO_FUENTE = "prod"`.
+
+La etiqueta queda en `resumen-fallos-*`, `registro-*`, `historial/` y en la salida nueva `logs/resultados-por-escenario-<suite>.json/.md` (una fila por escenario con lo que respondió, no solo los fallos).
+
+Comparar dos corridas (insumo para el informe, **no** el informe):
+
+```powershell
+node comparar-runs.js logs/historial/vcn/<runProd>_por-escenario.json logs/historial/vcn/<runDev>_por-escenario.json
+```
+
+Diseño y alcance: [`../comparar-prod-vs-dev/`](../comparar-prod-vs-dev/).
+
 Tras el run (máquina VPN): `git add Postman\generador\logs\` → commit → push.
 
 ---

@@ -18,9 +18,12 @@ El agente **no ejecuta Newman** en Lenovo. Cuando el usuario dice «ya corrí Ne
 | Archivo | Contenido |
 |---------|-----------|
 | `ultimo-run-<suite>.json` | Último reporte Newman (completo) |
-| `resumen-fallos-<suite>.md` | Último resumen legible |
-| `registro-<suite>.md` | **Historial de las últimas 8 ejecuciones** (tabla) |
-| `historial/<suite>/` | Copia archivada por run (`{timestamp}_{carpeta}.json/.md`) |
+| `resumen-fallos-<suite>.md` | Último resumen legible (solo fallos) |
+| `resultados-por-escenario-<suite>.json` | Última corrida, **una fila por escenario** (todos), con cuerpo completo y etiqueta `codigoFuente` (prod/dev) |
+| `resultados-por-escenario-<suite>.md` | Igual, en tabla legible |
+| `registro-<suite>.md` | **Historial de las últimas 8 ejecuciones** (tabla, con columna Código) |
+| `historial/<suite>/` | Copia archivada por run (`{timestamp}_{codigo}_{carpeta}.json/.md` + `_por-escenario.*`) |
+| `comparacion-<suite>-<A>-vs-<B>.md` | Salida de `comparar-runs.js` (diferencias candidatas prod vs dev) |
 
 `<suite>` = `p2m` | `p2p` | `vcn`
 

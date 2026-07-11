@@ -10,6 +10,10 @@
  *
  * SSL: por defecto no verifica certificados (como Postman con SSL off en dev).
  *   --strict-ssl  exige certificado válido
+ *
+ * Versión de código desplegada (para comparar prod vs dev en el mismo AWS dev):
+ *   --codigo-fuente prod|dev   (o variable NEWMAN_CODIGO_FUENTE)
+ *   Queda en resumen, registro, historial y en resultados-por-escenario-<suite>.json/.md
  */
 
 const fs = require("fs");
@@ -62,11 +66,14 @@ function parseArgs(argv) {
   let folder = null;
   let insecure = true;
   let nota = "";
+  let codigoFuente = "";
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === "--folder" && argv[i + 1]) {
       folder = argv[++i];
     } else if (argv[i] === "--nota" && argv[i + 1]) {
       nota = argv[++i];
+    } else if ((argv[i] === "--codigo-fuente" || argv[i] === "--codigo") && argv[i + 1]) {
+      codigoFuente = argv[++i];
     } else if (argv[i] === "--insecure") {
       insecure = true;
     } else if (argv[i] === "--strict-ssl") {
@@ -75,7 +82,10 @@ function parseArgs(argv) {
       positional.push(argv[i]);
     }
   }
-  return { suite: positional[0], folder, insecure, nota };
+  if (!codigoFuente) {
+    codigoFuente = process.env.NEWMAN_CODIGO_FUENTE || "";
+  }
+  return { suite: positional[0], folder, insecure, nota, codigoFuente };
 }
 
 function truncate(text, max) {
@@ -134,7 +144,142 @@ function dedupeFailures(failures) {
   return Array.from(byKey.values());
 }
 
-function buildResumenMarkdown(suite, folder, summary, jsonPath, mdPath, nota) {
+function getItemPath(item) {
+  if (!item || typeof item.parent !== "function") {
+    return "";
+  }
+  const names = [];
+  let node = item;
+  let safety = 0;
+  try {
+    while (node && typeof node.parent === "function" && safety < 30) {
+      node = node.parent();
+      safety++;
+      if (node && node.name) {
+        names.unshift(node.name);
+      }
+    }
+  } catch (e) {
+    return names.join("/");
+  }
+  // El primer nombre suele ser la colección raíz; se descarta.
+  if (names.length > 0) {
+    names.shift();
+  }
+  return names.join("/");
+}
+
+function extractNegocio(bodyText) {
+  const out = { codigoError: null, mensajeError: null, resultado: null };
+  if (!bodyText) {
+    return out;
+  }
+  let parsed;
+  try {
+    parsed = JSON.parse(bodyText);
+  } catch (e) {
+    return out;
+  }
+  if (!parsed || typeof parsed !== "object") {
+    return out;
+  }
+  const fuentes = [parsed];
+  if (parsed.respuesta && typeof parsed.respuesta === "object") {
+    fuentes.push(parsed.respuesta);
+  }
+  fuentes.forEach(function (src) {
+    if (out.codigoError == null && Object.prototype.hasOwnProperty.call(src, "codigoError")) {
+      out.codigoError = src.codigoError;
+    }
+    if (out.mensajeError == null && Object.prototype.hasOwnProperty.call(src, "mensajeError")) {
+      out.mensajeError = src.mensajeError;
+    }
+    if (out.resultado == null && Object.prototype.hasOwnProperty.call(src, "resultado")) {
+      out.resultado = src.resultado;
+    }
+  });
+  return out;
+}
+
+function buildResultadosPorEscenario(suiteKey, folder, summary, codigoFuente, nota) {
+  const run = summary.run || {};
+  const executions = run.executions || [];
+  const escenarios = executions.map(function (ex) {
+    const item = ex.item || {};
+    const response = ex.response || {};
+    const body = readStreamBody(response.stream);
+    const negocio = extractNegocio(body);
+    const assertions = ex.assertions || [];
+    let assertPaso = null;
+    if (assertions.length > 0) {
+      assertPaso = !assertions.some(function (a) {
+        return a.error;
+      });
+    }
+    return {
+      nombre: item.name || "(sin nombre)",
+      ruta: getItemPath(item),
+      httpDescifrar: response.code != null ? response.code : null,
+      codigoError: negocio.codigoError,
+      mensajeError: negocio.mensajeError,
+      resultado: negocio.resultado,
+      assertPaso: assertPaso,
+      body: body || "",
+    };
+  });
+  return {
+    suite: suiteKey,
+    fecha: new Date().toISOString(),
+    codigoFuente: codigoFuente || "desconocido",
+    folder: folder || "(completo)",
+    nota: nota || "",
+    total: escenarios.length,
+    escenarios: escenarios,
+  };
+}
+
+function buildResultadosPorEscenarioMd(resultados) {
+  const lines = [];
+  lines.push("# Resultados por escenario — " + String(resultados.suite).toUpperCase());
+  lines.push("");
+  lines.push("| Campo | Valor |");
+  lines.push("|-------|-------|");
+  lines.push("| Fecha | " + resultados.fecha + " |");
+  lines.push("| Código fuente | " + resultados.codigoFuente + " |");
+  lines.push("| Carpeta | `" + resultados.folder + "` |");
+  if (resultados.nota) {
+    lines.push("| Nota | " + resultados.nota.replace(/\|/g, "\\|") + " |");
+  }
+  lines.push("| Escenarios | " + resultados.total + " |");
+  lines.push("");
+  lines.push("| # | Escenario | HTTP | codigoError | assert | Cuerpo (resumen) |");
+  lines.push("|---|-----------|------|-------------|--------|------------------|");
+  resultados.escenarios.forEach(function (e, i) {
+    const bodyResumen = truncate(e.body, 300)
+      .replace(/\r?\n/g, " ")
+      .replace(/\|/g, "\\|");
+    const assertTxt = e.assertPaso === null ? "—" : e.assertPaso ? "OK" : "✗";
+    lines.push(
+      "| " +
+        (i + 1) +
+        " | " +
+        String(e.nombre).replace(/\|/g, "\\|") +
+        " | " +
+        (e.httpDescifrar != null ? e.httpDescifrar : "—") +
+        " | " +
+        (e.codigoError != null ? e.codigoError : "—") +
+        " | " +
+        assertTxt +
+        " | `" +
+        bodyResumen +
+        "` |"
+    );
+  });
+  lines.push("");
+  return lines.join("\n");
+}
+
+function buildResumenMarkdown(suite, folder, summary, jsonPath, mdPath, nota, codigoFuente) {
   const run = summary.run || {};
   const stats = run.stats || {};
   const failures = dedupeFailures(run.failures || []);
@@ -147,6 +292,7 @@ function buildResumenMarkdown(suite, folder, summary, jsonPath, mdPath, nota) {
   lines.push("| Campo | Valor |");
   lines.push("|-------|-------|");
   lines.push("| Fecha | " + fechaIso + " |");
+  lines.push("| Código fuente | " + (codigoFuente || "desconocido") + " |");
   if (folder) {
     lines.push("| Carpeta | `" + folder + "` |");
   } else {
@@ -235,7 +381,8 @@ function pruneHistorial(histDir, maxRuns) {
   const entries = fs
     .readdirSync(histDir)
     .filter(function (name) {
-      return name.endsWith(".json");
+      // Solo el JSON principal del run cuenta como "run"; excluir el derivado por-escenario.
+      return name.endsWith(".json") && !name.endsWith("_por-escenario.json");
     })
     .map(function (name) {
       const full = path.join(histDir, name);
@@ -247,14 +394,18 @@ function pruneHistorial(histDir, maxRuns) {
 
   entries.slice(maxRuns).forEach(function (entry) {
     const base = entry.name.replace(/\.json$/, "");
-    const jsonFile = path.join(histDir, base + ".json");
-    const mdFile = path.join(histDir, base + ".md");
-    if (fs.existsSync(jsonFile)) {
-      fs.unlinkSync(jsonFile);
-    }
-    if (fs.existsSync(mdFile)) {
-      fs.unlinkSync(mdFile);
-    }
+    const derivados = [
+      base + ".json",
+      base + ".md",
+      base + "_por-escenario.json",
+      base + "_por-escenario.md",
+    ];
+    derivados.forEach(function (fileName) {
+      const full = path.join(histDir, fileName);
+      if (fs.existsSync(full)) {
+        fs.unlinkSync(full);
+      }
+    });
   });
 }
 
@@ -265,8 +416,8 @@ function updateRegistro(suiteKey, entry) {
     "",
     "Orden: **más reciente arriba**. Commitear `logs/` tras cada run en la **máquina con VPN**.",
     "",
-    "| Fecha (UTC) | Carpeta | Requests | Tests | Resultado | Historial | Nota |",
-    "|-------------|---------|----------|-------|-----------|-----------|------|",
+    "| Fecha (UTC) | Código | Carpeta | Requests | Tests | Resultado | Historial | Nota |",
+    "|-------------|--------|---------|----------|-------|-----------|-----------|------|",
   ];
 
   let existingRows = [];
@@ -282,6 +433,8 @@ function updateRegistro(suiteKey, entry) {
   const row =
     "| " +
     entry.fecha +
+    " | " +
+    (entry.codigo || "desconocido") +
     " | `" +
     entry.folder +
     "` | " +
@@ -302,16 +455,23 @@ function updateRegistro(suiteKey, entry) {
   fs.writeFileSync(regPath, header.concat(rows).concat(["", ""]).join("\n"), "utf8");
 }
 
-function archiveRun(suiteKey, folder, jsonPath, mdPath, summary, nota) {
+function archiveRun(suiteKey, folder, jsonPath, mdPath, summary, nota, codigoFuente, resScenJsonPath, resScenMdPath) {
   const histDir = path.join(LOGS, "historial", suiteKey);
   fs.mkdirSync(histDir, { recursive: true });
   const ts = isoTimestampForFilename(new Date());
   const slug = folderSlug(folder);
-  const base = ts + "_" + slug;
+  const codigoSlug = folderSlug(codigoFuente || "desconocido");
+  const base = ts + "_" + codigoSlug + "_" + slug;
   const histJson = path.join(histDir, base + ".json");
   const histMd = path.join(histDir, base + ".md");
   fs.copyFileSync(jsonPath, histJson);
   fs.copyFileSync(mdPath, histMd);
+  if (resScenJsonPath && fs.existsSync(resScenJsonPath)) {
+    fs.copyFileSync(resScenJsonPath, path.join(histDir, base + "_por-escenario.json"));
+  }
+  if (resScenMdPath && fs.existsSync(resScenMdPath)) {
+    fs.copyFileSync(resScenMdPath, path.join(histDir, base + "_por-escenario.md"));
+  }
 
   const stats = summary.run && summary.run.stats ? summary.run.stats : {};
   const reqTotal = stats.requests ? stats.requests.total : "?";
@@ -329,6 +489,7 @@ function archiveRun(suiteKey, folder, jsonPath, mdPath, summary, nota) {
 
   updateRegistro(suiteKey, {
     fecha: new Date().toISOString(),
+    codigo: codigoFuente || "desconocido",
     folder: folder || "(completo)",
     requests: reqTotal + " (fail " + reqFailed + ")",
     tests: testTotal + " (fail " + testFailed + ")",
@@ -495,7 +656,7 @@ function resolveFolderTarget(collectionPath, folderPath) {
   };
 }
 
-function runSuite(suiteKey, folder, insecure, nota) {
+function runSuite(suiteKey, folder, insecure, nota, codigoFuente) {
   const cfg = SUITES[suiteKey];
   if (!cfg) {
     return Promise.reject(new Error("Suite desconocida: " + suiteKey));
@@ -515,6 +676,8 @@ function runSuite(suiteKey, folder, insecure, nota) {
 
   const jsonPath = path.join(LOGS, "ultimo-run-" + suiteKey + ".json");
   const mdPath = path.join(LOGS, "resumen-fallos-" + suiteKey + ".md");
+  const resScenJsonPath = path.join(LOGS, "resultados-por-escenario-" + suiteKey + ".json");
+  const resScenMdPath = path.join(LOGS, "resultados-por-escenario-" + suiteKey + ".md");
 
   const folderTarget =
     folder && folder.includes("/")
@@ -571,26 +734,58 @@ function runSuite(suiteKey, folder, insecure, nota) {
         summary,
         jsonPath,
         mdPath,
-        nota
+        nota,
+        codigoFuente
       );
       fs.writeFileSync(mdPath, md, "utf8");
-      archiveRun(suiteKey, folder, jsonPath, mdPath, summary, nota);
+
+      const resultados = buildResultadosPorEscenario(
+        suiteKey,
+        folder,
+        summary,
+        codigoFuente,
+        nota
+      );
+      fs.writeFileSync(resScenJsonPath, JSON.stringify(resultados, null, 2), "utf8");
+      fs.writeFileSync(resScenMdPath, buildResultadosPorEscenarioMd(resultados), "utf8");
+
+      archiveRun(
+        suiteKey,
+        folder,
+        jsonPath,
+        mdPath,
+        summary,
+        nota,
+        codigoFuente,
+        resScenJsonPath,
+        resScenMdPath
+      );
       const regPath = path.join(LOGS, "registro-" + suiteKey + ".md");
-      console.log("\nResumen: " + path.relative(ROOT, mdPath));
-      console.log("JSON:    " + path.relative(ROOT, jsonPath));
-      console.log("Registro:" + path.relative(ROOT, regPath));
+      console.log("\nResumen:       " + path.relative(ROOT, mdPath));
+      console.log("Por escenario: " + path.relative(ROOT, resScenMdPath));
+      console.log("JSON:          " + path.relative(ROOT, jsonPath));
+      console.log("Registro:      " + path.relative(ROOT, regPath));
       resolve(summary);
     });
   });
 }
 
 function main() {
-  const { suite, folder, insecure, nota } = parseArgs(process.argv.slice(2));
+  const { suite, folder, insecure, nota, codigoFuente } = parseArgs(process.argv.slice(2));
   if (!suite || !SUITES[suite] && suite !== "all") {
     console.error(
-      'Uso: node run-newman.js <p2m|p2p|vcn|all> [--folder "General/2_reglaNegocio/1_idCanal"] [--nota "post-deploy c47a264"] [--strict-ssl]'
+      'Uso: node run-newman.js <p2m|p2p|vcn|all> [--folder "..."] [--codigo-fuente prod|dev] [--nota "..."] [--strict-ssl]'
     );
     process.exit(1);
+  }
+
+  const codigo = codigoFuente || "desconocido";
+  if (!codigoFuente) {
+    console.warn(
+      'ADVERTENCIA: sin --codigo-fuente ni NEWMAN_CODIGO_FUENTE. Se registra "desconocido"; el informe no podrá distinguir prod de dev.'
+    );
+  } else {
+    console.log("Código fuente desplegado: " + codigo);
   }
 
   if (insecure) {
@@ -608,7 +803,7 @@ function main() {
     for (const key of suites) {
       console.log("\n=== " + key.toUpperCase() + " ===");
       try {
-        const summary = await runSuite(key, folder, insecure, nota);
+        const summary = await runSuite(key, folder, insecure, nota, codigo);
         const failed =
           summary.run &&
           summary.run.stats &&

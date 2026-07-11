@@ -16,3 +16,4 @@ Carpeta [`canalesPruebas-dev/`](./canalesPruebas-dev/) — datos Dynamo, export 
 ## Notas propias
 
 - [`ideas-rastreo-evidencias.md`](ideas-rastreo-evidencias.md) — estrategia de rastreo, evidencias AWS y diferencias con lo del equipo de pruebas.
+- [`comparar-prod-vs-dev/`](comparar-prod-vs-dev/) — diseño para grabar el resultado de cada escenario y etiquetar la versión de código (prod/dev), y así comparar la versión productiva contra una en desarrollo en el mismo AWS de desarrollo.
