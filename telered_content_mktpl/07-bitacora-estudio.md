@@ -190,6 +190,35 @@ documentación. El agente debe tratar esto como restricción dura.
 
 ---
 
+### 2026-07-11 — `tech_doc_baseline/` (línea base antes del refactory)
+
+**Arquitectura de carpetas de doc técnica (decisión del usuario):**
+
+| Carpeta | Rol |
+|---------|-----|
+| `tech_doc_baseline/` | Base «antes del refactory» (`api_4/6/7`). **NO se modifica** — referencia de comparación |
+| `tech_doc/` | Archivos **finales** (refactorizados) |
+| `tech_doc_html/` | Versión HTML de cada uno (futuro) |
+
+**Qué se hizo:**
+- Creada `tech_doc_baseline/` y **copiados** (no movidos) `api_4/6/7.json` desde `tech_doc/`.
+- `tech_doc/` conserva los productivos → no rompe render/publicación.
+- Hashes verificados idénticos y JSON válido en los tres.
+- `README.md` en la carpeta documentando «NO SE MODIFICAN».
+
+**api_4 en baseline:** se usa a propósito la versión **JSON válida** (la arreglada escapando control
+chars), porque al parsear/comparar no da problemas. El «antes» inválido queda registrado en el
+historial git y en `06-hallazgo-api_4-json-invalido.md`.
+
+**Baseline único (resuelto):** el usuario decidió dejar **un solo** baseline: `tech_doc_baseline/`.
+Se **retiró** `tech_doc/_baseline/` y se repuntó todo el generador (`comparar-vcn.js`,
+`bootstrap-vcn.js`, `lib/bootstrap-vcn.js`, `apis/vcn.json`, READMEs) a `tech_doc_baseline/api_4.json`.
+`comparar-vcn.js` verificado → **CONTRATO OK** con el nuevo baseline.
+
+**Commit:** pendiente (usuario no lo pidió en este paso).
+
+---
+
 ### 2026-07-11 — Carpeta unificada `archived/` (APIs 1, 2, 3, 5)
 
 **Qué se hizo:**
@@ -211,12 +240,12 @@ estructura relativa al publicar no se altera.
 
 **Decisiones del usuario:**
 - Generador en `telered_content_mktpl/generador-openapi/` (versionado en el mismo repo).
-- Baseline temporal en `tech_doc/_baseline/` para comparar; salida en `tech_doc/_generated/`.
+- Baseline en `tech_doc_baseline/` (antes `tech_doc/_baseline/`, ya retirado); salida en `tech_doc/_generated/`.
 - Plantillas HTML mantenibles (no seguir editando HTML embebido en el JSON a mano).
 
 **Qué se hizo en repo marketplace:**
 - `generador-openapi/` con lib, scripts, `apis/vcn.json`, `plantillas/vcn/tags/*.html`, `fragmentos/vcn/`.
-- `tech_doc/_baseline/api_4.json` — copia referencia.
+- `tech_doc_baseline/api_4.json` — base de referencia (no se modifica).
 - `scripts/bootstrap-vcn.js` → extrae baseline a plantillas/fragmentos.
 - `scripts/armar-vcn.js` → genera `_generated/api_4.json`.
 - `scripts/comparar-vcn.js` → vista contractual baseline vs generado → **CONTRATO OK**.

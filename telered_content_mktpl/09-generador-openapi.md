@@ -156,7 +156,7 @@ usarse para **nuevas** APIs/métodos, no para reescribir contratos ya publicados
 | Paso | Estado |
 |------|--------|
 | Carpeta generador en repo | ✅ |
-| Baseline `tech_doc/_baseline/api_4.json` | ✅ copia para comparar |
+| Baseline `tech_doc_baseline/api_4.json` (único; `_baseline/` retirado) | ✅ base para comparar |
 | Bootstrap → plantillas HTML + fragmentos | ✅ 8 tags, 3 paths, 7 schemas |
 | Generar `tech_doc/_generated/api_4.json` | ✅ |
 | `comparar-vcn.js` contrato baseline vs generado | ✅ **CONTRATO OK** |

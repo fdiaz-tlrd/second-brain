@@ -14,7 +14,9 @@
 
 | Carpeta / archivo | Rol |
 |-------------------|-----|
-| `tech_doc/api_*.json` | Especificaciones OpenAPI 3.0 (Redoc/Swagger) — **fuente de verdad técnica**. Tras refactor solo quedan `api_4`, `api_6`, `api_7` |
+| `tech_doc/api_*.json` | OpenAPI 3.0 **finales** (refactorizados). Solo `api_4`, `api_6`, `api_7` |
+| `tech_doc_baseline/api_*.json` | **Base «antes del refactory»** — `api_4/6/7`. **NO se modifican**; son la referencia de comparación. `api_4` = versión JSON válida (arreglada) |
+| `tech_doc_html/` | Versión HTML de cada API (futuro) |
 | `archived/tech_doc/` | OpenAPI archivados fuera de alcance (`api_1`, `api_2`, `api_3`, `api_5`) — sin mantenimiento |
 | `archived/comr_doc/` | HTML comercial archivado (`1_index`, `2_index`, `3_index`, `5_index`) — sin mantenimiento |
 | `archived/mkt.api.images/` | Imágenes/logos/diagramas de APIs archivadas (1, 2, 3, 5) — sin mantenimiento |
