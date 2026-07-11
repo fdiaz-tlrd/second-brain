@@ -92,6 +92,47 @@ decisión o cambio documentado.
 
 ---
 
+### 2026-07-11 — Primer cambio en `telered_content_mktpl` (fase mejoras)
+
+Rama: `feature/Refactory`.
+
+**1. Archivado de OpenAPI fuera de alcance**
+- `git mv` a nueva carpeta **`tech_doc_archived/`**: `api_1.json`, `api_2.json`, `api_3.json`, `api_5.json`.
+- En `tech_doc/` quedan solo `api_4.json`, `api_6.json`, `api_7.json`.
+
+**2. Borrado**
+- `git rm tech_doc/api_fd.json` — era archivo de pruebas del usuario.
+
+**3. Arreglo `api_4.json` (JSON válido)**
+- Escapados **71** control chars dentro de strings (41 TAB, 30 LF; 0 CR).
+- Fuente = blob git HEAD para evitar CR de autocrlf.
+- 3 verificaciones OK (parse estricto, sin control chars crudos, roundtrip idéntico al original).
+- Detalle completo: `06-hallazgo-api_4-json-invalido.md` § «Corrección aplicada».
+
+**Archivos second-brain actualizados:**
+- `00-fuentes-y-alcance.md` (estructura, fuera de alcance, causa raíz → resuelto)
+- `06-hallazgo-api_4-json-invalido.md` (estado RESUELTO + método)
+- `07-bitacora-estudio.md` (esta entrada)
+
+**Estado git repo marketplace:** cambios staged (`api_4` modificado, `api_fd` borrado, 4 renombrados),
+**sin commit aún** (a la espera de instrucción del usuario).
+
+**Incidencia detectada y resuelta en esta sesión:**
+- El `git add tech_doc/api_4.json` inicial **no se ejecutó**: iba en una línea PowerShell junto a un
+  `node -e` mal escapado, y PowerShell aborta la línea completa al fallar el parseo. El fix estaba en
+  disco (válido) pero el index seguía con el original roto. Se detectó al inspeccionar `git show :ruta`
+  y luego se estageó bien. Blob del index ahora parsea OK.
+- Se verificó que autocrlf **no** rompe el fix (LF y CRLF parsean, 0 control chars): **no** se cambia
+  `.gitattributes`. Ver `06-…` § «Sobre .gitattributes».
+
+**Regla de conducta nueva del usuario:** actuar como experto — si hay fix claro, hacerlo; si cambia
+alcance/es destructivo, preguntar; prohibido «lo vi pero no lo hice porque no me lo pediste»; pero no
+sobre-marcar riesgos falsos. Documentado en `.cursor/rules/agente-conducta.mdc` § «Actuar como experto».
+
+**Recordatorio para informe final:** este es el primer set de cambios reales sobre el repo.
+
+---
+
 **Pendiente para informe final:**
 - [ ] Fase mejoras de presentación (sin cambiar información)
 - [ ] Listado de archivos tocados en `telered_content_mktpl`
