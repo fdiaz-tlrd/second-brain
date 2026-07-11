@@ -255,5 +255,7 @@ sitio del marketplace → buscar la doc).
 | Soporte `x-tagGroups` en el generador (`cfg.tagGroups` → `doc['x-tagGroups']`) | ✅ |
 | Cifrado api_4 alineado a api_6: 2 guías (GCM vigente + CBC Obsoleto) copiadas verbatim, agrupadas bajo `Cifrado y Descifrado de datos` | ✅ v1 — decisión explícita del usuario (opción C) |
 | `comparar-vcn.js --solo-esquema` tras cifrado: única diferencia = `contract.tagNames` (esperado); paths/schemas intactos | ✅ |
+| Modelo documental para protocolo cifrado/multiplexado: endpoints reales vs métodos lógicos | ✅ documentado en `11-modelo-documental-protocolo-cifrado.md` |
+| Paths sintéticos marcados con `x-telered-operationKind: logical-method` y texto visible "no es URL real" | ✅ aplicado a `/validador/validar ` y `/0001` |
 
 Comandos y detalle operativo: `telered_content_mktpl/generador-openapi/README.md`.

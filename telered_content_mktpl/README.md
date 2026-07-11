@@ -17,6 +17,7 @@ Documentación **para retomar contexto** del repo [`telered_content_mktpl`](../.
 | [08-estudio-profundo-tech_doc.md](./08-estudio-profundo-tech_doc.md) | **Estudio profundo:** comparación estructural, plantilla de método, CANAL vs CANAL VALIDADOR, inconsistencias, **discrepancia cifrado api_6≠api_7** |
 | [09-generador-openapi.md](./09-generador-openapi.md) | Factibilidad y diseño de un **generador de OpenAPI** (análogo al de Postman) |
 | [10-decisiones-reglas-refactory.md](./10-decisiones-reglas-refactory.md) | **Reglas obligatorias:** no cambiar contrato productivo, solo presentación/mantenimiento; api_6 como guía futura de cifrado/descifrado; PoC VCN |
+| [11-modelo-documental-protocolo-cifrado.md](./11-modelo-documental-protocolo-cifrado.md) | Modelo para documentar endpoints cifrados + métodos lógicos/payload descifrado sin fingir URLs reales |
 
 ## Cómo usar (agente)
 
@@ -38,3 +39,4 @@ Documentación **para retomar contexto** del repo [`telered_content_mktpl`](../.
 | 2026-07-11 | Creados `06-hallazgo-api_4-json-invalido.md` y `07-bitacora-estudio.md` (base informe exhaustivo al cerrar mejoras) |
 | 2026-07-11 | Aclarado alcance crítico: **no cambiar contrato productivo**; solo presentación/mantenimiento. api_6 tiene la guía correcta de cifrado/descifrado GCM + CBC obsoleto; api_4/api_7 la tendrán eventualmente. PoC generador: VCN. |
 | 2026-07-11 | **PoC generador VCN** en `generador-openapi/` — bootstrap, plantillas HTML, salida final → `tech_doc/api_4.json`, comparar contrato OK. `tech_doc_baseline/` temporal para comparar |
+| 2026-07-11 | Definido modelo documental para protocolo cifrado/multiplexado: endpoint real, envelope cifrado, payload descifrado y método lógico son capas separadas. Ver `11-modelo-documental-protocolo-cifrado.md` |

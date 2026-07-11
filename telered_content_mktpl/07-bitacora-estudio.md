@@ -463,6 +463,43 @@ regenerar, comparar, y solo entonces considerar reemplazo del productivo.
 
 ---
 
+### 2026-07-11 — Modelo documental: endpoint cifrado + métodos lógicos
+
+**Corrección de criterio tras reclamo del usuario:** el problema no es solo "cómo se ve" el Canal Validador. El problema real es que estas APIs documentan un protocolo multiplexado y cifrado en una herramienta (OpenAPI/ReDoc) que espera endpoints HTTP reales. Los "métodos" (`0001`, etc.) no son URLs: son valores dentro del payload descifrado.
+
+**Modelo definido y documentado:** separar cuatro capas:
+- endpoint HTTP real;
+- envelope cifrado (`peticion` / `respuesta`);
+- payload descifrado;
+- método lógico seleccionado por `metodo`.
+
+**Qué se hizo en second-brain:**
+- Creado `11-modelo-documental-protocolo-cifrado.md` como fuente de verdad del modelo.
+- Creado `helper-inventario-openapi-multiplexado.js` para inventariar paths y schemas de `api_4` y clasificar endpoint real vs operación documental.
+- Actualizado `README.md` para indexar el nuevo modelo.
+
+**Evidencia del helper (api_4 actual):**
+```text
+POST "/auth/token"           endpoint-real-auth
+POST "/validador/validar"    endpoint-real-multiplexado-cifrado
+POST "/validador/validar "   operacion-documental-metodo-descifrado
+POST "/0001"                 operacion-documental-canal-validador
+```
+
+**Qué se hizo en `telered_content_mktpl`:**
+- `paths.json`: el path sintético `/validador/validar ` ahora se describe como **Método lógico 0001**, no como endpoint real; se añadieron extensiones `x-telered-operationKind`, `x-telered-realTransport`, `x-telered-realEndpoint`.
+- `paths-canal-validador.json`: `/0001` queda marcado como **Método lógico 0001** del Canal Validador; la URL real es `defined-by-integrating-institution`.
+- `canal-validador.html` y `canal-validador-0001-description.html`: texto visible aclarando que la IF define la URL real y que el método vive dentro de `peticion` descifrada.
+- `components.json` y `components-canal-validador.json`: los campos cifrados ya no presentan `iv.secreto.cifrado` como formato único; aclaran que **GCM es vigente** y que los ejemplos `iv.secreto.cifrado` corresponden a **CBC obsoleto**.
+
+**Verificación:**
+- `armar-vcn.js` → `JSON.parse OK`, HTML refrescado.
+- `helper-inventario-openapi-multiplexado.js` → clasificación esperada.
+- `comparar-vcn.js --solo-esquema` → única diferencia `contract.tagNames` (ya conocida por las dos guías de cifrado); paths/schemas de contrato intactos.
+- `ReadLints` sin errores.
+
+---
+
 ## Plantilla para próximas entradas
 
 ```markdown
