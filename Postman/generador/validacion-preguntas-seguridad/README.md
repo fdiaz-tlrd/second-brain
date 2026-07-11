@@ -1,5 +1,7 @@
 # Preguntas de seguridad P2P — registro de iteraciones
 
+**Retomo global:** [`../../00-estado-y-retomo.md`](../../00-estado-y-retomo.md)
+
 Documentación viva: catálogo método `0005`, validación de `idPregunta` (0004) y `respuestas[].id` (0006).
 
 | # | Fecha | Documento |

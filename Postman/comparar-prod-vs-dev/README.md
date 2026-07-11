@@ -1,8 +1,10 @@
 # Comparar código PROD vs DEV con los mismos escenarios
 
+**Retomo global:** [`../00-estado-y-retomo.md`](../00-estado-y-retomo.md)
+
 Diseño de una mejora al generador (`../generador/`) para **grabar el resultado de cada escenario** y **etiquetar con qué versión de código** se ejecutó, de modo que se pueda comparar cómo responde la **versión productiva** frente a una **versión en desarrollo**, corriendo ambas en el **mismo ambiente AWS de desarrollo**.
 
-Estado: **implementado** (2026-07-10) en `../generador/run-newman.js` y `../generador/comparar-runs.js`. Falta validarlo con un run real en la máquina VPN (una corrida prod y una dev).
+Estado: **implementado** (2026-07-10) en `../generador/run-newman.js` y `../generador/comparar-runs.js`. Falta validarlo con un run real en la máquina VPN (una corrida prod y una dev). Ver checklist en [`../00-estado-y-retomo.md`](../00-estado-y-retomo.md).
 
 ---
 

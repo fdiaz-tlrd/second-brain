@@ -25,6 +25,8 @@ Verificación local: `node second-brain/tld-validador-api/verificar-como-axios-d
 
 **Pendiente:** deploy del validador-api con el cambio.
 
+**Checkpoint Postman + Newman (deploy, runs prod/dev, comparación):** [`../Postman/00-estado-y-retomo.md`](../Postman/00-estado-y-retomo.md)
+
 ---
 
 ## Contexto arquitectura

@@ -1,5 +1,7 @@
 # Postman
 
+**Handoff / retomo:** [`00-estado-y-retomo.md`](./00-estado-y-retomo.md) — leer primero si se retoma Postman + Newman tras una pausa.
+
 Dos ramas con propósitos distintos:
 
 | Carpeta | Contenido |

@@ -60,9 +60,16 @@ Detalle: [`Postman/generador/logs/README.md`](../Postman/generador/logs/README.m
 
 ---
 
+## Handoff Postman + Newman
+
+Estado pausado, mapa de docs y pendientes: [`../Postman/00-estado-y-retomo.md`](../Postman/00-estado-y-retomo.md)
+
+---
+
 ## Historial
 
 | Fecha | Nota |
 |-------|------|
 | 2026-07-05 | Documento creado — no correr Newman en Lenovo |
 | 2026-07-05 | Registro + historial (8 runs); prohibido `git restore logs/` |
+| 2026-07-11 | Enlace a checkpoint `Postman/00-estado-y-retomo.md` |

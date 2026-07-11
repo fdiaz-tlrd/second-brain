@@ -14,6 +14,8 @@ Carpeta de trabajo para entender cómo el **orquestador validador** se comunica 
 | Archivo | Contenido |
 |---------|-----------|
 | [diferencia-prod-vs-dev-respuesta-producto.md](./diferencia-prod-vs-dev-respuesta-producto.md) | **Diferencia real JSON** prod vs dev (statusCode en `respuesta`) |
+| [hallazgos-pendientes.md](./hallazgos-pendientes.md) | Pendientes QA / producto / deploy |
+| [../Postman/00-estado-y-retomo.md](../Postman/00-estado-y-retomo.md) | **Checkpoint** Postman + Newman (pausa, retomo, runs pendientes) |
 | [arquitectura-invoke-y-contratos.md](./arquitectura-invoke-y-contratos.md) | Público = matriz; invoke interno; API GW solo prueba |
 | [comunicacion-prod-vs-dev.md](./comunicacion-prod-vs-dev.md) | Comparación axios vs invoke, routing, IAM |
 | [respuesta-a-matriz.md](./respuesta-a-matriz.md) | Respuesta validador-api → matriz (invoke) |

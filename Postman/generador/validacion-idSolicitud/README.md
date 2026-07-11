@@ -1,5 +1,7 @@
 # Validación `idSolicitud` — registro de iteraciones
 
+**Retomo global:** [`../../00-estado-y-retomo.md`](../../00-estado-y-retomo.md)
+
 Documentación viva del trabajo en escenarios Postman y alineación de código en **P2P** (`tld-api-alias`), **P2M** (`tld-api-p2m`) y **VCN** (`tld-api-cuenta-nombre`).
 
 **Carpeta de escenarios:** `../{P2P|P2M|VCN} Escenarios error/General/1_validaciones_js/5_solicitudes/`

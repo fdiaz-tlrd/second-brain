@@ -2,6 +2,8 @@
 
 Copia de `refactoria\Postman`. Fuente de verdad para mantener escenarios en archivos separados y generar colecciones importables en Postman.
 
+**Estado global y retomo:** [`../00-estado-y-retomo.md`](../00-estado-y-retomo.md)
+
 ---
 
 ## Newman y VPN — OBLIGATORIO LEER (agente)
