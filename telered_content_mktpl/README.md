@@ -37,4 +37,4 @@ Documentación **para retomar contexto** del repo [`telered_content_mktpl`](../.
 | 2026-07-11 | Confirmado: endpoint único `POST /validador/validar` (truco del espacio en paths OpenAPI). Causa raíz `api_4.json` inválido: control chars crudos en string HTML (línea ~60), roto desde commit `8574246`. Ver `06-hallazgo-api_4-json-invalido.md` |
 | 2026-07-11 | Creados `06-hallazgo-api_4-json-invalido.md` y `07-bitacora-estudio.md` (base informe exhaustivo al cerrar mejoras) |
 | 2026-07-11 | Aclarado alcance crítico: **no cambiar contrato productivo**; solo presentación/mantenimiento. api_6 tiene la guía correcta de cifrado/descifrado GCM + CBC obsoleto; api_4/api_7 la tendrán eventualmente. PoC generador: VCN. |
-| 2026-07-11 | **PoC generador VCN** en `generador-openapi/` — bootstrap, plantillas HTML, `_generated/api_4.json`, comparar contrato OK |
+| 2026-07-11 | **PoC generador VCN** en `generador-openapi/` — bootstrap, plantillas HTML, salida final → `tech_doc/api_4.json`, comparar contrato OK. `tech_doc_baseline/` temporal para comparar |

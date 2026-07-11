@@ -45,6 +45,11 @@ exactamente lo que un generador elimina.
 
 ### 3.1 Entrada — definición compacta por API
 
+> **Nota:** este bloque era el **borrador inicial**. La **implementación real** (jul-2026) difiere:
+> usa `apis/<api>.json` (manifiesto) + `plantillas/<api>/tags/*.html` + `fragmentos/<api>/{paths,components}.json`.
+> Ver la estructura y flujo reales en **§7 (Estado / arquitectura implementada)** y en el
+> `README.md` del generador. Se conserva el borrador como referencia de la idea original.
+
 ```
 generador-openapi/
   comun/
@@ -140,28 +145,79 @@ usarse para **nuevas** APIs/métodos, no para reescribir contratos ya publicados
 - `api_6.json` tiene la guía correcta de **cifrado y descifrado**: GCM actual + CBC obsoleto.
 - Si el agente considera VCN como mejor PoC, avanzar con VCN.
 
-### Decisiones abiertas / a diseñar
+### Decisiones cerradas (jul-2026, tras alinear con el usuario)
 
-- ¿El HTML de descripciones se mantiene tal cual (bloques `.html`) o se migra a Markdown/plantillas?
-- ¿La salida reemplaza los `api_X.json` actuales o genera en paralelo para comparar primero?
-- Alcance inicial: **PoC con VCN (api_4)** — es el más simple (1 método) y el que hay que rediseñar el
-  canal validador; sirve para validar el enfoque antes de P2P/R2P.
+- **Salida = `tech_doc/api_4.json`** (el final). `armar-vcn.js` escribe directo ahí: «cada vez que se
+  genere, la última versión está disponible en `tech_doc/`». `tech_doc/` queda como siempre: solo los JSON.
+- **NO** hay carpeta intermedia dentro de `tech_doc/`. El intento `tech_doc/_generated/` fue invención
+  sin precedente (ver bitácora `07`) y se retiró.
+- **`tech_doc_baseline/` es temporal**: existe **solo** para comparar durante este refactor grande y
+  **se eliminará al terminar**.
+- **Vista previa ReDoc** → `generador-openapi/_generated/preview/` (apoyo visual, ignorado por git).
+- El **HTML de descripciones se mantiene** como plantillas `.html` (una por tag), editables a mano.
+- Alcance inicial: **PoC con VCN (api_4)**, el más simple (1 método), antes de P2P/R2P.
+
+### Decisiones abiertas
+
+- Extender el generador a P2P (`api_6`) y R2P (`api_7`).
+- Si al final se conserva el generador (el usuario lo revisará al cerrar la fase).
 
 ---
 
-## 7. Estado
+## 7. Estado / arquitectura implementada (fuente de verdad)
 
-**PoC VCN iniciada (2026-07-11)** en `telered_content_mktpl/generador-openapi/`.
+**PoC VCN (2026-07-11)** en `telered_content_mktpl/generador-openapi/`. Esta es la estructura **real**.
+
+### 7.1 Estructura real (versionada)
+
+```
+generador-openapi/
+  apis/vcn.json                 # manifiesto: openapi, info, servers, security, tags→plantilla,
+                                #   metodos, y rutas de salida (output=tech_doc/api_4.json)
+  plantillas/vcn/tags/*.html    # 8 HTML, uno por tag (lo mantenible; se edita a mano)
+  fragmentos/vcn/paths.json     # paths OpenAPI (el truco /validador/validar + espacios)
+  fragmentos/vcn/components.json# schemas (Request0001, Response0001, envelope, etc.)
+  lib/
+    bootstrap-vcn.js   # extrae un JSON base → plantillas + fragmentos + manifiesto
+    build-vcn.js       # ensambla manifiesto+plantillas+fragmentos → OpenAPI y lo escribe
+    compare-contract.js# compara contrato (paths/schemas/campos) baseline vs final
+    json-safe.js       # parse/stringify seguro (LF, sin control chars crudos)
+    slug.js            # nombre de tag → nombre de archivo
+    preview-redoc.js   # HTML ReDoc de vista previa
+  scripts/
+    bootstrap-vcn.js   # CLI bootstrap (fuente por defecto: tech_doc_baseline/api_4.json)
+    armar-vcn.js       # CLI generar → escribe tech_doc/api_4.json + preview
+    comparar-vcn.js    # CLI comparar tech_doc_baseline vs tech_doc/api_4.json
+  _generated/          # SOLO vista previa ReDoc (ignorado por git, regenerable)
+```
+
+### 7.2 Flujo (3 comandos)
+
+1. `node generador-openapi/scripts/bootstrap-vcn.js` — (una vez) descompone un JSON en plantillas+fragmentos.
+2. `node generador-openapi/scripts/armar-vcn.js` — ensambla y **escribe `tech_doc/api_4.json`** (el final) + preview ReDoc.
+3. `node generador-openapi/scripts/comparar-vcn.js` — verifica **CONTRATO OK** (`tech_doc_baseline` vs `tech_doc/api_4.json`).
+
+### 7.3 Roles de carpetas
+
+| Carpeta | Rol | Git |
+|---------|-----|-----|
+| `tech_doc/api_4.json` | **Final** (salida del generador; la última versión siempre aquí) | Versionado |
+| `tech_doc_baseline/api_4.json` | «Antes» del refactor, **solo para comparar**, **se borra al terminar** | Versionado (temporal) |
+| `generador-openapi/` (código) | La herramienta nueva | Versionado |
+| `generador-openapi/_generated/` | Solo preview ReDoc | **Ignorado** |
+
+### 7.4 Progreso
 
 | Paso | Estado |
 |------|--------|
-| Carpeta generador en repo | ✅ |
-| Baseline `tech_doc_baseline/api_4.json` (único; `_baseline/` retirado) | ✅ base para comparar |
-| Bootstrap → plantillas HTML + fragmentos | ✅ 8 tags, 3 paths, 7 schemas |
-| Generar `generador-openapi/_generated/api_4.json` (fuera de `tech_doc/`, ignorado) | ✅ |
-| `comparar-vcn.js` contrato baseline vs generado | ✅ **CONTRATO OK** |
-| Vista previa ReDoc `generador-openapi/_generated/preview/index.html` | ✅ |
+| Estructura generador en repo | ✅ |
+| Baseline único `tech_doc_baseline/` (temporal) | ✅ |
+| Bootstrap → 8 plantillas HTML + fragmentos (3 paths, 7 schemas) | ✅ |
+| `armar-vcn.js` escribe salida final en `tech_doc/api_4.json` | ✅ configurado |
+| Contenido generado == `tech_doc/api_4.json` actual (diff estructural profundo = **0**) | ✅ verificado |
+| `comparar-vcn.js` → **CONTRATO OK** (baseline vs `tech_doc/api_4.json`) | ✅ |
+| Vista previa ReDoc en `generador-openapi/_generated/preview/` (ignorado) | ✅ |
 | Rediseñar presentación Canal Validador en plantillas | Pendiente |
-| Reemplazar `tech_doc/api_4.json` productivo | Pendiente aprobación usuario |
+| Regenerar `tech_doc/api_4.json` con el rediseño (revisar `git diff`) | Pendiente |
 
-Comandos: ver `telered_content_mktpl/generador-openapi/README.md`.
+Comandos y detalle operativo: `telered_content_mktpl/generador-openapi/README.md`.
