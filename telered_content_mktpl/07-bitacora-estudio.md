@@ -392,6 +392,30 @@ regenerar, comparar, y solo entonces considerar reemplazo del productivo.
 
 ---
 
+### 2026-07-11 — Canal Validador 0001 como operación OpenAPI (v2)
+
+**Qué se hizo:**
+- Tag nuevo **`CANAL VALIDADOR`** + operación **`POST /0001`** (método 0001 Validación cuenta nombre), estilo `api_7`.
+- Schemas nuevos: `RequestCV0001`, `ResponseCV0001`, `PeticionDescifradaCV0001`, `RespuestaDescifradaCV0001` (envelope cifrado IF + referencia descifrada).
+- Tablas contractuales del método 0001 movidas del tag «Especificación para CANAL VALIDADOR» a `plantillas/vcn/operations/canal-validador-0001-description.html` (description de la operación).
+- Tag «Especificación…» conserva intro, anexos, enmascaramiento y nota; apunta a `POST /0001`.
+- `build-vcn.js`: merge `pathsExtraFile` / `componentsExtraFile` + resolución `x-descriptionTemplate`.
+- `comparar-vcn.js --solo-esquema`: compara solo paths/schemas/tags **presentes en baseline** (paths/schemas nuevos no rompen el check).
+
+**Verificación:**
+- `armar-vcn.js` → 9 tags, 4 paths.
+- `comparar-vcn.js --solo-esquema` → **ESQUEMA OK** (paths/schemas Telered sin cambio).
+- `tech_doc_html/api_4.html` regenerado — método 0001 visible bajo tag CANAL VALIDADOR en ReDoc.
+
+**Archivos repo marketplace:**
+- `generador-openapi/apis/vcn.json`, `lib/build-vcn.js`, `scripts/redisenar-canal-validador.js`, `scripts/comparar-vcn.js`
+- `generador-openapi/fragmentos/vcn/paths-canal-validador.json`, `components-canal-validador.json`
+- `generador-openapi/plantillas/vcn/tags/canal-validador.html`, `operations/canal-validador-0001-description.html`
+- `generador-openapi/plantillas/vcn/tags/especificacion-para-canal-validador.html` (recortado)
+- `tech_doc/api_4.json`, `tech_doc_html/api_4.html`
+
+---
+
 ## Plantilla para próximas entradas
 
 ```markdown

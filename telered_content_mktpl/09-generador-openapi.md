@@ -233,5 +233,7 @@ sitio del marketplace → buscar la doc).
 | Vista previa ReDoc en `generador-openapi/_generated/preview/` (ignorado) | ✅ |
 | Rediseñar presentación Canal Validador en plantillas | ✅ v1 (secciones h2/h3, listas, anexos; tablas contractuales intactas) |
 | Regenerar `tech_doc/api_4.json` con el rediseño (revisar `git diff`) | ✅ — `comparar-vcn.js --solo-esquema` → **ESQUEMA OK** |
+| Exponer método 0001 Canal Validador como `POST /0001` + tag `CANAL VALIDADOR` | ✅ v2 — tablas en description de operación; tag Especificación recortado |
+| `comparar-vcn.js --solo-esquema` solo paths/schemas baseline (aditivos OK) | ✅ |
 
 Comandos y detalle operativo: `telered_content_mktpl/generador-openapi/README.md`.
