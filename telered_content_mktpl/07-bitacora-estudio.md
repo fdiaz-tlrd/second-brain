@@ -190,7 +190,24 @@ documentación. El agente debe tratar esto como restricción dura.
 
 ---
 
-### 2026-07-11 — PoC generador VCN arrancada
+### 2026-07-11 — Carpeta unificada `archived/` (APIs 1, 2, 3, 5)
+
+**Qué se hizo:**
+- Creada `archived/tech_doc/`, `archived/comr_doc/`, `archived/mkt.api.images/`.
+- `git mv` desde `tech_doc_archived/` → `archived/tech_doc/` (api_1/2/3/5.json).
+- `git mv` comercial: `comr_doc/1,2,3,5_index.html` → `archived/comr_doc/`.
+- `git mv` imágenes/logos/diagramas de APIs 1/2/3/5 → `archived/mkt.api.images/`.
+- Carpeta `tech_doc_archived/` eliminada (sustituida por `archived/tech_doc/`).
+
+**Motivo:** archivos sin mantenimiento futuro; orden en repo, no cambio de publicación.
+
+**Rutas relativas / S3:** no cambian. El destino en AWS S3 donde se suben estos objetos es el mismo;
+`archived/` es solo organización en git. Los HTML siguen referenciando `../mkt.api.images/` porque la
+estructura relativa al publicar no se altera.
+
+**Commit:** `feature/Refactory` — ver historial del repo marketplace.
+
+---
 
 **Decisiones del usuario:**
 - Generador en `telered_content_mktpl/generador-openapi/` (versionado en el mismo repo).

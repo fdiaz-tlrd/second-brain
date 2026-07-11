@@ -15,7 +15,9 @@
 | Carpeta / archivo | Rol |
 |-------------------|-----|
 | `tech_doc/api_*.json` | Especificaciones OpenAPI 3.0 (Redoc/Swagger) — **fuente de verdad técnica**. Tras refactor solo quedan `api_4`, `api_6`, `api_7` |
-| `tech_doc_archived/` | **Nuevo (feature/Refactory):** archivos OpenAPI archivados fuera de alcance (`api_1`, `api_2`, `api_3`, `api_5`) |
+| `archived/tech_doc/` | OpenAPI archivados fuera de alcance (`api_1`, `api_2`, `api_3`, `api_5`) — sin mantenimiento |
+| `archived/comr_doc/` | HTML comercial archivado (`1_index`, `2_index`, `3_index`, `5_index`) — sin mantenimiento |
+| `archived/mkt.api.images/` | Imágenes/logos/diagramas de APIs archivadas (1, 2, 3, 5) — sin mantenimiento |
 | `comr_doc/*_index.html` | Presentación comercial por API (`4_index.html` ↔ api 4, etc.) |
 | `mkt.api.images/` | Diagramas SVG referenciados desde los JSON |
 | `mkt.api.script/` | CSS/JS para render HTML (iframeResizer) |
@@ -39,9 +41,20 @@
 
 ## Fuera de alcance (por ahora)
 
-- `api_1.json`, `api_2.json`, `api_3.json`, `api_5.json` → **movidos a `tech_doc_archived/`** (feature/Refactory)
+- `api_1.json`, `api_2.json`, `api_3.json`, `api_5.json` → **`archived/tech_doc/`**
+- HTML comercial e imágenes de APIs 1/2/3/5 → **`archived/comr_doc/`**, **`archived/mkt.api.images/`**
 - `api_fd.json` → **borrado** (era archivo de pruebas del usuario)
 - `comr_doc/` (render HTML)
+
+### Carpeta `archived/` — organización en repo, no cambio en S3
+
+Los archivos de APIs 1, 2, 3 y 5 se agrupan bajo `archived/` **solo en el repositorio** porque ya no
+recibirán mantenimiento. **No implica cambiar rutas relativas ni el destino de publicación en AWS S3:**
+donde se suben esos objetos en S3 **no cambia**; el movimiento es orden interno del repo para separar
+contenido activo (APIs 4, 6, 7) del archivado.
+
+Los HTML archivados conservan referencias como `../mkt.api.images/` porque, al publicar, la estructura
+relativa en el bucket sigue siendo la misma; solo cambia la carpeta raíz del árbol versionado en git.
 
 > **Nota:** ya NO aplica «solo lectura» en `tech_doc`. En `feature/Refactory` empezamos a
 > modificar los JSON (arreglo `api_4.json`, archivado, borrado). Ver bitácora `07`.
