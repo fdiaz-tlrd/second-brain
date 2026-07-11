@@ -190,6 +190,50 @@ documentación. El agente debe tratar esto como restricción dura.
 
 ---
 
+### 2026-07-11 — Estudio histórico completo del repo + retiro de `tech_doc/_generated/`
+
+**Motivo:** el usuario no veía necesidad de la carpeta `_generated` y pidió estudiar **todo** el
+historial para hacer lo correcto (no inventar). Se revisaron los **79 commits** de la rama, incluyendo
+los 20 anteriores a los ya vistos, hasta el commit inicial.
+
+**Evidencia (historia real de `tech_doc/`):**
+
+| Commit | Fecha | Qué |
+|--------|-------|-----|
+| `5199b0a` | 2023-04-19 | Initial commit |
+| `daa801d` | 2023-04-19 | **Versión inicial doc comercial y técnica** — nacen `api_1..5.json` a mano |
+| `2a08268` | 2023-04-26 | Cambios doc comercial y técnica |
+| `a27f4dd` | 2023-05-04 | Alta `api_6.json` (Alias) a mano |
+| `6f8cba1` | 2024-05-23 | `api_6.json` +1512 líneas (edición directa) |
+| `1736bdd` | 2024-05-29 | `api_4.json` reescrito (+398/−203) a mano |
+| `0d43aa9`,`31591ed`,`46c7785`,`6b95997`,`00c7c12` | 2024 | Fixes puntuales `api_4`/`api_6` a mano |
+| `8e83db3` | 2025-05-16 | Alta `api_7.json` a mano |
+| `591c883` | 2026-03-25 | ARQ-196: `api_6` + alta `api_fd.json` |
+| `8574246` | 2025-07-14 | Se rompe `api_4.json` (control chars) |
+
+**Conclusión (convención real, confirmada):**
+
+1. **Desde el commit inicial (2023) el repo SIEMPRE mantuvo los `api_*.json` a mano**, editados
+   directamente en `tech_doc/`, en ramas `Feature/CCL-*`, `AGILEQA-*`, `ARQ-*`, `DES-*`, mergeadas por PR.
+2. **NUNCA existió generador, `_generated`, `_baseline` ni plantillas.** Búsqueda en TODO el historial
+   (`git log --all -- *_generated* *generador* *generated*`) devuelve **solo** los 3 commits de esta
+   sesión (`15a7b9d`, `011b76d`, `f4bfce6`). Es decir: **fueron invención de esta sesión, sin precedente.**
+3. Por tanto `tech_doc/_generated/` **no tiene ninguna necesidad** en este repo y contradice la
+   convención (la carpeta se publica y debe tener solo los JSON finales).
+
+**Acción tomada (hacer lo correcto):**
+- **Eliminada `tech_doc/_generated/`** (README, api_4 generado, preview) del repo.
+- Salida del generador **repunteada fuera de `tech_doc/`** → `generador-openapi/_generated/`
+  (regenerable, **ignorada por git** vía `.gitignore` nuevo).
+- `tech_doc/` queda con **solo** `api_4/6/7.json`, como en toda la historia del repo.
+- Verificado: `armar-vcn.js` genera en la nueva ruta y `comparar-vcn.js` → **CONTRATO OK**.
+
+**Pendiente de decisión del usuario (NO ejecutado):** si el **generador** (`generador-openapi/`) se
+mantiene o se descarta. También carece de precedente en el repo; su valor sería solo evitar editar a
+mano el HTML gigante embebido. Es una decisión de alcance → no se toca sin visto bueno.
+
+---
+
 ### 2026-07-11 — Revisión historial `tech_doc/` en GitHub (últimos 20 que la tocaron)
 
 Revisión pedida por el usuario sobre `origin/feature/Refactory`. Commits que modificaron `tech_doc/`,
@@ -215,8 +259,8 @@ del más reciente al más antiguo:
 - Confirmada la cronología del quiebre de `api_4`: válido hasta `08fedbd` → roto en `8574246` →
   siguió roto (`d550f6e`, `55c014b`) → arreglado en `25fc2f7` (esta sesión).
 - `api_fd.json`: nace en `591c883`, se borra en `25fc2f7`.
-- **Ruido pendiente en remoto:** `tech_doc/_generated/` (de `15a7b9d`/`011b76d`) aún no se retira;
-  `f4bfce6` solo sacó `_baseline/`. Falta dejar `tech_doc/` con solo los JSON finales.
+- **Ruido `tech_doc/_generated/`:** ya **RESUELTO** (ver entrada «Estudio histórico completo»). Se
+  retiró de `tech_doc/` y la salida del generador vive en `generador-openapi/_generated/` (ignorada).
 
 ---
 
@@ -270,21 +314,21 @@ estructura relativa al publicar no se altera.
 
 **Decisiones del usuario:**
 - Generador en `telered_content_mktpl/generador-openapi/` (versionado en el mismo repo).
-- Baseline en `tech_doc_baseline/` (antes `tech_doc/_baseline/`, ya retirado); salida en `tech_doc/_generated/`.
+- Baseline en `tech_doc_baseline/` (antes `tech_doc/_baseline/`, ya retirado); salida en `generador-openapi/_generated/` (fuera de `tech_doc/`, ignorada por git).
 - Plantillas HTML mantenibles (no seguir editando HTML embebido en el JSON a mano).
 
 **Qué se hizo en repo marketplace:**
 - `generador-openapi/` con lib, scripts, `apis/vcn.json`, `plantillas/vcn/tags/*.html`, `fragmentos/vcn/`.
 - `tech_doc_baseline/api_4.json` — base de referencia (no se modifica).
 - `scripts/bootstrap-vcn.js` → extrae baseline a plantillas/fragmentos.
-- `scripts/armar-vcn.js` → genera `_generated/api_4.json`.
+- `scripts/armar-vcn.js` → genera `generador-openapi/_generated/api_4.json`.
 - `scripts/comparar-vcn.js` → vista contractual baseline vs generado → **CONTRATO OK**.
 
 **Siguiente:** rediseñar presentación Canal Validador en plantillas (sin cambiar información); luego
 regenerar, comparar, y solo entonces considerar reemplazo del productivo.
 
 **2026-07-11 (tarde):** salida del generador incluye vista previa ReDoc en
-`tech_doc/_generated/preview/index.html` (`lib/preview-redoc.js`).
+`generador-openapi/_generated/preview/index.html` (`lib/preview-redoc.js`).
 
 **Archivos second-brain:** `09-generador-openapi.md` (estado PoC), esta bitácora.
 

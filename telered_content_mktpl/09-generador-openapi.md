@@ -158,9 +158,9 @@ usarse para **nuevas** APIs/métodos, no para reescribir contratos ya publicados
 | Carpeta generador en repo | ✅ |
 | Baseline `tech_doc_baseline/api_4.json` (único; `_baseline/` retirado) | ✅ base para comparar |
 | Bootstrap → plantillas HTML + fragmentos | ✅ 8 tags, 3 paths, 7 schemas |
-| Generar `tech_doc/_generated/api_4.json` | ✅ |
+| Generar `generador-openapi/_generated/api_4.json` (fuera de `tech_doc/`, ignorado) | ✅ |
 | `comparar-vcn.js` contrato baseline vs generado | ✅ **CONTRATO OK** |
-| Vista previa ReDoc `tech_doc/_generated/preview/index.html` | ✅ |
+| Vista previa ReDoc `generador-openapi/_generated/preview/index.html` | ✅ |
 | Rediseñar presentación Canal Validador en plantillas | Pendiente |
 | Reemplazar `tech_doc/api_4.json` productivo | Pendiente aprobación usuario |
 
