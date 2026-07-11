@@ -97,7 +97,12 @@ RSA: 4096 bits, PKCS#1, OAEP SHA-256, clave privada **PKCS#1** (`BEGIN RSA PRIVA
 
 ### R2P (api_7)
 
-Mismo modelo que mensajes P2P/P2M (tag «ESTRUCTURA GENERAL…»): cifrado híbrido; referencia diagrama `api_7_cifrado_descifrado.svg`.
+Mismo modelo que mensajes P2P/P2M (tag «ESTRUCTURA GENERAL…»): cifrado híbrido.
+
+> **Aclaración (2026-07-11):** cuando se hable de cifrado, leer **cifrado y descifrado**. El usuario
+> aclaró que api_6 y api_7 **no** son iguales hoy. Lo correcto y más reciente existe solo en api_6:
+> `Guía para Cifrado Híbrido: RSA + AES-256-GCM` + `Guía para Cifrado Híbrido: RSA + AES-256-CBC
+> (Obsoleto)`. api_7 y api_4 lo tendrán eventualmente. No cambiar contratos productivos sin control.
 
 ## Canal validador — requisitos comunes
 

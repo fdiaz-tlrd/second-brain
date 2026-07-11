@@ -133,6 +133,63 @@ sobre-marcar riesgos falsos. Documentado en `.cursor/rules/agente-conducta.mdc` 
 
 ---
 
+### 2026-07-11 — Estudio profundo de los 3 OpenAPI + factibilidad generador
+
+**Qué se hizo:**
+- Reconocimiento estructural de api_4/6/7 (tags, paths, schemas, servers, tagGroups).
+- Anatomía de la plantilla de método (envelope constante; solo varían `parametros` y `datos`).
+- Mapeo de la doble cara del contrato: métodos que exponemos vs Canal Validador (api_7 lo hace
+  explícito con tags `CANAL` / `CANAL VALIDADOR`; api_4/api_6 dejan el canal validador como anexo HTML).
+- Evaluación de generador OpenAPI → **factible**; diseño borrador.
+
+**Hallazgos / decisiones:**
+- **Cifrado/descifrado api_6 ≠ api_7 hoy**: api_7 incompleto (solo llaves RSA) vs api_6 GCM completo
+  + CBC obsoleto. api_4 aún en CBC. → api_6 queda como referencia futura; no cambiar ahora sin
+  preservar contrato.
+- Inconsistencias entre APIs: envelope response (`respuesta` wrapper en api_7), tipo `resultado`
+  (int vs string), split 200/400, naming schemas, `x-tagGroups` solo en api_6.
+- api_4 canal validador = anexo HTML ~69 KB (13 tablas) → objetivo: llevar a método estructurado.
+
+**Archivos second-brain creados/actualizados:**
+- `08-estudio-profundo-tech_doc.md` (nuevo)
+- `09-generador-openapi.md` (nuevo)
+- `01-transversal-autopista.md` (discrepancia cifrado)
+- `README.md` (índice)
+
+**Decisiones abiertas en ese momento:** normalizar vs respetar diferencias; alcance PoC; unificación
+GCM. **Resueltas en la siguiente entrada:** no cambiar contrato productivo; PoC VCN; api_6 es
+referencia futura de cifrado/descifrado.
+
+---
+
+### 2026-07-11 — Aclaración crítica: preservar contrato productivo
+
+**Aclaraciones del usuario:**
+- Cuando diga **cifrado**, leer **cifrado y descifrado**.
+- El usuario se corrigió: api_6 y api_7 **no** son iguales hoy. Solo `api_6.json` tiene lo correcto:
+  `Guía para Cifrado Híbrido: RSA + AES-256-GCM` y `Guía para Cifrado Híbrido: RSA + AES-256-CBC
+  (Obsoleto)`. Ese es el estándar futuro para los demás.
+- La información de cada API ya es productiva o está siendo usada por clientes en desarrollo,
+  pruebas y certificación. **No cambiar contrato ni información.**
+- El objetivo es mejorar presentación y mantenimiento de la información técnica, no rediseñar lo
+  publicado.
+- Para APIs/métodos nuevos sí se puede aplicar el estándar correcto desde el inicio.
+- PoC generador: si como experto VCN es el mejor primer paso, avanzar con VCN.
+
+**Correcciones a nuestra documentación:**
+- `08-estudio-profundo-tech_doc.md`: sustituir lenguaje de “normalizar” por **preservar variantes por API**.
+- `09-generador-openapi.md`: modo obligatorio `preserve-contract` para APIs existentes; `new-standard`
+  solo para APIs/métodos nuevos.
+- `01-transversal-autopista.md`: api_6 como referencia futura de cifrado/descifrado; api_7/api_4 lo
+  tendrán eventualmente.
+- `10-decisiones-reglas-refactory.md`: nuevo documento con reglas obligatorias.
+
+**Riesgo principal:** cambiar `resultado`, envelope, campos, ejemplos contractuales o métodos
+publicados puede meter al usuario en un problema serio con clientes que ya implementaron contra esa
+documentación. El agente debe tratar esto como restricción dura.
+
+---
+
 **Pendiente para informe final:**
 - [ ] Fase mejoras de presentación (sin cambiar información)
 - [ ] Listado de archivos tocados en `telered_content_mktpl`
