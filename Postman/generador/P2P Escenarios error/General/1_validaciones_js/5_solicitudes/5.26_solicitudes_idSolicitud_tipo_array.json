@@ -1,0 +1,25 @@
+{
+  "nombre": "1.5.26. solicitudes — idSolicitud tipo array (431)",
+  "expectedHttpStatus": 400,
+  "expectedCodigoError": 431,
+  "expectedTipo": "general",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "metodo": "0002",
+      "solicitudes": [
+        {
+          "idSolicitud": [
+            "1"
+          ],
+          "parametros": {
+            "tipoIdentificador": "CELULAR"
+          }
+        }
+      ],
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}"
+    }
+  }
+}
