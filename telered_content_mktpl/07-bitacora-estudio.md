@@ -416,6 +416,35 @@ regenerar, comparar, y solo entonces considerar reemplazo del productivo.
 
 ---
 
+### 2026-07-11 — Fix presentación Requisitos + análisis cifrado api_4 vs api_6
+
+**Qué se hizo (presentación, seguro):**
+- `requisitos.html`: la lista del rol **Canal validador** abría con `<ui>` (tag inválido) y cerraba con `</ul>` → renderizaba inconsistente vs la lista **Canal**. Corregido a `<p>Canal validador</p><ul>…`. Información intacta, `--solo-esquema` OK. Commit `fb613b0`.
+
+**Evaluación de los otros 3 tags candidatos a reflow:** `terminos`, `razones-de-respuestas-interno`, `razones-de-respuestas-canal-validador` son HTML de una sola línea pero **estructuralmente válidos**; reflowear solo mejora el fuente, el render en ReDoc es idéntico. **No se tocan** (evitar churn «por si acaso»).
+
+**HALLAZGO CRÍTICO — cifrado api_4 (VCN) vs api_6 (P2P):** no es un cambio seguro.
+
+| Aspecto | api_4 VCN (actual) | api_6 P2P (guía «correcta») |
+|---|---|---|
+| Modo AES | **AES-256-CBC** (sin integridad) | **AES-256-GCM** (con Auth Tag) |
+| Auth Tag | No existe | Sí (16 bytes) |
+| Formato en cable | `iv.secreto.cifrado` (**3 partes separadas por punto**) | bloque RSA (1024 hex fijos = IV+secreto+authTag) **+** AES, **sin separadores** |
+| RSA | 4096, OAEP, SHA-256, PKCS#1 | igual (4096, OAEP, SHA-256, PKCS#1) + notas PKCS#1 vs PKCS#8, OpenSSL 3.x |
+
+**Por qué NO se puede portar GCM a api_4 sin decisión de dominio:**
+1. **Cambia información/contrato** (regla dura: prohibido sin confirmación).
+2. **Rompería la consistencia interna de api_4**: todo el resto de VCN (schemas `RequestCifrado`, `Request0001`, `RequestCV0001`, tablas Canal Validador, y **todos los ejemplos de ciphertext**) están construidos sobre el formato **CBC punto-separado `iv.secreto.cifrado`**. Meter la guía GCM (sin separadores, con authTag) contradiría los ejemplos y las tablas del propio documento.
+3. **Puede no reflejar la realidad productiva de VCN**: no sé si VCN en producción usa CBC (punto-separado) o debe migrar a GCM como P2P. `prod/tld-api-cuenta-nombre-master` está fuera de alcance (no abrir).
+
+**Defectos menores detectados en la guía de cifrado api_4 (tocan ejemplo/contenido → confirmar antes):**
+- Bug JS en el ejemplo: `decryptTextRSA: function(encryptedText) => {` mezcla `function` con arrow `=>` (sintaxis inválida).
+- Error conceptual en el texto: «cifrado asimétrico mediante AES-256-cbc» (AES es **simétrico**).
+
+**Decisión pendiente del usuario:** ¿VCN se queda en CBC (solo corregir defectos/typos) o migra a GCM como P2P (cambio de contrato, requiere alinear schemas/ejemplos/tablas)?
+
+---
+
 ## Plantilla para próximas entradas
 
 ```markdown
