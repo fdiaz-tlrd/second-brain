@@ -260,5 +260,7 @@ sitio del marketplace → buscar la doc).
 | Canal Validador espejo de Telered: 2 ops (`cv-0001` envelope string + `cv-0001-descifrado` schemas anidados) | ✅ opción A; render de campos igual que Telered `0001` |
 | Schemas descifrados CV (`PeticionDescifradaCV0001`/`RespuestaDescifradaCV0001`) conectados a operación (ya no huérfanos) | ✅ |
 | Tabla HTML gigante de `canal-validador-0001-description.html` eliminada; detalle `idPeticion` preservado en schema | ✅ |
+| Reestructuración navegación según `13-api_4-estructura-propuesta.md` Árbol 1: `tagGroups`, Personajes, Enmascarado, timeouts por lado (25s A / 10s B), portada | ✅ |
+| `comparar-vcn.js --solo-esquema` tras reestructuración: `info.description` + `tagNames` (esperado); paths/schemas intactos | ✅ |
 
 Comandos y detalle operativo: `telered_content_mktpl/generador-openapi/README.md`.

@@ -525,6 +525,31 @@ POST "/0001"                 operacion-documental-canal-validador
 
 ---
 
+### 2026-07-11 — Reestructuración navegación api_4 según árbol 13
+
+**Pedido del usuario:** implementar el Árbol 1 de `13-api_4-estructura-propuesta.md` (desarmar y rearmar IA sin romper contrato).
+
+**Qué se hizo (`telered_content_mktpl`):**
+- `apis/vcn.json`: nueva portada (`info.description`), tags reordenados, tags nuevos **Personajes** y **Enmascarado**, `tagGroups` alineados al árbol:
+  - Conceptos base → Personajes, Términos, Requisitos
+  - Seguridad → Autenticación, GCM vigente, CBC obsoleto
+  - LADO A — Canal consume Telered → Validación cuenta nombre
+  - LADO B — Canal Validador → Especificación + CANAL VALIDADOR
+  - Referencias → Razones (Telered + CV) + Enmascarado
+- Plantillas HTML:
+  - `personajes.html` (nuevo): tabla de los 3 actores
+  - `enmascarado.html` (nuevo): regla de asteriscos extraída de Especificación
+  - `validacion-cuenta-nombre.html`: intro LADO A + **timeout 25 s** (única fuente en ese lado)
+  - `especificacion-para-canal-validador.html`: auth CV (fijo/dinámico), transporte, **timeout 10 s**, descifrado; enmascarado removido
+  - `canal-validador.html`: intro LADO B acotada
+
+**Verificación:**
+- `armar-vcn.js` → 12 tags, 5 paths, `JSON.parse OK`, HTML refrescado
+- Inventario: clasificación sin cambios (5 ops documentales/reales como antes)
+- `comparar-vcn.js --solo-esquema` → diferencias esperadas: `contract.info.description`, `contract.tagNames` (tags nuevos Personajes/Enmascarado + reorden); paths/schemas de contrato intactos
+
+---
+
 ## Plantilla para próximas entradas
 
 ```markdown

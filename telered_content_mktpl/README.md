@@ -18,6 +18,8 @@ Documentación **para retomar contexto** del repo [`telered_content_mktpl`](../.
 | [09-generador-openapi.md](./09-generador-openapi.md) | Factibilidad y diseño de un **generador de OpenAPI** (análogo al de Postman) |
 | [10-decisiones-reglas-refactory.md](./10-decisiones-reglas-refactory.md) | **Reglas obligatorias:** no cambiar contrato productivo, solo presentación/mantenimiento; api_6 como guía futura de cifrado/descifrado; PoC VCN |
 | [11-modelo-documental-protocolo-cifrado.md](./11-modelo-documental-protocolo-cifrado.md) | Modelo para documentar endpoints cifrados + métodos lógicos/payload descifrado sin fingir URLs reales |
+| [12-api_4-para-dummies.md](./12-api_4-para-dummies.md) | **Para Dummies, muy gráfico:** qué quiere transmitir `api_4.json` (VCN) — personajes, una puerta, caja con candado |
+| [13-api_4-estructura-propuesta.md](./13-api_4-estructura-propuesta.md) | Árboles de estructura propuesta (navegación, anatomía mensaje, dos caras del 0001) — Árbol 1 implementado en generador |
 
 ## Cómo usar (agente)
 
