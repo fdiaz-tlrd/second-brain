@@ -190,6 +190,36 @@ documentación. El agente debe tratar esto como restricción dura.
 
 ---
 
+### 2026-07-11 — Revisión historial `tech_doc/` en GitHub (últimos 20 que la tocaron)
+
+Revisión pedida por el usuario sobre `origin/feature/Refactory`. Commits que modificaron `tech_doc/`,
+del más reciente al más antiguo:
+
+| Commit | Fecha | Autor | Qué tocó |
+|--------|-------|-------|----------|
+| `f4bfce6` | 07-11 | Félix | Borra `_baseline/`; ajusta `_generated/README` |
+| `011b76d` | 07-11 | Félix | Crea `_generated/preview/index.html` (ReDoc) |
+| `15a7b9d` | 07-11 | Félix | Crea `_baseline/` y `_generated/` (PoC generador) |
+| `25fc2f7` | 07-11 | Félix | Arregla `api_4.json`; borra `api_1/2/3/5` y `api_fd` |
+| `fde7e7b`,`1fc8130`,`b2e78ae`,`bd33e73`,`16ef2d2`,`b6423b4` | 06-03 | Félix | Serie de updates a `api_6.json` |
+| `062c736`,`591c883` | 03-25 | Félix | ARQ-196: `api_6` + **alta `api_fd.json`** |
+| `55c014b`,`d550f6e` | 12-22/01-07 | orlando1484 | Updates `api_4.json` (seguía roto) |
+| `8574246` | 2025-07-14 | orlando1484 | **Aquí se rompió `api_4.json`** (+ `api_6`) |
+| `149edb9` | 06-06 | Félix | `api_7.json` AGILEQA-5483 |
+| `8e83db3` | 2025-05-16 | Félix | **Alta `api_7.json`** |
+| `08fedbd` | 2024-11-21 | Félix | **Último `api_4` válido** antes del quiebre |
+| `28ffe83` | 2024-10-31 | Félix | `api_6.json` |
+
+**Observaciones:**
+- `api_6.json` es el archivo más editado (la mayoría de los 20 commits).
+- Confirmada la cronología del quiebre de `api_4`: válido hasta `08fedbd` → roto en `8574246` →
+  siguió roto (`d550f6e`, `55c014b`) → arreglado en `25fc2f7` (esta sesión).
+- `api_fd.json`: nace en `591c883`, se borra en `25fc2f7`.
+- **Ruido pendiente en remoto:** `tech_doc/_generated/` (de `15a7b9d`/`011b76d`) aún no se retira;
+  `f4bfce6` solo sacó `_baseline/`. Falta dejar `tech_doc/` con solo los JSON finales.
+
+---
+
 ### 2026-07-11 — `tech_doc_baseline/` (línea base antes del refactory)
 
 **Arquitectura de carpetas de doc técnica (decisión del usuario):**
