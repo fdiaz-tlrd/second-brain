@@ -6,7 +6,9 @@
 |-------|-------|
 | Ruta local | `c:\Users\Lenovo\GitHub\telered_content_mktpl` |
 | Propósito | Contenido marketplace Telered: docs técnicas OpenAPI, HTML comercial, imágenes, scripts BD |
-| Rama vista | `main` / `feature/CCL-8379` (remotes en repo) |
+| Rama de trabajo | **`feature/Refactory`** (creada desde `sandbox`, jul-2026) |
+| Rama base | `sandbox` → `66e206f` (tracking `origin/sandbox`) |
+| Otras ramas vistas | `main`, `feature/CCL-8379` |
 
 ## Estructura relevante
 

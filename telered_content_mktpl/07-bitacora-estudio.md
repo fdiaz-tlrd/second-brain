@@ -81,6 +81,17 @@ decisión o cambio documentado.
 - Creado `07-bitacora-estudio.md` (este archivo) para informe final
 - Actualizado índice `README.md`
 
+### 2026-07-11 — Rama de trabajo `feature/Refactory`
+
+**Qué se hizo:**
+- Repo `telered_content_mktpl`: checkout `origin/sandbox` → rama local `sandbox` (`66e206f`)
+- Creada y activada **`feature/Refactory`** desde `sandbox`
+- Antes estábamos en `feature/CCL-8379` (`fde7e7b`)
+
+**Nota:** `feature/Refactory` publicada en remoto con `git push -u origin feature/Refactory` (mismo día).
+
+---
+
 **Pendiente para informe final:**
 - [ ] Fase mejoras de presentación (sin cambiar información)
 - [ ] Listado de archivos tocados en `telered_content_mktpl`
