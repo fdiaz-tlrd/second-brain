@@ -190,6 +190,26 @@ documentación. El agente debe tratar esto como restricción dura.
 
 ---
 
+### 2026-07-11 — `tech_doc_html/` (versión HTML local de cada API)
+
+**Necesidad del usuario:** ver en cualquier momento cómo se ve un `api_#.json` en HTML, sin el
+proceso lento de antes (editar `api_fd.json` → subir a S3 → invalidar CloudFront → entrar al sitio
+del marketplace → buscar la doc). Quiere tener **siempre** la versión HTML del JSON en local.
+
+**Qué se hizo:**
+- Nueva carpeta **`tech_doc_html/`** con `api_4.html`, `api_6.html`, `api_7.html` (versionadas).
+- `lib/render-html.js` + `scripts/html-tech-doc.js`: renderizan `tech_doc/api_*.json` → HTML ReDoc
+  (spec embebido). Sirve para los **tres** APIs, no solo VCN.
+- `armar-vcn.js` refresca `tech_doc_html/api_4.html` al regenerar, para que HTML y JSON no se desfasen.
+- Se limpió `preview-redoc.js` (quitado `<script>` ReDoc duplicado, añadido `charset`).
+
+**Notas:**
+- El HTML carga ReDoc desde CDN (`cdn.redoc.ly`) → requiere internet para renderizar; el contrato va
+  embebido en el propio HTML.
+- Es una pieza más de la herramienta nueva `generador-openapi/` (sin precedente en el repo).
+
+---
+
 ### 2026-07-11 — Estudio histórico completo del repo + retiro de `tech_doc/_generated/`
 
 **Motivo:** el usuario no veía necesidad de la carpeta `_generated` y pidió estudiar **todo** el

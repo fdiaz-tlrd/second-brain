@@ -183,13 +183,26 @@ generador-openapi/
     compare-contract.js# compara contrato (paths/schemas/campos) baseline vs final
     json-safe.js       # parse/stringify seguro (LF, sin control chars crudos)
     slug.js            # nombre de tag → nombre de archivo
-    preview-redoc.js   # HTML ReDoc de vista previa
+    preview-redoc.js   # plantilla HTML ReDoc (spec embebido, ReDoc por CDN)
+    render-html.js     # renderiza tech_doc/api_*.json → tech_doc_html/api_*.html
   scripts/
     bootstrap-vcn.js   # CLI bootstrap (fuente por defecto: tech_doc_baseline/api_4.json)
-    armar-vcn.js       # CLI generar → escribe tech_doc/api_4.json + preview
+    armar-vcn.js       # CLI generar → escribe tech_doc/api_4.json + preview + refresca tech_doc_html/api_4.html
     comparar-vcn.js    # CLI comparar tech_doc_baseline vs tech_doc/api_4.json
+    html-tech-doc.js   # CLI: versión HTML de todos (o uno) los tech_doc/api_*.json → tech_doc_html/
   _generated/          # SOLO vista previa ReDoc (ignorado por git, regenerable)
 ```
+
+### 7.1.b Versión HTML local (`tech_doc_html/`)
+
+**Necesidad del usuario:** poder ver en cualquier momento cómo se ve un `api_#.json` en HTML,
+**sin** el viacrucis previo (editar `api_fd.json` → subir a S3 → invalidar CloudFront → entrar al
+sitio del marketplace → buscar la doc).
+
+- `html-tech-doc.js` renderiza **cada** `tech_doc/api_*.json` a `tech_doc_html/api_#.html` (ReDoc,
+  spec embebido). Aplica a los tres (`api_4/6/7`), no solo VCN.
+- **Versionado** (siempre disponible en local). `armar-vcn.js` refresca `api_4.html` al generar.
+- Requiere internet para renderizar (ReDoc se carga desde `cdn.redoc.ly`); el spec va embebido en el HTML.
 
 ### 7.2 Flujo (3 comandos)
 
