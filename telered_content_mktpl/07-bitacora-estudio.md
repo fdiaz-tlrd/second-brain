@@ -190,6 +190,27 @@ documentación. El agente debe tratar esto como restricción dura.
 
 ---
 
+### 2026-07-11 — PoC generador VCN arrancada
+
+**Decisiones del usuario:**
+- Generador en `telered_content_mktpl/generador-openapi/` (versionado en el mismo repo).
+- Baseline temporal en `tech_doc/_baseline/` para comparar; salida en `tech_doc/_generated/`.
+- Plantillas HTML mantenibles (no seguir editando HTML embebido en el JSON a mano).
+
+**Qué se hizo en repo marketplace:**
+- `generador-openapi/` con lib, scripts, `apis/vcn.json`, `plantillas/vcn/tags/*.html`, `fragmentos/vcn/`.
+- `tech_doc/_baseline/api_4.json` — copia referencia.
+- `scripts/bootstrap-vcn.js` → extrae baseline a plantillas/fragmentos.
+- `scripts/armar-vcn.js` → genera `_generated/api_4.json`.
+- `scripts/comparar-vcn.js` → vista contractual baseline vs generado → **CONTRATO OK**.
+
+**Siguiente:** rediseñar presentación Canal Validador en plantillas (sin cambiar información); luego
+regenerar, comparar, y solo entonces considerar reemplazo del productivo.
+
+**Archivos second-brain:** `09-generador-openapi.md` (estado PoC), esta bitácora.
+
+---
+
 **Pendiente para informe final:**
 - [ ] Fase mejoras de presentación (sin cambiar información)
 - [ ] Listado de archivos tocados en `telered_content_mktpl`

@@ -151,5 +151,16 @@ usarse para **nuevas** APIs/métodos, no para reescribir contratos ya publicados
 
 ## 7. Estado
 
-Solo **estudio/propuesta**. Siguiente paso recomendado: diseñar PoC VCN en modo `preserve-contract`,
-comparando salida generada vs `api_4.json` para demostrar que no cambia información.
+**PoC VCN iniciada (2026-07-11)** en `telered_content_mktpl/generador-openapi/`.
+
+| Paso | Estado |
+|------|--------|
+| Carpeta generador en repo | ✅ |
+| Baseline `tech_doc/_baseline/api_4.json` | ✅ copia para comparar |
+| Bootstrap → plantillas HTML + fragmentos | ✅ 8 tags, 3 paths, 7 schemas |
+| Generar `tech_doc/_generated/api_4.json` | ✅ |
+| `comparar-vcn.js` contrato baseline vs generado | ✅ **CONTRATO OK** |
+| Rediseñar presentación Canal Validador en plantillas | Pendiente |
+| Reemplazar `tech_doc/api_4.json` productivo | Pendiente aprobación usuario |
+
+Comandos: ver `telered_content_mktpl/generador-openapi/README.md`.
