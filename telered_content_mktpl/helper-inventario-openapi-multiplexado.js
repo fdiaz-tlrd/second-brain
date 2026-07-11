@@ -31,7 +31,8 @@ function classifyPath(pathKey) {
   if (pathKey === '/auth/token') return 'endpoint-real-auth';
   if (pathKey === '/validador/validar') return 'endpoint-real-multiplexado-cifrado';
   if (/^\/validador\/validar\s+$/.test(pathKey)) return 'operacion-documental-metodo-descifrado';
-  if (/^\/\d{4}$/.test(pathKey)) return 'operacion-documental-canal-validador';
+  if (/^\/\d{4}\s+$/.test(pathKey)) return 'operacion-documental-canal-validador-descifrado';
+  if (/^\/\d{4}$/.test(pathKey)) return 'operacion-documental-canal-validador-envelope';
   return 'revisar';
 }
 

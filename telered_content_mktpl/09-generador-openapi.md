@@ -257,5 +257,8 @@ sitio del marketplace → buscar la doc).
 | `comparar-vcn.js --solo-esquema` tras cifrado: única diferencia = `contract.tagNames` (esperado); paths/schemas intactos | ✅ |
 | Modelo documental para protocolo cifrado/multiplexado: endpoints reales vs métodos lógicos | ✅ documentado en `11-modelo-documental-protocolo-cifrado.md` |
 | Paths sintéticos marcados con `x-telered-operationKind: logical-method` y texto visible "no es URL real" | ✅ aplicado a `/validador/validar ` y `/0001` |
+| Canal Validador espejo de Telered: 2 ops (`cv-0001` envelope string + `cv-0001-descifrado` schemas anidados) | ✅ opción A; render de campos igual que Telered `0001` |
+| Schemas descifrados CV (`PeticionDescifradaCV0001`/`RespuestaDescifradaCV0001`) conectados a operación (ya no huérfanos) | ✅ |
+| Tabla HTML gigante de `canal-validador-0001-description.html` eliminada; detalle `idPeticion` preservado en schema | ✅ |
 
 Comandos y detalle operativo: `telered_content_mktpl/generador-openapi/README.md`.

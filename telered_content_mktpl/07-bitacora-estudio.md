@@ -500,6 +500,31 @@ POST "/0001"                 operacion-documental-canal-validador
 
 ---
 
+### 2026-07-11 — Canal Validador: espejo de Telered (envelope + descifrado)
+
+**Reclamo del usuario (visual, correcto):** el render de `cv-0001` se veía peor que el de Telered `0001`. Causa técnica verificada: no es gusto, es el **tipo del schema**. Telered `0001` usa `Request0001` con `peticion` como **object anidado** → ReDoc pinta campos navegables/tipados. Mi `cv-0001` usaba `RequestCV0001` con `peticion` como **`string`** + una **tabla HTML gigante** (el estilo "feo" heredado del anexo). Además, los schemas descifrados `PeticionDescifradaCV0001`/`RespuestaDescifradaCV0001` ya existían pero estaban **huérfanos** (ninguna operación los referenciaba), así que ni se mostraban.
+
+**Decisión del usuario:** opción **A** — espejo fiel del patrón Telered (dos operaciones).
+
+**Qué se hizo (`telered_content_mktpl`):**
+- `paths-canal-validador.json`: ahora **dos** operaciones en el tag CANAL VALIDADOR:
+  - `cv-0001` (`/0001`) — «mensaje cifrado (envelope)»: `RequestCV0001`/`ResponseCV0001` (`peticion`/`respuesta` string = lo que llega en el cable).
+  - `cv-0001-descifrado` (`/0001 `, truco del espacio) — «contenido descifrado»: `PeticionDescifradaCV0001`/`RespuestaDescifradaCV0001` → ReDoc pinta los campos igual que Telered `0001`.
+  - Ambas marcadas `x-telered-operationKind: logical-method`.
+- `canal-validador-0001-description.html`: **eliminada la tabla HTML gigante**; queda sección corta (alcance logical-method + punteros a «contenido descifrado», grupo Cifrado y a Especificación).
+- `components-canal-validador.json`: antes de borrar la tabla, se **preservó el detalle único** de `idPeticion` (formato SWIFT CODE + secuencial, ejemplos, «no repetir en 24h») enriqueciendo `PeticionDescifradaCV0001.idPeticion`.
+- `especificacion-para-canal-validador.html`: la referencia «POST /0001» se reemplazó por punteros a las dos operaciones + aclaración de que la ruta HTTP real la define la IF y el método se elige por `metodo`.
+
+**Qué se hizo (`second-brain`):** `helper-inventario-openapi-multiplexado.js` distingue ahora envelope vs descifrado del Canal Validador.
+
+**Verificación:**
+- `armar-vcn.js` → **5 paths**, `JSON.parse OK`, HTML refrescado.
+- Inventario: `/0001` = envelope, `/0001 ` = descifrado (schemas anidados ya conectados).
+- `comparar-vcn.js --solo-esquema` → única diferencia `contract.tagNames` (conocida); paths/schemas de baseline intactos (los nuevos son aditivos).
+- `ReadLints` sin errores.
+
+---
+
 ## Plantilla para próximas entradas
 
 ```markdown

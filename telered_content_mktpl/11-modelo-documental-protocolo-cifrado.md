@@ -143,16 +143,27 @@ Usar OpenAPI para lo que OpenAPI sí modela bien y usar documentación generada 
 
 Este modelo conserva la utilidad de ReDoc sin ocultar la verdad del protocolo.
 
-## Decisión propuesta para api_4
+## Decisión implementada para api_4 (2026-07-11)
 
-Para VCN, el estado actual debe corregirse en dos pasos:
+Estado: **implementado (opción A, espejo de Telered).** El Canal Validador quedó con **dos operaciones**
+en el tag `CANAL VALIDADOR`, igual que Telered separa `/validador/validar` (envelope) y `0001` (descifrado):
 
-1. **Marcar explícitamente `/0001` como operación documental**, no como endpoint real.
-2. Cambiar el texto del tag `CANAL VALIDADOR` y de la operación para explicar:
-   - la IF define la URL real;
-   - el método se selecciona por `metodo`;
-   - `RequestCV0001` / `ResponseCV0001` son envelopes cifrados;
-   - `PeticionDescifradaCV0001` / `RespuestaDescifradaCV0001` son referencias del payload claro.
+1. `cv-0001` — «mensaje cifrado (envelope)»: `RequestCV0001` / `ResponseCV0001`, con `peticion` /
+   `respuesta` como **string cifrado** = lo que llega en el cable. Marcada `logical-method`.
+2. `cv-0001-descifrado` — «contenido descifrado»: `PeticionDescifradaCV0001` /
+   `RespuestaDescifradaCV0001` como **object anidado** → ReDoc pinta los campos navegables/tipados,
+   igual que Telered `0001`. Marcada `logical-method`.
+
+Por qué esto era necesario (y no cosmético): ReDoc renderiza un `string` como una fila opaca; un
+`object` anidado como árbol de campos. Los schemas descifrados ya existían pero estaban **huérfanos**
+(sin operación que los referenciara), así que el detalle se había volcado en una tabla HTML gigante.
+Conectarlos a una operación es lo que da el buen render.
+
+Además:
+- Texto visible: la IF define la URL real; el método se selecciona por `metodo`; `/0001` no es una URL obligatoria.
+- Se eliminó la tabla HTML gigante de la operación envelope; el detalle único de `idPeticion`
+  (SWIFT CODE + secuencial, «no repetir en 24h») se preservó en el schema descifrado.
+- El enmascaramiento y la especificación general siguen en el tag `Especificación para CANAL VALIDADOR`.
 
 No hace falta borrar de inmediato el path sintético si se usa para renderizar. Pero sí hay que impedir
 que el lector lo entienda como endpoint productivo.
