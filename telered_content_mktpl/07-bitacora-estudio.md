@@ -207,6 +207,9 @@ documentación. El agente debe tratar esto como restricción dura.
 **Siguiente:** rediseñar presentación Canal Validador en plantillas (sin cambiar información); luego
 regenerar, comparar, y solo entonces considerar reemplazo del productivo.
 
+**2026-07-11 (tarde):** salida del generador incluye vista previa ReDoc en
+`tech_doc/_generated/preview/index.html` (`lib/preview-redoc.js`).
+
 **Archivos second-brain:** `09-generador-openapi.md` (estado PoC), esta bitácora.
 
 ---

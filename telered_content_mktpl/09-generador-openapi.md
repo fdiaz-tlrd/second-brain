@@ -160,6 +160,7 @@ usarse para **nuevas** APIs/métodos, no para reescribir contratos ya publicados
 | Bootstrap → plantillas HTML + fragmentos | ✅ 8 tags, 3 paths, 7 schemas |
 | Generar `tech_doc/_generated/api_4.json` | ✅ |
 | `comparar-vcn.js` contrato baseline vs generado | ✅ **CONTRATO OK** |
+| Vista previa ReDoc `tech_doc/_generated/preview/index.html` | ✅ |
 | Rediseñar presentación Canal Validador en plantillas | Pendiente |
 | Reemplazar `tech_doc/api_4.json` productivo | Pendiente aprobación usuario |
 
