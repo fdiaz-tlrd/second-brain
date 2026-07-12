@@ -59,6 +59,7 @@ No es "correr Newman contra producción". Es **mismo endpoint de dev, distinto c
 | [`04-informe-y-recopilacion.md`](04-informe-y-recopilacion.md) | Las dos fases, qué es el informe (humano), y condiciones para que la comparación sea válida |
 | [`07-matriz-validacion-cuerpo-json.md`](07-matriz-validacion-cuerpo-json.md) | 6 escenarios fuera de plan en flujo Matriz→Validador→VCN; `isValid`; pregunta abierta |
 | [`08-esperado-vs-recibido-prod.md`](08-esperado-vs-recibido-prod.md) | **~43 % ejecuciones difieren** del plan (prod vs expected dev); patrones y por bloque |
+| [`09-tabla-comparacion-escenarios.md`](09-tabla-comparacion-escenarios.md) | **Tabla 3 columnas** esperado/MATRIZ/VALIDADOR por escenario (solo diferencias); 8 casos donde la ruta importa |
 | [`recopilacion/`](recopilacion/) | **Runs reales** analizados (iter 01–03, jul-2026) |
 
 ---

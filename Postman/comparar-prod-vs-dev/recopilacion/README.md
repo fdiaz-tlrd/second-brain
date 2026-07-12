@@ -16,6 +16,8 @@ Carpeta de **iteraciones de recopilación Newman**: cada run etiquetado (`codigo
 | [`comparar-esperado-vs-recibido.js`](./comparar-esperado-vs-recibido.js) | Cruza run con JSON fuente (`expectedCodigoError` vs recibido) |
 | [`esperado-vs-recibido-02-MATRIZ.json`](./esperado-vs-recibido-02-MATRIZ.json) / [`.md`](./esperado-vs-recibido-02-MATRIZ.md) | Iter 02 MATRIZ |
 | [`esperado-vs-recibido-03-VALIDADOR.json`](./esperado-vs-recibido-03-VALIDADOR.json) / [`.md`](./esperado-vs-recibido-03-VALIDADOR.md) | Iter 03 VALIDADOR |
+| [`comparar-3-columnas.js`](./comparar-3-columnas.js) | Une esperado + MATRIZ + VALIDADOR por escenario; tabla solo-diferencias |
+| [`TABLA-diferencias-esperado-matriz-validador.md`](./TABLA-diferencias-esperado-matriz-validador.md) | **Tabla completa** (136 escenarios) — ver índice interpretado en [`../09-tabla-comparacion-escenarios.md`](../09-tabla-comparacion-escenarios.md) |
 
 **Fuente de logs:** `Postman/generador/logs/historial/vcn/` (commiteados desde máquina VPN).
 
