@@ -2,6 +2,8 @@
 
 Documentación **de lo que vayamos haciendo** en este tema. Se actualiza a medida que avanzamos.
 
+**Retomar tras pausa:** empezar por [`00-estado-y-retomo.md`](./00-estado-y-retomo.md).
+
 ## DEFINICIÓN (regla fija — no reinterpretar)
 
 **`prod_adactado_a_dev` es la versión de PRODUCCIÓN que despliega y corre en el ambiente de DESARROLLO. Eso es todo.**
@@ -13,16 +15,26 @@ Documentación **de lo que vayamos haciendo** en este tema. Se actualiza a medid
 
 ### Qué se garantiza y qué no
 
-- **Lógica de negocio = producción, intacta.** Verificable con `git diff` contra `origin/main`.
-  El código de las lambdas que quedan **no se toca**.
+- **Lógica de negocio = producción, intacta.** Verificable con `git diff` contra `origin/main` (o `master` en VCN).
+  El código de las lambdas que quedan **no se toca**, salvo desviaciones documentadas abajo.
 - **NO es copia byte-por-byte de producción**, y no debe serlo. Las únicas desviaciones permitidas son
   para que **despliegue/corra en dev** sin romper (SAM, recursos del ambiente):
   - Valores de **entorno/config**: KMS, VPC/VPCe, subnets, security groups, EFS/access point,
     stack/bucket/ARNs del ambiente dev.
   - **Poda** de componentes que no interesan (para no arrastrar todo el universo productivo).
   - Correcciones mínimas que **bloquean el deploy** (ej. un error de sintaxis que hace fallar `sam`).
+  - **Infra por ambiente** cuando el template de prod no puede reusar recursos compartidos de dev
+    (caso validador KMS/EFS — ver 02).
 - **Prohibido:** cambios de **lógica/comportamiento**, refactors (ej. `axios`→Lambda Invoke), mejoras,
   "modernizar" producción. Eso jamás entra a `prod-a-dev`.
+
+### Desviaciones documentadas (excepciones a «prod puro»)
+
+| Repo | Excepción | Doc |
+|------|-----------|-----|
+| `tld-matriz` | Autorizador `tld-auth-autorizador` stubbeado (always-Allow) | [05](./05-tld-matriz-autorizador-stub.md) |
+| `tld-validador-api` | Template: selección KMS/EFS compartidos en `DeployEnvironment=dev` | [02](./02-tld-validador-api.md) |
+| `tld-matriz` | Fix `AuthorizerResultTtlInSeconds` (bloqueaba `sam validate`) | [01](./01-poda-tld-matriz.md) |
 
 ### Rama
 
@@ -32,35 +44,36 @@ Cada repo clonado usa la rama **`prod-a-dev`** (nombre corto, genérico, reutili
 
 | Fecha | Acción |
 |-------|--------|
-| 2026-07-11 | Creada carpeta vacía `c:\Users\Lenovo\GitHub\prod_adactado_a_dev` (raíz de GitHub). |
-| 2026-07-11 | Creada esta carpeta de documentación `second-brain/prod_adactado_a_dev/`. |
-| 2026-07-11 | Clonado `https://github.com/Telered-Autopista/tld-matriz` en `prod_adactado_a_dev/tld-matriz`. |
-| 2026-07-11 | Creada rama **`prod-a-dev`** desde `main` (nombre corto, genérico, sin referencia a `tld-matriz`). |
-| 2026-07-11 | Poda de `tld-matriz` en `prod-a-dev` (9 lambdas + events + template/samconfig/launch). Ver [`01-poda-tld-matriz.md`](./01-poda-tld-matriz.md). |
-| 2026-07-11 | Clonado `tld-validador-api` + rama `prod-a-dev`; revisión (dev = refactor invoke, no solo config). Ver [`02-tld-validador-api.md`](./02-tld-validador-api.md). |
-| 2026-07-11 | `tld-validador-api`: único ajuste de config aplicado — VPCe del perfil `[dev]` → `vpce-03ecbc47b37cc7965` (el resto del refactor invoke/EFS/KMS **no** entra). `sam validate` OK. |
-| 2026-07-11 | Clonado `tld-api-cuenta-nombre` (VCN) + rama `prod-a-dev` desde `master`; sin poda ni cambios (prod ya trae config dev en `[dev]`). Pusheado. Ver [`03-tld-api-cuenta-nombre.md`](./03-tld-api-cuenta-nombre.md). |
-| 2026-07-11 | Documentado despliegue VCN prod-a-dev con `second-brain/despliegue/deploy.ps1` (Verdaccio + `tld-telered-lib`). Ver [`04-despliegue-vcn-deploy.ps1.md`](./04-despliegue-vcn-deploy.ps1.md). |
+| 2026-07-11 | Creada carpeta `prod_adactado_a_dev` y esta documentación. |
+| 2026-07-11 | `tld-matriz`: clon + rama `prod-a-dev` + poda + fix `AuthorizerResultTtlInSeconds`. Commit `cff92e5`. Ver [01](./01-poda-tld-matriz.md). |
+| 2026-07-11 | `tld-validador-api`: clon + rama; VPCe `[dev]` (`b55a6e4`). Ver [02](./02-tld-validador-api.md). |
+| 2026-07-11 | `tld-validador-api`: fix KMS/EFS compartidos dev (`820f6f6`) — corrige `InvalidCiphertextException` / `mrk-fab... NO EXISTE`. |
+| 2026-07-11 | `tld-api-cuenta-nombre`: clon + rama `prod-a-dev` = `master` sin cambios. Pusheado. Ver [03](./03-tld-api-cuenta-nombre.md). |
+| 2026-07-11 | Copiados `deploy.ps1` / `deployNewVersion.ps1` a `second-brain/despliegue/`; doc VCN. Ver [04](./04-despliegue-vcn-deploy.ps1.md). |
+| 2026-07-11 | Fix sintaxis `deploy.ps1` (ParserError PS 5.1) + BUILD-MARKER `v2026-07-11-B`. |
+| 2026-07-11 | `tld-matriz`: stub autorizador always-Allow (`e22171a`) — crash urllib3 v2 / no validar tokens. Ver [05](./05-tld-matriz-autorizador-stub.md). |
+| 2026-07-12 | Creado [`00-estado-y-retomo.md`](./00-estado-y-retomo.md) — handoff al cambiar de tema. |
 
-## Rama de trabajo
+## Estado de repos (`origin/prod-a-dev`)
 
-- **`prod-a-dev`** — nombre corto y genérico, pensado para **reutilizarse en otros repos**. No hace referencia a `tld-matriz`.
+| Repo | HEAD | Pusheado |
+|------|------|----------|
+| `tld-matriz` | `e22171a` | Sí |
+| `tld-validador-api` | `820f6f6` | Sí |
+| `tld-api-cuenta-nombre` | `f67a00a` (= `master`) | Sí |
 
 ## Documentos
 
 | Archivo | Contenido |
 |---------|-----------|
-| [01-poda-tld-matriz.md](./01-poda-tld-matriz.md) | Poda aplicada: qué se quitó/quedó, verificación, hallazgo `sam validate` preexistente |
-| [02-tld-validador-api.md](./02-tld-validador-api.md) | Clon + rama + ajuste VPCe `[dev]`; refactor invoke excluido |
-| [03-tld-api-cuenta-nombre.md](./03-tld-api-cuenta-nombre.md) | VCN: clon + rama; sin poda ni cambios (config dev ya en prod); refactor proxy excluido |
-| [04-despliegue-vcn-deploy.ps1.md](./04-despliegue-vcn-deploy.ps1.md) | Desplegar VCN prod-a-dev con `deploy.ps1`, Verdaccio y `tld-telered-lib` |
+| [00-estado-y-retomo.md](./00-estado-y-retomo.md) | **Entrada al retomar** — estado, pendientes, mapa, errores vistos |
+| [01-poda-tld-matriz.md](./01-poda-tld-matriz.md) | Poda: qué se quitó/quedó, verificación, `AuthorizerResultTtlInSeconds` |
+| [02-tld-validador-api.md](./02-tld-validador-api.md) | VPCe + KMS/EFS dev; refactor invoke excluido |
+| [03-tld-api-cuenta-nombre.md](./03-tld-api-cuenta-nombre.md) | VCN sin cambios; refactor proxy excluido |
+| [04-despliegue-vcn-deploy.ps1.md](./04-despliegue-vcn-deploy.ps1.md) | Desplegar VCN con `deploy.ps1`, Verdaccio, fixes script |
+| [05-tld-matriz-autorizador-stub.md](./05-tld-matriz-autorizador-stub.md) | Stub autorizador; urllib3 crash; revertir |
 
 ## Pendiente
 
-- (nada abierto por ahora)
-
-### Resuelto
-
-- [x] `tld-matriz`: error de indentación `AuthorizerResultTtlInSeconds` corregido en `prod-a-dev`; poda commiteada y subida al remoto.
-- [x] `tld-validador-api`: commit `b55a6e4`, pusheado a `origin/prod-a-dev`.
-- [x] `tld-api-cuenta-nombre`: rama `prod-a-dev` pusheada (idéntica a `master`; config dev ya en prod).
+- Redesplegar en dev y confirmar: validador descifra (`820f6f6`), matriz autorizador no crashea (`e22171a`), VCN con `deploy.ps1`.
+- Ver [`00-estado-y-retomo.md`](./00-estado-y-retomo.md) para detalle.

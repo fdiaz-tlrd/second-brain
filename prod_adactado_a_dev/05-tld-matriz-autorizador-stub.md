@@ -46,3 +46,7 @@ prod-a-dev, donde **no interesa validar apikey/secretkey ni tokens Cognito**.
 
 Restaurar `app.py` y `requirements.txt` originales desde `main` de `tld-matriz` y, para que no crashee,
 pinnear `urllib3<2` en `requirements.txt`.
+
+## Commit
+
+- `e22171a` — pusheado a `origin/prod-a-dev`.

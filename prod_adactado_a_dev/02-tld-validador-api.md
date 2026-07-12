@@ -78,3 +78,12 @@ no de despliegue.
 ## Pendiente
 
 - Redesplegar en dev (lo hace el usuario en la máquina con VPN) y confirmar que descifra.
+
+## Commits (`prod-a-dev`)
+
+| Commit | Descripción |
+|--------|-------------|
+| `b55a6e4` | VPCe perfil `[dev]` → `vpce-03ecbc47b37cc7965` |
+| `820f6f6` | Reuso KMS/EFS compartidos dev (`UseSharedLlavesEfs` + samconfig) |
+
+Pusheados a `origin/prod-a-dev`.

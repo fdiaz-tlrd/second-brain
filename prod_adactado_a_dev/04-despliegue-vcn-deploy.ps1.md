@@ -98,3 +98,25 @@ cd C:\Users\pbmadesarrollo\Documents\GitHub\second-brain\despliegue
 
 Estado de la rama `prod-a-dev` (sin poda, config dev en prod, refactor excluido):
 [`03-tld-api-cuenta-nombre.md`](./03-tld-api-cuenta-nombre.md).
+
+## Fixes aplicados a `deploy.ps1` (jul-2026)
+
+El script copiado a `second-brain/despliegue/deploy.ps1` tuvo **ParserError** en PowerShell 5.1 del
+servidor (`C:\AWSdeploy\deploy.ps1`). Evidencia: `second-brain/notas-sueltas/errorDespligue.md`.
+
+| Problema | Línea aprox. | Fix |
+|----------|--------------|-----|
+| Em-dash Unicode `—` en string | ~217 | Reemplazado por guión ASCII `-` |
+| `;` dentro de string con comillas dobles | ~231 | String con comillas simples |
+
+**Verificación:** al ejecutar, el log debe mostrar al inicio:
+
+```
+===== BUILD-MARKER: deploy.ps1 second-brain v2026-07-11-B (fix sintaxis PS) =====
+```
+
+Si no aparece ese marcador, **no** es la versión corregida de `second-brain/despliegue/deploy.ps1`.
+
+**Importante:** el fix se aplicó en `second-brain/despliegue/deploy.ps1`. El usuario debe **copiar** esa
+versión al servidor (`C:\AWSdeploy\` u otra ruta de ejecución). El archivo en `refactoria/Deploy/deploy.ps1`
+**no** se modificó (revertido tras edición no autorizada).

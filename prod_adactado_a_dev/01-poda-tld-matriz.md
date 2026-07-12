@@ -83,4 +83,9 @@ de `TldAuthorizer` (12 espacios, hermano de `FunctionArn`). Tras el fix, `sam va
 
 ## Estado
 
-Poda **completa** y `template.yaml` **validado con SAM**. Commit y push a `origin/prod-a-dev` realizados.
+Poda **completa** y `template.yaml` **validado con SAM**. Commits en `origin/prod-a-dev`:
+
+| Commit | Descripción |
+|--------|-------------|
+| `cff92e5` | Poda + fix `AuthorizerResultTtlInSeconds` |
+| `e22171a` | Stub autorizador (ver [05](./05-tld-matriz-autorizador-stub.md)) |
