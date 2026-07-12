@@ -68,7 +68,7 @@ escenarios que **esperaban 400** (input mal formado) pero la cadena devolvió **
 5. `General/1_validaciones_js/1_idCanal` → `1.1.5. idCanal — tipo boolean (400)`
 6. `General/1_validaciones_js/1_idCanal` → `1.1.6. idCanal — tipo object (400)`
 
-No se investiga aquí (el usuario maneja la causa); se deja enumerado por si se retoma.
+No se investiga aquí (el usuario maneja la causa); ver análisis en [`../07-matriz-validacion-cuerpo-json.md`](../07-matriz-validacion-cuerpo-json.md) y comparación en [`ITERACION-03-prod-VALIDADOR-2026-07-12.md`](./ITERACION-03-prod-VALIDADOR-2026-07-12.md).
 
 ---
 

@@ -4,7 +4,8 @@
 
 Diseño de una mejora al generador (`../generador/`) para **grabar el resultado de cada escenario** y **etiquetar con qué versión de código** se ejecutó, de modo que se pueda comparar cómo responde la **versión productiva** frente a una **versión en desarrollo**, corriendo ambas en el **mismo ambiente AWS de desarrollo**.
 
-Estado: **primera recopilación hecha** (2026-07-12, commit `96656b5`). Ver [`recopilacion/`](recopilacion/). Pendiente: run `--codigo-fuente dev` y/o `NIVEL_EJECUCION=VCN` + `comparar-runs.js`.
+Estado: **tres recopilaciones** (jul-2026): iter 01 URL mala, iter 02 MATRIZ post-fix, iter 03 VALIDADOR directo.
+Hallazgo matriz: [`07-matriz-validacion-cuerpo-json.md`](07-matriz-validacion-cuerpo-json.md). Pendiente: run `--codigo-fuente dev` en MATRIZ + `comparar-runs.js`.
 
 ---
 
@@ -56,7 +57,8 @@ No es "correr Newman contra producción". Es **mismo endpoint de dev, distinto c
 | [`02-etiqueta-version-codigo.md`](02-etiqueta-version-codigo.md) | Cómo se indica prod/dev (flag + variable de entorno) y cómo llega al informe |
 | [`03-plan-implementacion.md`](03-plan-implementacion.md) | Cambios concretos en `run-newman.js`, orden y qué no romper |
 | [`04-informe-y-recopilacion.md`](04-informe-y-recopilacion.md) | Las dos fases, qué es el informe (humano), y condiciones para que la comparación sea válida |
-| [`recopilacion/`](recopilacion/) | **Runs reales** analizados (iteración 01: prod-a-dev + MATRIZ, jul-2026) |
+| [`07-matriz-validacion-cuerpo-json.md`](07-matriz-validacion-cuerpo-json.md) | 6 escenarios fuera de plan en flujo Matriz→Validador→VCN; `isValid`; pregunta abierta |
+| [`recopilacion/`](recopilacion/) | **Runs reales** analizados (iter 01–03, jul-2026) |
 
 ---
 
