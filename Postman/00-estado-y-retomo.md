@@ -92,15 +92,20 @@ Origen regex P2P `idSolicitud`: commit `5f1eb0461c44197a8053dd5ab96ce8d3e8301987
 
 ### Comparar prod vs dev — `prod_adactado_a_dev` (jul-2026)
 
-**Hecho:** `prod_adactado_a_dev` desplegado en AWS dev (rama `prod-a-dev` en matriz, validador, VCN). Marca CFN `PROD-ADAPTADO-A-DEV` confirmada en consola.
+**Hecho:**
 
-**Hecho (generador):** VCN environment `NIVEL_EJECUCION=MATRIZ`. `run-newman.js` registra `nivelEjecucion` en todos los informes.
+- [x] `prod_adactado_a_dev` desplegado en AWS dev; marca CFN confirmada.
+- [x] VCN environment `NIVEL_EJECUCION=MATRIZ`; `nivelEjecucion` en informes Newman.
+- [x] **Primera recopilación** (`96656b5`): `node run-newman.js vcn --codigo-fuente prod --nota "prod-a-dev rama prod-a-dev"`.
+- [x] Análisis documentado: [`comparar-prod-vs-dev/recopilacion/ITERACION-01-prod-a-dev-MATRIZ-2026-07-12.md`](comparar-prod-vs-dev/recopilacion/ITERACION-01-prod-a-dev-MATRIZ-2026-07-12.md).
+
+**Hallazgo run 01:** 98,4 % escenarios únicos → `codigoError: 550` (`Error inesperado`); **todo** `Metodo/0001` incl. éxitos; infra HTTP 200.
 
 **Pendiente (máquina VPN):**
 
-- [ ] `node run-newman.js vcn --codigo-fuente prod --nota "prod-a-dev prod-a-dev"` → commit `logs/`
-- [ ] (Opcional) misma corrida con código dev (`feature/ARQ-225_Refactory`) para `comparar-runs.js`
-- [ ] `comparar-runs.js` entre dos `*_por-escenario.json`
+- [ ] Run `--codigo-fuente dev` (mismo `NIVEL_EJECUCION=MATRIZ`) para `comparar-runs.js`
+- [ ] (Opcional) Run prod con `NIVEL_EJECUCION=VCN` para aislar capa matriz
+- [ ] CloudWatch en un escenario feliz aislado (`Metodo/0001/3_respuestaExitosa/1008`)
 
 Ver [`comparar-prod-vs-dev/README.md`](comparar-prod-vs-dev/README.md) y [`../prod_adactado_a_dev/00-estado-y-retomo.md`](../prod_adactado_a_dev/00-estado-y-retomo.md).
 

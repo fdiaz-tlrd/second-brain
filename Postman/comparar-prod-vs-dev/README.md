@@ -4,7 +4,7 @@
 
 Diseño de una mejora al generador (`../generador/`) para **grabar el resultado de cada escenario** y **etiquetar con qué versión de código** se ejecutó, de modo que se pueda comparar cómo responde la **versión productiva** frente a una **versión en desarrollo**, corriendo ambas en el **mismo ambiente AWS de desarrollo**.
 
-Estado: **implementado** (2026-07-10) en `../generador/run-newman.js` y `../generador/comparar-runs.js`. **`prod_adactado_a_dev` desplegado en dev** (jul-2026); VCN environment en `NIVEL_EJECUCION=MATRIZ` para recopilar vía matriz. Pendiente: primera corrida Newman con `--codigo-fuente prod` y commit de `logs/`. Ver checklist en [`../00-estado-y-retomo.md`](../00-estado-y-retomo.md).
+Estado: **primera recopilación hecha** (2026-07-12, commit `96656b5`). Ver [`recopilacion/`](recopilacion/). Pendiente: run `--codigo-fuente dev` y/o `NIVEL_EJECUCION=VCN` + `comparar-runs.js`.
 
 ---
 
@@ -56,6 +56,7 @@ No es "correr Newman contra producción". Es **mismo endpoint de dev, distinto c
 | [`02-etiqueta-version-codigo.md`](02-etiqueta-version-codigo.md) | Cómo se indica prod/dev (flag + variable de entorno) y cómo llega al informe |
 | [`03-plan-implementacion.md`](03-plan-implementacion.md) | Cambios concretos en `run-newman.js`, orden y qué no romper |
 | [`04-informe-y-recopilacion.md`](04-informe-y-recopilacion.md) | Las dos fases, qué es el informe (humano), y condiciones para que la comparación sea válida |
+| [`recopilacion/`](recopilacion/) | **Runs reales** analizados (iteración 01: prod-a-dev + MATRIZ, jul-2026) |
 
 ---
 

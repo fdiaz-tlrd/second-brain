@@ -1,6 +1,8 @@
 *
 !.gitignore
 !README.md
+!resultados-por-escenario-*.json
+!resultados-por-escenario-*.md
 !resumen-fallos-*.md
 !ultimo-run-*.json
 !registro-*.md

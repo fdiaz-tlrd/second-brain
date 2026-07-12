@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "suite": "vcn",
+    "fecha": "2026-07-12T17:20:06.165Z",
+    "codigoFuente": "prod",
+    "nivelEjecucion": "MATRIZ",
+    "folder": "(completo)",
+    "nota": "prod-a-dev rama prod-a-dev",
+    "archivo": "2026-07-12T17-20-06Z_prod_MATRIZ_completo_por-escenario.json"
+  },
+  "ejecuciones": {
+    "total": 1263,
+    "http": {
+      "200": 1263
+    },
+    "codigoError": {
+      "400": 20,
+      "550": 1243
+    },
+    "topCodigoError": [
+      {
+        "key": "550",
+        "count": 1243
+      },
+      {
+        "key": "400",
+        "count": 20
+      }
+    ]
+  },
+  "escenariosUnicos": {
+    "total": 316,
+    "codigo550": 311,
+    "codigo400": 5,
+    "pct550": 98.4
+  },
+  "bloquesRuta": {
+    "General/0_jsonEntrada": {
+      "total": 3,
+      "c550": 3,
+      "c400": 0,
+      "otro": 0
+    },
+    "General/1_validaciones_js": {
+      "total": 304,
+      "c550": 284,
+      "c400": 20,
+      "otro": 0
+    },
+    "General/2_reglaNegocio": {
+      "total": 60,
+      "c550": 60,
+      "c400": 0,
+      "otro": 0
+    },
+    "Metodo/0001": {
+      "total": 896,
+      "c550": 896,
+      "c400": 0,
+      "otro": 0
+    }
+  },
+  "respuestaExitosa": {
+    "grupos": 150,
+    "todos550": true,
+    "codigo550": 150
+  },
+  "escenariosUnicosCon400": [
+    "General/1_validaciones_js/1_idCanal|1.1.1. idCanal — propiedad ausente (undefined) (400)",
+    "General/1_validaciones_js/1_idCanal|1.1.9. idCanal — longitud 5, máximo 4 (400)",
+    "General/1_validaciones_js/2_validador|1.2.1. validador — propiedad ausente (undefined) (400)",
+    "General/1_validaciones_js/2_validador|1.2.2. validador — null (400)",
+    "General/1_validaciones_js/2_validador|1.2.3. validador — string vacío \"\" (400)"
+  ]
+}
