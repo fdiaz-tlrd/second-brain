@@ -214,7 +214,7 @@ function Write-DeployRuntimeSnapshot {
         }
     }
     else {
-        Write-Log -Level WARN -Message "ENTORNO Python SAM: ruta no existe ($script:SamPython) — no se consultaron pip/sam."
+        Write-Log -Level WARN -Message "ENTORNO Python SAM: ruta no existe ($script:SamPython) - no se consultaron pip/sam."
     }
 
     $pythonPathCmd = Get-Command -Name 'python' -ErrorAction SilentlyContinue
@@ -228,7 +228,7 @@ function Write-DeployRuntimeSnapshot {
         }
     }
     else {
-        Write-Log -Level INFO -Message "ENTORNO python: ningun ejecutable 'python' en PATH (solo informativo; el script usa el Python embebido en SAM para pip/sam)."
+        Write-Log -Level INFO -Message 'ENTORNO python: ningun ejecutable ''python'' en PATH (solo informativo; el script usa el Python embebido en SAM para pip/sam).'
     }
 
     Write-Log -Level INFO -Message 'ENTORNO fin del bloque diagnostico.'
