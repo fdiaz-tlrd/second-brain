@@ -81,6 +81,25 @@ de `TldAuthorizer` (12 espacios, hermano de `FunctionArn`). Tras el fix, `sam va
 **«valid SAM Template»**. El usuario además **consideraría** corregirlo en el repo `tld-matriz` mismo
 (pendiente de confirmación explícita; no ejecutado aún).
 
+## Corrección: URL del Validador en dev (`ValidadorUrl`)
+
+**Problema (identificado por el usuario, 2026-07-12):** el perfil `dev` apuntaba a la URL del **API Gateway**
+del validador, no a la URL interna de dev:
+
+- ❌ Incorrecto: `https://txjhoqn5k3.execute-api.us-east-1.amazonaws.com/dev`
+- ✅ Correcto (base): `https://tld-api-validador.dev.telered.internal`
+
+La lambda `tld-matriz-validador-validar` (`lambdas/tld-validador-validar/index.js` L51) construye
+`VALIDADOR_URL + "/validar"`, así que la **base** va **sin** `/validar` → URL final
+`https://tld-api-validador.dev.telered.internal/validar`. Coincide con el patrón de sandbox/qa/highway
+(`https://tld-api-validador.<amb>.telered.internal`), que ya estaban correctos.
+
+**Archivos corregidos** (solo perfil/valor `dev`, sin tocar lógica):
+- `template.yaml` → `Parameters.ValidadorUrl.Default` y el ejemplo del `Description`.
+- `samconfig.toml` → `parameter_overrides` del perfil `dev` (`ValidadorUrl=...`).
+
+Los demás perfiles (sandbox, qa, tlrd-highway, us-west-2) **no se tocaron**: ya usaban su URL interna correcta.
+
 ## Estado
 
 Poda **completa** y `template.yaml` **validado con SAM**. Commits en `origin/prod-a-dev`:
@@ -90,5 +109,6 @@ Poda **completa** y `template.yaml` **validado con SAM**. Commits en `origin/pro
 | `cff92e5` | Poda + fix `AuthorizerResultTtlInSeconds` |
 | `e22171a` | Stub autorizador (ver [05](./05-tld-matriz-autorizador-stub.md)) |
 | `d763b6b` | Marca `PROD-ADAPTADO-A-DEV` en `Description:` raíz + parámetro `Env` (ver [00](./00-estado-y-retomo.md)) |
+| `3f072d6` | Fix `ValidadorUrl` dev → `tld-api-validador.dev.telered.internal` |
 
-HEAD actual: `d763b6b`. Pusheado a `origin/prod-a-dev`.
+HEAD actual: `3f072d6`. Pusheado a `origin/prod-a-dev`.
