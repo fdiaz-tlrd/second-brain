@@ -10,7 +10,10 @@ Clon de producción en `prod_adactado_a_dev/tld-api-cuenta-nombre`, rama `prod-a
 - **Sin poda:** mismas 3 carpetas de lambdas que prod y que la referencia dev (`cargar-llave-canal`, `cuenta-nombre`, `layer`).
 - **Sin cambios de código ni de `template.yaml`.** Lógica = producción.
 - **Sin cambios en `samconfig.toml`:** `master` de producción ya trae la config de despliegue para dev en el perfil `[dev]`.
-- **Pusheado** a `origin/prod-a-dev` (idéntico a `master` en contenido).
+- **Único cambio propio (`497ecc4`):** marca `PROD-ADAPTADO-A-DEV` en `Description:` raíz y del parámetro
+  `DeployEnvironment` del `template.yaml` (metadata para identificar la pila en CloudFormation). No toca
+  lógica ni recursos.
+- **Pusheado** a `origin/prod-a-dev` (= `master` salvo esa marca de metadata).
 
 ## Revisión contra la referencia dev (`feature/ARQ-225_Refactory`)
 

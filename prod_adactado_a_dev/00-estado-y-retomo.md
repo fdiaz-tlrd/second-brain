@@ -41,13 +41,28 @@ Ver [`README.md`](./README.md) — regla fija:
 
 | Repo | Rama base | `origin/prod-a-dev` HEAD | Commits propios de `prod-a-dev` | Cambios vs prod |
 |------|-----------|--------------------------|----------------------------------|-----------------|
-| `tld-matriz` | `main` | `e22171a` | `cff92e5` (poda) + `e22171a` (stub autorizador) | Poda + fix `AuthorizerResultTtlInSeconds` + **stub autorizador** |
-| `tld-validador-api` | `main` | `820f6f6` | `b55a6e4` (VPCe) + `820f6f6` (KMS/EFS dev) | VPCe `[dev]` + **template: reuso KMS/EFS compartidos en dev** |
-| `tld-api-cuenta-nombre` | `master` | `f67a00a` | *(ninguno — rama = master)* | Sin cambios; config dev ya en prod |
+| `tld-matriz` | `main` | `d763b6b` | poda + stub autorizador + marca CFN | Poda + fix `AuthorizerResultTtlInSeconds` + **stub autorizador** + Description `PROD-ADAPTADO-A-DEV` |
+| `tld-validador-api` | `main` | `d3e3959` | VPCe + KMS/EFS dev + marca CFN | VPCe `[dev]` + **reuso KMS/EFS dev** + Description `PROD-ADAPTADO-A-DEV` |
+| `tld-api-cuenta-nombre` | `master` | `497ecc4` | `497ecc4` (marca CFN) | Solo Description `PROD-ADAPTADO-A-DEV` (metadata); resto = `master` |
 
 Todos **sincronizados** con remoto (`0 0` ahead/behind al 2026-07-12).
 
 ---
+
+## Marca de identificación en CloudFormation (`PROD-ADAPTADO-A-DEV`)
+
+Para reconocer en la consola de CloudFormation que una pila desplegada es esta versión, los tres
+`template.yaml` llevan el marcador **`PROD-ADAPTADO-A-DEV`** en dos lugares:
+
+1. **`Description:` de nivel raíz del template** → se ve en **Stack info / Overview** y como columna en
+   la lista de pilas (lo visible de un vistazo en una pila desplegada).
+2. **`Description:` del parámetro de ambiente** (`DeployEnvironment` en validador/VCN; `Env` en matriz) →
+   solo visible abriendo la pestaña **Template** o en el formulario de create/update. **NO** aparece en la
+   pestaña **Parameters** de la pila desplegada (esa solo muestra Key + Value).
+
+`tld-matriz` no tenía `Description:` raíz: se **agregó**.
+
+**Importante:** es metadata; **requiere redesplegar** para que la marca aparezca en la pila.
 
 ## Desviaciones explícitas (NO son prod puro)
 

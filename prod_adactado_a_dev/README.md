@@ -58,9 +58,12 @@ Cada repo clonado usa la rama **`prod-a-dev`** (nombre corto, genérico, reutili
 
 | Repo | HEAD | Pusheado |
 |------|------|----------|
-| `tld-matriz` | `e22171a` | Sí |
-| `tld-validador-api` | `820f6f6` | Sí |
-| `tld-api-cuenta-nombre` | `f67a00a` (= `master`) | Sí |
+| `tld-matriz` | `d763b6b` | Sí |
+| `tld-validador-api` | `d3e3959` | Sí |
+| `tld-api-cuenta-nombre` | `497ecc4` | Sí |
+
+Los tres templates llevan el marcador **`PROD-ADAPTADO-A-DEV`** en el `Description:` raíz y en el del
+parámetro de ambiente (ver [`00-estado-y-retomo.md`](./00-estado-y-retomo.md)).
 
 ## Documentos
 
