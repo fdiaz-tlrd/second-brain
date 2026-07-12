@@ -5,6 +5,30 @@
 
 ---
 
+## RESPUESTAS RÁPIDAS (no re-estudiar)
+
+Precomputadas por `analizar-por-escenario.js`. Fuente: [`resumen-2026-07-12-prod-MATRIZ.md`](./resumen-2026-07-12-prod-MATRIZ.md).
+
+| Pregunta | Respuesta |
+|----------|-----------|
+| ¿Algún camino feliz dio respuesta positiva? | **NO** (0 de 150 grupos de éxito) |
+| ¿Alguna respuesta positiva en todo el run? | **NO** (0 de 1263 ejecuciones) |
+| ¿Algún assert en verde? | **NO** (0) |
+| codigoError dominante | **550** (98,4 % de las ejecuciones) |
+| ¿HTTP siempre 200? | **SÍ** |
+| Veredicto | Comportamiento anómalo → problema en lo desplegado (código/config) |
+
+### Banderas automáticas
+
+- **CRÍTICO:** 0 respuestas positivas en TODO el run (1263 ejecuciones).
+- **CRÍTICO:** los 150 escenarios de éxito (camino feliz) no devolvieron respuesta positiva (todos error).
+- **CRÍTICO:** 0 asserts en verde.
+- **ANOMALÍA:** `codigoError 550` domina el 98,4 % (se esperaba variedad por escenario).
+- **SEÑAL DE DESPLIEGUE:** 550 "Error inesperado" sistemático apunta a problema de **código o configuración** en lo desplegado, no a validación de negocio. Un servicio ya liberado en producción **no debería errar así de forma masiva**.
+- **PISTA:** HTTP siempre 200 pero negocio siempre error → la infra responde; el fallo está en la lógica/payload de negocio tras descifrar, no en red/conectividad.
+
+---
+
 ## ¿Fue coherente con lo acordado?
 
 **Sí.** El run ejecuta exactamente la estrategia de `comparar-prod-vs-dev`:

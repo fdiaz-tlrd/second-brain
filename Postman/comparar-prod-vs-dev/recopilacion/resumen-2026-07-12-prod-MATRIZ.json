@@ -8,8 +8,28 @@
     "nota": "prod-a-dev rama prod-a-dev",
     "archivo": "2026-07-12T17-20-06Z_prod_MATRIZ_completo_por-escenario.json"
   },
+  "banderas": [
+    "CRITICO: 0 respuestas positivas en TODO el run (1263 ejecuciones). Ningun camino feliz respondio negocio.",
+    "CRITICO: los 150 escenarios de EXITO (camino feliz) no devolvieron respuesta positiva (todos error).",
+    "CRITICO: 0 asserts en verde en todo el run.",
+    "ANOMALIA: codigoError 550 domina el 98.4% de las ejecuciones (esperado: variedad por escenario).",
+    "SEÑAL DE DESPLIEGUE: 550 'Error inesperado' sistematico apunta a problema de CODIGO o CONFIGURACION en lo desplegado, no a validacion de negocio. Un servicio ya liberado en produccion no deberia errar asi de forma masiva.",
+    "PISTA: HTTP siempre 200 pero negocio siempre error -> la infra responde; el fallo esta en la logica/payload de negocio tras descifrar, no en red/conectividad."
+  ],
+  "preguntasObvias": {
+    "¿algun camino feliz dio respuesta positiva?": "NO",
+    "¿alguna respuesta positiva en todo el run?": "NO",
+    "¿algun assert en verde?": "NO",
+    "codigoError dominante": "550 (98.4% ejecuciones)",
+    "¿HTTP siempre 200?": "SI",
+    "veredicto": "Comportamiento anomalo: apunta a problema en lo desplegado (codigo/config)."
+  },
   "ejecuciones": {
     "total": 1263,
+    "positivas": 0,
+    "assertOk": 0,
+    "assertFail": 1263,
+    "assertNull": 0,
     "http": {
       "200": 1263
     },
@@ -30,6 +50,7 @@
   },
   "escenariosUnicos": {
     "total": 316,
+    "positivos": 0,
     "codigo550": 311,
     "codigo400": 5,
     "pct550": 98.4
@@ -62,6 +83,7 @@
   },
   "respuestaExitosa": {
     "grupos": 150,
+    "positivos": 0,
     "todos550": true,
     "codigo550": 150
   },
