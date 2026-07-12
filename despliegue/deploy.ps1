@@ -287,6 +287,7 @@ trap {
 # ---------------------------------------------------------------------------
 
 try {
+    Write-Milestone -Message '===== BUILD-MARKER: deploy.ps1 second-brain v2026-07-11-B (fix sintaxis PS) ====='
     Write-Milestone -Message "INICIO - modo=$modo | usuario=$usuarioActual | Perfil: $script:PerfilEtiqueta | repo=$repositorio | rama=$ramaGit | ambiente=$ambiente"
     Write-Log -Level INFO -Message "Raiz Git: $script:RaizGit"
     Write-Log -Level INFO -Message "Ruta repo: $script:RutaRepo"
