@@ -4,8 +4,8 @@
 
 | Campo | Valor |
 |-------|-------|
-| **Última actualización** | 2026-07-11 |
-| **Estado** | **PAUSADO** — trabajo documentado; pendiente deploy + Newman en máquina VPN |
+| **Última actualización** | 2026-07-12 |
+| **Estado** | **ACTIVO** — `prod_adactado_a_dev` desplegado en dev; recopilación comparar-prod-vs-dev con Newman pendiente (VPN) |
 | **Rama producto** | `feature/ARQ-225_Refactory` (P2P, P2M, VCN, validador-api) |
 | **Repo docs** | `second-brain` rama `main` |
 
@@ -45,6 +45,7 @@
 | Pieza | Ubicación |
 |-------|-----------|
 | Flag `--codigo-fuente prod\|dev` | `Postman/generador/run-newman.js` |
+| Campo `nivelEjecucion` (desde `NIVEL_EJECUCION` en environment) | `run-newman.js` → todos los informes |
 | Salida por escenario | `logs/resultados-por-escenario-<suite>.json` y `.md` |
 | Diff entre runs | `Postman/generador/comparar-runs.js` |
 
@@ -87,18 +88,32 @@ Origen regex P2P `idSolicitud`: commit `5f1eb0461c44197a8053dd5ab96ce8d3e8301987
 
 ---
 
-## Qué NO está cerrado (al pausar)
+## Qué NO está cerrado (al retomar)
 
-### Deploy AWS dev (usuario)
+### Comparar prod vs dev — `prod_adactado_a_dev` (jul-2026)
 
-Desplegar en dev el código de la rama `feature/ARQ-225_Refactory`:
+**Hecho:** `prod_adactado_a_dev` desplegado en AWS dev (rama `prod-a-dev` en matriz, validador, VCN). Marca CFN `PROD-ADAPTADO-A-DEV` confirmada en consola.
+
+**Hecho (generador):** VCN environment `NIVEL_EJECUCION=MATRIZ`. `run-newman.js` registra `nivelEjecucion` en todos los informes.
+
+**Pendiente (máquina VPN):**
+
+- [ ] `node run-newman.js vcn --codigo-fuente prod --nota "prod-a-dev prod-a-dev"` → commit `logs/`
+- [ ] (Opcional) misma corrida con código dev (`feature/ARQ-225_Refactory`) para `comparar-runs.js`
+- [ ] `comparar-runs.js` entre dos `*_por-escenario.json`
+
+Ver [`comparar-prod-vs-dev/README.md`](comparar-prod-vs-dev/README.md) y [`../prod_adactado_a_dev/00-estado-y-retomo.md`](../prod_adactado_a_dev/00-estado-y-retomo.md).
+
+### Deploy AWS dev — rama refactor (distinto a prod-a-dev)
+
+Desplegar en dev el código de la rama `feature/ARQ-225_Refactory` (solo si se compara contra dev refactor):
 
 - [ ] `tld-validador-api` (incluye `comoAxiosData`)
 - [ ] `tld-api-alias` (regex `idSolicitud` + preguntas)
 - [ ] `tld-api-p2m` (`idSolicitud`)
 - [ ] `tld-api-cuenta-nombre` (`idSolicitud`)
 
-### Newman real (máquina VPN)
+### Newman — escenarios idSolicitud / preguntas (jul-2026 anterior)
 
 - [ ] Run con `--codigo-fuente dev` tras deploy — carpetas nuevas (`5_solicitudes`, `3_idPregunta`, `3_respuestas`).
 - [ ] Run con `--codigo-fuente prod` en mismo AWS dev (comparación prod vs dev).
@@ -110,7 +125,7 @@ Comandos ejemplo:
 cd Postman\generador
 node run-newman.js p2p --folder "General/1_validaciones_js/5_solicitudes" --codigo-fuente dev --nota "post-deploy idSolicitud"
 node run-newman.js p2p --folder "Metodo/0004/1_validaciones_js/3_idPregunta" --codigo-fuente dev
-node run-newman.js vcn --codigo-fuente prod --nota "prod validador-api-main"
+node run-newman.js vcn --codigo-fuente prod --nota "prod-a-dev prod-a-dev"
 node comparar-runs.js logs/historial/vcn/<runProd>_por-escenario.json logs/historial/vcn/<runDev>_por-escenario.json
 ```
 

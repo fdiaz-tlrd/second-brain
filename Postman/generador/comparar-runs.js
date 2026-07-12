@@ -166,6 +166,7 @@ function buildMd(a, b, res) {
   lines.push("| Campo | " + etiqA + " (A) | " + etiqB + " (B) |");
   lines.push("|-------|--------|--------|");
   lines.push("| Fecha | " + (a.fecha || "—") + " | " + (b.fecha || "—") + " |");
+  lines.push("| Nivel ejecución | " + (a.nivelEjecucion || "—") + " | " + (b.nivelEjecucion || "—") + " |");
   lines.push("| Carpeta | `" + (a.folder || "—") + "` | `" + (b.folder || "—") + "` |");
   lines.push("| Nota | " + celda(a.nota) + " | " + celda(b.nota) + " |");
   lines.push("| Escenarios | " + (a.total != null ? a.total : a.escenarios.length) + " | " + (b.total != null ? b.total : b.escenarios.length) + " |");
@@ -253,6 +254,11 @@ function main() {
   fs.writeFileSync(outPath, md, "utf8");
 
   console.log("Comparación: " + a.codigoFuente + " (A) vs " + b.codigoFuente + " (B)");
+  if (a.nivelEjecucion || b.nivelEjecucion) {
+    console.log(
+      "Nivel ejecución: " + (a.nivelEjecucion || "—") + " (A) vs " + (b.nivelEjecucion || "—") + " (B)"
+    );
+  }
   console.log(
     "Iguales: " +
       res.iguales +

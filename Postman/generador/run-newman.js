@@ -14,6 +14,10 @@
  * Versión de código desplegada (para comparar prod vs dev en el mismo AWS dev):
  *   --codigo-fuente prod|dev   (o variable NEWMAN_CODIGO_FUENTE)
  *   Queda en resumen, registro, historial y en resultados-por-escenario-<suite>.json/.md
+ *
+ * Nivel de ejecución (ruta de integración: VCN, MATRIZ, etc.):
+ *   Se lee de NIVEL_EJECUCION en el archivo .postman_environment.json de la suite.
+ *   Queda en los mismos informes (campo nivelEjecucion). Ortogonal a --codigo-fuente.
  */
 
 const fs = require("fs");
@@ -60,6 +64,23 @@ const MAX_BODY = 4000;
 
 /** VCN: escenarios que prod no rechaza; fuera del run completo hasta alinear lambda dev. */
 const VCN_SOLO_LOG_FOLDER = "4_idPeticion_soloLog";
+
+function readNivelEjecucion(environmentPath) {
+  if (!environmentPath || !fs.existsSync(environmentPath)) {
+    return "desconocido";
+  }
+  try {
+    const env = JSON.parse(fs.readFileSync(environmentPath, "utf8"));
+    const values = env.values || [];
+    const entry = values.find(function (v) {
+      return v && v.key === "NIVEL_EJECUCION" && v.enabled !== false;
+    });
+    const val = entry && entry.value != null ? String(entry.value).trim() : "";
+    return val || "desconocido";
+  } catch (e) {
+    return "desconocido";
+  }
+}
 
 function parseArgs(argv) {
   const positional = [];
@@ -201,7 +222,7 @@ function extractNegocio(bodyText) {
   return out;
 }
 
-function buildResultadosPorEscenario(suiteKey, folder, summary, codigoFuente, nota) {
+function buildResultadosPorEscenario(suiteKey, folder, summary, codigoFuente, nota, nivelEjecucion) {
   const run = summary.run || {};
   const executions = run.executions || [];
   const escenarios = executions.map(function (ex) {
@@ -231,6 +252,7 @@ function buildResultadosPorEscenario(suiteKey, folder, summary, codigoFuente, no
     suite: suiteKey,
     fecha: new Date().toISOString(),
     codigoFuente: codigoFuente || "desconocido",
+    nivelEjecucion: nivelEjecucion || "desconocido",
     folder: folder || "(completo)",
     nota: nota || "",
     total: escenarios.length,
@@ -246,6 +268,7 @@ function buildResultadosPorEscenarioMd(resultados) {
   lines.push("|-------|-------|");
   lines.push("| Fecha | " + resultados.fecha + " |");
   lines.push("| Código fuente | " + resultados.codigoFuente + " |");
+  lines.push("| Nivel ejecución | " + resultados.nivelEjecucion + " |");
   lines.push("| Carpeta | `" + resultados.folder + "` |");
   if (resultados.nota) {
     lines.push("| Nota | " + resultados.nota.replace(/\|/g, "\\|") + " |");
@@ -279,7 +302,7 @@ function buildResultadosPorEscenarioMd(resultados) {
   return lines.join("\n");
 }
 
-function buildResumenMarkdown(suite, folder, summary, jsonPath, mdPath, nota, codigoFuente) {
+function buildResumenMarkdown(suite, folder, summary, jsonPath, mdPath, nota, codigoFuente, nivelEjecucion) {
   const run = summary.run || {};
   const stats = run.stats || {};
   const failures = dedupeFailures(run.failures || []);
@@ -293,6 +316,7 @@ function buildResumenMarkdown(suite, folder, summary, jsonPath, mdPath, nota, co
   lines.push("|-------|-------|");
   lines.push("| Fecha | " + fechaIso + " |");
   lines.push("| Código fuente | " + (codigoFuente || "desconocido") + " |");
+  lines.push("| Nivel ejecución | " + (nivelEjecucion || "desconocido") + " |");
   if (folder) {
     lines.push("| Carpeta | `" + folder + "` |");
   } else {
@@ -416,8 +440,8 @@ function updateRegistro(suiteKey, entry) {
     "",
     "Orden: **más reciente arriba**. Commitear `logs/` tras cada run en la **máquina con VPN**.",
     "",
-    "| Fecha (UTC) | Código | Carpeta | Requests | Tests | Resultado | Historial | Nota |",
-    "|-------------|--------|---------|----------|-------|-----------|-----------|------|",
+    "| Fecha (UTC) | Código | Nivel | Carpeta | Requests | Tests | Resultado | Historial | Nota |",
+    "|-------------|--------|-------|---------|----------|-------|-----------|-----------|------|",
   ];
 
   let existingRows = [];
@@ -435,6 +459,8 @@ function updateRegistro(suiteKey, entry) {
     entry.fecha +
     " | " +
     (entry.codigo || "desconocido") +
+    " | " +
+    (entry.nivel || "desconocido") +
     " | `" +
     entry.folder +
     "` | " +
@@ -455,13 +481,14 @@ function updateRegistro(suiteKey, entry) {
   fs.writeFileSync(regPath, header.concat(rows).concat(["", ""]).join("\n"), "utf8");
 }
 
-function archiveRun(suiteKey, folder, jsonPath, mdPath, summary, nota, codigoFuente, resScenJsonPath, resScenMdPath) {
+function archiveRun(suiteKey, folder, jsonPath, mdPath, summary, nota, codigoFuente, nivelEjecucion, resScenJsonPath, resScenMdPath) {
   const histDir = path.join(LOGS, "historial", suiteKey);
   fs.mkdirSync(histDir, { recursive: true });
   const ts = isoTimestampForFilename(new Date());
   const slug = folderSlug(folder);
   const codigoSlug = folderSlug(codigoFuente || "desconocido");
-  const base = ts + "_" + codigoSlug + "_" + slug;
+  const nivelSlug = folderSlug(nivelEjecucion || "desconocido");
+  const base = ts + "_" + codigoSlug + "_" + nivelSlug + "_" + slug;
   const histJson = path.join(histDir, base + ".json");
   const histMd = path.join(histDir, base + ".md");
   fs.copyFileSync(jsonPath, histJson);
@@ -490,6 +517,7 @@ function archiveRun(suiteKey, folder, jsonPath, mdPath, summary, nota, codigoFue
   updateRegistro(suiteKey, {
     fecha: new Date().toISOString(),
     codigo: codigoFuente || "desconocido",
+    nivel: nivelEjecucion || "desconocido",
     folder: folder || "(completo)",
     requests: reqTotal + " (fail " + reqFailed + ")",
     tests: testTotal + " (fail " + testFailed + ")",
@@ -674,6 +702,9 @@ function runSuite(suiteKey, folder, insecure, nota, codigoFuente) {
     return Promise.reject(new Error("Falta entorno: " + cfg.environment));
   }
 
+  const nivelEjecucion = readNivelEjecucion(cfg.environment);
+  console.log("Nivel ejecución (NIVEL_EJECUCION): " + nivelEjecucion);
+
   const jsonPath = path.join(LOGS, "ultimo-run-" + suiteKey + ".json");
   const mdPath = path.join(LOGS, "resumen-fallos-" + suiteKey + ".md");
   const resScenJsonPath = path.join(LOGS, "resultados-por-escenario-" + suiteKey + ".json");
@@ -735,7 +766,8 @@ function runSuite(suiteKey, folder, insecure, nota, codigoFuente) {
         jsonPath,
         mdPath,
         nota,
-        codigoFuente
+        codigoFuente,
+        nivelEjecucion
       );
       fs.writeFileSync(mdPath, md, "utf8");
 
@@ -744,7 +776,8 @@ function runSuite(suiteKey, folder, insecure, nota, codigoFuente) {
         folder,
         summary,
         codigoFuente,
-        nota
+        nota,
+        nivelEjecucion
       );
       fs.writeFileSync(resScenJsonPath, JSON.stringify(resultados, null, 2), "utf8");
       fs.writeFileSync(resScenMdPath, buildResultadosPorEscenarioMd(resultados), "utf8");
@@ -757,6 +790,7 @@ function runSuite(suiteKey, folder, insecure, nota, codigoFuente) {
         summary,
         nota,
         codigoFuente,
+        nivelEjecucion,
         resScenJsonPath,
         resScenMdPath
       );

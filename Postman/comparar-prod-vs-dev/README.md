@@ -4,7 +4,7 @@
 
 Diseño de una mejora al generador (`../generador/`) para **grabar el resultado de cada escenario** y **etiquetar con qué versión de código** se ejecutó, de modo que se pueda comparar cómo responde la **versión productiva** frente a una **versión en desarrollo**, corriendo ambas en el **mismo ambiente AWS de desarrollo**.
 
-Estado: **implementado** (2026-07-10) en `../generador/run-newman.js` y `../generador/comparar-runs.js`. Falta validarlo con un run real en la máquina VPN (una corrida prod y una dev). Ver checklist en [`../00-estado-y-retomo.md`](../00-estado-y-retomo.md).
+Estado: **implementado** (2026-07-10) en `../generador/run-newman.js` y `../generador/comparar-runs.js`. **`prod_adactado_a_dev` desplegado en dev** (jul-2026); VCN environment en `NIVEL_EJECUCION=MATRIZ` para recopilar vía matriz. Pendiente: primera corrida Newman con `--codigo-fuente prod` y commit de `logs/`. Ver checklist en [`../00-estado-y-retomo.md`](../00-estado-y-retomo.md).
 
 ---
 

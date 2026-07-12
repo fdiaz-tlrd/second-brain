@@ -62,3 +62,39 @@ node run-newman.js vcn --folder "Metodo/0001/5_fallosIntegracionValidador"
 | `historial/<suite>/` | Sufijo en el nombre de archivo: `{timestamp}_{codigo}_{carpeta}.json/.md` |
 
 Con esto, al abrir cualquier informe se ve de inmediato si esa corrida fue con código **prod** o **dev**.
+
+---
+
+## Nivel de ejecución (`NIVEL_EJECUCION`)
+
+**Ortogonal a `--codigo-fuente`.** Indica **desde qué capa** se invoca el flujo en Postman (p. ej. `VCN` = directo a la API cuenta-nombre; `MATRIZ` = vía API matriz).
+
+| Concepto | Qué etiqueta | Dónde se fija |
+|----------|--------------|---------------|
+| Versión de código desplegada | `--codigo-fuente prod\|dev` | Línea de comando / `NEWMAN_CODIGO_FUENTE` |
+| Ruta de integración | `NIVEL_EJECUCION` en el environment Postman | `generador/entornos/*-desarrollo.postman_environment.json` |
+
+`run-newman.js` **lee `NIVEL_EJECUCION` del archivo de entorno** que usa Newman (no hace falta otro flag). Así el informe refleja exactamente lo que corrió.
+
+### Dónde aparece `nivelEjecucion`
+
+| Salida | Cómo |
+|--------|------|
+| `resultados-por-escenario-<suite>.json` | Campo `nivelEjecucion` |
+| `resultados-por-escenario-<suite>.md` | Fila «Nivel ejecución» en cabecera |
+| `resumen-fallos-<suite>.md` | Fila «Nivel ejecución» |
+| `registro-<suite>.md` | Columna **Nivel** |
+| `historial/<suite>/` | Sufijo en nombre: `{timestamp}_{codigo}_{nivel}_{carpeta}.json` |
+| `comparar-runs.js` | Tabla de cabecera al comparar dos JSON |
+
+### VCN prod-a-dev (jul-2026)
+
+Con `prod_adactado_a_dev` desplegado en dev, el environment VCN quedó en **`NIVEL_EJECUCION=MATRIZ`** para ejercitar el camino productivo vía matriz (autorizador stubbeado en prod-a-dev).
+
+Ejemplo de run para recopilación:
+
+```powershell
+node run-newman.js vcn --codigo-fuente prod --nota "prod-a-dev rama prod-a-dev"
+```
+
+El informe mostrará `codigoFuente: prod` y `nivelEjecucion: MATRIZ`.

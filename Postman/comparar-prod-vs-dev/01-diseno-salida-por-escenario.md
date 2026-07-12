@@ -56,6 +56,7 @@ Una fila por escenario, apto para diff automático:
   "suite": "vcn",
   "fecha": "2026-07-10T...Z",
   "codigoFuente": "prod",
+  "nivelEjecucion": "MATRIZ",
   "folder": "Metodo/0001/5_fallosIntegracionValidador",
   "nota": "post-deploy prod tld-validador-api-main",
   "escenarios": [
