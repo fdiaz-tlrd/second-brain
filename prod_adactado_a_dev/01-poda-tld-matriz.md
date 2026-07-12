@@ -89,3 +89,6 @@ Poda **completa** y `template.yaml` **validado con SAM**. Commits en `origin/pro
 |--------|-------------|
 | `cff92e5` | Poda + fix `AuthorizerResultTtlInSeconds` |
 | `e22171a` | Stub autorizador (ver [05](./05-tld-matriz-autorizador-stub.md)) |
+| `d763b6b` | Marca `PROD-ADAPTADO-A-DEV` en `Description:` raíz + parámetro `Env` (ver [00](./00-estado-y-retomo.md)) |
+
+HEAD actual: `d763b6b`. Pusheado a `origin/prod-a-dev`.

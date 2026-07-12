@@ -53,6 +53,7 @@ Cada repo clonado usa la rama **`prod-a-dev`** (nombre corto, genérico, reutili
 | 2026-07-11 | Fix sintaxis `deploy.ps1` (ParserError PS 5.1) + BUILD-MARKER `v2026-07-11-B`. |
 | 2026-07-11 | `tld-matriz`: stub autorizador always-Allow (`e22171a`) — crash urllib3 v2 / no validar tokens. Ver [05](./05-tld-matriz-autorizador-stub.md). |
 | 2026-07-12 | Creado [`00-estado-y-retomo.md`](./00-estado-y-retomo.md) — handoff al cambiar de tema. |
+| 2026-07-12 | Los 3 repos: marca **`PROD-ADAPTADO-A-DEV`** en `Description:` raíz + parámetro de ambiente del `template.yaml` (identificar pila en CloudFormation). Commits `d763b6b`, `d3e3959`, `497ecc4`. Ver [00](./00-estado-y-retomo.md#marca-de-identificación-en-cloudformation-prod-adaptado-a-dev). |
 
 ## Estado de repos (`origin/prod-a-dev`)
 
@@ -78,5 +79,7 @@ parámetro de ambiente (ver [`00-estado-y-retomo.md`](./00-estado-y-retomo.md)).
 
 ## Pendiente
 
-- Redesplegar en dev y confirmar: validador descifra (`820f6f6`), matriz autorizador no crashea (`e22171a`), VCN con `deploy.ps1`.
+- Redesplegar en dev y confirmar: validador descifra, matriz autorizador no crashea, VCN con `deploy.ps1`.
+- Tras redesplegar, en CloudFormation verificar **`PROD-ADAPTADO-A-DEV`** en Stack info de cada pila.
+- HEADs actuales: matriz `d763b6b`, validador `d3e3959`, VCN `497ecc4`.
 - Ver [`00-estado-y-retomo.md`](./00-estado-y-retomo.md) para detalle.

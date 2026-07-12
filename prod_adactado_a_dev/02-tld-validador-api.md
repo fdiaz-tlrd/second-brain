@@ -85,5 +85,6 @@ no de despliegue.
 |--------|-------------|
 | `b55a6e4` | VPCe perfil `[dev]` → `vpce-03ecbc47b37cc7965` |
 | `820f6f6` | Reuso KMS/EFS compartidos dev (`UseSharedLlavesEfs` + samconfig) |
+| `d3e3959` | Marca `PROD-ADAPTADO-A-DEV` en `Description:` raíz + parámetro `DeployEnvironment` (ver [00](./00-estado-y-retomo.md)) |
 
-Pusheados a `origin/prod-a-dev`.
+HEAD actual: `d3e3959`. Pusheados a `origin/prod-a-dev`.

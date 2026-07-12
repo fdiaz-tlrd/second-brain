@@ -76,7 +76,7 @@ cd C:\Users\pbmadesarrollo\Documents\GitHub\second-brain\despliegue
   -ambiente dev `
   -modo full `
   -esReversa no `
-  -hashCommit <hash_HEAD_de_prod-a-dev>
+  -hashCommit 497ecc4bfb677857d5d29ab6960c1cf3b8d4d050
 ```
 
 - **`-ambiente dev`** → despliega solo el perfil **`[dev]`** de `samconfig.toml` (VPCe, `UrlCaTelered`, etc.).

@@ -46,7 +46,15 @@ La referencia dev **no** pasa `UrlCaTelered` porque eliminó ese parámetro del 
 ## Verificación
 
 - `sam validate` (default y `--config-env dev`): **template válido**.
-- `git diff master..prod-a-dev`: vacío (rama = producción sin desviaciones).
+- `git diff master..prod-a-dev`: solo cambia metadata del `template.yaml` (marca `PROD-ADAPTADO-A-DEV`); sin cambios de lógica ni `samconfig.toml`.
+
+## Commits (`prod-a-dev`)
+
+| Commit | Descripción |
+|--------|-------------|
+| `497ecc4` | Marca `PROD-ADAPTADO-A-DEV` en `Description:` raíz + parámetro `DeployEnvironment` |
+
+HEAD actual: `497ecc4`. Hash completo para `deploy.ps1`: `497ecc4bfb677857d5d29ab6960c1cf3b8d4d050`.
 
 ## Despliegue
 
@@ -62,7 +70,7 @@ Resumen:
   -ambiente dev `
   -modo full `
   -esReversa no `
-  -hashCommit <hash_HEAD_de_prod-a-dev>
+  -hashCommit 497ecc4bfb677857d5d29ab6960c1cf3b8d4d050
 ```
 
 El script instala `@telered/tld-telered-lib` desde Verdaccio (`localhost:4873`) en `lambdas\layer\nodejs`.

@@ -90,9 +90,10 @@ VCN en prod usa HTTP al validador (no invoke); el validador prod-a-dev debe esta
 
 | Item | Quién | Notas |
 |------|-------|-------|
-| Redesplegar `tld-validador-api` tras `820f6f6` | Usuario (VPN) | Confirmar que descifra con `mrk-fab...` (ya no «LLave NO EXISTE») |
-| Redesplegar `tld-matriz` tras `e22171a` | Usuario (VPN) | Confirmar que autorizador ya no crashea al import |
-| Desplegar VCN `prod-a-dev` | Usuario (VPN) | [`04-despliegue-vcn-deploy.ps1.md`](./04-despliegue-vcn-deploy.ps1.md); `hashCommit f67a00a...` |
+| Redesplegar `tld-validador-api` | Usuario (VPN) | HEAD `d3e3959` (incluye KMS/EFS dev `820f6f6` + marca CFN). Confirmar descifrado con `mrk-fab...` |
+| Redesplegar `tld-matriz` | Usuario (VPN) | HEAD `d763b6b` (incluye stub autorizador `e22171a` + marca CFN). Confirmar que no crashea al import |
+| Desplegar VCN `prod-a-dev` | Usuario (VPN) | [`04-despliegue-vcn-deploy.ps1.md`](./04-despliegue-vcn-deploy.ps1.md); `hashCommit 497ecc4bfb677857d5d29ab6960c1cf3b8d4d050` |
+| Verificar marca en CloudFormation | Usuario (VPN) | Tras redesplegar, en **Stack info** debe verse `PROD-ADAPTADO-A-DEV` en el Description de la pila |
 | Si persiste `InvalidCiphertextException` tras redeploy validador | Investigar | Posible parseo `IV.ciphertext` en `lib/llave.js` o datos de prueba — ver 02 |
 | Corregir `AuthorizerResultTtlInSeconds` en `tld-matriz` **main** (repo real) | Opcional / usuario | Mencionado en 01; no ejecutado en repo productivo |
 

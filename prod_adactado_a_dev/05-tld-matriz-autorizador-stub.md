@@ -49,4 +49,4 @@ pinnear `urllib3<2` en `requirements.txt`.
 
 ## Commit
 
-- `e22171a` — pusheado a `origin/prod-a-dev`.
+- `e22171a` — stub autorizador. HEAD actual de `tld-matriz` prod-a-dev: `d763b6b` (incluye además marca CFN `PROD-ADAPTADO-A-DEV`). Pusheado a `origin/prod-a-dev`.
