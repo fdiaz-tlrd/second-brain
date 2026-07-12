@@ -5,7 +5,7 @@
 | Campo | Valor |
 |-------|-------|
 | **Última actualización** | 2026-07-12 |
-| **Estado** | **PAUSADO** — 3 repos listos en `origin/prod-a-dev`; pendiente confirmar en dev (VPN) tras últimos fixes |
+| **Estado** | **DESPLEGADO EN DEV** — usuario confirmó deploy de `prod-a-dev` y marca `PROD-ADAPTADO-A-DEV` visible en CloudFormation (consola web) |
 | **Rama de trabajo** | `prod-a-dev` (en cada repo clonado) |
 | **Carpeta local** | `c:\Users\Lenovo\GitHub\prod_adactado_a_dev\` |
 | **Repo docs** | `second-brain` rama `main` → `prod_adactado_a_dev/` |
@@ -37,7 +37,7 @@ Ver [`README.md`](./README.md) — regla fija:
 
 ---
 
-## Repos en `prod_adactado_a_dev` (estado al pausar)
+## Repos en `prod_adactado_a_dev` (estado actual)
 
 | Repo | Rama base | `origin/prod-a-dev` HEAD | Commits propios de `prod-a-dev` | Cambios vs prod |
 |------|-----------|--------------------------|----------------------------------|-----------------|
@@ -64,6 +64,11 @@ Para reconocer en la consola de CloudFormation que una pila desplegada es esta v
 
 **Importante:** es metadata; **requiere redesplegar** para que la marca aparezca en la pila.
 
+### Verificación en dev (2026-07-12)
+
+**Confirmado por el usuario:** tras desplegar `prod-a-dev`, en la consola web de **AWS CloudFormation**
+se ve la descripción con el marcador **`PROD-ADAPTADO-A-DEV`** en Stack info (como se diseñó).
+
 ## Desviaciones explícitas (NO son prod puro)
 
 | Repo | Qué | Por qué | Doc |
@@ -88,13 +93,17 @@ VCN en prod usa HTTP al validador (no invoke); el validador prod-a-dev debe esta
 
 ## Pendiente al retomar
 
+### Hecho (confirmado 2026-07-12)
+
+- [x] Despliegue de `prod_adactado_a_dev` en dev (rama `prod-a-dev`).
+- [x] Marca **`PROD-ADAPTADO-A-DEV`** visible en CloudFormation (consola web AWS).
+
+### Abierto (si aplica al retomar)
+
 | Item | Quién | Notas |
 |------|-------|-------|
-| Redesplegar `tld-validador-api` | Usuario (VPN) | HEAD `d3e3959` (incluye KMS/EFS dev `820f6f6` + marca CFN). Confirmar descifrado con `mrk-fab...` |
-| Redesplegar `tld-matriz` | Usuario (VPN) | HEAD `d763b6b` (incluye stub autorizador `e22171a` + marca CFN). Confirmar que no crashea al import |
-| Desplegar VCN `prod-a-dev` | Usuario (VPN) | [`04-despliegue-vcn-deploy.ps1.md`](./04-despliegue-vcn-deploy.ps1.md); `hashCommit 497ecc4bfb677857d5d29ab6960c1cf3b8d4d050` |
-| Verificar marca en CloudFormation | Usuario (VPN) | Tras redesplegar, en **Stack info** debe verse `PROD-ADAPTADO-A-DEV` en el Description de la pila |
-| Si persiste `InvalidCiphertextException` tras redeploy validador | Investigar | Posible parseo `IV.ciphertext` en `lib/llave.js` o datos de prueba — ver 02 |
+| Confirmar runtime post-deploy (descifrado validador, autorizador stub, flujos VCN) | Usuario / agente | Deploy y marca CFN OK; no reportado aún si hay errores de ejecución |
+| Si persiste `InvalidCiphertextException` en validador | Investigar | Ver 02 — parseo `IV.ciphertext` o datos de prueba |
 | Corregir `AuthorizerResultTtlInSeconds` en `tld-matriz` **main** (repo real) | Opcional / usuario | Mencionado en 01; no ejecutado en repo productivo |
 
 ---
