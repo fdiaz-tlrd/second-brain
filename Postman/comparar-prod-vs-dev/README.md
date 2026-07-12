@@ -58,6 +58,7 @@ No es "correr Newman contra producción". Es **mismo endpoint de dev, distinto c
 | [`03-plan-implementacion.md`](03-plan-implementacion.md) | Cambios concretos en `run-newman.js`, orden y qué no romper |
 | [`04-informe-y-recopilacion.md`](04-informe-y-recopilacion.md) | Las dos fases, qué es el informe (humano), y condiciones para que la comparación sea válida |
 | [`07-matriz-validacion-cuerpo-json.md`](07-matriz-validacion-cuerpo-json.md) | 6 escenarios fuera de plan en flujo Matriz→Validador→VCN; `isValid`; pregunta abierta |
+| [`08-esperado-vs-recibido-prod.md`](08-esperado-vs-recibido-prod.md) | **~43 % ejecuciones difieren** del plan (prod vs expected dev); patrones y por bloque |
 | [`recopilacion/`](recopilacion/) | **Runs reales** analizados (iter 01–03, jul-2026) |
 
 ---

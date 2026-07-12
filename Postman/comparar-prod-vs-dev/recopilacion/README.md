@@ -12,7 +12,10 @@ Carpeta de **iteraciones de recopilación Newman**: cada run etiquetado (`codigo
 | [`resumen-2026-07-12-prod-MATRIZ.md`](./resumen-2026-07-12-prod-MATRIZ.md) | Misma info en tabla legible (generada por el script) |
 | [`resumen-2026-07-12b-prod-MATRIZ-postfix.json`](./resumen-2026-07-12b-prod-MATRIZ-postfix.json) / [`.md`](./resumen-2026-07-12b-prod-MATRIZ-postfix.md) | Estadísticas del run 02 (post-fix) |
 | [`resumen-2026-07-12c-prod-VALIDADOR.json`](./resumen-2026-07-12c-prod-VALIDADOR.json) / [`.md`](./resumen-2026-07-12c-prod-VALIDADOR.md) | Estadísticas del run 03 (VALIDADOR directo) |
-| [`analizar-por-escenario.js`](./analizar-por-escenario.js) | Script para repetir el análisis sobre cualquier `*_por-escenario.json` |
+| [`../08-esperado-vs-recibido-prod.md`](../08-esperado-vs-recibido-prod.md) | **~43 %** ejecuciones prod ≠ esperado (plan dev); patrones por par codigoError |
+| [`comparar-esperado-vs-recibido.js`](./comparar-esperado-vs-recibido.js) | Cruza run con JSON fuente (`expectedCodigoError` vs recibido) |
+| [`esperado-vs-recibido-02-MATRIZ.json`](./esperado-vs-recibido-02-MATRIZ.json) / [`.md`](./esperado-vs-recibido-02-MATRIZ.md) | Iter 02 MATRIZ |
+| [`esperado-vs-recibido-03-VALIDADOR.json`](./esperado-vs-recibido-03-VALIDADOR.json) / [`.md`](./esperado-vs-recibido-03-VALIDADOR.md) | Iter 03 VALIDADOR |
 
 **Fuente de logs:** `Postman/generador/logs/historial/vcn/` (commiteados desde máquina VPN).
 

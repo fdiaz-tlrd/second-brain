@@ -133,3 +133,7 @@ alinear asserts Newman en escenarios `General/` para el flujo **MATRIZ**, no sol
 
 **No investigar causa raíz aquí** sin pedido explícito; los datos y la hipótesis de diseño quedan
 archivados para comparar cuando corra `--codigo-fuente dev` en MATRIZ.
+
+**Importante:** los 6 escenarios son **solo una fracción** del desvío total. El cruce esperado vs
+recibido muestra **~43 % de ejecuciones distintas al plan** (135/316 escenarios únicos) incluso con
+infra sana. Ver [`08-esperado-vs-recibido-prod.md`](./08-esperado-vs-recibido-prod.md).
