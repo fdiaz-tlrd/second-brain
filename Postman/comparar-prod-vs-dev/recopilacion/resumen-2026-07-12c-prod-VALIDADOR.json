@@ -1,21 +1,25 @@
 {
   "meta": {
     "suite": "vcn",
-    "fecha": "2026-07-12T21:46:59.773Z",
+    "fecha": "2026-07-12T23:10:30.053Z",
     "codigoFuente": "prod",
     "nivelEjecucion": "VALIDADOR",
-    "folder": "(completo)",
-    "nota": "prod-a-dev rama prod-a-dev",
-    "archivo": "2026-07-12T21-46-59Z_prod_VALIDADOR_completo_por-escenario.json"
+    "folder": "(regenerado)",
+    "nota": "regenerado desde completo.json",
+    "archivo": "enriquecido-03-VALIDADOR_por-escenario.json"
   },
-  "banderas": [],
+  "banderas": [
+    "HTTP: 98 ejecuciones (10.3%) con HTTP real != esperado. Revisar tabla de comparacion."
+  ],
   "preguntasObvias": {
     "¿algun camino feliz dio respuesta positiva?": "SI (150)",
     "¿alguna respuesta positiva en todo el run?": "SI (735)",
     "¿algun assert en verde?": "SI (732)",
     "codigoError dominante": "null (68.6% ejecuciones)",
-    "¿HTTP siempre 200?": "SI",
-    "veredicto": "Sin anomalias criticas detectadas."
+    "¿HTTP (dummy descifrar) siempre 200?": "SI",
+    "¿HTTP REAL de la lambda siempre 200?": "NO",
+    "¿HTTP real coincide con lo esperado?": "NO en 98 (10.3%)",
+    "veredicto": "Comportamiento anomalo: apunta a problema en lo desplegado (codigo/config)."
   },
   "ejecuciones": {
     "total": 947,
@@ -82,6 +86,23 @@
       }
     ]
   },
+  "httpProtocolo": {
+    "disponible": 947,
+    "realLambda": {
+      "200": 765,
+      "400": 180,
+      "502": 2
+    },
+    "esperado": {
+      "200": 672,
+      "400": 269,
+      "500": 6
+    },
+    "coincide": 849,
+    "difiere": 98,
+    "pctDifiere": 10.3,
+    "lambdaSiempre200": false
+  },
   "escenariosUnicos": {
     "total": 316,
     "positivos": 244,
@@ -90,29 +111,11 @@
     "pct550": 0
   },
   "bloquesRuta": {
-    "General/0_jsonEntrada": {
-      "total": 2,
-      "c550": 0,
-      "c400": 0,
-      "otro": 2
-    },
-    "General/1_validaciones_js": {
-      "total": 228,
+    "?": {
+      "total": 947,
       "c550": 0,
       "c400": 54,
-      "otro": 174
-    },
-    "General/2_reglaNegocio": {
-      "total": 45,
-      "c550": 0,
-      "c400": 0,
-      "otro": 45
-    },
-    "Metodo/0001": {
-      "total": 672,
-      "c550": 0,
-      "c400": 0,
-      "otro": 672
+      "otro": 893
     }
   },
   "respuestaExitosa": {
@@ -122,23 +125,23 @@
     "codigo550": 0
   },
   "escenariosUnicosCon400": [
-    "General/1_validaciones_js/1_idCanal|1.1.1. idCanal — propiedad ausente (undefined) (400)",
-    "General/1_validaciones_js/1_idCanal|1.1.2. idCanal — null (400)",
-    "General/1_validaciones_js/1_idCanal|1.1.3. idCanal — string vacío \"\" (400)",
-    "General/1_validaciones_js/2_validador|1.2.1. validador — propiedad ausente (undefined) (400)",
-    "General/1_validaciones_js/2_validador|1.2.2. validador — null (400)",
-    "General/1_validaciones_js/2_validador|1.2.3. validador — string vacío \"\" (400)",
-    "General/1_validaciones_js/3_peticion|1.3.1. peticion — propiedad ausente (undefined) (400)",
-    "General/1_validaciones_js/3_peticion|1.3.2. peticion — null (400)",
-    "General/1_validaciones_js/3_peticion|1.3.3. peticion — string vacío (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.1. idPeticion — propiedad ausente (undefined) (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.2. idPeticion — null (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.3. idPeticion — string vacío (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.4. idPeticion — tipo number (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.5. idPeticion — tipo boolean (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.6. idPeticion — tipo object (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.7. idPeticion — solo espacios (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.8. idPeticion — solo tab (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.10. idPeticion — longitud 65, máximo 64 (400)"
+    "?|1.1.1. idCanal — propiedad ausente (undefined) (400)",
+    "?|1.1.2. idCanal — null (400)",
+    "?|1.1.3. idCanal — string vacío \"\" (400)",
+    "?|1.2.1. validador — propiedad ausente (undefined) (400)",
+    "?|1.2.2. validador — null (400)",
+    "?|1.2.3. validador — string vacío \"\" (400)",
+    "?|1.3.1. peticion — propiedad ausente (undefined) (400)",
+    "?|1.3.2. peticion — null (400)",
+    "?|1.3.3. peticion — string vacío (400)",
+    "?|1.4.1. idPeticion — propiedad ausente (undefined) (400)",
+    "?|1.4.2. idPeticion — null (400)",
+    "?|1.4.3. idPeticion — string vacío (400)",
+    "?|1.4.4. idPeticion — tipo number (400)",
+    "?|1.4.5. idPeticion — tipo boolean (400)",
+    "?|1.4.6. idPeticion — tipo object (400)",
+    "?|1.4.7. idPeticion — solo espacios (400)",
+    "?|1.4.8. idPeticion — solo tab (400)",
+    "?|1.4.10. idPeticion — longitud 65, máximo 64 (400)"
   ]
 }

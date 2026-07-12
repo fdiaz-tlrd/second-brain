@@ -5,7 +5,11 @@
 Diseño de una mejora al generador (`../generador/`) para **grabar el resultado de cada escenario** y **etiquetar con qué versión de código** se ejecutó, de modo que se pueda comparar cómo responde la **versión productiva** frente a una **versión en desarrollo**, corriendo ambas en el **mismo ambiente AWS de desarrollo**.
 
 Estado: **tres recopilaciones** (jul-2026): iter 01 URL mala, iter 02 MATRIZ post-fix, iter 03 VALIDADOR directo.
-Hallazgo matriz: [`07-matriz-validacion-cuerpo-json.md`](07-matriz-validacion-cuerpo-json.md). Pendiente: run `--codigo-fuente dev` en MATRIZ + `comparar-runs.js`.
+Hallazgo matriz: [`07-matriz-validacion-cuerpo-json.md`](07-matriz-validacion-cuerpo-json.md).
+Estudio negocio: [`08-esperado-vs-recibido-prod.md`](08-esperado-vs-recibido-prod.md) (~22 % diverge).
+HTTP vs negocio: [`10-http-vs-codigoerror.md`](10-http-vs-codigoerror.md) (MATRIZ aplana HTTP a 200).
+Tabla escenario a escenario: [`09-tabla-comparacion-escenarios.md`](09-tabla-comparacion-escenarios.md).
+Pendiente: run `--codigo-fuente dev` en MATRIZ + `comparar-runs.js`; VCN directo; Marketplace.
 
 ---
 

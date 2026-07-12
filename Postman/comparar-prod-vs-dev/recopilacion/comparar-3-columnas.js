@@ -39,17 +39,26 @@ function walkScenarios(dir, prefix, out) {
   return out;
 }
 
-/** Devuelve Map key -> { recibidos:{code:count}, ejec:n } agrupando por escenario. */
+/**
+ * Devuelve Map key -> { recibidos:{code:count}, httpReal:{code:count}, ejec:n }.
+ * `recibidos` = codigoError del payload; `httpReal` = HTTP de la lambda (si el run es enriquecido).
+ */
 function indexRun(runPath) {
   const data = JSON.parse(fs.readFileSync(runPath, "utf8"));
   const m = new Map();
   (data.escenarios || []).forEach(function (e) {
     const key = (e.ruta || "") + "|" + (e.nombre || "");
-    if (!m.has(key)) m.set(key, { recibidos: {}, ejec: 0 });
+    if (!m.has(key)) m.set(key, { recibidos: {}, httpReal: {}, ejec: 0 });
     const agg = m.get(key);
     agg.ejec++;
-    const rk = e.codigoError == null ? "null" : String(e.codigoError);
+    // codigo de negocio efectivo: usa recibidoNegocio si viene (enriquecido), si no codigoError
+    const negocio = e.recibidoNegocio != null ? e.recibidoNegocio : e.codigoError;
+    const rk = negocio == null ? "null" : String(negocio);
     agg.recibidos[rk] = (agg.recibidos[rk] || 0) + 1;
+    if (e.httpRealLambda != null) {
+      const hk = String(e.httpRealLambda);
+      agg.httpReal[hk] = (agg.httpReal[hk] || 0) + 1;
+    }
   });
   return { map: m, meta: { nivel: data.nivelEjecucion, archivo: path.basename(runPath), fecha: data.fecha } };
 }
@@ -131,6 +140,36 @@ function main() {
     return (a.ruta + a.nombre).localeCompare(b.ruta + b.nombre);
   });
 
+  // --- HTTP: esperado vs real (solo diferencias) ---
+  const httpRows = [];
+  let httpDisponible = false;
+  fuente.forEach(function (src, key) {
+    if (src.expectedHttpStatus == null) return;
+    const m = matriz.map.get(key);
+    const v = validador.map.get(key);
+    if (!m && !v) return;
+    const mHttp = m && Object.keys(m.httpReal).length ? m.httpReal : null;
+    const vHttp = v && Object.keys(v.httpReal).length ? v.httpReal : null;
+    if (mHttp || vHttp) httpDisponible = true;
+    const esp = String(src.expectedHttpStatus);
+    const mSet = setCodigos(mHttp);
+    const vSet = setCodigos(vHttp);
+    const mOk = mSet === esp;
+    const vOk = vSet === esp;
+    if (mOk && vOk) return; // ambos HTTP coinciden con esperado
+    httpRows.push({
+      ruta: src.ruta,
+      nombre: src.nombre,
+      esperado: esp,
+      matriz: fmtRecibidos(mHttp),
+      validador: fmtRecibidos(vHttp),
+      mvv: mSet === vSet ? "=" : "**≠**",
+    });
+  });
+  httpRows.sort(function (a, b) {
+    return (a.ruta + a.nombre).localeCompare(b.ruta + b.nombre);
+  });
+
   // Resumen
   const total = rows.length;
   const soloMatriz = rows.filter(function (r) {
@@ -166,7 +205,7 @@ function main() {
   L.push("| Difiere en **ambos** | " + ambos + " |");
   L.push("| MATRIZ y VALIDADOR devuelven **distinto** entre sí | " + mDistintoV + " |");
   L.push("");
-  L.push("## Tabla (solo diferencias)");
+  L.push("## Tabla A — NEGOCIO (codigoError del payload), solo diferencias");
   L.push("");
   L.push("| Ruta | Escenario | Esperado | MATRIZ recibido | VALIDADOR recibido | M vs V |");
   L.push("|------|-----------|----------|-----------------|--------------------|--------|");
@@ -188,10 +227,40 @@ function main() {
     );
   });
   L.push("");
+  L.push("## Tabla B — HTTP (status de protocolo de la lambda), solo diferencias");
+  L.push("");
+  if (!httpDisponible) {
+    L.push("Sin dato de HTTP real (runs no enriquecidos). Regenerar con `regenerar-por-escenario.js`.");
+  } else {
+    L.push(
+      "HTTP real de la lambda vs `expectedHttpStatus` del plan. Recuerda: por MATRIZ la lambda suele aplanar todo a 200."
+    );
+    L.push("");
+    L.push("| Ruta | Escenario | HTTP esperado | MATRIZ HTTP real | VALIDADOR HTTP real | M vs V |");
+    L.push("|------|-----------|---------------|------------------|---------------------|--------|");
+    httpRows.forEach(function (r) {
+      L.push(
+        "| `" +
+          r.ruta +
+          "` | " +
+          r.nombre.replace(/\|/g, "\\|") +
+          " | " +
+          r.esperado +
+          " | " +
+          r.matriz +
+          " | " +
+          r.validador +
+          " | " +
+          r.mvv +
+          " |"
+      );
+    });
+  }
+  L.push("");
 
   const md = L.join("\n");
   console.log(
-    "Escenarios con diferencia: " +
+    "NEGOCIO dif: " +
       total +
       " | solo MATRIZ: " +
       soloMatriz +
@@ -202,6 +271,7 @@ function main() {
       " | M≠V: " +
       mDistintoV
   );
+  console.log("HTTP dif (esperado vs real): " + httpRows.length + (httpDisponible ? "" : " (sin dato real)"));
 
   if (salida) {
     const out = abs(salida);

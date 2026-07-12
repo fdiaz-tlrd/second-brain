@@ -57,9 +57,21 @@ function groupUnique(escenarios) {
 
 function codigoRecibidoOk(esperado, recibido, tipo) {
   if (tipo === "exito") {
-    return recibido == null || recibido === 0 || recibido === "0";
+    return recibido === 0 || recibido === "0";
   }
   return recibido === esperado;
+}
+
+/**
+ * Código de negocio RECIBIDO efectivo. Prefiere `recibidoNegocio` (run enriquecido:
+ * respuestas[0].resultado para parametro/metodo/exito, codigoError para general).
+ * Cae a codigoError si el run no está enriquecido.
+ */
+function recibidoDe(e) {
+  if (Object.prototype.hasOwnProperty.call(e, "recibidoNegocio") && e.recibidoNegocio !== undefined) {
+    return e.recibidoNegocio;
+  }
+  return e.codigoError;
 }
 
 function analizar(porEscenarioPath, fuenteMap) {
@@ -81,8 +93,8 @@ function analizar(porEscenarioPath, fuenteMap) {
       ejecSinFuente++;
       return;
     }
-    const esp = src.expectedCodigoError;
-    const rec = e.codigoError;
+    const esp = src.expectedTipo === "exito" ? 0 : src.expectedCodigoError;
+    const rec = recibidoDe(e);
     const ok = codigoRecibidoOk(esp, rec, src.expectedTipo);
     const bloque = (e.ruta || "").split("/").slice(0, 2).join("/") || e.ruta || "?";
 

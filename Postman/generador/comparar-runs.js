@@ -119,11 +119,23 @@ function comparar(a, b) {
         return;
       }
       const campos = [];
-      if (ea.httpDescifrar !== eb.httpDescifrar) {
+      // HTTP real de la lambda (protocolo) — prioridad sobre httpDescifrar
+      if (
+        (ea.httpRealLambda != null || eb.httpRealLambda != null) &&
+        ea.httpRealLambda !== eb.httpRealLambda
+      ) {
+        campos.push({ campo: "httpRealLambda", a: ea.httpRealLambda, b: eb.httpRealLambda });
+      } else if (ea.httpDescifrar !== eb.httpDescifrar) {
         campos.push({ campo: "httpDescifrar", a: ea.httpDescifrar, b: eb.httpDescifrar });
       }
-      if (ea.codigoError !== eb.codigoError) {
-        campos.push({ campo: "codigoError", a: ea.codigoError, b: eb.codigoError });
+      // Negocio efectivo (recibidoNegocio) — prioridad sobre codigoError plano
+      const negA = ea.recibidoNegocio != null ? ea.recibidoNegocio : ea.codigoError;
+      const negB = eb.recibidoNegocio != null ? eb.recibidoNegocio : eb.codigoError;
+      if (negA !== negB) {
+        campos.push({ campo: "recibidoNegocio", a: negA, b: negB });
+      }
+      if ((ea.resultadoR0 ?? null) !== (eb.resultadoR0 ?? null)) {
+        campos.push({ campo: "resultadoR0", a: ea.resultadoR0, b: eb.resultadoR0 });
       }
       if ((ea.resultado ?? null) !== (eb.resultado ?? null)) {
         campos.push({ campo: "resultado", a: ea.resultado, b: eb.resultado });

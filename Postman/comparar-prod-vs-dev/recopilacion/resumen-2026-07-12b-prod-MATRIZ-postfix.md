@@ -2,10 +2,10 @@
 
 | Campo | Valor |
 |-------|-------|
-| Archivo | `2026-07-12T21-08-09Z_prod_MATRIZ_completo_por-escenario.json` |
+| Archivo | `enriquecido-02-MATRIZ_por-escenario.json` |
 | Código fuente | prod |
 | Nivel ejecución | MATRIZ |
-| Fecha | 2026-07-12T21:08:09.869Z |
+| Fecha | 2026-07-12T23:10:29.686Z |
 
 ## Preguntas obvias (precomputadas)
 
@@ -15,12 +15,14 @@
 | ¿alguna respuesta positiva en todo el run? | **SI (876)** |
 | ¿algun assert en verde? | **SI (868)** |
 | codigoError dominante | **null (68.7% ejecuciones)** |
-| ¿HTTP siempre 200? | **SI** |
-| veredicto | **Sin anomalias criticas detectadas.** |
+| ¿HTTP (dummy descifrar) siempre 200? | **SI** |
+| ¿HTTP REAL de la lambda siempre 200? | **SI (aplana todo a 200)** |
+| ¿HTTP real coincide con lo esperado? | **NO en 367 (29.1%)** |
+| veredicto | **Comportamiento anomalo: apunta a problema en lo desplegado (codigo/config).** |
 
 ## Banderas / señales automáticas
 
-Sin banderas.
+- HTTP: la lambda devuelve HTTP 200 en TODAS las 1263 ejecuciones, pero el plan esperaba HTTP != 200 en 367 (29.1%). El status HTTP no refleja el error de negocio (todo va 200 + codigoError en el body).
 
 ## Números
 
@@ -29,11 +31,15 @@ Sin banderas.
 - Caminos felices (éxito): grupos **150**, positivos **150**
 - Top codigoError: null×868, 404×88, 400×68, 405×68, 509×64, 401×32, 550×23, 406×16, 425×16, 999×12
 
+### HTTP (protocolo) — real de la lambda vs esperado
+
+- Ejecuciones con HTTP real: **1263** | coincide con esperado: **896** | difiere: **367** (29.1%)
+- HTTP real de la lambda: 200×1263
+- HTTP esperado por el plan: 200×896, 400×359, 500×8
+- ¿La lambda aplana todo a HTTP 200?: **SÍ**
+
 ### Por bloque de ruta
 
 | Bloque | Total | 550 | 400 | otro |
 |--------|-------|-----|-----|------|
-| `General/0_jsonEntrada` | 3 | 3 | 0 | 0 |
-| `General/1_validaciones_js` | 304 | 20 | 68 | 216 |
-| `General/2_reglaNegocio` | 60 | 0 | 0 | 60 |
-| `Metodo/0001` | 896 | 0 | 0 | 896 |
+| `?` | 1263 | 23 | 68 | 1172 |

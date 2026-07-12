@@ -22,7 +22,8 @@
 
 const fs = require("fs");
 const path = require("path");
-const newman = require("newman");
+// newman se requiere de forma perezosa dentro de runSuite (ver más abajo) para que
+// este módulo pueda importarse (helpers) en máquinas sin newman instalado (ej. Lenovo sin VPN).
 
 const ROOT = __dirname;
 const LOGS = path.join(ROOT, "logs");
@@ -191,7 +192,13 @@ function getItemPath(item) {
 }
 
 function extractNegocio(bodyText) {
-  const out = { codigoError: null, mensajeError: null, resultado: null };
+  const out = {
+    codigoError: null,
+    mensajeError: null,
+    resultado: null,
+    resultadoR0: null,
+    idSolicitudR0: null,
+  };
   if (!bodyText) {
     return out;
   }
@@ -218,33 +225,176 @@ function extractNegocio(bodyText) {
     if (out.resultado == null && Object.prototype.hasOwnProperty.call(src, "resultado")) {
       out.resultado = src.resultado;
     }
+    // Camino parametro/metodo/exito: el resultado de negocio va en respuestas[0].
+    if (out.resultadoR0 == null && Array.isArray(src.respuestas) && src.respuestas[0]) {
+      const r0 = src.respuestas[0];
+      if (Object.prototype.hasOwnProperty.call(r0, "resultado")) {
+        out.resultadoR0 = r0.resultado;
+      }
+      if (Object.prototype.hasOwnProperty.call(r0, "idSolicitud")) {
+        out.idSolicitudR0 = r0.idSolicitud;
+      }
+    }
   });
   return out;
+}
+
+/**
+ * Extrae de los asserts (generados por Post-response de raíz) los valores
+ * ESPERADOS y REALES que no están en el cuerpo /descifrar:
+ *   - httpEsperado / httpRealLambda: de "[... ] HTTP status = E (real: R)"
+ *   - tiempoRealMs: de "tiempo respuesta < M ms (real: Z ms)"
+ *   - codigoErrorEsperado: de "[General] codigoError = N",
+ *     "[parametro|metodo] respuestas[0].resultado = N", "[exito] respuestas[0].resultado = 0"
+ *   - expectedTipo: inferido del prefijo del assert ([General]/[parametro]/[metodo]/[exito])
+ *   - flujoFallo: true si "[Flujo raiz] fallo antes de /descifrar"
+ * Devuelve null en cada campo que no se pudo determinar (no inventa).
+ */
+function extractAssertData(assertions) {
+  const out = {
+    httpEsperado: null,
+    httpRealLambda: null,
+    tiempoRealMs: null,
+    codigoErrorEsperado: null,
+    expectedTipo: null,
+    flujoFallo: false,
+  };
+  if (!Array.isArray(assertions)) {
+    return out;
+  }
+  assertions.forEach(function (a) {
+    const name = (a && a.assertion) || "";
+    let m;
+
+    m = name.match(/HTTP status = (\d+) \(real: (-?\d+|NaN)\)/);
+    if (m) {
+      out.httpEsperado = Number(m[1]);
+      out.httpRealLambda = m[2] === "NaN" ? null : Number(m[2]);
+    }
+
+    m = name.match(/tiempo respuesta < \d+ ms \(real: (-?\d+) ms\)/);
+    if (m) {
+      out.tiempoRealMs = Number(m[1]);
+    }
+
+    m = name.match(/^\[General\] codigoError = (\d+)/);
+    if (m) {
+      out.codigoErrorEsperado = Number(m[1]);
+      out.expectedTipo = "general";
+    }
+
+    m = name.match(/^\[(parametro|metodo)\] respuestas\[0\]\.resultado = (\d+)/);
+    if (m) {
+      out.codigoErrorEsperado = Number(m[2]);
+      out.expectedTipo = m[1];
+    }
+
+    if (/^\[exito\] respuestas\[0\]\.resultado = 0/.test(name)) {
+      out.codigoErrorEsperado = 0;
+      out.expectedTipo = "exito";
+    }
+
+    if (/^\[Flujo raiz\] fallo antes de \/descifrar/.test(name)) {
+      out.flujoFallo = true;
+    }
+  });
+  return out;
+}
+
+/**
+ * codigoError/resultado de negocio "efectivo" según el tipo de escenario:
+ *   - general: codigoError del cuerpo
+ *   - parametro/metodo: respuestas[0].resultado
+ *   - exito: respuestas[0].resultado (esperado 0)
+ * Cae a codigoError si no hay pista de tipo.
+ */
+function resolverRecibidoNegocio(negocio, expectedTipo) {
+  if (expectedTipo === "parametro" || expectedTipo === "metodo" || expectedTipo === "exito") {
+    return negocio.resultadoR0 != null ? negocio.resultadoR0 : negocio.codigoError;
+  }
+  return negocio.codigoError;
+}
+
+/**
+ * Mapa id -> ruta (jerarquía de carpetas) a partir del árbol serializado
+ * `summary.collection.item`. Necesario para reconstruir la ruta cuando el item
+ * NO tiene `.parent()` (caso: regenerar desde un *_completo.json ya guardado).
+ */
+function buildPathMapFromCollection(summary) {
+  const map = new Map();
+  const collection = summary.collection;
+  if (!collection || !Array.isArray(collection.item)) {
+    return map;
+  }
+  (function walk(items, prefix) {
+    items.forEach(function (it) {
+      const isFolder = Array.isArray(it.item);
+      if (isFolder) {
+        const nextPrefix = prefix ? prefix + "/" + it.name : it.name;
+        walk(it.item, nextPrefix);
+      } else if (it.id) {
+        map.set(it.id, prefix || "");
+      }
+    });
+  })(collection.item, "");
+  return map;
 }
 
 function buildResultadosPorEscenario(suiteKey, folder, summary, codigoFuente, nota, nivelEjecucion) {
   const run = summary.run || {};
   const executions = run.executions || [];
+  // Si los items no traen .parent() (JSON serializado), reconstruir rutas desde la colección.
+  const pathMap = buildPathMapFromCollection(summary);
   const escenarios = executions.map(function (ex) {
     const item = ex.item || {};
     const response = ex.response || {};
     const body = readStreamBody(response.stream);
     const negocio = extractNegocio(body);
     const assertions = ex.assertions || [];
-    let assertPaso = null;
-    if (assertions.length > 0) {
-      assertPaso = !assertions.some(function (a) {
-        return a.error;
-      });
+    const ad = extractAssertData(assertions);
+    let ruta = getItemPath(item);
+    if (!ruta && item.id && pathMap.has(item.id)) {
+      ruta = pathMap.get(item.id);
     }
+    let assertPaso = null;
+    const assertsFallidos = [];
+    if (assertions.length > 0) {
+      assertions.forEach(function (a) {
+        if (a && a.error) {
+          assertsFallidos.push(a.assertion || "(assert sin nombre)");
+        }
+      });
+      assertPaso = assertsFallidos.length === 0;
+    }
+    const recibidoNegocio = resolverRecibidoNegocio(negocio, ad.expectedTipo);
+    const httpEsperado = ad.httpEsperado;
+    const httpReal = ad.httpRealLambda;
     return {
       nombre: item.name || "(sin nombre)",
-      ruta: getItemPath(item),
-      httpDescifrar: response.code != null ? response.code : null,
-      codigoError: negocio.codigoError,
+      ruta: ruta,
+      expectedTipo: ad.expectedTipo,
+      // --- HTTP (protocolo) ---
+      httpRealLambda: httpReal, // HTTP real de la lambda (matriz/validador/VCN)
+      httpEsperado: httpEsperado, // HTTP esperado por el plan de pruebas
+      httpCoincide: httpEsperado != null && httpReal != null ? httpEsperado === httpReal : null,
+      httpDescifrar: response.code != null ? response.code : null, // HTTP del dummy /descifrar (siempre ~200)
+      // --- Negocio (payload) ---
+      codigoError: negocio.codigoError, // codigoError plano del cuerpo
+      resultadoR0: negocio.resultadoR0, // respuestas[0].resultado (parametro/metodo/exito)
+      recibidoNegocio: recibidoNegocio, // codigo de negocio efectivo segun tipo
+      codigoErrorEsperado: ad.codigoErrorEsperado, // esperado (payload) parseado del assert
+      negocioCoincide:
+        ad.codigoErrorEsperado != null
+          ? recibidoNegocio === ad.codigoErrorEsperado
+          : null,
       mensajeError: negocio.mensajeError,
       resultado: negocio.resultado,
+      idSolicitudR0: negocio.idSolicitudR0,
+      // --- Otros ---
+      tiempoRealMs: ad.tiempoRealMs,
+      flujoFallo: ad.flujoFallo,
       assertPaso: assertPaso,
+      assertsFallidos: assertsFallidos,
       body: body || "",
     };
   });
@@ -275,10 +425,25 @@ function buildResultadosPorEscenarioMd(resultados) {
   }
   lines.push("| Escenarios | " + resultados.total + " |");
   lines.push("");
-  lines.push("| # | Escenario | HTTP | codigoError | assert | Cuerpo (resumen) |");
-  lines.push("|---|-----------|------|-------------|--------|------------------|");
+  lines.push(
+    "Columnas HTTP = protocolo (real de la lambda vs esperado). " +
+      "Columnas negocio = `codigoError`/`resultado` del payload (recibido efectivo vs esperado)."
+  );
+  lines.push("");
+  lines.push(
+    "| # | Escenario | HTTP esp | HTTP real | HTTP ok | Negocio esp | Negocio recib | Negocio ok | assert | Cuerpo (resumen) |"
+  );
+  lines.push(
+    "|---|-----------|----------|-----------|---------|-------------|---------------|------------|--------|------------------|"
+  );
+  const dash = function (v) {
+    return v != null ? v : "—";
+  };
+  const okTxt = function (v) {
+    return v === null ? "—" : v ? "OK" : "✗";
+  };
   resultados.escenarios.forEach(function (e, i) {
-    const bodyResumen = truncate(e.body, 300)
+    const bodyResumen = truncate(e.body, 240)
       .replace(/\r?\n/g, " ")
       .replace(/\|/g, "\\|");
     const assertTxt = e.assertPaso === null ? "—" : e.assertPaso ? "OK" : "✗";
@@ -288,9 +453,17 @@ function buildResultadosPorEscenarioMd(resultados) {
         " | " +
         String(e.nombre).replace(/\|/g, "\\|") +
         " | " +
-        (e.httpDescifrar != null ? e.httpDescifrar : "—") +
+        dash(e.httpEsperado) +
         " | " +
-        (e.codigoError != null ? e.codigoError : "—") +
+        dash(e.httpRealLambda) +
+        " | " +
+        okTxt(e.httpCoincide) +
+        " | " +
+        dash(e.codigoErrorEsperado) +
+        " | " +
+        dash(e.recibidoNegocio) +
+        " | " +
+        okTxt(e.negocioCoincide) +
         " | " +
         assertTxt +
         " | `" +
@@ -753,6 +926,7 @@ function runSuite(suiteKey, folder, insecure, nota, codigoFuente) {
     options.folder = folder;
   }
 
+  const newman = require("newman");
   return new Promise(function (resolve, reject) {
     newman.run(options, function (err, summary) {
       if (err) {
@@ -855,4 +1029,17 @@ function main() {
   })();
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+
+// Helpers reutilizables por los scripts de estudio (comparar-prod-vs-dev/recopilacion/*).
+// No duplicar esta lógica: importar desde aquí.
+module.exports = {
+  extractNegocio: extractNegocio,
+  extractAssertData: extractAssertData,
+  resolverRecibidoNegocio: resolverRecibidoNegocio,
+  buildResultadosPorEscenario: buildResultadosPorEscenario,
+  getItemPath: getItemPath,
+  readStreamBody: readStreamBody,
+};

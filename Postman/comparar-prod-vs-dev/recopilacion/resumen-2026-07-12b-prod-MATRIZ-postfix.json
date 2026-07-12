@@ -1,21 +1,25 @@
 {
   "meta": {
     "suite": "vcn",
-    "fecha": "2026-07-12T21:08:09.869Z",
+    "fecha": "2026-07-12T23:10:29.686Z",
     "codigoFuente": "prod",
     "nivelEjecucion": "MATRIZ",
-    "folder": "(completo)",
-    "nota": "prod-a-dev rama prod-a-dev",
-    "archivo": "2026-07-12T21-08-09Z_prod_MATRIZ_completo_por-escenario.json"
+    "folder": "(regenerado)",
+    "nota": "regenerado desde completo.json",
+    "archivo": "enriquecido-02-MATRIZ_por-escenario.json"
   },
-  "banderas": [],
+  "banderas": [
+    "HTTP: la lambda devuelve HTTP 200 en TODAS las 1263 ejecuciones, pero el plan esperaba HTTP != 200 en 367 (29.1%). El status HTTP no refleja el error de negocio (todo va 200 + codigoError en el body)."
+  ],
   "preguntasObvias": {
     "¿algun camino feliz dio respuesta positiva?": "SI (150)",
     "¿alguna respuesta positiva en todo el run?": "SI (876)",
     "¿algun assert en verde?": "SI (868)",
     "codigoError dominante": "null (68.7% ejecuciones)",
-    "¿HTTP siempre 200?": "SI",
-    "veredicto": "Sin anomalias criticas detectadas."
+    "¿HTTP (dummy descifrar) siempre 200?": "SI",
+    "¿HTTP REAL de la lambda siempre 200?": "SI (aplana todo a 200)",
+    "¿HTTP real coincide con lo esperado?": "NO en 367 (29.1%)",
+    "veredicto": "Comportamiento anomalo: apunta a problema en lo desplegado (codigo/config)."
   },
   "ejecuciones": {
     "total": 1263,
@@ -83,6 +87,21 @@
       }
     ]
   },
+  "httpProtocolo": {
+    "disponible": 1263,
+    "realLambda": {
+      "200": 1263
+    },
+    "esperado": {
+      "200": 896,
+      "400": 359,
+      "500": 8
+    },
+    "coincide": 896,
+    "difiere": 367,
+    "pctDifiere": 29.1,
+    "lambdaSiempre200": true
+  },
   "escenariosUnicos": {
     "total": 316,
     "positivos": 217,
@@ -91,29 +110,11 @@
     "pct550": 1.9
   },
   "bloquesRuta": {
-    "General/0_jsonEntrada": {
-      "total": 3,
-      "c550": 3,
-      "c400": 0,
-      "otro": 0
-    },
-    "General/1_validaciones_js": {
-      "total": 304,
-      "c550": 20,
+    "?": {
+      "total": 1263,
+      "c550": 23,
       "c400": 68,
-      "otro": 216
-    },
-    "General/2_reglaNegocio": {
-      "total": 60,
-      "c550": 0,
-      "c400": 0,
-      "otro": 60
-    },
-    "Metodo/0001": {
-      "total": 896,
-      "c550": 0,
-      "c400": 0,
-      "otro": 896
+      "otro": 1172
     }
   },
   "respuestaExitosa": {
@@ -123,22 +124,22 @@
     "codigo550": 0
   },
   "escenariosUnicosCon400": [
-    "General/1_validaciones_js/1_idCanal|1.1.1. idCanal — propiedad ausente (undefined) (400)",
-    "General/1_validaciones_js/1_idCanal|1.1.9. idCanal — longitud 5, máximo 4 (400)",
-    "General/1_validaciones_js/2_validador|1.2.1. validador — propiedad ausente (undefined) (400)",
-    "General/1_validaciones_js/2_validador|1.2.2. validador — null (400)",
-    "General/1_validaciones_js/2_validador|1.2.3. validador — string vacío \"\" (400)",
-    "General/1_validaciones_js/3_peticion|1.3.1. peticion — propiedad ausente (undefined) (400)",
-    "General/1_validaciones_js/3_peticion|1.3.2. peticion — null (400)",
-    "General/1_validaciones_js/3_peticion|1.3.3. peticion — string vacío (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.1. idPeticion — propiedad ausente (undefined) (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.2. idPeticion — null (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.3. idPeticion — string vacío (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.4. idPeticion — tipo number (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.5. idPeticion — tipo boolean (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.6. idPeticion — tipo object (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.7. idPeticion — solo espacios (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.8. idPeticion — solo tab (400)",
-    "General/1_validaciones_js/4_idPeticion|1.4.10. idPeticion — longitud 65, máximo 64 (400)"
+    "?|1.1.1. idCanal — propiedad ausente (undefined) (400)",
+    "?|1.1.9. idCanal — longitud 5, máximo 4 (400)",
+    "?|1.2.1. validador — propiedad ausente (undefined) (400)",
+    "?|1.2.2. validador — null (400)",
+    "?|1.2.3. validador — string vacío \"\" (400)",
+    "?|1.3.1. peticion — propiedad ausente (undefined) (400)",
+    "?|1.3.2. peticion — null (400)",
+    "?|1.3.3. peticion — string vacío (400)",
+    "?|1.4.1. idPeticion — propiedad ausente (undefined) (400)",
+    "?|1.4.2. idPeticion — null (400)",
+    "?|1.4.3. idPeticion — string vacío (400)",
+    "?|1.4.4. idPeticion — tipo number (400)",
+    "?|1.4.5. idPeticion — tipo boolean (400)",
+    "?|1.4.6. idPeticion — tipo object (400)",
+    "?|1.4.7. idPeticion — solo espacios (400)",
+    "?|1.4.8. idPeticion — solo tab (400)",
+    "?|1.4.10. idPeticion — longitud 65, máximo 64 (400)"
   ]
 }

@@ -2,10 +2,10 @@
 
 | Campo | Valor |
 |-------|-------|
-| Archivo | `2026-07-12T21-46-59Z_prod_VALIDADOR_completo_por-escenario.json` |
+| Archivo | `enriquecido-03-VALIDADOR_por-escenario.json` |
 | Código fuente | prod |
 | Nivel ejecución | VALIDADOR |
-| Fecha | 2026-07-12T21:46:59.773Z |
+| Fecha | 2026-07-12T23:10:30.053Z |
 
 ## Preguntas obvias (precomputadas)
 
@@ -15,12 +15,14 @@
 | ¿alguna respuesta positiva en todo el run? | **SI (735)** |
 | ¿algun assert en verde? | **SI (732)** |
 | codigoError dominante | **null (68.6% ejecuciones)** |
-| ¿HTTP siempre 200? | **SI** |
-| veredicto | **Sin anomalias criticas detectadas.** |
+| ¿HTTP (dummy descifrar) siempre 200? | **SI** |
+| ¿HTTP REAL de la lambda siempre 200? | **NO** |
+| ¿HTTP real coincide con lo esperado? | **NO en 98 (10.3%)** |
+| veredicto | **Comportamiento anomalo: apunta a problema en lo desplegado (codigo/config).** |
 
 ## Banderas / señales automáticas
 
-Sin banderas.
+- HTTP: 98 ejecuciones (10.3%) con HTTP real != esperado. Revisar tabla de comparacion.
 
 ## Números
 
@@ -29,11 +31,15 @@ Sin banderas.
 - Caminos felices (éxito): grupos **150**, positivos **150**
 - Top codigoError: null×650, 404×66, 400×54, 405×51, 509×51, 401×36, 406×12, 425×12, 999×9, 402×3
 
+### HTTP (protocolo) — real de la lambda vs esperado
+
+- Ejecuciones con HTTP real: **947** | coincide con esperado: **849** | difiere: **98** (10.3%)
+- HTTP real de la lambda: 200×765, 400×180, 502×2
+- HTTP esperado por el plan: 200×672, 400×269, 500×6
+- ¿La lambda aplana todo a HTTP 200?: **NO**
+
 ### Por bloque de ruta
 
 | Bloque | Total | 550 | 400 | otro |
 |--------|-------|-----|-----|------|
-| `General/0_jsonEntrada` | 2 | 0 | 0 | 2 |
-| `General/1_validaciones_js` | 228 | 0 | 54 | 174 |
-| `General/2_reglaNegocio` | 45 | 0 | 0 | 45 |
-| `Metodo/0001` | 672 | 0 | 0 | 672 |
+| `?` | 947 | 0 | 54 | 893 |

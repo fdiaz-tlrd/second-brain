@@ -2,14 +2,14 @@
 
 | Campo | Valor |
 |-------|-------|
-| Archivo run | `2026-07-12T21-08-09Z_prod_MATRIZ_completo_por-escenario.json` |
+| Archivo run | `enriquecido-02-MATRIZ_por-escenario.json` |
 | Código fuente | prod |
 | Nivel | MATRIZ |
 
 ## Resumen
 
-- **Ejecuciones** con fuente: **1263** → coinciden **724** (57.3%) | difieren **539** (42.7%)
-- **Escenarios únicos**: **316** → todos sus runs coinciden: **181** | con al menos un run distinto: **135** | todos los runs distintos: **135**
+- **Ejecuciones** con fuente: **1263** → coinciden **984** (77.9%) | difieren **279** (22.1%)
+- **Escenarios únicos**: **316** → todos sus runs coinciden: **246** | con al menos un run distinto: **70** | todos los runs distintos: **70**
 
 ### Por bloque de ruta
 
@@ -18,23 +18,16 @@
 | `General/0_jsonEntrada` | 3 | 0 | 3 |
 | `General/1_validaciones_js` | 304 | 80 | 224 |
 | `General/2_reglaNegocio` | 60 | 36 | 24 |
-| `Metodo/0001` | 896 | 608 | 288 |
+| `Metodo/0001` | 896 | 868 | 28 |
 
 ### Top pares esperado → recibido (solo diferencias)
 
 | Esperado → Recibido | Cantidad |
 |---------------------|----------|
-| 413→null | 68 |
 | 400→404 | 44 |
 | 431→509 | 44 |
 | 400→405 | 40 |
 | 431→404 | 40 |
-| 510→null | 32 |
-| 511→null | 32 |
-| 512→null | 32 |
-| 513→null | 32 |
-| 514→null | 32 |
-| 515→null | 32 |
 | 400→401 | 28 |
 | 400→550 | 23 |
 | 403→509 | 8 |

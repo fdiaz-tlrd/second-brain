@@ -4,31 +4,51 @@
 **esperaba** y lo que devolvió **código prod** por las dos rutas: `NIVEL_EJECUCION=MATRIZ` (flujo real
 del cliente: Matriz→Validador→VCN) y `NIVEL_EJECUCION=VALIDADOR` (validador directo). **Solo diferencias.**
 
-- **Tabla completa (136 escenarios):** [`recopilacion/TABLA-diferencias-esperado-matriz-validador.md`](./recopilacion/TABLA-diferencias-esperado-matriz-validador.md)
+- **Tabla completa:** [`recopilacion/TABLA-diferencias-esperado-matriz-validador.md`](./recopilacion/TABLA-diferencias-esperado-matriz-validador.md) — ahora con **Tabla A (NEGOCIO)** y **Tabla B (HTTP)**.
 - **Script:** [`recopilacion/comparar-3-columnas.js`](./recopilacion/comparar-3-columnas.js)
-- **Runs:** MATRIZ `2026-07-12T21-08-09Z`, VALIDADOR `2026-07-12T21-46-59Z` (ambos prod-a-dev).
+- **Runs:** MATRIZ `2026-07-12T21-08-09Z`, VALIDADOR `2026-07-12T21-46-59Z` (ambos prod-a-dev), enriquecidos con HTTP real.
 
-**Leyenda:** `codigo×N` = ese `codigoError` en N ejecuciones (variantes de cifrado por escenario).
-`null` = respuesta sin `codigoError` (éxito de negocio). MATRIZ corre 4 variantes, VALIDADOR 3.
+**Leyenda:** `codigo×N` = ese código en N ejecuciones (variantes de cifrado por escenario).
+`null` = respuesta sin error (éxito de negocio). MATRIZ corre 4 variantes, VALIDADOR 3.
 
 ---
 
-## RESPUESTAS RÁPIDAS
+## ⚠ CORRECCIÓN respecto a la versión anterior
+
+La versión previa decía **136 escenarios divergentes** y un bloque **`510–515 → null` (~90 escenarios)**.
+**Estaba MAL:** comparaba solo `codigoError` (null en `parametro`/`metodo`/`exito`, donde el resultado va
+en `respuestas[0].resultado`). Con el campo correcto (`recibidoNegocio`):
+
+- **510–515 SÍ coinciden** con lo esperado. No son diferencias.
+- Las diferencias de **negocio** reales son **71 escenarios**, no 136.
+- Se separó la dimensión **HTTP** (protocolo) de la dimensión **NEGOCIO** (payload).
+
+---
+
+## RESPUESTAS RÁPIDAS — NEGOCIO (payload)
 
 | Pregunta | Respuesta |
 |----------|-----------|
-| ¿Cuántos escenarios difieren del plan (en MATRIZ o VALIDADOR)? | **136 / 316** |
-| ¿En cuántos difieren **MATRIZ y VALIDADOR entre sí**? | **8** |
-| ¿Difiere solo MATRIZ (validador ok)? | 2 |
-| ¿Difiere solo VALIDADOR (matriz ok)? | 1 |
-| ¿Difieren en ambos (mismo código erróneo)? | 133 |
+| Escenarios que difieren del plan (MATRIZ o VALIDADOR) | **71 / 316** |
+| Difieren **MATRIZ ≠ VALIDADOR** entre sí | **8** |
+| Difiere solo MATRIZ (validador ok) | 2 |
+| Difiere solo VALIDADOR (matriz ok) | 1 |
+| Difieren en ambos (mismo código erróneo) | 68 |
 
-**Clave:** de 136 diferencias contra el plan, **128 se comportan igual por matriz que por validador**
-(el desvío viene de VCN/validador, no de la capa matriz). Solo en **8** la ruta importa.
+**Clave:** de 71 diferencias, **63 se comportan igual por matriz y por validador** (el desvío viene de
+VCN/validador, no de la capa matriz). Solo en **8** la ruta importa.
+
+## RESPUESTAS RÁPIDAS — HTTP (protocolo)
+
+| Pregunta | Respuesta |
+|----------|-----------|
+| Escenarios con HTTP real ≠ esperado (alguna ruta) | **92** |
+| ¿MATRIZ devuelve el HTTP esperado? | **NO** — aplana todo a 200 |
+| ¿VALIDADOR devuelve el HTTP esperado? | Parcial (400/502 en varios) |
 
 ---
 
-## Los 8 escenarios donde MATRIZ ≠ VALIDADOR (los que dependen de la ruta)
+## Los 8 escenarios donde MATRIZ ≠ VALIDADOR (NEGOCIO — dependen de la ruta)
 
 | Escenario | Esperado | MATRIZ | VALIDADOR | Lectura |
 |-----------|----------|--------|-----------|---------|
@@ -48,23 +68,24 @@ resultado hacia el del validador.
 
 ---
 
-## Las otras 128 diferencias (MATRIZ = VALIDADOR)
+## Las otras 63 diferencias de NEGOCIO (MATRIZ = VALIDADOR)
 
-En estos escenarios ambas rutas devuelven **el mismo** código, distinto del esperado. Es decir, la
-diferencia **no** la introduce matriz; viene de VCN/validador (código prod ≠ contrato dev). Grupos grandes:
+Ambas rutas devuelven **el mismo** código, distinto del esperado. El desvío **no** lo introduce matriz;
+viene de VCN/validador (código prod ≠ contrato dev). Grupos grandes (top pares MATRIZ):
 
-| Grupo | Escenarios | Esperado → recibido (ambas rutas) | Nota |
-|-------|-----------|-----------------------------------|------|
-| `Metodo/0001/1_validaciones_js/1_cuenta` (413) | ~20 | 413 → **null** (mayoría) o 999/509 | Prod **no** rechaza cuenta malformada como dev; muchos pasan a éxito |
-| `Metodo/0001/2_respuestaCanalValidador/*` (510–515) | ~90 | 510–515 → **null** | Prod devuelve éxito donde dev esperaba error de canal validador |
-| `General/1_validaciones_js/2_validador` (400) | ~12 | 400 → **404** | Validador devuelve 404, no 400 |
-| `General/1_validaciones_js/3_peticion` (400) | ~10 | 400 → **405** | 405 en vez de 400 |
-| `General/1_validaciones_js/5_solicitudes` (431) | ~23 | 431 → **509/404/999/425** | Varía por subcaso |
-| `General/2_reglaNegocio/*` (403/500/418) | ~6 | → 509/405/418 | Reglas de negocio con códigos distintos |
+| Esperado → recibido (ambas rutas) | Ejec. | Nota |
+|-----------------------------------|-------|------|
+| 400 → 404 | 44 | Validaciones `validador`: prod da 404 en vez de 400 |
+| 431 → 509 | 44 | Bloque `5_solicitudes`: prod da 509 |
+| 400 → 405 | 40 | Validaciones `peticion`: prod da 405 |
+| 431 → 404 | 40 | `5_solicitudes`: prod da 404 |
+| 400 → 401 | 28 | `idCanal` (formato): prod da 401 |
+| 403 / 418 → 509 | 8 + 8 | Reglas de negocio |
+| 413 → 999 / 509 | 8 + 4 | `1_cuenta`: variantes puntuales (la mayoría del bloque 413 SÍ coincide) |
+| 599 → null | 8 | Timeout esperado no ocurre |
+| 509 → 406 | 8 | |
 
-> **`510–515 → null` (≈90 escenarios)** es el bloque más grande: prod, ante respuestas de error del
-> canal validador (cuenta incorrecta/cerrada/bloqueada, etc.), responde **éxito** en lugar del código
-> de error que el plan dev espera. Es la mayor fuente de divergencia y no depende de la ruta.
+> **Ya no aplica** el antiguo "510–515 → null". Ese bloque **coincide** con lo esperado.
 
 ---
 
@@ -72,14 +93,11 @@ diferencia **no** la introduce matriz; viene de VCN/validador (código prod ≠ 
 
 ```powershell
 cd Postman\comparar-prod-vs-dev\recopilacion
-node comparar-3-columnas.js ^
-  ..\..\generador\logs\historial\vcn\2026-07-12T21-08-09Z_prod_MATRIZ_completo_por-escenario.json ^
-  ..\..\generador\logs\historial\vcn\2026-07-12T21-46-59Z_prod_VALIDADOR_completo_por-escenario.json ^
-  --salida TABLA-diferencias-esperado-matriz-validador.md
+node comparar-3-columnas.js enriquecido-02-MATRIZ_por-escenario.json enriquecido-03-VALIDADOR_por-escenario.json --salida TABLA-diferencias-esperado-matriz-validador.md
 ```
 
-La tabla `.md` completa (136 filas) queda en `recopilacion/`. Este documento es el **índice
-interpretado**; para el detalle fila a fila, abrir la tabla.
+La tabla `.md` completa queda en `recopilacion/` (Tabla A negocio + Tabla B HTTP). Este documento es el
+**índice interpretado**; para el detalle fila a fila, abrir la tabla.
 
 ---
 
@@ -87,4 +105,5 @@ interpretado**; para el detalle fila a fila, abrir la tabla.
 
 Esto compara **prod vs plan-dev (esperado)**. Falta el run **`--codigo-fuente dev`** con el **mismo**
 `NIVEL_EJECUCION` para comparar **prod recibido vs dev recibido** escenario a escenario (ahí se confirma
-cuáles de estas 136 diferencias son "dev cambió el contrato" y cuáles son defecto real).
+cuáles de estas diferencias son "dev cambió el contrato" y cuáles son defecto real). También falta
+**VCN directo** (aísla matriz) y contraste con **Marketplace** si aplica.

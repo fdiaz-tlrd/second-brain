@@ -46,8 +46,11 @@
 |-------|-----------|
 | Flag `--codigo-fuente prod\|dev` | `Postman/generador/run-newman.js` |
 | Campo `nivelEjecucion` (desde `NIVEL_EJECUCION` en environment) | `run-newman.js` → todos los informes |
+| Salida por escenario **enriquecida** (jul-2026) | `httpRealLambda`, `httpEsperado`, `recibidoNegocio`, `codigoErrorEsperado`, `negocioCoincide`, `httpCoincide`, `assertsFallidos`, `tiempoRealMs` |
+| Helpers exportados (scripts de estudio) | `run-newman.js` → `module.exports` (importar, no duplicar) |
 | Salida por escenario | `logs/resultados-por-escenario-<suite>.json` y `.md` |
 | Diff entre runs | `Postman/generador/comparar-runs.js` |
+| Scripts de estudio | `comparar-prod-vs-dev/recopilacion/` (`analizar-por-escenario.js`, `comparar-3-columnas.js`, `comparar-esperado-vs-recibido.js`, `regenerar-por-escenario.js`) |
 
 Diseño: [`comparar-prod-vs-dev/`](comparar-prod-vs-dev/).
 
@@ -98,8 +101,14 @@ Origen regex P2P `idSolicitud`: commit `5f1eb0461c44197a8053dd5ab96ce8d3e8301987
 - [x] VCN environment `NIVEL_EJECUCION=MATRIZ`; `nivelEjecucion` en informes Newman.
 - [x] **Primera recopilación** (`96656b5`): `node run-newman.js vcn --codigo-fuente prod --nota "prod-a-dev rama prod-a-dev"`.
 - [x] Análisis documentado: [`comparar-prod-vs-dev/recopilacion/ITERACION-01-prod-a-dev-MATRIZ-2026-07-12.md`](comparar-prod-vs-dev/recopilacion/ITERACION-01-prod-a-dev-MATRIZ-2026-07-12.md).
+- [x] **Iter 02** MATRIZ post-fix ValidadorUrl (`3f072d6`): 150/150 caminos felices.
+- [x] **Iter 03** VALIDADOR directo (`c102333`): 0×550; 8 escenarios MATRIZ≠VALIDADOR.
+- [x] **`run-newman.js` enriquecido** (jul-2026): captura HTTP real + negocio efectivo + esperados. Ver [`comparar-prod-vs-dev/10-http-vs-codigoerror.md`](comparar-prod-vs-dev/10-http-vs-codigoerror.md).
+- [x] Estudio corregido: negocio ~22 % diverge (no 43 %); 510–515 SÍ coincide. Ver [`comparar-prod-vs-dev/08-esperado-vs-recibido-prod.md`](comparar-prod-vs-dev/08-esperado-vs-recibido-prod.md).
 
-**Hallazgo run 01:** 98,4 % escenarios únicos → `codigoError: 550` (`Error inesperado`); **todo** `Metodo/0001` incl. éxitos; infra HTTP 200.
+**Hallazgo run 01:** 98,4 % escenarios únicos → `codigoError: 550` (`Error inesperado`); causa: URL validador mala. Corregido en iter 02.
+
+**Hallazgo HTTP (iter 02/03):** MATRIZ aplana todo a HTTP 200; VALIDADOR devuelve 400/502. Ver doc 10.
 
 **Pendiente (máquina VPN):**
 

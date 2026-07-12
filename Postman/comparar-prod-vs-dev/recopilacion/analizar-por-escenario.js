@@ -84,17 +84,34 @@ function esEscenarioExito(o) {
 
 function analizar(data) {
   const esc = data.escenarios || [];
-  const http = {};
+  const http = {}; // HTTP del dummy /descifrar (legado)
+  const httpReal = {}; // HTTP real de la lambda (matriz/validador/VCN) si está disponible
+  const httpEsp = {}; // HTTP esperado por el plan
   const codigoError = {};
   const porRutaTop = {};
   let assertOkTotal = 0;
   let assertFailTotal = 0;
   let assertNullTotal = 0;
   let positivasTotal = 0;
+  let httpRealDisponible = 0;
+  let httpCoincideOk = 0;
+  let httpDifiere = 0;
 
   esc.forEach(function (e) {
     const h = String(e.httpDescifrar != null ? e.httpDescifrar : "null");
     http[h] = (http[h] || 0) + 1;
+    // HTTP real de la lambda (solo en runs enriquecidos)
+    if (e.httpRealLambda != null) {
+      httpRealDisponible++;
+      const hr = String(e.httpRealLambda);
+      httpReal[hr] = (httpReal[hr] || 0) + 1;
+      if (e.httpEsperado != null) {
+        const he = String(e.httpEsperado);
+        httpEsp[he] = (httpEsp[he] || 0) + 1;
+        if (e.httpEsperado === e.httpRealLambda) httpCoincideOk++;
+        else httpDifiere++;
+      }
+    }
     const c = String(e.codigoError != null ? e.codigoError : "null");
     codigoError[c] = (codigoError[c] || 0) + 1;
     if (e.assertPaso === true) assertOkTotal++;
@@ -171,13 +188,52 @@ function analizar(data) {
     );
   }
 
+  // --- HTTP real de la lambda (protocolo, distinto de codigoError del payload) ---
+  const httpRealSolo200 =
+    httpRealDisponible > 0 &&
+    Object.keys(httpReal).length === 1 &&
+    httpReal["200"] === httpRealDisponible;
+  const pctHttpDifiere =
+    httpCoincideOk + httpDifiere
+      ? Math.round((httpDifiere / (httpCoincideOk + httpDifiere)) * 1000) / 10
+      : 0;
+  if (httpRealSolo200 && httpDifiere > 0) {
+    banderas.push(
+      "HTTP: la lambda devuelve HTTP 200 en TODAS las " +
+        httpRealDisponible +
+        " ejecuciones, pero el plan esperaba HTTP != 200 en " +
+        httpDifiere +
+        " (" +
+        pctHttpDifiere +
+        "%). El status HTTP no refleja el error de negocio (todo va 200 + codigoError en el body)."
+    );
+  } else if (httpDifiere > 0) {
+    banderas.push(
+      "HTTP: " +
+        httpDifiere +
+        " ejecuciones (" +
+        pctHttpDifiere +
+        "%) con HTTP real != esperado. Revisar tabla de comparacion."
+    );
+  }
+
   // --- Respuestas a preguntas obvias (precomputadas) ---
   const preguntasObvias = {
     "¿algun camino feliz dio respuesta positiva?": exitoPositivos > 0 ? "SI (" + exitoPositivos + ")" : "NO",
     "¿alguna respuesta positiva en todo el run?": positivasTotal > 0 ? "SI (" + positivasTotal + ")" : "NO",
     "¿algun assert en verde?": assertOkTotal > 0 ? "SI (" + assertOkTotal + ")" : "NO",
     "codigoError dominante": codDominante.key + " (" + pctDominante + "% ejecuciones)",
-    "¿HTTP siempre 200?": soloHttp200 ? "SI" : "NO",
+    "¿HTTP (dummy descifrar) siempre 200?": soloHttp200 ? "SI" : "NO",
+    "¿HTTP REAL de la lambda siempre 200?": httpRealDisponible === 0
+      ? "sin dato (run no enriquecido)"
+      : httpRealSolo200
+      ? "SI (aplana todo a 200)"
+      : "NO",
+    "¿HTTP real coincide con lo esperado?": httpRealDisponible === 0
+      ? "sin dato (run no enriquecido)"
+      : httpDifiere === 0
+      ? "SI (todos)"
+      : "NO en " + httpDifiere + " (" + pctHttpDifiere + "%)",
     "veredicto": banderas.length
       ? "Comportamiento anomalo: apunta a problema en lo desplegado (codigo/config)."
       : "Sin anomalias criticas detectadas.",
@@ -204,6 +260,15 @@ function analizar(data) {
       http: http,
       codigoError: codigoError,
       topCodigoError: topEntries(codigoError, 10),
+    },
+    httpProtocolo: {
+      disponible: httpRealDisponible,
+      realLambda: httpReal,
+      esperado: httpEsp,
+      coincide: httpCoincideOk,
+      difiere: httpDifiere,
+      pctDifiere: pctHttpDifiere,
+      lambdaSiempre200: httpRealSolo200,
     },
     escenariosUnicos: {
       total: unicos.size,
@@ -268,6 +333,18 @@ function buildMd(r) {
   L.push("- Escenarios únicos: **" + r.escenariosUnicos.total + "** | positivos: **" + r.escenariosUnicos.positivos + "** | 550: **" + r.escenariosUnicos.codigo550 + "** | 400: **" + r.escenariosUnicos.codigo400 + "**");
   L.push("- Caminos felices (éxito): grupos **" + r.respuestaExitosa.grupos + "**, positivos **" + r.respuestaExitosa.positivos + "**");
   L.push("- Top codigoError: " + r.ejecuciones.topCodigoError.map(function (t) { return t.key + "×" + t.count; }).join(", "));
+  L.push("");
+  L.push("### HTTP (protocolo) — real de la lambda vs esperado");
+  L.push("");
+  if (!r.httpProtocolo || r.httpProtocolo.disponible === 0) {
+    L.push("Sin dato de HTTP real (run no enriquecido; regenerar con `regenerar-por-escenario.js`).");
+  } else {
+    const hp = r.httpProtocolo;
+    L.push("- Ejecuciones con HTTP real: **" + hp.disponible + "** | coincide con esperado: **" + hp.coincide + "** | difiere: **" + hp.difiere + "** (" + hp.pctDifiere + "%)");
+    L.push("- HTTP real de la lambda: " + Object.keys(hp.realLambda).map(function (k) { return k + "×" + hp.realLambda[k]; }).join(", "));
+    L.push("- HTTP esperado por el plan: " + Object.keys(hp.esperado).map(function (k) { return k + "×" + hp.esperado[k]; }).join(", "));
+    L.push("- ¿La lambda aplana todo a HTTP 200?: **" + (hp.lambdaSiempre200 ? "SÍ" : "NO") + "**");
+  }
   L.push("");
   L.push("### Por bloque de ruta");
   L.push("");
