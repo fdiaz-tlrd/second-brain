@@ -1,0 +1,144 @@
+{
+  "meta": {
+    "suite": "vcn",
+    "fecha": "2026-07-12T21:08:09.869Z",
+    "codigoFuente": "prod",
+    "nivelEjecucion": "MATRIZ",
+    "folder": "(completo)",
+    "nota": "prod-a-dev rama prod-a-dev",
+    "archivo": "2026-07-12T21-08-09Z_prod_MATRIZ_completo_por-escenario.json"
+  },
+  "banderas": [],
+  "preguntasObvias": {
+    "¿algun camino feliz dio respuesta positiva?": "SI (150)",
+    "¿alguna respuesta positiva en todo el run?": "SI (876)",
+    "¿algun assert en verde?": "SI (868)",
+    "codigoError dominante": "null (68.7% ejecuciones)",
+    "¿HTTP siempre 200?": "SI",
+    "veredicto": "Sin anomalias criticas detectadas."
+  },
+  "ejecuciones": {
+    "total": 1263,
+    "positivas": 876,
+    "assertOk": 868,
+    "assertFail": 395,
+    "assertNull": 0,
+    "http": {
+      "200": 1263
+    },
+    "codigoError": {
+      "400": 68,
+      "401": 32,
+      "402": 4,
+      "404": 88,
+      "405": 68,
+      "406": 16,
+      "418": 4,
+      "425": 16,
+      "509": 64,
+      "550": 23,
+      "999": 12,
+      "null": 868
+    },
+    "topCodigoError": [
+      {
+        "key": "null",
+        "count": 868
+      },
+      {
+        "key": "404",
+        "count": 88
+      },
+      {
+        "key": "400",
+        "count": 68
+      },
+      {
+        "key": "405",
+        "count": 68
+      },
+      {
+        "key": "509",
+        "count": 64
+      },
+      {
+        "key": "401",
+        "count": 32
+      },
+      {
+        "key": "550",
+        "count": 23
+      },
+      {
+        "key": "406",
+        "count": 16
+      },
+      {
+        "key": "425",
+        "count": 16
+      },
+      {
+        "key": "999",
+        "count": 12
+      }
+    ]
+  },
+  "escenariosUnicos": {
+    "total": 316,
+    "positivos": 217,
+    "codigo550": 6,
+    "codigo400": 17,
+    "pct550": 1.9
+  },
+  "bloquesRuta": {
+    "General/0_jsonEntrada": {
+      "total": 3,
+      "c550": 3,
+      "c400": 0,
+      "otro": 0
+    },
+    "General/1_validaciones_js": {
+      "total": 304,
+      "c550": 20,
+      "c400": 68,
+      "otro": 216
+    },
+    "General/2_reglaNegocio": {
+      "total": 60,
+      "c550": 0,
+      "c400": 0,
+      "otro": 60
+    },
+    "Metodo/0001": {
+      "total": 896,
+      "c550": 0,
+      "c400": 0,
+      "otro": 896
+    }
+  },
+  "respuestaExitosa": {
+    "grupos": 150,
+    "positivos": 150,
+    "todos550": false,
+    "codigo550": 0
+  },
+  "escenariosUnicosCon400": [
+    "General/1_validaciones_js/1_idCanal|1.1.1. idCanal — propiedad ausente (undefined) (400)",
+    "General/1_validaciones_js/1_idCanal|1.1.9. idCanal — longitud 5, máximo 4 (400)",
+    "General/1_validaciones_js/2_validador|1.2.1. validador — propiedad ausente (undefined) (400)",
+    "General/1_validaciones_js/2_validador|1.2.2. validador — null (400)",
+    "General/1_validaciones_js/2_validador|1.2.3. validador — string vacío \"\" (400)",
+    "General/1_validaciones_js/3_peticion|1.3.1. peticion — propiedad ausente (undefined) (400)",
+    "General/1_validaciones_js/3_peticion|1.3.2. peticion — null (400)",
+    "General/1_validaciones_js/3_peticion|1.3.3. peticion — string vacío (400)",
+    "General/1_validaciones_js/4_idPeticion|1.4.1. idPeticion — propiedad ausente (undefined) (400)",
+    "General/1_validaciones_js/4_idPeticion|1.4.2. idPeticion — null (400)",
+    "General/1_validaciones_js/4_idPeticion|1.4.3. idPeticion — string vacío (400)",
+    "General/1_validaciones_js/4_idPeticion|1.4.4. idPeticion — tipo number (400)",
+    "General/1_validaciones_js/4_idPeticion|1.4.5. idPeticion — tipo boolean (400)",
+    "General/1_validaciones_js/4_idPeticion|1.4.6. idPeticion — tipo object (400)",
+    "General/1_validaciones_js/4_idPeticion|1.4.7. idPeticion — solo espacios (400)",
+    "General/1_validaciones_js/4_idPeticion|1.4.8. idPeticion — solo tab (400)",
+    "General/1_validaciones_js/4_idPeticion|1.4.10. idPeticion — longitud 65, máximo 64 (400)"
+  ]
+}
