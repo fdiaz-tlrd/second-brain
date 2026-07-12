@@ -58,7 +58,17 @@ Ya no domina el 550 comodín; aparecen los códigos por escenario de error:
 
 ## Residual (dato, no diagnóstico)
 
-Quedan **6 escenarios únicos con 550** (23 ejecuciones), la mayoría en `General/0_jsonEntrada` y algunos sueltos en validaciones. Ya **no es sistémico**. No se investiga aquí (el usuario maneja la causa); se deja registrado por si se retoma.
+Quedan **6 escenarios únicos con 550** (23 ejecuciones). Ya **no es sistémico**. Patrón: todos son
+escenarios que **esperaban 400** (input mal formado) pero la cadena devolvió **550**:
+
+1. `General/0_jsonEntrada` → `0.1. body — JSON HTTP inválido (400)`
+2. `General/1_validaciones_js/1_idCanal` → `1.1.2. idCanal — null (400)`
+3. `General/1_validaciones_js/1_idCanal` → `1.1.3. idCanal — string vacío "" (400)`
+4. `General/1_validaciones_js/1_idCanal` → `1.1.4. idCanal — tipo number (400)`
+5. `General/1_validaciones_js/1_idCanal` → `1.1.5. idCanal — tipo boolean (400)`
+6. `General/1_validaciones_js/1_idCanal` → `1.1.6. idCanal — tipo object (400)`
+
+No se investiga aquí (el usuario maneja la causa); se deja enumerado por si se retoma.
 
 ---
 
