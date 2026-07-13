@@ -497,7 +497,22 @@ function buildResultadosPorEscenarioMd(resultados) {
     return e.capturaOk;
   }).length;
   lines.push("| Con captura determinista `[CAPTURA]` | " + conCaptura + " / " + resultados.total + " |");
+  // Conteo por veredicto de negocio. "sin evaluar" (negocioCoincide=null) NO debe
+  // esconderse: si >0, hay respuestas que el barrido no pudo comparar (p.ej. crash 500
+  // o codigoErrorEsperado no capturado). Historicamente esto era un punto ciego.
+  const negOk = resultados.escenarios.filter(function (e) { return e.negocioCoincide === true; }).length;
+  const negFail = resultados.escenarios.filter(function (e) { return e.negocioCoincide === false; }).length;
+  const negNull = resultados.escenarios.filter(function (e) { return e.negocioCoincide == null; }).length;
+  lines.push("| Negocio OK / divergente / **sin evaluar** | " + negOk + " / " + negFail + " / **" + negNull + "** |");
   lines.push("");
+  if (negNull > 0) {
+    lines.push(
+      "> **ATENCION:** " + negNull + " reps con `negocioCoincide=null` (sin veredicto). " +
+        "No entran en OK ni en divergente. Revisar (posible crash 500 o esperado no capturado). " +
+        "Usar `recopilacion/listar-divergencias-negocio.js` que ahora lista la seccion SIN EVALUAR."
+    );
+    lines.push("");
+  }
   lines.push(
     "Columnas HTTP = protocolo (real de la lambda vs esperado). " +
       "Columnas negocio = `codigoError`/`resultado` del payload (recibido efectivo vs esperado). " +

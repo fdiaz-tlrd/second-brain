@@ -43,6 +43,8 @@ function main() {
         bodySet: new Set(),
         n: 0,
         fail: 0,
+        ok: 0,
+        nul: 0,
       });
     }
     const g = map.get(e.nombre);
@@ -50,11 +52,18 @@ function main() {
     g.recSet.add(e.recibidoNegocio);
     if (e.body) g.bodySet.add(e.body);
     if (e.negocioCoincide === false) g.fail++;
+    else if (e.negocioCoincide === true) g.ok++;
+    else g.nul++; // negocioCoincide == null -> no evaluado (punto ciego historico)
   }
 
   const unicos = [...map.values()];
   const diverg = unicos
     .filter((g) => g.fail > 0)
+    .sort((a, b) => a.nombre.localeCompare(b.nombre));
+  // SIN EVALUAR: escenarios donde NINGUNA rep tuvo veredicto (todas null).
+  // No entran en "divergentes" ni en "OK"; antes se perdian silenciosamente.
+  const sinEvaluar = unicos
+    .filter((g) => g.fail === 0 && g.ok === 0)
     .sort((a, b) => a.nombre.localeCompare(b.nombre));
 
   if (md) {
@@ -77,11 +86,42 @@ function main() {
           "` |"
       );
     }
+    if (sinEvaluar.length > 0) {
+      console.log("");
+      console.log("### SIN EVALUAR (negocioCoincide=null en todas las reps) — REVISAR");
+      console.log("");
+      console.log("| Ruta | Escenario | Body recibido |");
+      console.log("|---|---|---|");
+      for (const g of sinEvaluar) {
+        const body = [...g.bodySet][0] || "";
+        console.log(
+          "| " +
+            g.ruta.replace("General/", "") +
+            " | " +
+            g.nombre +
+            " | `" +
+            body.replace(/\|/g, "\\|").substring(0, 90) +
+            "` |"
+        );
+      }
+    }
     return;
   }
 
   console.log("Escenarios unicos:", unicos.length);
   console.log("Con divergencia de codigo de respuesta:", diverg.length);
+  console.log("SIN EVALUAR (todas las reps null):", sinEvaluar.length);
+  if (sinEvaluar.length > 0) {
+    console.log(
+      "  *** ATENCION: estos escenarios no tienen veredicto y NO estan en 'divergentes' ni en 'OK'. Revisar uno por uno. ***"
+    );
+    for (const g of sinEvaluar) {
+      const body = [...g.bodySet][0] || "";
+      console.log(
+        "  - " + g.nombre + "  |  " + body.substring(0, 70)
+      );
+    }
+  }
 
   const patrones = new Map();
   for (const g of diverg) {

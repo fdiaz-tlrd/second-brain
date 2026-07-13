@@ -5,7 +5,8 @@
 | Campo | Valor |
 |-------|-------|
 | **Última actualización** | 2026-07-13 |
-| **Estado** | VCN revisión `codigoError` **cerrada** (doc 12). P2P revisión **cerrada** (doc 13): 74 PROD-MAL, 62 N/A mejora dev. Hallazgos HP-023…026 |
+| **Estado** | VCN revisión `codigoError` **cerrada** (doc 12) — **auditada sin puntos ciegos** (316 únicos = 70 divergentes + 246 OK, 0 null). P2P revisión **cerrada** (doc 13): 540 únicos = 382 OK + 158 con problema. 158 = 82 PROD-MAL (46 transversal + 30 alias + 2 plan HP-015 + 4 crash HP-028) + 1 HP-027 (doc idPeticion) + 75 N/A mejora dev (62 seguridad + 13 bancoAcreedor). Hallazgos HP-023…028. **Bloque E** (17 null) auditado tras encontrar punto ciego del barrido |
+| **Tooling** | Punto ciego `negocioCoincide=null` **cerrado en 3 capas**: (1) `run-newman.js` (reporte por-escenario muestra `OK/divergente/sin evaluar` + aviso si null>0); (2) `recopilacion/listar-divergencias-negocio.js` (sección **SIN EVALUAR**); (3) **causa raíz — `Post-response.js` ahora emite `[CAPTURA]` en las 3 suites** (antes solo VCN; P2P tenía 0/2159 y P2M igual). Con `[CAPTURA]` el `codigoErrorEsperado` (de `pm.variables`) queda registrado aunque el flujo reviente → un crash 500 sale como **divergente** (esp vs null), no como `sin evaluar`. Colecciones **P2P** (`config-p2p.json`) y **P2M** (`config.json`) re-ensambladas con el bloque embebido (verificado). **Requiere re-run Newman (VPN)** para que los logs lo reflejen |
 | **Rama producto** | `feature/ARQ-225_Refactory` (P2P, P2M, VCN, validador-api) |
 | **Repo docs** | `second-brain` rama `main` |
 

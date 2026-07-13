@@ -6,8 +6,8 @@
 | **Fecha** | 2026-07-13 |
 | **Estado** | confirmado (código + Newman) — **se corrige en dev** |
 | **Severidad** | media-alta |
-| **Componente** | `tld-api-cuenta-nombre` / `cuenta-nombre` (`validatePlan`) |
-| **Ámbito** | VCN (observable en flujo Matriz → Validador → VCN) |
+| **Componente** | `tld-api-cuenta-nombre` / `cuenta-nombre`; **`tld-api-alias` / `alias`** (misma regla de negocio) |
+| **Ámbito** | VCN y P2P (Matriz → Validador → producto) |
 | **Veredicto** | **PROD-MAL** (el esperado del test, 403, es el correcto) |
 
 ---
@@ -26,16 +26,28 @@ tiene plan. Lo correcto es rechazar con **403** "Canal emisor no tiene un plan d
 
 ## Comportamiento en producción (observado)
 
+### VCN — escenarios 2.1.2 / 2.1.4
+
 - **Recibido:** `codigoError 509` "Error inesperado en validador" (HTTP 200, payload cifrado).
 - **Condición:** `idCanal` sin fila en `tld-matriz-planes-canales` (canales prueba 1020, 1019).
 - **Ruta:** Matriz → Validador → VCN (`cuenta-nombre`).
+
+### P2P (alias) — mismos escenarios 2.1.2 / 2.1.4
+
+- **Recibido:** `resultado 419` en `respuestas[0]` (flujo sigue hasta negocio; no hay rechazo por plan).
+- **Condición:** mismos canales 1020 / 1019.
+- **Ruta:** Matriz → Validador → alias (`tld-api-alias`).
+- **Causa en prod:** `VALIDAR_PLAN_ID_CANAL: 0` en `template.yaml` — la validación de plan está
+  **desactivada**; si `subscription` falla, prod **no rechaza** y continúa.
+- **Run Newman P2P:** `2026-07-13T09-47-19Z` (`c1de7ef`).
 
 ---
 
 ## Comportamiento esperado
 
 - **403** "Canal emisor no tiene un plan de suscripción".
-- Diferencia concreta: esperado **403** vs recibido **509**.
+- VCN: esperado **403** vs recibido **509**.
+- P2P: esperado **403** vs recibido **419** (síntoma distinto; mismo hallazgo de negocio).
 
 ---
 
@@ -43,13 +55,17 @@ tiene plan. Lo correcto es rechazar con **403** "Canal emisor no tiene un plan d
 
 | Tipo | Referencia |
 |------|------------|
-| Run Newman | `Postman/generador/logs/historial/vcn/2026-07-13T03-16-37Z_prod_MATRIZ_completo*.json` (2.1.2, 2.1.4 → 509) |
-| Código prod | `prod_adactado_a_dev/tld-api-cuenta-nombre/lambdas/cuenta-nombre/app.js` líneas 32–49 (no valida `subscription === false`) |
+| Run Newman VCN | `Postman/generador/logs/historial/vcn/2026-07-13T03-16-37Z_prod_MATRIZ_completo*.json` (2.1.2, 2.1.4 → 509) |
+| Run Newman P2P | `Postman/generador/logs/resultados-por-escenario-p2p.json` run `09-47-19Z` (2.1.2, 2.1.4 → 419) |
+| Código prod VCN | `prod_adactado_a_dev/tld-api-cuenta-nombre/lambdas/cuenta-nombre/app.js` líneas 32–49 (no valida `subscription === false`) |
+| Código prod alias | `prod_adactado_a_dev/tld-api-alias/lambdas/alias/app.js` L145–148 (`VALIDAR_PLAN_ID_CANAL === 1` único gate); `template.yaml` L272: `VALIDAR_PLAN_ID_CANAL: 0` |
 | Control-plan | `prod_adactado_a_dev/tld-matriz/lambdas/tld-matriz-control-plan/index.js` líneas 173–177 (`subscription: false` con `statusCode: 200`) |
 | Escenarios | `2.1.2` (`CANAL_EMISOR_SIN_PLAN` / 1020), `2.1.4` (`CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS` / 1019) |
 | Canales prueba | `Postman/canalesPruebas-dev/canalesPruebas-dev.json` + `.md` |
-| Código dev (referencia) | `tld-api-cuenta-nombre/lambdas/cuenta-nombre/lib/plan.js` + `app.js` (rechazo 403) |
-| Revisión | [`../Postman/comparar-prod-vs-dev/12-revision-codigos-respuesta-vcn.md`](../Postman/comparar-prod-vs-dev/12-revision-codigos-respuesta-vcn.md) §Bloque 2.1-A |
+| Código dev VCN | `tld-api-cuenta-nombre/lambdas/cuenta-nombre/lib/plan.js` + `app.js` (rechazo 403) |
+| Código dev alias | `tld-api-alias/lambdas/alias/lib/plan.js` + `app.js` L279–298 (`CFG_VALIDAR_PLAN_POR_CANAL`; rechazo 403) |
+| Revisión VCN | [`../Postman/comparar-prod-vs-dev/12-revision-codigos-respuesta-vcn.md`](../Postman/comparar-prod-vs-dev/12-revision-codigos-respuesta-vcn.md) §Bloque 2.1-A |
+| Revisión P2P | [`../Postman/comparar-prod-vs-dev/13-revision-codigos-respuesta-p2p.md`](../Postman/comparar-prod-vs-dev/13-revision-codigos-respuesta-p2p.md) §Bloque D |
 
 ---
 
@@ -74,10 +90,17 @@ tiene plan. Lo correcto es rechazar con **403** "Canal emisor no tiene un plan d
 
 ## Mejora propuesta (en dev — ajuste de prod, NO ajuste de prueba)
 
-Tras `validatePlan`, rechazar si `subscription !== true` (o `statusCode !== 0` según homologación P2M/base)
-con **403** y mensaje de catálogo. Ya implementado en `tld-api-cuenta-nombre` (refactor dev). Los tests
-**2.1.2** y **2.1.4** mantienen **403**. La corrida contra `prod_adactado_a_dev` seguirá dando 509 hasta
-aplicar el fix.
+Tras `validatePlan`, rechazar si el plan es inválido o ausente con **403** y mensaje de catálogo.
+
+- **VCN:** implementado en `tld-api-cuenta-nombre` (refactor dev).
+- **Alias (P2P):** implementado en `tld-api-alias` (`resolverCanalEmisor`, rechazo 403). Variable
+  **`CFG_VALIDAR_PLAN_POR_CANAL`** (`1` = validar, `0` = no validar) — en dev template va en `1`; en
+  prod real y en `prod_adactado_a_dev` va en `0` (**rollout**: activar cuando los canales sin plan estén
+  corregidos en producción; el flag no invalida el hallazgo).
+
+Los tests **2.1.2** y **2.1.4** mantienen **403** en VCN y P2P. La corrida contra `prod_adactado_a_dev`
+seguirá divergiendo (509 en VCN, 419 en P2P) mientras prod tenga la validación desactivada o sin el fix
+de código.
 
 ---
 
