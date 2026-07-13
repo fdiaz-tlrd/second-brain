@@ -4,7 +4,7 @@
 |-------|--------|
 | **ID** | HP-013 |
 | **Fecha** | 2026-07-13 |
-| **Estado** | confirmado (código + Newman) — **se corrige en dev** |
+| **Estado** | **corregido-en-dev** (2026-07-13, `validador.js`; verificado 24/24) — pendiente deploy + re-run |
 | **Severidad** | media-alta |
 | **Componente** | `tld-validador-api` / `lambdas/validar` (`validarParametroSolicitudes`) |
 | **Ámbito** | transversal (validador) — observado en VCN |

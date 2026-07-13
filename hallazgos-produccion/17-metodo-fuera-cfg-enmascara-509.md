@@ -4,7 +4,7 @@
 |-------|--------|
 | **ID** | HP-018 |
 | **Fecha** | 2026-07-13 |
-| **Estado** | confirmado (código + Newman) — **se corrige en dev** |
+| **Estado** | **corregido-en-dev** (ya por refactor invoke: `resolverServicioInterno` devuelve 418 y `app.js` lo mapea; verificado por lectura de código 2026-07-13) — pendiente deploy + re-run |
 | **Severidad** | media-alta |
 | **Componente** | `tld-validador-api` / `validar` |
 | **Ámbito** | transversal — observado en VCN |

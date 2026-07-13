@@ -4,7 +4,7 @@
 |-------|--------|
 | **ID** | HP-016 |
 | **Fecha** | 2026-07-13 |
-| **Estado** | confirmado (código + Newman) — **se corrige en dev** |
+| **Estado** | **corregido-en-dev** (ya por refactor invoke: `getCanal` lanza si faltan llaves → 500; verificado por lectura de código 2026-07-13) — pendiente deploy + re-run |
 | **Severidad** | media-alta |
 | **Componente** | `tld-validador-api` / `validar` (y mismo patrón en `tld-api-cuenta-nombre`) |
 | **Ámbito** | transversal — observado en VCN |

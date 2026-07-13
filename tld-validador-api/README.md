@@ -14,6 +14,7 @@ Carpeta de trabajo para entender cómo el **orquestador validador** se comunica 
 | Archivo | Contenido |
 |---------|-----------|
 | [diferencia-prod-vs-dev-respuesta-producto.md](./diferencia-prod-vs-dev-respuesta-producto.md) | **Diferencia real JSON** prod vs dev (statusCode en `respuesta`) |
+| [correccion-validar-hallazgos-2026-07-13.md](./correccion-validar-hallazgos-2026-07-13.md) | **Corrección `validar`**: HP-012/013/014 (código) + HP-016/018 (ya resueltos por refactor). Verificado 24/24 |
 | [hallazgos-pendientes.md](./hallazgos-pendientes.md) | Pendientes QA / producto / deploy |
 | [../Postman/00-estado-y-retomo.md](../Postman/00-estado-y-retomo.md) | **Checkpoint** Postman + Newman (pausa, retomo, runs pendientes) |
 | [arquitectura-invoke-y-contratos.md](./arquitectura-invoke-y-contratos.md) | Público = matriz; invoke interno; API GW solo prueba |
@@ -26,6 +27,13 @@ Carpeta de trabajo para entender cómo el **orquestador validador** se comunica 
 ## Doc en el repo dev
 
 - [`tld-validador-api/docs/architecture/migracion-llamado-api-gateway-a-invoke.md`](../../tld-validador-api/docs/architecture/migracion-llamado-api-gateway-a-invoke.md) — decisión **opción B** (mapa en código + nombres en env).
+
+## Verificadores (helpers reutilizables — no borrar)
+
+| Script | Qué prueba |
+|--------|------------|
+| `verificar-como-axios-data.js` | invoke + strip `statusCode` ≡ `axios.data` de prod |
+| `verificar-validarParametroSolicitudes.js` | `validarParametroSolicitudes` real tras HP-012/013/014 (24 casos). Carga el módulo del repo dev vía `NODE_PATH` del layer |
 
 ## Alcance de este estudio
 

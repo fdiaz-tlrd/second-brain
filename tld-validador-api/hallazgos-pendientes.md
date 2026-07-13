@@ -1,6 +1,6 @@
 # Hallazgos — repo dev `tld-validador-api`
 
-Última revisión: **2026-07-06**
+Última revisión: **2026-07-13**
 
 ---
 
@@ -10,6 +10,14 @@
 |------|----------|
 | `@aws-sdk/client-lambda` faltante | Layer `3.1079.0`; `axios` retirado |
 | Timeout `validar` 24 s | **28 s** |
+| **HP-012** `idSolicitud` inválido → 404 | **431** en `validarParametroSolicitudes` (validador.js) |
+| **HP-013** `idSolicitud` sin charset → 509 | validación charset (alfanum+guion, ≥1 alfanum) → **431** |
+| **HP-014** elemento `null` crashea → 999 | guard objeto no-nulo → **431** (sin crash) |
+| **HP-016** canal mal configurado → 405 | **ya daba 500** (refactor invoke: `getCanal` lanza) |
+| **HP-018** método fuera de config → 509 | **ya daba 418** (`resolverServicioInterno`) |
+
+Detalle + verificación (24/24): [correccion-validar-hallazgos-2026-07-13.md](./correccion-validar-hallazgos-2026-07-13.md)
+Verificador reutilizable: `node verificar-validarParametroSolicitudes.js`
 
 Ver [timeouts-y-dependencias.md](./timeouts-y-dependencias.md)
 
