@@ -84,10 +84,24 @@
   }
 
   const httpReal = Number(cvGet('PROCESAR_STATUS_CODE'));
+  // HTTP Code (capa transporte). La matriz de produccion SIEMPRE responde HTTP 200:
+  // en NIVEL_EJECUCION=MATRIZ el HTTP Code esperado se fija en 200. El expectedHttpStatus
+  // del escenario aplica a las otras rutas (VALIDADOR / directo). Esto NO toca el
+  // codigo de respuesta del payload, que se verifica aparte.
+  const nivelEjecucion = String(pm.environment.get('NIVEL_EJECUCION') || 'VCN')
+    .trim()
+    .toUpperCase();
+  const httpEsperadoTransporte = nivelEjecucion === 'MATRIZ' ? 200 : httpEsperado;
   pm.test(
-    '[Lambda P2M] HTTP status = ' + httpEsperado + ' (real: ' + httpReal + ')',
+    '[Lambda P2M] HTTP status = ' +
+      httpEsperadoTransporte +
+      ' (' +
+      nivelEjecucion +
+      ', real: ' +
+      httpReal +
+      ')',
     function () {
-      pm.expect(httpReal).to.equal(httpEsperado);
+      pm.expect(httpReal).to.equal(httpEsperadoTransporte);
     }
   );
 

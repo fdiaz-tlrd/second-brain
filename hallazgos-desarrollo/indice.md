@@ -6,6 +6,7 @@
 | HD-002 | Dev invoca validador por Lambda; lee `statusCode` downstream pero no lo expone al cliente | informativo | `tld-matriz` / `tld-validador-validar` | confirmado (código) | [01-matriz-validador-validar-http-code.md](01-matriz-validador-validar-http-code.md) §Dev vs prod |
 | HD-003 | Mismos bugs heredados que prod (`error()`, `validatePlan`, `X-Forwarded-For`, `isValid`) | alta | `tld-matriz` / `tld-validador-validar` | confirmado (código) | [02-matriz-bugs-heredados-pendientes.md](02-matriz-bugs-heredados-pendientes.md) |
 | HD-004 | Marketplace VCN: corrección HTTP 200 en doc vía generador OpenAPI | alta | `telered_content_mktpl` / `api_4` | implementado | [03-marketplace-api4-correccion-http-generador.md](03-marketplace-api4-correccion-http-generador.md) |
+| HD-005 | Newman: HTTP Code esperado = 200 en `NIVEL_EJECUCION=MATRIZ` (VCN/P2P/P2M) | alta | `Postman/generador` | implementado | [04-newman-http-code-matriz-200.md](04-newman-http-code-matriz-200.md) |
 
 ---
 
