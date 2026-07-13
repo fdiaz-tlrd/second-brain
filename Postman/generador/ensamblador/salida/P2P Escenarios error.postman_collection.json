@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "658e6097-fec3-4750-b3b5-1b745f0ff2c5",
+    "_postman_id": "5b7fc667-fe39-4530-bae4-7c52849df606",
     "name": "P2P Escenarios error",
     "description": "Colección generada desde la fuente en P2P Escenarios error/.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -1360,7 +1360,7 @@
                   ]
                 },
                 {
-                  "name": "1.2.9. validador — longitud 5, máximo 4 (400)",
+                  "name": "1.2.9. validador — longitud 9, máximo 8 (400)",
                   "request": {
                     "method": "POST",
                     "header": [],
@@ -1385,7 +1385,7 @@
                     },
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0002\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"tipoIdentificador\": \"CELULAR\"\n                }\n            }\n        ]\n    },\n    \"validador\": \"10000\"\n}",
+                      "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0002\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"tipoIdentificador\": \"CELULAR\"\n                }\n            }\n        ]\n    },\n    \"validador\": \"123456789\"\n}",
                       "options": {
                         "raw": {
                           "language": "json"

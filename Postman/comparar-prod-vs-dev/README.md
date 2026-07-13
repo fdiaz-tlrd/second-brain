@@ -10,6 +10,7 @@ Estudio negocio: [`08-esperado-vs-recibido-prod.md`](08-esperado-vs-recibido-pro
 HTTP vs negocio: [`10-http-vs-codigoerror.md`](10-http-vs-codigoerror.md) (MATRIZ aplana HTTP a 200).
 Tabla escenario a escenario: [`09-tabla-comparacion-escenarios.md`](09-tabla-comparacion-escenarios.md).
 **Captura fortalecida (jul-2026):** [`11-captura-fortalecida.md`](11-captura-fortalecida.md) — canal determinista `[CAPTURA]`; captura req claro/cifrado, resp cruda, headers, tiempo. Re-ejecutar MATRIZ/VALIDADOR/VCN desde cero.
+**Revisión código de respuesta (payload) escenario a escenario:** [`12-revision-codigos-respuesta-vcn.md`](12-revision-codigos-respuesta-vcn.md) — 70 divergencias, veredicto TEST-MAL / PROD-MAL por escenario. Helper: `recopilacion/listar-divergencias-negocio.js`.
 Estudio código real de producción: [`../../produccion_real/01-tld-matriz-validador-validar.md`](../../produccion_real/01-tld-matriz-validador-validar.md).
 Pendiente: 3 corridas nuevas con captura fortalecida; luego comparar y revisar uno a uno; Marketplace.
 

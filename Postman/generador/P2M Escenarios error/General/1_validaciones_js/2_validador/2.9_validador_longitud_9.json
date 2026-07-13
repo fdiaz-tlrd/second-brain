@@ -1,5 +1,5 @@
 {
-  "nombre": "1.2.9. validador — longitud 5, máximo 4 (400)",
+  "nombre": "1.2.9. validador — longitud 9, máximo 8 (400)",
   "expectedHttpStatus": 400,
   "expectedCodigoError": 400,
   "expectedTipo": "general",
@@ -8,16 +8,17 @@
     "idCanal": "{{CANAL_EMISOR}}",
     "peticion": {
       "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
-      "metodo": "0001",
+      "metodo": "0015",
       "solicitudes": [
         {
           "idSolicitud": "1",
           "parametros": {
-            "cuenta": "{{CUENTA_VALIDA}}"
+            "identificador": "{{IDENTIFICADOR_COMERCIO_NO_REGISTRADO}}",
+            "tipoIdentificador": "COMERCIO"
           }
         }
       ]
     },
-    "validador": "10000"
+    "validador": "123456789"
   }
 }

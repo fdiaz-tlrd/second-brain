@@ -28,17 +28,26 @@ El código dev **conserva los mismos bugs** que producción en validación/trace
 
 ---
 
-## Hallazgo prod enlazado
-
-- [HP-001 / HP-002](../hallazgos-produccion/01-matriz-idCanal-null-vacio-responde-550.md) — `idCanal` null/`""` → 550 (confirmado CloudWatch en prod; dev tiene el mismo código de trace + `error()`).
-
----
-
 ## Mejora en dev (sin romper HTTP)
 
 1. Sustituir `error()` por `log()` o eliminar la llamada que lanza.
 2. Ejecutar `isValid` **antes** de `guardarTrace`, o no indexar `canal` null en trace.
-3. Endurecer `isValid` con chequeo de tipo.
+3. **HP-009 (acordado jul-2026):** validación preventiva de formato `idCanal` → 400 antes de lookup BD (espacios, caracteres prohibidos, trim vacío). Test Newman mantiene 400; corrida prod diverge hasta fix en dev.
+
+---
+
+## Hallazgos prod enlazados (bloque 1.1 idCanal — acordado)
+
+| Sub-bloque | Hallazgo | Test |
+|------------|----------|------|
+| 1.1-A (null, vacío, tipos) | [HP-001/002](../hallazgos-produccion/01-matriz-idCanal-null-vacio-responde-550.md), [HP-005](../hallazgos-produccion/04-matriz-isValid-sin-chequeo-tipo.md) | Esperado **400** fijo |
+| 1.1-B (formato inválido) | [HP-009](../hallazgos-produccion/08-matriz-idCanal-formato-invalido-responde-401.md) | Esperado **400** fijo |
+
+Revisión: [`../Postman/comparar-prod-vs-dev/12-revision-codigos-respuesta-vcn.md`](../Postman/comparar-prod-vs-dev/12-revision-codigos-respuesta-vcn.md) §Bloque 1.1.
+
+---
+
+3. Endurecer `isValid` con chequeo de tipo (HP-005).
 4. Cualquier fix de `codigoError` → validar con Newman `--codigo-fuente dev` y comparar body, **no** HTTP de matriz.
 
 ---

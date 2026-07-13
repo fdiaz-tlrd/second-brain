@@ -1,13 +1,12 @@
 {
-  "nombre": "1.4.12. idPeticion — símbolo @ (soloLog / exito)",
+  "nombre": "0001.3.1015.1.2. validador por SWIFT ZONAGATO — cuenta feliz (exito)",
   "expectedHttpStatus": 200,
   "expectedCodigoError": 0,
   "expectedTipo": "exito",
   "expectedCuenta": "1100001328",
   "expectedBanco": "TLRDPAPA",
   "expectedEnmascarado": true,
-  "expectedValidador": "1009",
-  "expectedProducto": "PACA",
+  "expectedValidador": "1015",
   "titularesClaro": [
     "Fischl von Luftschloss Narfidort"
   ],
@@ -15,8 +14,9 @@
   "algoritmoCifrado": "aes-256-cbc",
   "body": {
     "idCanal": "{{CANAL_EMISOR}}",
-    "validador": "{{CANAL_VALIDADOR_EXITO}}",
+    "validador": "ZONAGATO",
     "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
       "metodo": "0001",
       "solicitudes": [
         {
@@ -25,8 +25,8 @@
             "cuenta": "{{CuentaFeliz}}"
           }
         }
-      ],
-      "idPeticion": "{{SWIFT_CANAL_EMISOR}}@001"
+      ]
     }
-  }
+  },
+  "expectedProducto": "PACA"
 }
