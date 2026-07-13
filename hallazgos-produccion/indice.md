@@ -28,6 +28,10 @@ Actualizar cada vez que se agregue o cierre un hallazgo en esta carpeta.
 | HP-020 | Parámetro `cuenta` inválido en 0001 → 999/509 (debe ser 413) | alta | `tld-api-cuenta-nombre` / `cuenta-nombre` | confirmado — se corrige en dev | [19-vcn-cuenta-ausente-crashea-999.md](19-vcn-cuenta-ausente-crashea-999.md) |
 | HP-021 | Timeouts desalineados: demora validador → 509/Internal error (debe ser 599) | **crítica** | `tld-api-cuenta-nombre` + cadena | confirmado — se corrige en dev | [20-timeouts-desalineados-demora-no-599.md](20-timeouts-desalineados-demora-no-599.md) |
 | HP-022 | Respuesta validador sin campo cifrado → 406 (debe ser 509) | media-alta | `tld-api-cuenta-nombre` / `cuenta-nombre` | confirmado — se corrige en dev | [21-validador-respuesta-sin-campo-cifrado-406.md](21-validador-respuesta-sin-campo-cifrado-406.md) |
+| HP-023 | P2P alias: `idSolicitud` charset → 419 en vez de 431 | media-alta | `tld-api-alias` / `alias` | confirmado — se corrige en dev | [23-p2p-alias-idsolicitud-charset-responde-419.md](23-p2p-alias-idsolicitud-charset-responde-419.md) |
+| HP-024 | P2P alias 0002: identificador inválido ejecuta negocio (409 → 0) | alta | `tld-api-alias` / `validaciones.js` | confirmado — se corrige en dev | [24-p2p-alias-identificador-invalido-ejecuta-negocio.md](24-p2p-alias-identificador-invalido-ejecuta-negocio.md) |
+| HP-025 | P2P alias: campo requerido ausente → código catálogo en vez de 419 | media | `tld-api-alias` / validaciones método | confirmado — se corrige en dev | [25-p2p-alias-campo-requerido-ausente-codigo-catalogo.md](25-p2p-alias-campo-requerido-ausente-codigo-catalogo.md) |
+| HP-026 | P2P: método no asociado emisor → 419 en vez de 418 | media-alta | `tld-api-alias` / regla negocio | confirmado — se corrige en dev | [26-p2p-metodo-no-asociado-emisor-responde-419.md](26-p2p-metodo-no-asociado-emisor-responde-419.md) |
 
 ---
 

@@ -36,4 +36,4 @@ node run-newman.js p2p --codigo-fuente prod --nota "MATRIZ P2P prod-a-dev alias 
 
 ## Después del run
 
-Commit + push **`Postman/generador/logs/`** completo (`ultimo-run-*`, `resumen-fallos-*`, `registro-p2p.md`, `historial/`). Avisar en el chat para abrir revisión escenario a escenario (doc 13 P2P, análogo a doc 12 VCN).
+Commit + push **`Postman/generador/logs/`** completo. Revisión escenario a escenario: [`Postman/comparar-prod-vs-dev/13-revision-codigos-respuesta-p2p.md`](../Postman/comparar-prod-vs-dev/13-revision-codigos-respuesta-p2p.md) (**cerrada** jul-2026).

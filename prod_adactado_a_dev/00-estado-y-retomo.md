@@ -104,7 +104,7 @@ VCN en prod usa HTTP al validador (no invoke); el validador prod-a-dev debe esta
 
 | Item | Quién | Notas |
 |------|-------|-------|
-| **Revisión P2P en producción** (`codigoError` vs Newman, escenario a escenario) | Agente + usuario | Antes de revisar VCN en dev normal. Mismo método que [12-revision-codigos-respuesta-vcn](../Postman/comparar-prod-vs-dev/12-revision-codigos-respuesta-vcn.md) |
+| **Revisión P2P en producción** (`codigoError` vs Newman, escenario a escenario) | **Cerrada** jul-2026 | Doc [13](../Postman/comparar-prod-vs-dev/13-revision-codigos-respuesta-p2p.md); HP-023…026 |
 | Deploy `tld-api-alias` `prod-a-dev` en dev | Usuario (VPN) | Rama lista (`4bc331d`); ver [06](./06-tld-api-alias.md) |
 | Confirmar runtime post-deploy (descifrado validador, autorizador stub, flujos VCN/P2P) | Usuario / agente | VCN deploy OK; P2P pendiente |
 | Si persiste `InvalidCiphertextException` en validador | Investigar | Ver 02 — parseo `IV.ciphertext` o datos de prueba |

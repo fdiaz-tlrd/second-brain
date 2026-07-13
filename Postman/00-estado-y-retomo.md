@@ -5,7 +5,7 @@
 | Campo | Valor |
 |-------|-------|
 | **Última actualización** | 2026-07-13 |
-| **Estado** | VCN revisión `codigoError` **cerrada** (doc 12). P2P: 1er run bloqueado por URLs mal/faltantes en `tld-validador-config-servicios` (corregido por usuario, no era cifrado) — ver doc 13; **pendiente re-correr**. `tld-api-alias` `prod-a-dev` `4bc331d` |
+| **Estado** | VCN revisión `codigoError` **cerrada** (doc 12). P2P revisión **cerrada** (doc 13): 74 PROD-MAL, 62 N/A mejora dev. Hallazgos HP-023…026 |
 | **Rama producto** | `feature/ARQ-225_Refactory` (P2P, P2M, VCN, validador-api) |
 | **Repo docs** | `second-brain` rama `main` |
 

@@ -1,97 +1,160 @@
-# Revisión escenario por escenario — CÓDIGO DE RESPUESTA (payload) — P2P
+# Revisión escenario por escenario — CÓDIGO DE RESPUESTA (payload JSON) — P2P
 
-> **Alcance:** SOLO `codigoError` / `resultado` del JSON de respuesta. **NO** HTTP Code.
-> **Fuente:** run `prod / MATRIZ` `2026-07-13T08-53-01Z` sobre `prod_adactado_a_dev` (commit logs `fddeeb7`).
+> **Alcance:** SOLO `codigoError` / `resultado` dentro del JSON de respuesta. **NO** HTTP Code.
+> **Fuente válida:** run `prod / MATRIZ` **`2026-07-13T09-47-19Z`** (`c1de7ef`). Código prod en dev
+> (`prod_adactado_a_dev`, `tld-api-alias` `prod-a-dev`).
 
-## ESTADO: CAUSA CONFIRMADA Y CORREGIDA — pendiente re-correr
+## Cómo se genera / regenera
 
-El **86 %** de los escenarios no llegó a la lambda de producto (alias). No fue divergencia de negocio
-ni cifrado: fue un fallo de integración **validador → alias** por **config de datos**.
-
-**Resuelto (2026-07-13, usuario):** en la tabla **`tld-validador-config-servicios`** (dev) **faltaban
-URLs** para métodos de alias y **las que estaban eran incorrectas**. El usuario las corrigió. Esto
-confirma la **causa #1** de abajo (URL vacía/incorrecta → `axios` sin respuesta → 509), y descarta la #2
-(red/deploy) y la hipótesis de cifrado.
-
-**Siguiente:** re-correr `p2p MATRIZ prod` sobre `prod_adactado_a_dev` y, con el nuevo run, abrir la
-revisión `codigoError` escenario a escenario (análogo a doc 12 VCN). El run `2026-07-13T08-53-01Z`
-queda **invalidado** para comparar negocio (sirve solo como evidencia del bloqueo).
-
-## Qué se recibió (2159 escenarios)
-
-| Recibido `codigoError` | Escenarios | Qué es |
-|------------------------|-----------:|--------|
-| **509** | **1864** | `"Error inesperado al llamar servicio interno"` — la validador **no pudo llamar al alias** |
-| 404 | 84 | negocio real (llegó a validar) |
-| 400 | 72 | formato (matriz/validador) |
-| 405 | 68 | método |
-| 401 | 32 | canal emisor no existe |
-| 550 | 23 | `"Error inesperado"` — solo `idCanal` null/tipo (20) + JSON inválido (3) |
-| 425 | 12 | negocio |
-| 999 | 4 | crash catch validador |
-
-- `negocioCoincide` OK: **112** / NO: **2047**.
-- Todos los 509 traen **exactamente** el mismo texto: `Error inesperado al llamar servicio interno`.
-- Los 509 caen en **rutas de método** (`Metodo/0002…0025/1_validaciones_js/*`) + algunas `General`
-  que dependen de llegar al producto. Las validaciones de formato transversales (idCanal, validador,
-  peticion) sí devuelven su código correcto (400/401/405) porque las resuelve la validador **antes**
-  de llamar al alias.
-
-## Causa raíz (confirmada en código)
-
-`prod_adactado_a_dev/tld-validador-api/lambdas/validar/app.js`:
-
-```
-80  const servicio = await canal.getUrlServicioInterno(peticion.metodo);   // lee tld-validador-config-servicios (id = metodo)
-...
-92  const respuesta = await validador.validar(servicioInterno, peticionValidador);  // axios.post(canal.url, ...)
-93  if (!respuesta){
-95     return await util.lambdaResult(200, 509, "Error inesperado al llamar servicio interno")
+```powershell
+cd second-brain/Postman/comparar-prod-vs-dev/recopilacion
+node listar-divergencias-negocio.js ../../generador/logs/resultados-por-escenario-p2p.json
+node listar-divergencias-negocio.js ../../generador/logs/resultados-por-escenario-p2p.json --md
 ```
 
-`validador.validar` (`lib/validador.js`):
+## Resumen
 
-```
-11  const resp = await axios.post(canal.url, request, { timeout: readTimeout })
-16  return resp.data
-17  } catch (error) {
-20    return error?.response?.data   // en fallo de conexión (sin response) -> undefined -> 509
-```
+| Métrica | Valor |
+|---------|------:|
+| Escenarios totales (filas) | 2159 |
+| Escenarios **únicos** en colección | 540 |
+| Únicos con divergencia de código | **141** |
+| `negocioCoincide` OK | 1528 / 2159 (71 %) |
+| Tests fallidos | 244 / 4491 |
 
-`respuesta` queda **falsy** (→ 509) cuando:
+**Veredictos en los 141 únicos:**
 
-1. **`canal.url` es `undefined`** → no hay fila en `tld-validador-config-servicios` (id = método) para
-   0002…0025 en dev, **o**
-2. **el endpoint del alias no responde** (DNS/red/no desplegado): `axios` lanza sin `.response` →
-   `error?.response?.data` = `undefined`.
+| Veredicto | # escenarios únicos | Acción |
+|-----------|--------------------:|--------|
+| **PROD-MAL** (transversal VCN, reutilizar HP-001…018) | **46** | Informe; no re-discutir |
+| **PROD-MAL** (nuevo en alias P2P, HP-023…026) | **28** | Fichar; fix en dev |
+| **N/A — mejora dev** (preguntas/respuestas seguridad, etc.) | **62** | No entrar al informe prod |
+| **DECISIÓN-CONFIG** (`VALIDAR_PLAN_ID_CANAL=0`) | **2** | Producto: ¿activar plan en prod? |
+| **PENDIENTE** | **3** | Ver abajo |
 
-Si el alias hubiera respondido *cualquier* cosa (aun un error con body), `error.response.data` sería
-truthy y **no** daría 509. Que dé 509 significa que **no hubo respuesta HTTP del alias**: URL vacía o
-conexión fallida.
+Run anterior `08-53-01Z` **invalidado** (509 masivo por URLs en `tld-validador-config-servicios`;
+corregido por usuario). Ver sección histórica al final.
 
-## Por qué NO es el cifrado (hipótesis descartada)
+## Veredictos posibles
 
-- La validador **descifró** la petición del emisor: validó `idPeticion`, `solicitudes` y leyó `metodo`
-  (todo post-descifrado) antes de intentar la llamada interna.
-- Escenarios de formato devuelven códigos correctos (400/401/404/405/431) → cifrado/descifrado OK.
-- El 509 es un JSON de negocio limpio y bien formado; `descifradoCode` de la respuesta = 200.
-- Los únicos **550 "Error inesperado"** (23) son `idCanal` null/tipo + JSON inválido — **mismo
-  comportamiento transversal de matriz** ya documentado en VCN (HP-001/002/005), no exclusivo de P2P.
-- La misma validador, en el run VCN, **sí** llegó a `cuenta-nombre` (600 caminos felices OK). El
-  problema es específico de la ruta hacia **alias**, no del transporte cifrado.
+- **PROD-MAL** → producción responde mal; el esperado del test es correcto; hallazgo.
+- **N/A — mejora dev** → el test refleja validaciones que **ya mejoramos en dev**; no es bug de prod a
+  corregir en el informe.
+- **DECISIÓN-CONFIG** → comportamiento explicado por config prod (`env`), no por código roto.
+- **PENDIENTE** → falta evidencia o decisión de producto.
 
-## Diagnóstico → resolución
+---
 
-| Paso | Resultado |
-|------|-----------|
-| Tabla `tld-validador-config-servicios` (dev): URLs de métodos alias | **Faltaban** unas y **otras eran incorrectas** → **corregido por el usuario (2026-07-13)** |
-| Endpoint alias alcanzable / deploy | No era el problema (descartado) |
-| Cifrado / variable de entorno P2P | No era el problema (descartado con evidencia) |
+## Bloque A — Transversal VCN (reutilizar hallazgos HP-001…018)
 
-Ninguna corrección tocó código de `prod-a-dev`: fue **dato de config** en la tabla del ambiente dev.
+Mismos escenarios y veredictos que [`12-revision-codigos-respuesta-vcn.md`](12-revision-codigos-respuesta-vcn.md).
+En P2P la ruta es MATRIZ → validador → alias; la capa transversal es la misma.
 
-## Pendiente
+| Bloque P2P | Esp → Recib | # únicos | Hallazgo |
+|------------|-------------|--------:|----------|
+| 0.1 JSON inválido | 400 → 550 | 1 | **PROD-MAL** HP-001 |
+| 1.1 idCanal null/tipos | 400 → 550 | 5 | **PROD-MAL** HP-001 |
+| 1.1 idCanal formato (espacios, @, etc.) | 400 → 401 | 7 | **PROD-MAL** HP-009 |
+| 1.2 validador formato/tipo | 400 → 404 | 10 | **PROD-MAL** HP-005/009 |
+| 1.3 peticion formato | 400 → 405 | 10 | **PROD-MAL** HP-011 |
+| 1.5 idSolicitud inválido (null, tipo, vacío…) | 431 → 404 | 11 | **PROD-MAL** HP-012 |
+| 1.5 null en array solicitudes | 431 → 999 | 1 | **PROD-MAL** HP-014 |
+| 2.4.1 método fuera CFG | 418 → 509 | 1 | **PROD-MAL** HP-018 |
 
-- **Re-correr** `p2p MATRIZ prod` sobre `prod_adactado_a_dev` (usuario, VPN) con la tabla ya corregida.
-- Verificar que los 509 bajaron a residuales y que aparecen los `codigoError` de negocio por método.
-- Recién entonces abrir la revisión `codigoError` escenario a escenario (análogo a doc 12 VCN).
+**Subtotal A: 46 PROD-MAL** (ya documentados en `hallazgos-produccion/`).
+
+---
+
+## Bloque B — PROD-MAL nuevo en `tld-api-alias` (HP-023…026)
+
+### B.1 — idSolicitud charset (General 1.5.10–1.5.18)
+
+| Escenario (patrón) | Esp | Recib | Veredicto |
+|--------------------|-----|-------|-----------|
+| guion bajo, espacios, @, punto, unicode, barra, comillas, solo-guiones… | 431 | **419** | **PROD-MAL** HP-023 |
+
+Body típico: `resultado:419` en `respuestas[0]` — alias no valida charset de `idSolicitud` y devuelve
+419 («campos requeridos») en lugar de 431. Relacionado con HP-013 (validador) pero manifestación en
+**producto alias**.
+
+### B.2 — identificador celular método 0002 (Metodo/0002/…/2_identificador)
+
+| Escenario (patrón) | Esp | Recib | Veredicto |
+|--------------------|-----|-------|-----------|
+| tipo number/boolean/object, longitud 7/9, letras, espacios, no inicia con 6… | 409 | **0** | **PROD-MAL** HP-024 |
+
+Body típico: `resultado:0` con `datos` — **pasó validación y ejecutó negocio** con identificador
+inválido. Prod solo chequea `!identificador` y regex en string; tipos incorrectos o valores inválidos
+llegan al flujo feliz.
+
+### B.3 — Campo requerido ausente (métodos 0004, 0006, 0007, 0008)
+
+| Escenario (patrón) | Esp | Recib | Veredicto |
+|--------------------|-----|-------|-----------|
+| identificador / tipoIdentificador propiedad ausente | 419 | **430 / 407 / 408** | **PROD-MAL** HP-025 |
+
+Prod salta a código de catálogo («no existe») sin devolver 419 («campo requerido») primero.
+
+### B.4 — Método no asociado al canal emisor (2.4.2)
+
+| Escenario | Esp | Recib | Veredicto |
+|-----------|-----|-------|-----------|
+| 2.4.2 metodo — no asociado [CANAL_EMISOR_SIN_METODO] | 418 | **419** | **PROD-MAL** HP-026 |
+
+### B.5 — Canal emisor mal configurado (2.1.3)
+
+| Escenario | Esp | Recib | Veredicto |
+|-----------|-----|-------|-----------|
+| 2.1.3 error interno getCanal [CANAL_EMISOR_MAL_CONFIGURADO] | 500 | **405** | **PROD-MAL** HP-016 (mismo que VCN) |
+
+**Subtotal B: 28 PROD-MAL nuevos** (9 + 11 + 8 + 1 + 1; HP-016 reutilizado).
+
+**Total PROD-MAL seguro: 74 escenarios únicos** (46 + 28).
+
+---
+
+## Bloque C — N/A mejora dev (no informe prod) — 62 escenarios
+
+Validaciones de **preguntas de seguridad** y campos afines **ya mejoradas en dev** (`feature/ARQ-225`):
+regex `idPregunta` dos dígitos, `respuestas[].id`, UUID en 0008, etc. Prod solo valida «no vacío» y
+luego responde códigos de catálogo (430, 407, 408, 427).
+
+| Patrón esperado → recibido | # | Bloque |
+|----------------------------|--:|--------|
+| 455 → 427 / 408 | 31 | `0006` respuestas seguridad |
+| 428 → 430 | 13 | `0004` idPregunta |
+| 429 → 430 | 2 | `0004` respuesta |
+| 444 → 407 | 9 | `0008` id UUID |
+| 437 → 408 | 4 | `0022` descripcion QR |
+| 473 → 408 | 3 | `0023` qrCode |
+
+**Veredicto: N/A — mejora dev.** Los tests mantienen el comportamiento **objetivo de dev**; no se
+documentan como bugs de producción.
+
+---
+
+## Bloque D — DECISIÓN-CONFIG / PENDIENTE — 5 escenarios
+
+| Escenario | Esp | Recib | Veredicto | Notas |
+|-----------|-----|-------|-----------|-------|
+| 2.1.2 / 2.1.4 sin plan suscripción | 403 | 419 | **DECISIÓN-CONFIG** | Prod: `VALIDAR_PLAN_ID_CANAL: 0` en template alias — plan **desactivado** por diseño prod |
+| 1.4.15 idPeticion prefijo SWIFT ajeno | 445 | 400 | **PENDIENTE** | Validador/transversal; comparar con regla idPeticion en dev |
+| 2.1.1 sin plan (si diverge) | 403 | — | Revisar si OK en run | — |
+
+---
+
+## Histórico — run bloqueado `08-53-01Z` (solo referencia)
+
+- **1864 / 2159** escenarios con `509` «Error inesperado al llamar servicio interno».
+- **Causa:** URLs faltantes/incorrectas en `tld-validador-config-servicios` (dev).
+- **Corregido** por usuario; re-run `09-47-19Z` válido.
+- **No era cifrado** ni deploy de alias (ver análisis en commit `7b2048a`).
+
+---
+
+## Referencias
+
+- VCN cerrada: [`12-revision-codigos-respuesta-vcn.md`](12-revision-codigos-respuesta-vcn.md)
+- Hallazgos: [`../../hallazgos-produccion/indice.md`](../../hallazgos-produccion/indice.md) HP-023…026
+- Repo prod P2P: [`../../prod_adactado_a_dev/06-tld-api-alias.md`](../../prod_adactado_a_dev/06-tld-api-alias.md)
+- Preguntas seguridad dev: [`../generador/validacion-preguntas-seguridad/`](../generador/validacion-preguntas-seguridad/)
