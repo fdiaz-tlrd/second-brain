@@ -50,3 +50,4 @@ Cada ficha debe dejar claro:
 - **`prod_adactado_a_dev/`** — misma base prod, mínimos ajustes para correr en dev; fuente de los runs Newman.
 - **`investigacion/`** — evidencia ad hoc (volcados Postman, CloudWatch, notas de campo).
 - **`hallazgos-produccion/`** (esta carpeta) — **vista orientada al informe de mejoras**; es el lugar donde convergen los hallazgos accionables.
+- **`hallazgos-desarrollo/`** — hallazgos del código dev (`tld-matriz`, etc.); regla HTTP vs `codigoError` y qué no romper al mejorar.
