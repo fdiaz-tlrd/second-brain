@@ -70,3 +70,16 @@ Decisión de dirección:
 
 Documentar siempre los estudios y decisiones en esta carpeta. Esta documentación es principalmente
 para el agente; el usuario no la está leyendo como fuente principal.
+
+## HTTP de transporte vs códigos de negocio (jul-2026)
+
+**Aclaración contractual documental (HP-008 / HD-004):**
+
+- El servicio matriz `POST /validador/validar` en **producción** responde **siempre HTTP 200**;
+  el error va en el body (`codigoError`, `descripcionError`, o `resultado` descifrado).
+- La documentación Marketplace **no debe** listar HTTP 400 para ese endpoint como error de negocio.
+- Los valores 400, 401, 404, 550, etc. en «Razones de Respuestas» son **códigos de negocio**, no HTTP.
+- Corregir la doc para reflejar HTTP 200 **no** rompe clientes que ya integraron contra prod real;
+  alinea la doc con el comportamiento desplegado.
+- Implementación: `generador-openapi/fragmentos/vcn/` + `armar-vcn.js`. Ver
+  [`15-correccion-http-api_4.md`](15-correccion-http-api_4.md).

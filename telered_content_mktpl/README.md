@@ -23,6 +23,7 @@ Documentación **para retomar contexto** del repo [`telered_content_mktpl`](../.
 | [12-api_4-para-dummies.md](./12-api_4-para-dummies.md) | **Para Dummies, muy gráfico:** qué quiere transmitir `api_4.json` (VCN) — personajes, una puerta, caja con candado |
 | [13-api_4-estructura-propuesta.md](./13-api_4-estructura-propuesta.md) | Árboles de estructura propuesta (navegación, anatomía mensaje, dos caras del 0001) — Árbol 1 implementado en generador |
 | [14-estado-y-retomo.md](./14-estado-y-retomo.md) | **Estado y retomo:** punto único para volver al tema — ramas/commits, mapa de archivos, decisiones, pendientes |
+| [15-correccion-http-api_4.md](./15-correccion-http-api_4.md) | **Corrección HP-008:** HTTP 200 en doc VCN vía `generador-openapi` (jul-2026) |
 
 ## Cómo usar (agente)
 

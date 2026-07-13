@@ -4,7 +4,7 @@
 |-------|--------|
 | **ID** | HP-008 |
 | **Fecha** | 2026-07-13 |
-| **Estado** | confirmado (OpenAPI prod + código/runtime matriz) |
+| **Estado** | `confirmado` (OpenAPI prod + código/runtime matriz); **doc corregida en generador** (jul-2026, HD-004) |
 | **Severidad** | **alta** (documentación engañosa para integradores) |
 | **Componente** | Marketplace VCN — `telered_content_mktpl/tech_doc/api_4.json` |
 | **Ámbito** | VCN |
@@ -112,7 +112,9 @@ La doc es **parcialmente coherente** (nota sobre `resultado` en 200) y **parcial
 5. Alinear nombre de campo: `descripcionError` vs `mensajeError` según lo que prod envía hoy.
 
 Trabajo relacionado en curso: `second-brain/telered_content_mktpl/` (generador OpenAPI, modo
-preserve-contract). Esta ficha alimenta el informe de mejoras.
+preserve-contract). **Corrección aplicada** en `telered_content_mktpl/generador-openapi/` — ver
+[HD-004](../hallazgos-desarrollo/03-marketplace-api4-correccion-http-generador.md) y
+[15-correccion-http-api_4.md](../telered_content_mktpl/15-correccion-http-api_4.md).
 
 ---
 

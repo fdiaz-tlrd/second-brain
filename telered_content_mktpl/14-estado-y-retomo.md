@@ -4,7 +4,7 @@
 > Cambiamos a otro tema (largo); al volver, leer **este archivo primero**, luego la
 > [bitácora](./07-bitacora-estudio.md) y el [generador](./09-generador-openapi.md).
 >
-> **Última actualización:** 2026-07-11 (tras reestructurar navegación api_4 según Árbol 1 de `13`).
+> **Última actualización:** 2026-07-13 (corrección HTTP HP-008 en generador VCN — ver `15-correccion-http-api_4.md`).
 
 ---
 
