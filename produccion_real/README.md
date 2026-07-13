@@ -9,6 +9,8 @@ Carpeta de estudio del **código de producción tal cual** (rama `main` de cada 
 | Doc | Contenido |
 |-----|-----------|
 | [`01-tld-matriz-validador-validar.md`](01-tld-matriz-validador-validar.md) | Revisión de `tld-matriz/lambdas/tld-validador-validar`. Confirma HTTP siempre 200; mapa de codigoError; bugs (`error()`/`validatePlan()` indefinidas, crash X-Forwarded-For, `isValid` sin chequeo de tipo); anomalía **cerrada** idCanal null/"" → 550 (CloudWatch). |
+| [`02-tld-validador-api-clon.md`](02-tld-validador-api-clon.md) | Registro del clon de `tld-validador-api` (rama `main`) en `produccion_real/`. Origen, commit, estructura y para qué sirve (baseline real de prod, distinto de `dev` y de `prod_adactado_a_dev`). |
+| [`03-tld-api-r2p-clon.md`](03-tld-api-r2p-clon.md) | Registro del clon de `tld-api-r2p` (rama `main`) en `produccion_real/`. Origen, commit, estructura. Baseline real de prod del producto R2P. |
 
 ## Relación con otras carpetas
 

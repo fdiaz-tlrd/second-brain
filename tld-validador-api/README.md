@@ -2,12 +2,15 @@
 
 Carpeta de trabajo para entender cómo el **orquestador validador** se comunica con el resto de la plataforma.
 
+> **Respuesta rápida — ¿el invoke de dev devuelve bien el HTTP Code?** → **SÍ** (matriz siempre 200; validador-api solo 200/400, tras fix HD-007). Detalle y evidencia: [http-code-cadena-cumplimiento-2026-07-13.md](./http-code-cadena-cumplimiento-2026-07-13.md) (ver **VEREDICTO RÁPIDO** arriba del doc).
+
 ## Repos comparados
 
 | Repo | Rol | Rama / nota |
 |------|-----|-------------|
-| [`tld-validador-api`](../../tld-validador-api) | Dev — migración a **Lambda Invoke** | `feature/ARQ-225_Refactory` |
-| [`prod/tld-validador-api-main`](../../prod/tld-validador-api-main) | Prod baseline — **axios + URL en Dynamo** | `main` |
+| [`tld-validador-api`](../../tld-validador-api) | Dev — migración a **Lambda Invoke** (repo de trabajo, aquí van los fixes) | `feature/ARQ-225_Refactory` |
+| [`produccion_real/tld-validador-api`](../../produccion_real/tld-validador-api) | **Prod real** — axios + URL en Dynamo. Solo lectura. Clon 2026-07-13, HEAD `18b2ebb`. Ver [produccion_real/02-tld-validador-api-clon.md](../produccion_real/02-tld-validador-api-clon.md) | `main` |
+| [`prod_adactado_a_dev/tld-validador-api`](../../prod_adactado_a_dev/tld-validador-api) | Prod adaptado a dev (generó los datos Newman) | — |
 
 ## Documentos
 
@@ -15,6 +18,7 @@ Carpeta de trabajo para entender cómo el **orquestador validador** se comunica 
 |---------|-----------|
 | [diferencia-prod-vs-dev-respuesta-producto.md](./diferencia-prod-vs-dev-respuesta-producto.md) | **Diferencia real JSON** prod vs dev (statusCode en `respuesta`) |
 | [correccion-validar-hallazgos-2026-07-13.md](./correccion-validar-hallazgos-2026-07-13.md) | **Corrección `validar`**: HP-012/013/014 (código) + HP-016/018 (ya resueltos por refactor). Verificado 24/24 |
+| [http-code-cadena-cumplimiento-2026-07-13.md](./http-code-cadena-cumplimiento-2026-07-13.md) | **HTTP Code de la cadena** matriz + validador-api vs prod; HD-007 (500→200) |
 | [hallazgos-pendientes.md](./hallazgos-pendientes.md) | Pendientes QA / producto / deploy |
 | [../Postman/00-estado-y-retomo.md](../Postman/00-estado-y-retomo.md) | **Checkpoint** Postman + Newman (pausa, retomo, runs pendientes) |
 | [arquitectura-invoke-y-contratos.md](./arquitectura-invoke-y-contratos.md) | Público = matriz; invoke interno; API GW solo prueba |
