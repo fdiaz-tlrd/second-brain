@@ -19,6 +19,8 @@ Carpeta de trabajo para entender cómo el **orquestador validador** se comunica 
 | [diferencia-prod-vs-dev-respuesta-producto.md](./diferencia-prod-vs-dev-respuesta-producto.md) | **Diferencia real JSON** prod vs dev (statusCode en `respuesta`) |
 | [correccion-validar-hallazgos-2026-07-13.md](./correccion-validar-hallazgos-2026-07-13.md) | **Corrección `validar`**: HP-012/013/014 (código) + HP-016/018 (ya resueltos por refactor). Verificado 24/24 |
 | [http-code-cadena-cumplimiento-2026-07-13.md](./http-code-cadena-cumplimiento-2026-07-13.md) | **HTTP Code de la cadena** matriz + validador-api vs prod; HD-007 (500→200) |
+| [418-metodo-no-soportado-analisis-definitivo-2026-07-13.md](./418-metodo-no-soportado-analisis-definitivo-2026-07-13.md) | **Qué es el 418** y por qué es especial: tablas de config (`config-servicios`, `canal-operacion`), inconsistencias de prod (HP-017/018/019/026), decisión firme de dejar el 418 en dev |
+| [migracion-invoke-alcance-2026-07-13.md](./migracion-invoke-alcance-2026-07-13.md) | **Alcance real axios→invoke**: qué es la migración (chica) vs qué se coló de más (logger, operacionesPaquete, getCanal, HP fixes) |
 | [hallazgos-pendientes.md](./hallazgos-pendientes.md) | Pendientes QA / producto / deploy |
 | [../Postman/00-estado-y-retomo.md](../Postman/00-estado-y-retomo.md) | **Checkpoint** Postman + Newman (pausa, retomo, runs pendientes) |
 | [arquitectura-invoke-y-contratos.md](./arquitectura-invoke-y-contratos.md) | Público = matriz; invoke interno; API GW solo prueba |
