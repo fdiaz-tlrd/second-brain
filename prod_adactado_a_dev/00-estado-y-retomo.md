@@ -4,8 +4,8 @@
 
 | Campo | Valor |
 |-------|-------|
-| **Última actualización** | 2026-07-12 |
-| **Estado** | **DESPLEGADO EN DEV** — usuario confirmó deploy de `prod-a-dev` y marca `PROD-ADAPTADO-A-DEV` visible en CloudFormation (consola web) |
+| **Última actualización** | 2026-07-13 |
+| **Estado** | VCN/validador/matriz **DESPLEGADOS** en dev (`prod-a-dev`, marca CFN OK). **P2P (`tld-api-alias`)** clonado y rama `prod-a-dev` lista; deploy pendiente de usuario. **Siguiente tema:** revisión P2P en producción (Newman `codigoError`) |
 | **Rama de trabajo** | `prod-a-dev` (en cada repo clonado) |
 | **Carpeta local** | `c:\Users\Lenovo\GitHub\prod_adactado_a_dev\` |
 | **Repo docs** | `second-brain` rama `main` → `prod_adactado_a_dev/` |
@@ -44,8 +44,9 @@ Ver [`README.md`](./README.md) — regla fija:
 | `tld-matriz` | `main` | `d763b6b` | poda + stub autorizador + marca CFN | Poda + fix `AuthorizerResultTtlInSeconds` + **stub autorizador** + Description `PROD-ADAPTADO-A-DEV` |
 | `tld-validador-api` | `main` | `d3e3959` | VPCe + KMS/EFS dev + marca CFN | VPCe `[dev]` + **reuso KMS/EFS dev** + Description `PROD-ADAPTADO-A-DEV` |
 | `tld-api-cuenta-nombre` | `master` | `497ecc4` | `497ecc4` (marca CFN) | Solo Description `PROD-ADAPTADO-A-DEV` (metadata); resto = `master` |
+| `tld-api-alias` (P2P) | `main` | `4bc331d` | `4bc331d` (marca CFN) | Solo Description `PROD-ADAPTADO-A-DEV` (metadata); resto = `main` |
 
-Todos **sincronizados** con remoto (`0 0` ahead/behind al 2026-07-12).
+VCN/validador/matriz sincronizados con remoto al 2026-07-12. **P2P** pusheado 2026-07-13.
 
 ---
 
@@ -86,8 +87,9 @@ Todo lo demás en los 3 repos = **código de producción** (con poda en matriz).
 1. **`tld-validador-api`** — provee KMS/EFS compartidos y API validador que usan VCN y matriz.
 2. **`tld-api-cuenta-nombre`** — con [`deploy.ps1`](../despliegue/deploy.ps1) (Verdaccio + `tld-telered-lib`).
 3. **`tld-matriz`** — API matriz + autorizador stubbeado.
+4. **`tld-api-alias` (P2P)** — `sam deploy --config-env dev` (sin Verdaccio). Requiere VCN prod-a-dev y `tld-matriz-control-plan`. Ver [06](./06-tld-api-alias.md).
 
-VCN en prod usa HTTP al validador (no invoke); el validador prod-a-dev debe estar desplegado y descifrando.
+VCN en prod usa HTTP al validador (no invoke); el validador prod-a-dev debe estar desplegado y descifrando. P2P en prod llama a VCN vía HTTP (`ApiCuentaNombre`) y a matriz vía invoke.
 
 ---
 
@@ -102,7 +104,9 @@ VCN en prod usa HTTP al validador (no invoke); el validador prod-a-dev debe esta
 
 | Item | Quién | Notas |
 |------|-------|-------|
-| Confirmar runtime post-deploy (descifrado validador, autorizador stub, flujos VCN) | Usuario / agente | Deploy y marca CFN OK; no reportado aún si hay errores de ejecución |
+| **Revisión P2P en producción** (`codigoError` vs Newman, escenario a escenario) | Agente + usuario | Antes de revisar VCN en dev normal. Mismo método que [12-revision-codigos-respuesta-vcn](../Postman/comparar-prod-vs-dev/12-revision-codigos-respuesta-vcn.md) |
+| Deploy `tld-api-alias` `prod-a-dev` en dev | Usuario (VPN) | Rama lista (`4bc331d`); ver [06](./06-tld-api-alias.md) |
+| Confirmar runtime post-deploy (descifrado validador, autorizador stub, flujos VCN/P2P) | Usuario / agente | VCN deploy OK; P2P pendiente |
 | Si persiste `InvalidCiphertextException` en validador | Investigar | Ver 02 — parseo `IV.ciphertext` o datos de prueba |
 | Corregir `AuthorizerResultTtlInSeconds` en `tld-matriz` **main** (repo real) | Opcional / usuario | Mencionado en 01; no ejecutado en repo productivo |
 
@@ -118,6 +122,7 @@ VCN en prod usa HTTP al validador (no invoke); el validador prod-a-dev debe esta
 | [`03-tld-api-cuenta-nombre.md`](./03-tld-api-cuenta-nombre.md) | VCN sin cambios; refactor proxy excluido |
 | [`04-despliegue-vcn-deploy.ps1.md`](./04-despliegue-vcn-deploy.ps1.md) | `deploy.ps1`, Verdaccio, rutas servidor, fixes sintaxis PS |
 | [`05-tld-matriz-autorizador-stub.md`](./05-tld-matriz-autorizador-stub.md) | Stub always-Allow; urllib3 crash; cómo revertir |
+| [`06-tld-api-alias.md`](./06-tld-api-alias.md) | P2P: clon, verificación deploy, defectos prod conocidos, orden despliegue |
 
 **Scripts de despliegue (copia de referencia):** `second-brain/despliegue/deploy.ps1` y `deployNewVersion.ps1`.
 
@@ -138,6 +143,6 @@ Logs del usuario: `second-brain/notas-sueltas/error.md`, `errorDespligue.md`.
 
 ## Qué NO está en prod_adactado_a_dev (aún)
 
-- Otros repos TLD (P2P, P2M, R2P, etc.) — no clonados.
+- Otros repos TLD (P2M, R2P, etc.) — no clonados. **P2P (`tld-api-alias`) sí** — ver [06](./06-tld-api-alias.md).
 - `tld-matriz` repo **real** (`main`) — no modificado (solo clon en `prod_adactado_a_dev`).
 - `prod/tld-api-cuenta-nombre-master` — fuera de alcance (snapshot prod real).

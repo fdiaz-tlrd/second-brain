@@ -4,8 +4,8 @@
 
 | Campo | Valor |
 |-------|-------|
-| **Última actualización** | 2026-07-12 |
-| **Estado** | **ACTIVO** — `prod_adactado_a_dev` desplegado en dev; recopilación comparar-prod-vs-dev con Newman pendiente (VPN) |
+| **Última actualización** | 2026-07-13 |
+| **Estado** | VCN revisión `codigoError` **cerrada** (doc 12). **Siguiente:** P2P en producción (mismo método). `tld-api-alias` en `prod_adactado_a_dev` listo (`prod-a-dev` `4bc331d`) |
 | **Rama producto** | `feature/ARQ-225_Refactory` (P2P, P2M, VCN, validador-api) |
 | **Repo docs** | `second-brain` rama `main` |
 

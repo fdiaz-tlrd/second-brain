@@ -55,6 +55,7 @@ Cada repo clonado usa la rama **`prod-a-dev`** (nombre corto, genérico, reutili
 | 2026-07-12 | Creado [`00-estado-y-retomo.md`](./00-estado-y-retomo.md) — handoff al cambiar de tema. |
 | 2026-07-12 | Los 3 repos: marca **`PROD-ADAPTADO-A-DEV`** en `Description:` raíz + parámetro de ambiente del `template.yaml` (identificar pila en CloudFormation). Commits `d763b6b`, `d3e3959`, `497ecc4`. Ver [00](./00-estado-y-retomo.md#marca-de-identificación-en-cloudformation-prod-adaptado-a-dev). |
 | 2026-07-12 | **Deploy en dev confirmado** por el usuario; marca `PROD-ADAPTADO-A-DEV` **visible en CloudFormation** (consola web). |
+| 2026-07-13 | `tld-api-alias` (P2P): clon + rama `prod-a-dev` + marca CFN (`4bc331d`). Ver [06](./06-tld-api-alias.md). Verificación: apto para deploy sin stub/KMS/Verdaccio. |
 
 ## Estado de repos (`origin/prod-a-dev`)
 
@@ -63,6 +64,7 @@ Cada repo clonado usa la rama **`prod-a-dev`** (nombre corto, genérico, reutili
 | `tld-matriz` | `d763b6b` | Sí |
 | `tld-validador-api` | `d3e3959` | Sí |
 | `tld-api-cuenta-nombre` | `497ecc4` | Sí |
+| `tld-api-alias` (P2P) | `4bc331d` | Sí |
 
 Los tres templates llevan el marcador **`PROD-ADAPTADO-A-DEV`** en el `Description:` raíz y en el del
 parámetro de ambiente (ver [`00-estado-y-retomo.md`](./00-estado-y-retomo.md)).
@@ -77,6 +79,7 @@ parámetro de ambiente (ver [`00-estado-y-retomo.md`](./00-estado-y-retomo.md)).
 | [03-tld-api-cuenta-nombre.md](./03-tld-api-cuenta-nombre.md) | VCN sin cambios; refactor proxy excluido |
 | [04-despliegue-vcn-deploy.ps1.md](./04-despliegue-vcn-deploy.ps1.md) | Desplegar VCN con `deploy.ps1`, Verdaccio, fixes script |
 | [05-tld-matriz-autorizador-stub.md](./05-tld-matriz-autorizador-stub.md) | Stub autorizador; urllib3 crash; revertir |
+| [06-tld-api-alias.md](./06-tld-api-alias.md) | P2P: clon, verificación deploy, defectos prod, orden despliegue |
 
 ## Pendiente
 
@@ -87,5 +90,7 @@ parámetro de ambiente (ver [`00-estado-y-retomo.md`](./00-estado-y-retomo.md)).
 
 ### Abierto
 
-- Runtime post-deploy (descifrado validador, flujos de negocio) — solo si el usuario reporta problemas.
+- **Revisión P2P en producción** (`codigoError` Newman vs prod) — ver [06](./06-tld-api-alias.md) y [12-revision-codigos-respuesta-vcn](../Postman/comparar-prod-vs-dev/12-revision-codigos-respuesta-vcn.md) (método).
+- Deploy `tld-api-alias` `prod-a-dev` en dev (usuario VPN).
+- Runtime post-deploy — solo si el usuario reporta problemas.
 - Ver [`00-estado-y-retomo.md`](./00-estado-y-retomo.md) para detalle.
