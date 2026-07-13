@@ -13,6 +13,7 @@ Actualizar cada vez que se agregue o cierre un hallazgo en esta carpeta.
 | HP-005 | `isValid` no valida tipo de `idCanal` (number/boolean/object pasan) | media | `tld-matriz` / `tld-validador-validar` | confirmado (código + Newman) | [04-matriz-isValid-sin-chequeo-tipo.md](04-matriz-isValid-sin-chequeo-tipo.md) |
 | HP-006 | `validatePlan()` / `respEventBus` indefinidos — mina si se activa `subscriptionValue` | media | `tld-matriz` / `tld-validador-validar` | confirmado (código) | [05-matriz-validatePlan-codigo-muerto.md](05-matriz-validatePlan-codigo-muerto.md) |
 | HP-007 | Riesgo crash por `X-Forwarded-For` ausente (línea 22) | media | `tld-matriz` / `tld-validador-validar` | confirmado (código) | [06-matriz-x-forwarded-for-riesgo-crash.md](06-matriz-x-forwarded-for-riesgo-crash.md) |
+| HP-008 | Marketplace `api_4.json` documenta HTTP 400; prod matriz siempre HTTP 200 | alta | `telered_content_mktpl` / `api_4.json` | confirmado | [07-marketplace-api4-http-documentado-vs-real.md](07-marketplace-api4-http-documentado-vs-real.md) |
 
 ---
 
@@ -24,7 +25,7 @@ Temas ya estudiados en otras carpetas; convertir en `HP-00N` cuando se prioricen
 |------|----------------|
 | 6 escenarios MATRIZ ≠ VALIDADOR (ruta cliente real) | [`../Postman/comparar-prod-vs-dev/07-matriz-validacion-cuerpo-json.md`](../Postman/comparar-prod-vs-dev/07-matriz-validacion-cuerpo-json.md) |
 | Divergencia esperado vs recibido (~22% negocio) | [`../Postman/comparar-prod-vs-dev/08-esperado-vs-recibido-prod.md`](../Postman/comparar-prod-vs-dev/08-esperado-vs-recibido-prod.md) |
-| HTTP protocolo vs `codigoError` | [`../Postman/comparar-prod-vs-dev/10-http-vs-codigoerror.md`](../Postman/comparar-prod-vs-dev/10-http-vs-codigoerror.md) |
+| HTTP protocolo vs `codigoError` | [`../Postman/comparar-prod-vs-dev/10-http-vs-codigoerror.md`](../Postman/comparar-prod-vs-dev/10-http-vs-codigoerror.md) — **Marketplace:** ver HP-008 |
 | Config `ValidadorUrl` incorrecta en despliegue prod-en-dev (550 masivo) | [`../Postman/comparar-prod-vs-dev/recopilacion/ITERACION-02-prod-a-dev-MATRIZ-postfix-2026-07-12.md`](../Postman/comparar-prod-vs-dev/recopilacion/ITERACION-02-prod-a-dev-MATRIZ-postfix-2026-07-12.md) |
 
 ---

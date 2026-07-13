@@ -64,4 +64,5 @@ Diseño intencional del handler: matización de respuestas al cliente de matriz.
 
 ## Referencias
 
+- [HP-008](07-marketplace-api4-http-documentado-vs-real.md) — discrepancia doc Marketplace vs HTTP real
 - [`../Postman/comparar-prod-vs-dev/10-http-vs-codigoerror.md`](../Postman/comparar-prod-vs-dev/10-http-vs-codigoerror.md)
