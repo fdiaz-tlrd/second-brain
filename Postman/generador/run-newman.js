@@ -302,6 +302,35 @@ function extractAssertData(assertions) {
 }
 
 /**
+ * Lee el assert "[CAPTURA] {json}" emitido por Post-response (fuente autoritativa).
+ * Devuelve el objeto parseado o null si no está presente / no parsea.
+ * Este canal es determinista: no depende de parsear textos de otros asserts.
+ */
+function extractCaptura(assertions) {
+  if (!Array.isArray(assertions)) {
+    return null;
+  }
+  for (let i = 0; i < assertions.length; i++) {
+    const name = (assertions[i] && assertions[i].assertion) || "";
+    if (name.indexOf("[CAPTURA] ") === 0) {
+      const json = name.slice("[CAPTURA] ".length);
+      try {
+        return JSON.parse(json);
+      } catch (e) {
+        return { _capturaParseError: e.message, _raw: json };
+      }
+    }
+  }
+  return null;
+}
+
+function toNum(v) {
+  if (v == null || v === "") return null;
+  const n = Number(v);
+  return Number.isNaN(n) ? null : n;
+}
+
+/**
  * codigoError/resultado de negocio "efectivo" según el tipo de escenario:
  *   - general: codigoError del cuerpo
  *   - parametro/metodo: respuestas[0].resultado
@@ -348,31 +377,54 @@ function buildResultadosPorEscenario(suiteKey, folder, summary, codigoFuente, no
   const escenarios = executions.map(function (ex) {
     const item = ex.item || {};
     const response = ex.response || {};
+    const request = ex.request || {};
     const body = readStreamBody(response.stream);
     const negocio = extractNegocio(body);
     const assertions = ex.assertions || [];
     const ad = extractAssertData(assertions);
+    const cap = extractCaptura(assertions); // fuente autoritativa (determinista)
     let ruta = getItemPath(item);
     if (!ruta && item.id && pathMap.has(item.id)) {
       ruta = pathMap.get(item.id);
     }
     let assertPaso = null;
     const assertsFallidos = [];
+    let assertsReales = 0;
     if (assertions.length > 0) {
       assertions.forEach(function (a) {
+        const nombre = (a && a.assertion) || "";
+        if (nombre.indexOf("[CAPTURA] ") === 0) {
+          return; // no cuenta como assert de negocio
+        }
+        assertsReales++;
         if (a && a.error) {
-          assertsFallidos.push(a.assertion || "(assert sin nombre)");
+          assertsFallidos.push(nombre || "(assert sin nombre)");
         }
       });
       assertPaso = assertsFallidos.length === 0;
     }
-    const recibidoNegocio = resolverRecibidoNegocio(negocio, ad.expectedTipo);
-    const httpEsperado = ad.httpEsperado;
-    const httpReal = ad.httpRealLambda;
+
+    // --- HTTP real: captura autoritativa, fallback a parse de asserts ---
+    const httpReal = cap && cap.httpRealLambda != null && cap.httpRealLambda !== ""
+      ? toNum(cap.httpRealLambda)
+      : ad.httpRealLambda;
+    const httpEsperado = cap && cap.httpEsperado != null && cap.httpEsperado !== ""
+      ? toNum(cap.httpEsperado)
+      : ad.httpEsperado;
+    // --- Tipo y esperado de negocio: captura primero ---
+    const expectedTipo = (cap && cap.tipo) || ad.expectedTipo;
+    const codigoErrorEsperado = cap && cap.codigoErrorEsperado != null && cap.codigoErrorEsperado !== ""
+      ? toNum(cap.codigoErrorEsperado)
+      : ad.codigoErrorEsperado;
+    const recibidoNegocio = resolverRecibidoNegocio(negocio, expectedTipo);
+    const tiempoMs = cap && cap.tiempoMs != null && cap.tiempoMs !== ""
+      ? toNum(cap.tiempoMs)
+      : ad.tiempoRealMs;
+
     return {
       nombre: item.name || "(sin nombre)",
       ruta: ruta,
-      expectedTipo: ad.expectedTipo,
+      expectedTipo: expectedTipo,
       // --- HTTP (protocolo) ---
       httpRealLambda: httpReal, // HTTP real de la lambda (matriz/validador/VCN)
       httpEsperado: httpEsperado, // HTTP esperado por el plan de pruebas
@@ -382,19 +434,36 @@ function buildResultadosPorEscenario(suiteKey, folder, summary, codigoFuente, no
       codigoError: negocio.codigoError, // codigoError plano del cuerpo
       resultadoR0: negocio.resultadoR0, // respuestas[0].resultado (parametro/metodo/exito)
       recibidoNegocio: recibidoNegocio, // codigo de negocio efectivo segun tipo
-      codigoErrorEsperado: ad.codigoErrorEsperado, // esperado (payload) parseado del assert
+      codigoErrorEsperado: codigoErrorEsperado, // esperado (payload)
       negocioCoincide:
-        ad.codigoErrorEsperado != null
-          ? recibidoNegocio === ad.codigoErrorEsperado
+        codigoErrorEsperado != null
+          ? recibidoNegocio === codigoErrorEsperado
           : null,
       mensajeError: negocio.mensajeError,
       resultado: negocio.resultado,
       idSolicitudR0: negocio.idSolicitudR0,
+      // --- Request real al lambda (matriz/validador/VCN) ---
+      urlLambda: cap ? cap.url || null : null,
+      reqClaro: cap ? cap.reqClaro || null : null, // payload claro (antes de cifrar)
+      reqCifrado: cap ? cap.reqCifrado || null : null, // cuerpo cifrado enviado
+      idPeticion: cap ? cap.idPeticion || null : null,
+      metodo: cap ? cap.metodo || null : null,
+      idSolicitud: cap ? cap.idSolicitud || null : null,
+      // --- Respuesta real del lambda (antes de descifrar) ---
+      respLambdaRaw: cap ? cap.respLambdaRaw || null : (request.body && request.body.raw) || null,
+      respLambdaHeaders: cap ? cap.respLambdaHeaders || null : null,
+      // --- Respuesta del dummy /descifrar (legible) ---
+      descifradoCode: cap && cap.descifradoCode != null ? cap.descifradoCode : (response.code != null ? response.code : null),
+      // --- Flujo / diagnóstico ---
+      flowFailed: cap ? cap.flowFailed || null : null,
+      flowError: cap ? cap.flowError || null : null,
       // --- Otros ---
-      tiempoRealMs: ad.tiempoRealMs,
+      tiempoRealMs: tiempoMs,
       flujoFallo: ad.flujoFallo,
       assertPaso: assertPaso,
+      assertsReales: assertsReales,
       assertsFallidos: assertsFallidos,
+      capturaOk: !!(cap && !cap._capturaParseError),
       body: body || "",
     };
   });
@@ -424,10 +493,15 @@ function buildResultadosPorEscenarioMd(resultados) {
     lines.push("| Nota | " + resultados.nota.replace(/\|/g, "\\|") + " |");
   }
   lines.push("| Escenarios | " + resultados.total + " |");
+  const conCaptura = resultados.escenarios.filter(function (e) {
+    return e.capturaOk;
+  }).length;
+  lines.push("| Con captura determinista `[CAPTURA]` | " + conCaptura + " / " + resultados.total + " |");
   lines.push("");
   lines.push(
     "Columnas HTTP = protocolo (real de la lambda vs esperado). " +
-      "Columnas negocio = `codigoError`/`resultado` del payload (recibido efectivo vs esperado)."
+      "Columnas negocio = `codigoError`/`resultado` del payload (recibido efectivo vs esperado). " +
+      "El JSON hermano guarda además: `urlLambda`, `reqClaro`, `reqCifrado`, `respLambdaRaw`, `respLambdaHeaders`, `tiempoRealMs`, `flowError`."
   );
   lines.push("");
   lines.push(

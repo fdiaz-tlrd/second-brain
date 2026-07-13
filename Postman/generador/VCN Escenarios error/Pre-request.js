@@ -17,6 +17,10 @@
       'PROCESAR_STATUS_CODE',
       'PROCESAR_RESPONSE_BODY',
       'PROCESAR_RESPONSE_TIME_MS',
+      'PROCESAR_URL',
+      'PROCESAR_REQUEST_BODY_CLARO',
+      'PROCESAR_REQUEST_BODY_CIFRADO',
+      'PROCESAR_RESPONSE_HEADERS',
       'PAYLOAD_ID_PETICION',
       'PAYLOAD_METODO',
       'PAYLOAD_ID_SOLICITUD_0',
@@ -26,6 +30,18 @@
     ].forEach(function (key) {
       cvSet(key, '');
     });
+  }
+
+  // Serializa headers de una respuesta pm.sendRequest a JSON plano (para captura).
+  function headersToJson(res) {
+    try {
+      if (res && res.headers && typeof res.headers.toObject === 'function') {
+        return JSON.stringify(res.headers.toObject());
+      }
+    } catch (e) {
+      // ignora, captura best-effort
+    }
+    return '';
   }
 
   const ID_SOLICITUD_MAX64 =
@@ -265,6 +281,9 @@
           const accessToken = await obtenerTokenMatriz();
           headersProcesar.Authorization = 'Bearer ' + accessToken;
         }
+        cvSet('PROCESAR_URL', String(procesarUrlDirecto));
+        cvSet('PROCESAR_REQUEST_BODY_CLARO', String(bodyRawInvalido));
+        cvSet('PROCESAR_REQUEST_BODY_CIFRADO', String(bodyRawInvalido));
         const resProcesar = await sendRequestAsync({
           url: procesarUrlDirecto,
           method: 'POST',
@@ -275,6 +294,7 @@
         cvSet('FLOW_ERROR', '');
         cvSet('PROCESAR_STATUS_CODE', String(resProcesar.code));
         cvSet('PROCESAR_RESPONSE_BODY', resProcesar.text());
+        cvSet('PROCESAR_RESPONSE_HEADERS', headersToJson(resProcesar));
         guardarTiemposProcesar(resProcesar);
         pm.request.body.update(resProcesar.text());
         pm.request.headers.upsert({ key: 'Content-Type', value: 'application/json' });
@@ -373,6 +393,10 @@
         headersProcesar.Authorization = 'Bearer ' + accessToken;
       }
 
+      cvSet('PROCESAR_URL', String(procesarUrl));
+      cvSet('PROCESAR_REQUEST_BODY_CLARO', String(bodyParaCifrar));
+      cvSet('PROCESAR_REQUEST_BODY_CIFRADO', String(bodyProcesar));
+
       const resProcesar = await sendRequestAsync({
         url: procesarUrl,
         method: 'POST',
@@ -384,6 +408,7 @@
       cvSet('FLOW_ERROR', '');
       cvSet('PROCESAR_STATUS_CODE', String(resProcesar.code));
       cvSet('PROCESAR_RESPONSE_BODY', resProcesar.text());
+      cvSet('PROCESAR_RESPONSE_HEADERS', headersToJson(resProcesar));
       guardarTiemposProcesar(resProcesar);
       pm.request.body.update(resProcesar.text());
       pm.request.headers.upsert({ key: 'Content-Type', value: 'application/json' });

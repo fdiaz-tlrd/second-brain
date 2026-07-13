@@ -9,7 +9,9 @@ Hallazgo matriz: [`07-matriz-validacion-cuerpo-json.md`](07-matriz-validacion-cu
 Estudio negocio: [`08-esperado-vs-recibido-prod.md`](08-esperado-vs-recibido-prod.md) (~22 % diverge).
 HTTP vs negocio: [`10-http-vs-codigoerror.md`](10-http-vs-codigoerror.md) (MATRIZ aplana HTTP a 200).
 Tabla escenario a escenario: [`09-tabla-comparacion-escenarios.md`](09-tabla-comparacion-escenarios.md).
-Pendiente: run `--codigo-fuente dev` en MATRIZ + `comparar-runs.js`; VCN directo; Marketplace.
+**Captura fortalecida (jul-2026):** [`11-captura-fortalecida.md`](11-captura-fortalecida.md) — canal determinista `[CAPTURA]`; captura req claro/cifrado, resp cruda, headers, tiempo. Re-ejecutar MATRIZ/VALIDADOR/VCN desde cero.
+Estudio código real de producción: [`../../produccion_real/01-tld-matriz-validador-validar.md`](../../produccion_real/01-tld-matriz-validador-validar.md).
+Pendiente: 3 corridas nuevas con captura fortalecida; luego comparar y revisar uno a uno; Marketplace.
 
 ---
 

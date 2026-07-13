@@ -50,6 +50,56 @@
     return { ok: true, mensaje: mensaje };
   }
 
+  // ---------------------------------------------------------------------------
+  // CAPTURA determinista: emite UN assert cuyo nombre es "[CAPTURA] " + JSON con
+  // TODO lo capturado de esta ejecución. run-newman.js lo parsea (fuente autoritativa).
+  // Siempre pasa y está envuelto en try/catch: nunca rompe el resto de asserts.
+  // ---------------------------------------------------------------------------
+  (function emitirCaptura() {
+    function cap(v, max) {
+      if (v == null) return '';
+      const s = String(v);
+      return s.length > max ? s.slice(0, max) + '\u2026[+' + (s.length - max) + ']' : s;
+    }
+    let descifradoBody = '';
+    let descifradoCode = null;
+    try {
+      descifradoBody = pm.response ? pm.response.text() : '';
+      descifradoCode = pm.response ? pm.response.code : null;
+    } catch (e) {
+      // best-effort
+    }
+    const captura = {
+      nivel: String(pm.environment.get('NIVEL_EJECUCION') || 'VCN').trim().toUpperCase(),
+      url: cvGet('PROCESAR_URL') || '',
+      httpRealLambda: cvGet('PROCESAR_STATUS_CODE'),
+      httpEsperado: pm.variables.get('expectedHttpStatus'),
+      codigoErrorEsperado: pm.variables.get('expectedCodigoError'),
+      tipo: pm.variables.get('expectedTipo'),
+      tiempoMs: cvGet('PROCESAR_RESPONSE_TIME_MS'),
+      idPeticion: cvGet('PAYLOAD_ID_PETICION'),
+      metodo: cvGet('PAYLOAD_METODO'),
+      idSolicitud: cvGet('PAYLOAD_ID_SOLICITUD_0'),
+      flowFailed: cvGet('FLOW_FAILED'),
+      flowError: cap(cvGet('FLOW_ERROR'), 2000),
+      reqClaro: cap(cvGet('PROCESAR_REQUEST_BODY_CLARO'), 6000),
+      reqCifrado: cap(cvGet('PROCESAR_REQUEST_BODY_CIFRADO'), 6000),
+      respLambdaRaw: cap(cvGet('PROCESAR_RESPONSE_BODY'), 6000),
+      respLambdaHeaders: cap(cvGet('PROCESAR_RESPONSE_HEADERS'), 3000),
+      descifradoCode: descifradoCode,
+      descifradoBody: cap(descifradoBody, 6000),
+    };
+    let json = '';
+    try {
+      json = JSON.stringify(captura);
+    } catch (e) {
+      json = '{"_capturaError":"' + String(e && e.message) + '"}';
+    }
+    pm.test('[CAPTURA] ' + json, function () {
+      pm.expect(true).to.be.true;
+    });
+  })();
+
   const requiredVars = [
     'expectedHttpStatus',
     'expectedCodigoError',
