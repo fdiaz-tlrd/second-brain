@@ -8,9 +8,11 @@ Carpeta de estudio del **código de producción tal cual** (rama `main` de cada 
 
 | Doc | Contenido |
 |-----|-----------|
-| [`01-tld-matriz-validador-validar.md`](01-tld-matriz-validador-validar.md) | Revisión de `tld-matriz/lambdas/tld-validador-validar`. Confirma HTTP siempre 200; mapa de codigoError; bugs (`error()`/`validatePlan()` indefinidas, crash X-Forwarded-For, `isValid` sin chequeo de tipo); anomalía abierta idCanal null/"" → 550. |
+| [`01-tld-matriz-validador-validar.md`](01-tld-matriz-validador-validar.md) | Revisión de `tld-matriz/lambdas/tld-validador-validar`. Confirma HTTP siempre 200; mapa de codigoError; bugs (`error()`/`validatePlan()` indefinidas, crash X-Forwarded-For, `isValid` sin chequeo de tipo); anomalía **cerrada** idCanal null/"" → 550 (CloudWatch). |
 
 ## Relación con otras carpetas
+
+- [`../hallazgos-produccion/`](../hallazgos-produccion/) — **fichas para el informe de mejoras** (índice HP-001…); vista ejecutiva de hallazgos accionables.
 
 - `prod_adactado_a_dev/` = **misma** base de código de producción, adaptada mínimamente para desplegar en dev (es lo que generó los datos Newman). Verificado: `tld-validador-validar` es idéntico entre `produccion_real` y `prod_adactado_a_dev`.
 - Estudio de datos Newman: [`../Postman/comparar-prod-vs-dev/`](../Postman/comparar-prod-vs-dev/).
