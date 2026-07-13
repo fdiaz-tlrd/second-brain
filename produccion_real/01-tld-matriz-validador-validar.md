@@ -57,7 +57,7 @@ if (! await guardarTrace(ipn, body.idCanal, "validador-validar", "request", body
 
 Solo está definida `log`. **No hay función `error`.** Si `guardarTrace` devuelve `false`, la línea 33 lanza `ReferenceError: error is not defined` → cae al `catch` → **`codigoError 550`**.
 
-Esto es **la causa más probable** de la anomalía de la sección 4 (idCanal `null`/`""` dan 550 en vez del 400 que `isValid` produciría).
+**CONFIRMADO en runtime** (CloudWatch, RequestId `db2952d2-...`): `ReferenceError: error is not defined at exports.handler (/var/task/index.js:33:7)`. Es la causa **probada** de la anomalía de la sección 4 (idCanal `null`/`""` → 550 en vez del 400 que `isValid` produciría). Ver [`../investigacion/matriz-produccion_en_dev.md`](../investigacion/matriz-produccion_en_dev.md).
 
 ### 3.2 `validatePlan(...)` y `respEventBus` no definidos (línea 78) — **LANDMINE (código muerto hoy)**
 
@@ -90,23 +90,40 @@ Para `idCanal` **number/boolean/object** (truthy y sin `.length` string): `!body
 
 ---
 
-## 4. ANOMALÍA sin cerrar: idCanal `null` / `""` → 550 (se esperaría 400)
+## 4. CERRADA (confirmada con CloudWatch): idCanal `null` / `""` → 550 en vez de 400
+
+**Estado: RESUELTA.** Confirmada con evidencia runtime real de CloudWatch en
+[`../investigacion/matriz-produccion_en_dev.md`](../investigacion/matriz-produccion_en_dev.md)
+(RequestId `db2952d2-...`, escenario 1.1.2 idCanal `null`, run del 2026-07-13).
 
 **Dato observado (run MATRIZ):**
 
 | Escenario | idCanal enviado | Recibido MATRIZ | Lo que el código sugiere |
 |-----------|-----------------|-----------------|--------------------------|
-| 1.1.2 idCanal null | `null` | **550** | `isValid`→`!null`=true→"canal"→**400** |
-| 1.1.3 idCanal vacío | `""` | **550** | `isValid`→`!""`=true→"canal"→**400** |
+| 1.1.1 idCanal ausente | *(sin campo)* | **400** ✓ | `isValid`→`!undefined`=true→"canal"→400 ✓ |
+| 1.1.2 idCanal null | `null` | **550** | `isValid` daría 400, pero cae al catch |
+| 1.1.3 idCanal vacío | `""` | **550** | `isValid` daría 400, pero cae al catch |
 | 1.1.9 idCanal len 5 | `"10000"` | **400** ✓ | `isValid`→len 5>4→"canal"→400 ✓ |
 
-Para `"10000"` el código y el dato coinciden (400 "Error de formato en campo canal", que es el mensaje propio de matriz línea 46). Para `null`/`""` **no**: dan 550, que solo se alcanza por el `catch`.
+**Cadena de fallo exacta (probada por CloudWatch), para `idCanal: null`:**
 
-**Localización:** entre el parse y `isValid` (línea 36), lo único que puede lanzar y desviar al catch es `guardarTrace` + la llamada a `error()` inexistente (bug 3.1). Hipótesis fuerte: para esos casos `guardarTrace` devuelve `false` (o lanza) → `error()` → `ReferenceError` → 550.
+1. matriz recibe `{validador:'0001', peticion:'<cifrado>', idCanal: null}` (verificado en el request body capturado, no inferido).
+2. Llama `guardarTrace(...)` con `canal: null`.
+3. **DynamoDB `PutItem` FALLA** con `ValidationException`:
+   > `One or more parameter values were invalid: Type mismatch for Index Key canal Expected: S Actual: NULL IndexName: matriz-trace-canal`
+   
+   La tabla de trace tiene un **GSI `matriz-trace-canal`** cuya clave `canal` es tipo **String (S)**. Con `idCanal=null`, `canal` se marshalla como `NULL` → tipo incompatible con la clave del índice → rechazo.
+4. `guardarTrace` devuelve `false` → matriz ejecuta la línea 33: `error("::::::: ERROR almacenando trace [request]")`.
+5. **`ReferenceError: error is not defined at exports.handler (/var/task/index.js:33:7)`** — el bug 3.1, disparado en producción real.
+6. El `ReferenceError` cae al `catch` externo → matriz responde **`codigoError 550 "Error inesperado"`**.
 
-**No lo afirmo como certeza.** Falta confirmar **por qué** `guardarTrace` fallaría con `canal=null`/`""` y no con `"10000"` (marshalling DynamoDB, tabla `tld-matriz-trace`, o `TTL_DELTA`). Para cerrarlo se necesita **CloudWatch** de esa Lambda en el run, o **capturar el body exacto que recibió matriz** (hoy el request a matriz se hace en el pre-request y no queda en el `*_completo.json`).
+**Por qué `null`/`""` fallan pero *ausente* no:**
 
-**Acción propuesta (no ejecutada):** en la recopilación, guardar también el request/response crudos de la llamada a matriz para no depender de CloudWatch. Queda como pendiente, no lo toco sin tu visto bueno.
+- **Ausente (undefined):** `marshall(..., {removeUndefinedValues:true})` **elimina** el atributo `canal` → el ítem no toca el GSI `matriz-trace-canal` (índice disperso) → `PutItem` OK → `guardarTrace` true → sigue a `isValid` → **400** limpio.
+- **`null`:** se marshalla como `NULL` (no lo quita `removeUndefinedValues`) → GSI espera `S` → ValidationException → 550.
+- **`""`:** DynamoDB no admite string vacío como valor de clave de índice → mismo rechazo → 550.
+
+**Conclusión:** es un **bug real de producción** con doble causa encadenada — (a) el GSI `matriz-trace-canal` rechaza `null`/`""`, y (b) el bug 3.1 (`error()` indefinida) convierte ese fallo de trace en una excepción y colapsa la respuesta a `550`. El resultado esperado del propio `isValid` era `400 "Error de formato en campo canal"`. La expectativa de la prueba (400) es la correcta; **producción está mal** para estos dos casos.
 
 ---
 
@@ -123,4 +140,4 @@ Para `"10000"` el código y el dato coinciden (400 "Error de formato en campo ca
 1. Producción (matriz `tld-validador-validar`) **siempre HTTP 200**; el error va en el body. Confirmado por código y por 1263/1263.
 2. `550 "Error inesperado"` es un **catch-all** que enmascara errores diversos del validador y excepciones internas.
 3. Bugs reales en prod: `error()` indefinida (3.1, activa), `validatePlan()` indefinida (3.2, mina), crash por `X-Forwarded-For` (3.3), `isValid` sin chequeo de tipo (3.4).
-4. Anomalía abierta: `idCanal null/""` → 550 (se esperaría 400). Hipótesis: guardarTrace falla → `error()` → catch. Falta CloudWatch / captura de request para confirmar.
+4. Anomalía **CERRADA** (§4): `idCanal null/""` → 550 (se esperaría 400). Causa **probada por CloudWatch**: GSI `matriz-trace-canal` (clave `canal` tipo S) rechaza `null`/`""` → `guardarTrace` falla → `error()` indefinida (bug 3.1) → `ReferenceError` → catch → 550. Producción está mal en estos casos; la expectativa 400 de la prueba es la correcta.
