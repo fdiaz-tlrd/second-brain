@@ -454,6 +454,11 @@ function buildResultadosPorEscenario(suiteKey, folder, summary, codigoFuente, no
       respLambdaHeaders: cap ? cap.respLambdaHeaders || null : null,
       // --- Respuesta del dummy /descifrar (legible) ---
       descifradoCode: cap && cap.descifradoCode != null ? cap.descifradoCode : (response.code != null ? response.code : null),
+      // --- Formato: ¿la lambda devolvió cifrado o en claro? ---
+      respuestaVinoCifrada: cap && typeof cap.respuestaVinoCifrada === "boolean" ? cap.respuestaVinoCifrada : null,
+      formatoRespuestaLambda: cap && cap.formatoRespuestaLambda ? cap.formatoRespuestaLambda : null,
+      payloadCambioTrasDescifrar:
+        cap && typeof cap.payloadCambioTrasDescifrar === "boolean" ? cap.payloadCambioTrasDescifrar : null,
       // --- Flujo / diagnóstico ---
       flowFailed: cap ? cap.flowFailed || null : null,
       flowError: cap ? cap.flowError || null : null,
@@ -504,6 +509,33 @@ function buildResultadosPorEscenarioMd(resultados) {
   const negFail = resultados.escenarios.filter(function (e) { return e.negocioCoincide === false; }).length;
   const negNull = resultados.escenarios.filter(function (e) { return e.negocioCoincide == null; }).length;
   lines.push("| Negocio OK / divergente / **sin evaluar** | " + negOk + " / " + negFail + " / **" + negNull + "** |");
+  // Formato de respuesta de la lambda: cifrado vs en claro (campo nuevo jul-2026).
+  const fmtCount = {};
+  let cifradaTrue = 0;
+  let cifradaFalse = 0;
+  let cifradaNull = 0;
+  resultados.escenarios.forEach(function (e) {
+    const f = e.formatoRespuestaLambda || "sin_dato";
+    fmtCount[f] = (fmtCount[f] || 0) + 1;
+    if (e.respuestaVinoCifrada === true) cifradaTrue++;
+    else if (e.respuestaVinoCifrada === false) cifradaFalse++;
+    else cifradaNull++;
+  });
+  lines.push(
+    "| Respuesta lambda **cifrada / en claro / sin dato** | " +
+      cifradaTrue +
+      " / " +
+      cifradaFalse +
+      " / " +
+      cifradaNull +
+      " |"
+  );
+  const fmtParts = Object.keys(fmtCount)
+    .sort()
+    .map(function (k) {
+      return k + "=" + fmtCount[k];
+    });
+  lines.push("| Desglose formatoRespuestaLambda | " + fmtParts.join(", ") + " |");
   lines.push("");
   if (negNull > 0) {
     lines.push(
@@ -516,20 +548,26 @@ function buildResultadosPorEscenarioMd(resultados) {
   lines.push(
     "Columnas HTTP = protocolo (real de la lambda vs esperado). " +
       "Columnas negocio = `codigoError`/`resultado` del payload (recibido efectivo vs esperado). " +
-      "El JSON hermano guarda además: `urlLambda`, `reqClaro`, `reqCifrado`, `respLambdaRaw`, `respLambdaHeaders`, `tiempoRealMs`, `flowError`."
+      "Columna **Formato** = si la lambda devolvió el cuerpo cifrado o en claro " +
+      "(`cifrado` | `plano` | `plano_en_respuesta` | …). " +
+      "El JSON hermano guarda además: `respuestaVinoCifrada`, `formatoRespuestaLambda`, " +
+      "`payloadCambioTrasDescifrar`, `urlLambda`, `reqClaro`, `reqCifrado`, `respLambdaRaw`, `respLambdaHeaders`, `tiempoRealMs`, `flowError`."
   );
   lines.push("");
   lines.push(
-    "| # | Escenario | HTTP esp | HTTP real | HTTP ok | Negocio esp | Negocio recib | Negocio ok | assert | Cuerpo (resumen) |"
+    "| # | Escenario | HTTP esp | HTTP real | HTTP ok | Negocio esp | Negocio recib | Negocio ok | Formato | Cifrada? | assert | Cuerpo (resumen) |"
   );
   lines.push(
-    "|---|-----------|----------|-----------|---------|-------------|---------------|------------|--------|------------------|"
+    "|---|-----------|----------|-----------|---------|-------------|---------------|------------|---------|----------|--------|------------------|"
   );
   const dash = function (v) {
     return v != null ? v : "—";
   };
   const okTxt = function (v) {
     return v === null ? "—" : v ? "OK" : "✗";
+  };
+  const cifradaTxt = function (v) {
+    return v === null || v === undefined ? "—" : v ? "sí" : "no";
   };
   resultados.escenarios.forEach(function (e, i) {
     const bodyResumen = truncate(e.body, 240)
@@ -553,6 +591,10 @@ function buildResultadosPorEscenarioMd(resultados) {
         dash(e.recibidoNegocio) +
         " | " +
         okTxt(e.negocioCoincide) +
+        " | " +
+        dash(e.formatoRespuestaLambda) +
+        " | " +
+        cifradaTxt(e.respuestaVinoCifrada) +
         " | " +
         assertTxt +
         " | `" +

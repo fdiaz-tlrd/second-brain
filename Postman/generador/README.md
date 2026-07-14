@@ -16,6 +16,8 @@ Detalle: [`../../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md`](../../tl
 
 **Tras cada run (máquina VPN):** `git add logs/` → commit → push. Opcional: `--nota "post-deploy …"` en el comando Newman.
 
+**Registro cifrado/plano (2026-07-14):** cada escenario anota si la lambda devolvió el cuerpo cifrado o en claro (`respuestaVinoCifrada`, `formatoRespuestaLambda`). Doc: [`registro-respuesta-cifrada-vs-clara-2026-07-14.md`](registro-respuesta-cifrada-vs-clara-2026-07-14.md). Verificador local: `node verificar-formato-respuesta-lambda.js logs/resultados-por-escenario-vcn.json`.
+
 ---
 
 ## Estructura
