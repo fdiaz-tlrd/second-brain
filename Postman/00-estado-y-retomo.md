@@ -31,6 +31,7 @@
 | **Logs Newman** | [`generador/logs/README.md`](generador/logs/README.md) | OK |
 | **Reglas agente VPN** | [`../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md`](../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md) | OK |
 | **Comparar prod vs dev** | [`comparar-prod-vs-dev/`](comparar-prod-vs-dev/) (README + 01–04) | Diseño + código implementado |
+| **Super tabla esperado / prod / dev** | [`../super-tabla-prod-dev/`](../super-tabla-prod-dev/) | Decisiones cerradas: solo diferencias, 1 fila/escenario, MD→HTML, anotaciones reinyectables |
 | **`idSolicitud` (P2P/P2M/VCN)** | [`generador/validacion-idSolicitud/`](generador/validacion-idSolicitud/) | Iteración 01 cerrada en doc |
 | **`idPregunta` / `respuestas[].id` (P2P)** | [`generador/validacion-preguntas-seguridad/`](generador/validacion-preguntas-seguridad/) | Iteración 01 cerrada en doc |
 | **Validador-api prod vs dev** | [`../tld-validador-api/`](../tld-validador-api/) — ver `diferencia-prod-vs-dev-respuesta-producto.md` | Fix en repo; deploy pendiente |

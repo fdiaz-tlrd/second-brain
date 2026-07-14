@@ -35,6 +35,8 @@ El usuario corre Newman en la máquina con VPN, hace **commit y push** de `logs/
 
 Misma lógica para `p2m` y `p2p`. `--codigo-fuente prod|dev` es obligatorio en Newman; la foto debe generarse o el run aborta.
 
+**`logs/.gitignore`:** contrato dual-máquina (`*` + `!`). Un archivo generado sin su `!` **no viaja** a Lenovo. No modificar sin actualizar también `logs/README.md`. Fotos van en `codigosRespuesta/` (fuera de `logs/`); el commit en VPN debe incluirlas aparte.
+
 ---
 
 ## Qué hace el agente en Lenovo

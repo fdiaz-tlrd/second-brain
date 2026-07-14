@@ -1,11 +1,39 @@
+# logs/.gitignore — contrato DOS MÁQUINAS (Lenovo ↔ VPN)
+#
+# Patrón: ignorar TODO (*) y re-incluir SOLO lo que debe viajar por git.
+# La máquina VPN genera estos archivos con Newman; hace commit+push.
+# Lenovo (agente) solo los LEE tras git pull. Si un artefacto generado
+# NO está en la lista `!…` de abajo, queda en UNA máquina y la otra
+# “no sabe” que el run existió → estados/checklists/fotos desfasados.
+#
+# PROHIBIDO para el agente:
+# - Quitar una excepción `!` sin acuerdo explícito del usuario.
+# - Añadir un archivo nuevo que Newman escriba en logs/ sin su `!` aquí
+#   y sin actualizar README.md (sección Commit) y la lista de abajo.
+# - Inventar ignores “para limpiar” basura local: o se versiona o se
+#   deja solo con * (no versionada a propósito).
+#
+# Al cambiar este archivo: verificar en VPN con
+#   git status logs/
+# que aparecen TODOS los archivos del último run antes del commit.
+
 *
 !.gitignore
 !README.md
+
+# --- Última corrida (sobreescribe) ---
 !resultados-por-escenario-*.json
 !resultados-por-escenario-*.md
 !resumen-fallos-*.md
 !ultimo-run-*.json
+
+# --- Índice / ficha (reconstruidos por run-newman) ---
 !registro-*.md
 !ultima-corrida-*.md
+
+# --- Diff prod vs dev (comparar-runs.js) ---
+!comparacion-*.md
+
+# --- Historial (hasta HISTORIAL_MAX runs) ---
 !historial/
 !historial/**

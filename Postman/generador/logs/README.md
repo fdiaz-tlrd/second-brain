@@ -49,13 +49,19 @@ Al terminar, Newman **debe** generar `codigosRespuesta/foto-presentacion-<suite>
 
 ## Commit después de cada run (máquina VPN)
 
+Incluir **todo** lo que Newman acaba de tocar (logs **y** fotos fuera de `logs/`):
+
 ```powershell
 git add logs/
-git commit -m "Newman VCN — run completo 1008/1008"
+git add ../../codigosRespuesta/foto-presentacion-*
+git status
+git commit -m "Newman VCN — run completo …"
 git push
 ```
 
-Incluir **siempre** `ultimo-run-*`, `resumen-fallos-*`, `registro-*` y `historial/`.
+En `logs/` debe verse (si aplica a la suite): `ultimo-run-*`, `resumen-fallos-*`, `resultados-por-escenario-*`, `registro-*`, `ultima-corrida-*`, `historial/<suite>/…` y, si corriste `comparar-runs.js`, `comparacion-*`.
+
+**Cuidado con `.gitignore`:** la carpeta usa `*` + excepciones `!`. Si Newman genera un archivo nuevo bajo `logs/` y no hay `!` para él, `git add logs/` **no** lo sube → Lenovo no lo tiene. Antes de tocar `.gitignore`, leer el comentario al inicio de ese archivo.
 
 En Lenovo: `git pull` y avisar al agente «puse los logs».
 
