@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |-------|-------|
-| Generado | 2026-07-14T17:56:40.287Z |
+| Generado | 2026-07-14T19:47:01.314Z |
 | Suite | `vcn` |
 | Prod | `../Postman/generador/logs/historial/vcn/2026-07-14T09-09-28Z_prod_MATRIZ_completo_por-escenario.json` · codigoFuente `prod` · nivel `MATRIZ` |
 | Dev | `../Postman/generador/logs/historial/vcn/2026-07-14T16-03-14Z_dev_MATRIZ_completo_por-escenario.json` · codigoFuente `dev` · nivel `MATRIZ` |
@@ -434,7 +434,11 @@ Vista en **bloques** (no mega-tabla). HTTP 200=200 en MATRIZ es visual. Criterio
 
 ### Observaciones
 
-*(sin anotacion en `anotaciones.json` — completar al revisar)*
+- **Veredicto:** DEV-BUG
+- **Conforme:** no
+- **Refs:** `validador-SWIFT-dev`
+
+Causa: VCN validarParametroValidador length>4. Fix tope 8 en código (2026-07-14). Pendiente deploy dig + Newman para confirmar. Prod OK; par numerico 1008 OK en dig.
 
 ---
 
@@ -513,7 +517,11 @@ Vista en **bloques** (no mega-tabla). HTTP 200=200 en MATRIZ es visual. Criterio
 
 ### Observaciones
 
-*(sin anotacion en `anotaciones.json` — completar al revisar)*
+- **Veredicto:** DEV-BUG
+- **Conforme:** no
+- **Refs:** `validador-SWIFT-dev`
+
+Mismo fix length≤8. Pendiente Newman dig post-deploy.
 
 ---
 
@@ -592,7 +600,11 @@ Vista en **bloques** (no mega-tabla). HTTP 200=200 en MATRIZ es visual. Criterio
 
 ### Observaciones
 
-*(sin anotacion en `anotaciones.json` — completar al revisar)*
+- **Veredicto:** DEV-BUG
+- **Conforme:** no
+- **Refs:** `validador-SWIFT-dev`
+
+Mismo fix length≤8. Pendiente Newman dig post-deploy.
 
 ---
 
@@ -671,7 +683,11 @@ Vista en **bloques** (no mega-tabla). HTTP 200=200 en MATRIZ es visual. Criterio
 
 ### Observaciones
 
-*(sin anotacion en `anotaciones.json` — completar al revisar)*
+- **Veredicto:** DEV-BUG
+- **Conforme:** no
+- **Refs:** `validador-SWIFT-dev`
+
+Mismo fix length≤8. Pendiente Newman dig post-deploy.
 
 ---
 
@@ -750,7 +766,11 @@ Vista en **bloques** (no mega-tabla). HTTP 200=200 en MATRIZ es visual. Criterio
 
 ### Observaciones
 
-*(sin anotacion en `anotaciones.json` — completar al revisar)*
+- **Veredicto:** DEV-BUG
+- **Conforme:** no
+- **Refs:** `validador-SWIFT-dev`
+
+Mismo fix length≤8. Pendiente Newman dig post-deploy.
 
 ---
 
@@ -829,7 +849,11 @@ Vista en **bloques** (no mega-tabla). HTTP 200=200 en MATRIZ es visual. Criterio
 
 ### Observaciones
 
-*(sin anotacion en `anotaciones.json` — completar al revisar)*
+- **Veredicto:** DEV-BUG
+- **Conforme:** no
+- **Refs:** `validador-SWIFT-dev`
+
+Mismo fix length≤8. Pendiente Newman dig post-deploy.
 
 ---
 
@@ -908,7 +932,11 @@ Vista en **bloques** (no mega-tabla). HTTP 200=200 en MATRIZ es visual. Criterio
 
 ### Observaciones
 
-*(sin anotacion en `anotaciones.json` — completar al revisar)*
+- **Veredicto:** DEV-BUG
+- **Conforme:** no
+- **Refs:** `validador-SWIFT-dev`
+
+Mismo fix length≤8. Pendiente Newman dig post-deploy.
 
 ---
 
@@ -987,7 +1015,11 @@ Vista en **bloques** (no mega-tabla). HTTP 200=200 en MATRIZ es visual. Criterio
 
 ### Observaciones
 
-*(sin anotacion en `anotaciones.json` — completar al revisar)*
+- **Veredicto:** DEV-BUG
+- **Conforme:** no
+- **Refs:** `validador-SWIFT-dev`
+
+Mismo fix length≤8. Pendiente Newman dig post-deploy.
 
 ---
 

@@ -15,9 +15,10 @@ Parámetro **`validador`** en el cuerpo sin cifrar (Postman `1_validaciones_js/2
 | ausente / null / `""` | 400 |
 | tipo ≠ string | 400 |
 | solo espacios (trim vacío) | 400 |
-| longitud > 4 | 400 |
+| longitud > **8** | 400 |
 | caracteres prohibidos (`@`, `(`, `¿`, `"`, etc.) | 400 |
-| valor ≠ `CFG_CANAL_VALIDADOR` (trim) | 400 |
+
+**2026-07-14:** tope de `validador` subió de 4 → **8** (alineado a matriz + BIC/SWIFT). Postman ya tenía `1.2.9` como longitud 9 / máximo 8; el código aún tenía 4. Sin tope 8 fallaba el feliz MATRIZ con `validador` SWIFT. La igualdad a `CFG_CANAL_VALIDADOR` ya no aplica en VCN (commit `37a5e06`).
 
 Respuesta esperada (Postman tipo `general`): HTTP **400**, `codigoError` **400**, `mensajeError` **`Error en la petición original`**.
 

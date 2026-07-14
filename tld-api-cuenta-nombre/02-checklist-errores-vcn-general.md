@@ -105,7 +105,7 @@ Referencia transversal: P2M/P2P (`validaciones.js`, `catalogoRespuestas.js`, ord
 - [x] 1.2.6. validador — tipo object (400)
 - [x] 1.2.7. validador — solo espacios, trim vacío (400)
 - [x] 1.2.8. validador — solo tab, trim vacío (400)
-- [x] 1.2.9. validador — longitud 5, máximo 4 (400)
+- [x] 1.2.9. validador — longitud 9, máximo 8 (400)
 - [x] 1.2.10. validador — espacio interno, post-trim (400)
 - [x] 1.2.11. validador — símbolo @ no permitido (400)
 - [x] 1.2.12. validador — paréntesis ( no permitido (400)

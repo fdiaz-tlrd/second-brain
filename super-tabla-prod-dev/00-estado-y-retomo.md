@@ -3,8 +3,8 @@
 | Campo | Valor |
 |-------|-------|
 | **Última actualización** | 2026-07-14 |
-| **Estado** | Generador MD v1 **listo** (VCN: 84 bloques / 331 únicos) |
-| **Empezar por** | Revisar [`vcn/bloques-diferencias.md`](vcn/bloques-diferencias.md); anotar en [`vcn/anotaciones.json`](vcn/anotaciones.json) |
+| **Estado** | Generador MD v1 listo. **SWIFT dig:** fix tope `validador` ≤8 en código; pendiente deploy + Newman. Ver [`vcn/hallazgo-validador-swift-dev.md`](vcn/hallazgo-validador-swift-dev.md). |
+| **Empezar por** | Deploy VCN dig → Newman dig → regenerar bloques; o HTML Prism. |
 
 ## Decisiones cerradas
 
