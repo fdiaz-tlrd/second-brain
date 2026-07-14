@@ -6,13 +6,13 @@ Solo observación de corrida Newman. **No** incluye catálogo / “Nueva descrip
 |-------|-------|
 | Servicio | P2P |
 | Código fuente | prod |
-| Fecha corrida | 2026-07-14T10:29:33.816Z |
+| Fecha corrida | 2026-07-14T14:15:16.356Z |
 | Nivel ejecución | MATRIZ |
 | Escenarios analizados | 2159 |
 | Filas foto (código+descripción) | 33 |
 | Contratos (columnas) | A.mensajeError, A.descripcionError, B, C |
 | Patrones estructurales únicos | 34 |
-| Nota | foto presentacion contratos post deploy prod-a-dev |
+| Nota | foto presentacion P2P prod + fix reqClaro captura |
 
 ## Contratos (referencia)
 
