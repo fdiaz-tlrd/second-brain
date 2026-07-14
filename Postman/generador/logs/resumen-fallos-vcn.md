@@ -2,13 +2,13 @@
 
 | Campo | Valor |
 |-------|-------|
-| Fecha | 2026-07-13T03:16:36.939Z |
+| Fecha | 2026-07-14T09:09:27.927Z |
 | Código fuente | prod |
 | Nivel ejecución | MATRIZ |
 | Carpeta | `(completo)` |
-| Nota | MATRIZ HTTP Code 200 HD-005 captura fortalecida |
-| Requests | 1263 (failed: 0) |
-| Tests | 4573 (failed: 135) |
+| Nota | foto presentacion contratos post deploy prod-a-dev |
+| Requests | 1323 (failed: 0) |
+| Tests | 4788 (failed: 148) |
 | JSON completo | `logs\ultimo-run-vcn.json` |
 
 ## 1. 0_jsonEntrada / 0.1. body — JSON HTTP inválido (400)
@@ -421,20 +421,20 @@
 {"codigoError":404,"mensajeError":"Validador no existe"}
 ```
 
-## 42. 2_validador / 1.2.9. validador — longitud 5, máximo 4 (400)
+## 42. 2_validador / 1.2.9. validador — longitud 9, máximo 8 (400)
 
-- **Test:** [General] codigoError = 400
-- **Mensaje:** expected 404 to equal 400
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected undefined to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
 
 ```json
-{"codigoError":404,"mensajeError":"Validador no existe"}
+{"codigoError":400,"descripcionError":"Error de formato en campo validador"}
 ```
 
-## 43. 2_validador / 1.2.9. validador — longitud 5, máximo 4 (400)
+## 43. 2_validador / 1.2.10. validador — espacio interno, post-trim (400)
 
-- **Test:** [General] mensajeError = "Error en la petición original"
-- **Mensaje:** expected 'Validador no existe' to equal 'Error en la petición original'
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 404 to equal 400
 - **HTTP descifrar:** 200
 
 ```json
@@ -443,18 +443,18 @@
 
 ## 44. 2_validador / 1.2.10. validador — espacio interno, post-trim (400)
 
-- **Test:** [General] codigoError = 400
-- **Mensaje:** expected 404 to equal 400
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected 'Validador no existe' to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
 
 ```json
 {"codigoError":404,"mensajeError":"Validador no existe"}
 ```
 
-## 45. 2_validador / 1.2.10. validador — espacio interno, post-trim (400)
+## 45. 2_validador / 1.2.11. validador — símbolo @ no permitido (400)
 
-- **Test:** [General] mensajeError = "Error en la petición original"
-- **Mensaje:** expected 'Validador no existe' to equal 'Error en la petición original'
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 404 to equal 400
 - **HTTP descifrar:** 200
 
 ```json
@@ -463,18 +463,18 @@
 
 ## 46. 2_validador / 1.2.11. validador — símbolo @ no permitido (400)
 
-- **Test:** [General] codigoError = 400
-- **Mensaje:** expected 404 to equal 400
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected 'Validador no existe' to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
 
 ```json
 {"codigoError":404,"mensajeError":"Validador no existe"}
 ```
 
-## 47. 2_validador / 1.2.11. validador — símbolo @ no permitido (400)
+## 47. 2_validador / 1.2.12. validador — paréntesis ( no permitido (400)
 
-- **Test:** [General] mensajeError = "Error en la petición original"
-- **Mensaje:** expected 'Validador no existe' to equal 'Error en la petición original'
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 404 to equal 400
 - **HTTP descifrar:** 200
 
 ```json
@@ -483,18 +483,18 @@
 
 ## 48. 2_validador / 1.2.12. validador — paréntesis ( no permitido (400)
 
-- **Test:** [General] codigoError = 400
-- **Mensaje:** expected 404 to equal 400
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected 'Validador no existe' to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
 
 ```json
 {"codigoError":404,"mensajeError":"Validador no existe"}
 ```
 
-## 49. 2_validador / 1.2.12. validador — paréntesis ( no permitido (400)
+## 49. 2_validador / 1.2.13. validador — ¿ no permitido (400)
 
-- **Test:** [General] mensajeError = "Error en la petición original"
-- **Mensaje:** expected 'Validador no existe' to equal 'Error en la petición original'
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 404 to equal 400
 - **HTTP descifrar:** 200
 
 ```json
@@ -503,18 +503,18 @@
 
 ## 50. 2_validador / 1.2.13. validador — ¿ no permitido (400)
 
-- **Test:** [General] codigoError = 400
-- **Mensaje:** expected 404 to equal 400
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected 'Validador no existe' to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
 
 ```json
 {"codigoError":404,"mensajeError":"Validador no existe"}
 ```
 
-## 51. 2_validador / 1.2.13. validador — ¿ no permitido (400)
+## 51. 2_validador / 1.2.14. validador — comillas " no permitidas (400)
 
-- **Test:** [General] mensajeError = "Error en la petición original"
-- **Mensaje:** expected 'Validador no existe' to equal 'Error en la petición original'
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 404 to equal 400
 - **HTTP descifrar:** 200
 
 ```json
@@ -523,16 +523,6 @@
 
 ## 52. 2_validador / 1.2.14. validador — comillas " no permitidas (400)
 
-- **Test:** [General] codigoError = 400
-- **Mensaje:** expected 404 to equal 400
-- **HTTP descifrar:** 200
-
-```json
-{"codigoError":404,"mensajeError":"Validador no existe"}
-```
-
-## 53. 2_validador / 1.2.14. validador — comillas " no permitidas (400)
-
 - **Test:** [General] mensajeError = "Error en la petición original"
 - **Mensaje:** expected 'Validador no existe' to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
@@ -541,30 +531,40 @@
 {"codigoError":404,"mensajeError":"Validador no existe"}
 ```
 
-## 54. 3_peticion / 1.3.4. peticion — tipo number (400)
+## 53. 2_validador / 1.2.15. validador — distinto a {{CANAL_VALIDADOR}} (CANAL_EMISOR) (400)
 
 - **Test:** [General] codigoError = 400
-- **Mensaje:** expected 405 to equal 400
+- **Mensaje:** expected undefined to equal 400
 - **HTTP descifrar:** 200
 
 ```json
-{"codigoError":405,"mensajeError":"Error en descifrado canal emisor"}
+{"respuesta":{"idPeticion":"CELEGATO1784019610","respuestas":[{"idSolicitud":"1","resultado":0,"datos":{"banco":"TLRDPAPA","cuenta":"1100001328","producto":"PACA","estadoCuenta":"0","titulares":["Fis*** vo* Luftsc***** Narfi****"]}}]}}
+```
+
+## 54. 2_validador / 1.2.15. validador — distinto a {{CANAL_VALIDADOR}} (CANAL_EMISOR) (400)
+
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected undefined to equal 'Error en la petición original'
+- **HTTP descifrar:** 200
+
+```json
+{"respuesta":{"idPeticion":"CELEGATO1784019610","respuestas":[{"idSolicitud":"1","resultado":0,"datos":{"banco":"TLRDPAPA","cuenta":"1100001328","producto":"PACA","estadoCuenta":"0","titulares":["Fis*** vo* Luftsc***** Narfi****"]}}]}}
 ```
 
 ## 55. 3_peticion / 1.3.4. peticion — tipo number (400)
 
-- **Test:** [General] mensajeError = "Error en la petición original"
-- **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 405 to equal 400
 - **HTTP descifrar:** 200
 
 ```json
 {"codigoError":405,"mensajeError":"Error en descifrado canal emisor"}
 ```
 
-## 56. 3_peticion / 1.3.5. peticion — tipo boolean (400)
+## 56. 3_peticion / 1.3.4. peticion — tipo number (400)
 
-- **Test:** [General] codigoError = 400
-- **Mensaje:** expected 405 to equal 400
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
 
 ```json
@@ -573,18 +573,18 @@
 
 ## 57. 3_peticion / 1.3.5. peticion — tipo boolean (400)
 
-- **Test:** [General] mensajeError = "Error en la petición original"
-- **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 405 to equal 400
 - **HTTP descifrar:** 200
 
 ```json
 {"codigoError":405,"mensajeError":"Error en descifrado canal emisor"}
 ```
 
-## 58. 3_peticion / 1.3.6. peticion — tipo object (400)
+## 58. 3_peticion / 1.3.5. peticion — tipo boolean (400)
 
-- **Test:** [General] codigoError = 400
-- **Mensaje:** expected 405 to equal 400
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
 
 ```json
@@ -593,18 +593,18 @@
 
 ## 59. 3_peticion / 1.3.6. peticion — tipo object (400)
 
-- **Test:** [General] mensajeError = "Error en la petición original"
-- **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 405 to equal 400
 - **HTTP descifrar:** 200
 
 ```json
 {"codigoError":405,"mensajeError":"Error en descifrado canal emisor"}
 ```
 
-## 60. 3_peticion / 1.3.7. peticion — formato hex inválido (400)
+## 60. 3_peticion / 1.3.6. peticion — tipo object (400)
 
-- **Test:** [General] codigoError = 400
-- **Mensaje:** expected 405 to equal 400
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
 
 ```json
@@ -613,18 +613,18 @@
 
 ## 61. 3_peticion / 1.3.7. peticion — formato hex inválido (400)
 
-- **Test:** [General] mensajeError = "Error en la petición original"
-- **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 405 to equal 400
 - **HTTP descifrar:** 200
 
 ```json
 {"codigoError":405,"mensajeError":"Error en descifrado canal emisor"}
 ```
 
-## 62. 3_peticion / 1.3.8. peticion — IV en base64 (400)
+## 62. 3_peticion / 1.3.7. peticion — formato hex inválido (400)
 
-- **Test:** [General] codigoError = 400
-- **Mensaje:** expected 405 to equal 400
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
 
 ```json
@@ -633,18 +633,18 @@
 
 ## 63. 3_peticion / 1.3.8. peticion — IV en base64 (400)
 
-- **Test:** [General] mensajeError = "Error en la petición original"
-- **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 405 to equal 400
 - **HTTP descifrar:** 200
 
 ```json
 {"codigoError":405,"mensajeError":"Error en descifrado canal emisor"}
 ```
 
-## 64. 3_peticion / 1.3.9. peticion — IV truncado (400)
+## 64. 3_peticion / 1.3.8. peticion — IV en base64 (400)
 
-- **Test:** [General] codigoError = 400
-- **Mensaje:** expected 405 to equal 400
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
 
 ```json
@@ -653,18 +653,18 @@
 
 ## 65. 3_peticion / 1.3.9. peticion — IV truncado (400)
 
-- **Test:** [General] mensajeError = "Error en la petición original"
-- **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 405 to equal 400
 - **HTTP descifrar:** 200
 
 ```json
 {"codigoError":405,"mensajeError":"Error en descifrado canal emisor"}
 ```
 
-## 66. 3_peticion / 1.3.10. peticion — segmento AES en base64 (400)
+## 66. 3_peticion / 1.3.9. peticion — IV truncado (400)
 
-- **Test:** [General] codigoError = 400
-- **Mensaje:** expected 405 to equal 400
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
 
 ```json
@@ -673,18 +673,18 @@
 
 ## 67. 3_peticion / 1.3.10. peticion — segmento AES en base64 (400)
 
-- **Test:** [General] mensajeError = "Error en la petición original"
-- **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 405 to equal 400
 - **HTTP descifrar:** 200
 
 ```json
 {"codigoError":405,"mensajeError":"Error en descifrado canal emisor"}
 ```
 
-## 68. 3_peticion / 1.3.11. peticion — segmento AES faltante (400)
+## 68. 3_peticion / 1.3.10. peticion — segmento AES en base64 (400)
 
-- **Test:** [General] codigoError = 400
-- **Mensaje:** expected 405 to equal 400
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
 
 ```json
@@ -693,18 +693,18 @@
 
 ## 69. 3_peticion / 1.3.11. peticion — segmento AES faltante (400)
 
-- **Test:** [General] mensajeError = "Error en la petición original"
-- **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 405 to equal 400
 - **HTTP descifrar:** 200
 
 ```json
 {"codigoError":405,"mensajeError":"Error en descifrado canal emisor"}
 ```
 
-## 70. 3_peticion / 1.3.12. peticion — segmento extra (400)
+## 70. 3_peticion / 1.3.11. peticion — segmento AES faltante (400)
 
-- **Test:** [General] codigoError = 400
-- **Mensaje:** expected 405 to equal 400
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
 
 ```json
@@ -713,6 +713,16 @@
 
 ## 71. 3_peticion / 1.3.12. peticion — segmento extra (400)
 
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 405 to equal 400
+- **HTTP descifrar:** 200
+
+```json
+{"codigoError":405,"mensajeError":"Error en descifrado canal emisor"}
+```
+
+## 72. 3_peticion / 1.3.12. peticion — segmento extra (400)
+
 - **Test:** [General] mensajeError = "Error en la petición original"
 - **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
@@ -721,7 +731,7 @@
 {"codigoError":405,"mensajeError":"Error en descifrado canal emisor"}
 ```
 
-## 72. 3_peticion / 1.3.13. peticion — caracter no hex (400)
+## 73. 3_peticion / 1.3.13. peticion — caracter no hex (400)
 
 - **Test:** [General] codigoError = 400
 - **Mensaje:** expected 405 to equal 400
@@ -731,7 +741,7 @@
 {"codigoError":405,"mensajeError":"Error en descifrado canal emisor"}
 ```
 
-## 73. 3_peticion / 1.3.13. peticion — caracter no hex (400)
+## 74. 3_peticion / 1.3.13. peticion — caracter no hex (400)
 
 - **Test:** [General] mensajeError = "Error en la petición original"
 - **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error en la petición original'
@@ -741,7 +751,127 @@
 {"codigoError":405,"mensajeError":"Error en descifrado canal emisor"}
 ```
 
-## 74. 5_solicitudes / 1.5.1. solicitudes — tipo string (425)
+## 75. 4_idPeticion / 1.4.9. idPeticion — longitud 7, mínimo 8 (400)
+
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 509 to equal 400
+- **HTTP descifrar:** 200
+
+```json
+{"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
+```
+
+## 76. 4_idPeticion / 1.4.9. idPeticion — longitud 7, mínimo 8 (400)
+
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected 'Error inesperado en validador' to equal 'Error en la petición original'
+- **HTTP descifrar:** 200
+
+```json
+{"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
+```
+
+## 77. 4_idPeticion / 1.4.11. idPeticion — espacio interno (400)
+
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 509 to equal 400
+- **HTTP descifrar:** 200
+
+```json
+{"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
+```
+
+## 78. 4_idPeticion / 1.4.11. idPeticion — espacio interno (400)
+
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected 'Error inesperado en validador' to equal 'Error en la petición original'
+- **HTTP descifrar:** 200
+
+```json
+{"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
+```
+
+## 79. 4_idPeticion / 1.4.12. idPeticion — símbolo @ (400)
+
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 509 to equal 400
+- **HTTP descifrar:** 200
+
+```json
+{"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
+```
+
+## 80. 4_idPeticion / 1.4.12. idPeticion — símbolo @ (400)
+
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected 'Error inesperado en validador' to equal 'Error en la petición original'
+- **HTTP descifrar:** 200
+
+```json
+{"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
+```
+
+## 81. 4_idPeticion / 1.4.13. idPeticion — unicode interrogación apertura (400)
+
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 509 to equal 400
+- **HTTP descifrar:** 200
+
+```json
+{"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
+```
+
+## 82. 4_idPeticion / 1.4.13. idPeticion — unicode interrogación apertura (400)
+
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected 'Error inesperado en validador' to equal 'Error en la petición original'
+- **HTTP descifrar:** 200
+
+```json
+{"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
+```
+
+## 83. 4_idPeticion / 1.4.14. idPeticion — comillas (400)
+
+- **Test:** [General] codigoError = 400
+- **Mensaje:** expected 509 to equal 400
+- **HTTP descifrar:** 200
+
+```json
+{"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
+```
+
+## 84. 4_idPeticion / 1.4.14. idPeticion — comillas (400)
+
+- **Test:** [General] mensajeError = "Error en la petición original"
+- **Mensaje:** expected 'Error inesperado en validador' to equal 'Error en la petición original'
+- **HTTP descifrar:** 200
+
+```json
+{"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
+```
+
+## 85. 4_idPeticion / 1.4.15. idPeticion — prefijo SWIFT ajeno (445)
+
+- **Test:** [General] codigoError = 445
+- **Mensaje:** expected 509 to equal 445
+- **HTTP descifrar:** 200
+
+```json
+{"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
+```
+
+## 86. 4_idPeticion / 1.4.15. idPeticion — prefijo SWIFT ajeno (445)
+
+- **Test:** [General] mensajeError = "El prefijo Código SWIFT del idPeticion no coincide con el canal emisor"
+- **Mensaje:** expected 'Error inesperado en validador' to equal 'El prefijo Código SWIFT del idPeticio…'
+- **HTTP descifrar:** 200
+
+```json
+{"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
+```
+
+## 87. 5_solicitudes / 1.5.1. solicitudes — tipo string (425)
 
 - **Test:** [General] mensajeError = "Cantidad de solicitudes no permitidas"
 - **Mensaje:** expected 'Cantidad de solicitudes no permitidas.' to equal 'Cantidad de solicitudes no permitidas'
@@ -751,7 +881,7 @@
 {"respuesta":{"codigoError":425,"mensajeError":"Cantidad de solicitudes no permitidas."}}
 ```
 
-## 75. 5_solicitudes / 1.5.2. solicitudes — arreglo vacío (425)
+## 88. 5_solicitudes / 1.5.2. solicitudes — arreglo vacío (425)
 
 - **Test:** [General] mensajeError = "Cantidad de solicitudes no permitidas"
 - **Mensaje:** expected 'Cantidad de solicitudes no permitidas.' to equal 'Cantidad de solicitudes no permitidas'
@@ -761,7 +891,7 @@
 {"respuesta":{"codigoError":425,"mensajeError":"Cantidad de solicitudes no permitidas."}}
 ```
 
-## 76. 5_solicitudes / 1.5.3. solicitudes — excede límite 0015, 5 solicitudes (425)
+## 89. 5_solicitudes / 1.5.3. solicitudes — excede límite 0015, 5 solicitudes (425)
 
 - **Test:** [General] mensajeError = "Cantidad de solicitudes no permitidas"
 - **Mensaje:** expected 'Cantidad de solicitudes no permitidas.' to equal 'Cantidad de solicitudes no permitidas'
@@ -771,7 +901,7 @@
 {"respuesta":{"codigoError":425,"mensajeError":"Cantidad de solicitudes no permitidas."}}
 ```
 
-## 77. 5_solicitudes / 1.5.4. solicitudes — sin propiedad idSolicitud (431)
+## 90. 5_solicitudes / 1.5.4. solicitudes — sin propiedad idSolicitud (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 404 to equal 431
@@ -781,7 +911,7 @@
 {"respuesta":{"codigoError":404,"mensajeError":"Campo idSolicitud no cumple con los criterios"}}
 ```
 
-## 78. 5_solicitudes / 1.5.5. solicitudes — idSolicitud vacío (431)
+## 91. 5_solicitudes / 1.5.5. solicitudes — idSolicitud vacío (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 404 to equal 431
@@ -791,7 +921,7 @@
 {"respuesta":{"codigoError":404,"mensajeError":"Campo idSolicitud no cumple con los criterios"}}
 ```
 
-## 79. 5_solicitudes / 1.5.6. solicitudes — idSolicitud tipo number (431)
+## 92. 5_solicitudes / 1.5.6. solicitudes — idSolicitud tipo number (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 404 to equal 431
@@ -801,7 +931,7 @@
 {"respuesta":{"codigoError":404,"mensajeError":"Campo idSolicitud no cumple con los criterios"}}
 ```
 
-## 80. 5_solicitudes / 1.5.7. solicitudes — idSolicitud solo espacios (431)
+## 93. 5_solicitudes / 1.5.7. solicitudes — idSolicitud solo espacios (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 404 to equal 431
@@ -811,7 +941,7 @@
 {"respuesta":{"codigoError":404,"mensajeError":"Campo idSolicitud no cumple con los criterios"}}
 ```
 
-## 81. 5_solicitudes / 1.5.8. solicitudes — idSolicitud longitud 65 (431)
+## 94. 5_solicitudes / 1.5.8. solicitudes — idSolicitud longitud 65 (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 404 to equal 431
@@ -821,7 +951,7 @@
 {"respuesta":{"codigoError":404,"mensajeError":"Campo idSolicitud no cumple con los criterios"}}
 ```
 
-## 82. 5_solicitudes / 1.5.9. solicitudes — idSolicitud duplicado case-insensitive (431) [CFG 0015≥2]
+## 95. 5_solicitudes / 1.5.9. solicitudes — idSolicitud duplicado case-insensitive (431) [CFG 0015≥2]
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 425 to equal 431
@@ -831,7 +961,7 @@
 {"respuesta":{"codigoError":425,"mensajeError":"Cantidad de solicitudes no permitidas."}}
 ```
 
-## 83. 5_solicitudes / 1.5.9. solicitudes — idSolicitud duplicado case-insensitive (431) [CFG 0015≥2]
+## 96. 5_solicitudes / 1.5.9. solicitudes — idSolicitud duplicado case-insensitive (431) [CFG 0015≥2]
 
 - **Test:** [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
 - **Mensaje:** expected 'Cantidad de solicitudes no permitidas.' to equal 'Campo idSolicitud no cumple con los c…'
@@ -841,7 +971,7 @@
 {"respuesta":{"codigoError":425,"mensajeError":"Cantidad de solicitudes no permitidas."}}
 ```
 
-## 84. 5_solicitudes / 1.5.10. solicitudes — guion bajo (431)
+## 97. 5_solicitudes / 1.5.10. solicitudes — guion bajo (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 509 to equal 431
@@ -851,7 +981,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 85. 5_solicitudes / 1.5.10. solicitudes — guion bajo (431)
+## 98. 5_solicitudes / 1.5.10. solicitudes — guion bajo (431)
 
 - **Test:** [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
 - **Mensaje:** expected 'Error inesperado en validador' to equal 'Campo idSolicitud no cumple con los c…'
@@ -861,7 +991,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 86. 5_solicitudes / 1.5.11. solicitudes — espacio interno (431)
+## 99. 5_solicitudes / 1.5.11. solicitudes — espacio interno (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 509 to equal 431
@@ -871,7 +1001,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 87. 5_solicitudes / 1.5.11. solicitudes — espacio interno (431)
+## 100. 5_solicitudes / 1.5.11. solicitudes — espacio interno (431)
 
 - **Test:** [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
 - **Mensaje:** expected 'Error inesperado en validador' to equal 'Campo idSolicitud no cumple con los c…'
@@ -881,7 +1011,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 88. 5_solicitudes / 1.5.12. solicitudes — espacio al inicio (431)
+## 101. 5_solicitudes / 1.5.12. solicitudes — espacio al inicio (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 509 to equal 431
@@ -891,7 +1021,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 89. 5_solicitudes / 1.5.12. solicitudes — espacio al inicio (431)
+## 102. 5_solicitudes / 1.5.12. solicitudes — espacio al inicio (431)
 
 - **Test:** [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
 - **Mensaje:** expected 'Error inesperado en validador' to equal 'Campo idSolicitud no cumple con los c…'
@@ -901,7 +1031,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 90. 5_solicitudes / 1.5.13. solicitudes — espacio al final (431)
+## 103. 5_solicitudes / 1.5.13. solicitudes — espacio al final (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 509 to equal 431
@@ -911,7 +1041,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 91. 5_solicitudes / 1.5.13. solicitudes — espacio al final (431)
+## 104. 5_solicitudes / 1.5.13. solicitudes — espacio al final (431)
 
 - **Test:** [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
 - **Mensaje:** expected 'Error inesperado en validador' to equal 'Campo idSolicitud no cumple con los c…'
@@ -921,7 +1051,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 92. 5_solicitudes / 1.5.14. solicitudes — arroba (431)
+## 105. 5_solicitudes / 1.5.14. solicitudes — arroba (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 509 to equal 431
@@ -931,7 +1061,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 93. 5_solicitudes / 1.5.14. solicitudes — arroba (431)
+## 106. 5_solicitudes / 1.5.14. solicitudes — arroba (431)
 
 - **Test:** [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
 - **Mensaje:** expected 'Error inesperado en validador' to equal 'Campo idSolicitud no cumple con los c…'
@@ -941,7 +1071,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 94. 5_solicitudes / 1.5.15. solicitudes — punto (431)
+## 107. 5_solicitudes / 1.5.15. solicitudes — punto (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 509 to equal 431
@@ -951,7 +1081,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 95. 5_solicitudes / 1.5.15. solicitudes — punto (431)
+## 108. 5_solicitudes / 1.5.15. solicitudes — punto (431)
 
 - **Test:** [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
 - **Mensaje:** expected 'Error inesperado en validador' to equal 'Campo idSolicitud no cumple con los c…'
@@ -961,7 +1091,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 96. 5_solicitudes / 1.5.16. solicitudes — unicode (431)
+## 109. 5_solicitudes / 1.5.16. solicitudes — unicode (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 509 to equal 431
@@ -971,7 +1101,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 97. 5_solicitudes / 1.5.16. solicitudes — unicode (431)
+## 110. 5_solicitudes / 1.5.16. solicitudes — unicode (431)
 
 - **Test:** [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
 - **Mensaje:** expected 'Error inesperado en validador' to equal 'Campo idSolicitud no cumple con los c…'
@@ -981,7 +1111,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 98. 5_solicitudes / 1.5.17. solicitudes — barra (431)
+## 111. 5_solicitudes / 1.5.17. solicitudes — barra (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 509 to equal 431
@@ -991,7 +1121,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 99. 5_solicitudes / 1.5.17. solicitudes — barra (431)
+## 112. 5_solicitudes / 1.5.17. solicitudes — barra (431)
 
 - **Test:** [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
 - **Mensaje:** expected 'Error inesperado en validador' to equal 'Campo idSolicitud no cumple con los c…'
@@ -1001,7 +1131,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 100. 5_solicitudes / 1.5.18. solicitudes — comillas (431)
+## 113. 5_solicitudes / 1.5.18. solicitudes — comillas (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 509 to equal 431
@@ -1011,7 +1141,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 101. 5_solicitudes / 1.5.18. solicitudes — comillas (431)
+## 114. 5_solicitudes / 1.5.18. solicitudes — comillas (431)
 
 - **Test:** [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
 - **Mensaje:** expected 'Error inesperado en validador' to equal 'Campo idSolicitud no cumple con los c…'
@@ -1021,7 +1151,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 102. 5_solicitudes / 1.5.19. solicitudes — elemento null en arreglo (431)
+## 115. 5_solicitudes / 1.5.19. solicitudes — elemento null en arreglo (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 999 to equal 431
@@ -1031,7 +1161,7 @@
 {"codigoError":999,"mensajeError":"Error en la solicitud"}
 ```
 
-## 103. 5_solicitudes / 1.5.19. solicitudes — elemento null en arreglo (431)
+## 116. 5_solicitudes / 1.5.19. solicitudes — elemento null en arreglo (431)
 
 - **Test:** [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
 - **Mensaje:** expected 'Error en la solicitud' to equal 'Campo idSolicitud no cumple con los c…'
@@ -1041,7 +1171,7 @@
 {"codigoError":999,"mensajeError":"Error en la solicitud"}
 ```
 
-## 104. 5_solicitudes / 1.5.20. solicitudes — idSolicitud null (431)
+## 117. 5_solicitudes / 1.5.20. solicitudes — idSolicitud null (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 404 to equal 431
@@ -1051,7 +1181,7 @@
 {"respuesta":{"codigoError":404,"mensajeError":"Campo idSolicitud no cumple con los criterios"}}
 ```
 
-## 105. 5_solicitudes / 1.5.21. solicitudes — idSolicitud tipo boolean true (431)
+## 118. 5_solicitudes / 1.5.21. solicitudes — idSolicitud tipo boolean true (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 404 to equal 431
@@ -1061,7 +1191,7 @@
 {"respuesta":{"codigoError":404,"mensajeError":"Campo idSolicitud no cumple con los criterios"}}
 ```
 
-## 106. 5_solicitudes / 1.5.22. solicitudes — idSolicitud tipo boolean false (431)
+## 119. 5_solicitudes / 1.5.22. solicitudes — idSolicitud tipo boolean false (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 404 to equal 431
@@ -1071,7 +1201,7 @@
 {"respuesta":{"codigoError":404,"mensajeError":"Campo idSolicitud no cumple con los criterios"}}
 ```
 
-## 107. 5_solicitudes / 1.5.23. solicitudes — solo guiones (431)
+## 120. 5_solicitudes / 1.5.23. solicitudes — solo guiones (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 509 to equal 431
@@ -1081,7 +1211,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 108. 5_solicitudes / 1.5.23. solicitudes — solo guiones (431)
+## 121. 5_solicitudes / 1.5.23. solicitudes — solo guiones (431)
 
 - **Test:** [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
 - **Mensaje:** expected 'Error inesperado en validador' to equal 'Campo idSolicitud no cumple con los c…'
@@ -1091,7 +1221,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 109. 5_solicitudes / 1.5.24. solicitudes — un solo guion (431)
+## 122. 5_solicitudes / 1.5.24. solicitudes — un solo guion (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 509 to equal 431
@@ -1101,7 +1231,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 110. 5_solicitudes / 1.5.24. solicitudes — un solo guion (431)
+## 123. 5_solicitudes / 1.5.24. solicitudes — un solo guion (431)
 
 - **Test:** [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
 - **Mensaje:** expected 'Error inesperado en validador' to equal 'Campo idSolicitud no cumple con los c…'
@@ -1111,7 +1241,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 111. 5_solicitudes / 1.5.25. solicitudes — idSolicitud tipo object (431)
+## 124. 5_solicitudes / 1.5.25. solicitudes — idSolicitud tipo object (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 404 to equal 431
@@ -1121,7 +1251,7 @@
 {"respuesta":{"codigoError":404,"mensajeError":"Campo idSolicitud no cumple con los criterios"}}
 ```
 
-## 112. 5_solicitudes / 1.5.26. solicitudes — idSolicitud tipo array (431)
+## 125. 5_solicitudes / 1.5.26. solicitudes — idSolicitud tipo array (431)
 
 - **Test:** [General] codigoError = 431
 - **Mensaje:** expected 404 to equal 431
@@ -1131,7 +1261,7 @@
 {"respuesta":{"codigoError":404,"mensajeError":"Campo idSolicitud no cumple con los criterios"}}
 ```
 
-## 113. 1_idCanal / 2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]
+## 126. 1_idCanal / 2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]
 
 - **Test:** [General] codigoError = 403
 - **Mensaje:** expected 509 to equal 403
@@ -1141,7 +1271,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 114. 1_idCanal / 2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]
+## 127. 1_idCanal / 2.1.2. idCanal — sin plan de suscripción (403) [CANAL_EMISOR_SIN_PLAN]
 
 - **Test:** [General] mensajeError = "Canal emisor no tiene un plan de suscripción"
 - **Mensaje:** expected 'Error inesperado en validador' to equal 'Canal emisor no tiene un plan de susc…'
@@ -1151,7 +1281,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 115. 1_idCanal / 2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]
+## 128. 1_idCanal / 2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]
 
 - **Test:** [General] codigoError = 500
 - **Mensaje:** expected 405 to equal 500
@@ -1161,7 +1291,7 @@
 {"codigoError":405,"mensajeError":"Error en descifrado canal emisor"}
 ```
 
-## 116. 1_idCanal / 2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]
+## 129. 1_idCanal / 2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]
 
 - **Test:** [General] mensajeError = "Error interno"
 - **Mensaje:** expected 'Error en descifrado canal emisor' to equal 'Error interno'
@@ -1171,7 +1301,7 @@
 {"codigoError":405,"mensajeError":"Error en descifrado canal emisor"}
 ```
 
-## 117. 1_idCanal / 2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]
+## 130. 1_idCanal / 2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]
 
 - **Test:** [General] codigoError = 403
 - **Mensaje:** expected 509 to equal 403
@@ -1181,7 +1311,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 118. 1_idCanal / 2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]
+## 131. 1_idCanal / 2.1.4. idCanal — sin plan de suscripción sin grupos (403) [CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS]
 
 - **Test:** [General] mensajeError = "Canal emisor no tiene un plan de suscripción"
 - **Mensaje:** expected 'Error inesperado en validador' to equal 'Canal emisor no tiene un plan de susc…'
@@ -1191,7 +1321,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 119. 2_validador / 2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]
+## 132. 2_validador / 2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]
 
 - **Test:** [General] codigoError = 500
 - **Mensaje:** expected 418 to equal 500
@@ -1201,7 +1331,7 @@
 {"respuesta":{"codigoError":418,"mensajeError":"Metodo no soportado por el validador"}}
 ```
 
-## 120. 2_validador / 2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]
+## 133. 2_validador / 2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]
 
 - **Test:** [General] mensajeError = "Error interno"
 - **Mensaje:** expected 'Metodo no soportado por el validador' to equal 'Error interno'
@@ -1211,7 +1341,7 @@
 {"respuesta":{"codigoError":418,"mensajeError":"Metodo no soportado por el validador"}}
 ```
 
-## 121. 4_metodo / 2.4.1. metodo — no está en CFG_METODOS_LIMITES_JSON (418)
+## 134. 4_metodo / 2.4.1. metodo — no está en CFG_METODOS_LIMITES_JSON (418)
 
 - **Test:** [General] codigoError = 418
 - **Mensaje:** expected 509 to equal 418
@@ -1221,7 +1351,7 @@
 {"codigoError":509,"mensajeError":"Error inesperado al llamar servicio interno"}
 ```
 
-## 122. 4_metodo / 2.4.1. metodo — no está en CFG_METODOS_LIMITES_JSON (418)
+## 135. 4_metodo / 2.4.1. metodo — no está en CFG_METODOS_LIMITES_JSON (418)
 
 - **Test:** [General] mensajeError = "Método no soportado"
 - **Mensaje:** expected 'Error inesperado al llamar servicio i…' to equal 'Método no soportado'
@@ -1231,7 +1361,7 @@
 {"codigoError":509,"mensajeError":"Error inesperado al llamar servicio interno"}
 ```
 
-## 123. 4_metodo / 2.4.2. metodo — no asociado al canal emisor (418) [CANAL_EMISOR_SIN_METODO]
+## 136. 4_metodo / 2.4.2. metodo — no asociado al canal emisor (418) [CANAL_EMISOR_SIN_METODO]
 
 - **Test:** [General] codigoError = 418
 - **Mensaje:** expected 509 to equal 418
@@ -1241,7 +1371,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 124. 4_metodo / 2.4.2. metodo — no asociado al canal emisor (418) [CANAL_EMISOR_SIN_METODO]
+## 137. 4_metodo / 2.4.2. metodo — no asociado al canal emisor (418) [CANAL_EMISOR_SIN_METODO]
 
 - **Test:** [General] mensajeError = "Método no soportado"
 - **Mensaje:** expected 'Error inesperado en validador' to equal 'Método no soportado'
@@ -1251,7 +1381,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 125. 1_cuenta / 0001.1.1.1. cuenta — propiedad ausente (413)
+## 138. 1_cuenta / 0001.1.1.1. cuenta — propiedad ausente (413)
 
 - **Test:** [Dummy /descifrar] estructura inner.respuestas[0] presente
 - **Mensaje:** expected { codigoError: 999, …(1) } to have property 'respuestas'
@@ -1261,7 +1391,7 @@
 {"respuesta":{"codigoError":999,"mensajeError":"Error en la solicitud"}}
 ```
 
-## 126. 1_cuenta / 0001.1.1.2. cuenta — null (413)
+## 139. 1_cuenta / 0001.1.1.2. cuenta — null (413)
 
 - **Test:** [Dummy /descifrar] estructura inner.respuestas[0] presente
 - **Mensaje:** expected { codigoError: 999, …(1) } to have property 'respuestas'
@@ -1271,7 +1401,7 @@
 {"respuesta":{"codigoError":999,"mensajeError":"Error en la solicitud"}}
 ```
 
-## 127. 1_cuenta / 0001.1.1.18. cuenta — tipo array (413)
+## 140. 1_cuenta / 0001.1.1.18. cuenta — tipo array (413)
 
 - **Test:** [Dummy /descifrar] estructura inner.respuestas[0] presente
 - **Mensaje:** expected { codigoError: 509, …(1) } to have property 'respuestas'
@@ -1281,7 +1411,7 @@
 {"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
 ```
 
-## 128. 1022_fijo / 0001.5.1022.1. validador PROXGATO auth fijo — demora validador (599)
+## 141. 1022_fijo / 0001.5.1022.1. validador PROXGATO auth fijo — demora validador (599)
 
 - **Test:** [General] codigoError = 599
 - **Mensaje:** expected undefined to equal 599
@@ -1291,7 +1421,7 @@
 {"respuesta":{"message":"Internal server error"}}
 ```
 
-## 129. 1022_fijo / 0001.5.1022.1. validador PROXGATO auth fijo — demora validador (599)
+## 142. 1022_fijo / 0001.5.1022.1. validador PROXGATO auth fijo — demora validador (599)
 
 - **Test:** [General] mensajeError = "Tiempo de espera agotado al llamar al Canal Validador"
 - **Mensaje:** expected undefined to equal 'Tiempo de espera agotado al llamar al…'
@@ -1301,7 +1431,7 @@
 {"respuesta":{"message":"Internal server error"}}
 ```
 
-## 130. 1022_fijo / 0001.5.1022.3. validador PROXGATO auth fijo — respuesta sin campo cifrado (509)
+## 143. 1022_fijo / 0001.5.1022.3. validador PROXGATO auth fijo — respuesta sin campo cifrado (509)
 
 - **Test:** [General] codigoError = 509
 - **Mensaje:** expected 406 to equal 509
@@ -1311,7 +1441,7 @@
 {"respuesta":{"codigoError":406,"mensajeError":"Error en descifrado canal validador"}}
 ```
 
-## 131. 1022_fijo / 0001.5.1022.3. validador PROXGATO auth fijo — respuesta sin campo cifrado (509)
+## 144. 1022_fijo / 0001.5.1022.3. validador PROXGATO auth fijo — respuesta sin campo cifrado (509)
 
 - **Test:** [General] mensajeError = "Error inesperado en el Canal Validador"
 - **Mensaje:** expected 'Error en descifrado canal validador' to equal 'Error inesperado en el Canal Validador'
@@ -1321,27 +1451,27 @@
 {"respuesta":{"codigoError":406,"mensajeError":"Error en descifrado canal validador"}}
 ```
 
-## 132. 1023_token / 0001.5.1023.1. validador OUTFGATO auth token — demora validador (599)
+## 145. 1023_token / 0001.5.1023.1. validador OUTFGATO auth token — demora validador (599)
 
 - **Test:** [General] codigoError = 599
-- **Mensaje:** expected 509 to equal 599
+- **Mensaje:** expected undefined to equal 599
 - **HTTP descifrar:** 200
 
 ```json
-{"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
+{"respuesta":{"message":"Internal server error"}}
 ```
 
-## 133. 1023_token / 0001.5.1023.1. validador OUTFGATO auth token — demora validador (599)
+## 146. 1023_token / 0001.5.1023.1. validador OUTFGATO auth token — demora validador (599)
 
 - **Test:** [General] mensajeError = "Tiempo de espera agotado al llamar al Canal Validador"
-- **Mensaje:** expected 'Error inesperado en validador' to equal 'Tiempo de espera agotado al llamar al…'
+- **Mensaje:** expected undefined to equal 'Tiempo de espera agotado al llamar al…'
 - **HTTP descifrar:** 200
 
 ```json
-{"respuesta":{"codigoError":509,"mensajeError":"Error inesperado en validador"}}
+{"respuesta":{"message":"Internal server error"}}
 ```
 
-## 134. 1023_token / 0001.5.1023.3. validador OUTFGATO auth token — respuesta sin campo cifrado (509)
+## 147. 1023_token / 0001.5.1023.3. validador OUTFGATO auth token — respuesta sin campo cifrado (509)
 
 - **Test:** [General] codigoError = 509
 - **Mensaje:** expected 406 to equal 509
@@ -1351,7 +1481,7 @@
 {"respuesta":{"codigoError":406,"mensajeError":"Error en descifrado canal validador"}}
 ```
 
-## 135. 1023_token / 0001.5.1023.3. validador OUTFGATO auth token — respuesta sin campo cifrado (509)
+## 148. 1023_token / 0001.5.1023.3. validador OUTFGATO auth token — respuesta sin campo cifrado (509)
 
 - **Test:** [General] mensajeError = "Error inesperado en el Canal Validador"
 - **Mensaje:** expected 'Error en descifrado canal validador' to equal 'Error inesperado en el Canal Validador'
