@@ -130,6 +130,129 @@
       return out;
     }
 
+    // Presentación al cliente: Forma A (codigoError+texto), B (respuestas[].resultado), C (otro).
+    // Debe mantenerse alineado con clasificar-presentacion-cliente.js (Node).
+    function clasificarPresentacionCliente(descBody, formatoLambda, vinoCifrada, httpStatus) {
+      function sortedKeys(obj) {
+        if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return '';
+        return Object.keys(obj).sort().join(',');
+      }
+      function normTexto(t) {
+        return String(t || '').trim().replace(/\s+/g, ' ');
+      }
+      function pickTexto(obj) {
+        if (!obj || typeof obj !== 'object') return { campo: null, texto: null };
+        if (obj.mensajeError != null && String(obj.mensajeError).trim() !== '') {
+          return { campo: 'mensajeError', texto: String(obj.mensajeError) };
+        }
+        if (obj.descripcionError != null && String(obj.descripcionError).trim() !== '') {
+          return { campo: 'descripcionError', texto: String(obj.descripcionError) };
+        }
+        if (obj.descripcion != null && String(obj.descripcion).trim() !== '') {
+          return { campo: 'descripcion', texto: String(obj.descripcion) };
+        }
+        if (obj.message != null && String(obj.message).trim() !== '') {
+          return { campo: 'message', texto: String(obj.message) };
+        }
+        return { campo: null, texto: null };
+      }
+      function resolverObj(parsed, fmt) {
+        if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return null;
+        if (
+          (fmt === 'plano_en_respuesta' ||
+            (parsed.respuesta != null &&
+              typeof parsed.respuesta === 'object' &&
+              !Array.isArray(parsed.respuesta) &&
+              parsed.codigoError == null &&
+              !Array.isArray(parsed.respuestas))) &&
+          parsed.respuesta &&
+          typeof parsed.respuesta === 'object'
+        ) {
+          return parsed.respuesta;
+        }
+        return parsed;
+      }
+      const cifrado = typeof vinoCifrada === 'boolean' ? vinoCifrada : null;
+      const httpNum = httpStatus != null && httpStatus !== '' ? Number(httpStatus) : null;
+      const httpOk = httpNum != null && !isNaN(httpNum) ? httpNum : null;
+      const cifradoTxt = cifrado === true ? 'si' : cifrado === false ? 'no' : '?';
+      const baseC = {
+        presentacionForma: 'C',
+        presentacionCodigo: null,
+        presentacionDescripcion: null,
+        presentacionCampoTexto: null,
+        presentacionClaves: '',
+        presentacionCifrado: cifrado,
+        presentacionHttp: httpOk,
+        presentacionPatternKey: null,
+      };
+      if (formatoLambda === 'sin_respuesta' || formatoLambda === 'no_json') {
+        baseC.presentacionPatternKey =
+          'C|http=' + (httpOk != null ? httpOk : 'null') + '|cifrado=' + cifradoTxt +
+          '|fmt=' + (formatoLambda || '?') + '|codigo=|desc=';
+        return baseC;
+      }
+      let parsed = null;
+      try {
+        parsed = descBody ? JSON.parse(String(descBody)) : null;
+      } catch (e) {
+        parsed = null;
+      }
+      if (!parsed) {
+        baseC.presentacionPatternKey =
+          'C|http=' + (httpOk != null ? httpOk : 'null') + '|cifrado=' + cifradoTxt +
+          '|fmt=' + (formatoLambda || '?') + '|codigo=|desc=';
+        return baseC;
+      }
+      const obj = resolverObj(parsed, formatoLambda);
+      if (!obj) {
+        baseC.presentacionPatternKey =
+          'C|http=' + (httpOk != null ? httpOk : 'null') + '|cifrado=' + cifradoTxt +
+          '|fmt=' + (formatoLambda || '?') + '|codigo=|desc=';
+        return baseC;
+      }
+      const claves = sortedKeys(obj);
+      if (Array.isArray(obj.respuestas) && obj.respuestas.length > 0) {
+        const r0 = obj.respuestas[0] || {};
+        const codigo = r0.resultado != null && r0.resultado !== '' ? r0.resultado : null;
+        return {
+          presentacionForma: 'B',
+          presentacionCodigo: codigo,
+          presentacionDescripcion: '',
+          presentacionCampoTexto: null,
+          presentacionClaves: claves,
+          presentacionCifrado: cifrado,
+          presentacionHttp: httpOk,
+          presentacionPatternKey:
+            'B|http=' + (httpOk != null ? httpOk : 'null') + '|cifrado=' + cifradoTxt +
+            '|keys=' + claves + '|codigo=' + (codigo != null ? String(codigo) : '') + '|desc=',
+        };
+      }
+      if (obj.codigoError != null && obj.codigoError !== '') {
+        const pick = pickTexto(obj);
+        const desc = normTexto(pick.texto);
+        const forma = pick.campo ? 'A.' + pick.campo : 'A';
+        return {
+          presentacionForma: forma,
+          presentacionCodigo: obj.codigoError,
+          presentacionDescripcion: desc,
+          presentacionCampoTexto: pick.campo,
+          presentacionClaves: claves,
+          presentacionCifrado: cifrado,
+          presentacionHttp: httpOk,
+          presentacionPatternKey:
+            forma + '|http=' + (httpOk != null ? httpOk : 'null') + '|cifrado=' + cifradoTxt +
+            '|campo=' + (pick.campo || '') + '|keys=' + claves +
+            '|codigo=' + String(obj.codigoError) + '|desc=' + desc,
+        };
+      }
+      baseC.presentacionClaves = claves;
+      baseC.presentacionPatternKey =
+        'C|http=' + (httpOk != null ? httpOk : 'null') + '|cifrado=' + cifradoTxt +
+        '|keys=' + claves + '|codigo=|desc=';
+      return baseC;
+    }
+
     let descifradoBody = '';
     let descifradoCode = null;
     try {
@@ -140,10 +263,17 @@
     }
     const respLambdaRawFull = cvGet('PROCESAR_RESPONSE_BODY');
     const fmt = clasificarFormatoRespuestaLambda(respLambdaRawFull, descifradoBody);
+    const httpRealLambda = cvGet('PROCESAR_STATUS_CODE');
+    const pres = clasificarPresentacionCliente(
+      descifradoBody,
+      fmt.formatoRespuestaLambda,
+      fmt.respuestaVinoCifrada,
+      httpRealLambda
+    );
     const captura = {
       nivel: String(pm.environment.get('NIVEL_EJECUCION') || 'P2M').trim().toUpperCase(),
       url: cvGet('PROCESAR_URL') || '',
-      httpRealLambda: cvGet('PROCESAR_STATUS_CODE'),
+      httpRealLambda: httpRealLambda,
       httpEsperado: pm.variables.get('expectedHttpStatus'),
       codigoErrorEsperado: pm.variables.get('expectedCodigoError'),
       tipo: pm.variables.get('expectedTipo'),
@@ -163,6 +293,15 @@
       respuestaVinoCifrada: fmt.respuestaVinoCifrada,
       formatoRespuestaLambda: fmt.formatoRespuestaLambda,
       payloadCambioTrasDescifrar: fmt.payloadCambioTrasDescifrar,
+      // Presentación cliente (Forma A/B/C) — foto de producción
+      presentacionForma: pres.presentacionForma,
+      presentacionCodigo: pres.presentacionCodigo,
+      presentacionDescripcion: pres.presentacionDescripcion,
+      presentacionCampoTexto: pres.presentacionCampoTexto,
+      presentacionClaves: pres.presentacionClaves,
+      presentacionCifrado: pres.presentacionCifrado,
+      presentacionHttp: pres.presentacionHttp,
+      presentacionPatternKey: pres.presentacionPatternKey,
     };
     let json = '';
     try {

@@ -18,6 +18,8 @@ Detalle: [`../../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md`](../../tl
 
 **Registro cifrado/plano (2026-07-14):** cada escenario anota si la lambda devolvió el cuerpo cifrado o en claro (`respuestaVinoCifrada`, `formatoRespuestaLambda`). Doc: [`registro-respuesta-cifrada-vs-clara-2026-07-14.md`](registro-respuesta-cifrada-vs-clara-2026-07-14.md). Verificador local: `node verificar-formato-respuesta-lambda.js logs/resultados-por-escenario-vcn.json`.
 
+**Foto presentación cliente A/B/C (2026-07-14):** CAPTURA + `extraer-foto-presentacion.js` → `codigosRespuesta/foto-presentacion-<suite>.md`. Doc: [`registro-presentacion-cliente-2026-07-14.md`](registro-presentacion-cliente-2026-07-14.md). Formas: [`../../codigosRespuesta/formas-presentacion-cliente.md`](../../codigosRespuesta/formas-presentacion-cliente.md).
+
 ---
 
 ## Estructura

@@ -27,6 +27,10 @@ const path = require("path");
 
 const ROOT = __dirname;
 const LOGS = path.join(ROOT, "logs");
+const {
+  clasificarPresentacionCliente,
+  normalizarFormaCaptura,
+} = require("./clasificar-presentacion-cliente.js");
 
 const SUITES = {
   p2m: {
@@ -195,6 +199,7 @@ function extractNegocio(bodyText) {
   const out = {
     codigoError: null,
     mensajeError: null,
+    descripcionError: null,
     resultado: null,
     resultadoR0: null,
     idSolicitudR0: null,
@@ -221,6 +226,12 @@ function extractNegocio(bodyText) {
     }
     if (out.mensajeError == null && Object.prototype.hasOwnProperty.call(src, "mensajeError")) {
       out.mensajeError = src.mensajeError;
+    }
+    if (
+      out.descripcionError == null &&
+      Object.prototype.hasOwnProperty.call(src, "descripcionError")
+    ) {
+      out.descripcionError = src.descripcionError;
     }
     if (out.resultado == null && Object.prototype.hasOwnProperty.call(src, "resultado")) {
       out.resultado = src.resultado;
@@ -421,6 +432,47 @@ function buildResultadosPorEscenario(suiteKey, folder, summary, codigoFuente, no
       ? toNum(cap.tiempoMs)
       : ad.tiempoRealMs;
 
+    // Presentación cliente (Forma A/B/C): CAPTURA si trae campos; si no, recalcular del body.
+    let presentacion;
+    if (cap && cap.presentacionForma && cap.presentacionPatternKey) {
+      presentacion = normalizarFormaCaptura({
+        presentacionForma: cap.presentacionForma,
+        presentacionCodigo:
+          cap.presentacionCodigo != null && cap.presentacionCodigo !== ""
+            ? cap.presentacionCodigo
+            : null,
+        presentacionDescripcion:
+          cap.presentacionDescripcion != null ? String(cap.presentacionDescripcion) : null,
+        presentacionCampoTexto: cap.presentacionCampoTexto || null,
+        presentacionCamposTexto: cap.presentacionCamposTexto || [],
+        presentacionClaves: cap.presentacionClaves || "",
+        presentacionCifrado:
+          typeof cap.presentacionCifrado === "boolean"
+            ? cap.presentacionCifrado
+            : null,
+        presentacionHttp:
+          cap.presentacionHttp != null && cap.presentacionHttp !== ""
+            ? toNum(cap.presentacionHttp)
+            : null,
+        presentacionPatternKey: cap.presentacionPatternKey,
+      });
+    } else {
+      const descBody =
+        (cap && cap.descifradoBody) || body || "";
+      const fmtLambda =
+        (cap && cap.formatoRespuestaLambda) || null;
+      const vinoCifrada =
+        cap && typeof cap.respuestaVinoCifrada === "boolean"
+          ? cap.respuestaVinoCifrada
+          : null;
+      presentacion = clasificarPresentacionCliente({
+        descifradoBody: descBody,
+        formatoRespuestaLambda: fmtLambda,
+        respuestaVinoCifrada: vinoCifrada,
+        httpRealLambda: httpReal,
+      });
+    }
+
     return {
       nombre: item.name || "(sin nombre)",
       ruta: ruta,
@@ -440,6 +492,7 @@ function buildResultadosPorEscenario(suiteKey, folder, summary, codigoFuente, no
           ? recibidoNegocio === codigoErrorEsperado
           : null,
       mensajeError: negocio.mensajeError,
+      descripcionError: negocio.descripcionError,
       resultado: negocio.resultado,
       idSolicitudR0: negocio.idSolicitudR0,
       // --- Request real al lambda (matriz/validador/VCN) ---
@@ -454,11 +507,20 @@ function buildResultadosPorEscenario(suiteKey, folder, summary, codigoFuente, no
       respLambdaHeaders: cap ? cap.respLambdaHeaders || null : null,
       // --- Respuesta del dummy /descifrar (legible) ---
       descifradoCode: cap && cap.descifradoCode != null ? cap.descifradoCode : (response.code != null ? response.code : null),
-      // --- Formato: ¿la lambda devolvió cifrado o en claro? ---
+      // --- Formato / presentación ---
       respuestaVinoCifrada: cap && typeof cap.respuestaVinoCifrada === "boolean" ? cap.respuestaVinoCifrada : null,
       formatoRespuestaLambda: cap && cap.formatoRespuestaLambda ? cap.formatoRespuestaLambda : null,
       payloadCambioTrasDescifrar:
         cap && typeof cap.payloadCambioTrasDescifrar === "boolean" ? cap.payloadCambioTrasDescifrar : null,
+      presentacionForma: presentacion.presentacionForma,
+      presentacionCodigo: presentacion.presentacionCodigo,
+      presentacionDescripcion: presentacion.presentacionDescripcion,
+      presentacionCampoTexto: presentacion.presentacionCampoTexto,
+      presentacionCamposTexto: presentacion.presentacionCamposTexto || [],
+      presentacionClaves: presentacion.presentacionClaves,
+      presentacionCifrado: presentacion.presentacionCifrado,
+      presentacionHttp: presentacion.presentacionHttp,
+      presentacionPatternKey: presentacion.presentacionPatternKey,
       // --- Flujo / diagnóstico ---
       flowFailed: cap ? cap.flowFailed || null : null,
       flowError: cap ? cap.flowError || null : null,
@@ -536,6 +598,20 @@ function buildResultadosPorEscenarioMd(resultados) {
       return k + "=" + fmtCount[k];
     });
   lines.push("| Desglose formatoRespuestaLambda | " + fmtParts.join(", ") + " |");
+  const formaCount = {};
+  const patternKeys = new Set();
+  resultados.escenarios.forEach(function (e) {
+    const f = e.presentacionForma || "sin_dato";
+    formaCount[f] = (formaCount[f] || 0) + 1;
+    if (e.presentacionPatternKey) patternKeys.add(e.presentacionPatternKey);
+  });
+  const formaParts = Object.keys(formaCount)
+    .sort()
+    .map(function (k) {
+      return k + "=" + formaCount[k];
+    });
+  lines.push("| Presentación (contratos) | " + formaParts.join(", ") + " |");
+  lines.push("| Patrones de presentación únicos | " + patternKeys.size + " |");
   lines.push("");
   if (negNull > 0) {
     lines.push(
@@ -548,20 +624,19 @@ function buildResultadosPorEscenarioMd(resultados) {
   lines.push(
     "Columnas HTTP = protocolo (real de la lambda vs esperado). " +
       "Columnas negocio = `codigoError`/`resultado` del payload (recibido efectivo vs esperado). " +
-      "Columna **Formato** = si la lambda devolvió el cuerpo cifrado o en claro " +
-      "(`cifrado` | `plano` | `plano_en_respuesta` | …). " +
-      "El JSON hermano guarda además: `respuestaVinoCifrada`, `formatoRespuestaLambda`, " +
-      "`payloadCambioTrasDescifrar`, `urlLambda`, `reqClaro`, `reqCifrado`, `respLambdaRaw`, `respLambdaHeaders`, `tiempoRealMs`, `flowError`."
+      "Columna **Formato** = si la lambda devolvió el cuerpo cifrado o en claro. " +
+      "Columna **Forma** = contrato de payload (`A.mensajeError`, `A.descripcionError`, `B`, `C`, …). " +
+      "Foto por servicio: `node extraer-foto-presentacion.js logs/resultados-por-escenario-<suite>.json`."
   );
   lines.push("");
   lines.push(
-    "| # | Escenario | HTTP esp | HTTP real | HTTP ok | Negocio esp | Negocio recib | Negocio ok | Formato | Cifrada? | assert | Cuerpo (resumen) |"
+    "| # | Escenario | HTTP esp | HTTP real | HTTP ok | Negocio esp | Negocio recib | Negocio ok | Formato | Cifrada? | Forma | Cod.cli | Desc.cliente | assert | Cuerpo (resumen) |"
   );
   lines.push(
-    "|---|-----------|----------|-----------|---------|-------------|---------------|------------|---------|----------|--------|------------------|"
+    "|---|-----------|----------|-----------|---------|-------------|---------------|------------|---------|----------|-------|---------|--------------|--------|------------------|"
   );
   const dash = function (v) {
-    return v != null ? v : "—";
+    return v != null && v !== "" ? v : "—";
   };
   const okTxt = function (v) {
     return v === null ? "—" : v ? "OK" : "✗";
@@ -574,6 +649,9 @@ function buildResultadosPorEscenarioMd(resultados) {
       .replace(/\r?\n/g, " ")
       .replace(/\|/g, "\\|");
     const assertTxt = e.assertPaso === null ? "—" : e.assertPaso ? "OK" : "✗";
+    const descCli = String(e.presentacionDescripcion || "")
+      .replace(/\r?\n/g, " ")
+      .replace(/\|/g, "\\|");
     lines.push(
       "| " +
         (i + 1) +
@@ -595,6 +673,12 @@ function buildResultadosPorEscenarioMd(resultados) {
         dash(e.formatoRespuestaLambda) +
         " | " +
         cifradaTxt(e.respuestaVinoCifrada) +
+        " | " +
+        dash(e.presentacionForma) +
+        " | " +
+        dash(e.presentacionCodigo) +
+        " | " +
+        (descCli || "—") +
         " | " +
         assertTxt +
         " | `" +

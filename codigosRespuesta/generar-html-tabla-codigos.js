@@ -48,6 +48,7 @@ function isMpObsColumn(header) {
 function thClass(header) {
   if (header === "Código") return "col-primary col-code";
   if (header === "Nueva descripción") return "col-primary col-nueva";
+  if (header === "Etiquetas") return "col-primary col-etiquetas";
   if (isMpDescColumn(header)) {
     return header === "Descripción en Marketplace para Cuenta Nombre"
       ? "col-mp col-mp-desc col-mp-start"
@@ -57,56 +58,81 @@ function thClass(header) {
   return "";
 }
 
-const BADGE_RESERVADO_CV = "Reservado para Canal Validador";
-const CODIGOS_RESERVADO_CV = new Set(["510", "511", "512", "513", "514", "515"]);
-const BADGES_POR_CODIGO = {
-  "506": { kind: "no-usar", label: "Reservado — no usar" },
+/** Mapea texto de Etiquetas (MD) → kind CSS. Decisiones de negocio viven en el MD. */
+const ETIQUETA_KIND = {
+  "reservado para canal validador": "reservado-cv",
+  "reservado — no usar": "no-usar",
+  "reservado - no usar": "no-usar",
 };
 
-function tieneBadgeEspecial(code) {
-  return Boolean(BADGES_POR_CODIGO[code]) || CODIGOS_RESERVADO_CV.has(code);
+function parseEtiquetasCell(raw) {
+  const t = (raw || "").trim();
+  if (!t) return [];
+  return t
+    .split(/\s*;\s*/)
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((label) => {
+      const kind = ETIQUETA_KIND[label.toLowerCase()] || "manual";
+      return { kind, label };
+    });
 }
 
-function classifyNueva(catalog, cols, mpDescIdxs, code) {
+function tieneEtiquetaEspecial(badgesManual) {
+  return badgesManual.some((b) => b.kind === "reservado-cv" || b.kind === "no-usar");
+}
+
+/**
+ * Etiquetas del MD = badgesManual. Aquí solo se calculan derivados (Sin ref. MP / Reformulado).
+ * Pendiente = Nueva descripción vacía (clase de fila; sin badge de texto).
+ */
+/** Badges derivados del contenido (no van en la columna Etiquetas del MD). */
+function classifyNueva(catalog, cols, mpDescIdxs, badgesManual) {
   const cat = (catalog || "").trim();
   if (!cat) {
-    return { badges: [], pending: true, reformulado: false, sinMp: false };
+    return { derived: [], pending: true, reformulado: false, sinMp: false };
   }
 
   const mpDescs = mpDescIdxs.map((idx) => (cols[idx] || "").trim());
   const mpFilled = mpDescs.filter(Boolean);
-  const badges = [];
+  const derived = [];
   let sinMp = false;
   let reformulado = false;
 
-  if (BADGES_POR_CODIGO[code]) {
-    badges.push(BADGES_POR_CODIGO[code]);
-  }
-
-  if (CODIGOS_RESERVADO_CV.has(code)) {
-    badges.push({ kind: "reservado-cv", label: BADGE_RESERVADO_CV });
-  }
-
-  if (mpFilled.length === 0 && !tieneBadgeEspecial(code)) {
+  if (mpFilled.length === 0 && !tieneEtiquetaEspecial(badgesManual)) {
     sinMp = true;
-    badges.push({ kind: "sin-mp", label: "Sin ref. MP" });
+    derived.push({ kind: "sin-mp", label: "Sin ref. MP" });
   }
 
   if (mpFilled.some((mp) => differsFromCatalog(cat, mp))) {
     reformulado = true;
-    badges.push({ kind: "reformulado", label: "Reformulado" });
+    derived.push({ kind: "reformulado", label: "Reformulado" });
   }
 
-  return { badges, pending: false, reformulado, sinMp };
+  return { derived, pending: false, reformulado, sinMp };
+}
+
+function fmtBadges(badges) {
+  if (!badges.length) return "";
+  return (
+    '<div class="badges">' +
+    badges
+      .map((b) => `<span class="badge badge-${b.kind}">${esc(b.label)}</span>`)
+      .join("") +
+    "</div>"
+  );
 }
 
 function fmtNuevaCell(catalog, badges) {
   const body = fmtCell(catalog);
-  if (!badges.length) return `<div class="nueva-text">${body}</div>`;
-  const tags = badges
-    .map((b) => `<span class="badge badge-${b.kind}">${esc(b.label)}</span>`)
-    .join("");
-  return `<div class="nueva-text">${body}</div><div class="badges">${tags}</div>`;
+  const tags = fmtBadges(badges);
+  if (!tags) return `<div class="nueva-text">${body}</div>`;
+  return `<div class="nueva-text">${body}</div>${tags}`;
+}
+
+function fmtEtiquetasCell(badgesManual) {
+  if (!badgesManual.length) return '<span class="empty">—</span>';
+  return fmtBadges(badgesManual);
 }
 
 let i = 0;
@@ -126,13 +152,11 @@ while (i < lines.length) {
   i++;
 }
 
-const SKIP_COL = "Escenarios Postman";
-const skipIdx = headers.indexOf(SKIP_COL);
-const omitCol = (cols) => (skipIdx === -1 ? cols : cols.filter((_, idx) => idx !== skipIdx));
-const headersHtml = omitCol(headers);
-const rowsHtml = rows.map(omitCol);
+const headersHtml = headers;
+const rowsHtml = rows;
 
 const idxNueva = headersHtml.indexOf("Nueva descripción");
+const idxEtiquetas = headersHtml.indexOf("Etiquetas");
 const idxMarketplaceDesc = headersHtml
   .map((h, idx) => (h.startsWith("Descripción en Marketplace") ? idx : -1))
   .filter((idx) => idx !== -1);
@@ -149,11 +173,13 @@ const tbody = rowsHtml
   .map((cols) => {
     const code = cols[0];
     const catalog = idxNueva === -1 ? "" : cols[idxNueva];
-    const { badges, pending, reformulado, sinMp } = classifyNueva(
+    const badgesManual =
+      idxEtiquetas === -1 ? [] : parseEtiquetasCell(cols[idxEtiquetas]);
+    const { derived, pending, reformulado, sinMp } = classifyNueva(
       catalog,
       cols,
       idxMarketplaceDesc,
-      code
+      badgesManual
     );
 
     if (pending) stats.pendiente++;
@@ -174,7 +200,10 @@ const tbody = rowsHtml
     const tds = cols
       .map((c, idx) => {
         if (idx === idxNueva) {
-          return `<td class="col-primary col-nueva">${fmtNuevaCell(catalog, badges)}</td>`;
+          return `<td class="col-primary col-nueva">${fmtNuevaCell(catalog, derived)}</td>`;
+        }
+        if (idx === idxEtiquetas) {
+          return `<td class="col-primary col-etiquetas">${fmtEtiquetasCell(badgesManual)}</td>`;
         }
         const classes = [];
         if (idx === 0) classes.push("col-primary", "col-code");
@@ -214,6 +243,7 @@ const html = `<!DOCTYPE html>
       --sticky: #eef2f7;
       --code-w: 4.25rem;
       --nueva-w: 260px;
+      --etiquetas-w: 150px;
     }
     * { box-sizing: border-box; }
     body {
@@ -303,6 +333,11 @@ const html = `<!DOCTYPE html>
       background: #fffbeb;
       border: 1px solid #fcd34d;
     }
+    .badge-manual {
+      color: #334155;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+    }
     .wrap {
       overflow: auto;
       max-height: calc(100vh - 6.5rem);
@@ -357,8 +392,17 @@ const html = `<!DOCTYPE html>
       min-width: var(--nueva-w);
       max-width: 340px;
       font-weight: 500;
+    }
+    td.col-etiquetas,
+    th.col-etiquetas {
+      position: sticky;
+      left: calc(var(--code-w) + var(--nueva-w));
+      z-index: 2;
+      min-width: var(--etiquetas-w);
+      max-width: 200px;
       box-shadow: 1px 0 0 var(--border);
     }
+    td.col-etiquetas .badge { margin-top: 0; }
     thead th.col-primary { z-index: 5; }
     td.col-mp,
     th.col-mp {
@@ -393,18 +437,18 @@ const html = `<!DOCTYPE html>
       <label for="filterCode">Código</label>
       <input id="filterCode" type="search" placeholder="Ej. 5" autocomplete="off" inputmode="numeric">
       <label for="filter">Buscar</label>
-      <input id="filter" type="search" placeholder="Nueva descripción, Marketplace…" autocomplete="off">
+      <input id="filter" type="search" placeholder="Nueva descripción, etiquetas, Marketplace…" autocomplete="off">
       <span class="count" id="count"></span>
       <div class="filters">
-        <label><input type="checkbox" id="filterPending"> Solo pendientes</label>
+        <label><input type="checkbox" id="filterPending"> Solo no en uso</label>
         <label><input type="checkbox" id="filterReformulado"> Solo reformulados</label>
         <label><input type="checkbox" id="filterSinMp"> Sin ref. MP</label>
         <label><input type="checkbox" id="toggleMp" checked> Ver descripción MP</label>
         <label><input type="checkbox" id="toggleObs" checked> Ver observación MP</label>
       </div>
       <span class="legend">
-        Catálogo nuevo en <strong>Nueva descripción</strong> · Marketplace = referencia actual ·
-        badges discretos solo cuando aportan contexto
+        Catálogo en <strong>Nueva descripción</strong> · decisiones en <strong>Etiquetas</strong> (MD) ·
+        Marketplace = referencia · badges derivados (Sin ref. MP / Reformulado) según contenido
       </span>
     </div>
     <div class="wrap">

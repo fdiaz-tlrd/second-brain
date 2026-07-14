@@ -19,7 +19,7 @@ El agente **no ejecuta Newman** en Lenovo. Cuando el usuario dice «ya corrí Ne
 |---------|-----------|
 | `ultimo-run-<suite>.json` | Último reporte Newman (completo) |
 | `resumen-fallos-<suite>.md` | Último resumen legible (solo fallos) |
-| `resultados-por-escenario-<suite>.json` | Última corrida, **una fila por escenario** (todos), con cuerpo completo, etiqueta `codigoFuente` (prod/dev) y (desde 2026-07-14) `respuestaVinoCifrada` / `formatoRespuestaLambda` / `payloadCambioTrasDescifrar` |
+| `resultados-por-escenario-<suite>.json` | Última corrida, **una fila por escenario** (todos), con cuerpo completo, etiqueta `codigoFuente` (prod/dev) y (desde 2026-07-14) `respuestaVinoCifrada` / `formatoRespuestaLambda` / `payloadCambioTrasDescifrar` + **presentación cliente** (`presentacionForma` A\|B\|C, código, descripción, `presentacionPatternKey`, …) |
 | `resultados-por-escenario-<suite>.md` | Igual, en tabla legible (columnas Formato / Cifrada?) |
 | `registro-<suite>.md` | **Historial de las últimas 8 ejecuciones** (tabla, con columna Código) |
 | `historial/<suite>/` | Copia archivada por run (`{timestamp}_{codigo}_{carpeta}.json/.md` + `_por-escenario.*`) |

@@ -15,6 +15,7 @@
       --sticky: #eef2f7;
       --code-w: 4.25rem;
       --nueva-w: 260px;
+      --etiquetas-w: 150px;
     }
     * { box-sizing: border-box; }
     body {
@@ -104,6 +105,11 @@
       background: #fffbeb;
       border: 1px solid #fcd34d;
     }
+    .badge-manual {
+      color: #334155;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+    }
     .wrap {
       overflow: auto;
       max-height: calc(100vh - 6.5rem);
@@ -158,8 +164,17 @@
       min-width: var(--nueva-w);
       max-width: 340px;
       font-weight: 500;
+    }
+    td.col-etiquetas,
+    th.col-etiquetas {
+      position: sticky;
+      left: calc(var(--code-w) + var(--nueva-w));
+      z-index: 2;
+      min-width: var(--etiquetas-w);
+      max-width: 200px;
       box-shadow: 1px 0 0 var(--border);
     }
+    td.col-etiquetas .badge { margin-top: 0; }
     thead th.col-primary { z-index: 5; }
     td.col-mp,
     th.col-mp {
@@ -194,18 +209,18 @@
       <label for="filterCode">Código</label>
       <input id="filterCode" type="search" placeholder="Ej. 5" autocomplete="off" inputmode="numeric">
       <label for="filter">Buscar</label>
-      <input id="filter" type="search" placeholder="Nueva descripción, Marketplace…" autocomplete="off">
+      <input id="filter" type="search" placeholder="Nueva descripción, etiquetas, Marketplace…" autocomplete="off">
       <span class="count" id="count"></span>
       <div class="filters">
-        <label><input type="checkbox" id="filterPending"> Solo pendientes</label>
+        <label><input type="checkbox" id="filterPending"> Solo no en uso</label>
         <label><input type="checkbox" id="filterReformulado"> Solo reformulados</label>
         <label><input type="checkbox" id="filterSinMp"> Sin ref. MP</label>
         <label><input type="checkbox" id="toggleMp" checked> Ver descripción MP</label>
         <label><input type="checkbox" id="toggleObs" checked> Ver observación MP</label>
       </div>
       <span class="legend">
-        Catálogo nuevo en <strong>Nueva descripción</strong> · Marketplace = referencia actual ·
-        badges discretos solo cuando aportan contexto
+        Catálogo en <strong>Nueva descripción</strong> · decisiones en <strong>Etiquetas</strong> (MD) ·
+        Marketplace = referencia · badges derivados (Sin ref. MP / Reformulado) según contenido
       </span>
     </div>
     <div class="wrap">
@@ -214,6 +229,7 @@
           <tr>
             <th scope="col" class="col-primary col-code">Código</th>
           <th scope="col" class="col-primary col-nueva">Nueva descripción</th>
+          <th scope="col" class="col-primary col-etiquetas">Etiquetas</th>
           <th scope="col" class="col-mp col-mp-desc col-mp-start">Descripción en Marketplace para Cuenta Nombre</th>
           <th scope="col" class="col-mp col-mp-obs">Observación en Marketplace para Cuenta Nombre</th>
           <th scope="col" class="col-mp col-mp-desc">Descripción en Marketplace para Xpress</th>
@@ -226,6 +242,7 @@
         <tr class="row-ok">
           <td class="col-primary col-code">0</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Operación exitosa</div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start">Operación exitosa</td>
           <td class="col-mp col-mp-obs">Validación sin inconvenientes.</td>
           <td class="col-mp col-mp-desc">Operación exitosa</td>
@@ -236,6 +253,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">400</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error en la petición original</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start">- Error de formato en campo validador<br>Error de formato en campo canal<br>Error de formato en campo petición</td>
           <td class="col-mp col-mp-obs">- Error de formato en campo validador<br>Error de formato en campo canal<br>Error de formato en campo petición</td>
           <td class="col-mp col-mp-desc">Error en la petición original</td>
@@ -246,6 +264,7 @@
         <tr>
           <td class="col-primary col-code">401</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Canal emisor no existe</div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start">Canal emisor no existe</td>
           <td class="col-mp col-mp-obs">Canal emisor no existe</td>
           <td class="col-mp col-mp-desc">Canal emisor no existe</td>
@@ -256,6 +275,7 @@
         <tr>
           <td class="col-primary col-code">402</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Canal validador no disponible</div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start">Canal validador no disponible</td>
           <td class="col-mp col-mp-obs">Canal validador no disponible</td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -266,6 +286,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">403</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Canal emisor no tiene un plan de suscripción</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -276,6 +297,7 @@
         <tr>
           <td class="col-primary col-code">404</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Validador no existe</div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start">Validador no existe</td>
           <td class="col-mp col-mp-obs">Validador no existe</td>
           <td class="col-mp col-mp-desc">Validador no existe</td>
@@ -286,6 +308,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">405</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error en descifrado canal emisor</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start">- Error en cifrado canal emisor<br>Error en descifrado canal emisor</td>
           <td class="col-mp col-mp-obs">- Error en cifrado canal emisor<br>Error en descifrado canal emisor</td>
           <td class="col-mp col-mp-desc">Error en cifrado canal emisor Error en descifrado canal emisor Usuario no posee respuestas asignadas</td>
@@ -296,6 +319,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">406</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error en descifrado canal validador</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start">- Error en cifrado canal validador<br>Error en descifrado canal validador</td>
           <td class="col-mp col-mp-obs">- Error en cifrado canal validador<br>Error en descifrado canal validador</td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -306,6 +330,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">407</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Identificador del alias no se encuentra registrado</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">Alias no existe</td>
@@ -316,6 +341,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">408</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Identificador del alias ya está registrado en el directorio</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">Alias ya se encuentra registrado</td>
@@ -326,6 +352,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">409</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro identificador</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">Error en formato del campo “identificador”</td>
@@ -336,6 +363,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">410</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro tipoIdentificador</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">Campo “tipoIdentificador” incorrecto</td>
@@ -346,6 +374,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">411</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Identificador del alias dado de baja</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">Alias dado de baja</td>
@@ -356,6 +385,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">412</td>
           <td class="col-primary col-nueva"><div class="nueva-text">El valor del parámetro banco no corresponde al canal</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start">- El Banco no corresponde al canal</td>
           <td class="col-mp col-mp-obs">- Cuando el código Swift no corresponde con el canal registrado.</td>
           <td class="col-mp col-mp-desc">El Banco no corresponde al canal</td>
@@ -366,6 +396,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">413</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro cuenta</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start">- Error número de cuenta no cumple con los criterios</td>
           <td class="col-mp col-mp-obs">- Cuando la cuenta es inferior o superior al largo del ecosistema: Largo de 1 a 34, numérico</td>
           <td class="col-mp col-mp-desc">Error número de cuenta no cumple con los criterios</td>
@@ -376,6 +407,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">414</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro banco</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">Código de banco no cumple con los criterios</td>
@@ -386,6 +418,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">415</td>
           <td class="col-primary col-nueva"><div class="nueva-text">El parámetros id es requerido</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">ID alias es requerido</td>
@@ -396,6 +429,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">416</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Identificador del alias no se encuentra registrado</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">ID alias no registrado</td>
@@ -406,6 +440,7 @@
         <tr>
           <td class="col-primary col-code">417</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al actualizar alias</div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">Error al actualizar alias</td>
@@ -416,6 +451,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">418</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Método no soportado</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start">- Método no soportado</td>
           <td class="col-mp col-mp-obs">- Si envía un método distinto al esperado. (0001)</td>
           <td class="col-mp col-mp-desc">Método no soportado</td>
@@ -426,6 +462,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">419</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Los parámetros identificador y tipoIdentificador son requeridos</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">Los campos identificador y tipoIdentificador son requeridos</td>
@@ -436,6 +473,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">420</td>
           <td class="col-primary col-nueva"><div class="nueva-text">El parámetro respuesta no corresponde a una respuesta válida para la pregunta de seguridad indicada en idPregunta</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">Respuestas invalidas</td>
@@ -446,6 +484,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">421</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro producto</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">Error en el formato del producto</td>
@@ -456,6 +495,7 @@
         <tr>
           <td class="col-primary col-code">422</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al dar de baja alias</div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">Error al dar de baja Alias</td>
@@ -466,6 +506,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">423</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Identificador del alias ya se encuentra registrado para el banco</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">Alias existente en banco</td>
@@ -476,6 +517,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">424</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Identificador de alias ya alcanzo la cantidad máxima de bancos asociados</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">Cantidad de bancos al máximo</td>
@@ -486,6 +528,7 @@
         <tr>
           <td class="col-primary col-code">425</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Cantidad de solicitudes no permitidas</div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">Cantidad de solicitudes no permitidas</td>
@@ -496,6 +539,7 @@
         <tr>
           <td class="col-primary col-code">426</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Tipo de baja no soportada</div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">Tipo de Baja no soportada</td>
@@ -506,6 +550,7 @@
         <tr>
           <td class="col-primary col-code">427</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Arreglo de respuestas ausente o su contenido es inválido</div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">Arreglo de respuestas ausente o su contenido es invalido.</td>
@@ -516,6 +561,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">428</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro idPregunta</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">campo idPregunta no cumple con los criterios</td>
@@ -526,6 +572,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">429</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro respuesta</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">campo respuesta no cumple con los criterios</td>
@@ -536,6 +583,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">430</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Se superó el límite de intentos fallidos en las preguntas de seguridad</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">Alias bloqueado por lìmite de intentos fallidos en las preguntas de seguridad</td>
@@ -546,6 +594,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">431</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Campo idSolicitud no cumple con los criterios</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -556,6 +605,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">432</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro ciudadComercio</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -566,6 +616,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">433</td>
           <td class="col-primary col-nueva"><div class="nueva-text">El canal validador asociado al identificador del alias ya no se encuentra disponible</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -576,6 +627,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">434</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Campo identificador no corresponde a los datos registrados</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -586,6 +638,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">435</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro bancoAcreedor</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -596,6 +649,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">436</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro nombreAcreedor</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -606,6 +660,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">437</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro descripcion</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -616,6 +671,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">438</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Identificador del comercio ya se encuentra registrado para el banco</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -626,6 +682,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">439</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Identificador del comercio ya se encuentra registrado</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -636,6 +693,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">440</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Identificador del comercio registrado anteriormente para el banco</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -646,6 +704,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">441</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Identificador del comercio no registrado</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -656,6 +715,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">442</td>
           <td class="col-primary col-nueva"><div class="nueva-text">El identificador del comercio debe corresponder a un comercio activo o suspendido, para poder ser actualizado</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -666,6 +726,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">443</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro estado</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -676,6 +737,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">444</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro id</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -686,6 +748,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">445</td>
           <td class="col-primary col-nueva"><div class="nueva-text">El prefijo Código SWIFT del idPeticion no coincide con el canal emisor</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -696,6 +759,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">446</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro nombreComercio</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -706,6 +770,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">447</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro mcc</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -716,6 +781,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">448</td>
           <td class="col-primary col-nueva"><div class="nueva-text">El mcc no se encuentra registrado</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -726,6 +792,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">449</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro logo</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -736,6 +803,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">450</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro correo</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -746,6 +814,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">451</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro busquedaCantidad</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -756,6 +825,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">452</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro busquedaIdentificadorComercio</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -766,6 +836,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">453</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro busquedaPaginaToken</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -776,6 +847,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">454</td>
           <td class="col-primary col-nueva"><div class="nueva-text">El identificador del comercio debe corresponder a un comercio activo</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -786,6 +858,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">455</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro respuestas</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -796,6 +869,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">456</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro montoBase</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -806,6 +880,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">457</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al calcular mdr para el mcc del Comercio</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -816,6 +891,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">458</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro p2mPagoId</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -826,6 +902,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">459</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro estadoCargo</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -836,6 +913,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">460</td>
           <td class="col-primary col-nueva"><div class="nueva-text">El parámetro monto debe ser la suma de los parámetros montoBase, impuesto y propina</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -846,6 +924,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">461</td>
           <td class="col-primary col-nueva"><div class="nueva-text">El p2mPagoId no se encuentra registrado</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -856,6 +935,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">462</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro fechaVencimiento</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -866,6 +946,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">463</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro cantidadLecturas</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -876,6 +957,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">464</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro qrTipo</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -886,6 +968,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">465</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro monto</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -896,6 +979,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">466</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro impuesto</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -906,6 +990,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">467</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro propina</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -916,6 +1001,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">468</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro tipo</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -926,6 +1012,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">469</td>
           <td class="col-primary col-nueva"><div class="nueva-text">El valor del parámetro qrCode no corresponde a un código QR válido</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -936,6 +1023,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">470</td>
           <td class="col-primary col-nueva"><div class="nueva-text">QR no existe</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -946,6 +1034,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">471</td>
           <td class="col-primary col-nueva"><div class="nueva-text">QR vencido</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -956,6 +1045,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">472</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro canalPago</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -966,6 +1056,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">473</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro qrCode</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -976,6 +1067,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">474</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro moneda</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -986,6 +1078,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">475</td>
           <td class="col-primary col-nueva"><div class="nueva-text">El p2mPagoId no puede corresponder a una Solicitud de Pago procesada</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -996,6 +1089,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">476</td>
           <td class="col-primary col-nueva"><div class="nueva-text">QR superó cantidad de lecturas</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -1006,6 +1100,7 @@
         <tr>
           <td class="col-primary col-code">477</td>
           <td class="col-primary col-nueva"><div class="nueva-text">No se encuentra disponible el identificador del acreedor del QR</div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">No se encuentra disponible el identificador del acreedor del QR.</td>
@@ -1016,6 +1111,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">478</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro busquedaNombreComercio</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -1026,6 +1122,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">479</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error al validar el parámetro identificadorComercio</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -1036,6 +1133,7 @@
         <tr>
           <td class="col-primary col-code">480</td>
           <td class="col-primary col-nueva"><div class="nueva-text">No se admite el tipo de identificador con el que se generó el QR</div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc">No se admite el tipo de identificador con el que se generó el QR.</td>
@@ -1046,6 +1144,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">500</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error interno</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start">Petición de validación no es válida</td>
           <td class="col-mp col-mp-obs">Inconvenientes en la validación del mensaje.</td>
           <td class="col-mp col-mp-desc">Error interno Error consultando alias Error actualizando alias Error al consultar alias por banco Error buscando identificador Error validando alias Error validando cuenta nombre Error consultando operaciones Error creando alias Error al consumir api-validador Consultando id alias</td>
@@ -1056,6 +1155,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">501</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error en cifrado para el canal emisor</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -1066,6 +1166,7 @@
         <tr data-sin-mp="1">
           <td class="col-primary col-code">502</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error en cifrado para el canal validador</div><div class="badges"><span class="badge badge-sin-mp">Sin ref. MP</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -1076,6 +1177,7 @@
         <tr class="row-pending" data-pending="1">
           <td class="col-primary col-code">503</td>
           <td class="col-primary col-nueva"><div class="nueva-text"><span class="empty">—</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -1086,6 +1188,7 @@
         <tr class="row-pending" data-pending="1">
           <td class="col-primary col-code">504</td>
           <td class="col-primary col-nueva"><div class="nueva-text"><span class="empty">—</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start">Petición de validación no existe</td>
           <td class="col-mp col-mp-obs">Cuenta no existe.</td>
           <td class="col-mp col-mp-desc">Petición de validación no existe</td>
@@ -1096,6 +1199,7 @@
         <tr class="row-pending" data-pending="1">
           <td class="col-primary col-code">505</td>
           <td class="col-primary col-nueva"><div class="nueva-text"><span class="empty">—</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -1105,7 +1209,8 @@
         </tr>
         <tr>
           <td class="col-primary col-code">506</td>
-          <td class="col-primary col-nueva"><div class="nueva-text">Código HTTP de OAuth 2.0 (`/auth/token`);<br>no se usa en el catálogo `resultado` para evitar confusiones</div><div class="badges"><span class="badge badge-no-usar">Reservado — no usar</span></div></td>
+          <td class="col-primary col-nueva"><div class="nueva-text">Código HTTP de OAuth 2.0 (`/auth/token`);<br>no se usa en el catálogo `resultado` para evitar confusiones</div></td>
+          <td class="col-primary col-etiquetas"><div class="badges"><span class="badge badge-no-usar">Reservado — no usar</span></div></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -1116,6 +1221,7 @@
         <tr class="row-pending" data-pending="1">
           <td class="col-primary col-code">507</td>
           <td class="col-primary col-nueva"><div class="nueva-text"><span class="empty">—</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -1126,6 +1232,7 @@
         <tr class="row-pending" data-pending="1">
           <td class="col-primary col-code">508</td>
           <td class="col-primary col-nueva"><div class="nueva-text"><span class="empty">—</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start"><span class="empty">—</span></td>
           <td class="col-mp col-mp-obs"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -1136,6 +1243,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">509</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Error inesperado en el Canal Validador</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start">Error inesperado en validador</td>
           <td class="col-mp col-mp-obs">Error recibido es los escenarios de time-out o tiempo de espera agotado</td>
           <td class="col-mp col-mp-desc">Error inesperado en validador</td>
@@ -1145,7 +1253,8 @@
         </tr>
         <tr>
           <td class="col-primary col-code">510</td>
-          <td class="col-primary col-nueva"><div class="nueva-text">Número de cuenta incorrecta</div><div class="badges"><span class="badge badge-reservado-cv">Reservado para Canal Validador</span></div></td>
+          <td class="col-primary col-nueva"><div class="nueva-text">Número de cuenta incorrecta</div></td>
+          <td class="col-primary col-etiquetas"><div class="badges"><span class="badge badge-reservado-cv">Reservado para Canal Validador</span></div></td>
           <td class="col-mp col-mp-desc col-mp-start">Número de cuenta incorrecta</td>
           <td class="col-mp col-mp-obs">Contiene un formato de cuenta inválido o la cantidad de números de la cuenta es incorrecta.</td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -1155,7 +1264,8 @@
         </tr>
         <tr>
           <td class="col-primary col-code">511</td>
-          <td class="col-primary col-nueva"><div class="nueva-text">Número de cuenta cerrado</div><div class="badges"><span class="badge badge-reservado-cv">Reservado para Canal Validador</span></div></td>
+          <td class="col-primary col-nueva"><div class="nueva-text">Número de cuenta cerrado</div></td>
+          <td class="col-primary col-etiquetas"><div class="badges"><span class="badge badge-reservado-cv">Reservado para Canal Validador</span></div></td>
           <td class="col-mp col-mp-desc col-mp-start">Número de cuenta cerrado</td>
           <td class="col-mp col-mp-obs">La cuenta del Recibidor ha sido cerrada.</td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -1165,7 +1275,8 @@
         </tr>
         <tr>
           <td class="col-primary col-code">512</td>
-          <td class="col-primary col-nueva"><div class="nueva-text">Número de cuenta bloqueado</div><div class="badges"><span class="badge badge-reservado-cv">Reservado para Canal Validador</span></div></td>
+          <td class="col-primary col-nueva"><div class="nueva-text">Número de cuenta bloqueado</div></td>
+          <td class="col-primary col-etiquetas"><div class="badges"><span class="badge badge-reservado-cv">Reservado para Canal Validador</span></div></td>
           <td class="col-mp col-mp-desc col-mp-start">Número de cuenta bloqueado</td>
           <td class="col-mp col-mp-obs">La cuenta del Recibidor se encuentra restringida en la Institución Financiera Recibidora, por ello la consulta es rechazada.</td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -1175,7 +1286,8 @@
         </tr>
         <tr>
           <td class="col-primary col-code">513</td>
-          <td class="col-primary col-nueva"><div class="nueva-text">Transacción no permitida</div><div class="badges"><span class="badge badge-reservado-cv">Reservado para Canal Validador</span></div></td>
+          <td class="col-primary col-nueva"><div class="nueva-text">Transacción no permitida</div></td>
+          <td class="col-primary col-etiquetas"><div class="badges"><span class="badge badge-reservado-cv">Reservado para Canal Validador</span></div></td>
           <td class="col-mp col-mp-desc col-mp-start">Transacción no permitida</td>
           <td class="col-mp col-mp-obs">Restricción que mantienen algunos participantes de la red, para originar o recibir consultas.</td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -1185,7 +1297,8 @@
         </tr>
         <tr>
           <td class="col-primary col-code">514</td>
-          <td class="col-primary col-nueva"><div class="nueva-text">Falta información obligatoria de consulta</div><div class="badges"><span class="badge badge-reservado-cv">Reservado para Canal Validador</span></div></td>
+          <td class="col-primary col-nueva"><div class="nueva-text">Falta información obligatoria de consulta</div></td>
+          <td class="col-primary col-etiquetas"><div class="badges"><span class="badge badge-reservado-cv">Reservado para Canal Validador</span></div></td>
           <td class="col-mp col-mp-desc col-mp-start">Falta información obligatoria de consulta</td>
           <td class="col-mp col-mp-obs">No se proporcionó información obligatoria para consultar.</td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -1195,7 +1308,8 @@
         </tr>
         <tr>
           <td class="col-primary col-code">515</td>
-          <td class="col-primary col-nueva"><div class="nueva-text">Razón regulatoria</div><div class="badges"><span class="badge badge-reservado-cv">Reservado para Canal Validador</span></div></td>
+          <td class="col-primary col-nueva"><div class="nueva-text">Razón regulatoria</div></td>
+          <td class="col-primary col-etiquetas"><div class="badges"><span class="badge badge-reservado-cv">Reservado para Canal Validador</span></div></td>
           <td class="col-mp col-mp-desc col-mp-start">Razón regulatoria</td>
           <td class="col-mp col-mp-obs">Por motivos legales o de cumplimiento.</td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -1206,6 +1320,7 @@
         <tr class="row-pending" data-pending="1">
           <td class="col-primary col-code">550</td>
           <td class="col-primary col-nueva"><div class="nueva-text"><span class="empty">—</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start">Error inesperado</td>
           <td class="col-mp col-mp-obs">Error inesperado</td>
           <td class="col-mp col-mp-desc"><span class="empty">—</span></td>
@@ -1216,6 +1331,7 @@
         <tr data-reformulado="1">
           <td class="col-primary col-code">599</td>
           <td class="col-primary col-nueva"><div class="nueva-text">Tiempo de espera agotado al llamar al Canal Validador</div><div class="badges"><span class="badge badge-reformulado">Reformulado</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start">Error inesperado en validador</td>
           <td class="col-mp col-mp-obs">Canal Validador no pudo enviar respuesta.</td>
           <td class="col-mp col-mp-desc">Error inesperado en validador</td>
@@ -1226,6 +1342,7 @@
         <tr class="row-pending" data-pending="1">
           <td class="col-primary col-code">999</td>
           <td class="col-primary col-nueva"><div class="nueva-text"><span class="empty">—</span></div></td>
+          <td class="col-primary col-etiquetas"><span class="empty">—</span></td>
           <td class="col-mp col-mp-desc col-mp-start">Error inesperado validación</td>
           <td class="col-mp col-mp-obs">Error inesperado validación</td>
           <td class="col-mp col-mp-desc">Error inesperado validación</td>

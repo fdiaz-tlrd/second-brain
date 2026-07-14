@@ -1,13 +1,17 @@
 # Ejecutar Newman
 
-Desde `Postman/generador` (máquina con VPN):
+Máquina con VPN. Ya desplegado `prod_adactado_a_dev` (VCN/validador/matriz en dev).
+
+Desde `Postman/generador`:
 
 ```powershell
-node run-newman.js vcn --codigo-fuente prod --nota "captura formato cifrado/plano"
-node run-newman.js p2p --codigo-fuente prod --nota "captura formato cifrado/plano"
-node run-newman.js p2m --codigo-fuente prod --nota "captura formato cifrado/plano"
+node run-newman.js vcn --codigo-fuente prod --nota "foto presentacion contratos post deploy prod-a-dev"
 ```
 
-Después: commit + push de `Postman/generador/logs/` completo.
+Después: commit + push de `Postman/generador/logs/` completo. Luego (Lenovo o VPN):
 
-Detalle del registro cifrado/plano: [`../Postman/generador/registro-respuesta-cifrada-vs-clara-2026-07-14.md`](../Postman/generador/registro-respuesta-cifrada-vs-clara-2026-07-14.md).
+```powershell
+node extraer-foto-presentacion.js logs/resultados-por-escenario-vcn.json
+```
+
+Detalle: [`../Postman/generador/registro-presentacion-cliente-2026-07-14.md`](../Postman/generador/registro-presentacion-cliente-2026-07-14.md).
