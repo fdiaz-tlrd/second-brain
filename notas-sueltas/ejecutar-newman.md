@@ -1,3 +1,3 @@
 ```powershell
-node run-newman.js p2p --codigo-fuente prod --nota "foto presentacion P2P prod + fix reqClaro captura"
+node run-newman.js vcn --codigo-fuente dev --nota "foto presentacion contratos codigo fuente dev"
 ```
