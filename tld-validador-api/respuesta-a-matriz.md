@@ -95,7 +95,8 @@ Códigos frecuentes hacia matriz (dev `app.js`):
 | 400 | 418 | Método no soportado (resolver servicio) |
 | 500 | 509 | Fallo invoke producto / resolver servicio |
 | 200 | 509 | Fallo invoke producto (invoke devolvió null) |
-| 200 | 999 | Excepción no controlada |
+| 400 | 500 | Fallo `getCanal` (emisor/validador) — mensaje «Error interno» |
+| 200 | 500 | Catch global `app.js` — «Error interno» (antes dig/prod usaban **999** «Error en la solicitud» en esta capa) |
 
 ### Tipo C — Error en solicitudes, pero HTTP 200 y `codigoError` 0 en el sobre
 

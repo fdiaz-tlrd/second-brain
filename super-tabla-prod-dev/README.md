@@ -4,7 +4,7 @@ Estudio para armar, desde la **recopilación Newman**, una **tabla escenario a e
 
 | Campo | Valor |
 |-------|-------|
-| **Estado** | Generador MD v1 listo — VCN 84 bloques / 331 únicos (`vcn/bloques-diferencias.md`) |
+| **Estado** | Generador MD v1 — VCN: `bloques-diferencias.md` (84) + `bloques-diferencias-prod-vs-dev.md` (52) |
 | **Unidad** | Un **documento por servicio**, **bloques por escenario** (no mega-tabla) |
 | **Fila / bloque** | **Un escenario** (nombre Postman), no una variante de cifrado |
 | **Filas mostradas** | **Solo diferencias** |
@@ -13,7 +13,7 @@ Estudio para armar, desde la **recopilación Newman**, una **tabla escenario a e
 
 **Retomo:** [`00-estado-y-retomo.md`](00-estado-y-retomo.md) · **Columnas:** [`01-columnas.md`](01-columnas.md) · **Flujo:** [`02-flujo-trabajo-y-anotaciones.md`](02-flujo-trabajo-y-anotaciones.md) · **Presentación:** [`03-presentacion-bloques.md`](03-presentacion-bloques.md)
 
-**Regenerar VCN:** `node generar-bloques.js vcn` (desde esta carpeta).
+**Regenerar VCN:** `node generar-bloques.js vcn` (desde esta carpeta) → escribe la vista completa y la filtrada prod≠dig.
 
 ---
 

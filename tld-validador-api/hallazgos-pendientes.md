@@ -4,6 +4,19 @@
 
 ---
 
+## Abierto / cerrado — mensaje excepción `validar` (2026-07-14)
+
+Documento: [getCanal-excepcion-validador-no-string-2026-07-14.md](./getCanal-excepcion-validador-no-string-2026-07-14.md)
+
+| Tema | Estado |
+|------|--------|
+| Validación de tipo `validador` en API | **No** (mínimo) |
+| `getCanal` + catch global validador-api → **500 Error interno** | **Hecho en repo** (pend. deploy) |
+| Criterio | Solo tocar si el string largo **llega al cliente** |
+| Aviso 01 alias / cuenta-nombre / Aviso 02 proxy | **No tocar** (cliente ya ve catálogo) |
+
+---
+
 ## Resueltos en repo (pendiente deploy)
 
 | Tema | Solución |

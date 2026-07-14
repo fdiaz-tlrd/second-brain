@@ -6,50 +6,93 @@
     "0001.3.1008.1.2. validador por SWIFT CELEGATO — cuenta feliz (exito)": {
       "veredicto": "DEV-BUG",
       "conforme": false,
-      "refs": ["validador-SWIFT-dev"],
+      "refs": [
+        "validador-SWIFT-dev"
+      ],
       "notas": "Causa: VCN validarParametroValidador length>4. Fix tope 8 en código (2026-07-14). Pendiente deploy dig + Newman para confirmar. Prod OK; par numerico 1008 OK en dig."
     },
     "0001.3.1009.1.2. validador por SWIFT ASTRGATO — cuenta feliz (exito)": {
       "veredicto": "DEV-BUG",
       "conforme": false,
-      "refs": ["validador-SWIFT-dev"],
+      "refs": [
+        "validador-SWIFT-dev"
+      ],
       "notas": "Mismo fix length≤8. Pendiente Newman dig post-deploy."
     },
     "0001.3.1011.1.2. validador por SWIFT MIRAGATO — cuenta feliz (exito)": {
       "veredicto": "DEV-BUG",
       "conforme": false,
-      "refs": ["validador-SWIFT-dev"],
+      "refs": [
+        "validador-SWIFT-dev"
+      ],
       "notas": "Mismo fix length≤8. Pendiente Newman dig post-deploy."
     },
     "0001.3.1012.1.2. validador por SWIFT TERAGATO — cuenta feliz (exito)": {
       "veredicto": "DEV-BUG",
       "conforme": false,
-      "refs": ["validador-SWIFT-dev"],
+      "refs": [
+        "validador-SWIFT-dev"
+      ],
       "notas": "Mismo fix length≤8. Pendiente Newman dig post-deploy."
     },
     "0001.3.1013.1.2. validador por SWIFT AMIYGATO — cuenta feliz (exito)": {
       "veredicto": "DEV-BUG",
       "conforme": false,
-      "refs": ["validador-SWIFT-dev"],
+      "refs": [
+        "validador-SWIFT-dev"
+      ],
       "notas": "Mismo fix length≤8. Pendiente Newman dig post-deploy."
     },
     "0001.3.1014.1.2. validador por SWIFT CORNGATO — cuenta feliz (exito)": {
       "veredicto": "DEV-BUG",
       "conforme": false,
-      "refs": ["validador-SWIFT-dev"],
+      "refs": [
+        "validador-SWIFT-dev"
+      ],
       "notas": "Mismo fix length≤8. Pendiente Newman dig post-deploy."
     },
     "0001.3.1015.1.2. validador por SWIFT ZONAGATO — cuenta feliz (exito)": {
       "veredicto": "DEV-BUG",
       "conforme": false,
-      "refs": ["validador-SWIFT-dev"],
+      "refs": [
+        "validador-SWIFT-dev"
+      ],
       "notas": "Mismo fix length≤8. Pendiente Newman dig post-deploy."
     },
     "0001.3.1016.1.2. validador por SWIFT BELLGATO — cuenta feliz (exito) — sin enmascaramiento": {
       "veredicto": "DEV-BUG",
       "conforme": false,
-      "refs": ["validador-SWIFT-dev"],
+      "refs": [
+        "validador-SWIFT-dev"
+      ],
       "notas": "Mismo fix length≤8. Pendiente Newman dig post-deploy."
+    },
+    "1.2.4. validador — tipo number (400)": {
+      "veredicto": "DEV-DIFF",
+      "conforme": false,
+      "refs": [
+        "getCanal-excepcion-validador-no-string",
+        "500-Error-interno"
+      ],
+      "notas": "Prod: getCanal catch→null→404. Dig validador-api: 500 Error interno (sí llega al cliente). Alias/proxy/cuenta-nombre: no tocar (cliente ya ve catálogo). Esperado 400=aspiración. Pend. deploy + Newman."
+    },
+    "1.2.5. validador — tipo boolean (400)": {
+      "veredicto": "DEV-DIFF",
+      "conforme": false,
+      "refs": [
+        "getCanal-excepcion-validador-no-string",
+        "500-Error-interno"
+      ],
+      "notas": "Prod: getCanal catch→null→404. Dig validador-api: 500 Error interno (sí llega al cliente). Alias/proxy/cuenta-nombre: no tocar (cliente ya ve catálogo). Esperado 400=aspiración. Pend. deploy + Newman."
+    },
+    "1.2.6. validador — tipo object (400)": {
+      "veredicto": "DEV-DIFF",
+      "conforme": false,
+      "refs": [
+        "getCanal-excepcion-validador-no-string",
+        "500-Error-interno"
+      ],
+      "notas": "Prod: getCanal catch→null→404. Dig validador-api: 500 Error interno (sí llega al cliente). Alias/proxy/cuenta-nombre: no tocar (cliente ya ve catálogo). Esperado 400=aspiración. Pend. deploy + Newman."
     }
   }
 }

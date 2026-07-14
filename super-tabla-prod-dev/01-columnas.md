@@ -21,6 +21,13 @@ Incluir fila si **alguna** de estas es cierta (tras colapsar variantes):
 
 Si prod y dev y esperado alinean → **no** aparece en la tabla.
 
+
+### Vista filtrada: solo prod ≠ dig
+
+Además de la vista completa, el generador escribe `bloques-diferencias-prod-vs-dev.md`: mismos bloques, pero **solo** si hay tag `prod≠dev`, `forma≠`, `texto≠` o `http≠`.
+
+Sirve para revisar “qué cambió dig respecto a prod”, excluyendo casos en que **ambos** se apartan del esperado **igual**.
+
 Criterio de igualdad (v1), en este orden de peso:
 
 | Dimensión | Campos | ¿Cuenta para **incluir** la fila? | ¿Se **muestra** en la fila? |

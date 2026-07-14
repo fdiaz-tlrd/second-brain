@@ -22,13 +22,13 @@ Carpeta de trabajo para entender cómo el **orquestador validador** se comunica 
 | [418-metodo-no-soportado-analisis-definitivo-2026-07-13.md](./418-metodo-no-soportado-analisis-definitivo-2026-07-13.md) | **Qué es el 418** y por qué es especial: tablas de config (`config-servicios`, `canal-operacion`), inconsistencias de prod (HP-017/018/019/026), decisión firme de dejar el 418 en dev |
 | [migracion-invoke-alcance-2026-07-13.md](./migracion-invoke-alcance-2026-07-13.md) | **Alcance real axios→invoke**: qué es la migración (chica) vs qué se coló de más (logger, operacionesPaquete, getCanal, HP fixes) |
 | [hallazgos-pendientes.md](./hallazgos-pendientes.md) | Pendientes QA / producto / deploy |
+| [getCanal-excepcion-validador-no-string-2026-07-14.md](./getCanal-excepcion-validador-no-string-2026-07-14.md) | **Prod vs dig:** `validador` no-string → excepción en `getCanal`; prod 404 vs dig 500; capas 999 vs catch local |
 | [../Postman/00-estado-y-retomo.md](../Postman/00-estado-y-retomo.md) | **Checkpoint** Postman + Newman (pausa, retomo, runs pendientes) |
 | [arquitectura-invoke-y-contratos.md](./arquitectura-invoke-y-contratos.md) | Público = matriz; invoke interno; API GW solo prueba |
 | [comunicacion-prod-vs-dev.md](./comunicacion-prod-vs-dev.md) | Comparación axios vs invoke, routing, IAM |
 | [respuesta-a-matriz.md](./respuesta-a-matriz.md) | Respuesta validador-api → matriz (invoke) |
 | [timeouts-y-dependencias.md](./timeouts-y-dependencias.md) | Timeouts, layer, deploy |
 | [cadena-servicios.md](./cadena-servicios.md) | Cadena hasta Canal Validador |
-| [hallazgos-pendientes.md](./hallazgos-pendientes.md) | Pendientes QA / producto |
 
 ## Doc en el repo dev
 

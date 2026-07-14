@@ -5,6 +5,10 @@
  * Uso (desde super-tabla-prod-dev/):
  *   node generar-bloques.js vcn
  *   node generar-bloques.js vcn --prod <ruta.json> --dev <ruta.json>
+ *
+ * Salidas (siempre ambas):
+ *   vcn/bloques-diferencias.md              — todas las diferencias (esp↔prod / esp↔dev / prod↔dev)
+ *   vcn/bloques-diferencias-prod-vs-dev.md  — solo donde prod y dig NO coinciden
  */
 
 "use strict";
@@ -150,6 +154,108 @@ function shouldInclude(esp, prod, dig) {
     tags.push("http-" + DEV + "≠200");
   }
   return tags;
+}
+
+/** True si hay divergencia real entre capturas prod y dig (no solo vs esperado). */
+function prodDigDifieren(tags) {
+  const prodNeqDev = "prod≠" + DEV;
+  return tags.some(
+    (t) => t === prodNeqDev || t === "forma≠" || t === "texto≠" || t === "http≠"
+  );
+}
+
+function buildMdDocument(opts) {
+  const {
+    suite,
+    titleSuffix,
+    filtroLabel,
+    prodPath,
+    digPath,
+    prodRun,
+    digRun,
+    sortedLen,
+    bloques,
+    anotRel,
+  } = opts;
+  const DevLabel = DEV.charAt(0).toUpperCase() + DEV.slice(1);
+  const rel = function (p) {
+    return path.relative(ROOT, p).replace(/\\/g, "/");
+  };
+  const header = [];
+  header.push(
+    "# Super tabla — bloques de diferencias — " +
+      suite.toUpperCase() +
+      (titleSuffix || "")
+  );
+  header.push("");
+  header.push("| Campo | Valor |");
+  header.push("|-------|-------|");
+  header.push("| Generado | " + new Date().toISOString() + " |");
+  header.push("| Suite | `" + suite + "` |");
+  if (filtroLabel) {
+    header.push("| Filtro | " + filtroLabel + " |");
+  }
+  header.push(
+    "| Prod | `" +
+      rel(prodPath) +
+      "` · codigoFuente `" +
+      (prodRun.codigoFuente || "?") +
+      "` · nivel `" +
+      (prodRun.nivelEjecucion || "?") +
+      "` |"
+  );
+  header.push(
+    "| " +
+      DevLabel +
+      " | `" +
+      rel(digPath) +
+      "` · codigoFuente `" +
+      (digRun.codigoFuente || "?") +
+      "` · nivel `" +
+      (digRun.nivelEjecucion || "?") +
+      "` |"
+  );
+  header.push("| Escenarios unicos (union) | " + sortedLen + " |");
+  header.push("| Bloques en esta vista | **" + bloques.length + "** |");
+  header.push("| Anotaciones | [`anotaciones.json`](" + anotRel + ") |");
+  header.push("");
+  header.push(
+    "Vista en **bloques** (no mega-tabla). HTTP 200=200 en MATRIZ es visual. Criterio: [`../01-columnas.md`](../01-columnas.md)."
+  );
+  if (filtroLabel) {
+    header.push("");
+    header.push(
+      "Vista completa (sin este filtro): [`bloques-diferencias.md`](./bloques-diferencias.md)."
+    );
+  } else {
+    header.push("");
+    header.push(
+      "Solo prod vs " +
+        DEV +
+        " (excluye casos donde prod y " +
+        DEV +
+        " coinciden): [`bloques-diferencias-prod-vs-dev.md`](./bloques-diferencias-prod-vs-dev.md)."
+    );
+  }
+  header.push("");
+  header.push("## Indice");
+  header.push("");
+  for (const b of bloques) {
+    header.push(
+      "- [" +
+        b.i +
+        ". " +
+        b.nombre.replace(/[\[\]]/g, "") +
+        "](#esc-" +
+        String(b.i).padStart(4, "0") +
+        ") — " +
+        b.tags.map((t) => "`" + t + "`").join(" ")
+    );
+  }
+  header.push("");
+  header.push("---");
+  header.push("");
+  return header.join("\n") + bloques.map((b) => b.md).join("\n");
 }
 
 function prettyJson(raw) {
@@ -326,8 +432,7 @@ function main() {
     prodRun.nivelEjecucion || digRun.nivelEjecucion
   );
 
-  const bloques = [];
-  let i = 0;
+  const candidatos = [];
   for (const nombre of sorted) {
     const prod = prodMap.get(nombre) || null;
     const dig = digMap.get(nombre) || null;
@@ -350,85 +455,79 @@ function main() {
     };
     const tags = shouldInclude(esp, prod, dig);
     if (tags.length === 0) continue;
-    i += 1;
     const note = (anot.items && anot.items[nombre]) || null;
-    bloques.push({
-      i: i,
-      nombre: nombre,
-      tags: tags,
-      md: renderBlock(i, esp, prod, dig, tags, note),
+    candidatos.push({ nombre: nombre, esp: esp, prod: prod, dig: dig, tags: tags, note: note });
+  }
+
+  function materializar(lista) {
+    return lista.map((c, idx) => {
+      const i = idx + 1;
+      return {
+        i: i,
+        nombre: c.nombre,
+        tags: c.tags,
+        md: renderBlock(i, c.esp, c.prod, c.dig, c.tags, c.note),
+      };
     });
   }
 
-  const DevLabel = DEV.charAt(0).toUpperCase() + DEV.slice(1);
+  const todos = materializar(candidatos);
+  const soloProdDig = materializar(candidatos.filter((c) => prodDigDifieren(c.tags)));
+
   const rel = function (p) {
     return path.relative(ROOT, p).replace(/\\/g, "/");
   };
-  const header = [];
-  header.push(
-    "# Super tabla — bloques de diferencias — " + suite.toUpperCase()
-  );
-  header.push("");
-  header.push("| Campo | Valor |");
-  header.push("|-------|-------|");
-  header.push("| Generado | " + new Date().toISOString() + " |");
-  header.push("| Suite | `" + suite + "` |");
-  header.push(
-    "| Prod | `" +
-      rel(prodPath) +
-      "` · codigoFuente `" +
-      (prodRun.codigoFuente || "?") +
-      "` · nivel `" +
-      (prodRun.nivelEjecucion || "?") +
-      "` |"
-  );
-  header.push(
-    "| " +
-      DevLabel +
-      " | `" +
-      rel(digPath) +
-      "` · codigoFuente `" +
-      (digRun.codigoFuente || "?") +
-      "` · nivel `" +
-      (digRun.nivelEjecucion || "?") +
-      "` |"
-  );
-  header.push("| Escenarios unicos (union) | " + sorted.length + " |");
-  header.push("| Bloques (solo diferencias) | **" + bloques.length + "** |");
-  header.push("| Anotaciones | [`anotaciones.json`](./anotaciones.json) |");
-  header.push("");
-  header.push(
-    "Vista en **bloques** (no mega-tabla). HTTP 200=200 en MATRIZ es visual. Criterio: [`../01-columnas.md`](../01-columnas.md)."
-  );
-  header.push("");
-  header.push("## Indice");
-  header.push("");
-  for (const b of bloques) {
-    header.push(
-      "- [" +
-        b.i +
-        ". " +
-        b.nombre.replace(/[\[\]]/g, "") +
-        "](#esc-" +
-        String(b.i).padStart(4, "0") +
-        ") — " +
-        b.tags.map((t) => "`" + t + "`").join(" ")
-    );
-  }
-  header.push("");
-  header.push("---");
-  header.push("");
+  const anotRel = "./anotaciones.json";
+  const common = {
+    suite: suite,
+    prodPath: prodPath,
+    digPath: digPath,
+    prodRun: prodRun,
+    digRun: digRun,
+    sortedLen: sorted.length,
+    anotRel: anotRel,
+  };
 
-  const outMd = path.join(suiteDir, "bloques-diferencias.md");
-  fs.writeFileSync(outMd, header.join("\n") + bloques.map((b) => b.md).join("\n"), "utf8");
+  const outFull = path.join(suiteDir, "bloques-diferencias.md");
+  fs.writeFileSync(
+    outFull,
+    buildMdDocument(
+      Object.assign({}, common, {
+        titleSuffix: "",
+        filtroLabel: null,
+        bloques: todos,
+      })
+    ),
+    "utf8"
+  );
+
+  const outProdDig = path.join(suiteDir, "bloques-diferencias-prod-vs-dev.md");
+  fs.writeFileSync(
+    outProdDig,
+    buildMdDocument(
+      Object.assign({}, common, {
+        titleSuffix: " (solo prod vs " + DEV + ")",
+        filtroLabel:
+          "**Solo prod ≠ " +
+          DEV +
+          "** (negocio / forma / texto / http). Excluye casos donde prod y " +
+          DEV +
+          " coinciden aunque ambos ≠ esperado.",
+        bloques: soloProdDig,
+      })
+    ),
+    "utf8"
+  );
 
   console.log(
     JSON.stringify(
       {
         suite: suite,
-        bloques: bloques.length,
         unicos: sorted.length,
-        outMd: rel(outMd),
+        bloquesTodos: todos.length,
+        bloquesProdVsDev: soloProdDig.length,
+        outFull: rel(outFull),
+        outProdVsDev: rel(outProdDig),
         anotaciones: rel(path.join(suiteDir, "anotaciones.json")),
       },
       null,
