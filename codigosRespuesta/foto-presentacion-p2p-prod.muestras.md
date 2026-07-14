@@ -6,10 +6,10 @@ Una muestra completa por **patrón estructural único** (el primer escenario que
 |-------|-------|
 | Servicio | P2P |
 | Código fuente | prod |
-| Fecha corrida | 2026-07-13T12:30:36.194Z |
+| Fecha corrida | 2026-07-14T10:29:33.816Z |
 | Nivel ejecución | MATRIZ |
-| Patrones con muestra | 33 |
-| Nota | MATRIZ P2P re-run tras fix [CAPTURA] |
+| Patrones con muestra | 34 |
+| Nota | foto presentacion contratos post deploy prod-a-dev |
 
 Por muestra: **Request** = `reqClaro` (legible). **Response cliente** = `body` post-`/descifrar`. Si hubo cifrado en cable, también `respLambdaRaw` (truncado si es largo).
 
@@ -21,11 +21,11 @@ Por muestra: **Request** = `reqClaro` (legible). **Response cliente** = `body` p
 | Ruta | `General/1_validaciones_js/2_validador` |
 | Escenarios con este patrón | 16 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | no |
+| Formato lambda | plano |
 | Campo texto | descripcionError |
 | Claves | `codigoError,descripcionError` |
-| Pattern key | `A.descripcionError\|http=200\|cifrado=?\|campo=descripcionError\|campos=descripcionError\|keys=codigoError,descripcionError\|codigo=400\|desc=Error de formato en campo validador` |
+| Pattern key | `A.descripcionError\|http=200\|cifrado=no\|campo=descripcionError\|keys=codigoError,descripcionError\|codigo=400\|desc=Error de formato en campo validador` |
 
 ### Request (`reqClaro`)
 
@@ -48,11 +48,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `General/1_validaciones_js/1_idCanal` |
 | Escenarios con este patrón | 8 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | no |
+| Formato lambda | plano |
 | Campo texto | descripcionError |
 | Claves | `codigoError,descripcionError` |
-| Pattern key | `A.descripcionError\|http=200\|cifrado=?\|campo=descripcionError\|campos=descripcionError\|keys=codigoError,descripcionError\|codigo=400\|desc=Error de formato en campo canal` |
+| Pattern key | `A.descripcionError\|http=200\|cifrado=no\|campo=descripcionError\|keys=codigoError,descripcionError\|codigo=400\|desc=Error de formato en campo canal` |
 
 ### Request (`reqClaro`)
 
@@ -75,11 +75,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `General/0_jsonEntrada` |
 | Escenarios con este patrón | 23 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | no |
+| Formato lambda | plano |
 | Campo texto | descripcionError |
 | Claves | `codigoError,descripcionError` |
-| Pattern key | `A.descripcionError\|http=200\|cifrado=?\|campo=descripcionError\|campos=descripcionError\|keys=codigoError,descripcionError\|codigo=550\|desc=Error inesperado` |
+| Pattern key | `A.descripcionError\|http=200\|cifrado=no\|campo=descripcionError\|keys=codigoError,descripcionError\|codigo=550\|desc=Error inesperado` |
 
 ### Request (`reqClaro`)
 
@@ -98,15 +98,42 @@ _(reqClaro vacío / no capturado)_
 
 | Campo | Valor |
 |-------|-------|
-| Escenario | 1.2.15. validador — distinto a {{CANAL_VALIDADOR}} (CANAL_EMISOR) (400) |
-| Ruta | `General/1_validaciones_js/2_validador` |
-| Escenarios con este patrón | 76 |
+| Escenario | 1.3.1. peticion — propiedad ausente (undefined) (400) |
+| Ruta | `General/1_validaciones_js/3_peticion` |
+| Escenarios con este patrón | 48 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | no |
+| Formato lambda | plano |
 | Campo texto | mensajeError |
 | Claves | `codigoError,mensajeError` |
-| Pattern key | `A.mensajeError\|http=200\|cifrado=?\|campo=mensajeError\|campos=mensajeError\|keys=codigoError,mensajeError\|codigo=400\|desc=Error en la petición original` |
+| Pattern key | `A.mensajeError\|http=200\|cifrado=no\|campo=mensajeError\|keys=codigoError,mensajeError\|codigo=400\|desc=Error en la petición original` |
+
+### Request (`reqClaro`)
+
+_(reqClaro vacío / no capturado)_
+
+### Response cliente (`body` post-descifrar)
+
+```json
+{
+  "codigoError": 400,
+  "mensajeError": "Error en la petición original"
+}
+```
+
+## 5. Forma `A.mensajeError` · código 400
+
+| Campo | Valor |
+|-------|-------|
+| Escenario | 1.2.15. validador — distinto a {{CANAL_VALIDADOR}} (CANAL_EMISOR) (400) |
+| Ruta | `General/1_validaciones_js/2_validador` |
+| Escenarios con este patrón | 28 |
+| HTTP | 200 |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
+| Campo texto | mensajeError |
+| Claves | `codigoError,mensajeError` |
+| Pattern key | `A.mensajeError\|http=200\|cifrado=si\|campo=mensajeError\|keys=codigoError,mensajeError\|codigo=400\|desc=Error en la petición original` |
 
 ### Request (`reqClaro`)
 
@@ -123,7 +150,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 5. Forma `A.mensajeError` · código 401
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "8215c55529d909d122a929a9fc3c4dae.2224ad54146d450dd0f299623ba7b5345fcf9c6c4a850576dec3cf929c46c283e38bbff9a900f5fd52df493cf8d4a77ace6558d03521c2dd4a8949441d196972480d60cbc726f4a13f1725563c103fdb8d3957c75980043aaba000a9f66bda5e947d948f314d201dc0fa36e1021139cc3f80ea5eb472c94928542296626ace1d8d938ebd47f6ba6a520a5b51cc61ffd0f73e3adbdab4703381c24447cf9bfc858f4464fb21cb750403eeccf7a02a18b30617a4a13648ed3e903406dac853638bd76ba85029e7c0fc11cc0dbdbd5823d2a2193d156cfd34977868dee7374b641ed7500ab90403ad7896f498dee22e465bf2f84a3de73349e81cbccb35f69474862b4d7bf3bdc223e27842991ff31149d86828c53861758aa252604f8c57f66e3d38ea295261383e8d1f8a843ebc8b2b7b5e728067d926112323bd8c751476cba2ae7ed012b2daa1c360f21bb41aef7edef3b5f75c8c58fc8fd125478f7e0e8a88ed62007888a25b01919b24b5f21c7f09ab211b2a2069581a9001d72a4224b33d25d6196767272a7055fe97444c85aa563ae42cafd777b533543ac59268fd6649e4757a763af561287361744d7990abc22b38c8a1d424948352d05cf86d82723caf8bdece9179bbc9045989f48570de6010e2e98b379f519d33b1d85d0063d98bf7dfc823709d3bb5342fa5365270cb184bd8a730c5078e2da436773577eb8d4d.7fe23bcebf354c1a8b40c7acebbf85790af0c9a8979769e7800f132d0127cab770f4f9d3cbccbf6d7917e6e2a8774f861bef2c2e9113c9a598541ece133beca0eb3b18ed9272463ac5a5a78856b45ab1"
+}
+```
+
+## 6. Forma `A.mensajeError` · código 401
 
 | Campo | Valor |
 |-------|-------|
@@ -131,11 +166,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `General/1_validaciones_js/1_idCanal` |
 | Escenarios con este patrón | 32 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | no |
+| Formato lambda | plano |
 | Campo texto | mensajeError |
 | Claves | `codigoError,mensajeError` |
-| Pattern key | `A.mensajeError\|http=200\|cifrado=?\|campo=mensajeError\|campos=mensajeError\|keys=codigoError,mensajeError\|codigo=401\|desc=Canal emisor no existe` |
+| Pattern key | `A.mensajeError\|http=200\|cifrado=no\|campo=mensajeError\|keys=codigoError,mensajeError\|codigo=401\|desc=Canal emisor no existe` |
 
 ### Request (`reqClaro`)
 
@@ -150,7 +185,7 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 6. Forma `A.mensajeError` · código 404
+## 7. Forma `A.mensajeError` · código 404
 
 | Campo | Valor |
 |-------|-------|
@@ -158,11 +193,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `General/1_validaciones_js/5_solicitudes` |
 | Escenarios con este patrón | 44 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | mensajeError |
 | Claves | `codigoError,mensajeError` |
-| Pattern key | `A.mensajeError\|http=200\|cifrado=?\|campo=mensajeError\|campos=mensajeError\|keys=codigoError,mensajeError\|codigo=404\|desc=Campo idSolicitud no cumple con los criterios` |
+| Pattern key | `A.mensajeError\|http=200\|cifrado=si\|campo=mensajeError\|keys=codigoError,mensajeError\|codigo=404\|desc=Campo idSolicitud no cumple con los criterios` |
 
 ### Request (`reqClaro`)
 
@@ -179,7 +214,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 7. Forma `A.mensajeError` · código 404
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "2744414cd206b877402221d12b670255.49bfe4756cc21bc4ae9967a4f90356327938577602d1c606cae86c9062653c384bbbab9a4f8942a71be41c4ca8c1c49d2b656b2e27620b3a24847d0b08739390504ece1a25e094d6c7a9eb274ed28d61cf31992f50247edc29d8cb0894055328ff327d5346f38eb4357928bc78013ca181ec6b9a8c3e318b4d8229977dcd24d827f435acaf8d6699d55f8e711dcf84d95f339b5a520a0247d0e2cb9ca4ee08cc9a978de404eb44278bfac39578e2bedc57c30c16fea2527d5fc452e9b7dd8e05d0d631dbea63af7e1e2334ac0ba0311ab753991c1afa3cd1a68d72fcdd47b2e1291dc4e07fcc6beb2a6f868dbb44e182ab0467da1d108a2984679ba90d9c7ff72d9e89e86ac575570c0605f86ded6990fd313abc89e4e8fab698f5391be1d050c67e0bb64d675b91d94f2c5342c01d8311ff9e17c4a1b834921a980168045a8a547fe7494e27e4063e382f90015be3ad9380f5c9ef1459ba67131efb0d9d59cd958aae6f7a18f82fb34a17c2f779d8e4f221b0046896cf4a4734a8b8887b5018adeb562dedd4c898207655dcbbe167b6b0e9bb624fb5d95abae0fd5a4d201d3f8c0cd93f57e6def325bc6081d3fc0537d416e4afe97b8cbbd4fdd52dc23868cbbe5b76ecc426f65e180485ac788778df068e048e489bd9f92b0eeb58fba78a2218c5db425ba587e650b3d3d785882cc25950901d3c7f3ea5ae917b6945f46d7d.5685f4e61856197bc4661dd417064134943ec00a6077c87ed5ba9d5b3280be9e159d484f4724a37f3e83a0c2f78bf4b0d8b99e25dc217b8befa3bdff4ff1cf52fca566b11b10c81744838708dd7424ca62b0b3473eaf7020b695ae9a5bef1605"
+}
+```
+
+## 8. Forma `A.mensajeError` · código 404
 
 | Campo | Valor |
 |-------|-------|
@@ -187,11 +230,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `General/1_validaciones_js/2_validador` |
 | Escenarios con este patrón | 40 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | no |
+| Formato lambda | plano |
 | Campo texto | mensajeError |
 | Claves | `codigoError,mensajeError` |
-| Pattern key | `A.mensajeError\|http=200\|cifrado=?\|campo=mensajeError\|campos=mensajeError\|keys=codigoError,mensajeError\|codigo=404\|desc=Validador no existe` |
+| Pattern key | `A.mensajeError\|http=200\|cifrado=no\|campo=mensajeError\|keys=codigoError,mensajeError\|codigo=404\|desc=Validador no existe` |
 
 ### Request (`reqClaro`)
 
@@ -206,7 +249,7 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 8. Forma `A.mensajeError` · código 405
+## 9. Forma `A.mensajeError` · código 405
 
 | Campo | Valor |
 |-------|-------|
@@ -214,11 +257,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `General/1_validaciones_js/3_peticion` |
 | Escenarios con este patrón | 68 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | no |
+| Formato lambda | plano |
 | Campo texto | mensajeError |
 | Claves | `codigoError,mensajeError` |
-| Pattern key | `A.mensajeError\|http=200\|cifrado=?\|campo=mensajeError\|campos=mensajeError\|keys=codigoError,mensajeError\|codigo=405\|desc=Error en descifrado canal emisor` |
+| Pattern key | `A.mensajeError\|http=200\|cifrado=no\|campo=mensajeError\|keys=codigoError,mensajeError\|codigo=405\|desc=Error en descifrado canal emisor` |
 
 ### Request (`reqClaro`)
 
@@ -233,7 +276,7 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 9. Forma `A.mensajeError` · código 425
+## 10. Forma `A.mensajeError` · código 425
 
 | Campo | Valor |
 |-------|-------|
@@ -241,11 +284,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `General/1_validaciones_js/5_solicitudes` |
 | Escenarios con este patrón | 12 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | mensajeError |
 | Claves | `codigoError,mensajeError` |
-| Pattern key | `A.mensajeError\|http=200\|cifrado=?\|campo=mensajeError\|campos=mensajeError\|keys=codigoError,mensajeError\|codigo=425\|desc=Cantidad de solicitudes no permitidas.` |
+| Pattern key | `A.mensajeError\|http=200\|cifrado=si\|campo=mensajeError\|keys=codigoError,mensajeError\|codigo=425\|desc=Cantidad de solicitudes no permitidas.` |
 
 ### Request (`reqClaro`)
 
@@ -262,7 +305,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 10. Forma `A.mensajeError` · código 509
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "8a97e1f7dfdd8aa0a37d2b02466625d6.6df1ebba0b2429da6782fa25b4ca05a3fff2035789d1ba2879634efe408133c40dc2bb26fa3e2709a2ba280eb03be8bff014076255eb0c5b664d7b014cf5fda49a0327d0ebbf77880a5d034962c4ce722f4acf633b92a4451531e4823a9ef4c67886eadb164b2a94ee176f3df2eaa9a196c7a987bd61b856eef1b76d2e268091cb001a5ce470bc177b212aa0078e63c5aa191957c1a50560d8a86cde5ef14257979d5d4f43e660095f3fa2fb888bfa50f771e3e04ebe9b686f79c21b6edd437e76676ce5f8f8921b34c1ad4b4b42e41da1c36a38310bcb758c49a77c66349732c8689911cf125d3f746b9ec38424cdc94ac99c380138eaa79eb53a16033c50e854b4fab6f98677b0b2834ceb89c5dca49a6ddc7312d616c8cee20fe1f5d865c593402747f8f88b064bce6da525352c49d14f49d866119dc251c4e430e8c6562fba4d3125d0f1968edb2ae53f37805d38e8eb3be974f3c82f6df7b040eec87ed47e5c45df3c9d3b0b9c6d76c1baac98d1c654329e103fb1ffa48ef6697cb2700bc6b1de769677858c1cd69f124293dc06a932bc3709d31a36c0460056f2cdc68760fbaad988513c3b482d70a5fd10facbd4bfbbe2bc5860144ea301927dc46625115676e8ee54ee8ada87d8932f5908ed3e9dc23e726c6f40cc16341b2a9a0cb2d6c6a58e3f9416d8918c05510b77bb55e7d6a49ab6c15913817b64944a6834c9.662b7f7d457860d38e8cc837a7d6d233f5aac7a03e3cf4941e93861cf72233cb90c1596456a5f6e26083724d590d8b5e79176e7d9a2f0e5bdef27147de8ba28e5ed130ccf4d568437c42dc31868d2cd1"
+}
+```
+
+## 11. Forma `A.mensajeError` · código 509
 
 | Campo | Valor |
 |-------|-------|
@@ -270,11 +321,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `General/2_reglaNegocio/4_metodo` |
 | Escenarios con este patrón | 4 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | no |
+| Formato lambda | plano |
 | Campo texto | mensajeError |
 | Claves | `codigoError,mensajeError` |
-| Pattern key | `A.mensajeError\|http=200\|cifrado=?\|campo=mensajeError\|campos=mensajeError\|keys=codigoError,mensajeError\|codigo=509\|desc=Error inesperado al llamar servicio interno` |
+| Pattern key | `A.mensajeError\|http=200\|cifrado=no\|campo=mensajeError\|keys=codigoError,mensajeError\|codigo=509\|desc=Error inesperado al llamar servicio interno` |
 
 ### Request (`reqClaro`)
 
@@ -289,7 +340,7 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 11. Forma `A.mensajeError` · código 999
+## 12. Forma `A.mensajeError` · código 999
 
 | Campo | Valor |
 |-------|-------|
@@ -297,11 +348,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `General/1_validaciones_js/5_solicitudes` |
 | Escenarios con este patrón | 4 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | no |
+| Formato lambda | plano |
 | Campo texto | mensajeError |
 | Claves | `codigoError,mensajeError` |
-| Pattern key | `A.mensajeError\|http=200\|cifrado=?\|campo=mensajeError\|campos=mensajeError\|keys=codigoError,mensajeError\|codigo=999\|desc=Error en la solicitud` |
+| Pattern key | `A.mensajeError\|http=200\|cifrado=no\|campo=mensajeError\|keys=codigoError,mensajeError\|codigo=999\|desc=Error en la solicitud` |
 
 ### Request (`reqClaro`)
 
@@ -316,7 +367,7 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 12. Forma `B` · código 0
+## 13. Forma `B` · código 0
 
 | Campo | Valor |
 |-------|-------|
@@ -324,11 +375,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0002/1_validaciones_js/2_identificador` |
 | Escenarios con este patrón | 36 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=0\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=0\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -339,7 +390,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945161",
+    "idPeticion": "CELEGATO1784024327",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -354,7 +405,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 13. Forma `B` · código 407
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "e244de0c0227a9e087d3c4f973156ad0.63d7b5c3ca360a883bd2cdf77cae94776615d41416dc515f07dfa39df8e8823d4b9c35046b738cab219c17fee74407c3a36e1ff7e3d85dbbb62f1d41b1cd653aeb3668b35c01bb8d860ddf2924c3a982cce3548068cb1f118c1915326df86b12d9d7ec0165fe7ad6450e1bdcd2febfd66c2022eb57dc2e9a3d4a1bb85f88d5e4c2fd0d1175692ca6d048c5752aac408870b0b0f3d34b368b2ea36ef8ce2135b9adeedfc005f769d30359128c58373c6b567989a55f135490dba123861f8a1c6647f6c35159726f1135bc280ed7c6f709cc05d3b80f705a21f0cf6627982524f794ffaf2b7494a30c6cc25340888223b666bba16f508ffac147ea95f3955896a64fc4a77ede6bba0d603cc0cf1a6dd8c67b881862e2bd28d48b4f565a2cb25831145af9ead1b6b8ff7a8c530108eb34f257abef139641d93ae7d522151ef929c2dccc37e60ba0cd308e2a893f105b14a762eb292e9746784a54d56c2d6c4fe5b6905bcc4b10f96e4d17ccfda0400437695214f67ff93f9cf5461f956f701b24cb89ba9ed7f83316a4d93a2b1cdfbd4352dec54520b46ae83d44510bf0acb25d7caa0c1a01269170ba15b489441cf3cb0977a153b60788054044904926d15af91a1ea92b1fd71b9046aa7a5f8acf888ea18d7d74d760178b1d62147f96254c7a177b4b7b105228fa515cb41cdbc293b2ce47a2dc3638edc75e4fd89bae93e1bdbc.1ed7bc88e350b407a704206d25361c1266b35d159d6b084d8cdcbb958ee0ba7e0a10eb8e8caabc21a8404888447267a5ba3b936bde793ff0e5ab1e13651e5850d7f21d10697af1c7b7ce46c2ec4d2ca8a0f157f8090630025be5c84e467700cb06f5cd9c2ec61aea65abcfdc38b0c8ce1a44e28afc3352fd42a68ae87e2b76d895b17fe48faf166e095f41760b433f53"
+}
+```
+
+## 14. Forma `B` · código 407
 
 | Campo | Valor |
 |-------|-------|
@@ -362,11 +421,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0007/1_validaciones_js/1_identificador` |
 | Escenarios con este patrón | 52 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=407\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=407\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -377,7 +436,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945506",
+    "idPeticion": "CELEGATO1784024664",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -389,7 +448,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 14. Forma `B` · código 408
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "b6d0b2dba8153280a63a3943a4684352.bcb021febdcd19c817cdf5d594a9e5d8616843e1ca6ca0b058037df849815ecb72ff791d98aed458a52d6838e26023c0dde2b1699208e321a2065197e243e8f00f57867e1e7d2b579ee72d12ab39db952095a14f0dce462bfa23d2e5cbe2b3c75b17f677c730ce2b8a6fc7dbbc84e7620591bfd3e72405405a0afccfa3b16af8b7deaef7be1066f647e7c6020c283dbe6128d5768f503b592c636d02654454059719b25c8e8b01e3efb2dd57e850d51efb504859490b1fa4adbdde04c29895514e2ed7d4757c823999ff2540777e29293984a4dd5aaac2ebed5f4adbf2bd9241b7023f7bfca798e8eaa105d47e6fd7ff5a89c375fb6426566381014b087d2b83f4df670a5aac784501068830696cd45f96f960d77a5ccb68928d9387625fd1ed5f04b8c7477ab51c94d3ee78bb5f29fbb7f39d71757d9184ae6111b4f848ba7e8ef9b3c4b97955447b3e339c4510116360cecea7408dc2fd59902fd01a3aeab49a53bbb31ead76a8b8d1f5184a638a8c3c24a9ca1a3be9d0af1a5e663bd8e47b77c845d0e9f61cbf9783887eae0e3022e0da8b175a313db1b78907fb50c1f2f0696ecbe3fbe713074bdd565e031ee98a00bd523e889fc876cfcb5696cd0878cfd3e7965a320dae01c1576f6a38f41aae8e8a24c9851fe2788efef580275ffbfd69c09d3dd2185ec0c4e2051784c1d247acb18ff35606a0782230a71409d541e1.5f40518ed44f1cfb1ae559479efb5402bab0adf35eb40eca64384d08235a4386dc6b627dcca50fc3dba6f0882d0797f7a6ac411ccfbef154f307d7f8c4ad476b8e952e208b09d88bbbc6e6a8f05da6b3559d79012e80cff80084e53e866fcf6eeb189c686d6b09b618e11f80087d8f24"
+}
+```
+
+## 15. Forma `B` · código 408
 
 | Campo | Valor |
 |-------|-------|
@@ -397,11 +464,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0006/1_validaciones_js/1_identificador` |
 | Escenarios con este patrón | 84 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=408\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=408\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -412,7 +479,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945368",
+    "idPeticion": "CELEGATO1784024530",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -424,7 +491,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 15. Forma `B` · código 409
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "21c8b1c522bfa14a35437c5738af61d8.3362d5ba54de50f7d3b1294a2129a584e6a7163994c0eed12dec8423fcf92602e1eabe5315f1537021e9db87b25054f65102361d3a9a128790e8172614d8c1e60576fde1d23b8f6ca07cce4b5795e87ebbc20ae0a6330f75c8262305231ac7b2db865af6a987c494563dce420588fab7c22ac89a510584efedc01386b0ce5868c7ca665d7768451b8281cde25e25ef032d5834d05e67c007f7dd3d10a0b50bbb7fd96276d5c5d4bae8baf096c3d2d5fdcdeca16da3a5cc40cc45667c2261978868ae0da31cd620250475e1344fc8b854510aa74e8d7d09d377aaa9da952ec24824566e00b144e98b98994886febbe3b65ecefeac504a9f04cb9f6a2192c244c6f37e48a3d98304fc6fbbf9ea09d1ede348156c1877aa0ba7d7d4a0dda22168d7bd79632e83d00a09741aa4248228ec8cc676dd747cb80ee0168edbc264c3f787a5ce1b987c0dfd16159d8990ee6a9031d0407b2460f2c2e24a879ca5df786957f5a16b3c6709c957e24f04d350215064c2a8bb9506a77e747d433528bb121ed5b53e3d79a6919097930092aa657354ee32c376de5f13bd1a3a0b7c7d31a22e06cd99dc6b2161b402bf5cc69411b21f2a281152f53e00505f2e1e1ebca8b33e96c8b4e4e98e88b440ef4b6675eb3f22d411f440aac52022db3aea0ab943b3dbfd96b0252dee2d89fd44a99e0a56e08e85b7fd49a6dace2adb64900656709576ee.02c19761cba080d19a6131151d2dead3f196976baf1280bb4329d24fd4524d571145bab991afb1354bff0b0f1db3381bc945d3b5e3a6e453631599507329c11251de5bf1d4b1e1edffe110d385163d283ed80034615e6d05e36e1b4813a2b3d61796185f81cf20ca7a10e26d85f82290"
+}
+```
+
+## 16. Forma `B` · código 409
 
 | Campo | Valor |
 |-------|-------|
@@ -432,11 +507,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0003/1_validaciones_js/1_identificador` |
 | Escenarios con este patrón | 288 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=409\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=409\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -447,7 +522,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945180",
+    "idPeticion": "CELEGATO1784024347",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -459,7 +534,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 16. Forma `B` · código 410
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "ea5de2024b01db03648bd9e67e43cf9b.c81ee186268360cdbd80bd60c5fb36d3081ab887e469ddeffa90b922521ee353744ca107867d12977141baec8337af3b31df444690b0c6dfad6b2b2cb89aa87d4e2440ba4599058da7771e275bb4992da3a593c1f94b9352e7bcf3f6ecac850be5dbde4226f5c1d7706538ff27d586a0cd17e5ede80ed5a00db53cea94f200ece8c683323c00c498bef6eea719e1a61b686557b5af88401f1c7174b8c71417797224e6ed741458bf0c06681d6aca2ef6f9dd521e1fd3bfe928d2e60897db7f130a2ec5ecd6ccd9965dd4417909f13cf16973443a0a452b07dcdc80cdcbc9cef01c5fba14a83c17f23ea7ca42422e121d2660f339d938f053d404e077fb3f22ab61d4fff061c6af44a9870590355444e3dec9652a66e5f38163ab38ecd15d3e6df7b766f0de2704e1f8729d71cbd0560de04dc74592db51fa83a7a6a26ad2da713c097d4daa5d69badd87c37be50351dba780b35e3977ac7eab5663636449a1208be75d9d8a5e083f427f9c3fd57f9562f7cfcbe2cbb8653b70c049b0705d6e279fb45470a20ec55446ef01dedb2273e3c9c8cf7cdc3f98b149bff1682a15579e8b80b65a4339e99a21e4f1cb247e012df5d559513bb1801c6802e7bc27ec5d549a46ab001b03572cc64f0c14742c6ec1c6fc425a53be6a392283573fe027aa137dee3c0260148091b51ffb16114608dfb71bc53dfc40ece4ef92c018bb53a3f6.3c90e8bfcf2bf3ec5e4469f0d24f5dc39225ae6254b6890d1abcd41df57cd731bf63155730bbc3c6e03da25d10a7d4d64f317268c96282360ee56ed5e0fc3b92950bd7c0a5529cb1c04b4540ca7df9bcca67b82dfffea7841cdffc4bfcb8d747f8f8c6cf537b0dd928756c4abbf6b686"
+}
+```
+
+## 17. Forma `B` · código 410
 
 | Campo | Valor |
 |-------|-------|
@@ -467,11 +550,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0002/1_validaciones_js/1_tipoIdentificador` |
 | Escenarios con este patrón | 168 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=410\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=410\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -482,7 +565,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945145",
+    "idPeticion": "CELEGATO1784024312",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -494,7 +577,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 17. Forma `B` · código 412
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "0f47690dcc0edded6f96b515a2a27e81.74626ae153fe0f64e97117f25d0142a3a71cfc49df585051c04c3c1f2a65eb796bc1a7530f7af06c5d43a691f155f9b5d7c7c75ed70c624f227195b1bc2d7fab39626a8a4219ceb8fa61d828a6748a609b9a89684963fffa9e60dd4bee13e2a244cf1e1d70a614924f15dd233a4db0db954d1fb8cfb7500eaa17bbc8cc48c6a7b0364195bccdcbbb50fed29f26691ad831149a981b4fca11ae6d3ca6b62bc36df954c68e0fc900c3a9f17679542a1b0cd94e6951d2b68a38d4fc53cafbd9391076a808b1eb2da7479167dca4a042e360b9735305522ae49bd5977d25726d8a3fd4e0b0d922d95c122c7e0bb852d7d97117779dbf423ebca23c28c9d2644f7d0fc4cd1909317b698f7997a7837b66c03314204622e8c14a3b4f570bf5224a0ebc7c9c48072b2ccbd64dd67c0e8ce1fa082dedb8f34dd5d10c582407908ef6867eee8a5074a419c5bc021bdb201986227e6f4531a510b78bdf0b99711ffb268d7a5159786c87896e8331fe0e67af4320e7f296b47fece7afd909f19088b18460916545ff4d03f0adc4f323de9351cc7e92b410ca20dd04eec61fdd2b66b088c3048e7595a4a0e1446521d6a410ac05eec9bbef94292509e5508822fc94765e827c4c67ed4b48b244042be0f4c25d089cb4f20fd532eb30e868b7f8bdcfe2e540ffdfc9f11bd8d33c9a9d9d8ee1e71f1d85fcce8a4be3cd6e4d1f900a52208f3704.e581edec43f6035e3b039c68b751ddce4bd6c163d1d3daeadb988c7c099e1f09748474da0846a9e9da44a5e13363fed7ececb013d34c297e84e0c65e613cc34058b02421f02fc8d3e98bd481b08466791376641b335bfe7f0ce3c2cfea483794d8bf7a24c977c655be54db9b84988961"
+}
+```
+
+## 18. Forma `B` · código 412
 
 | Campo | Valor |
 |-------|-------|
@@ -502,11 +593,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0004/1_validaciones_js/5_banco` |
 | Escenarios con este patrón | 24 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=412\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=412\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -517,7 +608,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945314",
+    "idPeticion": "CELEGATO1784024477",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -529,7 +620,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 18. Forma `B` · código 413
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "3c423baf581168ed3894a0c8291e9c41.ac3457a0fe9889a072fc4a932ce3d1eb18800c309789ee49bbabbf66c44f1fca17847d40cc35b3936a9ed9577aeb4c312d09316c07ae87775c512b9ffb45363fd36d68167bca0eb67d58fee2449045047083125d0306619df838579f79653272c2894c49a921ae92fa2349a5be5489c80c439645a7609c028418b7d59a1bb1cae76e835a8b4c0b79c7f957ddbea7cedeff09a2d0311488993a3515ac984b42a02f6affb17b32545e23892728f039373d3e68cbfa2c53ce86fc1ad12e3e59e3fc3ac3e48e9daf3ac4b687de27dd754116d84cb65685081169202cdabbe920a34d77d8d2f52c7b1e8650f793f30a5cf5d4e6c1baa79277a9277a9a5c3b4afa9eb5ddcb647aa4086cd6130a8dc070fff0583614bd7cdc849f2849866b51a74b5a4cfbddf8cb62914bea39090e4f293f35c715c23ca8cf6f2d2293757d15bd8e43e060d506504a07d59b4e4ec94d9407d72746a001db49569103365160304880cfc1186c1e5d8ef15820244fadcaab736ea08671cb5111370541409bfc2de72864226bcea36227b1b294379c08a8ba8aa35bd9ea7ec1ffb290bdb5d68d660c27228be59630d35185a802a2a2621de619aaa767ffcf8778cbc21738ac2e5e2009464f6d44816c46a52c75ee5e75c68985d3648df322c5097d03d5e4a1413126fddfb9679d10e31009b8560dd77c3b8846d699b95a4567ba89f6f4f0c6a7b354f83338.1c9d65e02eafaec68623599893ede620fd40386ee8e6349982230e3ddd3aa625e1f796a6fa332347a986f4fb87b7cedf21039e5eab59d247ba8eebecd0120ed5818ff56567b9da1553199713121aa0d5f5c148dc9f528c72667cf296d94b8d692516106a92b172192501448be5668daf"
+}
+```
+
+## 19. Forma `B` · código 413
 
 | Campo | Valor |
 |-------|-------|
@@ -537,11 +636,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0004/1_validaciones_js/6_cuenta` |
 | Escenarios con este patrón | 132 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=413\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=413\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -552,7 +651,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945316",
+    "idPeticion": "CELEGATO1784024479",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -564,7 +663,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 19. Forma `B` · código 414
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "34cfe511e6789c67005f1e0ba93bd61c.47931dfb41aa937004dc2ddf570729272710689c140dd16c990143227be72af0870ccd08e9c6ec7894b976efc2c15db3c8c1dd53174b1b7aceb09b58d42dab4c464eb6c156d5f58c14f271c4db219c520f20a4e833d021ee8398b978c3cb50a6a4355391ea88e0c215da8025959075a862006d9e655938d9627bcf9012ef0d00700c74c1f78e0e5045d15417bf1836d3a4b30b637395d2d61b6bdb2388e0be2ca232b73fabdf75246a83e6487e86f93b8208da84beb4e673eabb102f66e27daf510b73ce302069a637a51584ac5f5e54edb9b13b783790a40d5d873ab304786fcb96bf0f37ccbbbc5b225baa7627e301b7b075b4c08f6f093bb58f78ecbfd47cfe4daf6cc3269e71a1d0a7309e757545ec24120688d194c59db001dcbae55291e28f05d6c4243e6c3ff75a2307ef07a7cc6457c0d7c104d076773203acb087d3a2b09bb240960a01130bb62b6a8e44857ac4c403858269b8ba506c431850fc1fce646d16766f6137bd1daa8db79a065c790a60f76bb911716688d6db0cd3236571dddfb8123b875090de4741483c6f824d47ad972c9329f36513e754c1412035a62b1ac7aaf887063355c72595ec9c836c85938aaa8bcdae4c1ae2f924c073b1c1d14654243849084d48f343f8f07eaa9471a3eae8d6a6ac0309488514989617a593e631afc780124ebbe8a0c85e43e7abfa7b200733de8cd2ed85677cc1dc79.45b1753a9aff5256d916de47544ee13ceab40a1bae5f7ad412e78b6a2170d31df142e6759aa998c0211fc714acae4e39a65c3c50c73bbc6c6b5b743f1dc94cece7ac9370a30aca84e588c4442441c163604211dd3fa07c61577d6aaf83cd3550b22e812431d502c0b7d72a9ab028e3fb"
+}
+```
+
+## 20. Forma `B` · código 414
 
 | Campo | Valor |
 |-------|-------|
@@ -572,11 +679,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0004/1_validaciones_js/5_banco` |
 | Escenarios con este patrón | 312 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=414\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=414\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -587,7 +694,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945294",
+    "idPeticion": "CELEGATO1784024458",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -599,7 +706,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 20. Forma `B` · código 419
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "e5e411b57023ebce674dff160d164df2.d5414423a56a7a4ce9a493fdce16f8e8738056dea40b3cc342e9b19e0d009b93bbf779983d049f8afcf54f1a7bd693f9d3c33f2aea008f62c9c437ba2d9dc4ac2e2a7648c2fa700594e59afb5f2f28590d9b79835a842a0b63f5fc15c00de33dcedb58a3d8715f767697398fd2bac6a5889521cf9426ca11462b9e29e568a00768389603f21e84bf629b2feca24d6a338ad4ca918c43f282d753c05a3014e73b5a902789caf1c1aec5ba1a07271e28bdbf5b38cd6a219939ad06f0e17298ac00e0b682c3799764aed20887ec6fc118a84158c48a15aedf1f5d528a9ae6dfce483ef944b05fc271940c2fd38de5325e5d43e489fa3191c4d47e729f01abf5e70033cf7cace6d3f89f9d11288f2e68ef87860a33b822df01eaff9d3ffc6992f666fff40ca6eb18e7389af90b16827b7df983c08388be9180679a9dde454db6346881431337346caed865f78d6b81b5f07b66401fb487d0cc7da0cf9d50ebd8d383baa2082cd110c3a57bb33ad945a3108d5b177fa654f46fc9a6371bfed996da2e8a8df3ce8ff8fda98cf4dc9992d6c0e315ae24a241e3c4274d7313a6c0597122fcfa57d7ff6cdeab1db5cdcb59ed7abdcc1ce6ea8fdf391b78fee7f97c1eade75da1abbb4be84560e448bc91597962fbd88d0ef5dc3679b7a6244f6407f94b91eaa34795749efe2bda034a6e47c5926df1930e6d4dc78a326a6ffac88588a32f.c859402e6dd2de110f9eefb125eb4f6c7b97fe4d4b617d309f1e715fb36894989412b98f458fa88c6bcf130aae955cd8d84b1ea0b919c024bc18aa1ffd6fd1a168aa0f79db2f7d3636a61a204b73a15691e03c4668d602f4e669295d0f1bc1c50494634d0b5d3a1623cdf1b72840a9df"
+}
+```
+
+## 21. Forma `B` · código 419
 
 | Campo | Valor |
 |-------|-------|
@@ -607,11 +722,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `General/1_validaciones_js/5_solicitudes` |
 | Escenarios con este patrón | 216 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=419\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=419\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -622,7 +737,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945096",
+    "idPeticion": "CELEGATO1784024266",
     "respuestas": [
       {
         "idSolicitud": "id_001",
@@ -634,7 +749,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 21. Forma `B` · código 421
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "ed6e49fffa4c07462c64fa9ddef2cf46.4b8eb0659d7b1a6eadcc2989d2f36238f396f08640803ddafa1349a3822d0971ea7c504b8000a8f6c8c2955472e2582ac47951a7dafc5ff81d2d014c71724c90a8558324bfb9bd6557e7a17e625f653e259d95a659631b2ced11c7bc437b0567a9600be7994b48cd602f7c3a016dec68493cd5b53a95a9c7933def2d8c20d4a94ced3c062c37444972039a618300af37b8a19153b2655b7ef823faed5d27831daf02458342e851ff5a874a421503b0ef617a88b8091c05e7273af62408b4167208e014a514dbed67795e4b7a4bb0822da6d280fd230e46082feda1fac8d66850a453291031ad7a311f992239c7b5b2b5e0d8f929f180d3cab1a695460d1fa00b07117f8f85c3516bbd6846226bef5cf7462606bc6d479b8c5d82e105f932bf7e8fb7f572f48621789941dd95d4a004603670303aacc268cd25284bd765e92f51a8ada2265f143588cc6872c2aa51e5186879607fd58336c57a4d81a5a6a3f5508b936ed34adba40d667b91136cae61daeb477dbe846b3b9073f72004189ba6dc13e91ae2305d12ced6de49f6f3e69266c29c899fda8fe2813f2accf783105b808aa27565af71d6ae6a54c7c6eda8d352dd363629aba47a5e09ab731ff1ff121a66d3c9375eae8722330650cb7ef9a24860eebaaa5b8058f54a2cef161334f12d6c65c995ff932d39f57689afd69ad52c2879289a6009ac6e22c0b6e5e1110e07.40ed365918a97dc3842209332879e3558ab7d1d674286c6f95d1e38091fb7d03e964fb135f8966a8370d423ce87c0acb3e0146faa41ecd68c9c80af9a64b5f5109f96fbb8227de94a668930d1df973a9a51749de3dd248e202e337d86fc09aa0cdb43f60161a2bafb985b6142f63faf1"
+}
+```
+
+## 22. Forma `B` · código 421
 
 | Campo | Valor |
 |-------|-------|
@@ -642,11 +765,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0004/1_validaciones_js/7_producto` |
 | Escenarios con este patrón | 108 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=421\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=421\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -657,7 +780,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945333",
+    "idPeticion": "CELEGATO1784024496",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -669,7 +792,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 22. Forma `B` · código 426
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "774c2c5bc5d4376b2ddad074012beb89.ca337e0266b085aeed1853068ad0bb6fb687e8883c3e9efcad6919b9e423aa0357d2bed89fce48f7a37c2c90514643941ded095e6fb781eb8d1c269541c824c8fda10a4306668d458d0a77ce473efd2fe3bed5a887d79a359fb677124a9c0ddbf12aaa992eb35ebab46bc2cbd01de33e39a2e2c48afa1519a559fdc41a767f6d20cc153178dcbf6af92d4f87a482f13e8ca97bb792f10b1c8fea426f938397a147f259868814290a2a992688bc566639224e36ea472d3212e1c8a35deaef0c2cfa03938b6996b23e67866b465e2d50625b43980cb1ba15ef1411aadcd912cf04b06e0080ecb8cea5e564dd7b135237fdf988e84363e80861cc3a95eb427126cc17fda15e2b2e3f21a94c673ea2f45872d1c80db8fd6493e58b006c0a8dfbbb5af192560f50ac20125811910f6b34c6b325b479fc1d981a4592621b3e39b21dda8897ac8cf6ca3f1266afc6a9b391254cb50829af039850de3c948d71c6bbc5063c528bdb1d3e327c9d21dfc2dac88c8755ef0f59f7c2c205563a3e5f94c13afff51a7e1d7b81b8ff9c36a32f44a9b1ab50536dc3120009841b8aacc484fce959a64967501d0b721d2846bb47a4e0a97bab7ccc2243a9958fa45554f384879ff51f47d9d931f76eddc79db54feca784f7449f46f4ea09a7357a6e24df94664acca9d2b667ce4fd2d60581fd5c1f107363557ce7ad093eac6aa474704050157f31.c1003d26971a6470c225cf6b4f2a3b4985e4d4116cb8f851754715bbb4eb2832d2c5c5e9df75e867d2e301d8e336c2c64a275f73a68f2d512021a19173731ba1e3a26402cdf620bb87f461b348ecd408868c92066ee998af1a80b3990927024ead1ebe53280196a54e8708f2fcb467a1"
+}
+```
+
+## 23. Forma `B` · código 426
 
 | Campo | Valor |
 |-------|-------|
@@ -677,11 +808,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0007/1_validaciones_js/4_tipoBaja` |
 | Escenarios con este patrón | 36 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=426\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=426\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -692,7 +823,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945559",
+    "idPeticion": "CELEGATO1784024715",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -704,7 +835,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 23. Forma `B` · código 427
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "43f9cad592355936a5f98aff951ca4b2.93999558856205811efcebbd94f14d8616f8e72e24c1359845c6ca67395c3163f88843120841673cba43c8b80a96eefa06387a1a40ab506c65f08f9ae35cb3c10fb45fb863fec882ba82e0489212e6fcd0f2e3e683785c0a3c3dec41efcc09e66c869e68ee64e540aeb9c85be626ffcf3b511b34e215cc93e4911d8e152b613834d68ac2248e4b70d7ff45f961e94e16078739b5b9c29a0d6ff5702c1871a2cad418620cc1968d7323ba53118e8b61c9989762c439b985a165d5e5137861b36cc80d63cb8a87db1b9b63ee8d1a088b0145deb0deea8e9bc5cf9c1bed07ce3045d35570baf8161268e668f1aa3814054450b4258b1729801954c0f8aece33ed0d9c5e9b10965c32661ea3ec1ce544eb3c6bca1a81ea5d3c19eca330230c62677ac089089a3ae4660b3675473571152daa72809343cb532d5b4881adb7e628f351b5ef5777512bcadd39e27f774f845413886894a73974d90e81ad388df388e81c00ffe045adba68ed2121569b93c6605f085d6df868c5ad67e4af14cb23ce047ca60477b575a7eec66f57ccc244bfad5e8e6b573d24e16f014d0db021101885b08e1e51218f62ecb5f81ea75627d152ce40c91ec41b0ad2ce1d27acd9bcc9ec056d6fd22385ac983c6e082aed7999642c55e6d082f83bd640a36ca41826ec3ba0135cb4dd12fa3aa86e8a37bed7029c79e3dcf03ddd9b4eb1439a6beb6a57efc4.dfd1f9d422c46c93b9002922bac0bd6b70c6bccd5359d39dd08116fcc2c127e5b7170b3c344c4bfe11d2c0edf295573e32afd029d3171d4466591750e9f2b406115ad86e362017159220af2a79b8db929c6bfe2b2752c8c3f740a9f09c6d0ec027b7d8a412216bd250cf93efa6473c87"
+}
+```
+
+## 24. Forma `B` · código 427
 
 | Campo | Valor |
 |-------|-------|
@@ -712,11 +851,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0006/1_validaciones_js/3_respuestas` |
 | Escenarios con este patrón | 76 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=427\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=427\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -727,7 +866,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945404",
+    "idPeticion": "CELEGATO1784024566",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -739,7 +878,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 24. Forma `B` · código 428
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "57207b531b6968735bf6db3b1fff0bd3.6c2de73dd94055b4dd6e2418da60b8d670da3696bd6e06358dfe918686d5596a105f3365b4497aa5b3ef40ddf219d58c48f8902afb8d0cedc553860dd104964d8437971c5bdd8c58bb11ae74c1f688a8ba2b9726b3206e032ad4406a5f355636feb015b35de57ca6d26f56a6e449c455849f0ad6c692cff8c9ff4898e5f7b839a195e0e1105cf97568184a81701dbb704ed45a265fadbf6674ce70384868d084b7b43dc8678ea808ec3ce839b1a4e1c2a6aef82af2df323d155894d7393c178a545ec3f745a75b94cde68100c772b4f5c18df4e11052843e9a03d29f5a6797c4942d6d7751bf1d1306bc15b819308430be97b211f4a46f9731eae51f8082010ad22da7a78c2c421f3849143fa2e48645ae095471a86e23757b59e6826f6c0deaff965a6fd5315a75ebe9abddbbad8f9cfa86d863efcc628a6f962100041c00a44ee7039a69a6bb0ea945463b462c893d78d328160d2e23bf9bfc17de14f482de30da4a313d1061fcb279165efca358092a26ea112c2423fd6626fb0592aa6d242e1843dfbd679da0f8060f152d041bf421e4f5aafdd67641971866ca5f356c56ee534a34cc285276bfc4d763ec0c35de2954d1f650591f5e66f92e8db9701cef47581a1e1461d3e0ef4e30570a7bdac7ddb720b048837778c6e61f97af1752bbc6e6485bb6b667a4958f8e87b14e0b8d477ec3757ac5ad24610adfcc4e7fa4b7.7ffe69663cf6bf678e920862fd8e17d8c4d8f695d87d992967f5935f4d47a710840e5c38d82407682b7e5b48b427b2c807ab3b0e5b32725192ea09ad2de54cbc6b10660b451b71f3d8cda410748f9ddc352512745760821d44e6245500c3db33ec88c6d147ef2fed6c9f558ca1735470"
+}
+```
+
+## 25. Forma `B` · código 428
 
 | Campo | Valor |
 |-------|-------|
@@ -747,11 +894,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0004/1_validaciones_js/3_idPregunta` |
 | Escenarios con este patrón | 36 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=428\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=428\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -762,7 +909,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945245",
+    "idPeticion": "CELEGATO1784024410",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -774,7 +921,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 25. Forma `B` · código 429
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "82cb8dc5b61f9f2c2937067bfbb4789d.4f3f059d75a83a75f9489b3fb43b4bfde56364263fa91db26bc467e38469c078bae2b3faa1cf15f77943fe749988963eb829f78a42a81101aa511d5773dae50f8961421d5f02a8657543d817b44ea059df9aadce8c6163797f1dd7c93bbda2602e8def489c8f630ee7e26127637ca902870007f1741ed135458d95dc9066fbd6e06947e7d4a460f04399fc4c152301306271638f552496702392bfe215c6a593f67303b694d2a0639441c68126e281731f94fdfd4379e396fdf0b997c647307d3ab38f954bbcd18fc291235027cdb069a5d43bade311d656334ae4265c556f5d7cf325f46755364223dd196b6720ef5f15878687d995e7782e19c02555d53e5ff9579d1ff3fc8347e3ca44ab859c2013e4e20a0181d4396a976f37181612011a303f1b518995cdc7d9017d26e5fa02ff999d7084aaf57c11eb72cdaf2bc2f90a919770efbe8883c2534b3434af77162b80299ce71c8eefd63ae809c6023c02996f6952025948268b78419ffe67f2a51333f37cc9816cb439b7fed11fc7ba3dd432b3a44d7e62402498b7de61da86dc7d3bae3e71f2c716cb0ecfd31e0007dc7bb436bdfd278596725585ab443a9d4b1cc3c2a984cc022822af55fb86f2e4e12cb7de3e14c9960071209e530e242fd88883a118649933d7f0f1f7cbc58000074123f409fce26b77cbeb9ebf71f49e2793845b8d447b4eabed975ac05f9cdcdaa1.8d505ca20ee406f4be3ae9f43a03ad58003fd7010161dfc6812514b670b1bb7da502cf9a7deb0788052ab763e40eb34fd8b173f6a5c53ab712fcdd5c0c6c6493e1bef9da7b6dd44d3604a85c64259abd0a2f83a8e67944e1ad3abf7a8f6b87be1e0fe8e9b6c55534dde91e737e27b0c7"
+}
+```
+
+## 26. Forma `B` · código 429
 
 | Campo | Valor |
 |-------|-------|
@@ -782,11 +937,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0004/1_validaciones_js/4_respuesta` |
 | Escenarios con este patrón | 28 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=429\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=429\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -797,7 +952,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945280",
+    "idPeticion": "CELEGATO1784024444",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -809,7 +964,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 26. Forma `B` · código 430
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "2dc1eb0fd36c266a72c7b40d9f83162e.302ab3f94482328155d48891b67ea4a05cfcc31ab4b82aeca6c910aa6011e5a59397d77c062cd8e905af7df0a19603136f8daa99a8513f167463c84456ecf0f275c3662d86b8e4f916790ff5e5fe29eb6fdc9650dd7984963874ad4acbaf38fb7b76292aa2f7e97df2ca9bfe46877ed79a0e1e5518ed3762b0fc870e6ae3ece78cd5da0e9df91fa56e127a57177091cc34c70a7ea297995ed91cae1b586159b9653f9e118444cc75e2f383a30e7d57c97da3d06ccf12bc2ef88ae0d0c4b3c6e84a5240fff3d8de2f0b2c9bfff96b1291a8d2fd8e0e7536a02569a8a79c0460f450e3aaba1a41936174b34710a771bf42802cf096570ab82ea8994b9aa62cfb4a942b0a5ed64ad29c83bda989bdd2579035d925c4d54bc970f2098923a1c48ec805071840847e3ff07d235f07488b8f94fb7b2fc8ebeba20f7b1ad5a8d4f641470c861eebb502bbeae71e7aa0f2fe7e7a56418719b5b865719888c71849e18d95e1e2be239fa6e4d5aa861ba8c337b369ae02516325cc3dc6a2ca2544650354cd0352868b4b09c587a802b1ea7e9a18f99e8954a10661d7b9cac8987d8f821a5638528e3fea005f79d1a8141ba9d17a5990d5521ffff79ffcaab49ad9a75ba93309fc9d1d1811ce9335c75a2ec4d4e4f295a5ba3a2b81508ec3fddb6a32c25f980455e17c9067e6f76fbd5c7e4d148e3d1a1f8f59c210135591fe5679ac0fc632.c39f7c3ce50e2b41ad1cb705030171cf988f0a39c8de13906c2f20abf909bbad8f350cf34156d1f813119faa6cb9b12e0ee611cfd1cc8c817170cc34360bfb80ddc24d7363b1b7ea17234f25b0ee7e488bed3231fdb30a08e0fb785b0bafaf0a47469d44050d8c21f5b196d0a54cd118"
+}
+```
+
+## 27. Forma `B` · código 430
 
 | Campo | Valor |
 |-------|-------|
@@ -817,11 +980,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0004/1_validaciones_js/1_identificador` |
 | Escenarios con este patrón | 68 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=430\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=430\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -832,7 +995,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945209",
+    "idPeticion": "CELEGATO1784024375",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -846,7 +1009,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 27. Forma `B` · código 436
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "70f6cc20b0fca0d29dc8a2be2c2b5fb1.5dc201d9774e0cee7fdaddc7681ebe12e43be9d8b2bfb5a1fc18f6c2cddb0d5b25648df59e0b3113f39296c79f045567a9d18e1c2cfbe3488dbb1223810713d536618c4956ec6c1742198e5a9ead2c3e89a6b29ce4aa628b364bf59bdcaad580b111a5f483357c8dfe79d4e3546e50f1552f3589303296f807522e71d8abf0d3785874e2de2d92db0c36159c63071efd2128df5daaedbc8c0d234d018838611aebfccdd927d834d970b8b4dc30c42ecc4e33d00076389e8a520656b923e6186ae70b9e95e97fa70ab97a11aba85601bd73e3e6ea8402905a6b9f7bbc045c7e95e1f74cc1ffd772b23f46acba754da8a9a3741484b5769cfa61fa538fd52bf6c0134166ab8879d6117cdda0575e5b7977444af6e735f36373705d658a6c58c38395e107e9608a82d54135b4bb63e2a8f3432d147f44e2528760792479deba2789395cfb0a2671a9515ffcc01502f29629271b8539a99bcdd66df056872ee2b625c8cc444d10a70e46d1aab4e2026ecf1f23aa181202609c649450de27c03af348995412597617a76ff5399503f4b27ecbc471d0af919df61619f613bfcfc56d8187756e16bc0a58c984506415188cbc21e820071d2a9bd372087e98018b4484cbae97da8ddf80d3c66b6e2fae92f9b564d7a59c99e43785e835aab3010e0764763661a71df6cf035f373fdb4b545f1665cfeed814584580cf83915b7f888818fe.fa8a4a69b47b6b0be89ff6770677985c7867df6f80a2749bd1f938f789733f71ea74d193156ceace3f9c9bd0b1544e4bae6790032640d1fd83b1ed9daa3f8137cc4c15a1be4b6ab677737048f8df088d8950b687804a0b47ce303201e052e2bed6f37cf5008488b5b18ad124a3ae225893f148c50aa8067d5730cfe97da5b57a"
+}
+```
+
+## 28. Forma `B` · código 436
 
 | Campo | Valor |
 |-------|-------|
@@ -854,11 +1025,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0022/1_validaciones_js/2_nombreAcreedor` |
 | Escenarios con este patrón | 32 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=436\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=436\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -869,7 +1040,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945722",
+    "idPeticion": "CELEGATO1784024870",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -881,7 +1052,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 28. Forma `B` · código 464
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "71b5fab3255337c49ab68a5b7e4b9a6a.2d5170831a2664785f655a58f048684157a40bdfd7320f57b3f539802865232e11e1dc315d086a572773ea3d589c4fc20dcf9d72211a7e4c32d5ee6f6d31b0de1ef16c66363fd39689d2f32ae6317554326ac7d6f4945e15b846b0adc9e265929c7ecafc2da9b5cf26c05d71c0ad354b58765ab3e5d8724bb5d08d523c357e6943145ea1c8f6119e9de8227f8e9d3dfcaf8df214aaf9f87906d7dc7e3a215675f983f80460cfb8c377a47b41cf40602484e5e2731f892c6511974d70c8e42711cb2d0e9bbc31a2efbd132afa9cc30a91dde6b5df5aa64668852da5c0ae3f3222d4094e9b7b4da92f86dcba60b0efeba4c646c60c77b0de0b821bcd82e88b4c88037bb0bf1275d4e009439aa696839e8e2aa87c407413aee51003045b60ca6eb13e92188c1ddde8f617c8aa686c7cbc8127ec601393913f030a4f6aa9e946dfdd9ae447c95493e58c4b8d28a8eccff15245906009d0c03211395b64ecb1518a186081279ec11caaa8221b13c8f02b37a6021430044e3a960d9ec732b461d31419e5945f7a0ca2bdab2ef37a569f76450a19e555ca51fbc77161050962e55e997795b28463315545e0bd4d3054745f3229a5d28d334178244e71f57adaa8258b6c255b79022f5fd07d18c419a42916d2f2d0fdc9a55772b5bd24ddebee7526c02e952a7ae4189862c99870e48db48be967831251083697ceaab1bd7fa2f44d3153.7adafb57b5372fe239d30922a97f6f2523374b7481cfbd0800e14561b7c3c90b7884834e555c2011e4843e23cb559271ff7d82d548c6deb236baf53de856f09523e372d2436d762458e0d8e5711888946c57e00747835e18b85887c07b80219b0938947753ddcc1644650d438998028b"
+}
+```
+
+## 29. Forma `B` · código 464
 
 | Campo | Valor |
 |-------|-------|
@@ -889,11 +1068,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0022/1_validaciones_js/5_qrTipo` |
 | Escenarios con este patrón | 24 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=464\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=464\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -904,7 +1083,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945769",
+    "idPeticion": "CELEGATO1784024912",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -916,7 +1095,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 29. Forma `B` · código 468
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "46b48acc5f4cf814c8af7ff18cdc4506.a05136330f6abb333918f0f8817ee32593c8b8e7476c4357af4f03153948a86c819186cd7780013645234d5de0d69b1baa33044e52ffef681acd5bb84655c7f9531115dcc55b4e62fbfd94b5e6223eacb70fcb75067c6714f30fd6616e7c401f9cb33a532921f0563866fdcab8d2bb47648f373b28825e326280aa7029c7b92c395997309b3c4abbf631507a7e4832191ce7f8ac3f6d4511b02e6bbc8d95d3c2ba5c4d40d40660828d4df95c01ee95efc193e24f44a14e03ccdefd941ce6ed89c97d49679576108f57201d0676c39fdfaeb73bf2604798479c7dbc60e4f61b87af4591a5b0cc213840a72e4409cfe0631b454c55ed0b8a02c8571225d763c4efe2efe68a467bb3d98aae7adcd7e09c122709285ca14ab5a6842c3e035f53b276aedea55f7ee8dbd35bbaf3d4dbe4191df6bca8321ca7fb17d427c13be2d58ddd4a5459739e6104a7a40b6bebd255310fed24f912fa103ec7d6d5cc62cee7b5beb579ffa6467c674d37320fd765cc187ef3066f480bfdabb1cf71ced02ccff9900863c3c0d015c937ce718f111d201589e262b7a192b80be84bf3b18463c3a3a03800c650aa29c6cdd43eafee8d7915729a197af0424472fa8f7d8424bc714cdf6528c845042731772d7b2d6a1b9837c575f41ed7f7028a045bcb9ce5bb0272c0ad639e3593b1b0acfe57d0e6de6e4d286a3126705d3fbb00131d1bda87dd0b80.1b4b8dfbdfc7e34d139915a3bf800120f3c85f09e3c9b9504e300f8bb46631a2531f34d071d80bc1c68c791c9aa476feca30b6882f208e6e5e6a1ceaeaeb4ce9a9a359953c03fda6584f17418fd2362a097899b8c8866d382d58e02fa9460d0425adeab222249a0d75327657b91eee03"
+}
+```
+
+## 30. Forma `B` · código 468
 
 | Campo | Valor |
 |-------|-------|
@@ -924,11 +1111,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0022/1_validaciones_js/7_tipo` |
 | Escenarios con este patrón | 28 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=468\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=468\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -939,7 +1126,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945790",
+    "idPeticion": "CELEGATO1784024931",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -951,7 +1138,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 30. Forma `B` · código 472
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "56373803fda552d5608107d1fe07b606.c2962d8f6f946478df825aaef5fa35138745d37d9c491a8b72466d3b443d99dd6220ae2b678e5a4c012ce658723a77c610585fc1b9b26971c9398c457c8c600c81673aa101883c38bbd1dc52206a96c072651d3a783ab9a9f8bbb1f9a8c2086621361abeb6f9694379b6a9fb68226400581a8f0a72865b75087878f8971466fdf46c46e831ef75ab8c278c6f0f2035773bb3a3c7d025aa33f566e6cabe8a626ecba64059d4147fab8dc8b66b5682de315ec05fdd178ab31bad3946c856e854dc22a93f5993e307a559c6730430d7c4ca0688baa5174cd72ae911903926d9613e046d9a49eaf038633685d318cdff79634cc25a75773afe54e42717922c6c9a96435e1143e8c029888901754a229c7aed62a607788787702611000b4e25482b118432c5a074f9a9d892c5c47a3ebef4f11bb5ec013ec863d30bedfc9712f734d8bf433bee6af6a64b1390b45982a8cecbcf31fe7a55bdcf4fad8370b012027c057f1d0d7816d30de31b7aad941b8f5134924bbf34c58b7580ff6f26adde985ea14d6050625a6ecd1de552e6d8b4f1fa375cc3f83c5342a3d57253dc0ea5bb2a7ee53057dce67c6321c0e20b5cb3563e6e6c2cc58509152f1a2ce45378d1294fd96fd5d2eaac4b1cf6c2bb04685530519adbc6efc2587063d9ebfa52e1e05adb91927e5fa50df9e39c115a8edc20889e6f4aa998ec24958d7ab5218e2c88541924.7e9480f598f1873bed8d0d3ad24858cf1ceba03129281d7559af46c315e2964537a73e74a0b3122cdd500ac2c95ac00f320160a1328c0a620bb66c716b1c43fdf948dd6dd77bc9758f8e69ac018ac7320b5926212278d75f9bf8691d59c02bfe2d7f15e3763b053bb680baa79d66ffcb"
+}
+```
+
+## 31. Forma `B` · código 472
 
 | Campo | Valor |
 |-------|-------|
@@ -959,11 +1154,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0022/1_validaciones_js/6_canalPago` |
 | Escenarios con este patrón | 28 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=472\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=472\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -974,7 +1169,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945779",
+    "idPeticion": "CELEGATO1784024921",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -986,7 +1181,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 31. Forma `B` · código 473
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "335ad42cd947183bbeae7fa22907822a.aebc64cbd2c332183d13a66bd7206d24901ceaeb2f530fc65a129779be274e29fa141981c60d934038ea85ed40edc13b87ccc617604c0c64bddc6cfa9cbadafc38c77e51eeadf203431f996206c0f283573fdff417e759f263bcd045084dbe3e85d6879589493723d4f6a8ffe51d578e0fa9f1b843e37a44abab36ea21e1c9987c208dcfd705323442c154e2975640d5fc93e202b6aeb796a4131cf00d38b04026c800dac6ce2c15f2cbc30751f1f80ba75a81d01ebab8bcbd169f4c255c3c0ee4694fc6d4a031c5e09221b3592b10624cf14b273ef6818077234e53fe990d31f2cd5c8c12cce8346c0c9da1e3f4e6a7d8c9ba4de7f6f6a9744f8cba9814570c521428745bd5d52af8c02866aa9b17f90b38a48903bb1fda488c719d0bc68084ac92c9d0d6b1bf31a79d921206d6779bc43303b0b5cecab7b740b7566ff26f5294853c32652665456178e2e3c8eac44107277d57e57bed50c40eac2d94bfeeb7a1fb7d48a83942c2bcaa93dab8177596e9a273ff4ea32af07bdf248e3e8588458199346e3ba2ad705fb68fe78e9b1bfab2daf6ec3cbd596e1b680aa42aabcbfacd326acd73afea757afa35ceee79f201293675cf94ac09c55556348f111a5a02f3db2952e426a31cdf80f2c601d1845baad0ef57d40d821361d676a780fe181df8940a1b0666af0888b2ed654c54a1b8333a16f88947f4ad9cbf67f434eeb27b.8fa83c0709142854d7fa1abd17e10df4cc91b30e6777ef8cb2b782538f5bd89f630912a7dd26b3087c68d9f1678fa848305191dd51469d495b0782bd17ad74832a359cbbce1c7bb939d175da104e1832cb0d94545923d3c3ba3fe638c9a4f260a58aa35932c874d35a16b8be96c8c530"
+}
+```
+
+## 32. Forma `B` · código 473
 
 | Campo | Valor |
 |-------|-------|
@@ -994,11 +1197,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0023/1_validaciones_js/2_qrCode` |
 | Escenarios con este patrón | 12 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=473\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=473\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -1009,7 +1212,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945826",
+    "idPeticion": "CELEGATO1784024964",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -1021,7 +1224,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 32. Forma `B` · código 474
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "6baed623cbba2a3be969d094acf77439.3ac5689e5575aca62ecc986070d3fadc90b9b931895aaade3112cd6cba67279d3731789d84505e9807306affd34a99381304361d33e4df238e9ff8231621579a22462bfe948124401e7a955e128b7fa1582be94f58be6e9985a2b8a0c7ebb2d9a367e528a56eb125dc8d24743fe765c9d8a6e34f91fec40f6e634f5af03e3697f54158832bac401811f384441ab73bc036aab8ce6b1e83ef2872d4c93794c05baf1bc9943e567670b3d0013f1d2014d695ac864818f26fe2f51c12a6e31547039016d879c1379ef277591112005de31bb5312f61c885174ab17d14a11a53c28a30435ce4fa73caf9e3988580fdf45fec4ce8a5b4bd475a6c06fa7a7742820b8fff8c52c35ed86d561744dd9dda903f26b4f7f2788291109a6283027f8915d392a63151da9c9371861bdf47f81b0aeca058cf9769f29dfe1d9bb5de9500e602041275bb5e5913fafb9fb8c024616012525ba5da3f243c056cfac48091eec5708f85a9396be9c62361296b5192fc8aff19b3c6fcf5d60acb9a7b49f11ef30b347bae83d933ca6bf85b44b8a1a8ab488263217a2f79c9050587357de8656e0e84b77cc1d8db7a7ee7ca1903404edaa946d1586f94a7fb244907aea87ae99888a72357cbaa25e8015cd52e0ba7d5364a1bc642c12c94e2b304482f419de834a62af199d89a4c2e0fe673a6ff9e49127194aba7ad67d7942a778d1e72f655935937d2.9ddf164aa174298a2568e523f3abb9f6aacd3d3dcebe0f86493df074eba76ca57f4f8031522cd515f75f5fa0bc13cb728c4b226ac99e2fe8e40758885bf403731bc6900d1eef71fe201dc688dda683895041bd86c8e0e177cab6cf6f1245030884a3423d1b430320b327674dca8536ff"
+}
+```
+
+## 33. Forma `B` · código 474
 
 | Campo | Valor |
 |-------|-------|
@@ -1029,11 +1240,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0022/1_validaciones_js/4_moneda` |
 | Escenarios con este patrón | 28 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | sí |
+| Formato lambda | cifrado |
 | Campo texto | — |
 | Claves | `idPeticion,respuestas` |
-| Pattern key | `B\|http=200\|cifrado=?\|keys=idPeticion,respuestas\|codigo=474\|desc=` |
+| Pattern key | `B\|http=200\|cifrado=si\|keys=idPeticion,respuestas\|codigo=474\|desc=` |
 
 ### Request (`reqClaro`)
 
@@ -1044,7 +1255,7 @@ _(reqClaro vacío / no capturado)_
 ```json
 {
   "respuesta": {
-    "idPeticion": "CELEGATO1783945758",
+    "idPeticion": "CELEGATO1784024902",
     "respuestas": [
       {
         "idSolicitud": "1",
@@ -1056,7 +1267,15 @@ _(reqClaro vacío / no capturado)_
 }
 ```
 
-## 33. Forma `C` · código —
+### Response lambda en cable (`respLambdaRaw`, cifrado)
+
+```json
+{
+  "respuesta": "72253065af266c958b875aa71c08b4aa.a22777c98fc00e10e6e1aea9306aa0701f7e484d65ddc5edb96b9fbdff17ef24e5e7623ec80a1f19074b7889ae622679237cd7cf164716d57169eb8bc105ff5ff4dcaaa6809f2f794db822cbb2c28bf53ba075b1ce1fb86d7e8aa67ebee1e69fb6cecc6ecf7be9f8cb4aceb9dfedfff3d012a3c9e6f3793be238325aba49804ea96bab1e089d889624ffbd94ec17fc737497a1559318d63756af0d7a66b7aaee823e35058b9834b9f466f337f9ffbc0ed794465cdaf51fe88f34ab7f38be63ad1f103ea8eef9f76ac71db7a89ab2e2a54760fbd91f5d4d8e11068df22377f307028ef833b7e4bc386347d106f92bafeade1cb982f6ad423b1916d97d4d9fc084a50ff4f09b503527dc487c67d41aed3fd28cb718ecab8f5deb58bb31fa68d8a607bf60d50880120546a3c27e29f90149591a9d9789c4a81553c9aa48fcb8b4b36eab26ef3ca098d062b42fbdde8275cc8fd00e28a3768b79bf6ce04b28c90d3f9b54263098cd5006cef52ad3cbfff096db852ef079b82d0e16a61878c7e71a296a4952a1492ad89c9af6dbf238a8175a912a5749a06297935b8abe6214ccc68562c21a8fb1dde00ceebd7d6bb11e2c5a5956126b4415922a4d214c8947e7902682a4c626c6de1ed850bdd5451e55b0cf822b7382867b4782424a57807824495cf239ee2119d12d7fb73b1c4b529e2fc41850c95fab115ddc441d9c09ce134333.3f0938e3b22cd692e1cf602297d65ce614ae451834602f6f8a87099c8a8a3a61fb8ea149b50b194902a2270eb49322f0fdf48369ca2620aa904e6e7a774b7e4b6be817ee7e739946717acb72437a950116ef03982b153669b9676b793defe04c22a1c31d10891733d1580d6754550968"
+}
+```
+
+## 34. Forma `C` · código —
 
 | Campo | Valor |
 |-------|-------|
@@ -1064,11 +1283,11 @@ _(reqClaro vacío / no capturado)_
 | Ruta | `Metodo/0006/1_validaciones_js/3_respuestas` |
 | Escenarios con este patrón | 16 |
 | HTTP | 200 |
-| Cifrado (cable) | — |
-| Formato lambda | — |
+| Cifrado (cable) | no |
+| Formato lambda | plano_en_respuesta |
 | Campo texto | — |
 | Claves | `message` |
-| Pattern key | `C\|http=200\|cifrado=?\|keys=message\|codigo=\|desc=` |
+| Pattern key | `C\|http=200\|cifrado=no\|keys=message\|codigo=\|desc=` |
 
 ### Request (`reqClaro`)
 
