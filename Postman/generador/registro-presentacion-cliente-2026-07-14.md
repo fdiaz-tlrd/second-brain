@@ -20,16 +20,21 @@ Cada escenario Newman registra el contrato de presentación además del cifrado 
 
 Definición: [`../../codigosRespuesta/formas-presentacion-cliente.md`](../../codigosRespuesta/formas-presentacion-cliente.md).
 
-La **foto por servicio** (VCN / P2P) **no** mezcla catálogo ni “Nueva descripción”:
+La **foto por servicio y código fuente** (VCN/P2P × prod/dev) **no** mezcla catálogo:
 
 ```powershell
 cd second-brain\Postman\generador
 node extraer-foto-presentacion.js logs/resultados-por-escenario-vcn.json
-node extraer-foto-presentacion.js logs/resultados-por-escenario-p2p.json
+# → codigosRespuesta/foto-presentacion-vcn-prod.md  (o -dev según codigoFuente)
 ```
 
-Salida: `second-brain/codigosRespuesta/foto-presentacion-<suite>.md` (+ `.patrones.json`).
-Columnas de la foto = **contratos observados** (dinámicas).
+`run-newman.js` genera foto + **muestras** automáticamente al terminar. Prod y dev son archivos distintos; no se sobrescriben entre sí.
+
+| Archivo | Contenido |
+|---------|-----------|
+| `foto-presentacion-<suite>-<prod\|dev>.md` | Matriz código × contratos + índice de patrones |
+| `foto-presentacion-<suite>-<prod\|dev>.muestras.md` | Request (`reqClaro`) + response cliente (`body`) por patrón único |
+| `…patrones.json` | Misma data (incluye `muestra` por patrón) |
 
 ## Patrones únicos
 

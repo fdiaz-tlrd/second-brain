@@ -1,12 +1,12 @@
-# Foto de presentación al cliente — P2P
+# Foto de presentación al cliente — P2P (prod)
 
-Solo observación de corrida Newman. **No** incluye catálogo / “Nueva descripción”.
+Solo observación de corrida Newman. **No** incluye catálogo / “Nueva descripción”. Archivo por **código fuente** (`prod`/`dev`): no se sobrescriben entre sí.
 
 | Campo | Valor |
 |-------|-------|
 | Servicio | P2P |
-| Fecha corrida | 2026-07-13T12:30:36.194Z |
 | Código fuente | prod |
+| Fecha corrida | 2026-07-13T12:30:36.194Z |
 | Nivel ejecución | MATRIZ |
 | Escenarios analizados | 2159 |
 | Filas foto (código+descripción) | 33 |
@@ -60,7 +60,7 @@ Un renglón = código + descripción observada. Columnas = contratos vistos en l
 
 ## Patrones estructurales únicos
 
-Primera `presentacionPatternKey` = patrón; misma clave se agrega; distinta = nuevo.
+Primera `presentacionPatternKey` = patrón; misma clave se agrega; distinta = nuevo. Muestras request/response: [`foto-presentacion-p2p-prod.muestras.md`](foto-presentacion-p2p-prod.muestras.md).
 
 | # | Forma | Código | Campo texto | Claves | HTTP | Cifrado | Escenarios | Ejemplo |
 |---|-------|--------|-------------|--------|------|---------|------------|---------|

@@ -62,9 +62,17 @@ Sí. Otros nombres de campo (`A.message`, …) u otros shapes se descubren en **
 
 ## Foto por servicio
 
+Archivo por **suite + código fuente** (prod y dev no se pisan):
+
+- `foto-presentacion-vcn-prod.md` — matriz + índice de patrones
+- `foto-presentacion-vcn-prod.muestras.md` — request/response (una muestra por patrón)
+- `foto-presentacion-vcn-dev.md` / `.muestras.md` — igual para dev
+- …
+
 ```powershell
+# Manual (también lo hace run-newman al terminar):
 node extraer-foto-presentacion.js logs/resultados-por-escenario-vcn.json
-node extraer-foto-presentacion.js logs/resultados-por-escenario-p2p.json
 ```
 
-Columnas por contrato observado, p. ej. `| A.mensajeError | A.descripcionError | B | C |` con `x`/`-`. Si el mismo código+texto aparece bajo **ambos** campos de error, la fila marca `x` en las dos columnas: ahí se ve el problema de contrato.
+El slug sale del campo `codigoFuente` del JSON de Newman (`--codigo-fuente prod|dev`).
+Un extract prod solo sobrescribe `*-prod.*`; el `*-dev.*` queda intacto.

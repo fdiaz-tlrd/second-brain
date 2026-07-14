@@ -31,6 +31,7 @@ const {
   clasificarPresentacionCliente,
   normalizarFormaCaptura,
 } = require("./clasificar-presentacion-cliente.js");
+const { extraerFotoPresentacion } = require("./extraer-foto-presentacion.js");
 
 const SUITES = {
   p2m: {
@@ -626,7 +627,8 @@ function buildResultadosPorEscenarioMd(resultados) {
       "Columnas negocio = `codigoError`/`resultado` del payload (recibido efectivo vs esperado). " +
       "Columna **Formato** = si la lambda devolvió el cuerpo cifrado o en claro. " +
       "Columna **Forma** = contrato de payload (`A.mensajeError`, `A.descripcionError`, `B`, `C`, …). " +
-      "Foto por servicio: `node extraer-foto-presentacion.js logs/resultados-por-escenario-<suite>.json`."
+      "Foto por código fuente: `codigosRespuesta/foto-presentacion-<suite>-<prod|dev>.md` " +
+      "(la genera Newman al terminar, o `node extraer-foto-presentacion.js logs/resultados-por-escenario-<suite>.json`)."
   );
   lines.push("");
   lines.push(
@@ -1171,6 +1173,26 @@ function runSuite(suiteKey, folder, insecure, nota, codigoFuente) {
       fs.writeFileSync(resScenJsonPath, JSON.stringify(resultados, null, 2), "utf8");
       fs.writeFileSync(resScenMdPath, buildResultadosPorEscenarioMd(resultados), "utf8");
 
+      let fotoPathRel = null;
+      try {
+        const foto = extraerFotoPresentacion(resScenJsonPath);
+        fotoPathRel = path.relative(ROOT, foto.outMd);
+        console.log(
+          "Foto:          " +
+            fotoPathRel +
+            " (" +
+            foto.codigoFuenteSlug +
+            "; solo sobrescribe esa variante prod|dev)"
+        );
+        if (foto.outMuestras) {
+          console.log("Muestras:      " + path.relative(ROOT, foto.outMuestras));
+        }
+      } catch (e) {
+        console.warn(
+          "Foto presentación: no generada (" + (e && e.message ? e.message : e) + ")"
+        );
+      }
+
       archiveRun(
         suiteKey,
         folder,
@@ -1188,6 +1210,9 @@ function runSuite(suiteKey, folder, insecure, nota, codigoFuente) {
       console.log("Por escenario: " + path.relative(ROOT, resScenMdPath));
       console.log("JSON:          " + path.relative(ROOT, jsonPath));
       console.log("Registro:      " + path.relative(ROOT, regPath));
+      if (fotoPathRel) {
+        console.log("Foto:          " + fotoPathRel);
+      }
       resolve(summary);
     });
   });
