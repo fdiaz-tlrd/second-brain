@@ -68,14 +68,20 @@ function writeScenario(carpeta, seq, file, label, code, parametros) {
   );
 }
 
-function cloneFolderFrom0003(srcFolder, dstFolder, dstSeq) {
+/**
+ * Clona carpeta 0003 → 0006. Añade campos base del método, pero si `field`
+ * está ausente en el origen (caso propiedad_ausente), NO lo reinyecta desde base.
+ */
+function cloneFolderFrom0003(srcFolder, dstFolder, dstSeq, field) {
   let count = 0;
   const srcDir = path.join(root0003, srcFolder);
   for (const file of fs.readdirSync(srcDir).filter((f) => f.endsWith(".json")).sort()) {
     const src = readJson(path.join(srcDir, file));
     const baseName = file.replace(/\.json$/, "");
     const srcParams = src.body.peticion.solicitudes[0].parametros;
-    writeScenario(dstFolder, dstSeq, baseName, renameLabel(src.nombre), src.expectedCodigoError, mergeParams(srcParams));
+    const parametros = { ...base0006, ...srcParams };
+    if (!(field in srcParams)) delete parametros[field];
+    writeScenario(dstFolder, dstSeq, baseName, renameLabel(src.nombre), src.expectedCodigoError, parametros);
     count++;
   }
   return count;
@@ -96,8 +102,8 @@ function cloneFieldFromP2M(srcDir, dstFolder, dstSeq, field) {
 
 let total = 0;
 
-total += cloneFolderFrom0003("1_identificador", "1_identificador", "1");
-total += cloneFolderFrom0003("2_tipoIdentificador", "2_tipoIdentificador", "2");
+total += cloneFolderFrom0003("1_identificador", "1_identificador", "1", "identificador");
+total += cloneFolderFrom0003("2_tipoIdentificador", "2_tipoIdentificador", "2", "tipoIdentificador");
 
 const respuestasItems = [
   ["3.1_respuestas_propiedad_ausente", "propiedad ausente", 455, omit(base0006, "respuestas")],
@@ -182,12 +188,12 @@ const respuestasItems = [
   ],
   [
     "3.15_respuestas_id_duplicado",
-    "id duplicado case-insensitive",
+    "id duplicado",
     455,
     mergeParams({
       respuestas: [
-        { id: "pregunta01", texto: "respuesta01" },
-        { id: "PREGUNTA01", texto: "respuesta02" },
+        { id: "01", texto: "respuesta01" },
+        { id: "01", texto: "respuesta02" },
       ],
     }),
   ],

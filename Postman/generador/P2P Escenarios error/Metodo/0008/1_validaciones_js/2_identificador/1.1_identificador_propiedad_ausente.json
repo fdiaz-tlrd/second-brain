@@ -15,7 +15,6 @@
           "idSolicitud": "1",
           "parametros": {
             "id": "00000000-0000-4000-8000-000000000001",
-            "identificador": "{{IDENTIFICADOR_CELULAR}}",
             "tipoIdentificador": "CELULAR",
             "banco": "{{SWIFT_CANAL_EMISOR}}",
             "cuenta": "1234567890",

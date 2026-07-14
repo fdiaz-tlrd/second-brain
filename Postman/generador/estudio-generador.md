@@ -91,7 +91,20 @@ Metodo/<metodo>/<grupo>/<campo>/<N.N>_<campo>_<condicion>.json
 | `method` | no | Default `POST` |
 | `header` | no | Headers extra del request |
 | `body` | no | Payload en claro enviado a `/cifrar` |
-| `__mutacionPostCifrar` | no | Mutación aplicada al JSON **después** de cifrar, **antes** de procesar. Se elimina del body antes de cifrar. |
+| `__mutacionPostCifrar` | no | Mutación aplicada al JSON **después** de cifrar, **antes** de procesar. Vive **dentro** de `body`; el Pre-request la saca antes de cifrar y la aplica al payload ya cifrado. |
+
+### Regla: `propiedad_ausente`
+
+**Ausente = la clave no existe** en el objeto que valida el API. No usar `null` (eso es otro escenario: `*_null.json`).
+
+| Tipo | Cómo armarlo |
+|------|----------------|
+| Campo top-level o en `parametros` (ej. `idCanal`, `identificador`) | **Omitir** la clave del JSON. Ejemplo: `1.1_idCanal_propiedad_ausente.json` no tiene `idCanal`. |
+| Campo que debe ir cifrado pero ausente en el wire (ej. `peticion`) | Dejar el valor en claro para poder cifrar **y** usar `"__mutacionPostCifrar": { "$eliminar": "peticion" }` para quitarlo del body enviado. |
+
+**Error prohibido al clonar/regenerar:** `mergeParams = { ...baseMetodo, ...srcParams }` cuando el origen **omitió** la clave. El spread del `base` la **reinyecta** y el escenario deja de ser “ausente” (ej. `0004.1.1.1 identificador — propiedad ausente` llegaba con `identificador` presente). Correcto al clonar: partir de base, overlay `srcParams`, y si el campo bajo test **no** está en `srcParams`, `delete` de ese campo.
+
+Auditor: `ensamblador/auditar-propiedad-ausente.js` (`--fix` corrige omisiones mal hechas; **no** toca escenarios con `$eliminar` del mismo campo).
 
 ### Ejemplo mínimo (General)
 
@@ -123,7 +136,15 @@ Para escenarios de cifrado corrupto o llave incorrecta:
 }
 ```
 
-El Pre-request raíz cifra el body limpio, luego reemplaza campos en el payload cifrado antes de llamar al endpoint destino.
+Para **propiedad ausente** de un campo cifrado (ej. `peticion` ausente en el wire):
+
+```json
+"__mutacionPostCifrar": {
+  "$eliminar": "peticion"
+}
+```
+
+El Pre-request raíz cifra el body limpio (con `peticion` presente), luego aplica la mutación al payload cifrado antes de llamar al endpoint destino.
 
 ---
 
@@ -249,6 +270,7 @@ Scripts para **generar masivamente** JSON de escenarios. Patrón:
 - Definen matrices de casos (propiedad ausente, null, tipo incorrecto, longitud, etc.).
 - Escriben archivos en `Metodo/<NNNN>/1_validaciones_js/<campo>/`.
 - Cada escenario incluye `nombre`, `expected*`, `body` con variables Postman.
+- Caso **propiedad ausente:** `omit(base, campo)` o, al clonar desde otro método, preservar la ausencia del campo bajo test (no `merge` ciego con base). Ver sección «Regla: propiedad_ausente».
 
 Scripts presentes:
 

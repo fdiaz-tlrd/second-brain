@@ -14,7 +14,6 @@
         {
           "idSolicitud": "1",
           "parametros": {
-            "identificador": "{{IDENTIFICADOR_CELULAR}}",
             "tipoIdentificador": "CELULAR",
             "respuestas": [
               {

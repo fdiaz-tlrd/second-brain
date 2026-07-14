@@ -15,7 +15,6 @@
           "idSolicitud": "1",
           "parametros": {
             "identificador": "{{IDENTIFICADOR_CELULAR}}",
-            "tipoIdentificador": "CELULAR",
             "idPregunta": "pregunta01",
             "respuesta": "respuesta01",
             "banco": "{{SWIFT_CANAL_EMISOR}}",

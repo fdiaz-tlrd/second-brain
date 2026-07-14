@@ -59,14 +59,20 @@ function writeScenario(carpeta, seq, file, label, code, parametros) {
   );
 }
 
-function cloneFolderFrom0003(srcFolder, dstFolder, dstSeq) {
+/**
+ * Clona carpeta 0003 → 0007. Añade campos base del método, pero si `field`
+ * está ausente en el origen (caso propiedad_ausente), NO lo reinyecta desde base.
+ */
+function cloneFolderFrom0003(srcFolder, dstFolder, dstSeq, field) {
   let count = 0;
   const srcDir = path.join(root0003, srcFolder);
   for (const file of fs.readdirSync(srcDir).filter((f) => f.endsWith(".json")).sort()) {
     const src = readJson(path.join(srcDir, file));
     const baseName = file.replace(/\.json$/, "");
     const srcParams = src.body.peticion.solicitudes[0].parametros;
-    writeScenario(dstFolder, dstSeq, baseName, renameLabel(src.nombre), src.expectedCodigoError, mergeParams(srcParams));
+    const parametros = { ...base0007, ...srcParams };
+    if (!(field in srcParams)) delete parametros[field];
+    writeScenario(dstFolder, dstSeq, baseName, renameLabel(src.nombre), src.expectedCodigoError, parametros);
     count++;
   }
   return count;
@@ -87,8 +93,8 @@ function cloneFieldFromP2M(srcDir, dstFolder, dstSeq, field) {
 
 let total = 0;
 
-total += cloneFolderFrom0003("1_identificador", "1_identificador", "1");
-total += cloneFolderFrom0003("2_tipoIdentificador", "2_tipoIdentificador", "2");
+total += cloneFolderFrom0003("1_identificador", "1_identificador", "1", "identificador");
+total += cloneFolderFrom0003("2_tipoIdentificador", "2_tipoIdentificador", "2", "tipoIdentificador");
 
 total += cloneFieldFromP2M(
   path.join(__dirname, "../P2M Escenarios error/Metodo/0016/1_validaciones_js/3_banco"),

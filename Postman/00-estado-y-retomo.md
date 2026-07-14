@@ -6,7 +6,7 @@
 |-------|-------|
 | **Última actualización** | 2026-07-14 |
 | **Estado** | VCN revisión `codigoError` **cerrada** (doc 12) — **auditada sin puntos ciegos** (316 únicos = 70 divergentes + 246 OK, 0 null). P2P revisión **cerrada** (doc 13): 540 únicos = 382 OK + 158 con problema. 158 = 82 PROD-MAL (46 transversal + 30 alias + 2 plan HP-015 + 4 crash HP-028) + 1 HP-027 (doc idPeticion) + 75 N/A mejora dev (62 seguridad + 13 bancoAcreedor). Hallazgos HP-023…028. **Bloque E** (17 null) auditado tras encontrar punto ciego del barrido |
-| **Tooling** | Cifrado/plano en `[CAPTURA]`. Presentación cliente por **contrato** (`A.mensajeError` ≠ `A.descripcionError`, `B`, `C`, …) + `extraer-foto-presentacion.js` → `codigosRespuesta/foto-presentacion-{vcn,p2p}.md`. Formas: [`../codigosRespuesta/formas-presentacion-cliente.md`](../codigosRespuesta/formas-presentacion-cliente.md). Doc: [`generador/registro-presentacion-cliente-2026-07-14.md`](generador/registro-presentacion-cliente-2026-07-14.md). Colecciones re-ensambladas. **Requiere re-run Newman (VPN)** para CAPTURA fina; fotos regenerables desde logs |
+| **Tooling** | Cifrado/plano en `[CAPTURA]`. Presentación cliente por **contrato** (`A.mensajeError` ≠ `A.descripcionError`, `B`, `C`, …) + `extraer-foto-presentacion.js` → `codigosRespuesta/foto-presentacion-{vcn,p2p}-{prod\|dev}.*`. Formas: [`../codigosRespuesta/formas-presentacion-cliente.md`](../codigosRespuesta/formas-presentacion-cliente.md). Doc generador: [`generador/estudio-generador.md`](generador/estudio-generador.md) (regla **propiedad_ausente** + auditor). Colecciones re-ensambladas tras fix clone 0004/6/7/8. **Requiere re-run Newman (VPN)** para CAPTURA fina; fotos regenerables desde logs |
 | **Rama producto** | `feature/ARQ-225_Refactory` (P2P, P2M, VCN, validador-api) |
 | **Repo docs** | `second-brain` rama `main` |
 
@@ -70,6 +70,13 @@ Diseño: [`comparar-prod-vs-dev/`](comparar-prod-vs-dev/).
 - Ajuste **3.15**: ids `01` / `01` (antes `pregunta01` / `PREGUNTA01`).
 - Generador: `ensamblador/generar-escenarios-preguntas-seguridad.js`.
 - Doc: [`validacion-preguntas-seguridad/ITERACION-01-idPregunta-y-respuestas-id.md`](generador/validacion-preguntas-seguridad/ITERACION-01-idPregunta-y-respuestas-id.md).
+
+### `propiedad_ausente` — fix clone P2P 0004/0006/0007/0008 (2026-07-14)
+
+- **Bug:** `cloneFolderFrom0003` hacía `{ ...baseMetodo, ...srcParams }` y **reinyectaba** `identificador` / `tipoIdentificador` cuando el origen 0003 los había omitido.
+- **Fix JSON:** escenarios Metodo afectados + regeneración con generadores corregidos.
+- **Auditor:** `ensamblador/auditar-propiedad-ausente.js` (respeta `$eliminar` en `__mutacionPostCifrar` para `peticion` ausente).
+- **Doc:** [`generador/estudio-generador.md`](generador/estudio-generador.md) § «Regla: propiedad_ausente».
 
 ### `tld-validador-api` — paridad prod en errores
 

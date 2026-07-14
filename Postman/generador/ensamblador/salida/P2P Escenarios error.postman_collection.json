@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "cfa8c458-d33f-4452-a043-08acf05bde71",
+    "_postman_id": "997154bf-33f3-42dc-9dda-70e7788fd0fb",
     "name": "P2P Escenarios error",
     "description": "Colección generada desde la fuente en P2P Escenarios error/.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -8148,7 +8148,7 @@
                         },
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0004\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"idPregunta\": \"pregunta01\",\n                    \"respuesta\": \"respuesta01\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0004\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"idPregunta\": \"pregunta01\",\n                    \"respuesta\": \"respuesta01\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
                           "options": {
                             "raw": {
                               "language": "json"
@@ -8849,7 +8849,7 @@
                         },
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0004\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"idPregunta\": \"pregunta01\",\n                    \"respuesta\": \"respuesta01\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0004\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"idPregunta\": \"pregunta01\",\n                    \"respuesta\": \"respuesta01\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
                           "options": {
                             "raw": {
                               "language": "json"
@@ -14008,7 +14008,7 @@
                         },
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"pregunta01\",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"pregunta02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"pregunta01\",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"pregunta02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
                           "options": {
                             "raw": {
                               "language": "json"
@@ -14709,7 +14709,7 @@
                         },
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"pregunta01\",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"pregunta02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0006\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"respuestas\": [\n                        {\n                            \"id\": \"pregunta01\",\n                            \"texto\": \"respuesta01\"\n                        },\n                        {\n                            \"id\": \"pregunta02\",\n                            \"texto\": \"respuesta02\"\n                        }\n                    ],\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
                           "options": {
                             "raw": {
                               "language": "json"
@@ -19210,7 +19210,7 @@
                         },
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0007\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"tipoBaja\": \"INDIVIDUAL\"\n                }\n            }\n        ]\n    }\n}",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0007\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"tipoBaja\": \"INDIVIDUAL\"\n                }\n            }\n        ]\n    }\n}",
                           "options": {
                             "raw": {
                               "language": "json"
@@ -19911,7 +19911,7 @@
                         },
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0007\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"tipoBaja\": \"INDIVIDUAL\"\n                }\n            }\n        ]\n    }\n}",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0007\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"tipoBaja\": \"INDIVIDUAL\"\n                }\n            }\n        ]\n    }\n}",
                           "options": {
                             "raw": {
                               "language": "json"
@@ -22377,7 +22377,7 @@
                         },
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0008\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"id\": \"00000000-0000-4000-8000-000000000001\",\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0008\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"id\": \"00000000-0000-4000-8000-000000000001\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
                           "options": {
                             "raw": {
                               "language": "json"
@@ -23078,7 +23078,7 @@
                         },
                         "body": {
                           "mode": "raw",
-                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0008\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"id\": \"00000000-0000-4000-8000-000000000001\",\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"tipoIdentificador\": \"CELULAR\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
+                          "raw": "{\n    \"idCanal\": \"{{CANAL_EMISOR}}\",\n    \"validador\": \"{{CANAL_VALIDADOR}}\",\n    \"peticion\": {\n        \"idPeticion\": \"{{SWIFT_CANAL_EMISOR}}{{$timestamp}}\",\n        \"metodo\": \"0008\",\n        \"solicitudes\": [\n            {\n                \"idSolicitud\": \"1\",\n                \"parametros\": {\n                    \"id\": \"00000000-0000-4000-8000-000000000001\",\n                    \"identificador\": \"{{IDENTIFICADOR_CELULAR}}\",\n                    \"banco\": \"{{SWIFT_CANAL_EMISOR}}\",\n                    \"cuenta\": \"1234567890\",\n                    \"producto\": \"PACA\"\n                }\n            }\n        ]\n    }\n}",
                           "options": {
                             "raw": {
                               "language": "json"
