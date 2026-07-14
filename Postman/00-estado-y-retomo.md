@@ -5,8 +5,8 @@
 | Campo | Valor |
 |-------|-------|
 | **Última actualización** | 2026-07-14 |
-| **Estado** | VCN revisión `codigoError` **cerrada** (doc 12) — **auditada sin puntos ciegos** (316 únicos = 70 divergentes + 246 OK, 0 null). P2P revisión **cerrada** (doc 13): 540 únicos = 382 OK + 158 con problema. 158 = 82 PROD-MAL (46 transversal + 30 alias + 2 plan HP-015 + 4 crash HP-028) + 1 HP-027 (doc idPeticion) + 75 N/A mejora dev (62 seguridad + 13 bancoAcreedor). Hallazgos HP-023…028. **Bloque E** (17 null) auditado tras encontrar punto ciego del barrido |
-| **Tooling** | Cifrado/plano en `[CAPTURA]`. Presentación cliente por **contrato** (`A.mensajeError` ≠ `A.descripcionError`, `B`, `C`, …) + `extraer-foto-presentacion.js` → `codigosRespuesta/foto-presentacion-{vcn,p2p}-{prod\|dev}.*`. Formas: [`../codigosRespuesta/formas-presentacion-cliente.md`](../codigosRespuesta/formas-presentacion-cliente.md). Doc generador: [`generador/estudio-generador.md`](generador/estudio-generador.md) (regla **propiedad_ausente** + auditor). Colecciones re-ensambladas tras fix clone 0004/6/7/8. **Requiere re-run Newman (VPN)** para CAPTURA fina; fotos regenerables desde logs |
+| **Estado** | VCN revisión `codigoError` **cerrada** (doc 12). P2P revisión **cerrada** (doc 13). **Últimos Newman:** leer siempre [`generador/logs/ultima-corrida-vcn.md`](generador/logs/ultima-corrida-vcn.md) / [`ultima-corrida-p2p.md`](generador/logs/ultima-corrida-p2p.md) antes de marcar runs como pendientes |
+| **Tooling** | Cifrado/plano en `[CAPTURA]`. Foto presentación `foto-presentacion-{vcn,p2p}-{prod\|dev}.*` (obligatoria al fin de Newman). Registro = proyección de `historial/` (sin enlaces rotos). Doc: [`generador/estudio-generador.md`](generador/estudio-generador.md), [`generador/logs/README.md`](generador/logs/README.md) |
 | **Rama producto** | `feature/ARQ-225_Refactory` (P2P, P2M, VCN, validador-api) |
 | **Repo docs** | `second-brain` rama `main` |
 
@@ -15,9 +15,10 @@
 ## Cómo retomar (orden)
 
 1. Leer este archivo.
-2. Newman/VPN: [`../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md`](../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md) — **no** correr Newman en Lenovo.
-3. Ir a la carpeta del tema activo (tabla abajo) y abrir la última `ITERACION-NN-....md` → sección **Pendiente / Próxima iteración**.
-4. Si el usuario subió logs: leer [`generador/logs/registro-vcn.md`](generador/logs/registro-vcn.md) (o `p2m` / `p2p`) y [`resumen-fallos-*.md`](generador/logs/).
+2. Leer [`generador/logs/ultima-corrida-vcn.md`](generador/logs/ultima-corrida-vcn.md) (y p2p/p2m si aplica) — **fuente de verdad del último run**.
+3. Newman/VPN: [`../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md`](../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md) — **no** correr Newman en Lenovo.
+4. Ir a la carpeta del tema activo (tabla abajo) y abrir la última `ITERACION-NN-....md` → sección **Pendiente / Próxima iteración**.
+5. Si el usuario subió logs: leer [`generador/logs/registro-vcn.md`](generador/logs/registro-vcn.md) (o `p2m` / `p2p`) y [`resumen-fallos-*.md`](generador/logs/).
 
 ---
 
@@ -78,6 +79,12 @@ Diseño: [`comparar-prod-vs-dev/`](comparar-prod-vs-dev/).
 - **Auditor:** `ensamblador/auditar-propiedad-ausente.js` (respeta `$eliminar` en `__mutacionPostCifrar` para `peticion` ausente).
 - **Doc:** [`generador/estudio-generador.md`](generador/estudio-generador.md) § «Regla: propiedad_ausente».
 
+### Newman historial / registro / foto (2026-07-14)
+
+- Registro se **reconstruye** desde `historial/<suite>/` tras cada run (sin enlaces a JSON borrados; columnas siempre completas).
+- `--codigo-fuente prod|dev` **obligatorio**; foto presentación **obligatoria** (si falla, aborta el run).
+- Ficha [`generador/logs/ultima-corrida-<suite>.md`](generador/logs/ultima-corrida-vcn.md) para no dejar pendientes fantasmas en este archivo.
+
 ### `tld-validador-api` — paridad prod en errores
 
 - **Problema:** en dev, errores planos del producto incluían `statusCode` dentro de `respuesta`; prod no.
@@ -120,9 +127,10 @@ Origen regex P2P `idSolicitud`: commit `5f1eb0461c44197a8053dd5ab96ce8d3e8301987
 
 **Pendiente (máquina VPN):**
 
-- [ ] Run `--codigo-fuente dev` (mismo `NIVEL_EJECUCION=MATRIZ`) para `comparar-runs.js`
+- [x] Run `--codigo-fuente dev` (mismo `NIVEL_EJECUCION=MATRIZ`) — hecho 2026-07-14 (`ultima-corrida-vcn.md`, historial `…_dev_MATRIZ_completo`, foto `foto-presentacion-vcn-dev.*`)
 - [ ] (Opcional) Run prod con `NIVEL_EJECUCION=VCN` para aislar capa matriz
 - [ ] CloudWatch en un escenario feliz aislado (`Metodo/0001/3_respuestaExitosa/1008`)
+- [ ] Informe / `comparar-runs.js` prod vs **este** dev (fase humana)
 
 Ver [`comparar-prod-vs-dev/README.md`](comparar-prod-vs-dev/README.md) y [`../prod_adactado_a_dev/00-estado-y-retomo.md`](../prod_adactado_a_dev/00-estado-y-retomo.md).
 

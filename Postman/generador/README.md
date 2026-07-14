@@ -61,19 +61,21 @@ cd C:\Versionamiento\GitHub\second-brain\Postman\generador
 La ruta en `--folder` es la misma carpeta que ves en Postman (sin el nombre de la colección).
 
 ```powershell
-node run-newman.js vcn --folder "Metodo/0001/4_escenariosQA/idPeticion_max64"
+node run-newman.js vcn --folder "Metodo/0001/4_escenariosQA/idPeticion_max64" --codigo-fuente prod
 ```
 
 **Run completo de una suite** (sin `--folder`):
 
 ```powershell
-node run-newman.js p2p
-node run-newman.js p2m
-node run-newman.js vcn
-node run-newman.js all
+node run-newman.js p2p --codigo-fuente prod
+node run-newman.js p2m --codigo-fuente prod
+node run-newman.js vcn --codigo-fuente prod
+node run-newman.js all --codigo-fuente dev
 ```
 
-Opcional: `--nota "texto"` al final. SSL estricto: `--strict-ssl`.
+`--codigo-fuente prod|dev` es **obligatorio** (o `$env:NEWMAN_CODIGO_FUENTE`). Opcional: `--nota "texto"`. SSL estricto: `--strict-ssl`.
+
+Al terminar debe generarse la foto en `codigosRespuesta/`; si falla, el run aborta. El registro se reconstruye desde `historial/` (sin enlaces rotos). Ver [`logs/README.md`](logs/README.md).
 
 ### Versión de código desplegada (prod vs dev)
 

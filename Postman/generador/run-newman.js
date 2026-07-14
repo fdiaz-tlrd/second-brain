@@ -3,21 +3,26 @@
  * Ejecuta colección Postman con Newman y escribe reporte compartible.
  *
  * Uso (desde Postman/generador):
- *   node run-newman.js p2m
- *   node run-newman.js p2p --folder "General/2_reglaNegocio/1_idCanal"
- *   node run-newman.js vcn
- *   node run-newman.js all
+ *   node run-newman.js p2m --codigo-fuente prod
+ *   node run-newman.js p2p --folder "General/2_reglaNegocio/1_idCanal" --codigo-fuente dev
+ *   node run-newman.js vcn --codigo-fuente prod
+ *   node run-newman.js all --codigo-fuente dev
  *
  * SSL: por defecto no verifica certificados (como Postman con SSL off en dev).
  *   --strict-ssl  exige certificado válido
  *
  * Versión de código desplegada (para comparar prod vs dev en el mismo AWS dev):
- *   --codigo-fuente prod|dev   (o variable NEWMAN_CODIGO_FUENTE)
- *   Queda en resumen, registro, historial y en resultados-por-escenario-<suite>.json/.md
+ *   --codigo-fuente prod|dev   (obligatorio; o NEWMAN_CODIGO_FUENTE)
+ *   Queda en resumen, registro, historial, resultados-por-escenario y foto.
+ *   Sin este flag el proceso termina con error (no se acepta "desconocido").
  *
  * Nivel de ejecución (ruta de integración: VCN, MATRIZ, etc.):
  *   Se lee de NIVEL_EJECUCION en el archivo .postman_environment.json de la suite.
  *   Queda en los mismos informes (campo nivelEjecucion). Ortogonal a --codigo-fuente.
+ *
+ * Al terminar cada suite: genera foto presentación (falla el run si no se genera),
+ * archiva historial, poda a 8 runs y **reconstruye** registro-<suite>.md desde disco
+ * (nunca deja enlaces a JSON borrados). Escribe logs/ultima-corrida-<suite>.md.
  */
 
 const fs = require("fs");
@@ -776,6 +781,18 @@ function buildResumenMarkdown(suite, folder, summary, jsonPath, mdPath, nota, co
 }
 
 const HISTORIAL_MAX = 8;
+/** Columnas fijas de `registro-<suite>.md` (sin contar celdas vacías de bordes). */
+const REGISTRO_COLS = [
+  "Fecha (UTC)",
+  "Código",
+  "Nivel",
+  "Carpeta",
+  "Requests",
+  "Tests",
+  "Resultado",
+  "Historial",
+  "Nota",
+];
 
 function isoTimestampForFilename(d) {
   return d.toISOString().replace(/:/g, "-").replace(/\.\d{3}Z$/, "Z");
@@ -791,28 +808,53 @@ function folderSlug(folder) {
     .replace(/-+/g, "-");
 }
 
-function pruneHistorial(histDir, maxRuns) {
-  const entries = fs
+function normalizeCodigoFuente(raw) {
+  const s = String(raw || "")
+    .trim()
+    .toLowerCase();
+  if (s === "prod" || s === "dev") {
+    return s;
+  }
+  return "";
+}
+
+/** Runs principales en historial, más reciente primero (por timestamp del nombre, no mtime). */
+function listHistorialPrincipalJsons(histDir) {
+  if (!fs.existsSync(histDir)) {
+    return [];
+  }
+  return fs
     .readdirSync(histDir)
     .filter(function (name) {
-      // Solo el JSON principal del run cuenta como "run"; excluir el derivado por-escenario.
       return name.endsWith(".json") && !name.endsWith("_por-escenario.json");
     })
     .map(function (name) {
-      const full = path.join(histDir, name);
-      return { name: name, mtime: fs.statSync(full).mtimeMs };
+      return {
+        name: name,
+        base: name.replace(/\.json$/, ""),
+        full: path.join(histDir, name),
+        sortKey: name,
+      };
     })
     .sort(function (a, b) {
-      return b.mtime - a.mtime;
+      if (a.sortKey < b.sortKey) {
+        return 1;
+      }
+      if (a.sortKey > b.sortKey) {
+        return -1;
+      }
+      return 0;
     });
+}
 
+function pruneHistorial(histDir, maxRuns) {
+  const entries = listHistorialPrincipalJsons(histDir);
   entries.slice(maxRuns).forEach(function (entry) {
-    const base = entry.name.replace(/\.json$/, "");
     const derivados = [
-      base + ".json",
-      base + ".md",
-      base + "_por-escenario.json",
-      base + "_por-escenario.md",
+      entry.base + ".json",
+      entry.base + ".md",
+      entry.base + "_por-escenario.json",
+      entry.base + "_por-escenario.md",
     ];
     derivados.forEach(function (fileName) {
       const full = path.join(histDir, fileName);
@@ -823,55 +865,208 @@ function pruneHistorial(histDir, maxRuns) {
   });
 }
 
-function updateRegistro(suiteKey, entry) {
+function parseResumenCampo(mdText, campo) {
+  const re = new RegExp(
+    "\\|\\s*" + campo.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\s*\\|\\s*([^|]+)\\|",
+    "i"
+  );
+  const m = mdText.match(re);
+  return m ? m[1].trim() : "";
+}
+
+function normalizeFailCount(text) {
+  return String(text || "")
+    .replace(/failed\s*:/gi, "fail")
+    .replace(/\bfailed\b/gi, "fail")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/** Interpreta basename histórico nuevo o legacy. */
+function metaFromHistorialBasename(base) {
+  const m = String(base || "").match(/^(\d{4}-\d{2}-\d{2}T[\d-]+Z)_(.+)$/);
+  if (!m) {
+    return {
+      fechaApprox: "",
+      codigo: "desconocido",
+      nivel: "desconocido",
+      folder: base || "(completo)",
+    };
+  }
+  const tsRaw = m[1];
+  const fechaApprox = tsRaw.replace(
+    /T(\d{2})-(\d{2})-(\d{2})Z$/,
+    function (_, hh, mm, ss) {
+      return "T" + hh + ":" + mm + ":" + ss + ".000Z";
+    }
+  );
+  const rest = m[2];
+  const parts = rest.split("_");
+  if (parts[0] === "prod" || parts[0] === "dev" || parts[0] === "desconocido") {
+    return {
+      fechaApprox: fechaApprox,
+      codigo: parts[0],
+      nivel: parts[1] || "desconocido",
+      folder: parts.slice(2).join("_") || "completo",
+    };
+  }
+  return {
+    fechaApprox: fechaApprox,
+    codigo: "desconocido",
+    nivel: "desconocido",
+    folder: rest || "completo",
+  };
+}
+
+function failCountFromLabel(label) {
+  const m = String(label || "").match(/fail\s+(\d+)/i);
+  return m ? Number(m[1]) : 0;
+}
+
+function formatRegistroRow(entry) {
+  const folderShow =
+    entry.folder && String(entry.folder).indexOf("(") === 0
+      ? entry.folder
+      : "`" + (entry.folder || "(completo)") + "`";
+  const jsonRel = String(entry.json || "").replace(/\\/g, "/");
+  return (
+    "| " +
+    (entry.fecha || "") +
+    " | " +
+    (entry.codigo || "desconocido") +
+    " | " +
+    (entry.nivel || "desconocido") +
+    " | " +
+    folderShow +
+    " | " +
+    (entry.requests || "?") +
+    " | " +
+    (entry.tests || "?") +
+    " | **" +
+    (entry.resultado || "?") +
+    "** | [`" +
+    path.basename(jsonRel) +
+    "`](./" +
+    jsonRel +
+    ") | " +
+    (entry.nota || "—") +
+    " |"
+  );
+}
+
+/**
+ * Registro = proyección de los archivos que EXISTEN en historial/.
+ * Tras prune no puede quedar un enlace a JSON borrado ni filas con # de columnas incorrecto.
+ */
+function rebuildRegistroFromHistorial(suiteKey) {
+  const histDir = path.join(LOGS, "historial", suiteKey);
   const regPath = path.join(LOGS, "registro-" + suiteKey + ".md");
+  const entries = listHistorialPrincipalJsons(histDir).slice(0, HISTORIAL_MAX);
+  const rows = entries.map(function (entry) {
+    const mdPath = path.join(histDir, entry.base + ".md");
+    const fromName = metaFromHistorialBasename(entry.base);
+    let fecha = fromName.fechaApprox;
+    let codigo = fromName.codigo;
+    let nivel = fromName.nivel;
+    let folder = fromName.folder;
+    let requests = "?";
+    let tests = "?";
+    let nota = "—";
+    if (fs.existsSync(mdPath)) {
+      const text = fs.readFileSync(mdPath, "utf8");
+      fecha = parseResumenCampo(text, "Fecha") || fecha;
+      codigo = parseResumenCampo(text, "Código fuente") || codigo;
+      nivel = parseResumenCampo(text, "Nivel ejecución") || nivel;
+      const carpeta = parseResumenCampo(text, "Carpeta");
+      if (carpeta) {
+        folder = carpeta.replace(/^`+|`+$/g, "");
+      }
+      requests = normalizeFailCount(parseResumenCampo(text, "Requests")) || requests;
+      tests = normalizeFailCount(parseResumenCampo(text, "Tests")) || tests;
+      nota = parseResumenCampo(text, "Nota") || nota;
+    }
+    if (folder && folder.charAt(0) !== "(") {
+      folder = folder;
+    }
+    const reqFail = failCountFromLabel(requests);
+    const testFail = failCountFromLabel(tests);
+    const resultado = reqFail === 0 && testFail === 0 ? "OK" : "FALLÓ";
+    return formatRegistroRow({
+      fecha: fecha,
+      codigo: codigo || "desconocido",
+      nivel: nivel || "desconocido",
+      folder: folder || "(completo)",
+      requests: requests,
+      tests: tests,
+      resultado: resultado,
+      json: path.join("historial", suiteKey, entry.name).replace(/\\/g, "/"),
+      nota: nota,
+    });
+  });
+
   const header = [
     "# Registro de ejecuciones Newman — " + suiteKey.toUpperCase(),
     "",
     "Orden: **más reciente arriba**. Commitear `logs/` tras cada run en la **máquina con VPN**.",
     "",
-    "| Fecha (UTC) | Código | Nivel | Carpeta | Requests | Tests | Resultado | Historial | Nota |",
-    "|-------------|--------|-------|---------|----------|-------|-----------|-----------|------|",
+    "Fuente de verdad: archivos en `historial/" +
+      suiteKey +
+      "/` (máx. " +
+      HISTORIAL_MAX +
+      "). El registro se **reconstruye** tras cada run; no conserva filas huérfanas.",
+    "",
+    "| " + REGISTRO_COLS.join(" | ") + " |",
+    "|" + REGISTRO_COLS.map(function () {
+      return "-------------";
+    }).join("|") + "|",
   ];
-
-  let existingRows = [];
-  if (fs.existsSync(regPath)) {
-    const text = fs.readFileSync(regPath, "utf8");
-    existingRows = text
-      .split("\n")
-      .filter(function (line) {
-        return line.startsWith("| 20");
-      });
-  }
-
-  const row =
-    "| " +
-    entry.fecha +
-    " | " +
-    (entry.codigo || "desconocido") +
-    " | " +
-    (entry.nivel || "desconocido") +
-    " | `" +
-    entry.folder +
-    "` | " +
-    entry.requests +
-    " | " +
-    entry.tests +
-    " | **" +
-    entry.resultado +
-    "** | [`" +
-    path.basename(entry.json) +
-    "`](./" +
-    entry.json.replace(/\\/g, "/") +
-    ") | " +
-    (entry.nota || "—") +
-    " |";
-
-  const rows = [row].concat(existingRows).slice(0, HISTORIAL_MAX);
   fs.writeFileSync(regPath, header.concat(rows).concat(["", ""]).join("\n"), "utf8");
+  return regPath;
 }
 
-function archiveRun(suiteKey, folder, jsonPath, mdPath, summary, nota, codigoFuente, nivelEjecucion, resScenJsonPath, resScenMdPath) {
+/** Ficha corta que el agente debe leer antes de afirmar pendientes en 00-estado-y-retomo. */
+function writeUltimaCorrida(suiteKey, meta) {
+  const out = path.join(LOGS, "ultima-corrida-" + suiteKey + ".md");
+  const lines = [
+    "# Última corrida Newman — " + suiteKey.toUpperCase(),
+    "",
+    "Actualizado automáticamente por `run-newman.js`. **No** editar a mano.",
+    "",
+    "| Campo | Valor |",
+    "|-------|-------|",
+    "| Fecha (UTC) | " + (meta.fecha || "—") + " |",
+    "| Código fuente | " + (meta.codigo || "—") + " |",
+    "| Nivel ejecución | " + (meta.nivel || "—") + " |",
+    "| Carpeta | " + (meta.folder || "(completo)") + " |",
+    "| Requests | " + (meta.requests || "—") + " |",
+    "| Tests | " + (meta.tests || "—") + " |",
+    "| Resultado | **" + (meta.resultado || "—") + "** |",
+    "| Nota | " + (meta.nota || "—") + " |",
+    "| Registro | [`registro-" + suiteKey + ".md`](./registro-" + suiteKey + ".md) |",
+    "| Historial JSON | `" + (meta.histJsonRel || "—") + "` |",
+    "| Foto | " + (meta.fotoRel ? "`" + meta.fotoRel + "`" : "*(no generada — error)*") + " |",
+    "| Muestras | " + (meta.muestrasRel ? "`" + meta.muestrasRel + "`" : "—") + " |",
+    "",
+    "Si este archivo dice que hubo run `dev`/`prod`, **no** marcar ese run como pendiente en `Postman/00-estado-y-retomo.md` sin leer aquí primero.",
+    "",
+  ];
+  fs.writeFileSync(out, lines.join("\n"), "utf8");
+  return out;
+}
+
+function archiveRun(
+  suiteKey,
+  folder,
+  jsonPath,
+  mdPath,
+  summary,
+  nota,
+  codigoFuente,
+  nivelEjecucion,
+  resScenJsonPath,
+  resScenMdPath,
+  fotoMeta
+) {
   const histDir = path.join(LOGS, "historial", suiteKey);
   fs.mkdirSync(histDir, { recursive: true });
   const ts = isoTimestampForFilename(new Date());
@@ -903,21 +1098,27 @@ function archiveRun(suiteKey, folder, jsonPath, mdPath, summary, nota, codigoFue
     : stats.tests
       ? stats.tests.failed
       : 0;
+  const requestsLabel = reqTotal + " (fail " + reqFailed + ")";
+  const testsLabel = testTotal + " (fail " + testFailed + ")";
+  const resultado = testFailed === 0 && reqFailed === 0 ? "OK" : "FALLÓ";
 
-  updateRegistro(suiteKey, {
+  // 1) Recortar archivos viejos  2) Reconstruir registro SOLO desde lo que quedó en disco
+  pruneHistorial(histDir, HISTORIAL_MAX);
+  rebuildRegistroFromHistorial(suiteKey);
+
+  writeUltimaCorrida(suiteKey, {
     fecha: new Date().toISOString(),
     codigo: codigoFuente || "desconocido",
     nivel: nivelEjecucion || "desconocido",
     folder: folder || "(completo)",
-    requests: reqTotal + " (fail " + reqFailed + ")",
-    tests: testTotal + " (fail " + testFailed + ")",
-    resultado: testFailed === 0 && reqFailed === 0 ? "OK" : "FALLÓ",
-    json: path.relative(LOGS, histJson),
-    md: path.relative(LOGS, histMd),
-    nota: nota,
+    requests: requestsLabel,
+    tests: testsLabel,
+    resultado: resultado,
+    nota: nota || "—",
+    histJsonRel: path.relative(LOGS, histJson).replace(/\\/g, "/"),
+    fotoRel: fotoMeta && fotoMeta.fotoRel ? fotoMeta.fotoRel : null,
+    muestrasRel: fotoMeta && fotoMeta.muestrasRel ? fotoMeta.muestrasRel : null,
   });
-
-  pruneHistorial(histDir, HISTORIAL_MAX);
 }
 
 function shouldExcludeVcnSoloLogFolders(suiteKey, folder) {
@@ -1174,22 +1375,32 @@ function runSuite(suiteKey, folder, insecure, nota, codigoFuente) {
       fs.writeFileSync(resScenMdPath, buildResultadosPorEscenarioMd(resultados), "utf8");
 
       let fotoPathRel = null;
-      try {
-        const foto = extraerFotoPresentacion(resScenJsonPath);
-        fotoPathRel = path.relative(ROOT, foto.outMd);
-        console.log(
-          "Foto:          " +
-            fotoPathRel +
-            " (" +
-            foto.codigoFuenteSlug +
-            "; solo sobrescribe esa variante prod|dev)"
+      let muestrasPathRel = null;
+      const foto = extraerFotoPresentacion(resScenJsonPath);
+      if (!foto || !foto.outMd || !fs.existsSync(foto.outMd)) {
+        throw new Error(
+          "Foto de presentación no generada (salida ausente). Revise CAPTURA / resultados-por-escenario."
         );
-        if (foto.outMuestras) {
-          console.log("Muestras:      " + path.relative(ROOT, foto.outMuestras));
-        }
-      } catch (e) {
-        console.warn(
-          "Foto presentación: no generada (" + (e && e.message ? e.message : e) + ")"
+      }
+      fotoPathRel = path.relative(ROOT, foto.outMd).replace(/\\/g, "/");
+      console.log(
+        "Foto:          " +
+          fotoPathRel +
+          " (" +
+          foto.codigoFuenteSlug +
+          "; solo sobrescribe esa variante prod|dev)"
+      );
+      if (foto.outMuestras && fs.existsSync(foto.outMuestras)) {
+        muestrasPathRel = path.relative(ROOT, foto.outMuestras).replace(/\\/g, "/");
+        console.log("Muestras:      " + muestrasPathRel);
+      } else {
+        throw new Error(
+          "Foto de presentación: faltó archivo de muestras (.muestras.md)."
+        );
+      }
+      if (!foto.outJson || !fs.existsSync(foto.outJson)) {
+        throw new Error(
+          "Foto de presentación: faltó archivo de patrones (.patrones.json)."
         );
       }
 
@@ -1203,16 +1414,21 @@ function runSuite(suiteKey, folder, insecure, nota, codigoFuente) {
         codigoFuente,
         nivelEjecucion,
         resScenJsonPath,
-        resScenMdPath
+        resScenMdPath,
+        {
+          fotoRel: path.relative(LOGS, foto.outMd).replace(/\\/g, "/"),
+          muestrasRel: path.relative(LOGS, foto.outMuestras).replace(/\\/g, "/"),
+        }
       );
       const regPath = path.join(LOGS, "registro-" + suiteKey + ".md");
       console.log("\nResumen:       " + path.relative(ROOT, mdPath));
       console.log("Por escenario: " + path.relative(ROOT, resScenMdPath));
       console.log("JSON:          " + path.relative(ROOT, jsonPath));
       console.log("Registro:      " + path.relative(ROOT, regPath));
-      if (fotoPathRel) {
-        console.log("Foto:          " + fotoPathRel);
-      }
+      console.log("Foto:          " + fotoPathRel);
+      console.log(
+        "Última corrida: " + path.relative(ROOT, path.join(LOGS, "ultima-corrida-" + suiteKey + ".md"))
+      );
       resolve(summary);
     });
   });
@@ -1222,19 +1438,19 @@ function main() {
   const { suite, folder, insecure, nota, codigoFuente } = parseArgs(process.argv.slice(2));
   if (!suite || !SUITES[suite] && suite !== "all") {
     console.error(
-      'Uso: node run-newman.js <p2m|p2p|vcn|all> [--folder "..."] [--codigo-fuente prod|dev] [--nota "..."] [--strict-ssl]'
+      'Uso: node run-newman.js <p2m|p2p|vcn|all> [--folder "..."] --codigo-fuente prod|dev [--nota "..."] [--strict-ssl]'
     );
     process.exit(1);
   }
 
-  const codigo = codigoFuente || "desconocido";
-  if (!codigoFuente) {
-    console.warn(
-      'ADVERTENCIA: sin --codigo-fuente ni NEWMAN_CODIGO_FUENTE. Se registra "desconocido"; el informe no podrá distinguir prod de dev.'
+  const codigo = normalizeCodigoFuente(codigoFuente);
+  if (!codigo) {
+    console.error(
+      'ERROR: --codigo-fuente prod|dev es obligatorio (o NEWMAN_CODIGO_FUENTE=prod|dev). Sin eso no se genera foto ni registro comparable.'
     );
-  } else {
-    console.log("Código fuente desplegado: " + codigo);
+    process.exit(1);
   }
+  console.log("Código fuente desplegado: " + codigo);
 
   if (insecure) {
     console.log("SSL: verificación desactivada (entorno dev). Usa --strict-ssl para exigir certificado.");
@@ -1282,4 +1498,9 @@ module.exports = {
   buildResultadosPorEscenario: buildResultadosPorEscenario,
   getItemPath: getItemPath,
   readStreamBody: readStreamBody,
+  rebuildRegistroFromHistorial: rebuildRegistroFromHistorial,
+  listHistorialPrincipalJsons: listHistorialPrincipalJsons,
+  pruneHistorial: pruneHistorial,
+  normalizeCodigoFuente: normalizeCodigoFuente,
+  HISTORIAL_MAX: HISTORIAL_MAX,
 };

@@ -13,7 +13,7 @@
 
 El usuario corre Newman en la máquina con VPN, hace **commit y push** de `logs/`, vuelve a Lenovo y dice «ya corrí Newman / ya subí los logs».
 
-**Si el usuario dice que ejecutó Newman:** creerle. Leer `registro-vcn.md` (o p2m/p2p). **No** decir «no se ha ejecutado» si hay fila nueva en el registro tras su push.
+**Si el usuario dice que ejecutó Newman:** creerle. Leer primero `ultima-corrida-<suite>.md`, luego `registro-<suite>.md`. **No** decir «no se ha ejecutado» si hay ficha/fila nueva tras su push. **No** marcar como pendiente un run `prod`/`dev` que ya aparece ahí.
 
 ---
 
@@ -28,11 +28,12 @@ El usuario corre Newman en la máquina con VPN, hace **commit y push** de `logs/
 
 ## Qué leer tras push del usuario
 
-1. [`Postman/generador/logs/registro-vcn.md`](../Postman/generador/logs/registro-vcn.md) — últimas **8** ejecuciones
-2. [`Postman/generador/logs/resumen-fallos-vcn.md`](../Postman/generador/logs/resumen-fallos-vcn.md) — último run
-3. [`Postman/generador/logs/historial/vcn/`](../Postman/generador/logs/historial/vcn/) — copias archivadas
+1. [`Postman/generador/logs/ultima-corrida-vcn.md`](../Postman/generador/logs/ultima-corrida-vcn.md) — **última** corrida (código fuente, foto)
+2. [`Postman/generador/logs/registro-vcn.md`](../Postman/generador/logs/registro-vcn.md) — hasta **8** ejecuciones (reconstruido desde `historial/` tras cada run)
+3. [`Postman/generador/logs/resumen-fallos-vcn.md`](../Postman/generador/logs/resumen-fallos-vcn.md) — último run
+4. [`Postman/generador/logs/historial/vcn/`](../Postman/generador/logs/historial/vcn/) — copias archivadas
 
-Misma lógica para `p2m` y `p2p`.
+Misma lógica para `p2m` y `p2p`. `--codigo-fuente prod|dev` es obligatorio en Newman; la foto debe generarse o el run aborta.
 
 ---
 

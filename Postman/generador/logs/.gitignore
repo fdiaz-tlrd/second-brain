@@ -6,5 +6,6 @@
 !resumen-fallos-*.md
 !ultimo-run-*.json
 !registro-*.md
+!ultima-corrida-*.md
 !historial/
 !historial/**
