@@ -4,14 +4,16 @@ Estudio para armar, desde la **recopilación Newman**, una **tabla escenario a e
 
 | Campo | Valor |
 |-------|-------|
-| **Estado** | Decisiones de producto cerradas (2026-07-14) — pendiente generador MD v1 (VCN) |
-| **Unidad** | Una tabla **por servicio** (empezar por VCN) |
-| **Fila** | **Un escenario** (nombre Postman), no una variante de cifrado |
-| **Filas mostradas** | **Solo diferencias** (sin valor útil mostrar los iguales) |
-| **Formato** | Primero **Markdown**; después **HTML** (análisis humano / QA) |
+| **Estado** | Generador MD v1 listo — VCN 84 bloques / 331 únicos (`vcn/bloques-diferencias.md`) |
+| **Unidad** | Un **documento por servicio**, **bloques por escenario** (no mega-tabla) |
+| **Fila / bloque** | **Un escenario** (nombre Postman), no una variante de cifrado |
+| **Filas mostradas** | **Solo diferencias** |
+| **Formato** | **Markdown** generado; HTML (+ Prism) siguiente |
 | **Insumo** | Pares `--codigo-fuente prod` y `dev`, mismo `NIVEL_EJECUCION` |
 
 **Retomo:** [`00-estado-y-retomo.md`](00-estado-y-retomo.md) · **Columnas:** [`01-columnas.md`](01-columnas.md) · **Flujo:** [`02-flujo-trabajo-y-anotaciones.md`](02-flujo-trabajo-y-anotaciones.md) · **Presentación:** [`03-presentacion-bloques.md`](03-presentacion-bloques.md)
+
+**Regenerar VCN:** `node generar-bloques.js vcn` (desde esta carpeta).
 
 ---
 
