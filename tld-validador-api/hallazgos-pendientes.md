@@ -26,8 +26,9 @@ Documento: [getCanal-excepcion-validador-no-string-2026-07-14.md](./getCanal-exc
 | **HP-012** `idSolicitud` inválido → 404 | **431** en `validarParametroSolicitudes` (validador.js) |
 | **HP-013** `idSolicitud` sin charset → 509 | validación charset (alfanum+guion, ≥1 alfanum) → **431** |
 | **HP-014** elemento `null` crashea → 999 | guard objeto no-nulo → **431** (sin crash) |
+| Tope `METHOD_LIMIT` / `SOLICITUDES_MASIVAS_MAXIMO` en validador-api | **Eliminado 2026-07-14** — cantidad la decide cada producto; orquestador solo forma/`idSolicitud` |
 | **HP-016** canal mal configurado → 405 | **ya daba 500** (refactor invoke: `getCanal` lanza) |
-| **HP-018** método fuera de config → 509 | **ya daba 418** (`resolverServicioInterno`) |
+| **HP-018** método fuera de config → 509 | **Dig:** **481** Método inválido (`resolverServicioInterno`; ya no 418) — pend. deploy + Newman |
 | **HD-007** `validar` emitía HTTP 500 (servicio interno) → matriz enmascara a 550 | **app.js: 500→200** (509 llega al cliente como en prod) |
 
 Detalle + verificación (24/24): [correccion-validar-hallazgos-2026-07-13.md](./correccion-validar-hallazgos-2026-07-13.md)

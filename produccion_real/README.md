@@ -10,7 +10,8 @@ Carpeta de estudio del **código de producción tal cual** (rama `main` de cada 
 |-----|-----------|
 | [`01-tld-matriz-validador-validar.md`](01-tld-matriz-validador-validar.md) | Revisión de `tld-matriz/lambdas/tld-validador-validar`. Confirma HTTP siempre 200; mapa de codigoError; bugs (`error()`/`validatePlan()` indefinidas, crash X-Forwarded-For, `isValid` sin chequeo de tipo); anomalía **cerrada** idCanal null/"" → 550 (CloudWatch). |
 | [`02-tld-validador-api-clon.md`](02-tld-validador-api-clon.md) | Registro del clon de `tld-validador-api` (rama `main`) en `produccion_real/`. Origen, commit, estructura y para qué sirve (baseline real de prod, distinto de `dev` y de `prod_adactado_a_dev`). |
-| [`03-tld-api-r2p-clon.md`](03-tld-api-r2p-clon.md) | Registro del clon de `tld-api-r2p` (rama `main`) en `produccion_real/`. Origen, commit, estructura. Baseline real de prod del producto R2P. |
+| [`03-tld-api-r2p-clon.md`](03-tld-api-r2p-clon.md) | Registro del clon de `tld-api-r2p` (rama `main`) en `produccion_real/`. |
+| [`04-clones-vcn-p2p-p2m-util-2026-07-14.md`](04-clones-vcn-p2p-p2m-util-2026-07-14.md) | Clones solo lectura: cuenta-nombre (`master`), alias, p2m, util. Baseline para 418 / permisos. |
 
 ## Relación con otras carpetas
 

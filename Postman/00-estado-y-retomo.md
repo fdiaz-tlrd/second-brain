@@ -4,8 +4,8 @@
 
 | Campo | Valor |
 |-------|-------|
-| **Última actualización** | 2026-07-14 |
-| **Estado** | VCN revisión `codigoError` **cerrada** (doc 12). P2P revisión **cerrada** (doc 13). **Últimos Newman:** leer siempre [`generador/logs/ultima-corrida-vcn.md`](generador/logs/ultima-corrida-vcn.md) / [`ultima-corrida-p2p.md`](generador/logs/ultima-corrida-p2p.md) antes de marcar runs como pendientes |
+| **Última actualización** | 2026-07-15 |
+| **Estado** | Modelo Dig **481/482/418/500** cerrado en código. Postman **4.1→481**, **4.2→482** (VCN/P2P/P2M) + `catalogoGeneral` con 481/482. **1018** ops `N` **en Dynamo** (2026-07-15). **1024** ∅ ops (418 validador pendiente Postman). **Últimos Newman:** leer siempre [`generador/logs/ultima-corrida-vcn.md`](generador/logs/ultima-corrida-vcn.md) / [`ultima-corrida-p2p.md`](generador/logs/ultima-corrida-p2p.md) |
 | **Tooling** | Cifrado/plano en `[CAPTURA]`. Foto presentación `foto-presentacion-{vcn,p2p}-{prod\|dev}.*` (obligatoria al fin de Newman). Registro = proyección de `historial/` (sin enlaces rotos). Doc: [`generador/estudio-generador.md`](generador/estudio-generador.md), [`generador/logs/README.md`](generador/logs/README.md) |
 | **Rama producto** | `feature/ARQ-225_Refactory` (P2P, P2M, VCN, validador-api) |
 | **Repo docs** | `second-brain` rama `main` |

@@ -1,7 +1,7 @@
 {
-  "nombre": "2.4.1. metodo — no está en CFG_METODOS_LIMITES_JSON (418)",
+  "nombre": "2.4.1. metodo — no está en MAPA_METODO_SERVICIO (481)",
   "expectedHttpStatus": 400,
-  "expectedCodigoError": 418,
+  "expectedCodigoError": 481,
   "expectedTipo": "general",
   "algoritmoCifrado": "aes-256-cbc",
   "body": {

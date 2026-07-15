@@ -1,7 +1,7 @@
 # Canales de prueba — dev
 
 **Ambiente:** dev  
-**Actualizado:** 2026-07-06 (canales 1022–1023 validar-fallos; export Dynamo pendiente)
+**Actualizado:** 2026-07-15 — **1018** ops `0001–0025` `estado=N` **cargadas en Dynamo**. **1024 ANOMGATO** (∅ ops; validador → 418).
 
 Datos maquinables: [`canalesPruebas-dev.json`](./canalesPruebas-dev.json)
 
@@ -129,14 +129,15 @@ Grupos: token del canal → `cognito:groups` en el JWT.
 | 1015 | ZONAGATO | gcm | dinámico | sí | 25, dummy `/validar` | validador + default |
 | 1016 | BELLGATO | gcm | dinámico | sí | 25, dummy `/validar-con-token` | validador + default |
 | 1017 | TEYVGATO | — | fijo | **no** | **sin filas operación** | sin credenciales matriz |
-| 1018 | ARCHGATO | cbc | fijo | sí | **sin filas operación** | validador + default |
+| 1018 | ARCHGATO | cbc | fijo | sí | **0001–0025 con `estado=N`** (negación explícita → **482**) | validador + default |
 | 1019 | STELGATO | gcm | fijo | **no** | **sin filas operación** | sin registrar |
 | 1020 | NAMEGATO | gcm | fijo | **no** | **sin filas operación** | validador + default |
 | 1021 | HOLLGATO | cbc | fijo | sí | **sin filas operación** | validador + default |
 | 1022 | PROXGATO | cbc | fijo | sí | **solo 0001** (validador fallos) | validador + default |
 | 1023 | OUTFGATO | cbc | dinámico | sí | **solo 0001** (validador fallos) | validador + default |
+| 1024 | ANOMGATO | cbc | fijo | sí | **sin filas operación** (∅) | validador + default |
 
-Conteo operaciones confirmado en export Dynamo 2026-07-05: **212** filas en `tld-validador-canal-operacion` (8 canales × 25 ops + canal 0001).
+Conteo operaciones confirmado en export Dynamo 2026-07-05: **212** filas en `tld-validador-canal-operacion` (8 canales × 25 ops + canal 0001). **1024** sumado 2026-07-15: sin filas ops.
 
 ### Escenarios de error (Postman)
 
@@ -147,12 +148,22 @@ Conteo operaciones confirmado en export Dynamo 2026-07-05: **212** filas en `tld
 | `CANAL_EMISOR_GCM` | 1013 | AMIYGATO | 200 (flujo base GCM) | GCM, plan GATO |
 | `CANAL_EMISOR_SIN_PLAN` | **1020** | NAMEGATO | **403** | Sin plan; escenario `1.2` |
 | `CANAL_EMISOR_SIN_PLAN_SIN_GRUPOS` | **1019** | STELGATO | **403** | Sin plan, sin grupos; escenario `1.4` |
-| `CANAL_EMISOR_SIN_METODO` | **1018** | ARCHGATO | error validador | Sin filas en `tld-validador-canal-operacion` |
+| `CANAL_EMISOR_SIN_METODO` | **1018** | ARCHGATO | **482** | Ops **0001–0025** con `estado=N` en `tld-validador-canal-operacion` |
 | `CANAL_EMISOR_MAL_CONFIGURADO` | **1017** | TEYVGATO | **500** | Sin `llaveCifrado` en `tld-validador-canal` |
 | `CANAL_VALIDADOR_DESHABILITADO` | **1021** | HOLLGATO | **402** | `estadoValidador` **N** |
 | `CANAL_VALIDADOR_MAL_CONFIGURADO` | **1017** | TEYVGATO | **500** | Mismo canal; rol validador escenario 2.2.3 |
+| `CANAL_EMISOR_SIN_OPERACION` | **1024** | ANOMGATO | feliz (∅ emisor) | Escenario `0001.3.1008.1.3` |
+| `CANAL_VALIDADOR_SIN_OPERACION` | **1024** | ANOMGATO | **418** | Escenario `2.2.4` |
+| `CANAL_VALIDADOR_OPERACION_NEGADA` | **1018** | ARCHGATO | **418** | Escenario `2.2.5` (ops `N` como validador) |
 
-**1018 ARCHGATO** — canal en `tld-validador-canal` con `urlValidador` vacío y **cero** filas en `tld-validador-canal-operacion` (export 2026-07-05).
+**1018 ARCHGATO** — emisor de prueba para **482** («Método no disponible para el Canal Emisor»).
+Filas **0001–0025** en `tld-validador-canal-operacion` con **`estado=N`** — **confirmado en Dynamo 2026-07-15**.
+Seed de referencia: [`tld-validador-canal-operaciones-1018-estado-N.json`](./tld-validador-canal-operaciones-1018-estado-N.json).
+Ya no aplica el diseño anterior «cero filas».
+
+**1024 ANOMGATO** — canal **sin renglón** en `tld-validador-canal-operacion`. `estadoValidador` **Y**, plan GATO, grupos validador+default, CBC fijo, `llaveCifrado` **`2b8af21a-3740-4c3a-9909-409d44ce4010`**.
+- Como **emisor**: Dig no deniega por ops → candidato a flujo feliz (validador con `Y`, p. ej. `0001`).
+- Como **validador**: Dig **418** (no confundir con **1021** → **402**).
 
 **1021 HOLLGATO** — `estadoValidador` **N**; plan GATO sí; **sin** operaciones cargadas.
 
@@ -164,11 +175,12 @@ En Dynamo, suscripciones plan–canal pueden figurar `estatus: inactivo`; `contr
 
 ### Sin registro en export (2026-07-05)
 
-| idCanal | Tabla |
+> Nota: el export del 2026-07-05 es histórico. **1018** en Dynamo (2026-07-15) tiene ops **0001–0025** con **`estado=N`** (seed [`tld-validador-canal-operaciones-1018-estado-N.json`](./tld-validador-canal-operaciones-1018-estado-N.json)).
+
+| idCanal | Tabla (según export 2026-07-05) |
 |---------|--------|
 | 0001 | `tld-matriz-planes-canales` |
 | 1017 | `tld-validador-canal-operacion`, `tld-matriz-planes-canales` |
-| 1018 | `tld-validador-canal-operacion` |
 | 1019 | `tld-validador-canal-operacion`, `tld-matriz-planes-canales` |
 | 1020 | `tld-validador-canal-operacion`, `tld-matriz-planes-canales` |
 | 1021 | `tld-validador-canal-operacion` |
@@ -251,7 +263,7 @@ POST `.../auth/token`
 }
 ```
 
-**1018 ARCHGATO** (sin operaciones en validador)
+**1018 ARCHGATO** (ops 0001–0025 con `estado=N` → 482)
 
 ```json
 {
@@ -302,6 +314,15 @@ POST `.../auth/token`
 {
   "apiKey": "ebbedf2aab947225a2a0cb1e215e7ff5b9a99964c",
   "secretKey": "CuO0eS9l1t7FDr2en8v3l929U9N8e5cv1U0vbtv0e4r1Fn8It43f5oMk65e8Aa89a9A96d6IsvNm4tqqhmtsq5"
+}
+```
+
+**1024 ANOMGATO** (sin renglón ops — emisor feliz / validador 418)
+
+```json
+{
+  "apiKey": "0a28384aa8b46fd594d75ef1235399aeb9adfaf94",
+  "secretKey": "a6suon1p1tfcse2eDU03lBrb58Abe9SAnT1rEbFLk4r9s34ch4b75ijo65ea88b9B9B96dfP7DlljKN1OOgQQh"
 }
 ```
 

@@ -1,6 +1,6 @@
 {
   "ambiente": "dev",
-  "actualizado": "2026-07-06",
+  "actualizado": "2026-07-15",
   "urls": {
     "matriz": "https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev",
     "matrizToken": "https://srmi7w9bwi.execute-api.us-east-1.amazonaws.com/dev/auth/token",
@@ -1796,7 +1796,12 @@
     {
       "idCanal": "1018",
       "swiftCode": "ARCHGATO",
-      "sinOperacion": true,
+      "operacionesEstadoN": true,
+      "escenarioError": {
+        "variablePostman": "CANAL_EMISOR_SIN_METODO",
+        "esperado": "482",
+        "causa": "Operaciones 0001-0025 con estado N en tld-validador-canal-operacion (negación explícita al emisor)"
+      },
       "matriz": {
         "nombreCanal": "Archon Sovereign Banking",
         "empresa": "ARCHGATO",
@@ -1837,8 +1842,162 @@
         "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97",
         "nombre": "Archon Sovereign Banking",
         "canalNombre": "1018-Archon Sovereign Banking",
-        "validadorApiKey": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
-      }
+        "validadorApiKey": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39",
+        "operacionesNota": "0001-0025 con estado N cargadas en Dynamo (2026-07-15). Seed: tld-validador-canal-operaciones-1018-estado-N.json",
+        "operaciones": [
+          {
+            "operacion": "0001",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0002",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0003",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0004",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0005",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0006",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0007",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0008",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0009",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0010",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0011",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0012",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0013",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0014",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0015",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0016",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0017",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0018",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0019",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0020",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0021",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0022",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0023",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0024",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          },
+          {
+            "operacion": "0025",
+            "estado": "N",
+            "urlOperacion": "",
+            "validarEnmascaramiento": "Y"
+          }
+        ]
+      },
+      "operacionesCargadasEnDynamo": "2026-07-15 — confirmado por usuario: 0001-0025 estado N"
     },
     {
       "idCanal": "1019",
@@ -2108,6 +2267,75 @@
           }
         ],
         "urlOperacion0001": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/validar-fallos-con-token"
+      }
+    },
+    {
+      "idCanal": "1024",
+      "swiftCode": "ANOMGATO",
+      "sinRenglonOperacion": true,
+      "proposito": {
+        "vcn": [
+          "Como emisor (sin renglón 0001): Dig no deniega → flujo feliz si validador tiene Y",
+          "Como validador (estadoValidador Y, sin renglón 0001): Dig 418"
+        ],
+        "nota": "Distinto de 1021 (estadoValidador N → 402) y de 1018 (ops con estado N → 482 emisor)"
+      },
+      "escenarioError": {
+        "variablePostman": "CANAL_VALIDADOR_SIN_OPERACION",
+        "esperado": "418",
+        "causa": "Sin fila 0001 en tld-validador-canal-operacion; estadoValidador Y (no es 402)",
+        "estadoEscenarioPostman": "creado 2.2.4 en VCN Escenarios error"
+      },
+      "escenarioFeliz": {
+        "variablePostman": "CANAL_EMISOR_SIN_OPERACION",
+        "esperado": "flujo feliz (emisor ∅ + validador con Y)",
+        "estadoEscenarioPostman": "creado 0001.3.1008.1.3"
+      },
+      "matriz": {
+        "nombreCanal": "Anomaly Appraisal Bank",
+        "empresa": "ANOMGATO",
+        "correo": "fdiaz@telered.com.pa",
+        "fechaCreacion": "2026-07-15 02:53:56"
+      },
+      "credenciales": {
+        "apiKey": "0a28384aa8b46fd594d75ef1235399aeb9adfaf94",
+        "secretKey": "a6suon1p1tfcse2eDU03lBrb58Abe9SAnT1rEbFLk4r9s34ch4b75ijo65ea88b9B9B96dfP7DlljKN1OOgQQh"
+      },
+      "cognito": {
+        "grupos": [
+          "tld-matriz-default",
+          "tld-matriz-validador"
+        ],
+        "sub": "649894f8-5051-707e-52a6-e93d0e8a148f",
+        "client_id": "7cg4g8vorirlhelebcriqnj95a"
+      },
+      "plan": {
+        "idPlan": "d5223ccbba94805594e7aa16bdf21f82aabfa7afd",
+        "idPlanCanal": "96c976b79884e1a5a66ce2775286cc9ea99f77fa7",
+        "namePlan": "Plan dev GATO",
+        "estatus": "inactivo",
+        "exitoso": 0,
+        "fallido": 0,
+        "bloqueado": 0,
+        "fechaFin": "2026-07-30",
+        "fechaHora": "2026-07-15 02:59:01",
+        "idTransaccionAutopista": 822551784102341
+      },
+      "validador": {
+        "algoritmoCifrado": "aes-256-cbc",
+        "algoritmoAes": "aes-256-cbc",
+        "alias": "ANOMGATO",
+        "tipoAuth": "fijo",
+        "useCertificado": false,
+        "estadoValidador": "Y",
+        "urlValidador": "",
+        "headers": "[{\"headerKey\":\"Authorization\",\"headerValue\":\"{{token}}\"}]",
+        "llaveCifrado": "2b8af21a-3740-4c3a-9909-409d44ce4010",
+        "llaveDescifrado": "mrk-fab483954956476787608d9e5eee2c97",
+        "nombre": "Anomaly Appraisal Bank",
+        "canalNombre": "1024-Anomaly Appraisal Bank",
+        "operaciones": [],
+        "operacionesNota": "Sin filas en tld-validador-canal-operacion (∅ para todos los métodos)"
       }
     }
   ],

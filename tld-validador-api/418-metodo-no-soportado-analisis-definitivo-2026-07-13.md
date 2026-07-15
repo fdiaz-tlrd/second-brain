@@ -1,4 +1,4 @@
-# El código 418 "Método no soportado" — análisis definitivo (2026-07-13)
+# El código 418 "Método no soportado por el validador" — análisis definitivo (2026-07-13)
 
 > **Propósito:** cerrar de una vez la pregunta "¿por qué el 418 es especial y de dónde sale?" para no
 > volver a dudarlo en otra sesión. Todo lo de aquí está verificado contra código real de producción
@@ -6,13 +6,15 @@
 
 ## Respuesta corta
 
-El **418 = "Método no soportado"** es un código **del contrato del marketplace** (`api_4.json`), **no** un
-invento del refactor. Significa: *el método enviado no está habilitado*. Qué está "habilitado" se decide
-en **dos tablas de configuración**. Producción ha sido **inconsistente** con este código (a veces lo usa
-para tapar una mala configuración, a veces no lo usa cuando debería) — eso está documentado como
-PROD-MAL en HP-017 / HP-018 / HP-019 / HP-026.
+El **418** (rótulo reformulado 2026-07-14: **«Método no soportado por el validador»**) es código de contrato.
+En **VCN prod** se usa para permiso del **canal validador**. En **P2P prod**, el mismo número sale por otra puerta
+(`CNT_SOLICITUDES_POR_METODO`) y en la **única** cadena `matriz → validador-api → alias` implica desfase con
+`tld-validador-config-servicios`. Ver [418-conceptos-y-permisos-por-metodo-2026-07-14.md](./418-conceptos-y-permisos-por-metodo-2026-07-14.md).
 
-**Decisión firme:** en `tld-validador-api` dev el 418 para método fuera de catálogo **se queda** (implementa
+Qué está "habilitado" se decide en **tablas / env de configuración**. Producción ha sido **inconsistente**
+con este código en otros escenarios — documentado como PROD-MAL en HP-017 / HP-018 / HP-019 / HP-026.
+
+**Decisión firme:** en `tld-validador-api` Dig el 418 para método fuera de catálogo **se queda** (implementa
 HP-018). No se toca el código.
 
 ## De dónde sale el 418: las dos tablas de configuración
@@ -36,8 +38,9 @@ El **producto** emite 418 cuando el método no está en las operaciones del cana
     }
 ```
 
-Y el 418 está en el catálogo de todos los productos (`.../lib/catalogoRespuestas.js`) y en `api_4.json`
-("Método no soportado — si envía un método distinto al esperado (0001)").
+Y el 418 está en el catálogo de todos los productos (`.../lib/catalogoRespuestas.js`). El Marketplace
+histórico decía «Método no soportado»; la **Nueva descripción** canónica (2026-07-14) es
+**«Método no soportado por el validador»** — ver `nueva-tabla-codigo-respuesta.md`.
 
 ## Las inconsistencias de producción con el 418 (ya documentadas)
 

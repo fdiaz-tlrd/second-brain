@@ -1,7 +1,7 @@
 {
-  "nombre": "2.4.2. metodo — no asociado al canal emisor (418) [CANAL_EMISOR_SIN_METODO]",
+  "nombre": "2.4.2. metodo — negado explícitamente para el canal emisor (482) [CANAL_EMISOR_SIN_METODO]",
   "expectedHttpStatus": 400,
-  "expectedCodigoError": 418,
+  "expectedCodigoError": 482,
   "expectedTipo": "general",
   "algoritmoCifrado": "aes-256-cbc",
   "body": {

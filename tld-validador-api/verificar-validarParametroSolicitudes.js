@@ -35,43 +35,42 @@ const validadorPath = path.resolve(
 );
 const { validarParametroSolicitudes } = require(validadorPath);
 
-const LIMITE = 3;
 const s = (id) => ({ idSolicitud: id });
 
 const casos = [
-  // válidos → 0
-  { nombre: "válido simple", sol: [s("sol-001")], limite: LIMITE, esperado: 0 },
-  { nombre: "válido alfanumérico", sol: [s("ABC123")], limite: LIMITE, esperado: 0 },
-  { nombre: "válido con guiones internos", sol: [s("a-b-c-1")], limite: LIMITE, esperado: 0 },
-  { nombre: "válido 64 chars", sol: [s("a".repeat(64))], limite: LIMITE, esperado: 0 },
-  { nombre: "válidos distintos (sin duplicado)", sol: [s("AB"), s("CD")], limite: LIMITE, esperado: 0 },
+  // válidos → 0 (sin tope de cantidad en validador-api; eso lo decide cada producto)
+  { nombre: "válido simple", sol: [s("sol-001")], esperado: 0 },
+  { nombre: "válido alfanumérico", sol: [s("ABC123")], esperado: 0 },
+  { nombre: "válido con guiones internos", sol: [s("a-b-c-1")], esperado: 0 },
+  { nombre: "válido 64 chars", sol: [s("a".repeat(64))], esperado: 0 },
+  { nombre: "válidos distintos (sin duplicado)", sol: [s("AB"), s("CD")], esperado: 0 },
+  { nombre: "array vacío (cantidad → producto)", sol: [], esperado: 0 },
+  { nombre: "más de 3 ítems (cantidad → producto)", sol: [s("a"), s("b"), s("c"), s("d")], esperado: 0 },
 
   // HP-012 → 431
-  { nombre: "HP-012 idSolicitud ausente", sol: [{}], limite: LIMITE, esperado: 431 },
-  { nombre: "HP-012 idSolicitud vacío", sol: [s("")], limite: LIMITE, esperado: 431 },
-  { nombre: "HP-012 solo espacios", sol: [s("   ")], limite: LIMITE, esperado: 431 },
-  { nombre: "HP-012 no-string (number)", sol: [s(123)], limite: LIMITE, esperado: 431 },
-  { nombre: "HP-012 > 64 chars", sol: [s("a".repeat(65))], limite: LIMITE, esperado: 431 },
-  { nombre: "HP-012 duplicado case-insensitive", sol: [s("AB"), s("ab")], limite: LIMITE, esperado: 431 },
+  { nombre: "HP-012 idSolicitud ausente", sol: [{}], esperado: 431 },
+  { nombre: "HP-012 idSolicitud vacío", sol: [s("")], esperado: 431 },
+  { nombre: "HP-012 solo espacios", sol: [s("   ")], esperado: 431 },
+  { nombre: "HP-012 no-string (number)", sol: [s(123)], esperado: 431 },
+  { nombre: "HP-012 > 64 chars", sol: [s("a".repeat(65))], esperado: 431 },
+  { nombre: "HP-012 duplicado case-insensitive", sol: [s("AB"), s("ab")], esperado: 431 },
 
   // HP-013 charset → 431
-  { nombre: "HP-013 guion bajo", sol: [s("id_001")], limite: LIMITE, esperado: 431 },
-  { nombre: "HP-013 espacio interno", sol: [s("id 001")], limite: LIMITE, esperado: 431 },
-  { nombre: "HP-013 arroba", sol: [s("id@001")], limite: LIMITE, esperado: 431 },
-  { nombre: "HP-013 punto", sol: [s("id.001")], limite: LIMITE, esperado: 431 },
-  { nombre: "HP-013 slash", sol: [s("id/001")], limite: LIMITE, esperado: 431 },
-  { nombre: "HP-013 solo un guion", sol: [s("-")], limite: LIMITE, esperado: 431 },
-  { nombre: "HP-013 solo guiones", sol: [s("---")], limite: LIMITE, esperado: 431 },
+  { nombre: "HP-013 guion bajo", sol: [s("id_001")], esperado: 431 },
+  { nombre: "HP-013 espacio interno", sol: [s("id 001")], esperado: 431 },
+  { nombre: "HP-013 arroba", sol: [s("id@001")], esperado: 431 },
+  { nombre: "HP-013 punto", sol: [s("id.001")], esperado: 431 },
+  { nombre: "HP-013 slash", sol: [s("id/001")], esperado: 431 },
+  { nombre: "HP-013 solo un guion", sol: [s("-")], esperado: 431 },
+  { nombre: "HP-013 solo guiones", sol: [s("---")], esperado: 431 },
 
   // HP-014 null / no-objeto → 431 sin crash
-  { nombre: "HP-014 elemento null", sol: [null], limite: LIMITE, esperado: 431 },
-  { nombre: "HP-014 elemento string", sol: ["foo"], limite: LIMITE, esperado: 431 },
-  { nombre: "HP-014 elemento number", sol: [42], limite: LIMITE, esperado: 431 },
+  { nombre: "HP-014 elemento null", sol: [null], esperado: 431 },
+  { nombre: "HP-014 elemento string", sol: ["foo"], esperado: 431 },
+  { nombre: "HP-014 elemento number", sol: [42], esperado: 431 },
 
-  // cantidad → 425 (sin cambios)
-  { nombre: "425 array vacío", sol: [], limite: LIMITE, esperado: 425 },
-  { nombre: "425 no-array", sol: null, limite: LIMITE, esperado: 425 },
-  { nombre: "425 excede límite", sol: [s("a"), s("b"), s("c"), s("d")], limite: LIMITE, esperado: 425 },
+  // forma de solicitudes (no es tope de cantidad)
+  { nombre: "400 no-array", sol: null, esperado: 400 },
 ];
 
 let ok = 0;
@@ -80,7 +79,7 @@ let fail = 0;
 for (const c of casos) {
   let real;
   try {
-    real = validarParametroSolicitudes(c.sol, c.limite).statusCode;
+    real = validarParametroSolicitudes(c.sol).statusCode;
   } catch (e) {
     real = "CRASH: " + e.message;
   }
