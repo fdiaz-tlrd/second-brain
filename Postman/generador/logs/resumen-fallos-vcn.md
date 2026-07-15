@@ -2,13 +2,13 @@
 
 | Campo | Valor |
 |-------|-------|
-| Fecha | 2026-07-15T17:02:18.998Z |
+| Fecha | 2026-07-15T18:49:43.988Z |
 | Código fuente | dev |
 | Nivel ejecución | MATRIZ |
 | Carpeta | `(completo)` |
-| Nota | post-deploy Dig 481/482/418 canales 1018-1024 |
-| Requests | 1335 (failed: 0) |
-| Tests | 4836 (failed: 88) |
+| Nota | matriz 3x3 exhaustiva 5_matrizOps0001 + Dig 481/482 |
+| Requests | 1355 (failed: 0) |
+| Tests | 4888 (failed: 88) |
 | JSON completo | `logs\ultimo-run-vcn.json` |
 
 ## 1. 0_jsonEntrada / 0.1. body — JSON HTTP inválido (400)
@@ -538,7 +538,7 @@
 - **HTTP descifrar:** 200
 
 ```json
-{"respuesta":{"idPeticion":"CELEGATO1784134288","respuestas":[{"idSolicitud":"1","resultado":0,"datos":{"banco":"TLRDPAPA","cuenta":"1100001328","producto":"PACA","estadoCuenta":"0","titulares":["Fis*** vo* Luftsc***** Narfi****"]}}]}}
+{"respuesta":{"idPeticion":"CELEGATO1784140708","respuestas":[{"idSolicitud":"1","resultado":0,"datos":{"banco":"TLRDPAPA","cuenta":"1100001328","producto":"PACA","estadoCuenta":"0","titulares":["Fis*** vo* Luftsc***** Narfi****"]}}]}}
 ```
 
 ## 54. 2_validador / 1.2.15. validador — distinto a {{CANAL_VALIDADOR}} (CANAL_EMISOR) (400)
@@ -548,7 +548,7 @@
 - **HTTP descifrar:** 200
 
 ```json
-{"respuesta":{"idPeticion":"CELEGATO1784134288","respuestas":[{"idSolicitud":"1","resultado":0,"datos":{"banco":"TLRDPAPA","cuenta":"1100001328","producto":"PACA","estadoCuenta":"0","titulares":["Fis*** vo* Luftsc***** Narfi****"]}}]}}
+{"respuesta":{"idPeticion":"CELEGATO1784140708","respuestas":[{"idSolicitud":"1","resultado":0,"datos":{"banco":"TLRDPAPA","cuenta":"1100001328","producto":"PACA","estadoCuenta":"0","titulares":["Fis*** vo* Luftsc***** Narfi****"]}}]}}
 ```
 
 ## 55. 3_peticion / 1.3.4. peticion — tipo number (400)

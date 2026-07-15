@@ -4,16 +4,16 @@ Actualizado automáticamente por `run-newman.js`. **No** editar a mano.
 
 | Campo | Valor |
 |-------|-------|
-| Fecha (UTC) | 2026-07-15T17:02:19.372Z |
+| Fecha (UTC) | 2026-07-15T18:49:44.364Z |
 | Código fuente | dev |
 | Nivel ejecución | MATRIZ |
 | Carpeta | (completo) |
-| Requests | 1335 (fail 0) |
-| Tests | 4836 (fail 88) |
+| Requests | 1355 (fail 0) |
+| Tests | 4888 (fail 88) |
 | Resultado | **FALLÓ** |
-| Nota | post-deploy Dig 481/482/418 canales 1018-1024 |
+| Nota | matriz 3x3 exhaustiva 5_matrizOps0001 + Dig 481/482 |
 | Registro | [`registro-vcn.md`](./registro-vcn.md) |
-| Historial JSON | `historial/vcn/2026-07-15T17-02-19Z_dev_MATRIZ_completo.json` |
+| Historial JSON | `historial/vcn/2026-07-15T18-49-44Z_dev_MATRIZ_completo.json` |
 | Foto | `../../../codigosRespuesta/foto-presentacion-vcn-dev.md` |
 | Muestras | `../../../codigosRespuesta/foto-presentacion-vcn-dev.muestras.md` |
 
