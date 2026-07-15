@@ -2,13 +2,13 @@
 
 | Campo | Valor |
 |-------|-------|
-| Fecha | 2026-07-14T16:03:13.931Z |
+| Fecha | 2026-07-15T14:15:14.338Z |
 | Código fuente | dev |
 | Nivel ejecución | MATRIZ |
 | Carpeta | `(completo)` |
-| Nota | foto presentacion contratos codigo fuente dev |
-| Requests | 1323 (failed: 0) |
-| Tests | 4689 (failed: 102) |
+| Nota | post-deploy Dig 481/482/418 canales 1018-1024 |
+| Requests | 1335 (failed: 0) |
+| Tests | 4836 (failed: 88) |
 | JSON completo | `logs\ultimo-run-vcn.json` |
 
 ## 1. 0_jsonEntrada / 0.1. body — JSON HTTP inválido (400)
@@ -328,17 +328,17 @@
 - **HTTP descifrar:** 200
 
 ```json
-{"codigoError":500,"mensajeError":"ERROR: Excepción no controlada al momento de buscar la información del canal"}
+{"codigoError":500,"mensajeError":"Error interno"}
 ```
 
 ## 33. 2_validador / 1.2.4. validador — tipo number (400)
 
 - **Test:** [General] mensajeError = "Error en la petición original"
-- **Mensaje:** expected 'ERROR: Excepción no controlada al mom…' to equal 'Error en la petición original'
+- **Mensaje:** expected 'Error interno' to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
 
 ```json
-{"codigoError":500,"mensajeError":"ERROR: Excepción no controlada al momento de buscar la información del canal"}
+{"codigoError":500,"mensajeError":"Error interno"}
 ```
 
 ## 34. 2_validador / 1.2.5. validador — tipo boolean (400)
@@ -348,17 +348,17 @@
 - **HTTP descifrar:** 200
 
 ```json
-{"codigoError":500,"mensajeError":"ERROR: Excepción no controlada al momento de buscar la información del canal"}
+{"codigoError":500,"mensajeError":"Error interno"}
 ```
 
 ## 35. 2_validador / 1.2.5. validador — tipo boolean (400)
 
 - **Test:** [General] mensajeError = "Error en la petición original"
-- **Mensaje:** expected 'ERROR: Excepción no controlada al mom…' to equal 'Error en la petición original'
+- **Mensaje:** expected 'Error interno' to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
 
 ```json
-{"codigoError":500,"mensajeError":"ERROR: Excepción no controlada al momento de buscar la información del canal"}
+{"codigoError":500,"mensajeError":"Error interno"}
 ```
 
 ## 36. 2_validador / 1.2.6. validador — tipo object (400)
@@ -368,17 +368,17 @@
 - **HTTP descifrar:** 200
 
 ```json
-{"codigoError":500,"mensajeError":"ERROR: Excepción no controlada al momento de buscar la información del canal"}
+{"codigoError":500,"mensajeError":"Error interno"}
 ```
 
 ## 37. 2_validador / 1.2.6. validador — tipo object (400)
 
 - **Test:** [General] mensajeError = "Error en la petición original"
-- **Mensaje:** expected 'ERROR: Excepción no controlada al mom…' to equal 'Error en la petición original'
+- **Mensaje:** expected 'Error interno' to equal 'Error en la petición original'
 - **HTTP descifrar:** 200
 
 ```json
-{"codigoError":500,"mensajeError":"ERROR: Excepción no controlada al momento de buscar la información del canal"}
+{"codigoError":500,"mensajeError":"Error interno"}
 ```
 
 ## 38. 2_validador / 1.2.7. validador — solo espacios, trim vacío (400)
@@ -538,7 +538,7 @@
 - **HTTP descifrar:** 200
 
 ```json
-{"respuesta":{"idPeticion":"CELEGATO1784044315","respuestas":[{"idSolicitud":"1","resultado":0,"datos":{"banco":"TLRDPAPA","cuenta":"1100001328","producto":"PACA","estadoCuenta":"0","titulares":["Fis*** vo* Luftsc***** Narfi****"]}}]}}
+{"respuesta":{"idPeticion":"CELEGATO1784124240","respuestas":[{"idSolicitud":"1","resultado":0,"datos":{"banco":"TLRDPAPA","cuenta":"1100001328","producto":"PACA","estadoCuenta":"0","titulares":["Fis*** vo* Luftsc***** Narfi****"]}}]}}
 ```
 
 ## 54. 2_validador / 1.2.15. validador — distinto a {{CANAL_VALIDADOR}} (CANAL_EMISOR) (400)
@@ -548,7 +548,7 @@
 - **HTTP descifrar:** 200
 
 ```json
-{"respuesta":{"idPeticion":"CELEGATO1784044315","respuestas":[{"idSolicitud":"1","resultado":0,"datos":{"banco":"TLRDPAPA","cuenta":"1100001328","producto":"PACA","estadoCuenta":"0","titulares":["Fis*** vo* Luftsc***** Narfi****"]}}]}}
+{"respuesta":{"idPeticion":"CELEGATO1784124240","respuestas":[{"idSolicitud":"1","resultado":0,"datos":{"banco":"TLRDPAPA","cuenta":"1100001328","producto":"PACA","estadoCuenta":"0","titulares":["Fis*** vo* Luftsc***** Narfi****"]}}]}}
 ```
 
 ## 55. 3_peticion / 1.3.4. peticion — tipo number (400)
@@ -873,158 +873,18 @@
 
 ## 87. 5_solicitudes / 1.5.1. solicitudes — tipo string (425)
 
-- **Test:** [General] mensajeError = "Cantidad de solicitudes no permitidas"
-- **Mensaje:** expected 'Cantidad de solicitudes no permitidas.' to equal 'Cantidad de solicitudes no permitidas'
+- **Test:** [General] codigoError = 425
+- **Mensaje:** expected 400 to equal 425
 - **HTTP descifrar:** 200
 
 ```json
-{"respuesta":{"codigoError":425,"mensajeError":"Cantidad de solicitudes no permitidas."}}
+{"respuesta":{"codigoError":400,"mensajeError":"Error en la petición original"}}
 ```
 
-## 88. 5_solicitudes / 1.5.2. solicitudes — arreglo vacío (425)
-
-- **Test:** [General] mensajeError = "Cantidad de solicitudes no permitidas"
-- **Mensaje:** expected 'Cantidad de solicitudes no permitidas.' to equal 'Cantidad de solicitudes no permitidas'
-- **HTTP descifrar:** 200
-
-```json
-{"respuesta":{"codigoError":425,"mensajeError":"Cantidad de solicitudes no permitidas."}}
-```
-
-## 89. 5_solicitudes / 1.5.3. solicitudes — excede límite 0015, 5 solicitudes (425)
+## 88. 5_solicitudes / 1.5.1. solicitudes — tipo string (425)
 
 - **Test:** [General] mensajeError = "Cantidad de solicitudes no permitidas"
-- **Mensaje:** expected 'Cantidad de solicitudes no permitidas.' to equal 'Cantidad de solicitudes no permitidas'
-- **HTTP descifrar:** 200
-
-```json
-{"respuesta":{"codigoError":425,"mensajeError":"Cantidad de solicitudes no permitidas."}}
-```
-
-## 90. 5_solicitudes / 1.5.9. solicitudes — idSolicitud duplicado case-insensitive (431) [CFG 0015≥2]
-
-- **Test:** [General] codigoError = 431
-- **Mensaje:** expected 425 to equal 431
-- **HTTP descifrar:** 200
-
-```json
-{"respuesta":{"codigoError":425,"mensajeError":"Cantidad de solicitudes no permitidas."}}
-```
-
-## 91. 5_solicitudes / 1.5.9. solicitudes — idSolicitud duplicado case-insensitive (431) [CFG 0015≥2]
-
-- **Test:** [General] mensajeError = "Campo idSolicitud no cumple con los criterios"
-- **Mensaje:** expected 'Cantidad de solicitudes no permitidas.' to equal 'Campo idSolicitud no cumple con los c…'
-- **HTTP descifrar:** 200
-
-```json
-{"respuesta":{"codigoError":425,"mensajeError":"Cantidad de solicitudes no permitidas."}}
-```
-
-## 92. 1_idCanal / 2.1.3. idCanal — error interno getCanal (500) [CANAL_EMISOR_MAL_CONFIGURADO]
-
-- **Test:** [General] mensajeError = "Error interno"
-- **Mensaje:** expected 'ERROR: Excepción no controlada al mom…' to equal 'Error interno'
-- **HTTP descifrar:** 200
-
-```json
-{"codigoError":500,"mensajeError":"ERROR: Excepción no controlada al momento de buscar la información del canal"}
-```
-
-## 93. 2_validador / 2.2.3. validador — error interno getCanal (500) [CANAL_VALIDADOR_MAL_CONFIGURADO]
-
-- **Test:** [General] mensajeError = "Error interno"
-- **Mensaje:** expected 'ERROR: Excepción no controlada al mom…' to equal 'Error interno'
-- **HTTP descifrar:** 200
-
-```json
-{"codigoError":500,"mensajeError":"ERROR: Excepción no controlada al momento de buscar la información del canal"}
-```
-
-## 94. 4_metodo / 2.4.1. metodo — no está en CFG_METODOS_LIMITES_JSON (418)
-
-- **Test:** [General] mensajeError = "Método no soportado"
-- **Mensaje:** expected 'Metodo no soportado por el validador' to equal 'Método no soportado'
-- **HTTP descifrar:** 200
-
-```json
-{"codigoError":418,"mensajeError":"Metodo no soportado por el validador"}
-```
-
-## 95. 1008 / 0001.3.1008.1.2. validador por SWIFT CELEGATO — cuenta feliz (exito)
-
-- **Test:** [Dummy /descifrar] estructura inner.respuestas[0] presente
-- **Mensaje:** expected { codigoError: 400, …(1) } to have property 'respuestas'
-- **HTTP descifrar:** 200
-
-```json
-{"respuesta":{"codigoError":400,"mensajeError":"Error en la petición original"}}
-```
-
-## 96. 1009 / 0001.3.1009.1.2. validador por SWIFT ASTRGATO — cuenta feliz (exito)
-
-- **Test:** [Dummy /descifrar] estructura inner.respuestas[0] presente
-- **Mensaje:** expected { codigoError: 400, …(1) } to have property 'respuestas'
-- **HTTP descifrar:** 200
-
-```json
-{"respuesta":{"codigoError":400,"mensajeError":"Error en la petición original"}}
-```
-
-## 97. 1011 / 0001.3.1011.1.2. validador por SWIFT MIRAGATO — cuenta feliz (exito)
-
-- **Test:** [Dummy /descifrar] estructura inner.respuestas[0] presente
-- **Mensaje:** expected { codigoError: 400, …(1) } to have property 'respuestas'
-- **HTTP descifrar:** 200
-
-```json
-{"respuesta":{"codigoError":400,"mensajeError":"Error en la petición original"}}
-```
-
-## 98. 1012 / 0001.3.1012.1.2. validador por SWIFT TERAGATO — cuenta feliz (exito)
-
-- **Test:** [Dummy /descifrar] estructura inner.respuestas[0] presente
-- **Mensaje:** expected { codigoError: 400, …(1) } to have property 'respuestas'
-- **HTTP descifrar:** 200
-
-```json
-{"respuesta":{"codigoError":400,"mensajeError":"Error en la petición original"}}
-```
-
-## 99. 1013 / 0001.3.1013.1.2. validador por SWIFT AMIYGATO — cuenta feliz (exito)
-
-- **Test:** [Dummy /descifrar] estructura inner.respuestas[0] presente
-- **Mensaje:** expected { codigoError: 400, …(1) } to have property 'respuestas'
-- **HTTP descifrar:** 200
-
-```json
-{"respuesta":{"codigoError":400,"mensajeError":"Error en la petición original"}}
-```
-
-## 100. 1014 / 0001.3.1014.1.2. validador por SWIFT CORNGATO — cuenta feliz (exito)
-
-- **Test:** [Dummy /descifrar] estructura inner.respuestas[0] presente
-- **Mensaje:** expected { codigoError: 400, …(1) } to have property 'respuestas'
-- **HTTP descifrar:** 200
-
-```json
-{"respuesta":{"codigoError":400,"mensajeError":"Error en la petición original"}}
-```
-
-## 101. 1015 / 0001.3.1015.1.2. validador por SWIFT ZONAGATO — cuenta feliz (exito)
-
-- **Test:** [Dummy /descifrar] estructura inner.respuestas[0] presente
-- **Mensaje:** expected { codigoError: 400, …(1) } to have property 'respuestas'
-- **HTTP descifrar:** 200
-
-```json
-{"respuesta":{"codigoError":400,"mensajeError":"Error en la petición original"}}
-```
-
-## 102. 1016 / 0001.3.1016.1.2. validador por SWIFT BELLGATO — cuenta feliz (exito) — sin enmascaramiento
-
-- **Test:** [Dummy /descifrar] estructura inner.respuestas[0] presente
-- **Mensaje:** expected { codigoError: 400, …(1) } to have property 'respuestas'
+- **Mensaje:** expected 'Error en la petición original' to equal 'Cantidad de solicitudes no permitidas'
 - **HTTP descifrar:** 200
 
 ```json
