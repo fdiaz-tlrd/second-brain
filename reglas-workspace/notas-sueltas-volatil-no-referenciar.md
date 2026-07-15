@@ -1,25 +1,25 @@
-# Carpeta volátil `notas-sueltas/` — no referenciar
+# Carpeta volátil del usuario — no referenciar
 
 | Campo | Valor |
 |-------|-------|
 | Fecha | 2026-07-15 |
-| Regla | Docs fijos en `second-brain` **no** enlazan ni dependen de `notas-sueltas/` |
+| Regla | Docs fijos en `second-brain` **no** enlazan ni dependen de la carpeta volátil del usuario (servilleta Lenovo ↔ VPN) |
 
 ## Qué es
 
-Servilleta del usuario entre Lenovo ↔ máquina VPN. Ejemplo legítimo: `ejecutar-newman.md` (solo comandos, sin narrativa).
+Servilleta del usuario entre máquinas. Ejemplo legítimo: solo comandos sueltos, sin narrativa.
 
 ## Qué hace el agente
 
-- Si un doc fijo necesita un archivo que estaba en `notas-sueltas/`, **copiar** junto al doc que lo usa (carpeta del tema) y apuntar la referencia a la copia.
-- **No** crear handoffs, reglas ni historial en `notas-sueltas/`.
+- Si un doc fijo necesita un archivo que estaba en esa carpeta, **copiar** junto al doc que lo usa y apuntar a la copia.
+- **No** crear handoffs, reglas ni historial ahí.
 
-## Copias creadas (2026-07-15)
+## Copias fijas (2026-07-15)
 
-| Origen volátil | Copia fija |
-|----------------|------------|
-| `resultado_prueba.md`, `vcn-datos-…`, cargar + json dummy | [`../tld-api-cuenta-nombre/datos-prueba-dev/`](../tld-api-cuenta-nombre/datos-prueba-dev/) |
-| cargar + json dummy (generador) | [`../Postman/generador/datos-vcn-dummy/`](../Postman/generador/datos-vcn-dummy/) |
-| `error.md`, `errorDespligue.md` | [`../prod_adactado_a_dev/evidencia-despliegue/`](../prod_adactado_a_dev/evidencia-despliegue/) |
+| Contenido | Destino |
+|-----------|---------|
+| Datos prueba VCN / dummy / resultado histórico | [`../tld-api-cuenta-nombre/datos-prueba-dev/`](../tld-api-cuenta-nombre/datos-prueba-dev/) |
+| Seed dummy generador | [`../Postman/generador/datos-vcn-dummy/`](../Postman/generador/datos-vcn-dummy/) |
+| Logs despliegue | [`../prod_adactado_a_dev/evidencia-despliegue/`](../prod_adactado_a_dev/evidencia-despliegue/) |
 
-Los originales pueden seguir en `notas-sueltas/` para uso personal; la documentación ya no los referencia.
+Los originales en la carpeta volátil fueron eliminados (2026-07-15); la documentación solo usa las copias.

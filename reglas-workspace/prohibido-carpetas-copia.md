@@ -4,7 +4,7 @@
 |-------|-------|
 | Fecha | 2026-07-15 |
 | Disparo | Agente tocó / escaneó repos cuyo nombre lleva `copia` sin pedido; usuario ordenó borrado |
-| Ubicación | `second-brain/reglas-workspace/` (fijo). **No** va en `notas-sueltas/` |
+| Ubicación | `second-brain/reglas-workspace/` (fijo). **No** va en la carpeta volátil del usuario |
 
 ## Regla — `*copia*`
 

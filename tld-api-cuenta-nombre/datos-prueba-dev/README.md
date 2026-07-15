@@ -1,6 +1,6 @@
 # Datos de prueba VCN (dev) — copia fija
 
-Copia estable de evidencia/datos — **no** usar la carpeta volátil `notas-sueltas/` en docs fijos.
+Evidencia/datos estables del tema VCN.
 
 | Archivo | Uso |
 |---------|-----|
@@ -8,5 +8,3 @@ Copia estable de evidencia/datos — **no** usar la carpeta volátil `notas-suel
 | [`cargar-tld-validador-dummy-cuentas-vcn-dev.md`](./cargar-tld-validador-dummy-cuentas-vcn-dev.md) | Carga Dynamo dummy |
 | [`tld-validador-dummy-cuentas-vcn-dev.json`](./tld-validador-dummy-cuentas-vcn-dev.json) | Seed batch-write |
 | [`resultado_prueba.md`](./resultado_prueba.md) | Histórico Newman General (jul-2026) |
-
-Original volátil del usuario (servilleta entre máquinas) — no referenciar desde docs.
