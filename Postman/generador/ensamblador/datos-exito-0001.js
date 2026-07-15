@@ -1,6 +1,6 @@
 /**
  * Catálogo de cuentas A11 (éxito) para método 0001.
- * Fuente: notas-sueltas/tld-validador-dummy-cuentas-vcn-dev.json
+ * Fuente: datos-vcn-dummy/tld-validador-dummy-cuentas-vcn-dev.json
  */
 module.exports = {
   EXPECTED_BANCO: "TLRDPAPA",

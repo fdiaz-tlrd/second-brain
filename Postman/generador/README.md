@@ -33,7 +33,7 @@ Detalle: [`../../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md`](../../tl
 | `VCN Escenarios error/` | Escenarios fuente VCN |
 | `entornos/` | Environments Postman |
 | [`../canalesPruebas-dev/`](../canalesPruebas-dev/) | Canales dev, export Dynamo, operaciones validador |
-| [`../../notas-sueltas/`](../../notas-sueltas/) | Seed Dynamo `tld-validador-dummy` (cuentas VCN dev) — ver [`cargar-tld-validador-dummy-cuentas-vcn-dev.md`](../../notas-sueltas/cargar-tld-validador-dummy-cuentas-vcn-dev.md) |
+| [`datos-vcn-dummy/`](./datos-vcn-dummy/) | Seed Dynamo `tld-validador-dummy` (cuentas VCN dev) — [`cargar-tld-validador-dummy-cuentas-vcn-dev.md`](./datos-vcn-dummy/cargar-tld-validador-dummy-cuentas-vcn-dev.md) |
 
 ## Uso — ensamblar colección
 
@@ -357,7 +357,7 @@ Registro: `logs\registro-vcn.md` · `logs\historial\vcn\` (análogo `p2m` / `p2p
 
 `4_idPeticion_soloLog`: fuera del run `vcn` completo; Newman aserta **exito** (prod no rechaza; VCN dev solo log).
 
-**Dynamo dev:** [`notas-sueltas/tld-validador-dummy-cuentas-vcn-dev.json`](../../notas-sueltas/tld-validador-dummy-cuentas-vcn-dev.json) · [`cargar-tld-validador-dummy-cuentas-vcn-dev.md`](../../notas-sueltas/cargar-tld-validador-dummy-cuentas-vcn-dev.md)
+**Dynamo dev:** [`datos-vcn-dummy/tld-validador-dummy-cuentas-vcn-dev.json`](./datos-vcn-dummy/tld-validador-dummy-cuentas-vcn-dev.json) · [`datos-vcn-dummy/cargar-tld-validador-dummy-cuentas-vcn-dev.md`](./datos-vcn-dummy/cargar-tld-validador-dummy-cuentas-vcn-dev.md)
 
 En Cursor tras push de logs: `@Postman/generador/logs/resumen-fallos-vcn.md`
 

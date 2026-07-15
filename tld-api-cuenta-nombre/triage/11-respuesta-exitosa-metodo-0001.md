@@ -36,4 +36,4 @@ Ver README en esa carpeta para subcarpetas planificadas.
 
 ## Cuentas / env
 
-Variables env: [`Postman/generador/entornos/VCN Escenarios error - desarrollo.postman_environment.json`](../../Postman/generador/entornos/VCN%20Escenarios%20error%20-%20desarrollo.postman_environment.json) (`CANAL_VALIDADOR_EXITO`, `Variostitulares`, `Cuenta1`, `Cuenta34`). Dynamo: [`notas-sueltas/cargar-tld-validador-dummy-cuentas-vcn-dev.md`](../../notas-sueltas/cargar-tld-validador-dummy-cuentas-vcn-dev.md).
+Variables env: [`Postman/generador/entornos/VCN Escenarios error - desarrollo.postman_environment.json`](../../Postman/generador/entornos/VCN%20Escenarios%20error%20-%20desarrollo.postman_environment.json) (`CANAL_VALIDADOR_EXITO`, `Variostitulares`, `Cuenta1`, `Cuenta34`). Dynamo: [`../datos-prueba-dev/cargar-tld-validador-dummy-cuentas-vcn-dev.md`](../datos-prueba-dev/cargar-tld-validador-dummy-cuentas-vcn-dev.md).

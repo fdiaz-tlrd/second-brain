@@ -102,7 +102,7 @@ Estado de la rama `prod-a-dev` (sin poda, config dev en prod, refactor excluido)
 ## Fixes aplicados a `deploy.ps1` (jul-2026)
 
 El script copiado a `second-brain/despliegue/deploy.ps1` tuvo **ParserError** en PowerShell 5.1 del
-servidor (`C:\AWSdeploy\deploy.ps1`). Evidencia: `second-brain/notas-sueltas/errorDespligue.md`.
+servidor (`C:\AWSdeploy\deploy.ps1`). Evidencia: [`evidencia-despliegue/errorDespligue.md`](./evidencia-despliegue/errorDespligue.md).
 
 | Problema | Línea aprox. | Fix |
 |----------|--------------|-----|

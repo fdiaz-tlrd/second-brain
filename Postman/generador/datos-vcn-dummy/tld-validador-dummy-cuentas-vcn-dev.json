@@ -1,0 +1,710 @@
+{
+  "tld-validador-dummy": [
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "5000000510"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "1"
+          },
+          "resultado": {
+            "N": "510"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "N\u00famero de cuenta incorrecta"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "5000000511"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "1"
+          },
+          "resultado": {
+            "N": "511"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "N\u00famero de cuenta cerrado"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "5000000512"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "1"
+          },
+          "resultado": {
+            "N": "512"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "N\u00famero de cuenta bloqueado"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "5000000513"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "1"
+          },
+          "resultado": {
+            "N": "513"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Transacci\u00f3n no permitida"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "5000000514"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "1"
+          },
+          "resultado": {
+            "N": "514"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Falta informaci\u00f3n obligatoria de consulta"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "5000000515"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "1"
+          },
+          "resultado": {
+            "N": "515"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Raz\u00f3n regulatoria"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1100001328"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "0"
+          },
+          "resultado": {
+            "N": "0"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Fischl von Luftschloss Narfidort"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1100001161"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "0"
+          },
+          "resultado": {
+            "N": "0"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Lynette Snezhevna"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1200130811"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "0"
+          },
+          "resultado": {
+            "N": "0"
+          },
+          "tipoCuenta": {
+            "S": "PACC"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Alexandrina Sebastiane"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1100029543"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "0"
+          },
+          "resultado": {
+            "N": "0"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Luciana de Montefio"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1100236049"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "0"
+          },
+          "resultado": {
+            "N": "0"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Mona Megistus"
+              },
+              {
+                "S": "Pelageya Sergeyevna"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1100108552"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "0"
+          },
+          "resultado": {
+            "N": "0"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Mar\u00eda Ni\u00f1o Pe\u00f1a"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1200218707"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "0"
+          },
+          "resultado": {
+            "N": "0"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Soledad Mu\u00f1oz Iba\u00f1ez"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1100207446"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "0"
+          },
+          "resultado": {
+            "N": "0"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Agust\u00edn Da\u00f1ino"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1100023371"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "0"
+          },
+          "resultado": {
+            "N": "0"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Concepci\u00f3n Ni\u00f1o de Pe\u00f1a"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1100015294"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "0"
+          },
+          "resultado": {
+            "N": "0"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Ni\u00f1o Mu\u00f1oz Larra\u00f1aga"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1200135000"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "0"
+          },
+          "resultado": {
+            "N": "0"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Pe\u00f1a Garc\u00eda Ni\u00f1o"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "0"
+          },
+          "resultado": {
+            "N": "0"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Mona Megistus"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1234567890123456789012345678901234"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "0"
+          },
+          "resultado": {
+            "N": "0"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Fischl von Luftschloss Narfidort"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1100002099"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "0"
+          },
+          "resultado": {
+            "N": "0"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Mar\u00eda Ni\u00f1o Pe\u00f1a"
+              },
+              {
+                "S": "Agust\u00edn Da\u00f1ino Mu\u00f1oz"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1100000239"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "1"
+          },
+          "resultado": {
+            "N": "511"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Cuenta cerrada legacy"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1100000411"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "1"
+          },
+          "resultado": {
+            "N": "512"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Cuenta bloqueada legacy"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1100024932"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "1"
+          },
+          "resultado": {
+            "N": "513"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Transacci\u00f3n no permitida legacy"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1100003126"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "1"
+          },
+          "resultado": {
+            "N": "515"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Raz\u00f3n regulatoria legacy"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "cuenta": {
+            "S": "1100000514"
+          },
+          "banco": {
+            "S": "TLRDPAPA"
+          },
+          "estadoCuenta": {
+            "S": "1"
+          },
+          "resultado": {
+            "N": "514"
+          },
+          "tipoCuenta": {
+            "S": "PACA"
+          },
+          "titulares": {
+            "L": [
+              {
+                "S": "Falta informaci\u00f3n obligatoria legacy"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

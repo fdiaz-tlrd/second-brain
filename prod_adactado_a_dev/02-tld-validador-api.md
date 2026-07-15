@@ -17,7 +17,7 @@ La versión anterior de este doc afirmaba que **"el único cambio era el VPCe"**
 `AccessPointId` / `EFSResourceId` **no hacían falta**. **Eso era falso y rompía el propósito de
 `prod-a-dev` (que la versión de prod despliegue Y CORRA en dev).**
 
-Evidencia (log `second-brain/notas-sueltas/error.md`): `tld-validador-validar` intentaba descifrar con la
+Evidencia (log [`evidencia-despliegue/error.md`](./evidencia-despliegue/error.md)): `tld-validador-validar` intentaba descifrar con la
 KMS `arn:...key/mrk-fab483954956476787608d9e5eee2c97` y la lambda reportaba
 `LLave mrk-fab... NO EXISTE` → `InvalidCiphertextException`. Es decir: **desplegaba pero no descifraba.**
 

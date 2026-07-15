@@ -16,7 +16,7 @@ Espacio de trabajo en `second-brain` para **estudiar y corregir** el repositorio
 ## Propósito de esta carpeta
 
 - **Memoria viva** del hilo VCN: el agente documenta aquí todo lo analizado o acordado para recuperar contexto **sin re-leer** repos ni transcripts.
-- **No** se mueven archivos de otras rutas (`notas-sueltas/`, `Postman/`, etc.); solo referencias.
+- **No** se mueven archivos de otras rutas salvo copias fijas en carpetas del tema; solo referencias.
 - Tras cada bloque de escenarios Newman: **actualizar checklist, triage y README** en esta carpeta (no preguntar).
 
 VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De ellos salió `tld-api-base` (**solo estudio, nunca productivo**) — ver [`../tld-api-base/README.md`](../tld-api-base/README.md). **Repos autónomos:** VCN no depende de otros repos; se copia/adapta el patrón adentro de `tld-api-cuenta-nombre`. Los repos de producto y base **NUNCA se ven entre sí**.
@@ -48,8 +48,8 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 ## Referencias externas
 
 - Producción (solo awareness; no en alcance ahora): [referencia-produccion.md](./referencia-produccion.md)
-- Resultado pruebas Postman: [`../notas-sueltas/resultado_prueba.md`](../notas-sueltas/resultado_prueba.md)
-- **Datos prueba dev A11:** [`../notas-sueltas/vcn-datos-prueba-dev-metodo-0001-exito.md`](../notas-sueltas/vcn-datos-prueba-dev-metodo-0001-exito.md)
+- Resultado pruebas Postman: [`datos-prueba-dev/resultado_prueba.md`](./datos-prueba-dev/resultado_prueba.md)
+- **Datos prueba dev A11:** [`datos-prueba-dev/vcn-datos-prueba-dev-metodo-0001-exito.md`](./datos-prueba-dev/vcn-datos-prueba-dev-metodo-0001-exito.md)
 - QA equipo: [`../Postman/equipo-pruebas/Validacion Cuenta Nombre/`](../Postman/equipo-pruebas/Validacion%20Cuenta%20Nombre/) — no modificar `estudio-coleccion-vcn.md`
 
 ## Estado
@@ -74,7 +74,7 @@ VCN comparte **idea transversal** con P2M y P2P; P2M/P2P están más pulidos. De
 | 2026-07-05 | **Baseline General 78/78** — Newman `4_metodo` 12/12 + regresión `1_validaciones_js` 396/396 |
 | 2026-07-05 | **A8** `2_reglaNegocio/2_validador` — debate cerrado; A8a deploy; Newman **3/3** + VCN **570/570** (19:51Z) |
 | 2026-07-05 | **A9** `Metodo/0001/2_respuestaCanalValidador` — 48 escenarios códigos **510–515** × validadores **1008–1016**; Newman Metodo **522/522**, VCN completo **1008/1008** (23:19Z); commits `b4c400c`, `8df6084`, log `aee0972` |
-| 2026-07-05 | **A10** `1_cuenta` 413 — **20/20**; Newman **1098/1098** (23:40Z); datos A11 en `notas-sueltas/vcn-datos-prueba-dev-metodo-0001-exito.md` |
+| 2026-07-05 | **A10** `1_cuenta` 413 — **20/20**; Newman **1098/1098** (23:40Z); datos A11 en [`datos-prueba-dev/vcn-datos-prueba-dev-metodo-0001-exito.md`](./datos-prueba-dev/vcn-datos-prueba-dev-metodo-0001-exito.md) |
 | 2026-07-05 | **A11** plan — `3_respuestaExitosa` en misma colección; `expectedTipo: exito` en Post-response |
 | 2026-07-05 | **Principio rector:** mejorar código VCN, **no** cambiar reglas de negocio productivas — ver triage `08`, [referencia-produccion.md](./referencia-produccion.md) |
 

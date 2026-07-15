@@ -30,8 +30,8 @@ Ver [`README.md`](./README.md) — regla fija:
 1. Leer este archivo.
 2. Leer [`README.md`](./README.md) (definición + tabla de documentos).
 3. Abrir el doc del repo que toque (01–05).
-4. Si hay error de despliegue/runtime: revisar `second-brain/notas-sueltas/error.md` y
-   `errorDespligue.md` (el usuario los commitea desde la máquina VPN).
+4. Si hay error de despliegue/runtime: revisar [`evidencia-despliegue/error.md`](./evidencia-despliegue/error.md) y
+   [`evidencia-despliegue/errorDespligue.md`](./evidencia-despliegue/errorDespligue.md).
 5. **Lenovo:** no desplegar ni correr Newman; solo revisar código/docs. Deploy lo hace el usuario en
    servidor con VPN (`pbmadesarrollo` / `pbmaplataforma`).
 
@@ -137,7 +137,7 @@ VCN en prod usa HTTP al validador (no invoke); el validador prod-a-dev debe esta
 | `ParserError` al ejecutar `deploy.ps1` | despliegue | Unicode em-dash y `;` en strings PS 5.1 | Fix en `second-brain/despliegue/deploy.ps1` + BUILD-MARKER `v2026-07-11-B` (04) |
 | `sam validate` «AuthorizerResultTtlInSeconds should be a map» | `tld-matriz` | Indentación prod | Corregido en prod-a-dev (01) |
 
-Logs del usuario: `second-brain/notas-sueltas/error.md`, `errorDespligue.md`.
+Logs del usuario: [`evidencia-despliegue/error.md`](./evidencia-despliegue/error.md), [`evidencia-despliegue/errorDespligue.md`](./evidencia-despliegue/errorDespligue.md).
 
 ---
 
