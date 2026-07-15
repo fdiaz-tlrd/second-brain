@@ -21,8 +21,8 @@ Carpeta de trabajo para entender cómo el **orquestador validador** se comunica 
 | [http-code-cadena-cumplimiento-2026-07-13.md](./http-code-cadena-cumplimiento-2026-07-13.md) | **HTTP Code de la cadena** matriz + validador-api vs prod; HD-007 (500→200) |
 | [418-metodo-no-soportado-analisis-definitivo-2026-07-13.md](./418-metodo-no-soportado-analisis-definitivo-2026-07-13.md) | **Qué es el 418** y por qué es especial: tablas de config (`config-servicios`, `canal-operacion`), inconsistencias de prod (HP-017/018/019/026), decisión firme de dejar el 418 en dev |
 | [418-conceptos-y-permisos-por-metodo-2026-07-14.md](./418-conceptos-y-permisos-por-metodo-2026-07-14.md) | **418 prod:** VCN = permiso canal validador; P2P = desfase CFG↔CNT en la **única** cadena `matriz→validador-api→alias`; catálogo «Método no soportado por el validador» |
-| [pendiente-post-418-datos-y-postman-2026-07-15.md](./pendiente-post-418-datos-y-postman-2026-07-15.md) | **BLOQUEO:** matriz X↔Y + escenarios Postman VCN |
-| [vcn-matriz-permisos-emisor-validador-0001-2026-07-15.md](./vcn-matriz-permisos-emisor-validador-0001-2026-07-15.md) | Matriz ∅/Y/N emisor×validador; qué hacer hoy |
+| [pendiente-post-418-datos-y-postman-2026-07-15.md](./pendiente-post-418-datos-y-postman-2026-07-15.md) | Matriz 9 celdas en Postman; **Newman pendiente** |
+| [vcn-matriz-permisos-emisor-validador-0001-2026-07-15.md](./vcn-matriz-permisos-emisor-validador-0001-2026-07-15.md) | Matriz ∅/Y/N; celdas mínimas validadas |
 | [migracion-invoke-alcance-2026-07-13.md](./migracion-invoke-alcance-2026-07-13.md) | **Alcance real axios→invoke**: qué es la migración (chica) vs qué se coló de más (logger, operacionesPaquete, getCanal, HP fixes) |
 | [hallazgos-pendientes.md](./hallazgos-pendientes.md) | Pendientes QA / producto / deploy |
 | [getCanal-excepcion-validador-no-string-2026-07-14.md](./getCanal-excepcion-validador-no-string-2026-07-14.md) | **Prod vs dig:** `validador` no-string → excepción en `getCanal`; prod 404 vs dig 500; capas 999 vs catch local |

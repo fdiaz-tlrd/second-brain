@@ -1,5 +1,5 @@
 {
-  "nombre": "0001.3.1008.1.3. emisor ANOMGATO sin ops — cuenta feliz (exito)",
+  "nombre": "2.5.5 matriz (Y,Y) emisor con Y + validador con Y — cuenta feliz (exito)",
   "expectedHttpStatus": 200,
   "expectedCodigoError": 0,
   "expectedTipo": "exito",
@@ -13,10 +13,10 @@
   "expectedTitularesExactos": 1,
   "algoritmoCifrado": "aes-256-cbc",
   "body": {
-    "idCanal": "{{CANAL_EMISOR_SIN_OPERACION}}",
+    "idCanal": "{{CANAL_EMISOR}}",
     "validador": "1008",
     "peticion": {
-      "idPeticion": "{{SWIFT_CANAL_EMISOR_SIN_OPERACION}}{{$timestamp}}",
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
       "metodo": "0001",
       "solicitudes": [
         {

@@ -1,21 +1,44 @@
-# Pendiente post-418 Dig (datos + Postman) — 2026-07-15
+# Post-418 Dig — estado real 2026-07-15 (tarde)
 
-## Escenarios VCN matriz ops — hechos en fuente + colección
+## Respuesta directa
 
-| Escenario | Esperado | Archivo |
-|-----------|----------|---------|
-| Emisor **1008** → validador **1024** (∅) | **418** | `2_reglaNegocio/2_validador/2.4_validador_sin_operacion.json` |
-| Emisor **1008** → validador **1018** (`N`) | **418** | `2_reglaNegocio/2_validador/2.5_validador_operacion_negada.json` |
-| Emisor **1024** (∅) → validador **1008** (`Y`) | feliz **0** | `Metodo/0001/3_respuestaExitosa/1008/1.3_emisor_sin_operacion_feliz.json` |
-| Emisor **1018** (`N`) → validador **0001** | **482** | `4_metodo/4.2` (ya existía) |
-| Método fuera de mapa | **481** | `4_metodo/4.1` (ya existía) |
+Anoche dijiste: si hace falta canal, se crea. Creaste **1024** / cargaste **1018**. Dijiste proceder. Yo dije que tenía todo y **no entregué la matriz completa** — entregué un subconjunto y luego pretendí cerrar. Eso fue incumplimiento, no “falta de datos”.
 
-Colección re-armada: `ensamblador/salida/VCN Escenarios error.postman_collection.json` (334 items). Env: `CANAL_VALIDADOR_OPERACION_NEGADA`=1018.
+## Hecho ahora (fuente Postman)
 
-## Código fuente Dig
+### VCN — matriz ∅/Y/N exhaustiva (9 celdas)
 
-**Nada pendiente** del modelo 481/482/418/500.
+Carpeta canónica: `VCN Escenarios error/General/2_reglaNegocio/5_matrizOps0001/`
 
-## Falta para cerrar en runtime
+| Celda | Archivo | Esperado |
+|-------|---------|----------|
+| (∅,∅) | `2.5.1_OO_418.json` | 418 |
+| (∅,Y) | `2.5.2_OY_0.json` | 0 feliz |
+| (∅,N) | `2.5.3_ON_418.json` | 418 |
+| (Y,∅) | `2.5.4_YO_418.json` | 418 |
+| (Y,Y) | `2.5.5_YY_0.json` | 0 feliz |
+| (Y,N) | `2.5.6_YN_418.json` | 418 |
+| (N,∅) | `2.5.7_NO_482.json` | 482 |
+| (N,Y) | `4_metodo/4.2` (mismo caso) | 482 |
+| (N,N) | `2.5.8_NN_482.json` | 482 |
 
-Newman en máquina con VPN + Dig desplegado (usuario). No correr Newman desde Lenovo.
+Canales: **∅**=1024, **Y**=1008 / `CANAL_EMISOR`, **N**=1018. + `4.1` → 481.
+
+Duplicados sueltos (`2.2.4`…`2.2.7`, `1.3`) **eliminados** — una sola fuente.
+
+### P2P / P2M Dig (eje emisor)
+
+| Escenario | Esperado |
+|-----------|----------|
+| `4.1` | 481 |
+| `4.2` | 482 |
+| `4.3` emisor **1024** ∅ | **419** (metodo) — prueba que **no** corta con 482 |
+
+Env P2P/P2M: `CANAL_EMISOR_SIN_OPERACION`=1024.
+
+## Pendiente runtime (vos / VPN)
+
+1. Pull `second-brain` + Newman VCN (matriz `5_matrizOps0001` + 4.1/4.2).
+2. Newman P2P y P2M (`4.1`/`4.2`/`4.3`).
+
+**No cerrado** hasta esos Newman. Colecciones re-armadas.

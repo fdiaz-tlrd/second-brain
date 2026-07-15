@@ -1,0 +1,23 @@
+{
+  "nombre": "2.5.3 matriz (∅,N) emisor sin ops + validador ops N (418)",
+  "expectedHttpStatus": 400,
+  "expectedCodigoError": 418,
+  "expectedTipo": "general",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR_SIN_OPERACION}}",
+    "validador": "{{CANAL_VALIDADOR_OPERACION_NEGADA}}",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR_SIN_OPERACION}}{{$timestamp}}",
+      "metodo": "0001",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "cuenta": "{{CUENTA_VALIDA}}"
+          }
+        }
+      ]
+    }
+  }
+}

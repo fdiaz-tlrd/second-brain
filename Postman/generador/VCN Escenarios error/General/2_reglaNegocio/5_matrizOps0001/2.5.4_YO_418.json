@@ -1,5 +1,5 @@
 {
-  "nombre": "2.2.4. validador — sin renglón operación 0001 (418) [CANAL_VALIDADOR_SIN_OPERACION]",
+  "nombre": "2.5.4 matriz (Y,∅) emisor con Y + validador sin ops (418)",
   "expectedHttpStatus": 400,
   "expectedCodigoError": 418,
   "expectedTipo": "general",

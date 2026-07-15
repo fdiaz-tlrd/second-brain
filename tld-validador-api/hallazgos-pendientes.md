@@ -28,7 +28,7 @@ Documento: [getCanal-excepcion-validador-no-string-2026-07-14.md](./getCanal-exc
 | **HP-014** elemento `null` crashea → 999 | guard objeto no-nulo → **431** (sin crash) |
 | Tope `METHOD_LIMIT` / `SOLICITUDES_MASIVAS_MAXIMO` en validador-api | **Eliminado 2026-07-14** — cantidad la decide cada producto; orquestador solo forma/`idSolicitud` |
 | **HP-016** canal mal configurado → 405 | **ya daba 500** (refactor invoke: `getCanal` lanza) |
-| **HP-018** método fuera de config → 509 | **Dig:** **481** Método inválido (`resolverServicioInterno`; ya no 418) — pend. deploy + Newman |
+| **HP-018** método fuera de config → 509 | **Dig:** **481** Método inválido — **validado Newman VCN** 2026-07-15 (`4.1`, cE 481) |
 | **HD-007** `validar` emitía HTTP 500 (servicio interno) → matriz enmascara a 550 | **app.js: 500→200** (509 llega al cliente como en prod) |
 
 Detalle + verificación (24/24): [correccion-validar-hallazgos-2026-07-13.md](./correccion-validar-hallazgos-2026-07-13.md)

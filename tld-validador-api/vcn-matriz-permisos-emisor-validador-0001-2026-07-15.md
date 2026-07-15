@@ -9,7 +9,9 @@ Un canal **sin renglón** `0001` sirve para **dos** usos distintos:
 
 Canal creado: **1024 ANOMGATO** (`estadoValidador=Y`, plan GATO, `llaveCifrado` ok, **sin** filas en `tld-validador-canal-operacion`). Doc: `Postman/canalesPruebas-dev/`.
 
-**¿Hay escenario Postman hoy para (2)?** **Sí** — `2.2.4` (`CANAL_VALIDADOR_SIN_OPERACION` = **1024**). También `2.2.5` (validador **1018** con `N` → **418**) y `0001.3.1008.1.3` (emisor **1024** → feliz). Colección VCN re-armada 2026-07-15.
+**¿Hay escenario Postman hoy para (2)?** **Sí** — `2.2.4` (`CANAL_VALIDADOR_SIN_OPERACION` = **1024**). También `2.2.5` (validador **1018** con `N` → **418**) y `0001.3.1008.1.3` (emisor **1024** → feliz).
+
+**Estado del tema:** escenarios Postman de las **9 celdas** en `5_matrizOps0001` (+ `4.1`/`4.2`). **NO cerrado** sin Newman. Ver [`pendiente-post-418-datos-y-postman-2026-07-15.md`](./pendiente-post-418-datos-y-postman-2026-07-15.md).
 
 ## El punto que faltaba ver
 
@@ -72,18 +74,12 @@ Misma tabla para ambas direcciones: en **A** fila=X columna=Y; en **B** fila=Y c
 
 ## Qué hay que hacer HOY (explícito — no “para un futuro”)
 
-1. **Congelar** esta matriz como esperado Dig **VCN**.
-2. **Tener** dos canales de prueba (X, Y) cuyas ops `0001` se puedan poner en ∅ / Y / N sin romper **1018**/4.2.
-3. **Crear** escenarios Postman VCN (mínimo):
-   - (∅, Y) → sigue\*
-   - (Y, ∅) → **418**
-   - (Y, N) → **418**
-   - (N, Y) → **482**
-   - (Y, Y) → sigue\*
-   - al menos un **viceversa** que demuestre el flip de roles
-4. **No avanzar** el cierre del tema hasta que esos escenarios existan y se puedan correr (Newman en VPN).
+~~Bloqueo de creación de escenarios~~ — **cumplido y validado en Newman** (2026-07-15T17:02Z):
 
-Canvas vivo: `canvases/vcn-matriz-permisos-0001.canvas.tsx` (IDE).
+1. ~~Congelar~~ matriz Dig VCN — congelada.
+2. ~~Canales~~ **1024** (∅) + **1018** (`N`) + emisor/validador con `Y` — listos.
+3. ~~Escenarios mínimos~~ — creados y **OK** en Newman: (∅,Y), (Y,∅), (Y,N), (N,Y), (Y,Y vía feliz estándar), flip **1024**.
+4. ~~Newman post-deploy~~ — hecho.
 
 ## Pregunta que pueden hacer
 

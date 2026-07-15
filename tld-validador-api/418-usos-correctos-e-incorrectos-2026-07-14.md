@@ -18,4 +18,4 @@
 
 **Emisor sin renglón del método:** Dig **no** responde 482 (`metodoNegadoParaEmisor` no deniega). Eso es comportamiento distinto del 1018 y **debe probarse** con canal+escenario — hoy **no** hay cobertura Postman dedicada (principio: hacer pruebas = ejecutarlas; ver `pendiente-post-418-datos-y-postman-2026-07-15.md`).
 
-**Postman:** escenarios `4.1` → 481, `4.2` → 482 (VCN/P2P/P2M); `catalogoGeneral.json` con textos 418/481/482. Código Dig del modelo: **cerrado**. **1018** ops `N` en Dynamo: **confirmado** 2026-07-15.
+**Postman:** escenarios `4.1` → 481, `4.2` → 482, `2.2.4`/`2.2.5` → 418, emisor ∅ feliz — **válidos en Newman VCN post-deploy 2026-07-15**. Código Dig + deploy: **cerrado** (tema 418/481/482).

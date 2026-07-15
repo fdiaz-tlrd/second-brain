@@ -1,5 +1,5 @@
 {
-  "nombre": "2.2.5. validador — operación 0001 con estado N (418) [CANAL_VALIDADOR_OPERACION_NEGADA]",
+  "nombre": "2.5.6 matriz (Y,N) emisor con Y + validador ops N (418)",
   "expectedHttpStatus": 400,
   "expectedCodigoError": 418,
   "expectedTipo": "general",

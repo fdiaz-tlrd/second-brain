@@ -1,0 +1,23 @@
+{
+  "nombre": "2.4.3. metodo — emisor sin renglón ops no deniega (no 482); llega a 419 [CANAL_EMISOR_SIN_OPERACION]",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 419,
+  "expectedTipo": "metodo",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR_SIN_OPERACION}}",
+    "validador": "{{CANAL_VALIDADOR}}",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR_SIN_OPERACION}}{{$timestamp}}",
+      "metodo": "0015",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "tipoIdentificador": "COMERCIO"
+          }
+        }
+      ]
+    }
+  }
+}
