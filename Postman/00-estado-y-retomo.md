@@ -5,7 +5,7 @@
 | Campo | Valor |
 |-------|-------|
 | **Última actualización** | 2026-07-15 |
-| **Estado** | Matriz VCN 3×3 **escenarios hechos** (`5_matrizOps0001` + 4.1/4.2). P2P/P2M `4.1`/`4.2`/`4.3`. **NO cerrado** hasta Newman. Ver `tld-validador-api/pendiente-post-418…`. **Últimos Newman:** [`generador/logs/ultima-corrida-vcn.md`](generador/logs/ultima-corrida-vcn.md) |
+| **Estado** | **Pausa revisión humana** prod≠Dig vía super-tabla VCN ([`../super-tabla-prod-dev/vcn/00-estado-y-retomo.md`](../super-tabla-prod-dev/vcn/00-estado-y-retomo.md)). Matriz VCN 3×3 **cerrada en Newman dig** `18-49-44Z`. P2P/P2M Newman Dig `4.x` **sin confirmar**. |
 | **Tooling** | Cifrado/plano en `[CAPTURA]`. Foto presentación `foto-presentacion-{vcn,p2p}-{prod\|dev}.*` (obligatoria al fin de Newman). Registro = proyección de `historial/` (sin enlaces rotos). Doc: [`generador/estudio-generador.md`](generador/estudio-generador.md), [`generador/logs/README.md`](generador/logs/README.md) |
 | **Rama producto** | `feature/ARQ-225_Refactory` (P2P, P2M, VCN, validador-api) |
 | **Repo docs** | `second-brain` rama `main` |
@@ -31,11 +31,11 @@
 | **Logs Newman** | [`generador/logs/README.md`](generador/logs/README.md) | OK |
 | **Reglas agente VPN** | [`../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md`](../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md) | OK |
 | **Comparar prod vs dev** | [`comparar-prod-vs-dev/`](comparar-prod-vs-dev/) (README + 01–04) | Diseño + código implementado |
-| **Super tabla esperado / prod / dev** | [`../super-tabla-prod-dev/`](../super-tabla-prod-dev/) | Decisiones cerradas: solo diferencias, 1 fila/escenario, MD→HTML, anotaciones reinyectables |
+| **Super tabla esperado / prod / Dig** | [`../super-tabla-prod-dev/`](../super-tabla-prod-dev/) | **Pausa:** justificación humana VCN 46 bloques; P2P después. Handoff: [`../super-tabla-prod-dev/vcn/00-estado-y-retomo.md`](../super-tabla-prod-dev/vcn/00-estado-y-retomo.md) |
 | **`idSolicitud` (P2P/P2M/VCN)** | [`generador/validacion-idSolicitud/`](generador/validacion-idSolicitud/) | Iteración 01 cerrada en doc |
 | **`idPregunta` / `respuestas[].id` (P2P)** | [`generador/validacion-preguntas-seguridad/`](generador/validacion-preguntas-seguridad/) | Iteración 01 cerrada en doc |
-| **Validador-api prod vs dev** | [`../tld-validador-api/`](../tld-validador-api/) — ver `diferencia-prod-vs-dev-respuesta-producto.md` | Fix en repo; deploy pendiente |
-| **VCN checklist / triage** | [`../tld-api-cuenta-nombre/`](../tld-api-cuenta-nombre/) — hilo anterior A0–A11 | **Distinto** a la pausa de jul-11; ver su `ESTADO-ACTUAL.md` |
+| **Validador-api / Dig 418–482** | [`../tld-validador-api/`](../tld-validador-api/) | Matriz VCN Newman dig **cerrada**; P2P/P2M Newman Dig pendiente confirmar |
+| **VCN checklist / triage** | [`../tld-api-cuenta-nombre/`](../tld-api-cuenta-nombre/) | Hilo A0–A11 histórico; tema actual = super-tabla — ver `ESTADO-ACTUAL.md` |
 
 **Patrón acordado:** cada iteración → carpeta propia + `ITERACION-NN-....md` + generador en `generador/ensamblador/` cuando aplica.
 
@@ -201,4 +201,5 @@ El checklist VCN en [`../tld-api-cuenta-nombre/`](../tld-api-cuenta-nombre/) cub
 
 | Fecha | Nota |
 |-------|------|
+| 2026-07-15 | Pausa: super-tabla VCN (46 prod≠Dig). Matriz Dig Newman cerrada. SWIFT cerrado. Anotaciones SWIFT CERRADO. |
 | 2026-07-11 | Creado al pausar Postman + Newman; consolida iteraciones `idSolicitud`, preguntas seguridad, comparar prod/dev y fix validador-api |

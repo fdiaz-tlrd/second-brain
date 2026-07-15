@@ -1,98 +1,102 @@
 {
   "suite": "vcn",
   "nivelEjecucion": "MATRIZ",
-  "actualizado": "2026-07-14",
+  "actualizado": "2026-07-15",
   "items": {
     "0001.3.1008.1.2. validador por SWIFT CELEGATO — cuenta feliz (exito)": {
-      "veredicto": "DEV-BUG",
-      "conforme": false,
+      "veredicto": "CERRADO",
+      "conforme": true,
       "refs": [
-        "validador-SWIFT-dev"
+        "validador-SWIFT-dev",
+        "hallazgo-validador-swift-dev.md"
       ],
-      "notas": "Causa: VCN validarParametroValidador length>4. Fix tope 8 en código (2026-07-14). Pendiente deploy dig + Newman para confirmar. Prod OK; par numerico 1008 OK en dig."
+      "notas": "Cerrado 2026-07-15. Fix length≤8 + Newman dig 18-49-44Z → negocio 0. Ya no aparece en vista prod≠Dig."
     },
     "0001.3.1009.1.2. validador por SWIFT ASTRGATO — cuenta feliz (exito)": {
-      "veredicto": "DEV-BUG",
-      "conforme": false,
+      "veredicto": "CERRADO",
+      "conforme": true,
       "refs": [
         "validador-SWIFT-dev"
       ],
-      "notas": "Mismo fix length≤8. Pendiente Newman dig post-deploy."
+      "notas": "Mismo cierre que 1008.1.2 — Newman dig 18-49-44Z."
     },
     "0001.3.1011.1.2. validador por SWIFT MIRAGATO — cuenta feliz (exito)": {
-      "veredicto": "DEV-BUG",
-      "conforme": false,
+      "veredicto": "CERRADO",
+      "conforme": true,
       "refs": [
         "validador-SWIFT-dev"
       ],
-      "notas": "Mismo fix length≤8. Pendiente Newman dig post-deploy."
+      "notas": "Mismo cierre SWIFT — Newman dig 18-49-44Z."
     },
     "0001.3.1012.1.2. validador por SWIFT TERAGATO — cuenta feliz (exito)": {
-      "veredicto": "DEV-BUG",
-      "conforme": false,
+      "veredicto": "CERRADO",
+      "conforme": true,
       "refs": [
         "validador-SWIFT-dev"
       ],
-      "notas": "Mismo fix length≤8. Pendiente Newman dig post-deploy."
+      "notas": "Mismo cierre SWIFT — Newman dig 18-49-44Z."
     },
     "0001.3.1013.1.2. validador por SWIFT AMIYGATO — cuenta feliz (exito)": {
-      "veredicto": "DEV-BUG",
-      "conforme": false,
+      "veredicto": "CERRADO",
+      "conforme": true,
       "refs": [
         "validador-SWIFT-dev"
       ],
-      "notas": "Mismo fix length≤8. Pendiente Newman dig post-deploy."
+      "notas": "Mismo cierre SWIFT — Newman dig 18-49-44Z."
     },
     "0001.3.1014.1.2. validador por SWIFT CORNGATO — cuenta feliz (exito)": {
-      "veredicto": "DEV-BUG",
-      "conforme": false,
+      "veredicto": "CERRADO",
+      "conforme": true,
       "refs": [
         "validador-SWIFT-dev"
       ],
-      "notas": "Mismo fix length≤8. Pendiente Newman dig post-deploy."
+      "notas": "Mismo cierre SWIFT — Newman dig 18-49-44Z."
     },
     "0001.3.1015.1.2. validador por SWIFT ZONAGATO — cuenta feliz (exito)": {
-      "veredicto": "DEV-BUG",
-      "conforme": false,
+      "veredicto": "CERRADO",
+      "conforme": true,
       "refs": [
         "validador-SWIFT-dev"
       ],
-      "notas": "Mismo fix length≤8. Pendiente Newman dig post-deploy."
+      "notas": "Mismo cierre SWIFT — Newman dig 18-49-44Z."
     },
     "0001.3.1016.1.2. validador por SWIFT BELLGATO — cuenta feliz (exito) — sin enmascaramiento": {
-      "veredicto": "DEV-BUG",
-      "conforme": false,
+      "veredicto": "CERRADO",
+      "conforme": true,
       "refs": [
         "validador-SWIFT-dev"
       ],
-      "notas": "Mismo fix length≤8. Pendiente Newman dig post-deploy."
+      "notas": "Mismo cierre SWIFT — Newman dig 18-49-44Z."
     },
     "1.2.4. validador — tipo number (400)": {
-      "veredicto": "DEV-DIFF",
+      "veredicto": "PENDIENTE-REVISION",
       "conforme": false,
       "refs": [
         "getCanal-excepcion-validador-no-string",
-        "500-Error-interno"
+        "500-Error-interno",
+        "vcn/00-estado-y-retomo.md"
       ],
-      "notas": "Prod: getCanal catch→null→404. Dig validador-api: 500 Error interno (sí llega al cliente). Alias/proxy/cuenta-nombre: no tocar (cliente ya ve catálogo). Esperado 400=aspiración. Pend. deploy + Newman."
+      "notas": "Aún en vista prod≠Dig. Histórico: prod getCanal catch→404; dig a menudo 500 Error interno. Justificación humana pendiente (pausa 2026-07-15)."
     },
     "1.2.5. validador — tipo boolean (400)": {
-      "veredicto": "DEV-DIFF",
+      "veredicto": "PENDIENTE-REVISION",
       "conforme": false,
       "refs": [
         "getCanal-excepcion-validador-no-string",
-        "500-Error-interno"
+        "500-Error-interno",
+        "vcn/00-estado-y-retomo.md"
       ],
-      "notas": "Prod: getCanal catch→null→404. Dig validador-api: 500 Error interno (sí llega al cliente). Alias/proxy/cuenta-nombre: no tocar (cliente ya ve catálogo). Esperado 400=aspiración. Pend. deploy + Newman."
+      "notas": "Misma familia 1.2.4 — justificación humana pendiente."
     },
     "1.2.6. validador — tipo object (400)": {
-      "veredicto": "DEV-DIFF",
+      "veredicto": "PENDIENTE-REVISION",
       "conforme": false,
       "refs": [
         "getCanal-excepcion-validador-no-string",
-        "500-Error-interno"
+        "500-Error-interno",
+        "vcn/00-estado-y-retomo.md"
       ],
-      "notas": "Prod: getCanal catch→null→404. Dig validador-api: 500 Error interno (sí llega al cliente). Alias/proxy/cuenta-nombre: no tocar (cliente ya ve catálogo). Esperado 400=aspiración. Pend. deploy + Newman."
+      "notas": "Misma familia 1.2.4 — justificación humana pendiente."
     }
   }
 }

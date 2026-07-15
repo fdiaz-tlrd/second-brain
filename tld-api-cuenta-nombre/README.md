@@ -2,7 +2,8 @@
 
 Espacio de trabajo en `second-brain` para **estudiar y corregir** el repositorio [`tld-api-cuenta-nombre`](../../tld-api-cuenta-nombre). **Trabajo activo:** VCN.
 
-**Handoff sesión:** [`ESTADO-ACTUAL.md`](./ESTADO-ACTUAL.md) — leer primero.
+**Handoff sesión:** [`ESTADO-ACTUAL.md`](./ESTADO-ACTUAL.md) — leer primero.  
+**Tema pausado (2026-07-15):** revisión prod≠Dig → [`../super-tabla-prod-dev/vcn/00-estado-y-retomo.md`](../super-tabla-prod-dev/vcn/00-estado-y-retomo.md).
 
 **Agente:** antes de Newman → [`05-newman-vpn-reglas-agente.md`](./05-newman-vpn-reglas-agente.md). **No correr `run-newman.js` sin VPN confirmada por el usuario.**
 

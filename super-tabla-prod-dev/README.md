@@ -4,7 +4,7 @@ Estudio para armar, desde la **recopilación Newman**, una **tabla escenario a e
 
 | Campo | Valor |
 |-------|-------|
-| **Estado** | Generador MD v1 — VCN: `bloques-diferencias.md` (84) + `bloques-diferencias-prod-vs-dev.md` (52) |
+| **Estado** | **Pausa** — justificación humana VCN 46 bloques (`vcn/00-estado-y-retomo.md`). MD: 79 + 46. Dig Newman `2026-07-15T18-49-44Z`. P2P después. |
 | **Unidad** | Un **documento por servicio**, **bloques por escenario** (no mega-tabla) |
 | **Fila / bloque** | **Un escenario** (nombre Postman), no una variante de cifrado |
 | **Filas mostradas** | **Solo diferencias** |

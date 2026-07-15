@@ -11,7 +11,7 @@ Canal creado: **1024 ANOMGATO** (`estadoValidador=Y`, plan GATO, `llaveCifrado` 
 
 **¿Hay escenario Postman hoy para (2)?** **Sí** — `2.2.4` (`CANAL_VALIDADOR_SIN_OPERACION` = **1024**). También `2.2.5` (validador **1018** con `N` → **418**) y `0001.3.1008.1.3` (emisor **1024** → feliz).
 
-**Estado del tema:** escenarios Postman de las **9 celdas** en `5_matrizOps0001` (+ `4.1`/`4.2`). **NO cerrado** sin Newman. Ver [`pendiente-post-418-datos-y-postman-2026-07-15.md`](./pendiente-post-418-datos-y-postman-2026-07-15.md).
+**Estado del tema:** escenarios Postman de las **9 celdas** en `5_matrizOps0001` (+ `4.1`/`4.2`). **Cerrado en Newman dig** `2026-07-15T18:49:44Z` (celdas + 481/482 OK). Detalle: [`pendiente-post-418-datos-y-postman-2026-07-15.md`](./pendiente-post-418-datos-y-postman-2026-07-15.md).
 
 ## El punto que faltaba ver
 
