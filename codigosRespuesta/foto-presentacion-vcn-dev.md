@@ -6,7 +6,7 @@ Solo observación de corrida Newman. **No** incluye catálogo / “Nueva descrip
 |-------|-------|
 | Servicio | VCN |
 | Código fuente | dev |
-| Fecha corrida | 2026-07-15T14:15:14.403Z |
+| Fecha corrida | 2026-07-15T17:02:19.033Z |
 | Nivel ejecución | MATRIZ |
 | Escenarios analizados | 1335 |
 | Filas foto (código+descripción) | 26 |

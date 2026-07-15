@@ -4,7 +4,7 @@ Actualizado automáticamente por `run-newman.js`. **No** editar a mano.
 
 | Campo | Valor |
 |-------|-------|
-| Fecha (UTC) | 2026-07-15T14:15:14.988Z |
+| Fecha (UTC) | 2026-07-15T17:02:19.372Z |
 | Código fuente | dev |
 | Nivel ejecución | MATRIZ |
 | Carpeta | (completo) |
@@ -13,7 +13,7 @@ Actualizado automáticamente por `run-newman.js`. **No** editar a mano.
 | Resultado | **FALLÓ** |
 | Nota | post-deploy Dig 481/482/418 canales 1018-1024 |
 | Registro | [`registro-vcn.md`](./registro-vcn.md) |
-| Historial JSON | `historial/vcn/2026-07-15T14-15-14Z_dev_MATRIZ_completo.json` |
+| Historial JSON | `historial/vcn/2026-07-15T17-02-19Z_dev_MATRIZ_completo.json` |
 | Foto | `../../../codigosRespuesta/foto-presentacion-vcn-dev.md` |
 | Muestras | `../../../codigosRespuesta/foto-presentacion-vcn-dev.muestras.md` |
 

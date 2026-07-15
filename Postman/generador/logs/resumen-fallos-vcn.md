@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |-------|-------|
-| Fecha | 2026-07-15T14:15:14.338Z |
+| Fecha | 2026-07-15T17:02:18.998Z |
 | Código fuente | dev |
 | Nivel ejecución | MATRIZ |
 | Carpeta | `(completo)` |
@@ -538,7 +538,7 @@
 - **HTTP descifrar:** 200
 
 ```json
-{"respuesta":{"idPeticion":"CELEGATO1784124240","respuestas":[{"idSolicitud":"1","resultado":0,"datos":{"banco":"TLRDPAPA","cuenta":"1100001328","producto":"PACA","estadoCuenta":"0","titulares":["Fis*** vo* Luftsc***** Narfi****"]}}]}}
+{"respuesta":{"idPeticion":"CELEGATO1784134288","respuestas":[{"idSolicitud":"1","resultado":0,"datos":{"banco":"TLRDPAPA","cuenta":"1100001328","producto":"PACA","estadoCuenta":"0","titulares":["Fis*** vo* Luftsc***** Narfi****"]}}]}}
 ```
 
 ## 54. 2_validador / 1.2.15. validador — distinto a {{CANAL_VALIDADOR}} (CANAL_EMISOR) (400)
@@ -548,7 +548,7 @@
 - **HTTP descifrar:** 200
 
 ```json
-{"respuesta":{"idPeticion":"CELEGATO1784124240","respuestas":[{"idSolicitud":"1","resultado":0,"datos":{"banco":"TLRDPAPA","cuenta":"1100001328","producto":"PACA","estadoCuenta":"0","titulares":["Fis*** vo* Luftsc***** Narfi****"]}}]}}
+{"respuesta":{"idPeticion":"CELEGATO1784134288","respuestas":[{"idSolicitud":"1","resultado":0,"datos":{"banco":"TLRDPAPA","cuenta":"1100001328","producto":"PACA","estadoCuenta":"0","titulares":["Fis*** vo* Luftsc***** Narfi****"]}}]}}
 ```
 
 ## 55. 3_peticion / 1.3.4. peticion — tipo number (400)
