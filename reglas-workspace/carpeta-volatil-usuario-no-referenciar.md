@@ -21,5 +21,6 @@ Servilleta del usuario entre máquinas. Ejemplo legítimo: solo comandos sueltos
 | Datos prueba VCN / dummy / resultado histórico | [`../tld-api-cuenta-nombre/datos-prueba-dev/`](../tld-api-cuenta-nombre/datos-prueba-dev/) |
 | Seed dummy generador | [`../Postman/generador/datos-vcn-dummy/`](../Postman/generador/datos-vcn-dummy/) |
 | Logs despliegue | [`../prod_adactado_a_dev/evidencia-despliegue/`](../prod_adactado_a_dev/evidencia-despliegue/) |
+| Fallos integración 2026-07-06 + CloudWatch proxy | [`../Postman/generador/VCN Escenarios error/Metodo/0001/5_fallosIntegracionValidador/`](../Postman/generador/VCN%20Escenarios%20error/Metodo/0001/5_fallosIntegracionValidador/) |
 
-Los originales en la carpeta volátil fueron eliminados (2026-07-15); la documentación solo usa las copias.
+Error corregido: al limpiar la carpeta volátil se borraron `vcn-fallos-…` y `cloudwatch` **sin** copia previa. Restaurados 2026-07-15 en la carpeta del run.

@@ -353,7 +353,7 @@ Registro: `logs\registro-vcn.md` · `logs\historial\vcn\` (análogo `p2m` / `p2p
 
 `5_fallosIntegracionValidador`: canales `1022`/`1023`, cuentas `5000000516`–`518` → códigos **599** / **406** / **509**. Los dos runs de demora suman ~30 s si el proxy hace timeout antes de los 16 s del dummy.
 
-**Último run (VPN):** [`VCN Escenarios error/Metodo/0001/5_fallosIntegracionValidador/RUN-2026-07-06.md`](VCN%20Escenarios%20error/Metodo/0001/5_fallosIntegracionValidador/RUN-2026-07-06.md) — 29/42 OK, 13 fallos (502 demora 1022; mensaje 509; 1023 todo 500).
+**Último run (VPN):** [`VCN Escenarios error/Metodo/0001/5_fallosIntegracionValidador/RUN-2026-07-06.md`](VCN%20Escenarios%20error/Metodo/0001/5_fallosIntegracionValidador/RUN-2026-07-06.md) — 29/42 OK, 13 fallos (502 demora 1022; mensaje 509; 1023 todo 500). Nota detallada: [`…/vcn-fallos-integracion-validador-2026-07-06.md`](VCN%20Escenarios%20error/Metodo/0001/5_fallosIntegracionValidador/vcn-fallos-integracion-validador-2026-07-06.md).
 
 `4_idPeticion_soloLog`: fuera del run `vcn` completo; Newman aserta **exito** (prod no rechaza; VCN dev solo log).
 
