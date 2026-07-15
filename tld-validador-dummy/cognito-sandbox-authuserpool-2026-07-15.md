@@ -3,7 +3,7 @@
 | Campo | Valor |
 |-------|-------|
 | Fecha | 2026-07-15 |
-| Estado | Fix en `samconfig.toml` aplicado 2026-07-15; **pendiente** redeploy sandbox para que la lambda tome el pool |
+| Estado | Fix en `samconfig.toml` aplicado y pusheado (`3cbf97b`). **Pausa** — usuario informa cuando haga redeploy sandbox |
 | Repo | `tld-validador-dummy` |
 | Archivo | `samconfig.toml` perfil `[sandbox]` |
 
