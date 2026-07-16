@@ -163,5 +163,5 @@ La lista larga de “sencillos” del borrador inicial **ya no es el backlog**.
 
 - Envelope autopista: [`12`](./12-estudio-idTransaccionAutopista-fechaHora-flujo-prod.md)
 - Flujo prod + tld-util: [`08-prod-real-flujo-r2p-y-tld-util.md`](./08-prod-real-flujo-r2p-y-tld-util.md)
-- Lista viva escenarios (retomo Newman): [`16-escenarios-simples-newman-diseno.md`](./16-escenarios-simples-newman-diseno.md)
+- Lista viva escenarios: [`16`](./16-escenarios-simples-newman-diseno.md) · estrategia: [`17`](./17-estrategia-newman-r2p-paridad-dig.md)
 - Retomo: [`00-estado-y-retomo.md`](./00-estado-y-retomo.md)
