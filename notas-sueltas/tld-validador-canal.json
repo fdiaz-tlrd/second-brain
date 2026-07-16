@@ -1,0 +1,878 @@
+[
+  {
+    "nombre": {
+      "S": "Outfit Heritage Trust"
+    },
+    "apiKey": {
+      "S": ""
+    },
+    "urlAuth": {
+      "S": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/auth/token"
+    },
+    "jpathToken": {
+      "S": "$.accessToken"
+    },
+    "urlValidador": {
+      "S": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/validar-fallos-con-token"
+    },
+    "tipoAuth": {
+      "S": "dinamico"
+    },
+    "idCanal": {
+      "S": "1023"
+    },
+    "headers": {
+      "S": "[{\"headerKey\":\"Authorization\",\"headerValue\":\"Bearer {{token}}\"}]"
+    },
+    "llaveCifrado": {
+      "S": "9593847f-942d-4464-af3d-733f933f19b0"
+    },
+    "algoritmoCifrado": {
+      "S": "aes-256-cbc"
+    },
+    "llaveDescifrado": {
+      "S": "arn:aws:kms:us-east-1:729330417555:key/mrk-fab483954956476787608d9e5eee2c97"
+    },
+    "alias": {
+      "S": "OUTFGATO"
+    },
+    "peticionJson": {
+      "S": "{\n    \"apiKey\": \"ebbedf2aab947225a2a0cb1e215e7ff5b9a99964c\",\n    \"secretKey\": \"CuO0eS9l1t7FDr2en8v3l929U9N8e5cv1U0vbtv0e4r1Fn8It43f5oMk65e8Aa89a9A96d6IsvNm4tqqhmtsq5\"\n}"
+    },
+    "urlHeaders": {
+      "S": ""
+    },
+    "estadoValidador": {
+      "S": "Y"
+    },
+    "useCertificado": {
+      "BOOL": false
+    },
+    "canalNombre": {
+      "S": "1023-Outfit Heritage Trust"
+    },
+    "jpathTiempo": {
+      "S": "$.expiresIn"
+    },
+    "codigoExp": {
+      "S": "403"
+    }
+  },
+  {
+    "nombre": {
+      "S": "Astral Rail Capital"
+    },
+    "apiKey": {
+      "S": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
+    },
+    "jpathToken": {
+      "S": ""
+    },
+    "urlAuth": {
+      "S": ""
+    },
+    "urlValidador": {
+      "S": ""
+    },
+    "tipoAuth": {
+      "S": "fijo"
+    },
+    "headers": {
+      "S": "[{\"headerKey\":\"Authorization\",\"headerValue\":\"{{token}}\"}]"
+    },
+    "algoritmoCifrado": {
+      "S": "aes-256-cbc"
+    },
+    "llaveCifrado": {
+      "S": "bd1e4ddc-9ce5-459f-8e29-b500ff95a9c8"
+    },
+    "idCanal": {
+      "S": "1009"
+    },
+    "llaveDescifrado": {
+      "S": "arn:aws:kms:us-east-1:729330417555:key/mrk-fab483954956476787608d9e5eee2c97"
+    },
+    "alias": {
+      "S": "ASTRGATO"
+    },
+    "peticionJson": {
+      "S": ""
+    },
+    "urlHeaders": {
+      "S": ""
+    },
+    "estadoValidador": {
+      "S": "Y"
+    },
+    "useCertificado": {
+      "BOOL": false
+    },
+    "canalNombre": {
+      "S": "1009-Astral Rail Capital"
+    },
+    "jpathTiempo": {
+      "S": ""
+    },
+    "codigoExp": {
+      "S": ""
+    }
+  },
+  {
+    "nombre": {
+      "S": "New Eridu Bell Financial Group"
+    },
+    "apiKey": {
+      "S": ""
+    },
+    "jpathToken": {
+      "S": "$.accessToken"
+    },
+    "urlAuth": {
+      "S": "https://tld-validador-dummy.dev.telered.internal/auth/token"
+    },
+    "urlValidador": {
+      "S": "https://tld-validador-dummy.dev.telered.internal/validar-con-token"
+    },
+    "tipoAuth": {
+      "S": "dinamico"
+    },
+    "headers": {
+      "S": "[{\"headerKey\":\"Authorization\",\"headerValue\":\"Bearer {{token}}\"}]"
+    },
+    "idCanal": {
+      "S": "1016"
+    },
+    "algoritmoCifrado": {
+      "S": "aes-256-gcm"
+    },
+    "llaveCifrado": {
+      "S": "36f79a10-bc85-440a-bc02-08c2fa551315"
+    },
+    "llaveDescifrado": {
+      "S": "arn:aws:kms:us-east-1:729330417555:key/mrk-fab483954956476787608d9e5eee2c97"
+    },
+    "alias": {
+      "S": "BELLGATO"
+    },
+    "peticionJson": {
+      "S": "{\n    \"apiKey\": \"f59f2732bab4fbd5b8d53c1b2e52f9288ba8a8f69\",\n    \"secretKey\": \"V02vpr4b1t12Bl2eUDd3l8bAOaq9eCj4trslkb5sI4rh5k48i8celo7Dd5ebb999999b6d5eue74volh9clj1H\"\n}"
+    },
+    "urlHeaders": {
+      "S": ""
+    },
+    "estadoValidador": {
+      "S": "Y"
+    },
+    "useCertificado": {
+      "BOOL": false
+    },
+    "canalNombre": {
+      "S": "1016-New Eridu Bell Financial Group"
+    },
+    "jpathTiempo": {
+      "S": "$.expiresIn"
+    },
+    "codigoExp": {
+      "S": "403"
+    }
+  },
+  {
+    "nombre": {
+      "S": "Nameless Trail Finance"
+    },
+    "apiKey": {
+      "S": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
+    },
+    "jpathToken": {
+      "S": ""
+    },
+    "urlAuth": {
+      "S": ""
+    },
+    "urlValidador": {
+      "S": ""
+    },
+    "tipoAuth": {
+      "S": "fijo"
+    },
+    "idCanal": {
+      "S": "1020"
+    },
+    "algoritmoCifrado": {
+      "S": "aes-256-gcm"
+    },
+    "llaveCifrado": {
+      "S": "15343c1e-e040-437f-8b63-df8a06e8caf9"
+    },
+    "headers": {
+      "S": "[{\"headerKey\":\"Authorization\",\"headerValue\":\"{{token}}\"}]"
+    },
+    "llaveDescifrado": {
+      "S": "arn:aws:kms:us-east-1:729330417555:key/mrk-fab483954956476787608d9e5eee2c97"
+    },
+    "alias": {
+      "S": "NAMEGATO"
+    },
+    "peticionJson": {
+      "S": ""
+    },
+    "urlHeaders": {
+      "S": ""
+    },
+    "estadoValidador": {
+      "S": "Y"
+    },
+    "useCertificado": {
+      "BOOL": false
+    },
+    "canalNombre": {
+      "S": "1020-Nameless Trail Finance"
+    },
+    "jpathTiempo": {
+      "S": ""
+    },
+    "codigoExp": {
+      "S": ""
+    }
+  },
+  {
+    "nombre": {
+      "S": "Celestia Financial Holding"
+    },
+    "apiKey": {
+      "S": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
+    },
+    "jpathToken": {
+      "S": ""
+    },
+    "urlAuth": {
+      "S": ""
+    },
+    "urlValidador": {
+      "S": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/validar"
+    },
+    "tipoAuth": {
+      "S": "fijo"
+    },
+    "llaveCifrado": {
+      "S": "dc987123-4681-4c55-8701-83b4e0608214"
+    },
+    "algoritmoCifrado": {
+      "S": "aes-256-cbc"
+    },
+    "idCanal": {
+      "S": "1008"
+    },
+    "headers": {
+      "S": "[{\"headerKey\":\"Authorization\",\"headerValue\":\"{{token}}\"}]"
+    },
+    "llaveDescifrado": {
+      "S": "arn:aws:kms:us-east-1:729330417555:key/mrk-fab483954956476787608d9e5eee2c97"
+    },
+    "alias": {
+      "S": "CELEGATO"
+    },
+    "peticionJson": {
+      "S": ""
+    },
+    "urlHeaders": {
+      "S": ""
+    },
+    "estadoValidador": {
+      "S": "Y"
+    },
+    "useCertificado": {
+      "BOOL": false
+    },
+    "canalNombre": {
+      "S": "1008-Celestia Financial Holding"
+    },
+    "jpathTiempo": {
+      "S": ""
+    },
+    "codigoExp": {
+      "S": ""
+    }
+  },
+  {
+    "nombre": {
+      "S": "Terra Endfield Development Bank"
+    },
+    "apiKey": {
+      "S": ""
+    },
+    "urlAuth": {
+      "S": "https://tld-validador-dummy.dev.telered.internal/auth/token"
+    },
+    "jpathToken": {
+      "S": "$.accessToken"
+    },
+    "urlValidador": {
+      "S": ""
+    },
+    "tipoAuth": {
+      "S": "dinamico"
+    },
+    "llaveCifrado": {
+      "S": "481bcb30-874f-42cf-96eb-bfc2402dbb0d"
+    },
+    "headers": {
+      "S": "[{\"headerKey\":\"Authorization\",\"headerValue\":\"Bearer {{token}}\"}]"
+    },
+    "algoritmoCifrado": {
+      "S": "aes-256-cbc"
+    },
+    "idCanal": {
+      "S": "1012"
+    },
+    "llaveDescifrado": {
+      "S": "arn:aws:kms:us-east-1:729330417555:key/mrk-fab483954956476787608d9e5eee2c97"
+    },
+    "alias": {
+      "S": "TERAGATO"
+    },
+    "peticionJson": {
+      "S": "{\n    \"apiKey\": \"4979e66f8b942af5a6f1089c28d1e1d7bbac472f4\",\n    \"secretKey\": \"74st4gd41tvfeR2e5et3l9aB99jAe7umV3V8qlq6I4r0edGb9N65LMg2v5e8Abaa88986d5k4faipEnn5l37h9\"\n}"
+    },
+    "urlHeaders": {
+      "S": ""
+    },
+    "estadoValidador": {
+      "S": "Y"
+    },
+    "useCertificado": {
+      "BOOL": false
+    },
+    "canalNombre": {
+      "S": "1012-Terra Endfield Development Bank"
+    },
+    "jpathTiempo": {
+      "S": "$.expiresIn"
+    },
+    "codigoExp": {
+      "S": "403"
+    }
+  },
+  {
+    "nombre": {
+      "S": "Amiya Trust & Clearing"
+    },
+    "apiKey": {
+      "S": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
+    },
+    "jpathToken": {
+      "S": ""
+    },
+    "urlAuth": {
+      "S": ""
+    },
+    "urlValidador": {
+      "S": ""
+    },
+    "tipoAuth": {
+      "S": "fijo"
+    },
+    "llaveCifrado": {
+      "S": "fc8c359b-99f8-4af5-ac19-98a84fa8bad4"
+    },
+    "algoritmoCifrado": {
+      "S": "aes-256-gcm"
+    },
+    "headers": {
+      "S": "[{\"headerKey\":\"Authorization\",\"headerValue\":\"{{token}}\"}]"
+    },
+    "idCanal": {
+      "S": "1013"
+    },
+    "llaveDescifrado": {
+      "S": "arn:aws:kms:us-east-1:729330417555:key/mrk-fab483954956476787608d9e5eee2c97"
+    },
+    "alias": {
+      "S": "AMIYGATO"
+    },
+    "peticionJson": {
+      "S": ""
+    },
+    "urlHeaders": {
+      "S": ""
+    },
+    "estadoValidador": {
+      "S": "Y"
+    },
+    "useCertificado": {
+      "BOOL": false
+    },
+    "canalNombre": {
+      "S": "1013-Amiya Trust & Clearing"
+    },
+    "jpathTiempo": {
+      "S": ""
+    },
+    "codigoExp": {
+      "S": ""
+    }
+  },
+  {
+    "nombre": {
+      "S": "Miraland Asset Management"
+    },
+    "apiKey": {
+      "S": ""
+    },
+    "jpathToken": {
+      "S": "$.accessToken"
+    },
+    "urlAuth": {
+      "S": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/auth/token"
+    },
+    "urlValidador": {
+      "S": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/validar-con-token"
+    },
+    "tipoAuth": {
+      "S": "dinamico"
+    },
+    "headers": {
+      "S": "[{\"headerKey\":\"Authorization\",\"headerValue\":\"Bearer {{token}}\"}]"
+    },
+    "algoritmoCifrado": {
+      "S": "aes-256-cbc"
+    },
+    "llaveCifrado": {
+      "S": "2afe63d5-7762-47e9-b5b3-3353adc827da"
+    },
+    "idCanal": {
+      "S": "1011"
+    },
+    "llaveDescifrado": {
+      "S": "arn:aws:kms:us-east-1:729330417555:key/mrk-fab483954956476787608d9e5eee2c97"
+    },
+    "alias": {
+      "S": "MIRAGATO"
+    },
+    "peticionJson": {
+      "S": "{\n    \"apiKey\": \"fd1973be9bb4e2d59bd5b92b740b7dc0ba913a4c2\",\n    \"secretKey\": \"63hcaArR1tkPep2e1pT3lBJ8tBaAe2cp8nGu1L3tF4r5kn9p2kprTqlf45e888988Aaa6dC8upS1r9o7p7hotC\"\n}"
+    },
+    "urlHeaders": {
+      "S": ""
+    },
+    "estadoValidador": {
+      "S": "Y"
+    },
+    "useCertificado": {
+      "BOOL": false
+    },
+    "canalNombre": {
+      "S": "1011-Miraland Asset Management"
+    },
+    "jpathTiempo": {
+      "S": "$.expiresIn"
+    },
+    "codigoExp": {
+      "S": "403"
+    }
+  },
+  {
+    "nombre": {
+      "S": "Zone Zero Urban Credit Union"
+    },
+    "apiKey": {
+      "S": ""
+    },
+    "jpathToken": {
+      "S": "$.accessToken"
+    },
+    "urlAuth": {
+      "S": "https://wy8lh27jyb-vpce-03ecbc47b37cc7965.execute-api.us-east-1.amazonaws.com/dev/auth/token"
+    },
+    "urlValidador": {
+      "S": ""
+    },
+    "tipoAuth": {
+      "S": "dinamico"
+    },
+    "idCanal": {
+      "S": "1015"
+    },
+    "headers": {
+      "S": "[{\"headerKey\":\"Authorization\",\"headerValue\":\"Bearer {{token}}\"}]"
+    },
+    "llaveCifrado": {
+      "S": "9fa44fab-9319-4d9f-90d1-30056b00b09b"
+    },
+    "algoritmoCifrado": {
+      "S": "aes-256-gcm"
+    },
+    "llaveDescifrado": {
+      "S": "arn:aws:kms:us-east-1:729330417555:key/mrk-fab483954956476787608d9e5eee2c97"
+    },
+    "alias": {
+      "S": "ZONAGATO"
+    },
+    "peticionJson": {
+      "S": "{\n    \"apiKey\": \"052bbfc9988439c5afd1daff99fb9fc5aab873b0a\",\n    \"secretKey\": \"nj4b73Ot1tDG792ejR43lao9oAf9e1vM6V9Mf36514rjso3vlp86cu78I5ea9A8b99986d3umn31Ccm0CF66g8\"\n}"
+    },
+    "urlHeaders": {
+      "S": ""
+    },
+    "estadoValidador": {
+      "S": "Y"
+    },
+    "useCertificado": {
+      "BOOL": false
+    },
+    "canalNombre": {
+      "S": "1015-Zone Zero Urban Credit Union"
+    },
+    "jpathTiempo": {
+      "S": "$.expiresIn"
+    },
+    "codigoExp": {
+      "S": "403"
+    }
+  },
+  {
+    "nombre": {
+      "S": "Proxy Risk Management Group "
+    },
+    "apiKey": {
+      "S": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
+    },
+    "jpathToken": {
+      "S": ""
+    },
+    "urlAuth": {
+      "S": ""
+    },
+    "urlValidador": {
+      "S": "https://tld-validador-dummy.dev.telered.internal/validar-fallos"
+    },
+    "tipoAuth": {
+      "S": "fijo"
+    },
+    "headers": {
+      "S": "[{\"headerKey\":\"Authorization\",\"headerValue\":\"{{token}}\"}]"
+    },
+    "llaveCifrado": {
+      "S": "ba71cd57-f47d-41e4-a7b2-6abfb90a9aaa"
+    },
+    "algoritmoCifrado": {
+      "S": "aes-256-cbc"
+    },
+    "idCanal": {
+      "S": "1022"
+    },
+    "llaveDescifrado": {
+      "S": "arn:aws:kms:us-east-1:729330417555:key/mrk-fab483954956476787608d9e5eee2c97"
+    },
+    "alias": {
+      "S": "PROXGATO"
+    },
+    "peticionJson": {
+      "S": ""
+    },
+    "urlHeaders": {
+      "S": ""
+    },
+    "estadoValidador": {
+      "S": "Y"
+    },
+    "useCertificado": {
+      "BOOL": false
+    },
+    "canalNombre": {
+      "S": "1022-Proxy Risk Management Group "
+    },
+    "jpathTiempo": {
+      "S": ""
+    },
+    "codigoExp": {
+      "S": ""
+    }
+  },
+  {
+    "nombre": {
+      "S": "Stellaron Crisis Fund"
+    },
+    "apiKey": {
+      "S": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
+    },
+    "jpathToken": {
+      "S": ""
+    },
+    "urlAuth": {
+      "S": ""
+    },
+    "urlValidador": {
+      "S": ""
+    },
+    "tipoAuth": {
+      "S": "fijo"
+    },
+    "llaveCifrado": {
+      "S": "6468e09f-da25-4992-8f28-9f285c9e510d"
+    },
+    "headers": {
+      "S": "[{\"headerKey\":\"Authorization\",\"headerValue\":\"{{token}}\"}]"
+    },
+    "idCanal": {
+      "S": "1019"
+    },
+    "algoritmoCifrado": {
+      "S": "aes-256-gcm"
+    },
+    "llaveDescifrado": {
+      "S": "arn:aws:kms:us-east-1:729330417555:key/mrk-fab483954956476787608d9e5eee2c97"
+    },
+    "alias": {
+      "S": "STELGATO"
+    },
+    "peticionJson": {
+      "S": ""
+    },
+    "urlHeaders": {
+      "S": ""
+    },
+    "estadoValidador": {
+      "S": "Y"
+    },
+    "useCertificado": {
+      "BOOL": false
+    },
+    "canalNombre": {
+      "S": "1019-Stellaron Crisis Fund"
+    },
+    "jpathTiempo": {
+      "S": ""
+    },
+    "codigoExp": {
+      "S": ""
+    }
+  },
+  {
+    "nombre": {
+      "S": "Archon Sovereign Banking"
+    },
+    "apiKey": {
+      "S": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
+    },
+    "jpathToken": {
+      "S": ""
+    },
+    "urlAuth": {
+      "S": ""
+    },
+    "urlValidador": {
+      "S": ""
+    },
+    "tipoAuth": {
+      "S": "fijo"
+    },
+    "idCanal": {
+      "S": "1018"
+    },
+    "headers": {
+      "S": "[{\"headerKey\":\"Authorization\",\"headerValue\":\"{{token}}\"}]"
+    },
+    "algoritmoCifrado": {
+      "S": "aes-256-cbc"
+    },
+    "llaveCifrado": {
+      "S": "b6a5ca24-5ea7-4984-916f-3fc27650879b"
+    },
+    "llaveDescifrado": {
+      "S": "arn:aws:kms:us-east-1:729330417555:key/mrk-fab483954956476787608d9e5eee2c97"
+    },
+    "alias": {
+      "S": "ARCHGATO"
+    },
+    "peticionJson": {
+      "S": ""
+    },
+    "urlHeaders": {
+      "S": ""
+    },
+    "estadoValidador": {
+      "S": "Y"
+    },
+    "useCertificado": {
+      "BOOL": false
+    },
+    "canalNombre": {
+      "S": "1018-Archon Sovereign Banking"
+    },
+    "jpathTiempo": {
+      "S": ""
+    },
+    "codigoExp": {
+      "S": ""
+    }
+  },
+  {
+    "nombre": {
+      "S": "Anomaly Appraisal Bank"
+    },
+    "apiKey": {
+      "S": ""
+    },
+    "jpathToken": {
+      "S": ""
+    },
+    "urlAuth": {
+      "S": ""
+    },
+    "urlValidador": {
+      "S": ""
+    },
+    "tipoAuth": {
+      "S": "fijo"
+    },
+    "headers": {
+      "S": "[{\"headerKey\":\"Authorization\",\"headerValue\":\"{{token}}\"}]"
+    },
+    "llaveCifrado": {
+      "S": "2b8af21a-3740-4c3a-9909-409d44ce4010"
+    },
+    "idCanal": {
+      "S": "1024"
+    },
+    "algoritmoCifrado": {
+      "S": "aes-256-cbc"
+    },
+    "llaveDescifrado": {
+      "S": "arn:aws:kms:us-east-1:729330417555:key/mrk-fab483954956476787608d9e5eee2c97"
+    },
+    "alias": {
+      "S": "ANOMGATO"
+    },
+    "peticionJson": {
+      "S": ""
+    },
+    "urlHeaders": {
+      "S": ""
+    },
+    "estadoValidador": {
+      "S": "Y"
+    },
+    "useCertificado": {
+      "BOOL": false
+    },
+    "canalNombre": {
+      "S": "1024-Anomaly Appraisal Bank"
+    },
+    "jpathTiempo": {
+      "S": ""
+    },
+    "codigoExp": {
+      "S": ""
+    }
+  },
+  {
+    "nombre": {
+      "S": "Teyvat Eternal Vault"
+    },
+    "apiKey": {
+      "S": ""
+    },
+    "jpathToken": {
+      "S": ""
+    },
+    "urlAuth": {
+      "S": ""
+    },
+    "urlValidador": {
+      "S": ""
+    },
+    "tipoAuth": {
+      "S": "fijo"
+    },
+    "idCanal": {
+      "S": "1017"
+    },
+    "headers": {
+      "S": "[{\"headerKey\":\"Authorization\",\"headerValue\":\"{{token}}\"}]"
+    },
+    "llaveCifrado": {
+      "S": ""
+    },
+    "llaveDescifrado": {
+      "S": ""
+    },
+    "alias": {
+      "S": "TEYVGATO"
+    },
+    "peticionJson": {
+      "S": ""
+    },
+    "urlHeaders": {
+      "S": ""
+    },
+    "estadoValidador": {
+      "S": "Y"
+    },
+    "jpathTiempo": {
+      "S": ""
+    },
+    "codigoExp": {
+      "S": ""
+    }
+  },
+  {
+    "nombre": {
+      "S": "Cornerstone Everness Banking Group"
+    },
+    "apiKey": {
+      "S": "6f5fdd0c-edba-4ae4-8b83-20db05f68c39"
+    },
+    "jpathToken": {
+      "S": ""
+    },
+    "urlAuth": {
+      "S": ""
+    },
+    "urlValidador": {
+      "S": "https://tld-validador-dummy.dev.telered.internal/validar"
+    },
+    "tipoAuth": {
+      "S": "fijo"
+    },
+    "algoritmoCifrado": {
+      "S": "aes-256-gcm"
+    },
+    "headers": {
+      "S": "[{\"headerKey\":\"Authorization\",\"headerValue\":\"{{token}}\"}]"
+    },
+    "llaveCifrado": {
+      "S": "21105b80-79de-4379-914f-796382080cea"
+    },
+    "idCanal": {
+      "S": "1014"
+    },
+    "llaveDescifrado": {
+      "S": "arn:aws:kms:us-east-1:729330417555:key/mrk-fab483954956476787608d9e5eee2c97"
+    },
+    "alias": {
+      "S": "CORNGATO"
+    },
+    "peticionJson": {
+      "S": ""
+    },
+    "urlHeaders": {
+      "S": ""
+    },
+    "estadoValidador": {
+      "S": "Y"
+    },
+    "useCertificado": {
+      "BOOL": false
+    },
+    "canalNombre": {
+      "S": "1014-Cornerstone Everness Banking Group"
+    },
+    "jpathTiempo": {
+      "S": ""
+    },
+    "codigoExp": {
+      "S": ""
+    }
+  }
+]

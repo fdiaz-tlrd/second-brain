@@ -1,0 +1,63 @@
+[
+  {
+    "tipoIdentificador": {
+      "S": "CELULAR"
+    },
+    "producto": {
+      "S": "PACA"
+    },
+    "actualizado": {
+      "S": "2026-07-16 10:28:35.981"
+    },
+    "identificador": {
+      "S": "61009001"
+    },
+    "creado": {
+      "S": "2026-07-16 10:28:35.981"
+    },
+    "id": {
+      "S": "1c123682-a148-4c98-ab1a-2e7cd3ed3c9f"
+    },
+    "banco": {
+      "S": "ASTRGATO"
+    },
+    "estado": {
+      "S": "A"
+    },
+    "cuenta": {
+      "S": "123069852372001"
+    }
+  },
+  {
+    "tipoIdentificador": {
+      "S": "CELULAR"
+    },
+    "producto": {
+      "S": "PACA"
+    },
+    "ultimaConsulta": {
+      "S": "2026-07-10 16:29:28.962"
+    },
+    "actualizado": {
+      "S": "2026-06-15 02:00:36.223"
+    },
+    "creado": {
+      "S": "2026-05-16 04:56:35.641"
+    },
+    "identificador": {
+      "S": "69852374"
+    },
+    "id": {
+      "S": "1c587067-84c1-4549-8acb-216aa5197fd5"
+    },
+    "estado": {
+      "S": "I"
+    },
+    "banco": {
+      "S": "AMIYGATO"
+    },
+    "cuenta": {
+      "S": "456069852372001"
+    }
+  }
+]
