@@ -6,7 +6,7 @@
 | Doc marketplace | `produccion_real/telered_content_mktpl/tech_doc/api_7.json` (OpenAPI 3.0.0) |
 | Título doc | MARKETPLACE TELERED - API PARA REQUEST TO PAY (R2P) |
 | Ancla verdad | Código en `produccion_real/` (matriz, validador-api, `tld-api-r2p`) |
-| Advertencia | La doc **no es del todo cierta**. Usarla como guía de intención de negocio; **validar siempre contra prod** antes de asertar en pruebas. |
+| Advertencia | La doc **no es del todo cierta**. Usarla solo como **contexto**. **No** arreglar `api_7` / Marketplace en este hilo (sería mejora nueva; usuario 2026-07-16). Verdad de pruebas = prod código + paridad Dig ([`17`](./17-estrategia-newman-r2p-paridad-dig.md)). |
 
 ## Principio de uso
 
@@ -149,24 +149,13 @@ Create `0011`: `id = "R2P" + …` (32), estado inicial `"S"`. Update `0013`: cam
 
 ---
 
-## D. Escenarios sencillos propuestos (diseño; no colección aún)
+## D. Escenarios — ver estrategia Newman (reencuadre 2026-07-16)
 
-**Lenovo no ejecuta Newman.** Lista corta para armar después, afirmando **prod**:
+La lista larga de “sencillos” del borrador inicial **ya no es el backlog**.
 
-| # | Id tentativo | Qué afirma |
-|---|--------------|------------|
-| 1 | `R2P_0011_ok` | 0011 válido → `codigoR2P`, estado Dynamo `S`, notify banco como **0012** |
-| 2 | `R2P_0011_limite_solicitudes` | >1 solicitud → **425** |
-| 3 | `R2P_0011_sin_nombreAcreedor` | falta nombreAcreedor → **437** (no confiar en nombreDeudor de la doc) |
-| 4 | `R2P_envelope_autopista` | si vienen `idTransaccionAutopista`/`fechaHora`, llegan al hop banco (pass-through) |
-| 5 | `R2P_0013_ok` | 0013 sobre R2P en `S` → update + notify **0014** |
-| 6 | `R2P_0013_codigo_inexistente` | → **442** |
-| 7 | `R2P_0013_ya_procesada` | estado ≠ `S` → **441** |
-| 8 | `R2P_0013_sin_op_0014_emisor` | → **438** (si ambiente controlado) |
-
-Prioridad inicial para “sencillos”: **1, 3, 5, 6** (+ **4** si se prueba Dig/proxy envelope).
-
-Dig: mismos asserts de negocio; entrada puede ser Invoke vía validador-api Dig (`LAMBDA_R2P`), no HTTP prod a R2P.
+- Meta real: paridad Dig **prod-source** vs **cambios** con set **mínimo** — [`17-estrategia-newman-r2p-paridad-dig.md`](./17-estrategia-newman-r2p-paridad-dig.md).
+- Diseño corto: [`16`](./16-escenarios-simples-newman-diseno.md).
+- Gaps de esta doc marketplace: **conocidos**; **no** se corrigen aquí.
 
 ---
 

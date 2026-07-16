@@ -4,8 +4,8 @@
 
 | Campo | Valor |
 |-------|-------|
-| **Última actualización** | 2026-07-15 |
-| **Estado** | **Pausa revisión humana** prod≠Dig vía super-tabla VCN ([`../super-tabla-prod-dev/vcn/00-estado-y-retomo.md`](../super-tabla-prod-dev/vcn/00-estado-y-retomo.md)). Matriz VCN 3×3 **cerrada en Newman dig** `18-49-44Z`. P2P/P2M Newman Dig `4.x` **sin confirmar**. |
+| **Última actualización** | 2026-07-16 |
+| **Estado** | **Pausa revisión humana** prod≠Dig vía super-tabla VCN ([`../super-tabla-prod-dev/vcn/00-estado-y-retomo.md`](../super-tabla-prod-dev/vcn/00-estado-y-retomo.md)). Matriz VCN 3×3 **cerrada en Newman dig** `18-49-44Z`. P2P/P2M Newman Dig `4.x` **sin confirmar**. **R2P:** solo estrategia paridad Dig (sin suite) — [`../tld-api-r2p/17-estrategia-newman-r2p-paridad-dig.md`](../tld-api-r2p/17-estrategia-newman-r2p-paridad-dig.md). |
 | **Tooling** | Cifrado/plano en `[CAPTURA]`. Foto presentación `foto-presentacion-{vcn,p2p}-{prod\|dev}.*` (obligatoria al fin de Newman). Registro = proyección de `historial/` (sin enlaces rotos). Doc: [`generador/estudio-generador.md`](generador/estudio-generador.md), [`generador/logs/README.md`](generador/logs/README.md) |
 | **Rama producto** | `feature/ARQ-225_Refactory` (P2P, P2M, VCN, validador-api) |
 | **Repo docs** | `second-brain` rama `main` |
@@ -32,6 +32,7 @@
 | **Reglas agente VPN** | [`../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md`](../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md) | OK |
 | **Comparar prod vs dev** | [`comparar-prod-vs-dev/`](comparar-prod-vs-dev/) (README + 01–04) | Diseño + código implementado |
 | **Super tabla esperado / prod / Dig** | [`../super-tabla-prod-dev/`](../super-tabla-prod-dev/) | **Pausa:** justificación humana VCN 46 bloques; P2P después. Handoff: [`../super-tabla-prod-dev/vcn/00-estado-y-retomo.md`](../super-tabla-prod-dev/vcn/00-estado-y-retomo.md) |
+| **R2P Newman (paridad Dig)** | [`../tld-api-r2p/17-estrategia-newman-r2p-paridad-dig.md`](../tld-api-r2p/17-estrategia-newman-r2p-paridad-dig.md) | Diseño; **sin** colección; no ambición tipo VCN |
 | **`idSolicitud` (P2P/P2M/VCN)** | [`generador/validacion-idSolicitud/`](generador/validacion-idSolicitud/) | Iteración 01 cerrada en doc |
 | **`idPregunta` / `respuestas[].id` (P2P)** | [`generador/validacion-preguntas-seguridad/`](generador/validacion-preguntas-seguridad/) | Iteración 01 cerrada en doc |
 | **Validador-api / Dig 418–482** | [`../tld-validador-api/`](../tld-validador-api/) | Matriz VCN Newman dig **cerrada**; P2P/P2M Newman Dig pendiente confirmar |

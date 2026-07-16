@@ -25,5 +25,6 @@
 | [`12-estudio-idTransaccionAutopista-fechaHora-flujo-prod.md`](./12-estudio-idTransaccionAutopista-fechaHora-flujo-prod.md) | Pass-through envelope autopista |
 | [`13-auditoria-g4-lambdaResult.md`](./13-auditoria-g4-lambdaResult.md) | Auditoría forma salida Dig |
 | [`14-cierre-3-5-g5-g7.md`](./14-cierre-3-5-g5-g7.md) | Cierre candado G5 + G7 |
-| [`15-estudio-api7-marketplace-vs-prod.md`](./15-estudio-api7-marketplace-vs-prod.md) | **api_7 marketplace vs prod** (doc incompleta) |
-| [`16-escenarios-simples-newman-diseno.md`](./16-escenarios-simples-newman-diseno.md) | Diseño escenarios Newman sencillos |
+| [`15-estudio-api7-marketplace-vs-prod.md`](./15-estudio-api7-marketplace-vs-prod.md) | api_7 vs prod (**no** arreglar marketplace aquí) |
+| [`16-escenarios-simples-newman-diseno.md`](./16-escenarios-simples-newman-diseno.md) | Alcance mínimo Newman R2P |
+| [`17-estrategia-newman-r2p-paridad-dig.md`](./17-estrategia-newman-r2p-paridad-dig.md) | **Estrategia** paridad Dig + tooling Postman |
