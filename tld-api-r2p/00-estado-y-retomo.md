@@ -7,7 +7,7 @@
 | **Plan vivo** | [`04-plan-asegurar-dig.md`](./04-plan-asegurar-dig.md) |
 | **Gaps** | [`07`](./07-fase1-gaps-r2p-vs-espejo-vcn.md) — G1–G3/G6 **cerrados**; vivos G4–G5, G7 |
 | **Orden fixes** | [`11-fase2-orden-fixes.md`](./11-fase2-orden-fixes.md) |
-| **Commits** | Tras cluster transporte Dig (3.1–3.3): commit en `tld-api-r2p` (+ docs en `second-brain/tld-api-r2p/`) |
+| **Commits** | `tld-api-r2p` `6fece92` (3.1–3.3) · `second-brain` `9f486e5` (docs) — sin push |
 
 ## Cómo retomar
 
