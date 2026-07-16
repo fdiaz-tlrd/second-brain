@@ -1,0 +1,36 @@
+{
+  "nombre": "0011.3.1009.1.1. validador ASTRGATO — R2P feliz (exito)",
+  "expectedHttpStatus": 200,
+  "expectedCodigoError": 0,
+  "expectedTipo": "exito",
+  "expectedValidador": "1009",
+  "expectedIdentificador": "61009001",
+  "expectedMonto": "100.00",
+  "expectedBancoAcreedor": "CELEGATO",
+  "expectedCuentaDeudor": "1234567890",
+  "expectedCuentaAcreedor": "0987654321",
+  "expectedNombreAcreedor": "Prueba Acreedor",
+  "algoritmoCifrado": "aes-256-cbc",
+  "body": {
+    "idCanal": "{{CANAL_EMISOR}}",
+    "validador": "1009",
+    "peticion": {
+      "idPeticion": "{{SWIFT_CANAL_EMISOR}}{{$timestamp}}",
+      "metodo": "0011",
+      "solicitudes": [
+        {
+          "idSolicitud": "1",
+          "parametros": {
+            "identificador": "61009001",
+            "monto": "100.00",
+            "bancoAcreedor": "CELEGATO",
+            "cuentaDeudor": "1234567890",
+            "cuentaAcreedor": "0987654321",
+            "nombreAcreedor": "Prueba Acreedor",
+            "notaAcreedor": "newman-r2p-min"
+          }
+        }
+      ]
+    }
+  }
+}

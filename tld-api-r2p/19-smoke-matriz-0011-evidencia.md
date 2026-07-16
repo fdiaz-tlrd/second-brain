@@ -45,8 +45,9 @@ Par: **1008 → 1009**, identificador **`61009001`**.
 
 - Gate alias **cerrado**: existe deudor activo ASTRGATO.
 - Dummy `/r2p` + MATRIZ responden en el camino feliz.
-- **Aún no** es paridad prod-source vs cambios ni colección Newman R2P.
+- **Aún no** es paridad prod-source vs cambios.
+- Suite Newman mínima: `Postman/generador` → `node run-newman.js r2p` (VPN).
 
 ## Siguiente
 
-Implementar suite mínima en `Postman/generador` (cuando el usuario lo pida) usando estos datos.
+Paridad Dig (`--codigo-fuente prod` luego `dev` + `comparar-runs.js`) cuando el usuario lo pida tras deploys.

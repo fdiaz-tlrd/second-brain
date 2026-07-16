@@ -1,0 +1,618 @@
+// Post-response (Tests) de raÃ­z â€” R2P Escenarios error
+// Copia del patrÃ³n VCN (CAPTURA / HD-005 MATRIZ HTTP 200); rama exito = negocio R2P.
+// Basado en Postman_documentacion/referenciaBase + Postman_documentacion/documentacion/scriptsRaizReferencia.md
+
+(function () {
+  function cvGet(key) {
+    return pm.collectionVariables.get(key);
+  }
+
+  function isVarMissing(name) {
+    const value = pm.variables.get(name);
+    return value === undefined || value === null || String(value).trim() === '';
+  }
+
+  function parseFlowError(raw) {
+    if (!raw) {
+      return 'sin detalle';
+    }
+    try {
+      const parsed = JSON.parse(raw);
+      if (parsed._error) {
+        return parsed._error + ': ' + (parsed._detalle || '');
+      }
+    } catch (e) {
+      // usar texto tal cual
+    }
+    return raw;
+  }
+
+  function resolveMensajeCatalogo(codigo) {
+    const raw = cvGet('CATALOGO_GENERAL');
+    if (!raw) {
+      return {
+        ok: false,
+        error: 'Falta CATALOGO_GENERAL (regenerar coleccion con ensamblador)',
+      };
+    }
+    let catalogo;
+    try {
+      catalogo = JSON.parse(raw);
+    } catch (e) {
+      return { ok: false, error: 'CATALOGO_GENERAL no es JSON valido' };
+    }
+    const mensaje = catalogo[String(codigo)];
+    if (!mensaje) {
+      return {
+        ok: false,
+        error: 'Codigo ' + codigo + ' no esta en CATALOGO_GENERAL',
+      };
+    }
+    return { ok: true, mensaje: mensaje };
+  }
+
+  // ---------------------------------------------------------------------------
+  // CAPTURA determinista: emite UN assert cuyo nombre es "[CAPTURA] " + JSON con
+  // TODO lo capturado de esta ejecuciÃ³n. run-newman.js lo parsea (fuente autoritativa).
+  // Siempre pasa y estÃ¡ envuelto en try/catch: nunca rompe el resto de asserts.
+  // ---------------------------------------------------------------------------
+  (function emitirCaptura() {
+    function cap(v, max) {
+      if (v == null) return '';
+      const s = String(v);
+      return s.length > max ? s.slice(0, max) + '\u2026[+' + (s.length - max) + ']' : s;
+    }
+
+    // Clasifica si la lambda devolviÃ³ el cuerpo cifrado o en claro.
+    // DecisiÃ³n expert: PRIMARIO = estructura del payload (lo que emitiÃ³ la API).
+    // SECUNDARIO = heurÃ­stica "Â¿cambiÃ³ tras /descifrar?" (si no cambiÃ³, ya venÃ­a en claro;
+    // el dummy solo descifra si `respuesta`/`peticion` es string â€” si no, hace echo).
+    //   cifrado            â†’ {"respuesta":"<iv.ciphertext hex>"} (dummy sÃ­ descifra)
+    //   plano               â†’ {"codigoError":N,...} en raÃ­z (matriz / validador en claro)
+    //   plano_en_respuesta  â†’ {"respuesta":{...}} objeto (cifrado NO; error anidado en claro)
+    //   desconocido / sin_respuesta / no_json
+    function clasificarFormatoRespuestaLambda(respRaw, descBody) {
+      const out = {
+        respuestaVinoCifrada: null,
+        formatoRespuestaLambda: 'sin_respuesta',
+        payloadCambioTrasDescifrar: null,
+      };
+      const raw = respRaw == null ? '' : String(respRaw).trim();
+      const desc = descBody == null ? '' : String(descBody).trim();
+      if (!raw) {
+        return out;
+      }
+      out.payloadCambioTrasDescifrar = desc.length > 0 ? raw !== desc : null;
+
+      let parsed = null;
+      try {
+        parsed = JSON.parse(raw);
+      } catch (e) {
+        out.formatoRespuestaLambda = 'no_json';
+        out.respuestaVinoCifrada = false;
+        return out;
+      }
+      if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+        out.formatoRespuestaLambda = 'desconocido';
+        out.respuestaVinoCifrada = out.payloadCambioTrasDescifrar === true;
+        return out;
+      }
+
+      // Dummy /descifrar solo intenta descifrar si respuesta (o peticion) es STRING.
+      if (typeof parsed.respuesta === 'string' && parsed.respuesta.trim().length > 0) {
+        out.formatoRespuestaLambda = 'cifrado';
+        out.respuestaVinoCifrada = true;
+        return out;
+      }
+      if (parsed.respuesta != null && typeof parsed.respuesta === 'object') {
+        out.formatoRespuestaLambda = 'plano_en_respuesta';
+        out.respuestaVinoCifrada = false;
+        return out;
+      }
+      if (
+        parsed.codigoError != null ||
+        parsed.descripcionError != null ||
+        parsed.mensajeError != null
+      ) {
+        out.formatoRespuestaLambda = 'plano';
+        out.respuestaVinoCifrada = false;
+        return out;
+      }
+
+      out.formatoRespuestaLambda = 'desconocido';
+      if (out.payloadCambioTrasDescifrar === true) {
+        out.respuestaVinoCifrada = true;
+      } else if (out.payloadCambioTrasDescifrar === false) {
+        out.respuestaVinoCifrada = false;
+      }
+      return out;
+    }
+
+    // PresentaciÃ³n al cliente: Forma A (codigoError+texto), B (respuestas[].resultado), C (otro).
+    // Debe mantenerse alineado con clasificar-presentacion-cliente.js (Node).
+    function clasificarPresentacionCliente(descBody, formatoLambda, vinoCifrada, httpStatus) {
+      function sortedKeys(obj) {
+        if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return '';
+        return Object.keys(obj).sort().join(',');
+      }
+      function normTexto(t) {
+        return String(t || '').trim().replace(/\s+/g, ' ');
+      }
+      function pickTexto(obj) {
+        if (!obj || typeof obj !== 'object') return { campo: null, texto: null };
+        if (obj.mensajeError != null && String(obj.mensajeError).trim() !== '') {
+          return { campo: 'mensajeError', texto: String(obj.mensajeError) };
+        }
+        if (obj.descripcionError != null && String(obj.descripcionError).trim() !== '') {
+          return { campo: 'descripcionError', texto: String(obj.descripcionError) };
+        }
+        if (obj.descripcion != null && String(obj.descripcion).trim() !== '') {
+          return { campo: 'descripcion', texto: String(obj.descripcion) };
+        }
+        if (obj.message != null && String(obj.message).trim() !== '') {
+          return { campo: 'message', texto: String(obj.message) };
+        }
+        return { campo: null, texto: null };
+      }
+      function resolverObj(parsed, fmt) {
+        if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return null;
+        if (
+          (fmt === 'plano_en_respuesta' ||
+            (parsed.respuesta != null &&
+              typeof parsed.respuesta === 'object' &&
+              !Array.isArray(parsed.respuesta) &&
+              parsed.codigoError == null &&
+              !Array.isArray(parsed.respuestas))) &&
+          parsed.respuesta &&
+          typeof parsed.respuesta === 'object'
+        ) {
+          return parsed.respuesta;
+        }
+        return parsed;
+      }
+      const cifrado = typeof vinoCifrada === 'boolean' ? vinoCifrada : null;
+      const httpNum = httpStatus != null && httpStatus !== '' ? Number(httpStatus) : null;
+      const httpOk = httpNum != null && !isNaN(httpNum) ? httpNum : null;
+      const cifradoTxt = cifrado === true ? 'si' : cifrado === false ? 'no' : '?';
+      const baseC = {
+        presentacionForma: 'C',
+        presentacionCodigo: null,
+        presentacionDescripcion: null,
+        presentacionCampoTexto: null,
+        presentacionClaves: '',
+        presentacionCifrado: cifrado,
+        presentacionHttp: httpOk,
+        presentacionPatternKey: null,
+      };
+      if (formatoLambda === 'sin_respuesta' || formatoLambda === 'no_json') {
+        baseC.presentacionPatternKey =
+          'C|http=' + (httpOk != null ? httpOk : 'null') + '|cifrado=' + cifradoTxt +
+          '|fmt=' + (formatoLambda || '?') + '|codigo=|desc=';
+        return baseC;
+      }
+      let parsed = null;
+      try {
+        parsed = descBody ? JSON.parse(String(descBody)) : null;
+      } catch (e) {
+        parsed = null;
+      }
+      if (!parsed) {
+        baseC.presentacionPatternKey =
+          'C|http=' + (httpOk != null ? httpOk : 'null') + '|cifrado=' + cifradoTxt +
+          '|fmt=' + (formatoLambda || '?') + '|codigo=|desc=';
+        return baseC;
+      }
+      const obj = resolverObj(parsed, formatoLambda);
+      if (!obj) {
+        baseC.presentacionPatternKey =
+          'C|http=' + (httpOk != null ? httpOk : 'null') + '|cifrado=' + cifradoTxt +
+          '|fmt=' + (formatoLambda || '?') + '|codigo=|desc=';
+        return baseC;
+      }
+      const claves = sortedKeys(obj);
+      if (Array.isArray(obj.respuestas) && obj.respuestas.length > 0) {
+        const r0 = obj.respuestas[0] || {};
+        const codigo = r0.resultado != null && r0.resultado !== '' ? r0.resultado : null;
+        return {
+          presentacionForma: 'B',
+          presentacionCodigo: codigo,
+          presentacionDescripcion: '',
+          presentacionCampoTexto: null,
+          presentacionClaves: claves,
+          presentacionCifrado: cifrado,
+          presentacionHttp: httpOk,
+          presentacionPatternKey:
+            'B|http=' + (httpOk != null ? httpOk : 'null') + '|cifrado=' + cifradoTxt +
+            '|keys=' + claves + '|codigo=' + (codigo != null ? String(codigo) : '') + '|desc=',
+        };
+      }
+      if (obj.codigoError != null && obj.codigoError !== '') {
+        const pick = pickTexto(obj);
+        const desc = normTexto(pick.texto);
+        const forma = pick.campo ? 'A.' + pick.campo : 'A';
+        return {
+          presentacionForma: forma,
+          presentacionCodigo: obj.codigoError,
+          presentacionDescripcion: desc,
+          presentacionCampoTexto: pick.campo,
+          presentacionClaves: claves,
+          presentacionCifrado: cifrado,
+          presentacionHttp: httpOk,
+          presentacionPatternKey:
+            forma + '|http=' + (httpOk != null ? httpOk : 'null') + '|cifrado=' + cifradoTxt +
+            '|campo=' + (pick.campo || '') + '|keys=' + claves +
+            '|codigo=' + String(obj.codigoError) + '|desc=' + desc,
+        };
+      }
+      baseC.presentacionClaves = claves;
+      baseC.presentacionPatternKey =
+        'C|http=' + (httpOk != null ? httpOk : 'null') + '|cifrado=' + cifradoTxt +
+        '|keys=' + claves + '|codigo=|desc=';
+      return baseC;
+    }
+
+    let descifradoBody = '';
+    let descifradoCode = null;
+    try {
+      descifradoBody = pm.response ? pm.response.text() : '';
+      descifradoCode = pm.response ? pm.response.code : null;
+    } catch (e) {
+      // best-effort
+    }
+    const respLambdaRawFull = cvGet('PROCESAR_RESPONSE_BODY');
+    const fmt = clasificarFormatoRespuestaLambda(respLambdaRawFull, descifradoBody);
+    const httpRealLambda = cvGet('PROCESAR_STATUS_CODE');
+    const pres = clasificarPresentacionCliente(
+      descifradoBody,
+      fmt.formatoRespuestaLambda,
+      fmt.respuestaVinoCifrada,
+      httpRealLambda
+    );
+    const captura = {
+      nivel: String(pm.environment.get('NIVEL_EJECUCION') || 'VCN').trim().toUpperCase(),
+      url: cvGet('PROCESAR_URL') || '',
+      httpRealLambda: httpRealLambda,
+      httpEsperado: pm.variables.get('expectedHttpStatus'),
+      codigoErrorEsperado: pm.variables.get('expectedCodigoError'),
+      tipo: pm.variables.get('expectedTipo'),
+      tiempoMs: cvGet('PROCESAR_RESPONSE_TIME_MS'),
+      idPeticion: cvGet('PAYLOAD_ID_PETICION'),
+      metodo: cvGet('PAYLOAD_METODO'),
+      idSolicitud: cvGet('PAYLOAD_ID_SOLICITUD_0'),
+      flowFailed: cvGet('FLOW_FAILED'),
+      flowError: cap(cvGet('FLOW_ERROR'), 2000),
+      reqClaro: cap(cvGet('PROCESAR_REQUEST_BODY_CLARO'), 6000),
+      reqCifrado: cap(cvGet('PROCESAR_REQUEST_BODY_CIFRADO'), 6000),
+      respLambdaRaw: cap(respLambdaRawFull, 6000),
+      respLambdaHeaders: cap(cvGet('PROCESAR_RESPONSE_HEADERS'), 3000),
+      descifradoCode: descifradoCode,
+      descifradoBody: cap(descifradoBody, 6000),
+      // Â¿La lambda devolviÃ³ cifrado o en claro?
+      respuestaVinoCifrada: fmt.respuestaVinoCifrada,
+      formatoRespuestaLambda: fmt.formatoRespuestaLambda,
+      payloadCambioTrasDescifrar: fmt.payloadCambioTrasDescifrar,
+      // PresentaciÃ³n cliente (Forma A/B/C) â€” foto de producciÃ³n
+      presentacionForma: pres.presentacionForma,
+      presentacionCodigo: pres.presentacionCodigo,
+      presentacionDescripcion: pres.presentacionDescripcion,
+      presentacionCampoTexto: pres.presentacionCampoTexto,
+      presentacionClaves: pres.presentacionClaves,
+      presentacionCifrado: pres.presentacionCifrado,
+      presentacionHttp: pres.presentacionHttp,
+      presentacionPatternKey: pres.presentacionPatternKey,
+    };
+    let json = '';
+    try {
+      json = JSON.stringify(captura);
+    } catch (e) {
+      json = '{"_capturaError":"' + String(e && e.message) + '"}';
+    }
+    pm.test('[CAPTURA] ' + json, function () {
+      pm.expect(true).to.be.true;
+    });
+  })();
+
+  const requiredVars = [
+    'expectedHttpStatus',
+    'expectedCodigoError',
+    'expectedTipo',
+  ];
+  const missingVars = requiredVars.filter(isVarMissing);
+  const tipo = pm.variables.get('expectedTipo');
+
+  if (missingVars.length > 0) {
+    pm.test(
+      'Request mal configurado: faltan ' + missingVars.join(', '),
+      function () {
+        pm.expect.fail(
+          'Definir en Pre-request del request: ' + missingVars.join(', ')
+        );
+      }
+    );
+    return;
+  }
+
+  const httpEsperado = Number(pm.variables.get('expectedHttpStatus'));
+  const codigoEsperado = Number(pm.variables.get('expectedCodigoError'));
+
+  if (cvGet('FLOW_FAILED') === '1') {
+    const detalle = parseFlowError(
+      cvGet('FLOW_ERROR') || cvGet('PROCESAR_RESPONSE_BODY')
+    );
+    pm.test('[Flujo raiz] fallo antes de /descifrar â€” ' + detalle, function () {
+      pm.expect.fail(detalle);
+    });
+    return;
+  }
+
+  const httpReal = Number(cvGet('PROCESAR_STATUS_CODE'));
+  // HTTP Code (capa transporte). La matriz de produccion SIEMPRE responde HTTP 200:
+  // en NIVEL_EJECUCION=MATRIZ el HTTP Code esperado se fija en 200. El expectedHttpStatus
+  // del escenario aplica a las otras rutas (VALIDADOR / VCN directo). Esto NO toca el
+  // codigo de respuesta del payload, que se verifica aparte.
+  const nivelEjecucion = String(pm.environment.get('NIVEL_EJECUCION') || 'VCN')
+    .trim()
+    .toUpperCase();
+  const httpEsperadoTransporte = nivelEjecucion === 'MATRIZ' ? 200 : httpEsperado;
+  pm.test(
+    '[Lambda] HTTP status = ' +
+      httpEsperadoTransporte +
+      ' (' +
+      nivelEjecucion +
+      ', real: ' +
+      httpReal +
+      ')',
+    function () {
+      pm.expect(httpReal).to.equal(httpEsperadoTransporte);
+    }
+  );
+
+  const maxTiempoRaw = pm.environment.get('MAX_TIEMPO_PROCESAR_MS');
+  if (maxTiempoRaw != null && String(maxTiempoRaw).trim() !== '') {
+    const maxTiempo = Number(maxTiempoRaw);
+    const tiempoReal = Number(cvGet('PROCESAR_RESPONSE_TIME_MS'));
+    const nivelEjec = String(pm.environment.get('NIVEL_EJECUCION') || 'VCN')
+      .trim()
+      .toUpperCase();
+    pm.test(
+      '[Procesar ' +
+        nivelEjec +
+        '] tiempo respuesta < ' +
+        maxTiempo +
+        ' ms (real: ' +
+        tiempoReal +
+        ' ms)',
+      function () {
+        pm.expect(tiempoReal, 'tiempo de /procesar no capturado').to.be.at.least(
+          0
+        );
+        pm.expect(tiempoReal).to.be.below(maxTiempo);
+      }
+    );
+  }
+
+  pm.test(
+    '[Dummy /descifrar] HTTP status 2xx (real: ' + pm.response.code + ')',
+    function () {
+      pm.expect(pm.response.code).to.be.at.least(200).and.below(300);
+    }
+  );
+
+  let json = null;
+  try {
+    json = pm.response.json();
+  } catch (e) {
+    // queda null
+  }
+
+  pm.test('[Dummy /descifrar] respuesta JSON parseable', function () {
+    pm.expect(json, 'pm.response.json() fallo').to.not.be.null;
+  });
+
+  if (!json) {
+    return;
+  }
+
+  const inner = (json && json.respuesta) || json;
+
+  if (tipo === 'general') {
+    const resolved = resolveMensajeCatalogo(codigoEsperado);
+    pm.test(
+      '[General] catalogo resuelve mensaje para codigo ' + codigoEsperado,
+      function () {
+        if (!resolved.ok) {
+          pm.expect.fail(resolved.error);
+        }
+      }
+    );
+    if (!resolved.ok) {
+      return;
+    }
+
+    const mensajeEsperado = resolved.mensaje;
+
+    pm.test('[General] codigoError = ' + codigoEsperado, function () {
+      pm.expect(inner.codigoError).to.equal(codigoEsperado);
+    });
+    pm.test('[General] mensajeError = "' + mensajeEsperado + '"', function () {
+      pm.expect(inner.mensajeError).to.equal(mensajeEsperado);
+    });
+    return;
+  }
+
+  if (tipo === 'parametro' || tipo === 'metodo') {
+    const resolved = resolveMensajeCatalogo(codigoEsperado);
+    pm.test(
+      '[' +
+        tipo +
+        '] catalogo resuelve referencia CloudWatch para codigo ' +
+        codigoEsperado,
+      function () {
+        if (!resolved.ok) {
+          pm.expect.fail(resolved.error);
+        }
+      }
+    );
+    if (!resolved.ok) {
+      return;
+    }
+
+    const mensajeCloudWatch = resolved.mensaje;
+
+    pm.test('[Dummy /descifrar] estructura inner.respuestas[0] presente', function () {
+      pm.expect(inner)
+        .to.have.property('respuestas')
+        .that.is.an('array')
+        .with.lengthOf.at.least(1);
+    });
+
+    const r0 = inner.respuestas && inner.respuestas[0];
+    if (!r0) {
+      return;
+    }
+
+    const idSolEsperado = cvGet('PAYLOAD_ID_SOLICITUD_0');
+
+    pm.test(
+      '[' + tipo + '] respuestas[0].idSolicitud = "' + idSolEsperado + '"',
+      function () {
+        pm.expect(r0.idSolicitud).to.equal(idSolEsperado);
+      }
+    );
+    pm.test(
+      '[' + tipo + '] respuestas[0].resultado = ' + codigoEsperado,
+      function () {
+        pm.expect(r0.resultado).to.equal(codigoEsperado);
+      }
+    );
+    pm.test('[' + tipo + '] respuestas[0].datos es null o ausente', function () {
+      pm.expect(r0.datos == null).to.be.true;
+    });
+    pm.test(
+      '[' +
+        tipo +
+        '] CloudWatch â€” referencia (no en response): "' +
+        mensajeCloudWatch +
+        '"',
+      function () {
+        pm.expect(
+          mensajeCloudWatch,
+          'Referencia informativa para buscar en CloudWatch'
+        )
+          .to.be.a('string')
+          .and.not.empty;
+      }
+    );
+    return;
+  }
+
+  if (tipo === 'exito') {
+    pm.test('[Dummy /descifrar] estructura inner.respuestas[0] presente', function () {
+      pm.expect(inner)
+        .to.have.property('respuestas')
+        .that.is.an('array')
+        .with.lengthOf.at.least(1);
+    });
+
+    const r0 = inner.respuestas && inner.respuestas[0];
+    if (!r0) {
+      return;
+    }
+
+    const idSolEsperado = cvGet('PAYLOAD_ID_SOLICITUD_0');
+    const identificadorEsperado = pm.variables.get('expectedIdentificador');
+    const montoEsperado = pm.variables.get('expectedMonto');
+    const bancoAcreedorEsperado = pm.variables.get('expectedBancoAcreedor');
+    const cuentaDeudorEsperada = pm.variables.get('expectedCuentaDeudor');
+    const cuentaAcreedorEsperada = pm.variables.get('expectedCuentaAcreedor');
+    const nombreAcreedorEsperado = pm.variables.get('expectedNombreAcreedor');
+    const datos = r0.datos;
+
+    pm.test(
+      '[exito] respuestas[0].idSolicitud = "' + idSolEsperado + '"',
+      function () {
+        pm.expect(r0.idSolicitud).to.equal(idSolEsperado);
+      }
+    );
+    pm.test('[exito] respuestas[0].resultado = 0', function () {
+      pm.expect(r0.resultado).to.equal(0);
+    });
+    pm.test('[exito] respuestas[0].datos es objeto', function () {
+      pm.expect(datos).to.be.an('object').and.not.null;
+    });
+    pm.test(
+      '[exito] datos incluye identificador, monto, bancoAcreedor, cuentas, nombreAcreedor, codigoR2P',
+      function () {
+        pm.expect(datos).to.include.keys(
+          'identificador',
+          'monto',
+          'bancoAcreedor',
+          'cuentaDeudor',
+          'cuentaAcreedor',
+          'nombreAcreedor',
+          'codigoR2P'
+        );
+      }
+    );
+    pm.test('[exito] datos.codigoR2P empieza con R2P', function () {
+      pm.expect(String(datos.codigoR2P)).to.match(/^R2P/);
+    });
+
+    if (identificadorEsperado) {
+      pm.test(
+        '[exito] datos.identificador = "' + identificadorEsperado + '"',
+        function () {
+          pm.expect(String(datos.identificador)).to.equal(
+            String(identificadorEsperado)
+          );
+        }
+      );
+    }
+    if (montoEsperado) {
+      pm.test('[exito] datos.monto = "' + montoEsperado + '"', function () {
+        pm.expect(String(datos.monto)).to.equal(String(montoEsperado));
+      });
+    }
+    if (bancoAcreedorEsperado) {
+      pm.test(
+        '[exito] datos.bancoAcreedor = "' + bancoAcreedorEsperado + '"',
+        function () {
+          pm.expect(datos.bancoAcreedor).to.equal(bancoAcreedorEsperado);
+        }
+      );
+    }
+    if (cuentaDeudorEsperada) {
+      pm.test(
+        '[exito] datos.cuentaDeudor = "' + cuentaDeudorEsperada + '"',
+        function () {
+          pm.expect(String(datos.cuentaDeudor)).to.equal(
+            String(cuentaDeudorEsperada)
+          );
+        }
+      );
+    }
+    if (cuentaAcreedorEsperada) {
+      pm.test(
+        '[exito] datos.cuentaAcreedor = "' + cuentaAcreedorEsperada + '"',
+        function () {
+          pm.expect(String(datos.cuentaAcreedor)).to.equal(
+            String(cuentaAcreedorEsperada)
+          );
+        }
+      );
+    }
+    if (nombreAcreedorEsperado) {
+      pm.test(
+        '[exito] datos.nombreAcreedor = "' + nombreAcreedorEsperado + '"',
+        function () {
+          pm.expect(datos.nombreAcreedor).to.equal(nombreAcreedorEsperado);
+        }
+      );
+    }
+
+    return;
+  }
+  pm.test('expectedTipo invalido: "' + tipo + '"', function () {
+    pm.expect.fail('Usar general, parametro, metodo o exito');
+  });
+})();

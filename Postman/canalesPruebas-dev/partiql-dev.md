@@ -3,7 +3,8 @@
 | Campo | Valor |
 |-------|-------|
 | Actualizado | 2026-07-16 |
-| Uso | Consola DynamoDB → Editor PartiQL (VPN). Resultados grandes: no versionar dumps enteros; fusionar con scripts de esta carpeta o anotar solo lo R2P. |
+| Uso | Consola DynamoDB → Editor PartiQL (VPN). Resultados grandes: **no** versionar dumps enteros; fusionar con scripts de esta carpeta o anotar solo lo útil (p. ej. R2P). |
+| Agente | Si necesita datos de Dynamo Dig, **pedir al usuario** pegando la consulta PartiQL de este archivo (o una acotada). No asumir dumps en `notas-sueltas`. |
 
 ## `tld-validador-canal`
 

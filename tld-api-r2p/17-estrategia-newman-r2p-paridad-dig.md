@@ -3,10 +3,13 @@
 | Campo | Valor |
 |-------|-------|
 | Fecha | 2026-07-16 |
-| Estado | **Diseño** — gates canales/MATRIZ documentados ([`18`](./18-gates-canales-matriz-r2p.md)); sin colección aún |
+| Estado | **Suite mínima lista** — 1 escenario `0011` feliz (`r2p`); paridad prod vs cambios **después** (deploys + VPN) |
 | Meta | Paridad Dig: código prod vs cambios (mismo AWS) |
 | Nivel | **Solo MATRIZ** (canal → API Rest Autopista) |
-| Tooling | `second-brain/Postman/generador` |
+| Tooling | `second-brain/Postman/generador` — suite `r2p` |
+| Colección | Fuente `R2P Escenarios error/`; salida `ensamblador/salida/R2P Escenarios error.postman_collection.json`; env `entornos/R2P Escenarios error - desarrollo.postman_environment.json` |
+| Armar | `cd …/ensamblador` → `node armar-coleccion.js config-r2p.json` |
+| Newman (VPN) | `node run-newman.js r2p --codigo-fuente prod\|dev` |
 
 ## Aclaraciones del usuario (2026-07-16) — obligatorias
 
@@ -88,40 +91,38 @@ Cambios ya hechos (transporte Dig):
 Escenarios **mínimos** deben poder **llegar al hop producto→banco (proxy)** o al menos **cargar R2P** y devolver negocio coherente.  
 **No** hace falta una batería de 400 códigos de `api_7` para demostrar eso.
 
-Cola **máxima** inicial (diseño; aún no implementada) — recortar si hace falta:
+Cola **v1 implementada** (mínima):
 
-| # | Escenario | Para qué (paridad) |
-|---|-----------|---------------------|
-| 1 | Un `0011` feliz controlado | Cold start OK + camino proxy + negocio 0 / codigoR2P |
-| 2 | Un `0013` feliz (si #1 deja estado usable) o seed mínimo | Remap/Dynamo sigue igual |
-| 3 | (Opcional) un error de validación estable (p. ej. sin nombreAcreedor → 437) | Mismo código de negocio en ambos deploys |
+| # | Escenario | Estado |
+|---|-----------|--------|
+| 1 | Un `0011` feliz controlado | **En suite** `Metodo/0011/3_respuestaExitosa/1009/1.1_r2p_feliz` |
+| 2 | Un `0013` feliz | **No** en v1 |
+| 3 | Error de validación estable | **No** en v1 |
 
-**Fuera de v1:** envelope autopista como caso aparte, 438/441/442, límites 425, matriz ops, etc. — solo si el par #1–#2 ya es idéntico y el usuario pide ampliar.
+Ampliar solo si el usuario lo pide tras paridad de #1.
 
 La lista larga de [`16`](./16-escenarios-simples-newman-diseno.md) § anterior queda **archivada como ideas**, no como backlog activo.
 
 ---
 
-## Cómo se ejecutaría (máquina VPN; cuando exista suite)
+## Cómo se ejecuta (máquina VPN)
 
 Orden conceptual (igual VCN):
 
-1. Deploy Dig R2P **prod-source** (+ validador-api/proxy/matriz según el nivel elegido).
-2. `node run-newman.js r2p --codigo-fuente prod --nota "…"` *(nombre suite TBD)*.
-3. Deploy Dig R2P **cambios**.
+1. Deploy Dig R2P **prod-source** (+ deps del hop MATRIZ).
+2. `node run-newman.js r2p --codigo-fuente prod --nota "…"`.
+3. Deploy Dig R2P **cambios** (`6fece92` / feature).
 4. `node run-newman.js r2p --codigo-fuente dev --nota "6fece92 …"`.
 5. `node comparar-runs.js <prod>_por-escenario.json <dev>_por-escenario.json`.
-6. Si hay diffs de negocio → revisar **uno a uno** (super-tabla solo si el volumen lo justifica).
+6. Si hay diffs de negocio → revisar uno a uno.
 
-`NIVEL_EJECUCION`: preferir el mismo que usemos para paridad estable (en VCN fue MATRIZ). Decidir en el momento del primer ensamble R2P; documentar en la iteración. **No** asumir VALIDADOR directo sin necesidad.
+`NIVEL_EJECUCION=MATRIZ` en el environment R2P.
 
 ---
 
-## Qué falta antes de tocar generador (gate)
+## Qué falta antes de paridad
 
-Ver checklist vivo: [`18-gates-canales-matriz-r2p.md`](./18-gates-canales-matriz-r2p.md).
-
-Bloqueante principal documentado: **alias deudor Dig** para banco del validador (1009/1012). Path MATRIZ y canales GATO+dummy `/r2p` **sí** están.
+Gates canales/alias/smoke: [`18`](./18-gates-canales-matriz-r2p.md) — **cerrados**. Suite mínima **existe**. Falta el par de deploys + runs VPN.
 
 ---
 

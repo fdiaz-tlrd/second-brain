@@ -6,6 +6,7 @@
  *   node run-newman.js p2m --codigo-fuente prod
  *   node run-newman.js p2p --folder "General/2_reglaNegocio/1_idCanal" --codigo-fuente dev
  *   node run-newman.js vcn --codigo-fuente prod
+ *   node run-newman.js r2p --codigo-fuente prod
  *   node run-newman.js all --codigo-fuente dev
  *
  * SSL: por defecto no verifica certificados (como Postman con SSL off en dev).
@@ -67,6 +68,16 @@ const SUITES = {
     environment: path.join(
       ROOT,
       "entornos/VCN Escenarios error - desarrollo.postman_environment.json"
+    ),
+  },
+  r2p: {
+    collection: path.join(
+      ROOT,
+      "ensamblador/salida/R2P Escenarios error.postman_collection.json"
+    ),
+    environment: path.join(
+      ROOT,
+      "entornos/R2P Escenarios error - desarrollo.postman_environment.json"
     ),
   },
 };
@@ -1438,7 +1449,7 @@ function main() {
   const { suite, folder, insecure, nota, codigoFuente } = parseArgs(process.argv.slice(2));
   if (!suite || !SUITES[suite] && suite !== "all") {
     console.error(
-      'Uso: node run-newman.js <p2m|p2p|vcn|all> [--folder "..."] --codigo-fuente prod|dev [--nota "..."] [--strict-ssl]'
+      'Uso: node run-newman.js <p2m|p2p|vcn|r2p|all> [--folder "..."] --codigo-fuente prod|dev [--nota "..."] [--strict-ssl]'
     );
     process.exit(1);
   }

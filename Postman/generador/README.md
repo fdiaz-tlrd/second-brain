@@ -31,6 +31,7 @@ Detalle: [`../../tld-api-cuenta-nombre/05-newman-vpn-reglas-agente.md`](../../tl
 | `P2M Escenarios error especiales/` | Escenarios especiales P2M |
 | `P2P Escenarios error/` | Escenarios fuente P2P |
 | `VCN Escenarios error/` | Escenarios fuente VCN |
+| `R2P Escenarios error/` | Escenarios fuente R2P (**mínima**: `0011` feliz MATRIZ) |
 | `entornos/` | Environments Postman |
 | [`../canalesPruebas-dev/`](../canalesPruebas-dev/) | Canales dev, export Dynamo, operaciones validador |
 | [`datos-vcn-dummy/`](./datos-vcn-dummy/) | Seed Dynamo `tld-validador-dummy` (cuentas VCN dev) — [`cargar-tld-validador-dummy-cuentas-vcn-dev.md`](./datos-vcn-dummy/cargar-tld-validador-dummy-cuentas-vcn-dev.md) |
@@ -42,6 +43,7 @@ Tras editar JSON en `VCN Escenarios error/` (u otras carpetas fuente):
 ```powershell
 cd C:\Versionamiento\GitHub\second-brain\Postman\generador\ensamblador
 node armar-coleccion.js config-vcn.json
+node armar-coleccion.js config-r2p.json
 ```
 
 Salida: `ensamblador\salida\*.postman_collection.json`
@@ -70,10 +72,13 @@ node run-newman.js vcn --folder "Metodo/0001/4_escenariosQA/idPeticion_max64" --
 node run-newman.js p2p --codigo-fuente prod
 node run-newman.js p2m --codigo-fuente prod
 node run-newman.js vcn --codigo-fuente prod
+node run-newman.js r2p --codigo-fuente prod
 node run-newman.js all --codigo-fuente dev
 ```
 
 `--codigo-fuente prod|dev` es **obligatorio** (o `$env:NEWMAN_CODIGO_FUENTE`). Opcional: `--nota "texto"`. SSL estricto: `--strict-ssl`.
+
+**R2P:** un escenario feliz `0011` (1008→1009, alias `61009001`). Doc: [`../../tld-api-r2p/17-estrategia-newman-r2p-paridad-dig.md`](../../tld-api-r2p/17-estrategia-newman-r2p-paridad-dig.md).
 
 Al terminar debe generarse la foto en `codigosRespuesta/`; si falla, el run aborta. El registro se reconstruye desde `historial/` (sin enlaces rotos). Ver [`logs/README.md`](logs/README.md).
 

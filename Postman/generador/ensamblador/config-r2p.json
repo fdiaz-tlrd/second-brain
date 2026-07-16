@@ -1,0 +1,12 @@
+{
+  "coleccion": {
+    "name": "R2P Escenarios error",
+    "description": "Colección mínima R2P (MATRIZ). Fuente: R2P Escenarios error/."
+  },
+  "entrada": {
+    "fuente": "../R2P Escenarios error"
+  },
+  "salida": {
+    "archivo": "./salida/R2P Escenarios error.postman_collection.json"
+  }
+}

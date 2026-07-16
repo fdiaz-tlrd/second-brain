@@ -37,7 +37,7 @@ HD-005: HTTP MATRIZ = **200**; negocio en payload.
 | Dummy `/r2p` en validador GATO | OK (1009; verificado en smoke) |
 | Alias deudor Dig | **OK** — `61009001` |
 | Smoke manual `0011` | **OK** — [`19`](./19-smoke-matriz-0011-evidencia.md) |
-| Suite Newman R2P en generador | **Pendiente** (no existe aún) |
+| Suite Newman R2P en generador | **OK** — `Postman/generador` suite `r2p` (1 escenario `0011` feliz); paridad prod vs dev **pendiente** |
 | Paridad `--codigo-fuente prod` vs `dev` | **Pendiente** |
 | Deploy explícito prod-source vs cambios para comparar | **Pendiente** (depende del usuario) |
 

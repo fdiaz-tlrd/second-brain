@@ -107,6 +107,13 @@ function buildExpectedPreRequestExec(escenario) {
     ["expectedBanco", escenario.expectedBanco],
     ["expectedValidador", escenario.expectedValidador],
     ["expectedCuentaLongitud", escenario.expectedCuentaLongitud],
+    // R2P (0011/0013)
+    ["expectedIdentificador", escenario.expectedIdentificador],
+    ["expectedMonto", escenario.expectedMonto],
+    ["expectedBancoAcreedor", escenario.expectedBancoAcreedor],
+    ["expectedCuentaDeudor", escenario.expectedCuentaDeudor],
+    ["expectedCuentaAcreedor", escenario.expectedCuentaAcreedor],
+    ["expectedNombreAcreedor", escenario.expectedNombreAcreedor],
   ];
   for (const [key, value] of exitoVars) {
     if (value != null && value !== "") {

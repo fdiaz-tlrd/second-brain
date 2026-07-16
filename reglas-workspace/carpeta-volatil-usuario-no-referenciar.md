@@ -13,6 +13,7 @@ Servilleta del usuario entre máquinas. Ejemplo legítimo: solo comandos sueltos
 
 - Si un doc fijo necesita un archivo que estaba en esa carpeta, **copiar** junto al doc que lo usa y apuntar a la copia.
 - **No** crear handoffs, reglas ni historial ahí.
+- Dumps Dynamo grandes (`tld-*.json`): solo copia temporal; **no** versionar. Si hace falta info de tablas Dig, pedir al usuario con PartiQL ([`../Postman/canalesPruebas-dev/partiql-dev.md`](../Postman/canalesPruebas-dev/partiql-dev.md)).
 
 ## Copias fijas (2026-07-15)
 
