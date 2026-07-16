@@ -3,33 +3,24 @@
 | Campo | Valor |
 |-------|-------|
 | Fecha | 2026-07-16 |
-| Estado | **Solo diseño** — ver estrategia completa [`17`](./17-estrategia-newman-r2p-paridad-dig.md) |
-| Tooling | `second-brain/Postman/generador` (mismo stack VCN/P2P/P2M) |
-| Ambición | **Baja** — no clonar `VCN Escenarios error` |
+| Estrategia | [`17`](./17-estrategia-newman-r2p-paridad-dig.md) |
+| Gates / canales | [`18`](./18-gates-canales-matriz-r2p.md) |
+| Nivel | **MATRIZ** únicamente |
+| Path | `…/dev/validador/validar` (env VCN) |
 
-## Meta única
+## Meta
 
-Mismo AWS Dig: **código R2P prod** vs **código con cambios Dig** → misma respuesta de negocio en un set **mínimo** de escenarios.
+Paridad Dig prod-source vs cambios, set **mínimo**, entrada como canal REST vía matriz.
 
-## No hacer ahora
+## Par canales propuesto
 
-- Arreglar `api_7.json` / Marketplace (doc mala ≠ backlog de este hilo).
-- Suite grande de errores R2P.
-- Newman en Lenovo.
-- Implementar colección sin gate de canales/deploy (lista en [`17`](./17-estrategia-newman-r2p-paridad-dig.md)).
+`1008` (CELEGATO) → `1009` (ASTRGATO, dummy `/r2p`). Alternativa validador: `1012`.
 
-## Recordatorio HD-005
+## Bloqueante a confirmar
 
-Bajo MATRIZ: HTTP transporte **200**; asertar `codigoError`/`resultado` en payload.
+¿Hay en Dig un **identificador deudor** (`6xxxxxxx`) activo en alias con `banco = ASTRGATO` (o TERAGATO)?  
+Sin eso el `0011` feliz cae en **434** antes de ejercitar el proxy Dig.
 
-## Cola activa (máx. 3; no implementada)
+## No hacer
 
-1. `0011` feliz controlado  
-2. `0013` feliz o seed mínimo  
-3. (Opcional) un error estable de validación (p. ej. 437)
-
-Ideas descartadas del borrador anterior (425, 442, 441, 438, envelope aparte, etc.): solo si el usuario amplía tras paridad #1–#2.
-
-## Próximo paso de implementación
-
-Cuando el usuario diga: ensamblar suite R2P mínima en `Postman/generador` siguiendo patrones existentes — **después** de gates en [`17`](./17-estrategia-newman-r2p-paridad-dig.md).
+Suite tipo VCN; arreglar api_7; otros niveles; Newman en Lenovo.

@@ -3,18 +3,21 @@
 | Campo | Valor |
 |-------|-------|
 | Fecha | 2026-07-16 |
-| Estado | **Diseño / estudio** — sin colección R2P aún; sin Newman desde Lenovo |
-| Meta | Asegurar que el Dig con **nuestros cambios** se comporta **igual** que Dig con **código fuente de producción** (mismo AWS dev) |
-| Tooling | `second-brain/Postman/generador` (+ `comparar-prod-vs-dev`, opcional super-tabla) |
+| Estado | **Diseño** — gates canales/MATRIZ documentados ([`18`](./18-gates-canales-matriz-r2p.md)); sin colección aún |
+| Meta | Paridad Dig: código prod vs cambios (mismo AWS) |
+| Nivel | **Solo MATRIZ** (canal → API Rest Autopista) |
+| Tooling | `second-brain/Postman/generador` |
 
 ## Aclaraciones del usuario (2026-07-16) — obligatorias
 
 | Tema | Decisión |
 |------|----------|
 | Gaps de `api_7.json` (Marketplace prod) | **Sí están mal / incompletos.** **No** los arreglamos ahora. Arreglar marketplace = **mejora nueva**, fuera de este hilo. |
-| Ambición R2P | **Mínima.** No replicar el tamaño/complejidad de `Postman/generador/VCN Escenarios error`. |
-| Qué validamos | Que los **cambios Dig ya hechos** (transporte proxy, getResultado, envelope, fallback) no cambian el **negocio observable** vs R2P prod desplegado en Dig. |
-| Qué no validamos | Catálogo completo api_7, matriz exhaustiva de errores, “mejoras” Dig de VCN/P2P, arreglar doc marketplace. |
+| Ambición R2P | **Mínima.** No replicar `VCN Escenarios error`. |
+| Nivel | **Solo MATRIZ** — path env VCN `END_POINT_TLD_MATRIZ` |
+| Canales | Ver [`18-gates-canales-matriz-r2p.md`](./18-gates-canales-matriz-r2p.md) — par propuesto 1008→1009 |
+| Qué validamos | Cambios Dig no alteran negocio observable vs R2P prod-source en Dig |
+| Qué no validamos | api_7 marketplace, otros niveles, suite grande |
 
 Estudio doc↔prod (contexto, no backlog de fixes): [`15-estudio-api7-marketplace-vs-prod.md`](./15-estudio-api7-marketplace-vs-prod.md).
 

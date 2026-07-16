@@ -3,18 +3,13 @@
 | Campo | Valor |
 |-------|-------|
 | **Última actualización** | 2026-07-16 |
-| **Código Dig** | `6fece92` pusheado (`feature/ARQ-225_Refactory`) — Fase 3 asegurar Dig **cerrada** |
-| **Newman / Postman** | **Estudio de estrategia hecho** — [`17`](./17-estrategia-newman-r2p-paridad-dig.md); **sin** colección aún |
-| **api_7 Marketplace** | Gaps conocidos ([`15`](./15-estudio-api7-marketplace-vs-prod.md)); **no** arreglar ahora |
+| **Código Dig** | `6fece92` pusheado — Fase 3 cerrada |
+| **Newman** | Solo MATRIZ; gates en [`18`](./18-gates-canales-matriz-r2p.md); estrategia [`17`](./17-estrategia-newman-r2p-paridad-dig.md) |
+| **Bloqueante** | Confirmar / crear **alias deudor Dig** para validador 1009 (o 1012) |
 
-## Meta Newman (reencuadre)
+## Cómo retomar (memoria)
 
-Validar **paridad** en Dig: deploy con **código prod** ≈ deploy con **nuestros cambios**.  
-Set **mínimo**; tooling = `Postman/generador` + `--codigo-fuente` + comparar-runs.  
-**No** suite tipo `VCN Escenarios error`. Recordar HD-005 (HTTP 200 en MATRIZ).
-
-## Cómo retomar
-
-1. [`17-estrategia-newman-r2p-paridad-dig.md`](./17-estrategia-newman-r2p-paridad-dig.md)
-2. Gates (canales Dig, nivel MATRIZ/VALIDADOR, path deploy prod-source) antes de implementar
-3. Implementar colección solo con OK explícito del usuario
+1. Este archivo → [`18`](./18-gates-canales-matriz-r2p.md) → [`17`](./17-estrategia-newman-r2p-paridad-dig.md).
+2. Canales: `second-brain/Postman/canalesPruebas-dev/`.
+3. Path: env VCN `END_POINT_TLD_MATRIZ` + `NIVEL_EJECUCION=MATRIZ`.
+4. No implementar colección hasta cerrar alias deudor + OK usuario.

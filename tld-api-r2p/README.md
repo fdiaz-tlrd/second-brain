@@ -27,4 +27,5 @@
 | [`14-cierre-3-5-g5-g7.md`](./14-cierre-3-5-g5-g7.md) | Cierre candado G5 + G7 |
 | [`15-estudio-api7-marketplace-vs-prod.md`](./15-estudio-api7-marketplace-vs-prod.md) | api_7 vs prod (**no** arreglar marketplace aquí) |
 | [`16-escenarios-simples-newman-diseno.md`](./16-escenarios-simples-newman-diseno.md) | Alcance mínimo Newman R2P |
-| [`17-estrategia-newman-r2p-paridad-dig.md`](./17-estrategia-newman-r2p-paridad-dig.md) | **Estrategia** paridad Dig + tooling Postman |
+| [`17-estrategia-newman-r2p-paridad-dig.md`](./17-estrategia-newman-r2p-paridad-dig.md) | Estrategia paridad Dig + tooling Postman |
+| [`18-gates-canales-matriz-r2p.md`](./18-gates-canales-matriz-r2p.md) | **Gates** MATRIZ, canales GATO, qué falta |
