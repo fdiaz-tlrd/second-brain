@@ -18,7 +18,7 @@ Cada fix: **transporte Dig (VCN)** sin alterar **negocio prod (R2P)**. Candado G
 | **3.2** ✅ | G2 | Reenviar `idTransaccionAutopista` / `fechaHora` **si vienen en body** (pass-through envelope **prod R2P**; patrón Dig = VCN solo como cómo) | Si llegan, el proxy/banco los ven (paridad prod) | Inventarlos en R2P; remap métodos; “copiar negocio VCN” |
 | **3.3** ✅ | G3 | Unificar mensaje fallback proxy | Mismo default que VCN si `message` vacío | Catálogo prod HTTP; otros 509 locales EF |
 | **3.4** ✅ | G4 | Auditar `lambdaResult` call sites del tramo Dig | Solo objetos `{codigoError,mensajeError}` / `{respuesta}` en esos returns | Reescritura general de `util.js` |
-| **3.5** | G5 + G7 | Barrido: checklist negocio prod + nota dependencia caller Invoke | Doc cierre + lista G5 OK | Mejoras nuevas |
+| **3.5** ✅ | G5 + G7 | Barrido: checklist negocio prod + nota dependencia caller Invoke | Doc cierre + lista G5 OK | Mejoras nuevas |
 
 ## Evidencia 3.1 (2026-07-15)
 
@@ -45,15 +45,18 @@ Veredicto en [`12`](./12-estudio-idTransaccionAutopista-fechaHora-flujo-prod.md)
 
 ## Evidencia 3.4 (2026-07-15)
 
-- Auditoría completa: [`13-auditoria-g4-lambdaResult.md`](./13-auditoria-g4-lambdaResult.md).
-- **Sin cambio de código**: call sites Dig ya conformes; `util.lambdaResult` alineado a prod R2P (no portar ramas VCN).
-- Mesa: objeto error/éxito → SHAPE_OK vía `salidaLambda`; string suelto → SHAPE_BAD (y Dig `app.js` no usa strings).
+- Auditoría: [`13-auditoria-g4-lambdaResult.md`](./13-auditoria-g4-lambdaResult.md). Sin cambio de código.
+
+## Evidencia 3.5 (2026-07-15)
+
+- [`14-cierre-3-5-g5-g7.md`](./14-cierre-3-5-g5-g7.md): G5 firmado (código); G7 documentado.
 
 ## Fase 4 — cierre
 
-- [ ] Checklist G5 firmado en doc
-- [x] G1–G4/G6 cerrados con evidencia (G5/G7 → 3.5)
-- [ ] Retomo: pendiente solo deploy/Newman si el usuario lo pide (Lenovo no corre Newman)
+- [x] Checklist G5 firmado en doc ([`14`](./14-cierre-3-5-g5-g7.md))
+- [x] G1–G4/G6 cerrados con evidencia; G7 documentado
+- [x] Push `tld-api-r2p` `6fece92` + `second-brain` (2026-07-15; SSL local con `GIT_SSL_NO_VERIFY`)
+- [ ] Deploy Dig + Newman (máquina VPN; Lenovo no corre Newman) — diseño escenarios: [`15`](./15-estudio-api7-marketplace-vs-prod.md) / [`16`](./16-escenarios-simples-newman-diseno.md)
 
 ## Qué sigue siendo “no”
 

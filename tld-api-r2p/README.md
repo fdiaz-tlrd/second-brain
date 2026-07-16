@@ -22,3 +22,8 @@
 | [`09-opinion-doble-ancla-prod-y-vcn.md`](./09-opinion-doble-ancla-prod-y-vcn.md) | Opinión doble ancla |
 | [`10-cruce-vcn-dig-x-prod-r2p.md`](./10-cruce-vcn-dig-x-prod-r2p.md) | **Cruce** Fase 1 |
 | [`11-fase2-orden-fixes.md`](./11-fase2-orden-fixes.md) | Fase 2/3 orden de ejecución |
+| [`12-estudio-idTransaccionAutopista-fechaHora-flujo-prod.md`](./12-estudio-idTransaccionAutopista-fechaHora-flujo-prod.md) | Pass-through envelope autopista |
+| [`13-auditoria-g4-lambdaResult.md`](./13-auditoria-g4-lambdaResult.md) | Auditoría forma salida Dig |
+| [`14-cierre-3-5-g5-g7.md`](./14-cierre-3-5-g5-g7.md) | Cierre candado G5 + G7 |
+| [`15-estudio-api7-marketplace-vs-prod.md`](./15-estudio-api7-marketplace-vs-prod.md) | **api_7 marketplace vs prod** (doc incompleta) |
+| [`16-escenarios-simples-newman-diseno.md`](./16-escenarios-simples-newman-diseno.md) | Diseño escenarios Newman sencillos |
