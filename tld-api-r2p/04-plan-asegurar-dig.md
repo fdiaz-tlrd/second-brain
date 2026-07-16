@@ -42,9 +42,14 @@ Ver [`11-fase2-orden-fixes.md`](./11-fase2-orden-fixes.md) (iters 3.1–3.5).
 | 3.1 (G1+G6) | **Hecha** |
 | 3.2 (G2) | **Hecha** — [`12`](./12-estudio-idTransaccionAutopista-fechaHora-flujo-prod.md) |
 | 3.3 (G3) | **Hecha** |
-| 3.4–3.5 | Pendientes |
+| 3.4 (G4) | **Hecha** — [`13`](./13-auditoria-g4-lambdaResult.md); sin cambio código |
+| 3.5 (G5+G7) | **Hecha** — [`14`](./14-cierre-3-5-g5-g7.md) |
 
-Commits: cluster transporte 3.1–3.3 en repo `tld-api-r2p` (decisión agente).
+### Fase 4 — cierre operativo
+
+Deploy Dig + Newman (VPN) + push: **a demanda del usuario**. Checklist doc: ver [`11`](./11-fase2-orden-fixes.md).
+
+Commits: cluster transporte 3.1–3.3 en `tld-api-r2p` `6fece92`.
 
 Una iteración = un renglón de `11` + doc de aseguramiento + commit si el usuario lo pide.
 

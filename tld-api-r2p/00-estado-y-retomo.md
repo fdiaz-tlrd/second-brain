@@ -3,13 +3,15 @@
 | Campo | Valor |
 |-------|-------|
 | **Última actualización** | 2026-07-15 |
-| **Fase** | Fase 3 · **3.1–3.3 hechas** · siguiente **3.4** |
+| **Fase** | **Fase 3 cerrada** (3.1–3.5) · Fase 4: deploy/Newman/push a demanda |
 | **Plan vivo** | [`04-plan-asegurar-dig.md`](./04-plan-asegurar-dig.md) |
-| **Gaps** | [`07`](./07-fase1-gaps-r2p-vs-espejo-vcn.md) — G1–G3/G6 **cerrados**; vivos G4–G5, G7 |
-| **Orden fixes** | [`11-fase2-orden-fixes.md`](./11-fase2-orden-fixes.md) |
-| **Commits** | `tld-api-r2p` `6fece92` (3.1–3.3) · `second-brain` `9f486e5` (docs) — sin push |
+| **Cierre 3.5** | [`14-cierre-3-5-g5-g7.md`](./14-cierre-3-5-g5-g7.md) |
+| **Gaps** | [`07`](./07-fase1-gaps-r2p-vs-espejo-vcn.md) — G1–G7 tratados |
+| **Código Dig** | `tld-api-r2p` `6fece92` (3.1–3.3); 3.4–3.5 sin diff código adicional |
+| **Docs** | `second-brain/tld-api-r2p/` (commits locales; push a demanda) |
 
 ## Cómo retomar
 
-1. [`11`](./11-fase2-orden-fixes.md) → **3.4** (G4: auditoría `lambdaResult` tramo Dig).
-2. Política commits (agente): un commit por cluster coherente (p. ej. transporte 3.1–3.3); no esperar pedido cada vez en este proyecto.
+1. Si deploy/prueba Dig: máquina VPN + Newman (no desde Lenovo).
+2. Push `tld-api-r2p` / `second-brain` solo con pedido explícito.
+3. No portar mejoras ajenas (481/482/418, reintroducir telered-lib, etc.).

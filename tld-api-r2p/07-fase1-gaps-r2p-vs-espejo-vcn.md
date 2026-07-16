@@ -55,34 +55,21 @@
 | Fix | Fallback `message` vacío → `"Error en validador-proxy"` (paridad VCN Dig) |
 | No tocado | 509 locales EF (`datos`/JSON) con texto prod `"Error inesperado en validador EF!"` |
 
-### G4 — **R/T** Forma `util.lambdaResult`
+### G4 — **R/T** Forma `util.lambdaResult` — **CERRADO (3.4, solo auditoría)**
 
 | | |
 |--|--|
-| Dig R2P | Siempre `JSON.stringify(mensaje)` |
-| VCN | Ramas string vs objeto |
-| Criterio asegurado | Todos los returns del tramo Dig (proxy/Invoke) producen body parseable a `{codigoError,mensajeError}` o `{respuesta}` para `salidaLambda` + validador-api |
-| Fix | Auditoría de call sites; solo corregir si hay string suelto o forma incompatible — **no** reescribir bitácora/negocio |
+| Evidencia | [`13-auditoria-g4-lambdaResult.md`](./13-auditoria-g4-lambdaResult.md) |
+| Hallazgo | Dig `app.js` ya pasa objetos `{codigoError,mensajeError}` / `{respuesta}`; `util` = prod (stringify mensaje); no reescribir a VCN |
+| Fix código | **Ninguno** |
 
-### G5 — **N** Checklist negocio prod (no “fix de gap”, **candado**)
+### G5 — **N** Checklist negocio prod (candado) — **FIRMADO (3.5)**
 
-Antes/después de cada fix T/I, no regresar:
+Ver detalle: [`14-cierre-3-5-g5-g7.md`](./14-cierre-3-5-g5-g7.md). Remap 0011/0013, Dynamo, crypto emisor, getResultado: presentes y no tocados por 3.1–3.4.
 
-- Semántica `0011`/`0013` y remap notify `0012`/`0014`
-- Validaciones / límites / ops notify / códigos 435, 438, 440–442, 509 de dominio
-- Dynamo R2P create/update/get
-- Cifrado **emisor** entrada y salida
-- Agregación de resultados hacia bitácora/dashboard
+### G7 — **R** caller Dig validador-api — **DOCUMENTADO (3.5)**
 
-Si un pulido de transporte toca `app.js` cerca de ese código → diff mínimo y verificación contra prod (lectura).
-
-### G7 — **R** (nuevo) — caller Dig validador-api
-
-| | |
-|--|--|
-| Nota | Prod caller→R2P es HTTP; Dig caller es Invoke. Asegurar R2P Dig **asume** Invoke (ya dual consume). |
-| Fuera de este repo si falla | Si Dig `tld-validador-api` no apunta `LAMBDA_R2P` / mapa `0011`/`0013`, no se “arregla” inventando HTTP en R2P |
-| Criterio | Documentar dependencia; no meter axios-url otra vez en R2P Dig |
+Dig mapa `0011`/`0013` → `LAMBDA_R2P`; R2P asume Invoke (`response.js`). Fallos de apunta → repo validador-api, no reintroducir HTTP en R2P. Ver [`14`](./14-cierre-3-5-g5-g7.md).
 
 ---
 
@@ -94,4 +81,4 @@ Si un pulido de transporte toca `app.js` cerca de ese código → diff mínimo y
 
 ## Salida
 
-G1–G3/G6 cerrados (3.1–3.3). Vivos: G4–G5, G7. Orden: [`11`](./11-fase2-orden-fixes.md).
+G1–G7 tratados (3.1–3.5). Transporte G1–G4/G6 cerrados con código o auditoría; G5 firmado; G7 documentado. Cierre: [`14`](./14-cierre-3-5-g5-g7.md). Orden: [`11`](./11-fase2-orden-fixes.md).

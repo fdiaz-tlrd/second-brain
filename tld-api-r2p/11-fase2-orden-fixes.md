@@ -3,7 +3,7 @@
 | Campo | Valor |
 |-------|-------|
 | Actualizado | 2026-07-15 |
-| Estado | Fase 3 · **3.1–3.3 hechas** · siguiente **3.4** |
+| Estado | Fase 3 **cerrada** (3.1–3.5) · Fase 4 checklist |
 | Entrada | [`10-cruce-…`](./10-cruce-vcn-dig-x-prod-r2p.md) + [`07-gaps`](./07-fase1-gaps-r2p-vs-espejo-vcn.md) |
 
 ## Principio
@@ -17,7 +17,7 @@ Cada fix: **transporte Dig (VCN)** sin alterar **negocio prod (R2P)**. Candado G
 | **3.1** ✅ | G1 + G6 | Extraer `getResultado` a módulo sin HTTP; `app.js` deja de `require` `validador.js` de transporte; borrar HTTP muerto | Init OK sin telered-lib; `getResultado` comportamiento igual | Reglas 0011/0013, Dynamo, validaciones |
 | **3.2** ✅ | G2 | Reenviar `idTransaccionAutopista` / `fechaHora` **si vienen en body** (pass-through envelope **prod R2P**; patrón Dig = VCN solo como cómo) | Si llegan, el proxy/banco los ven (paridad prod) | Inventarlos en R2P; remap métodos; “copiar negocio VCN” |
 | **3.3** ✅ | G3 | Unificar mensaje fallback proxy | Mismo default que VCN si `message` vacío | Catálogo prod HTTP; otros 509 locales EF |
-| **3.4** | G4 | Auditar `lambdaResult` call sites del tramo Dig | Solo objetos `{codigoError,mensajeError}` / `{respuesta}` en esos returns | Reescritura general de `util.js` |
+| **3.4** ✅ | G4 | Auditar `lambdaResult` call sites del tramo Dig | Solo objetos `{codigoError,mensajeError}` / `{respuesta}` en esos returns | Reescritura general de `util.js` |
 | **3.5** | G5 + G7 | Barrido: checklist negocio prod + nota dependencia caller Invoke | Doc cierre + lista G5 OK | Mejoras nuevas |
 
 ## Evidencia 3.1 (2026-07-15)
@@ -43,10 +43,16 @@ Veredicto en [`12`](./12-estudio-idTransaccionAutopista-fechaHora-flujo-prod.md)
 - Fallback cuando `respProxy.message` vacío: `"Error en validador-proxy"` (igual VCN).
 - **No** tocados los 509 locales (`datos` null / JSON inválido) que siguen con `"Error inesperado en validador EF!"` (texto prod HTTP, no fallback de message proxy).
 
+## Evidencia 3.4 (2026-07-15)
+
+- Auditoría completa: [`13-auditoria-g4-lambdaResult.md`](./13-auditoria-g4-lambdaResult.md).
+- **Sin cambio de código**: call sites Dig ya conformes; `util.lambdaResult` alineado a prod R2P (no portar ramas VCN).
+- Mesa: objeto error/éxito → SHAPE_OK vía `salidaLambda`; string suelto → SHAPE_BAD (y Dig `app.js` no usa strings).
+
 ## Fase 4 — cierre
 
 - [ ] Checklist G5 firmado en doc
-- [x] G1–G3/G6 cerrados con evidencia (G4 pendiente)
+- [x] G1–G4/G6 cerrados con evidencia (G5/G7 → 3.5)
 - [ ] Retomo: pendiente solo deploy/Newman si el usuario lo pide (Lenovo no corre Newman)
 
 ## Qué sigue siendo “no”
