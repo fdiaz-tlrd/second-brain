@@ -119,14 +119,9 @@ Orden conceptual (igual VCN):
 
 ## Qué falta antes de tocar generador (gate)
 
-Sin estos, **no** crear carpeta tipo `R2P Escenarios error` ni config:
+Ver checklist vivo: [`18-gates-canales-matriz-r2p.md`](./18-gates-canales-matriz-r2p.md).
 
-1. Confirmación de **canales Dig** (idCanal / validador / llaves / ops 0012–0014) disponibles para un 0011 controlado.
-2. Decisión: ¿entrada MATRIZ Dig o validador-api Dig?
-3. Deploy path concreto para “R2P prod-source en Dig” (mismo patrón `prod_adactado_a_dev` u otro que el usuario indique).
-4. OK explícito del usuario para **implementar** el mínimo (ensamble + 1–2 JSON), no solo estudiar.
-
-Hasta entonces: solo docs (este archivo + retomo).
+Bloqueante principal documentado: **alias deudor Dig** para banco del validador (1009/1012). Path MATRIZ y canales GATO+dummy `/r2p` **sí** están.
 
 ---
 
