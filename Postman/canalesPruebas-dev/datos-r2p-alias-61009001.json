@@ -1,0 +1,17 @@
+{
+  "tabla": "tld-alias-cuenta",
+  "ambiente": "dev",
+  "actualizado": "2026-07-16",
+  "uso": "Deudor R2P feliz: emisor 1008 CELEGATO → validador 1009 ASTRGATO",
+  "item": {
+    "id": "1c123682-a148-4c98-ab1a-2e7cd3ed3c9f",
+    "identificador": "61009001",
+    "tipoIdentificador": "CELULAR",
+    "banco": "ASTRGATO",
+    "estado": "A",
+    "cuenta": "123069852372001",
+    "producto": "PACA",
+    "creado": "2026-07-16 10:28:35.981",
+    "actualizado": "2026-07-16 10:28:35.981"
+  }
+}

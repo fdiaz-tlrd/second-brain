@@ -4,23 +4,18 @@
 |-------|-------|
 | Fecha | 2026-07-16 |
 | Estrategia | [`17`](./17-estrategia-newman-r2p-paridad-dig.md) |
-| Gates / canales | [`18`](./18-gates-canales-matriz-r2p.md) |
-| Nivel | **MATRIZ** únicamente |
-| Path | `…/dev/validador/validar` (env VCN) |
+| Gates | [`18`](./18-gates-canales-matriz-r2p.md) — alias **cerrado** |
+| Datos | [`../Postman/canalesPruebas-dev/datos-r2p-prueba-dev.md`](../Postman/canalesPruebas-dev/datos-r2p-prueba-dev.md) |
+| Smoke | [`19`](./19-smoke-matriz-0011-evidencia.md) **OK** |
 
 ## Meta
 
-Paridad Dig prod-source vs cambios, set **mínimo**, entrada como canal REST vía matriz.
+Paridad Dig prod-source vs cambios; entrada **MATRIZ**; set mínimo.
 
-## Par canales propuesto
+## Par listo
 
-`1008` (CELEGATO) → `1009` (ASTRGATO, dummy `/r2p`). Alternativa validador: `1012`.
+`1008` → `1009`, identificador `61009001`.
 
-## Bloqueante a confirmar
+## Pendiente de implementación
 
-¿Hay en Dig un **identificador deudor** (`6xxxxxxx`) activo en alias con `banco = ASTRGATO` (o TERAGATO)?  
-Sin eso el `0011` feliz cae en **434** antes de ejercitar el proxy Dig.
-
-## No hacer
-
-Suite tipo VCN; arreglar api_7; otros niveles; Newman en Lenovo.
+Colección en `Postman/generador` (aún no) + runs `--codigo-fuente prod|dev`.

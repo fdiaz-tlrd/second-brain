@@ -28,4 +28,5 @@
 | [`15-estudio-api7-marketplace-vs-prod.md`](./15-estudio-api7-marketplace-vs-prod.md) | api_7 vs prod (**no** arreglar marketplace aquí) |
 | [`16-escenarios-simples-newman-diseno.md`](./16-escenarios-simples-newman-diseno.md) | Alcance mínimo Newman R2P |
 | [`17-estrategia-newman-r2p-paridad-dig.md`](./17-estrategia-newman-r2p-paridad-dig.md) | Estrategia paridad Dig + tooling Postman |
-| [`18-gates-canales-matriz-r2p.md`](./18-gates-canales-matriz-r2p.md) | **Gates** MATRIZ, canales GATO, qué falta |
+| [`18-gates-canales-matriz-r2p.md`](./18-gates-canales-matriz-r2p.md) | Gates MATRIZ / canales (alias cerrado) |
+| [`19-smoke-matriz-0011-evidencia.md`](./19-smoke-matriz-0011-evidencia.md) | Smoke Dig `0011` OK |
