@@ -84,6 +84,10 @@
 | 480 | No se admite el tipo de identificador con el que se generó el QR |  |  |  | No se admite el tipo de identificador con el que se generó el QR. | Método 0023 (Leer QR). Tras leer el QR con éxito: tipoIdentificadorAcreedor distinto de CELULAR. |  |  |
 | 481 | Método inválido |  |  |  |  |  |  |  |
 | 482 | Método no disponible para el Canal Emisor |  |  |  |  |  |  |  |
+| 483 | Error al validar el parámetro notaAcreedor |  |  |  |  |  |  |  |
+| 484 | No hay fila en tld-r2p con ese codigoR2P. |  |  |  |  |  |  |  |
+| 485 | Hay fila y alguna tiene estado == 'C' y parametros.bancoAcreedor != alias del validador. |  |  |  |  |  |  |  |
+| 486 | Hay fila y alguna tiene estado != 'S'. |  |  |  |  |  |  |  |
 | 500 | Error interno |  | Petición de validación no es válida | Inconvenientes en la validación del mensaje. | Error interno Error consultando alias Error actualizando alias Error al consultar alias por banco Error buscando identificador Error validando alias Error validando cuenta nombre Error consultando operaciones Error creando alias Error al consumir api-validador Consultando id alias | Errores que pueden ser recibidos para todos los métodos. | Error interno Error consultando alias Error actualizando alias Error al consultar alias por banco Error buscando identificador Error validando alias Error validando cuenta nombre Error consultando operaciones Error creando alias Error al consumir api-validador Consultando id alias | Errores que pueden ser recibidos para todos los métodos. |
 | 501 | Error en cifrado para el canal emisor |  |  |  |  |  |  |  |
 | 502 | Error en cifrado para el canal validador |  |  |  |  |  |  |  |
