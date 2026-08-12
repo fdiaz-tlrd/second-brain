@@ -154,7 +154,7 @@ Envelope al cliente en esos caminos sigue siendo **`codigoError: 0`** + cuerpo c
 
 ## Cambios acordados (12) — aplicar en Dig
 
-Estado: **acordados, aún no aplicados** en `tld-api-r2p/lambdas/r2p`. El `if` de §10–§12 **no cambia**; solo el número emitido.
+Estado: **aplicados** en `tld-api-r2p/lambdas/r2p` (2026-08-11). El `if` de §10–§12 **no cambió**; solo el número emitido.
 
 **Orden en §8:** aplicar §1, §2 y §6 **antes** de §8. Si no, **435** queda a la vez como notify/alias y como `bancoAcreedor`.
 

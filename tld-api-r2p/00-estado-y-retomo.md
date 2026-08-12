@@ -6,7 +6,7 @@
 | **Código Dig** | `6fece92` (Fase 3) + suite Newman mínima |
 | **Smoke MATRIZ** | **OK** — [`19`](./19-smoke-matriz-0011-evidencia.md) |
 | **Suite Newman** | Mínima `r2p` — run `dev` OK (`3483629` logs) |
-| **Inventario resultados** | [`20-inventario-resultados-lambda-r2p.md`](./20-inventario-resultados-lambda-r2p.md) — Dig × prod × catálogo; **12 cambios de código acordados** (pendientes aplicar) |
+| **Inventario resultados** | [`20-inventario-resultados-lambda-r2p.md`](./20-inventario-resultados-lambda-r2p.md) — Dig × prod × catálogo; **12 cambios aplicados** en `lambdas/r2p` |
 | **Datos Dig R2P** | [`../Postman/canalesPruebas-dev/datos-r2p-prueba-dev.md`](../Postman/canalesPruebas-dev/datos-r2p-prueba-dev.md) |
 | **Pendiente (otros hilos)** | Paridad Dig prod-source vs cambios; marcar códigos incorrectos sobre el inventario |
 
