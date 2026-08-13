@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |-------|-------|
-| Fecha | 2026-08-13 (act. §14–§15 cuentaAcreedor/cuentaDeudor) |
+| Fecha | 2026-08-13 (act. §9 nombreAcreedor charset ISO) |
 | Alcance | Emisión estática `lambdas/r2p` + **cruce** con [`../codigosRespuesta/nueva-tabla-codigo-respuesta.md`](../codigosRespuesta/nueva-tabla-codigo-respuesta.md) (`Nueva descripción`) |
 | Dig | `tld-api-r2p/lambdas/r2p` |
 | Prod | `produccion_real/tld-api-r2p/lambdas/r2p` (solo lectura) |
@@ -169,7 +169,7 @@ Estado: **aplicados** en `tld-api-r2p/lambdas/r2p` (§1–§12: 2026-08-11; §13
 | **6** | `util.js` ~406–408 — default `validarAliasDeudor` | `statusCode: 435`, mensaje «Campo solicitudes no son validos» | **`419`**, mensaje **«Los parámetros identificador y tipoIdentificador son requeridos»** (texto catálogo; R2P solo exige `identificador`) | Los parámetros identificador y tipoIdentificador son requeridos |
 | **7** | `util.js` ~231–236 — `monto` fuera de rango | `statusCode: 432`, «Campo monto no cumple con los criterios» | **`465`**, «Error al validar el parámetro monto» | Error al validar el parámetro monto |
 | **8** | `util.js` ~237–241 — `bancoAcreedor` ≠ alias emisor | `statusCode: 433`, «Campo bancoAcreedor no cumple con los criterios» | **`435`**, «Error al validar el parámetro bancoAcreedor» | Error al validar el parámetro bancoAcreedor |
-| **9** | `util.js` ~253–258 — falta `nombreAcreedor` | `statusCode: 437`, «Campo nombreAcreedor no cumple con los criterios» | **`436`**, «Error al validar el parámetro nombreAcreedor» | Error al validar el parámetro nombreAcreedor |
+| **9** | `util.js` ~253–258 — `nombreAcreedor` ausente / vacío / charset no ISO | `statusCode: 437`, «Campo nombreAcreedor no cumple con los criterios» (solo vacío) | **`436`**, «Error al validar el parámetro nombreAcreedor» (+ regex `/^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 \-\?\:\(\)\.\,\+]+$/`) | Error al validar el parámetro nombreAcreedor |
 | **10** | `app.js` ~184–188 — `getRequest2P` vacío | `resultado: 442` | **`484`** | No hay fila en tld-r2p con ese codigoR2P. |
 | **11** | `app.js` ~191–195 — `estado=='C'` y `bancoAcreedor` ≠ alias validador | `resultado: 440` | **`485`** | Hay fila y alguna tiene estado == 'C' y parametros.bancoAcreedor != alias del validador. |
 | **12** | `app.js` ~197–201 — alguna fila `estado!='S'` | `resultado: 441` | **`486`** | Hay fila y alguna tiene estado != 'S'. |
