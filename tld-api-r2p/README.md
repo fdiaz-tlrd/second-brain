@@ -30,4 +30,4 @@
 | [`17-estrategia-newman-r2p-paridad-dig.md`](./17-estrategia-newman-r2p-paridad-dig.md) | Estrategia paridad Dig + tooling Postman |
 | [`18-gates-canales-matriz-r2p.md`](./18-gates-canales-matriz-r2p.md) | Gates MATRIZ / canales (alias cerrado) |
 | [`19-smoke-matriz-0011-evidencia.md`](./19-smoke-matriz-0011-evidencia.md) | Smoke Dig `0011` OK |
-| [`20-inventario-resultados-lambda-r2p.md`](./20-inventario-resultados-lambda-r2p.md) | Inventario códigos Dig × prod × catálogo; **incorrectos** Dig vs `Nueva descripción` |
+| [`20-inventario-resultados-lambda-r2p.md`](./20-inventario-resultados-lambda-r2p.md) | Inventario códigos Dig × prod × catálogo; **15 cambios acordados** (aplicados en Dig) |

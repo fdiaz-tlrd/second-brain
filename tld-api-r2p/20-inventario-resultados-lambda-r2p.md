@@ -2,12 +2,12 @@
 
 | Campo | Valor |
 |-------|-------|
-| Fecha | 2026-08-11 (act. cambios acordados códigos) |
+| Fecha | 2026-08-13 (act. §14–§15 cuentaAcreedor/cuentaDeudor) |
 | Alcance | Emisión estática `lambdas/r2p` + **cruce** con [`../codigosRespuesta/nueva-tabla-codigo-respuesta.md`](../codigosRespuesta/nueva-tabla-codigo-respuesta.md) (`Nueva descripción`) |
 | Dig | `tld-api-r2p/lambdas/r2p` |
 | Prod | `produccion_real/tld-api-r2p/lambdas/r2p` (solo lectura) |
 | Catálogo | Fuente de verdad de **qué número debe significar qué** |
-| Cambios acordados | Ver § **Cambios acordados (12)** — pendientes de aplicar en Dig |
+| Cambios acordados | Ver § **Cambios acordados (15)** — aplicados en Dig |
 | Fuera | Códigos arbitrarios del **banco** en hop EF; `api_7` ([`15`](./15-estudio-api7-marketplace-vs-prod.md)) |
 
 ## Cómo leer
@@ -45,10 +45,11 @@ Filas donde Dig **desvía** el número respecto a `Nueva descripción`. Esto es 
 | **435** | Sin op `0012`/`0014` en validador; o default alias sin identificador | Error al validar el parámetro **bancoAcreedor** | **incorrecto** → **acordado** §1–2 / §6 | Notify validador → **418**; default alias → **419** |
 | **437** | Falta `nombreAcreedor` | Error al validar el parámetro **descripcion** | **incorrecto** → **acordado** §9 | **436** (nombreAcreedor) |
 | **438** | Emisor sin op `0014` | Identificador del **comercio** ya registrado para el banco | **incorrecto** → **acordado** §3 | **482** |
-| **439** | Fallo validación estado (app **siempre** 439) | Identificador del **comercio** ya registrado | **incorrecto** → **acordado** §4 | Pasar `resultValidaciones.statusCode` |
+| **439** | Fallo validación estado (app **siempre** 439); util `codigoR2P` también era 439 | Identificador del **comercio** ya registrado | **incorrecto** → **acordado** §4 + §13 | §4: pasar `statusCode` util; §13: util `codigoR2P` → **487** |
 | **440** | Hay fila y alguna tiene `estado == 'C'` y `parametros.bancoAcreedor !=` alias del validador | Identificador del **comercio** registrado anteriormente… | **incorrecto** → **acordado** §11 | **485** (texto = la condición del `if`) |
 | **441** | Hay fila y alguna tiene `estado != 'S'` | Identificador del **comercio** no registrado | **incorrecto** → **acordado** §12 | **486** (texto = la condición del `if`) |
 | **442** | No hay fila en `tld-r2p` con ese `codigoR2P` | Comercio debe ser activo/suspendido para actualizar | **incorrecto** → **acordado** §10 | **484** (texto = la condición del `if`) |
+| **413** | `cuentaAcreedor` / `cuentaDeudor` inválidos (`0011`) | Error al validar el parámetro **cuenta** | **incorrecto** → **acordado** §14–§15 | **488** / **489** (campos distintos; catálogo 413 = `cuenta`) |
 | **418** (`default` switch) | Método ≠ `0011`/`0013` | Método no soportado por el validador | **incorrecto** → **acordado** §5 | **481** Método inválido |
 | **501** | Agregado bitácora “parcial” (`resultadoValidador`) | Error en **cifrado** para el canal emisor | **incorrecto** (si se confundiera con envelope) | Uso Dig es solo C (dashboard); **no** devolver 501 al cliente como cifrado |
 | **500** | Agregado bitácora “todo error” | Error interno | **débil / conflicto** | Catálogo 500 = error interno envelope; Dig también usa 500 en C con otro significado |
@@ -98,7 +99,7 @@ El **445** («El prefijo Código SWIFT del idPeticion no coincide con el canal e
 | **431** | `idSolicitud` | sí | sí | Campo idSolicitud no cumple con los criterios | **OK** |
 | **432** | `monto` | sí | sí | …**ciudadComercio** | **incorrecto** → **acordado** §7 → **465** |
 | **433** | `bancoAcreedor` | sí | sí | …alias validador no disponible | **incorrecto** → **acordado** §8 → **435** |
-| **413** | cuentas | sí | sí | Error al validar el parámetro cuenta | **OK** |
+| **413** | `cuentaAcreedor` / `cuentaDeudor` | sí (antes) | sí | Error al validar el parámetro cuenta | **incorrecto** → **acordado** §14–§15 → **488** / **489** |
 | **437** | `nombreAcreedor` | sí | sí | …**descripcion** | **incorrecto** → **acordado** §9 → **436** |
 | **483** | `notaAcreedor` | **sí** | **—** | Error al validar el parámetro notaAcreedor | **OK** |
 | **435** | Sin op `0012` | sí | sí | …**bancoAcreedor** | **incorrecto** → **acordado** §1 → **418** |
@@ -111,20 +112,20 @@ El **445** («El prefijo Código SWIFT del idPeticion no coincide con el canal e
 |--------|---------------|-----|------|----------|-----------|
 | **435** | Sin op `0014` validador | sí | sí | …bancoAcreedor | **incorrecto** → **acordado** §2 → **418** |
 | **438** | Sin op `0014` emisor | sí | sí | Comercio ya registrado (banco) | **incorrecto** → **acordado** §3 → **482** |
-| **439** | Fallo `validarParametroSolicitudesEstado` (tapa todo) | sí | sí | Comercio ya registrado | **incorrecto** → **acordado** §4 → `statusCode` util |
+| **439** | Fallo `validarParametroSolicitudesEstado` (tapa todo; Dig ya no tapa) | Dig: no (pasa util) | sí (tapa) | Comercio ya registrado | **incorrecto** → **acordado** §4 → `statusCode` util (incl. **487**) |
 | **442** | No hay fila `codigoR2P` | sí | sí | Comercio activo/suspendido… | **incorrecto** → **acordado** §10 → **484** |
 | **440** | Fila + alguna `estado=='C'` + `bancoAcreedor` ≠ alias validador | sí | sí | Comercio registrado anteriormente… | **incorrecto** → **acordado** §11 → **485** |
 | **441** | Fila + alguna `estado!='S'` | sí | sí | Comercio no registrado | **incorrecto** → **acordado** §12 → **486** |
 | **0** | Update + hop | sí | sí | Operación exitosa | **OK** |
 
-Hoy util estado puede calcular **425 / 431 / 439 / 443**; app Dig/prod **siempre** escribe **439**. **Acordado §4:** emitir `resultValidaciones.statusCode`.
+Hoy util estado puede calcular **425 / 431 / 487 / 443**; app Dig emite `resultValidaciones.statusCode` (§4 aplicado). Prod aún puede tapar con **439**.
 
-| Código util | Catálogo | Visible hoy | Tras §4 |
-|-------------|----------|-------------|---------|
-| 425 | OK | → **439** | **425** |
-| 431 | OK | → **439** | **431** |
-| 439 | texto util `codigoR2P` (catálogo 439 = comercio — sigue en tension) | → **439** | **439** |
-| 443 | OK («Error al validar el parámetro estado») | → **439** | **443** |
+| Código util | Catálogo | Visible hoy Dig | Prod (sin §4) |
+|-------------|----------|-----------------|---------------|
+| 425 | OK | **425** | → **439** |
+| 431 | OK | **431** | → **439** |
+| 487 | Error al validar el parámetro codigoR2P (§13) | **487** | → **439** (si aún tapa) |
+| 443 | OK («Error al validar el parámetro estado») | **443** | → **439** |
 
 ---
 
@@ -148,22 +149,22 @@ Envelope al cliente en esos caminos sigue siendo **`codigoError: 0`** + cuerpo c
 | **406** cifrado validador | no | sí |
 | Remap proxy → envelope | sí | no |
 | BAD_JSON → 400 | sí | no (→ 999) |
-| Colapso estado → **439** | sí (hoy) → **acordado** pasar `statusCode` | sí (prod sin este fix) |
+| Colapso estado → **439** | Dig: no (§4) — emite util (425/431/487/443) | sí (prod sin este fix) |
 
 ---
 
-## Cambios acordados (12) — aplicar en Dig
+## Cambios acordados (15) — aplicar en Dig
 
-Estado: **aplicados** en `tld-api-r2p/lambdas/r2p` (2026-08-11). El `if` de §10–§12 **no cambió**; solo el número emitido.
+Estado: **aplicados** en `tld-api-r2p/lambdas/r2p` (§1–§12: 2026-08-11; §13–§15: 2026-08-13). El `if` de §10–§12 **no cambió**; solo el número emitido.
 
 **Orden en §8:** aplicar §1, §2 y §6 **antes** de §8. Si no, **435** queda a la vez como notify/alias y como `bancoAcreedor`.
 
-| # | Archivo / sitio | Hoy | Queda | Catálogo (`Nueva descripción`) |
-|---|-----------------|-----|-------|--------------------------------|
+| # | Archivo / sitio | Hoy (antes del fix) | Queda | Catálogo (`Nueva descripción`) |
+|---|-----------------|---------------------|-------|--------------------------------|
 | **1** | `app.js` ~136–141 — validador sin op **`0012`** (`0011`) | `resultado: 435` | **`418`** | Método no soportado por el validador |
 | **2** | `app.js` ~163–168 — validador sin op **`0014`** (`0013`) | `resultado: 435` | **`418`** | Método no soportado por el validador |
 | **3** | `app.js` ~170–175 — emisor sin op **`0014`** | `resultado: 438` | **`482`** | Método no disponible para el Canal Emisor |
-| **4** | `app.js` ~177–182 — fallo `validarParametroSolicitudesEstado` | siempre `resultado: 439` | **`resultValidaciones.statusCode`** | El código que devolvió el util (425 / 431 / 439 / 443, …) |
+| **4** | `app.js` ~177–182 — fallo `validarParametroSolicitudesEstado` | siempre `resultado: 439` | **`resultValidaciones.statusCode`** | El código que devolvió el util (425 / 431 / 487 / 443, …) |
 | **5** | `app.js` ~214–216 — `default` del `switch` (método ≠ `0011`/`0013`) | envelope **`418`** | envelope **`481`** + mensaje catálogo «Método inválido» | Método inválido |
 | **6** | `util.js` ~406–408 — default `validarAliasDeudor` | `statusCode: 435`, mensaje «Campo solicitudes no son validos» | **`419`**, mensaje **«Los parámetros identificador y tipoIdentificador son requeridos»** (texto catálogo; R2P solo exige `identificador`) | Los parámetros identificador y tipoIdentificador son requeridos |
 | **7** | `util.js` ~231–236 — `monto` fuera de rango | `statusCode: 432`, «Campo monto no cumple con los criterios» | **`465`**, «Error al validar el parámetro monto» | Error al validar el parámetro monto |
@@ -172,17 +173,23 @@ Estado: **aplicados** en `tld-api-r2p/lambdas/r2p` (2026-08-11). El `if` de §10
 | **10** | `app.js` ~184–188 — `getRequest2P` vacío | `resultado: 442` | **`484`** | No hay fila en tld-r2p con ese codigoR2P. |
 | **11** | `app.js` ~191–195 — `estado=='C'` y `bancoAcreedor` ≠ alias validador | `resultado: 440` | **`485`** | Hay fila y alguna tiene estado == 'C' y parametros.bancoAcreedor != alias del validador. |
 | **12** | `app.js` ~197–201 — alguna fila `estado!='S'` | `resultado: 441` | **`486`** | Hay fila y alguna tiene estado != 'S'. |
+| **13** | `util.js` ~314–318 — `codigoR2P` ausente / vacío / largo > 64 | `statusCode: 439`, «Campo codigoR2P no cumple con los criterios» | **`487`**, «Error al validar el parámetro codigoR2P» | Error al validar el parámetro codigoR2P |
+| **14** | `util.js` ~242–246 — `cuentaAcreedor` ausente / vacío / no regex | `statusCode: 413`, «Campo cuentaAcreedor no cumple con los criterios» | **`488`**, «Error al validar el parámetro cuentaAcreedor» | Error al validar el parámetro cuentaAcreedor |
+| **15** | `util.js` ~247–251 — `cuentaDeudor` ausente / vacío / no regex | `statusCode: 413`, «Campo cuentaDeudor no cumple con los criterios.» | **`489`**, «Error al validar el parámetro cuentaDeudor» | Error al validar el parámetro cuentaDeudor |
 
 ---
 
-## Lista corta — **incorrecto** Dig que **sigue** (fuera de los 12)
+## Lista corta — **incorrecto** Dig que **sigue** (fuera de los 15)
 
 1. **501** como agregado parcial → no confundir con cifrado emisor
-2. Util **439** (`codigoR2P` inválido) vs catálogo 439 (comercio) — §4 deja de tapar otros códigos, pero el **439 del util** sigue en tensión con el catálogo
 
 `idPeticion` **400** no está en esta lista: **se deja** (no se implementa 445 en R2P). Ver decisión arriba.
 
-Notify/alias/default/tapa/`monto`/`bancoAcreedor`/`nombreAcreedor`/`442`/`440`/`441` pasan a § **Cambios acordados (12)**.
+El **439** del util para `codigoR2P` pasó a § **13** (**487**). Catálogo **439** sigue siendo texto P2M comercio; R2P Dig ya no lo usa para `codigoR2P`.
+
+**413** en R2P para `cuentaAcreedor`/`cuentaDeudor` estaba marcado **OK** por homonimia con catálogo «cuenta» — **error del inventario**: el parámetro no es `cuenta`. Corregido en § **14–§15**.
+
+Notify/alias/default/tapa/`monto`/`bancoAcreedor`/`nombreAcreedor`/`442`/`440`/`441`/`codigoR2P`/`cuentaAcreedor`/`cuentaDeudor` pasan a § **Cambios acordados (15)**.
 
 ---
 

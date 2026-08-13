@@ -88,6 +88,9 @@
 | 484 | No hay fila en tld-r2p con ese codigoR2P. |  |  |  |  |  |  |  |
 | 485 | Hay fila y alguna tiene estado == 'C' y parametros.bancoAcreedor != alias del validador. |  |  |  |  |  |  |  |
 | 486 | Hay fila y alguna tiene estado != 'S'. |  |  |  |  |  |  |  |
+| 487 | Error al validar el parámetro codigoR2P |  |  |  |  |  |  |  |
+| 488 | Error al validar el parámetro cuentaAcreedor |  |  |  |  |  |  |  |
+| 489 | Error al validar el parámetro cuentaDeudor |  |  |  |  |  |  |  |
 | 500 | Error interno |  | Petición de validación no es válida | Inconvenientes en la validación del mensaje. | Error interno Error consultando alias Error actualizando alias Error al consultar alias por banco Error buscando identificador Error validando alias Error validando cuenta nombre Error consultando operaciones Error creando alias Error al consumir api-validador Consultando id alias | Errores que pueden ser recibidos para todos los métodos. | Error interno Error consultando alias Error actualizando alias Error al consultar alias por banco Error buscando identificador Error validando alias Error validando cuenta nombre Error consultando operaciones Error creando alias Error al consumir api-validador Consultando id alias | Errores que pueden ser recibidos para todos los métodos. |
 | 501 | Error en cifrado para el canal emisor |  |  |  |  |  |  |  |
 | 502 | Error en cifrado para el canal validador |  |  |  |  |  |  |  |
