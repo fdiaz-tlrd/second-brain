@@ -85,9 +85,9 @@
 | 481 | Método inválido |  |  |  |  |  |  |  |
 | 482 | Método no disponible para el Canal Emisor |  |  |  |  |  |  |  |
 | 483 | Error al validar el parámetro notaAcreedor |  |  |  |  |  |  |  |
-| 484 | No hay fila en tld-r2p con ese codigoR2P. |  |  |  |  |  |  |  |
-| 485 | Hay fila y alguna tiene estado == 'C' y parametros.bancoAcreedor != alias del validador. |  |  |  |  |  |  |  |
-| 486 | Hay fila y alguna tiene estado != 'S'. |  |  |  |  |  |  |  |
+| 484 | No se encontró una solicitud de dinero para el codigoR2P |  |  |  |  |  |  |  |
+| 485 |  |  |  |  |  |  |  |  |
+| 486 | No se encontró una solicitud de dinero en estado S para el codigoR2P |  |  |  |  |  |  |  |
 | 487 | Error al validar el parámetro codigoR2P |  |  |  |  |  |  |  |
 | 488 | Error al validar el parámetro cuentaAcreedor |  |  |  |  |  |  |  |
 | 489 | Error al validar el parámetro cuentaDeudor |  |  |  |  |  |  |  |

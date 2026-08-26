@@ -54,6 +54,8 @@ Dig usa `abrirPaquete` / `cerrarPaquete` en `operacionesPaquete.js` (misma famil
 Prod: `util.Print(...)`.  
 Dig: `lib/logger.js` (`infoSafe` / `errorSafe`) + `PRINT_LOGS` en `variablesEntorno.js`. `Print` eliminado de Dig `util.js`.
 
+**2026-08-26:** `logger.js` Dig alineado con VCN (`cuenta-nombre/lib/logger.js`): sanitización **recursiva** (profundidad 16), `util.inspect` en salida, whitelist de strings largos R2P (`peticion`, `solicitudes`, `respuestas`, …). Siguen redactados `llaveCifrado`, `llaveDescifrado`, `token`, etc.
+
 ### D. Runtime / layer
 
 | | Prod | Dig |
