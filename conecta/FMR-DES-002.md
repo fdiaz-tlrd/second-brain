@@ -51,7 +51,7 @@ El Poller **no** entrega la liquidación al Banco origen. Sí sigue hablando con
 ```mermaid
 sequenceDiagram
     autonumber
-    actor BO as BANCO ORIGEN
+    participant BO as BANCO ORIGEN
     participant IA as INTERHUB / API REST
     participant AX as ACH XPRESS
     participant IP as INTERHUB / POLLER

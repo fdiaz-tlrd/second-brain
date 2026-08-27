@@ -1,0 +1,17 @@
+{
+  "required": [ "entrada", "tipoSalida" ],
+  "type": "object",
+  "properties": {
+    "entrada": {
+      "type": "string",
+      "descripction": "El objeto JSON o el XML"
+    },
+    "tipoSalida": {
+      "type": "string",
+      "enum": [
+        "JSON",
+        "XML"
+      ]
+    }
+  }
+}

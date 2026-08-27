@@ -1,0 +1,15 @@
+{
+  "required": [ "tipoMensaje" ],
+  "type": "object",
+  "properties": {
+    "tipoMensaje": {
+      "type": "string",
+      "descripction": "Mensaje en formato XML",
+      "enum": [
+        "PACS.008",
+        "PACS.028",
+        "CAMT.056"
+      ]
+    }
+  }
+}
