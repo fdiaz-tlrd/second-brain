@@ -1,0 +1,411 @@
+openapi: 3.0.3
+info:
+  title: Merchant Directory API — Panama Interoperability HUB
+  version: 1.0.0-draft
+  description: |
+    Registration and resolution of interoperable merchants under the P2M interoperable QR
+    standard: onboarding with centralised assignment of the `creditorId` (`CR` + 9 digits with
+    a Luhn check digit, permanent and never reused), collection methods per branch,
+    transactional resolution from the QR (subfield 26.04) and the network registry with their
+    EMVCo template GUIDs. Only the `STC-C` profile resolution is cacheable (initial TTL 7,200 s
+    for static QR; other profiles are never cached).
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@[operator-domain]
+
+servers:
+  - url: https://sandbox.hub.example.pa/merchant-directory/v1
+    description: Sandbox
+  - url: https://hub.example.pa/merchant-directory/v1
+    description: Production
+
+tags:
+  - name: Registration
+    description: Merchant onboarding and maintenance
+  - name: Collection methods
+    description: Collection methods per branch
+  - name: Resolution
+    description: Transactional resolution from the QR
+  - name: Networks
+    description: Network registry and EMVCo template GUIDs
+
+paths:
+
+  /merchants:
+    post:
+      tags: [Registration]
+      summary: Register an interoperable merchant
+      description: |
+        Merchant onboarding (one branch = one record, with its alias and collection method).
+        The HUB validates alias, MCC and ownership, and assigns the `creditorId`,
+        the value of subfield 26.04 of the interoperable QR.
+      operationId: registerMerchant
+      security: [{ oauth2ClientCredentials: [merchants.write] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+        - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/MerchantRegistration' }
+      responses:
+        '201':
+          description: Merchant registered; includes the assigned creditorId
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Merchant' }
+        '400': { $ref: '../common/common-components.yaml#/components/responses/BadRequest' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '409':
+          description: Alias already registered in the given network
+          content:
+            application/problem+json:
+              schema: { $ref: '../common/common-components.yaml#/components/schemas/Problem' }
+        '422': { $ref: '../common/common-components.yaml#/components/responses/BusinessRule' }
+    get:
+      tags: [Registration]
+      summary: Search merchants
+      description: Administrative (non-transactional) search by network, alias or name. Cursor-paginated.
+      operationId: searchMerchants
+      security: [{ oauth2ClientCredentials: [merchants.read] }]
+      parameters:
+        - { name: networkId, in: query, schema: { $ref: '../common/common-components.yaml#/components/schemas/NetworkId' } }
+        - { name: merchantAlias, in: query, schema: { type: string } }
+        - { name: name, in: query, description: 'Search by display name (prefix match)', schema: { type: string } }
+        - $ref: '../common/common-components.yaml#/components/parameters/PageToken'
+        - $ref: '../common/common-components.yaml#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: Result page
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MerchantPage' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+
+  /merchants/{creditorId}:
+    parameters:
+      - $ref: '#/components/parameters/CreditorIdPath'
+    get:
+      tags: [Registration]
+      summary: Read a merchant
+      operationId: getMerchant
+      security: [{ oauth2ClientCredentials: [merchants.read] }]
+      responses:
+        '200':
+          description: Merchant record
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Merchant' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+    put:
+      tags: [Registration]
+      summary: Update a merchant
+      description: Emits `MERCHANT_UPDATED` and invalidates the resolution cache.
+      operationId: updateMerchant
+      security: [{ oauth2ClientCredentials: [merchants.write] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+        - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/MerchantUpdate' }
+      responses:
+        '200':
+          description: Merchant updated
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Merchant' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+        '422': { $ref: '../common/common-components.yaml#/components/responses/BusinessRule' }
+    delete:
+      tags: [Registration]
+      summary: Deactivate a merchant
+      description: Logical deactivation (state `INACTIVE`). The `creditorId` is never reused.
+      operationId: deactivateMerchant
+      security: [{ oauth2ClientCredentials: [merchants.write] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+        - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+      responses:
+        '204': { description: Merchant deactivated }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+
+  /merchants/{creditorId}/collection-methods:
+    parameters:
+      - $ref: '#/components/parameters/CreditorIdPath'
+    post:
+      tags: [Collection methods]
+      summary: Add a collection method
+      description: Emits `COLLECTION_METHOD_CHANGED` and invalidates the cache.
+      operationId: addCollectionMethod
+      security: [{ oauth2ClientCredentials: [merchants.write] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+        - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CollectionMethodRegistration' }
+      responses:
+        '201':
+          description: Collection method created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CollectionMethod' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+        '422': { $ref: '../common/common-components.yaml#/components/responses/BusinessRule' }
+
+  /merchants/{creditorId}/collection-methods/{collectionMethodId}:
+    parameters:
+      - $ref: '#/components/parameters/CreditorIdPath'
+      - { name: collectionMethodId, in: path, required: true, schema: { type: string } }
+    put:
+      tags: [Collection methods]
+      summary: Update or suspend a collection method
+      operationId: updateCollectionMethod
+      security: [{ oauth2ClientCredentials: [merchants.write] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+        - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CollectionMethodUpdate' }
+      responses:
+        '200':
+          description: Collection method updated
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CollectionMethod' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+
+  /merchants/resolve:
+    post:
+      tags: [Resolution]
+      summary: Resolve a merchant (transactional QR path)
+      description: |
+        Resolution executed by the paying network after scanning an interoperable QR. Accepts the
+        `creditorId` (26.04) or, during the transition, `networkId + merchantAlias`. Returns the
+        destination acquirer, an opaque handle of the active collection method and the contrast
+        data (name, city, MCC). Only the `STC-C` profile response is cacheable.
+      operationId: resolveMerchant
+      security: [{ oauth2ClientCredentials: [merchants.resolve] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/FapiInteractionId'
+        - $ref: '../common/common-components.yaml#/components/parameters/ParticipantId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/MerchantResolutionRequest' }
+      responses:
+        '200':
+          description: Resolution result (including NOT_FOUND / SUSPENDED)
+          headers:
+            Cache-Control:
+              description: '`max-age` only when qrProfile=STC-C; `no-store` otherwise'
+              schema: { type: string }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MerchantResolutionResponse' }
+        '400': { $ref: '../common/common-components.yaml#/components/responses/BadRequest' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+
+  /networks:
+    get:
+      tags: [Networks]
+      summary: Network registry and EMVCo template GUIDs
+      description: The network code registry used by wallet apps to recognise the interoperable scheme (QR subfield 26.00).
+      operationId: listNetworks
+      security: [{ oauth2ClientCredentials: [directory.read] }]
+      responses:
+        '200':
+          description: Registered networks
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/NetworkList' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      $ref: '../common/common-components.yaml#/components/securitySchemes/oauth2ClientCredentials'
+
+  parameters:
+    CreditorIdPath:
+      name: creditorId
+      in: path
+      required: true
+      description: Interoperable merchant identifier (QR subfield 26.04).
+      schema: { $ref: '../common/common-components.yaml#/components/schemas/CreditorId' }
+
+  schemas:
+    MerchantStatus: { type: string, enum: [ACTIVE, SUSPENDED, INACTIVE] }
+    CollectionMethodType: { type: string, enum: [DIRECTORY, STATIC_QR, POS, CHECKOUT, PAYMENT_BUTTON, INTEGRATION] }
+    AccountProductType: { type: string, enum: [PACA, PACC] }
+
+    MerchantRegistration:
+      type: object
+      required: [networkId, acquiringParticipantId, merchantAlias, legalName, city, mcc, collectionMethod]
+      properties:
+        networkId: { $ref: '../common/common-components.yaml#/components/schemas/NetworkId' }
+        acquiringParticipantId: { type: string, description: 'Acquirer/destination bank of the credit (26.02/26.03).' }
+        merchantAlias:
+          type: string
+          pattern: '^[A-Za-z0-9]{1,64}$'
+          description: 'Public alias within its network; alphanumeric, no accents or eñe. One per branch.'
+        legalName: { type: string, description: Name as stated in the operating notice (aviso de operación). }
+        displayName: { type: string, maxLength: 25, description: 'Name for the QR payload (tag 59). If omitted, the HUB derives it with the deterministic abbreviation.' }
+        city: { type: string, maxLength: 15, description: 'City of the establishment (tag 60).' }
+        mcc: { type: string, pattern: '^[0-9]{4}$', description: ISO 18245 MCC validated against the master catalogue. }
+        merchantGroupId: { type: string, description: 'Multi-branch grouping (presentation and reporting).' }
+        email: { type: string, format: email }
+        legacyMerchantId: { type: string, description: 'Legacy acquirer identifier (26.05), transition only.' }
+        collectionMethod: { $ref: '#/components/schemas/CollectionMethodRegistration' }
+
+    MerchantUpdate:
+      type: object
+      properties:
+        legalName: { type: string }
+        displayName: { type: string, maxLength: 25 }
+        city: { type: string, maxLength: 15 }
+        mcc: { type: string, pattern: '^[0-9]{4}$' }
+        merchantGroupId: { type: string }
+        email: { type: string, format: email }
+        status: { $ref: '#/components/schemas/MerchantStatus' }
+
+    Merchant:
+      type: object
+      required: [creditorId, networkId, acquiringParticipantId, merchantAlias, displayName, city, countryCode, mcc, status]
+      properties:
+        creditorId: { $ref: '../common/common-components.yaml#/components/schemas/CreditorId' }
+        networkId: { $ref: '../common/common-components.yaml#/components/schemas/NetworkId' }
+        acquiringParticipantId: { type: string }
+        merchantAlias: { type: string }
+        legalName: { type: string }
+        displayName: { type: string, maxLength: 25 }
+        city: { type: string, maxLength: 15 }
+        countryCode: { type: string, enum: [PA] }
+        mcc: { type: string }
+        merchantGroupId: { type: string }
+        email: { type: string }
+        legacyMerchantId: { type: string }
+        status: { $ref: '#/components/schemas/MerchantStatus' }
+        collectionMethods:
+          type: array
+          items: { $ref: '#/components/schemas/CollectionMethod' }
+        registeredAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+
+    MerchantPage:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Merchant' }
+        nextPageToken: { type: string, description: Absent on the last page. }
+
+    CollectionMethodRegistration:
+      type: object
+      required: [type, account, accountProduct]
+      properties:
+        type: { $ref: '#/components/schemas/CollectionMethodType' }
+        account: { $ref: '../common/common-components.yaml#/components/schemas/Account' }
+        accountProduct: { $ref: '#/components/schemas/AccountProductType' }
+        storeLabel: { type: string, maxLength: 25, description: 'Public branch label (62.03).' }
+        terminalLabels:
+          type: array
+          items: { type: string, maxLength: 25 }
+          description: 'Public terminals or tills (62.07).'
+
+    CollectionMethodUpdate:
+      type: object
+      properties:
+        account: { $ref: '../common/common-components.yaml#/components/schemas/Account' }
+        accountProduct: { $ref: '#/components/schemas/AccountProductType' }
+        storeLabel: { type: string, maxLength: 25 }
+        terminalLabels:
+          type: array
+          items: { type: string, maxLength: 25 }
+        status: { type: string, enum: [ACTIVE, SUSPENDED] }
+
+    CollectionMethod:
+      type: object
+      required: [collectionMethodId, type, accountProduct, status]
+      properties:
+        collectionMethodId: { type: string }
+        type: { $ref: '#/components/schemas/CollectionMethodType' }
+        account: { $ref: '../common/common-components.yaml#/components/schemas/Account' }
+        accountProduct: { $ref: '#/components/schemas/AccountProductType' }
+        storeLabel: { type: string }
+        terminalLabels:
+          type: array
+          items: { type: string }
+        status: { type: string, enum: [ACTIVE, SUSPENDED] }
+
+    MerchantResolutionRequest:
+      type: object
+      required: [initiatingParticipantId]
+      description: Either `creditorId` or the pair `networkId + merchantAlias` (transition) must be provided.
+      properties:
+        creditorId: { $ref: '../common/common-components.yaml#/components/schemas/CreditorId' }
+        networkId: { $ref: '../common/common-components.yaml#/components/schemas/NetworkId' }
+        merchantAlias: { type: string }
+        initiatingParticipantId: { type: string, example: "YAPPY" }
+        qrProfile: { $ref: '../common/common-components.yaml#/components/schemas/QrProfile' }
+
+    MerchantResolutionResponse:
+      type: object
+      required: [status]
+      properties:
+        status: { $ref: '../common/common-components.yaml#/components/schemas/ResolutionStatus' }
+        creditorId: { $ref: '../common/common-components.yaml#/components/schemas/CreditorId' }
+        resolvedParticipantId: { type: string, description: Destination acquirer/processor of the payment., example: "TELERED" }
+        payeeHandle: { type: string, description: 'Opaque handle of the active collection method; the account is never exposed.' }
+        displayName: { type: string, description: For contrast against payload tag 59. }
+        city: { type: string, description: Contrast against tag 60. }
+        mcc: { type: string, description: Contrast against tag 52. }
+        cacheTtlSeconds:
+          type: integer
+          description: 'Present only when qrProfile=STC-C. Initial TTL 7,200 s (static QR profile).'
+          example: 7200
+        fraudIndicator: { $ref: '../common/common-components.yaml#/components/schemas/FraudIndicator' }
+
+    Network:
+      type: object
+      required: [networkId, guid, name, status]
+      properties:
+        networkId: { $ref: '../common/common-components.yaml#/components/schemas/NetworkId' }
+        guid: { type: string, description: 'EMVCo template GUID (subfield 26.00).', example: "pa.telered.qr" }
+        extensionGuid: { type: string, description: 'National extension GUID (80.00).', example: "pa.interop.qr.ext" }
+        name: { type: string, example: "Telered — ACH Xpress" }
+        status: { type: string, enum: [ACTIVE, SUSPENDED] }
+
+    NetworkList:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Network' }

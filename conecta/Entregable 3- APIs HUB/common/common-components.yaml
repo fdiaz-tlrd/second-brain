@@ -1,0 +1,222 @@
+# Shared component library — Panama Payments Interoperability HUB
+# Not a publishable API: the HUB APIs reference it through relative $refs.
+# Convention: any change here is a contract change for EVERY API that references it.
+openapi: 3.0.3
+info:
+  title: Common Components — Panama Interoperability HUB
+  version: 1.0.0-draft
+  description: Shared library (schemas, parameters, responses and security). Exposes no routes.
+paths: {}
+
+components:
+
+  securitySchemes:
+    oauth2ClientCredentials:
+      type: oauth2
+      description: |
+        OAuth 2.0 client credentials + OIDC **over mTLS** (HUB CA certificate at transport level).
+        Access tokens are sender-constrained (certificate-bound, RFC 8705). Per-domain scopes
+        refined as `domain.action` (e.g. `payments.write`, `directory.resolve`). Planned
+        evolution path: full FAPI 2.0 profile.
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.hub.example.pa/oauth2/token
+          scopes:
+            directory.resolve: Resolve person keys (aliases)
+            directory.read: Read own keys, networks and account-name verification
+            directory.write: Manage keys (registration, update, deregistration, portability)
+            merchants.resolve: Resolve merchants (transactional QR path)
+            merchants.read: Read and search merchants
+            merchants.write: Register and maintain merchants and collection methods
+            payments.write: Create payment orders
+            payments.read: Read payment status
+            collections.write: Create collection requests (Request-to-Pay)
+            collections.read: Read collection requests
+            events.manage: Manage event subscriptions
+            operations.read: Read system notifications and operational status
+            operations.write: Participant session (Sign On/Off) and inbound operational events
+            operations.admin: Scheme-operator actions (restricted to the HUB operator)
+            reconciliation.read: Download reconciliation files
+            reconciliation.write: Acknowledge reconciliation files and report discrepancies
+
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: Idempotency key (UUID) for safe retries (same key, same result).
+      schema: { type: string, format: uuid }
+    FapiInteractionId:
+      name: x-fapi-interaction-id
+      in: header
+      required: false
+      description: Correlation identifier (UUID) for end-to-end traceability.
+      schema: { type: string }
+    FapiAuthDate:
+      name: x-fapi-auth-date
+      in: header
+      required: false
+      description: Date and time of the customer's last authentication at their operator (only when an end customer is in the flow).
+      schema: { type: string }
+    FapiCustomerIpAddress:
+      name: x-fapi-customer-ip-address
+      in: header
+      required: false
+      description: End customer's IP address when the flow involves one (anti-fraud input).
+      schema: { type: string }
+    JwsSignature:
+      name: x-jws-signature
+      in: header
+      required: true
+      description: Detached JWS signature of the payload, for integrity and non-repudiation.
+      schema: { type: string }
+    ParticipantId:
+      name: x-participant-id
+      in: header
+      required: false
+      description: Identifier of the participant originating the request (also asserted by the mTLS certificate and the token).
+      schema: { type: string }
+    PageToken:
+      name: pageToken
+      in: query
+      required: false
+      description: Cursor returned in the previous page (cursor-based pagination, no offsets).
+      schema: { type: string }
+    PageSize:
+      name: pageSize
+      in: query
+      required: false
+      schema: { type: integer, minimum: 1, maximum: 200, default: 50 }
+
+  responses:
+    BadRequest:
+      description: Invalid request (syntax or schema)
+      content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } } }
+    Unauthorized:
+      description: Not authenticated (invalid token or mTLS certificate not presented)
+      content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } } }
+    Forbidden:
+      description: Authenticated but not allowed (missing scope or participant not entitled)
+      content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } } }
+    NotFound:
+      description: Resource not found
+      content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } } }
+    Conflict:
+      description: Idempotency or state conflict
+      content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } } }
+    BusinessRule:
+      description: Business rule rejected (`reasonCode` from the HUB error code catalogue)
+      content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } } }
+
+  schemas:
+
+    Problem:
+      type: object
+      description: |
+        RFC 7807 error. `reasonCode` carries the HUB numeric error code (families: 1xxx directory,
+        3xxx business rejection, 4xxx timeout); `isoReasonCode` carries the ISO 20022 External
+        Code Set value when one applies (e.g. AM04, AC06, FRAD, DUPL).
+      required: [title, status, reasonCode]
+      properties:
+        type: { type: string, format: uri, example: "https://hub.example.pa/problems/business-rule" }
+        title: { type: string, example: "Business rule rejected" }
+        status: { type: integer, example: 422 }
+        detail: { type: string, example: "The given MCC is not registered in the master catalogue." }
+        reasonCode: { type: string, description: 'HUB error code (families 1xxx/3xxx/4xxx).', example: "3001" }
+        isoReasonCode: { type: string, description: 'ISO 20022 External Code Set reason, when applicable.', example: "AM04" }
+        traceId: { type: string, description: Correlation with the HUB telemetry. }
+
+    Currency:
+      type: string
+      enum: [USD]
+      description: Single currency USD 840. PAB reserved as a future evolution.
+
+    Amount:
+      type: object
+      required: [currency, value]
+      properties:
+        currency: { $ref: '#/components/schemas/Currency' }
+        value:
+          type: string
+          pattern: '^[0-9]+\.[0-9]{2}$'
+          description: 'Decimal with dot and exactly 2 decimals, no thousands separator.'
+          example: "125.00"
+
+    KeyType:
+      type: string
+      enum: [MSISDN, EMAIL, NATIONAL_ID, RUC, MERCHANT_ALIAS]
+      description: The QR is not a key; QR resolution belongs to the Merchant Directory API.
+
+    Key:
+      type: object
+      required: [keyType, keyValue]
+      properties:
+        keyType: { $ref: '#/components/schemas/KeyType' }
+        keyValue: { type: string, example: "+50760001234" }
+        owningParticipantId: { type: string }
+
+    PartyIdScheme: { type: string, enum: [OTHR, IBAN] }
+
+    Account:
+      type: object
+      required: [scheme, id, institutionCode]
+      description: |
+        Account identification (OTHR scheme). `id` is the participant's internal account
+        identifier. Never exposed in resolutions towards third parties.
+      properties:
+        scheme: { $ref: '#/components/schemas/PartyIdScheme' }
+        id: { type: string, example: "YAP-ACC-7f3a92" }
+        institutionCode: { type: string, example: "YAPPY" }
+
+    ConsentStatus: { type: string, enum: [AUTHORISED, EXPIRED, REVOKED] }
+
+    ConsentReference:
+      type: object
+      required: [consentId, scope, status]
+      description: Authorisation complement for participant-side consent flows. The HUB never stores the token.
+      properties:
+        consentId: { type: string }
+        scope: { type: string, example: "payments:initiate" }
+        status: { $ref: '#/components/schemas/ConsentStatus' }
+        validFrom: { type: string, format: date-time }
+        validTo: { type: string, format: date-time }
+
+    CreditorId:
+      type: string
+      pattern: '^CR[0-9]{9}$'
+      description: Interoperable merchant identifier (QR subfield 26.04). Assigned by the HUB at registration (permanent and never reused).
+      example: 'CR000839201'
+
+    PartyIdentification:
+      type: object
+      required: [participantId]
+      description: Party of a payment. For a P2M creditor paid by QR, `creditorId` alone is enough — the HUB completes the rest from the merchant directory.
+      properties:
+        name: { type: string }
+        participantId: { type: string }
+        account: { $ref: '#/components/schemas/Account' }
+        consentReference: { $ref: '#/components/schemas/ConsentReference' }
+        proxy: { $ref: '#/components/schemas/Key' }
+        creditorId: { $ref: '#/components/schemas/CreditorId' }
+
+    FraudIndicator:
+      type: object
+      required: [flagged, source]
+      description: Signal from the destination's confirmed-fraud list.
+      properties:
+        flagged: { type: boolean }
+        source: { type: string, description: Participant that originated the signal. }
+        reasonCode: { type: string }
+        reportedAt: { type: string, format: date-time }
+
+    NetworkId:
+      type: string
+      description: Network code of the registry; QR subfield 26.01.
+      example: TLRD
+
+    QrProfile:
+      type: string
+      enum: [STC-C, DYN, DYN-POS, DYN-CHECKOUT, HYB-CHECKOUT]
+      description: QR standard profile (subfield 80.01). Only STC-C enables caching.
+
+    ResolutionStatus: { type: string, enum: [RESOLVED, NOT_FOUND, SUSPENDED, AMBIGUOUS] }

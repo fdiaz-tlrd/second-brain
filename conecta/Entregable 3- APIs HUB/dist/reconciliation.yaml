@@ -1,0 +1,271 @@
+openapi: 3.0.3
+info:
+  title: Reconciliation API — Panama Interoperability HUB
+  version: 1.0.0-draft
+  description: |
+    Reconciliation file exchange over API with mTLS (SFTP remains as a bounded compatibility
+    channel): download of the participant's filtered reconciliation file for a cycle (daily
+    calendar-day cycle, 7×365) and acknowledgement with discrepancy reporting. File availability
+    and window opening/closing are announced through the notification channel (Events API).
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@[operator-domain]
+servers:
+  - url: https://sandbox.hub.example.pa/reconciliation/v1
+    description: Sandbox
+  - url: https://hub.example.pa/reconciliation/v1
+    description: Production
+tags:
+  - name: Files
+    description: Cycle file download and acknowledgement
+paths:
+  /files/{cycleDate}:
+    parameters:
+      - name: cycleDate
+        in: path
+        required: true
+        description: Calendar day of the reconciliation cycle (ISO 8601 date).
+        schema:
+          type: string
+          format: date
+    get:
+      tags:
+        - Files
+      summary: Download the filtered reconciliation file of the cycle
+      description: Returns the file filtered to the authenticated participant's scope (master file = net positions; format based on recon.001).
+      operationId: getReconciliationFile
+      security:
+        - oauth2ClientCredentials:
+            - reconciliation.read
+      responses:
+        '200':
+          description: Reconciliation file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /files/{cycleDate}/ack:
+    parameters:
+      - name: cycleDate
+        in: path
+        required: true
+        description: Calendar day of the reconciliation cycle (ISO 8601 date).
+        schema:
+          type: string
+          format: date
+    post:
+      tags:
+        - Files
+      summary: Acknowledge the cycle file and report discrepancies
+      operationId: acknowledgeReconciliationFile
+      security:
+        - oauth2ClientCredentials:
+            - reconciliation.write
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReconciliationAck'
+      responses:
+        '200':
+          description: Acknowledgement registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReconciliationAckReceipt'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: The cycle was already acknowledged by this participant
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      type: oauth2
+      description: |
+        OAuth 2.0 client credentials + OIDC **over mTLS** (HUB CA certificate at transport level).
+        Access tokens are sender-constrained (certificate-bound, RFC 8705). Per-domain scopes
+        refined as `domain.action` (e.g. `payments.write`, `directory.resolve`). Planned
+        evolution path: full FAPI 2.0 profile.
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.hub.example.pa/oauth2/token
+          scopes:
+            directory.resolve: Resolve person keys (aliases)
+            directory.read: Read own keys, networks and account-name verification
+            directory.write: Manage keys (registration, update, deregistration, portability)
+            merchants.resolve: Resolve merchants (transactional QR path)
+            merchants.read: Read and search merchants
+            merchants.write: Register and maintain merchants and collection methods
+            payments.write: Create payment orders
+            payments.read: Read payment status
+            collections.write: Create collection requests (Request-to-Pay)
+            collections.read: Read collection requests
+            events.manage: Manage event subscriptions
+            operations.read: Read system notifications and operational status
+            operations.write: Participant session (Sign On/Off) and inbound operational events
+            operations.admin: Scheme-operator actions (restricted to the HUB operator)
+            reconciliation.read: Download reconciliation files
+            reconciliation.write: Acknowledge reconciliation files and report discrepancies
+  schemas:
+    DiscrepancyType:
+      type: string
+      enum:
+        - MISSING_TRANSACTION
+        - UNEXPECTED_TRANSACTION
+        - AMOUNT_MISMATCH
+        - STATUS_MISMATCH
+        - DUPLICATE
+    Discrepancy:
+      type: object
+      required:
+        - transactionId
+        - discrepancyType
+      properties:
+        transactionId:
+          type: string
+        discrepancyType:
+          $ref: '#/components/schemas/DiscrepancyType'
+        expected:
+          type: string
+          description: Expected value at the participant.
+        observed:
+          type: string
+          description: Value observed in the HUB file.
+        comment:
+          type: string
+    ReconciliationAck:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum:
+            - ACCEPTED
+            - DISCREPANCIES_REPORTED
+        fileHash:
+          type: string
+          description: SHA-256 of the downloaded file, for integrity confirmation.
+        discrepancies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Discrepancy'
+    ReconciliationAckReceipt:
+      type: object
+      required:
+        - ackId
+        - cycleDate
+        - status
+        - receivedAt
+      properties:
+        ackId:
+          type: string
+        cycleDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum:
+            - ACCEPTED
+            - DISCREPANCIES_REPORTED
+        receivedAt:
+          type: string
+          format: date-time
+    Problem:
+      type: object
+      description: |
+        RFC 7807 error. `reasonCode` carries the HUB numeric error code (families: 1xxx directory,
+        3xxx business rejection, 4xxx timeout); `isoReasonCode` carries the ISO 20022 External
+        Code Set value when one applies (e.g. AM04, AC06, FRAD, DUPL).
+      required:
+        - title
+        - status
+        - reasonCode
+      properties:
+        type:
+          type: string
+          format: uri
+          example: https://hub.example.pa/problems/business-rule
+        title:
+          type: string
+          example: Business rule rejected
+        status:
+          type: integer
+          example: 422
+        detail:
+          type: string
+          example: The given MCC is not registered in the master catalogue.
+        reasonCode:
+          type: string
+          description: HUB error code (families 1xxx/3xxx/4xxx).
+          example: '3001'
+        isoReasonCode:
+          type: string
+          description: ISO 20022 External Code Set reason, when applicable.
+          example: AM04
+        traceId:
+          type: string
+          description: Correlation with the HUB telemetry.
+  responses:
+    Unauthorized:
+      description: Not authenticated (invalid token or mTLS certificate not presented)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    Forbidden:
+      description: Authenticated but not allowed (missing scope or participant not entitled)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    NotFound:
+      description: Resource not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    BadRequest:
+      description: Invalid request (syntax or schema)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: Idempotency key (UUID) for safe retries (same key, same result).
+      schema:
+        type: string
+        format: uuid
+    JwsSignature:
+      name: x-jws-signature
+      in: header
+      required: true
+      description: Detached JWS signature of the payload, for integrity and non-repudiation.
+      schema:
+        type: string

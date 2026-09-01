@@ -1,0 +1,676 @@
+openapi: 3.0.3
+info:
+  title: Key Directory API — Panama Interoperability HUB
+  version: 1.0.0-draft
+  description: |
+    Resolution and lifecycle of person keys (aliases) in the HUB directory: online resolution,
+    registration/update/deregistration with `prxy.001/002` semantics, portability between
+    participants (48-hour window: if the current owner does not oppose, the portability is
+    confirmed automatically) and account-name verification. Key resolution is never cached.
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@[operator-domain]
+servers:
+  - url: https://sandbox.hub.example.pa/key-directory/v1
+    description: Sandbox
+  - url: https://hub.example.pa/key-directory/v1
+    description: Production
+tags:
+  - name: Resolution
+    description: Online key resolution (transactional path)
+  - name: Lifecycle
+    description: Key registration, update and deregistration (prxy.001/002)
+  - name: Portability
+    description: Key portability between participants
+  - name: Verification
+    description: Account-name verification
+paths:
+  /keys/resolve:
+    post:
+      tags:
+        - Resolution
+      summary: Resolve a person key
+      description: Resolves a key to the destination institution and returns an opaque payee handle. Always online, never cached.
+      operationId: resolveKey
+      security:
+        - oauth2ClientCredentials:
+            - directory.resolve
+      parameters:
+        - $ref: '#/components/parameters/FapiInteractionId'
+        - $ref: '#/components/parameters/ParticipantId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyResolutionRequest'
+      responses:
+        '200':
+          description: Resolution result (including NOT_FOUND, which is not a transport error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyResolutionResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /keys:
+    post:
+      tags:
+        - Lifecycle
+      summary: Register a key (prxy.001 REGISTER)
+      description: |
+        Registers a key on behalf of the authenticated participant. If the key is already
+        registered at another participant the HUB answers 409; the correct path is portability.
+        `nationalIdHash` is optional in phase 1 and becomes mandatory once alias–national-ID
+        validation is activated.
+      operationId: registerKey
+      security:
+        - oauth2ClientCredentials:
+            - directory.write
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyRegistration'
+      responses:
+        '201':
+          description: Key registered (prxy.002 ACCEPTED)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyRecord'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          description: Key already registered by another participant (use portability)
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '422':
+          $ref: '#/components/responses/BusinessRule'
+  /keys/verify-name:
+    post:
+      tags:
+        - Verification
+      summary: Verify account-name
+      description: |
+        Confirms that the expected name matches the given account or key. Reused during
+        merchant onboarding.
+      operationId: verifyAccountName
+      security:
+        - oauth2ClientCredentials:
+            - directory.read
+      parameters:
+        - $ref: '#/components/parameters/FapiInteractionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NameVerificationRequest'
+      responses:
+        '200':
+          description: Verification result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NameVerificationResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /keys/{keyType}/{keyValue}:
+    parameters:
+      - name: keyType
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/KeyType'
+      - name: keyValue
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - Lifecycle
+      summary: Read an own key
+      operationId: getKey
+      security:
+        - oauth2ClientCredentials:
+            - directory.read
+      responses:
+        '200':
+          description: Key record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyRecord'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Lifecycle
+      summary: Update a key (prxy.001 MODIFY)
+      operationId: updateKey
+      security:
+        - oauth2ClientCredentials:
+            - directory.write
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyUpdate'
+      responses:
+        '200':
+          description: Key updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyRecord'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/BusinessRule'
+    delete:
+      tags:
+        - Lifecycle
+      summary: Deregister a key (prxy.001 DEREGISTER)
+      operationId: deregisterKey
+      security:
+        - oauth2ClientCredentials:
+            - directory.write
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/JwsSignature'
+      responses:
+        '204':
+          description: Key deregistered
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /keys/{keyType}/{keyValue}/portability:
+    parameters:
+      - name: keyType
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/KeyType'
+      - name: keyValue
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - Portability
+      summary: Request key portability (prxy.001 PORT)
+      description: |
+        Initiated by the **receiving** participant. The key moves to `PORTING`; the current
+        owner receives `KEY_PORT_REQUESTED` and confirms or opposes within the portability window
+        (48 h). Silence is interpreted as consent.
+      operationId: requestPortability
+      security:
+        - oauth2ClientCredentials:
+            - directory.write
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PortabilityRequest'
+      responses:
+        '202':
+          description: Portability started (pending confirmation or window expiry)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortabilityStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: A portability process is already in progress for this key
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+    patch:
+      tags:
+        - Portability
+      summary: Confirm or oppose a portability (current owner)
+      operationId: respondToPortability
+      security:
+        - oauth2ClientCredentials:
+            - directory.write
+      parameters:
+        - $ref: '#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PortabilityDecision'
+      responses:
+        '200':
+          description: Resulting portability status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortabilityStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/BusinessRule'
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      type: oauth2
+      description: |
+        OAuth 2.0 client credentials + OIDC **over mTLS** (HUB CA certificate at transport level).
+        Access tokens are sender-constrained (certificate-bound, RFC 8705). Per-domain scopes
+        refined as `domain.action` (e.g. `payments.write`, `directory.resolve`). Planned
+        evolution path: full FAPI 2.0 profile.
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.hub.example.pa/oauth2/token
+          scopes:
+            directory.resolve: Resolve person keys (aliases)
+            directory.read: Read own keys, networks and account-name verification
+            directory.write: Manage keys (registration, update, deregistration, portability)
+            merchants.resolve: Resolve merchants (transactional QR path)
+            merchants.read: Read and search merchants
+            merchants.write: Register and maintain merchants and collection methods
+            payments.write: Create payment orders
+            payments.read: Read payment status
+            collections.write: Create collection requests (Request-to-Pay)
+            collections.read: Read collection requests
+            events.manage: Manage event subscriptions
+            operations.read: Read system notifications and operational status
+            operations.write: Participant session (Sign On/Off) and inbound operational events
+            operations.admin: Scheme-operator actions (restricted to the HUB operator)
+            reconciliation.read: Download reconciliation files
+            reconciliation.write: Acknowledge reconciliation files and report discrepancies
+  schemas:
+    KeyStatus:
+      type: string
+      enum:
+        - ACTIVE
+        - SUSPENDED
+        - PORTING
+        - DEREGISTERED
+    NameMatch:
+      type: string
+      enum:
+        - FULL_MATCH
+        - PARTIAL_MATCH
+        - NO_MATCH
+    KeyResolutionRequest:
+      type: object
+      required:
+        - keyType
+        - keyValue
+        - initiatingParticipantId
+      properties:
+        keyType:
+          $ref: '#/components/schemas/KeyType'
+        keyValue:
+          type: string
+          example: '+50761119876'
+        initiatingParticipantId:
+          type: string
+          example: YAPPY
+    KeyResolutionResponse:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          $ref: '#/components/schemas/ResolutionStatus'
+        resolvedParticipantId:
+          type: string
+          example: TELERED
+        payeeHandle:
+          type: string
+          description: Opaque payee handle.
+          example: PH-9c2f7a
+        keyType:
+          $ref: '#/components/schemas/KeyType'
+        keyValue:
+          type: string
+        fraudIndicator:
+          $ref: '#/components/schemas/FraudIndicator'
+    KeyRegistration:
+      type: object
+      required:
+        - key
+        - account
+      properties:
+        key:
+          $ref: '#/components/schemas/Key'
+        account:
+          $ref: '#/components/schemas/Account'
+        ownerName:
+          type: string
+        nationalIdHash:
+          type: string
+          description: HMAC-SHA-256 of the national ID, for ownership verification (planned feature, not active in phase 1).
+    KeyUpdate:
+      type: object
+      properties:
+        account:
+          $ref: '#/components/schemas/Account'
+        ownerName:
+          type: string
+    KeyRecord:
+      type: object
+      required:
+        - key
+        - participantId
+        - status
+      properties:
+        key:
+          $ref: '#/components/schemas/Key'
+        participantId:
+          type: string
+        status:
+          $ref: '#/components/schemas/KeyStatus'
+        updatedDateTime:
+          type: string
+          format: date-time
+    PortabilityRequest:
+      type: object
+      required:
+        - receivingParticipantId
+        - account
+      properties:
+        receivingParticipantId:
+          type: string
+          description: Participant that will receive the key (must match the authenticated one).
+        account:
+          $ref: '#/components/schemas/Account'
+        nationalIdHash:
+          type: string
+          description: 'Ownership verification: HMAC-SHA-256 of the requester''s national ID.'
+    PortabilityDecision:
+      type: object
+      required:
+        - portabilityId
+        - decision
+      properties:
+        portabilityId:
+          type: string
+        decision:
+          type: string
+          enum:
+            - CONFIRM
+            - OPPOSE
+        reasonCode:
+          type: string
+          description: Mandatory when opposing.
+    PortabilityStatus:
+      type: object
+      required:
+        - portabilityId
+        - key
+        - status
+        - deadline
+      properties:
+        portabilityId:
+          type: string
+        key:
+          $ref: '#/components/schemas/Key'
+        status:
+          type: string
+          enum:
+            - PENDING
+            - CONFIRMED
+            - OPPOSED
+            - EXPIRED_CONFIRMED
+        currentParticipantId:
+          type: string
+        receivingParticipantId:
+          type: string
+        deadline:
+          type: string
+          format: date-time
+          description: End of the 48-hour portability window.
+    NameVerificationRequest:
+      type: object
+      required:
+        - participantId
+        - expectedName
+      description: Either `account` or `key` must be provided.
+      properties:
+        participantId:
+          type: string
+          example: TELERED
+        account:
+          $ref: '#/components/schemas/Account'
+        key:
+          $ref: '#/components/schemas/Key'
+        expectedName:
+          type: string
+          example: Maria Gomez
+    NameVerificationResponse:
+      type: object
+      required:
+        - match
+        - status
+      properties:
+        match:
+          $ref: '#/components/schemas/NameMatch'
+        accountType:
+          type: string
+          example: CURRENT
+        status:
+          type: string
+          enum:
+            - VALIDATED
+            - NOT_FOUND
+    KeyType:
+      type: string
+      enum:
+        - MSISDN
+        - EMAIL
+        - NATIONAL_ID
+        - RUC
+        - MERCHANT_ALIAS
+      description: The QR is not a key; QR resolution belongs to the Merchant Directory API.
+    ResolutionStatus:
+      type: string
+      enum:
+        - RESOLVED
+        - NOT_FOUND
+        - SUSPENDED
+        - AMBIGUOUS
+    FraudIndicator:
+      type: object
+      required:
+        - flagged
+        - source
+      description: Signal from the destination's confirmed-fraud list.
+      properties:
+        flagged:
+          type: boolean
+        source:
+          type: string
+          description: Participant that originated the signal.
+        reasonCode:
+          type: string
+        reportedAt:
+          type: string
+          format: date-time
+    Problem:
+      type: object
+      description: |
+        RFC 7807 error. `reasonCode` carries the HUB numeric error code (families: 1xxx directory,
+        3xxx business rejection, 4xxx timeout); `isoReasonCode` carries the ISO 20022 External
+        Code Set value when one applies (e.g. AM04, AC06, FRAD, DUPL).
+      required:
+        - title
+        - status
+        - reasonCode
+      properties:
+        type:
+          type: string
+          format: uri
+          example: https://hub.example.pa/problems/business-rule
+        title:
+          type: string
+          example: Business rule rejected
+        status:
+          type: integer
+          example: 422
+        detail:
+          type: string
+          example: The given MCC is not registered in the master catalogue.
+        reasonCode:
+          type: string
+          description: HUB error code (families 1xxx/3xxx/4xxx).
+          example: '3001'
+        isoReasonCode:
+          type: string
+          description: ISO 20022 External Code Set reason, when applicable.
+          example: AM04
+        traceId:
+          type: string
+          description: Correlation with the HUB telemetry.
+    Key:
+      type: object
+      required:
+        - keyType
+        - keyValue
+      properties:
+        keyType:
+          $ref: '#/components/schemas/KeyType'
+        keyValue:
+          type: string
+          example: '+50760001234'
+        owningParticipantId:
+          type: string
+    PartyIdScheme:
+      type: string
+      enum:
+        - OTHR
+        - IBAN
+    Account:
+      type: object
+      required:
+        - scheme
+        - id
+        - institutionCode
+      description: |
+        Account identification (OTHR scheme). `id` is the participant's internal account
+        identifier. Never exposed in resolutions towards third parties.
+      properties:
+        scheme:
+          $ref: '#/components/schemas/PartyIdScheme'
+        id:
+          type: string
+          example: YAP-ACC-7f3a92
+        institutionCode:
+          type: string
+          example: YAPPY
+  parameters:
+    FapiInteractionId:
+      name: x-fapi-interaction-id
+      in: header
+      required: false
+      description: Correlation identifier (UUID) for end-to-end traceability.
+      schema:
+        type: string
+    ParticipantId:
+      name: x-participant-id
+      in: header
+      required: false
+      description: Identifier of the participant originating the request (also asserted by the mTLS certificate and the token).
+      schema:
+        type: string
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: Idempotency key (UUID) for safe retries (same key, same result).
+      schema:
+        type: string
+        format: uuid
+    JwsSignature:
+      name: x-jws-signature
+      in: header
+      required: true
+      description: Detached JWS signature of the payload, for integrity and non-repudiation.
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request (syntax or schema)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    Unauthorized:
+      description: Not authenticated (invalid token or mTLS certificate not presented)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    Forbidden:
+      description: Authenticated but not allowed (missing scope or participant not entitled)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    BusinessRule:
+      description: Business rule rejected (`reasonCode` from the HUB error code catalogue)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    NotFound:
+      description: Resource not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'

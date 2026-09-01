@@ -1,0 +1,232 @@
+openapi: 3.0.3
+info:
+  title: Operations API — Panama Interoperability HUB
+  version: 1.0.0-draft
+  description: |
+    Operational and availability services of the scheme: participant session (Sign On / Sign Off),
+    echo test as an availability heartbeat, system notification messages (SNM) and scheduled
+    windows, inbound participant→HUB operational events (inbound direction of the notification
+    channel), and the operator-restricted endpoints to re-include or exclude a participant from
+    the circuit. These services sustain the operational state of the scheme, not the monetary
+    flow. The public status page is served without authentication, outside the transactional
+    plane.
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@[operator-domain]
+
+servers:
+  - url: https://sandbox.hub.example.pa/operations/v1
+    description: Sandbox
+  - url: https://hub.example.pa/operations/v1
+    description: Production
+
+tags:
+  - name: Session
+    description: Participant Sign On / Sign Off
+  - name: Availability
+    description: Echo test and operational heartbeat
+  - name: Notifications
+    description: System notification messages (SNM) and scheduled windows
+  - name: Inbound events
+    description: Participant→HUB operational events (inbound direction of the notification channel)
+  - name: Operator
+    description: Scheme-operator actions (restricted)
+
+paths:
+
+  /participants/session:
+    post:
+      tags: [Session]
+      summary: Sign On / Sign Off of the authenticated participant
+      description: Declares the participant's operational state to the scheme. Sign Off removes it from routing; Sign On restores it.
+      operationId: updateParticipantSession
+      security: [{ oauth2ClientCredentials: [operations.write] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+        - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/SessionRequest' }
+      responses:
+        '200':
+          description: Resulting session state
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SessionStatus' }
+        '400': { $ref: '../common/common-components.yaml#/components/responses/BadRequest' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+
+  /health/echo:
+    get:
+      tags: [Availability]
+      summary: Echo test (operational heartbeat)
+      operationId: echo
+      security: [{ oauth2ClientCredentials: [operations.read] }]
+      responses:
+        '200':
+          description: The HUB is reachable and processing
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EchoResponse' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+
+  /notifications:
+    get:
+      tags: [Notifications]
+      summary: System notification messages (SNM) and scheduled windows
+      operationId: listSystemNotifications
+      security: [{ oauth2ClientCredentials: [operations.read] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/PageToken'
+        - $ref: '../common/common-components.yaml#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: Active and scheduled notifications for the participant's scope
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SystemNotificationPage' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+
+  /events:
+    post:
+      tags: [Inbound events]
+      summary: Submit a participant operational event to the HUB
+      description: |
+        Inbound direction of the notification channel: availability restored
+        after an outage (the HUB reactivates routing without waiting for the next polling
+        cycle), start/end of maintenance windows and any operational state change affecting
+        routing. Idempotent by `eventId`.
+      operationId: submitParticipantEvent
+      security: [{ oauth2ClientCredentials: [operations.write] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+        - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ParticipantEvent' }
+      responses:
+        '202':
+          description: Event accepted (idempotent by eventId)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EventReceipt' }
+        '400': { $ref: '../common/common-components.yaml#/components/responses/BadRequest' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+
+  /participants/{participantId}/sign-on:
+    post:
+      tags: [Operator]
+      summary: Re-include a participant in the circuit (operator only)
+      operationId: operatorSignOn
+      security: [{ oauth2ClientCredentials: [operations.admin] }]
+      parameters:
+        - { name: participantId, in: path, required: true, schema: { type: string } }
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+      responses:
+        '200':
+          description: Resulting session state
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SessionStatus' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+
+  /participants/{participantId}/sign-off:
+    post:
+      tags: [Operator]
+      summary: Exclude a participant from the circuit (operator only)
+      operationId: operatorSignOff
+      security: [{ oauth2ClientCredentials: [operations.admin] }]
+      parameters:
+        - { name: participantId, in: path, required: true, schema: { type: string } }
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+      responses:
+        '200':
+          description: Resulting session state
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SessionStatus' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      $ref: '../common/common-components.yaml#/components/securitySchemes/oauth2ClientCredentials'
+
+  schemas:
+    SessionAction: { type: string, enum: [SIGN_ON, SIGN_OFF] }
+    SessionState: { type: string, enum: [SIGNED_ON, SIGNED_OFF] }
+
+    SessionRequest:
+      type: object
+      required: [action]
+      properties:
+        action: { $ref: '#/components/schemas/SessionAction' }
+        reason: { type: string, description: Free-text reason (e.g. scheduled maintenance). }
+
+    SessionStatus:
+      type: object
+      required: [participantId, state, effectiveAt]
+      properties:
+        participantId: { type: string }
+        state: { $ref: '#/components/schemas/SessionState' }
+        effectiveAt: { type: string, format: date-time }
+        reason: { type: string }
+
+    EchoResponse:
+      type: object
+      required: [serverTime]
+      properties:
+        serverTime: { type: string, format: date-time }
+
+    SystemNotificationType: { type: string, enum: [SNM, MAINTENANCE_WINDOW, RECONCILIATION_WINDOW, AVAILABILITY] }
+
+    SystemNotification:
+      type: object
+      required: [notificationId, type, message, effectiveFrom]
+      properties:
+        notificationId: { type: string }
+        type: { $ref: '#/components/schemas/SystemNotificationType' }
+        severity: { type: string, enum: [INFO, WARNING, CRITICAL] }
+        message: { type: string }
+        affectedParticipantId: { type: string, description: Present when the notification concerns a single participant. }
+        effectiveFrom: { type: string, format: date-time }
+        effectiveTo: { type: string, format: date-time }
+
+    SystemNotificationPage:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/SystemNotification' }
+        nextPageToken: { type: string, description: Absent on the last page. }
+
+    ParticipantEventType: { type: string, enum: [AVAILABILITY_RESTORED, MAINTENANCE_START, MAINTENANCE_END, OPERATIONAL_STATUS_CHANGED] }
+
+    ParticipantEvent:
+      type: object
+      required: [eventId, eventType, occurredAt]
+      properties:
+        eventId: { type: string, description: Deduplication key at the HUB. }
+        eventType: { $ref: '#/components/schemas/ParticipantEventType' }
+        occurredAt: { type: string, format: date-time }
+        details: { type: string }
+
+    EventReceipt:
+      type: object
+      required: [eventId, receivedAt]
+      properties:
+        eventId: { type: string }
+        receivedAt: { type: string, format: date-time }

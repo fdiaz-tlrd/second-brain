@@ -1,0 +1,162 @@
+openapi: 3.0.3
+info:
+  title: Events API — Panama Interoperability HUB
+  version: 1.0.0-draft
+  description: |
+    Subscriptions to the HUB's outbound notification channel: JWS-signed webhooks,
+    at-least-once delivery with exponential retries, deduplication by `eventId` at the receiver.
+    Covers directory events (key and merchant changes — merchant events force invalidation of
+    the affected P2M resolution cache) and operational events (system notification messages,
+    availability and maintenance windows, reconciliation windows and file availability).
+    Inbound participant→HUB operational events are posted on the Operations API (`POST /events`).
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@[operator-domain]
+
+servers:
+  - url: https://sandbox.hub.example.pa/events/v1
+    description: Sandbox
+  - url: https://hub.example.pa/events/v1
+    description: Production
+
+tags:
+  - name: Subscriptions
+    description: Webhook subscriptions and event delivery
+
+paths:
+
+  /event-subscriptions:
+    post:
+      tags: [Subscriptions]
+      summary: Subscribe to HUB events
+      operationId: createEventSubscription
+      security: [{ oauth2ClientCredentials: [events.manage] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EventSubscriptionRequest' }
+      responses:
+        '201':
+          description: Subscription created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EventSubscription' }
+        '400': { $ref: '../common/common-components.yaml#/components/responses/BadRequest' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+      callbacks:
+        eventDelivery:
+          '{$request.body#/callbackUrl}':
+            post:
+              summary: Event delivery (JWS-signed)
+              description: At-least-once delivery; the receiver deduplicates by `eventId`.
+              operationId: onEvent
+              security: []
+              parameters:
+                - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+              requestBody:
+                required: true
+                content:
+                  application/json:
+                    schema: { $ref: '#/components/schemas/Event' }
+              responses:
+                '204': { description: Event received (idempotent by eventId) }
+                '400': { description: Invalid or unverifiable event (signature or schema) }
+    get:
+      tags: [Subscriptions]
+      summary: List own subscriptions
+      operationId: listEventSubscriptions
+      security: [{ oauth2ClientCredentials: [events.manage] }]
+      responses:
+        '200':
+          description: Subscriptions of the participant
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EventSubscriptionList' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+
+  /event-subscriptions/{subscriptionId}:
+    delete:
+      tags: [Subscriptions]
+      summary: Delete a subscription
+      operationId: deleteEventSubscription
+      security: [{ oauth2ClientCredentials: [events.manage] }]
+      parameters:
+        - { name: subscriptionId, in: path, required: true, schema: { type: string } }
+      responses:
+        '204': { description: Subscription deleted }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      $ref: '../common/common-components.yaml#/components/securitySchemes/oauth2ClientCredentials'
+
+  schemas:
+    EventType:
+      type: string
+      description: Directory events (keys/merchants) and operational events of the scheme.
+      enum:
+        - KEY_PORT_REQUESTED
+        - KEY_PORTED
+        - KEY_DEREGISTERED
+        - MERCHANT_UPDATED
+        - MERCHANT_SUSPENDED
+        - COLLECTION_METHOD_CHANGED
+        - SYSTEM_NOTIFICATION
+        - AVAILABILITY_CHANGED
+        - MAINTENANCE_WINDOW
+        - RECONCILIATION_WINDOW_OPENED
+        - RECONCILIATION_WINDOW_CLOSED
+        - RECONCILIATION_FILE_AVAILABLE
+
+    EventSubscriptionRequest:
+      type: object
+      required: [callbackUrl, eventTypes]
+      properties:
+        callbackUrl: { type: string, format: uri }
+        eventTypes:
+          type: array
+          items: { $ref: '#/components/schemas/EventType' }
+
+    EventSubscription:
+      type: object
+      required: [subscriptionId, callbackUrl, eventTypes, status]
+      properties:
+        subscriptionId: { type: string }
+        callbackUrl: { type: string, format: uri }
+        eventTypes:
+          type: array
+          items: { $ref: '#/components/schemas/EventType' }
+        status: { type: string, enum: [ACTIVE, SUSPENDED] }
+
+    EventSubscriptionList:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/EventSubscription' }
+
+    Event:
+      type: object
+      required: [eventId, subscriptionId, eventType, occurredAt, payload]
+      description: |
+        Delivered at least once, JWS-signed (`x-jws-signature` header). The receiver
+        deduplicates by `eventId`.
+      properties:
+        eventId: { type: string }
+        subscriptionId: { type: string }
+        eventType: { $ref: '#/components/schemas/EventType' }
+        occurredAt: { type: string, format: date-time }
+        correlationId: { type: string, description: 'Correlation with the affected operation, when applicable.' }
+        payload:
+          type: object
+          description: Minimal view of the affected entity (never the account in clear).

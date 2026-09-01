@@ -1,0 +1,449 @@
+openapi: 3.0.3
+info:
+  title: Operations API — Panama Interoperability HUB
+  version: 1.0.0-draft
+  description: |
+    Operational and availability services of the scheme: participant session (Sign On / Sign Off),
+    echo test as an availability heartbeat, system notification messages (SNM) and scheduled
+    windows, inbound participant→HUB operational events (inbound direction of the notification
+    channel), and the operator-restricted endpoints to re-include or exclude a participant from
+    the circuit. These services sustain the operational state of the scheme, not the monetary
+    flow. The public status page is served without authentication, outside the transactional
+    plane.
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@[operator-domain]
+servers:
+  - url: https://sandbox.hub.example.pa/operations/v1
+    description: Sandbox
+  - url: https://hub.example.pa/operations/v1
+    description: Production
+tags:
+  - name: Session
+    description: Participant Sign On / Sign Off
+  - name: Availability
+    description: Echo test and operational heartbeat
+  - name: Notifications
+    description: System notification messages (SNM) and scheduled windows
+  - name: Inbound events
+    description: Participant→HUB operational events (inbound direction of the notification channel)
+  - name: Operator
+    description: Scheme-operator actions (restricted)
+paths:
+  /participants/session:
+    post:
+      tags:
+        - Session
+      summary: Sign On / Sign Off of the authenticated participant
+      description: Declares the participant's operational state to the scheme. Sign Off removes it from routing; Sign On restores it.
+      operationId: updateParticipantSession
+      security:
+        - oauth2ClientCredentials:
+            - operations.write
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionRequest'
+      responses:
+        '200':
+          description: Resulting session state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionStatus'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /health/echo:
+    get:
+      tags:
+        - Availability
+      summary: Echo test (operational heartbeat)
+      operationId: echo
+      security:
+        - oauth2ClientCredentials:
+            - operations.read
+      responses:
+        '200':
+          description: The HUB is reachable and processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EchoResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /notifications:
+    get:
+      tags:
+        - Notifications
+      summary: System notification messages (SNM) and scheduled windows
+      operationId: listSystemNotifications
+      security:
+        - oauth2ClientCredentials:
+            - operations.read
+      parameters:
+        - $ref: '#/components/parameters/PageToken'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: Active and scheduled notifications for the participant's scope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemNotificationPage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /events:
+    post:
+      tags:
+        - Inbound events
+      summary: Submit a participant operational event to the HUB
+      description: |
+        Inbound direction of the notification channel: availability restored
+        after an outage (the HUB reactivates routing without waiting for the next polling
+        cycle), start/end of maintenance windows and any operational state change affecting
+        routing. Idempotent by `eventId`.
+      operationId: submitParticipantEvent
+      security:
+        - oauth2ClientCredentials:
+            - operations.write
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParticipantEvent'
+      responses:
+        '202':
+          description: Event accepted (idempotent by eventId)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventReceipt'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /participants/{participantId}/sign-on:
+    post:
+      tags:
+        - Operator
+      summary: Re-include a participant in the circuit (operator only)
+      operationId: operatorSignOn
+      security:
+        - oauth2ClientCredentials:
+            - operations.admin
+      parameters:
+        - name: participantId
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/IdempotencyKey'
+      responses:
+        '200':
+          description: Resulting session state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /participants/{participantId}/sign-off:
+    post:
+      tags:
+        - Operator
+      summary: Exclude a participant from the circuit (operator only)
+      operationId: operatorSignOff
+      security:
+        - oauth2ClientCredentials:
+            - operations.admin
+      parameters:
+        - name: participantId
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/IdempotencyKey'
+      responses:
+        '200':
+          description: Resulting session state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      type: oauth2
+      description: |
+        OAuth 2.0 client credentials + OIDC **over mTLS** (HUB CA certificate at transport level).
+        Access tokens are sender-constrained (certificate-bound, RFC 8705). Per-domain scopes
+        refined as `domain.action` (e.g. `payments.write`, `directory.resolve`). Planned
+        evolution path: full FAPI 2.0 profile.
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.hub.example.pa/oauth2/token
+          scopes:
+            directory.resolve: Resolve person keys (aliases)
+            directory.read: Read own keys, networks and account-name verification
+            directory.write: Manage keys (registration, update, deregistration, portability)
+            merchants.resolve: Resolve merchants (transactional QR path)
+            merchants.read: Read and search merchants
+            merchants.write: Register and maintain merchants and collection methods
+            payments.write: Create payment orders
+            payments.read: Read payment status
+            collections.write: Create collection requests (Request-to-Pay)
+            collections.read: Read collection requests
+            events.manage: Manage event subscriptions
+            operations.read: Read system notifications and operational status
+            operations.write: Participant session (Sign On/Off) and inbound operational events
+            operations.admin: Scheme-operator actions (restricted to the HUB operator)
+            reconciliation.read: Download reconciliation files
+            reconciliation.write: Acknowledge reconciliation files and report discrepancies
+  schemas:
+    SessionAction:
+      type: string
+      enum:
+        - SIGN_ON
+        - SIGN_OFF
+    SessionState:
+      type: string
+      enum:
+        - SIGNED_ON
+        - SIGNED_OFF
+    SessionRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          $ref: '#/components/schemas/SessionAction'
+        reason:
+          type: string
+          description: Free-text reason (e.g. scheduled maintenance).
+    SessionStatus:
+      type: object
+      required:
+        - participantId
+        - state
+        - effectiveAt
+      properties:
+        participantId:
+          type: string
+        state:
+          $ref: '#/components/schemas/SessionState'
+        effectiveAt:
+          type: string
+          format: date-time
+        reason:
+          type: string
+    EchoResponse:
+      type: object
+      required:
+        - serverTime
+      properties:
+        serverTime:
+          type: string
+          format: date-time
+    SystemNotificationType:
+      type: string
+      enum:
+        - SNM
+        - MAINTENANCE_WINDOW
+        - RECONCILIATION_WINDOW
+        - AVAILABILITY
+    SystemNotification:
+      type: object
+      required:
+        - notificationId
+        - type
+        - message
+        - effectiveFrom
+      properties:
+        notificationId:
+          type: string
+        type:
+          $ref: '#/components/schemas/SystemNotificationType'
+        severity:
+          type: string
+          enum:
+            - INFO
+            - WARNING
+            - CRITICAL
+        message:
+          type: string
+        affectedParticipantId:
+          type: string
+          description: Present when the notification concerns a single participant.
+        effectiveFrom:
+          type: string
+          format: date-time
+        effectiveTo:
+          type: string
+          format: date-time
+    SystemNotificationPage:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SystemNotification'
+        nextPageToken:
+          type: string
+          description: Absent on the last page.
+    ParticipantEventType:
+      type: string
+      enum:
+        - AVAILABILITY_RESTORED
+        - MAINTENANCE_START
+        - MAINTENANCE_END
+        - OPERATIONAL_STATUS_CHANGED
+    ParticipantEvent:
+      type: object
+      required:
+        - eventId
+        - eventType
+        - occurredAt
+      properties:
+        eventId:
+          type: string
+          description: Deduplication key at the HUB.
+        eventType:
+          $ref: '#/components/schemas/ParticipantEventType'
+        occurredAt:
+          type: string
+          format: date-time
+        details:
+          type: string
+    EventReceipt:
+      type: object
+      required:
+        - eventId
+        - receivedAt
+      properties:
+        eventId:
+          type: string
+        receivedAt:
+          type: string
+          format: date-time
+    Problem:
+      type: object
+      description: |
+        RFC 7807 error. `reasonCode` carries the HUB numeric error code (families: 1xxx directory,
+        3xxx business rejection, 4xxx timeout); `isoReasonCode` carries the ISO 20022 External
+        Code Set value when one applies (e.g. AM04, AC06, FRAD, DUPL).
+      required:
+        - title
+        - status
+        - reasonCode
+      properties:
+        type:
+          type: string
+          format: uri
+          example: https://hub.example.pa/problems/business-rule
+        title:
+          type: string
+          example: Business rule rejected
+        status:
+          type: integer
+          example: 422
+        detail:
+          type: string
+          example: The given MCC is not registered in the master catalogue.
+        reasonCode:
+          type: string
+          description: HUB error code (families 1xxx/3xxx/4xxx).
+          example: '3001'
+        isoReasonCode:
+          type: string
+          description: ISO 20022 External Code Set reason, when applicable.
+          example: AM04
+        traceId:
+          type: string
+          description: Correlation with the HUB telemetry.
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: Idempotency key (UUID) for safe retries (same key, same result).
+      schema:
+        type: string
+        format: uuid
+    JwsSignature:
+      name: x-jws-signature
+      in: header
+      required: true
+      description: Detached JWS signature of the payload, for integrity and non-repudiation.
+      schema:
+        type: string
+    PageToken:
+      name: pageToken
+      in: query
+      required: false
+      description: Cursor returned in the previous page (cursor-based pagination, no offsets).
+      schema:
+        type: string
+    PageSize:
+      name: pageSize
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 50
+  responses:
+    BadRequest:
+      description: Invalid request (syntax or schema)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    Unauthorized:
+      description: Not authenticated (invalid token or mTLS certificate not presented)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    Forbidden:
+      description: Authenticated but not allowed (missing scope or participant not entitled)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    NotFound:
+      description: Resource not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'

@@ -1,0 +1,173 @@
+openapi: 3.0.3
+info:
+  title: Payments API — Panama Interoperability HUB
+  version: 1.0.0-draft
+  description: |
+    Single transport channel for payment messages: the HUB validates structure, signature and
+    credentials, records the operation for traceability and audit, and routes it to the
+    destination participant (passthrough). This single channel carries the payment order
+    (pacs.008), the reversal (pacs.007), the return (pacs.004) and the cancellation request
+    (camt.056), all correlated to the original operation — **there are no separate reversal
+    or return endpoints**. Status responses use pacs.002 semantics; the status-request message
+    (pacs.028) maps to the status query endpoint. A malformed message is rejected technically
+    with admi.002 semantics (HTTP 400).
+
+    Two representations are supported: `application/xml` carries the ISO 20022 message as-is
+    (canonical passthrough), and `application/json` offers the simplified REST projection for
+    a pacs.008 push order. For P2M payments originated by QR, the creditor may be given only
+    as `creditorId`: the HUB completes the creditor party from the merchant directory.
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@[operator-domain]
+
+servers:
+  - url: https://sandbox.hub.example.pa/payments/v1
+    description: Sandbox
+  - url: https://hub.example.pa/payments/v1
+    description: Production
+
+tags:
+  - name: Orders
+    description: Payment message transport (pacs.008 / pacs.007 / pacs.004 / camt.056)
+  - name: Status
+    description: Status queries (pacs.028 / pacs.002 semantics)
+
+paths:
+
+  /payments:
+    post:
+      tags: [Orders]
+      summary: Submit a payment message
+      description: |
+        Submits a payment message to the HUB. With `application/json`, creates a push transfer
+        (pacs.008 projection). With `application/xml`, transports the ISO 20022 message as-is:
+        pacs.008 (order) and, correlated to the original operation, pacs.007 (reversal),
+        pacs.004 (return) or camt.056 (cancellation request); the message type is declared
+        inside the message itself and the HUB validates, records and routes it (passthrough).
+        Send `Idempotency-Key` and retry with the same key on timeouts.
+      operationId: submitPayment
+      security: [{ oauth2ClientCredentials: [payments.write] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+        - $ref: '../common/common-components.yaml#/components/parameters/FapiInteractionId'
+        - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+        - $ref: '../common/common-components.yaml#/components/parameters/ParticipantId'
+        - $ref: '../common/common-components.yaml#/components/parameters/FapiAuthDate'
+        - $ref: '../common/common-components.yaml#/components/parameters/FapiCustomerIpAddress'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/PaymentOrderRequest' }
+          application/xml:
+            schema: { $ref: '#/components/schemas/Iso20022Message' }
+      responses:
+        '201':
+          description: Message accepted; initial status (pacs.002 semantics)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PaymentStatus' }
+        '400': { $ref: '../common/common-components.yaml#/components/responses/BadRequest' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '409': { $ref: '../common/common-components.yaml#/components/responses/Conflict' }
+        '422': { $ref: '../common/common-components.yaml#/components/responses/BusinessRule' }
+      callbacks:
+        paymentStatusNotification:
+          '{$request.body#/callbackUrl}':
+            post:
+              summary: Status-change webhook (JWS-signed)
+              description: Deferred status changes and timeout notifications. At-least-once delivery; the receiver deduplicates by `notificationId`.
+              operationId: onPaymentStatus
+              security: []
+              parameters:
+                - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+              requestBody:
+                required: true
+                content:
+                  application/json:
+                    schema: { $ref: '#/components/schemas/PaymentStatusNotification' }
+              responses:
+                '204': { description: Notification received }
+                '400': { description: Invalid or unverifiable notification (signature or schema) }
+
+  /payments/{transactionId}:
+    get:
+      tags: [Status]
+      summary: Query the status of a transaction
+      description: Returns the current status with pacs.002 semantics; covers the payment status request (pacs.028).
+      operationId: getPaymentStatus
+      security: [{ oauth2ClientCredentials: [payments.read] }]
+      parameters:
+        - { name: transactionId, in: path, required: true, schema: { type: string } }
+        - $ref: '../common/common-components.yaml#/components/parameters/FapiInteractionId'
+      responses:
+        '200':
+          description: Transaction status
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PaymentStatus' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      $ref: '../common/common-components.yaml#/components/securitySchemes/oauth2ClientCredentials'
+
+  schemas:
+    PaymentType: { type: string, enum: [PUSH, REQUEST_TO_PAY] }
+    TxStatus: { type: string, enum: [RECEIVED, VALIDATED, ROUTED, CONFIRMED, COMPLETED, REJECTED, FAILED, TIMEOUT, RETURNED] }
+    SettlementStatus: { type: string, enum: [PENDING, SETTLED, INFORMED] }
+
+    Iso20022Message:
+      type: string
+      description: |
+        ISO 20022 XML message transported as-is (passthrough). Accepted types:
+        pacs.008.001.xx (order), pacs.007.001.xx (reversal), pacs.004.001.xx (return),
+        camt.056.001.xx (cancellation request). The HUB validates schema, JWS signature and
+        credentials; a malformed message is rejected with admi.002 semantics (HTTP 400).
+
+    PaymentOrderRequest:
+      type: object
+      description: Simplified REST projection of a pacs.008 push order.
+      required: [endToEndId, paymentType, instructedAmount, debtor, creditor]
+      properties:
+        endToEndId: { type: string, example: "E2E-2026-0001" }
+        paymentType: { $ref: '#/components/schemas/PaymentType' }
+        instructedAmount: { $ref: '../common/common-components.yaml#/components/schemas/Amount' }
+        debtor: { $ref: '../common/common-components.yaml#/components/schemas/PartyIdentification' }
+        creditor: { $ref: '../common/common-components.yaml#/components/schemas/PartyIdentification' }
+        remittanceInformation: { type: string, example: "Lunch payment" }
+        purpose: { type: string }
+        channel: { type: string }
+        callbackUrl: { type: string, format: uri }
+        creationDateTime: { type: string, format: date-time }
+
+    SettlementInfo:
+      type: object
+      properties:
+        settlementStatus: { $ref: '#/components/schemas/SettlementStatus' }
+        clearingReference: { type: string, description: Reconciliation reference (RTGS/BNP). }
+
+    PaymentStatus:
+      type: object
+      required: [transactionId, endToEndId, status, updatedDateTime]
+      properties:
+        transactionId: { type: string, example: "HUB-TX-77120" }
+        endToEndId: { type: string, example: "E2E-2026-0001" }
+        status: { $ref: '#/components/schemas/TxStatus' }
+        reasonCode: { type: string, description: "ISO 20022 External Code Set (e.g. AC04, AM04), as carried in pacs.002.", example: "AC04" }
+        reasonDescription: { type: string }
+        settlement: { $ref: '#/components/schemas/SettlementInfo' }
+        updatedDateTime: { type: string, format: date-time }
+
+    PaymentStatusNotification:
+      type: object
+      required: [notificationId, status]
+      properties:
+        notificationId: { type: string }
+        subscriptionId: { type: string }
+        status: { $ref: '#/components/schemas/PaymentStatus' }

@@ -1,0 +1,329 @@
+openapi: 3.0.3
+info:
+  title: Key Directory API — Panama Interoperability HUB
+  version: 1.0.0-draft
+  description: |
+    Resolution and lifecycle of person keys (aliases) in the HUB directory: online resolution,
+    registration/update/deregistration with `prxy.001/002` semantics, portability between
+    participants (48-hour window: if the current owner does not oppose, the portability is
+    confirmed automatically) and account-name verification. Key resolution is never cached.
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@[operator-domain]
+
+servers:
+  - url: https://sandbox.hub.example.pa/key-directory/v1
+    description: Sandbox
+  - url: https://hub.example.pa/key-directory/v1
+    description: Production
+
+tags:
+  - name: Resolution
+    description: Online key resolution (transactional path)
+  - name: Lifecycle
+    description: Key registration, update and deregistration (prxy.001/002)
+  - name: Portability
+    description: Key portability between participants
+  - name: Verification
+    description: Account-name verification
+
+paths:
+
+  /keys/resolve:
+    post:
+      tags: [Resolution]
+      summary: Resolve a person key
+      description: Resolves a key to the destination institution and returns an opaque payee handle. Always online, never cached.
+      operationId: resolveKey
+      security: [{ oauth2ClientCredentials: [directory.resolve] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/FapiInteractionId'
+        - $ref: '../common/common-components.yaml#/components/parameters/ParticipantId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/KeyResolutionRequest' }
+      responses:
+        '200':
+          description: Resolution result (including NOT_FOUND, which is not a transport error)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/KeyResolutionResponse' }
+        '400': { $ref: '../common/common-components.yaml#/components/responses/BadRequest' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+
+  /keys:
+    post:
+      tags: [Lifecycle]
+      summary: Register a key (prxy.001 REGISTER)
+      description: |
+        Registers a key on behalf of the authenticated participant. If the key is already
+        registered at another participant the HUB answers 409; the correct path is portability.
+        `nationalIdHash` is optional in phase 1 and becomes mandatory once alias–national-ID
+        validation is activated.
+      operationId: registerKey
+      security: [{ oauth2ClientCredentials: [directory.write] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+        - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/KeyRegistration' }
+      responses:
+        '201':
+          description: Key registered (prxy.002 ACCEPTED)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/KeyRecord' }
+        '400': { $ref: '../common/common-components.yaml#/components/responses/BadRequest' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '409':
+          description: Key already registered by another participant (use portability)
+          content:
+            application/problem+json:
+              schema: { $ref: '../common/common-components.yaml#/components/schemas/Problem' }
+        '422': { $ref: '../common/common-components.yaml#/components/responses/BusinessRule' }
+
+  /keys/verify-name:
+    post:
+      tags: [Verification]
+      summary: Verify account-name
+      description: |
+        Confirms that the expected name matches the given account or key. Reused during
+        merchant onboarding.
+      operationId: verifyAccountName
+      security: [{ oauth2ClientCredentials: [directory.read] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/FapiInteractionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/NameVerificationRequest' }
+      responses:
+        '200':
+          description: Verification result
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/NameVerificationResponse' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+
+  /keys/{keyType}/{keyValue}:
+    parameters:
+      - { name: keyType, in: path, required: true, schema: { $ref: '../common/common-components.yaml#/components/schemas/KeyType' } }
+      - { name: keyValue, in: path, required: true, schema: { type: string } }
+    get:
+      tags: [Lifecycle]
+      summary: Read an own key
+      operationId: getKey
+      security: [{ oauth2ClientCredentials: [directory.read] }]
+      responses:
+        '200':
+          description: Key record
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/KeyRecord' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+    put:
+      tags: [Lifecycle]
+      summary: Update a key (prxy.001 MODIFY)
+      operationId: updateKey
+      security: [{ oauth2ClientCredentials: [directory.write] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+        - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/KeyUpdate' }
+      responses:
+        '200':
+          description: Key updated
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/KeyRecord' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+        '422': { $ref: '../common/common-components.yaml#/components/responses/BusinessRule' }
+    delete:
+      tags: [Lifecycle]
+      summary: Deregister a key (prxy.001 DEREGISTER)
+      operationId: deregisterKey
+      security: [{ oauth2ClientCredentials: [directory.write] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+        - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+      responses:
+        '204': { description: Key deregistered }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+
+  /keys/{keyType}/{keyValue}/portability:
+    parameters:
+      - { name: keyType, in: path, required: true, schema: { $ref: '../common/common-components.yaml#/components/schemas/KeyType' } }
+      - { name: keyValue, in: path, required: true, schema: { type: string } }
+    post:
+      tags: [Portability]
+      summary: Request key portability (prxy.001 PORT)
+      description: |
+        Initiated by the **receiving** participant. The key moves to `PORTING`; the current
+        owner receives `KEY_PORT_REQUESTED` and confirms or opposes within the portability window
+        (48 h). Silence is interpreted as consent.
+      operationId: requestPortability
+      security: [{ oauth2ClientCredentials: [directory.write] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+        - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/PortabilityRequest' }
+      responses:
+        '202':
+          description: Portability started (pending confirmation or window expiry)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PortabilityStatus' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+        '409':
+          description: A portability process is already in progress for this key
+          content:
+            application/problem+json:
+              schema: { $ref: '../common/common-components.yaml#/components/schemas/Problem' }
+    patch:
+      tags: [Portability]
+      summary: Confirm or oppose a portability (current owner)
+      operationId: respondToPortability
+      security: [{ oauth2ClientCredentials: [directory.write] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/PortabilityDecision' }
+      responses:
+        '200':
+          description: Resulting portability status
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PortabilityStatus' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+        '422': { $ref: '../common/common-components.yaml#/components/responses/BusinessRule' }
+
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      $ref: '../common/common-components.yaml#/components/securitySchemes/oauth2ClientCredentials'
+
+  schemas:
+    KeyStatus: { type: string, enum: [ACTIVE, SUSPENDED, PORTING, DEREGISTERED] }
+    NameMatch: { type: string, enum: [FULL_MATCH, PARTIAL_MATCH, NO_MATCH] }
+
+    KeyResolutionRequest:
+      type: object
+      required: [keyType, keyValue, initiatingParticipantId]
+      properties:
+        keyType: { $ref: '../common/common-components.yaml#/components/schemas/KeyType' }
+        keyValue: { type: string, example: "+50761119876" }
+        initiatingParticipantId: { type: string, example: "YAPPY" }
+
+    KeyResolutionResponse:
+      type: object
+      required: [status]
+      properties:
+        status: { $ref: '../common/common-components.yaml#/components/schemas/ResolutionStatus' }
+        resolvedParticipantId: { type: string, example: "TELERED" }
+        payeeHandle: { type: string, description: Opaque payee handle., example: "PH-9c2f7a" }
+        keyType: { $ref: '../common/common-components.yaml#/components/schemas/KeyType' }
+        keyValue: { type: string }
+        fraudIndicator: { $ref: '../common/common-components.yaml#/components/schemas/FraudIndicator' }
+
+    KeyRegistration:
+      type: object
+      required: [key, account]
+      properties:
+        key: { $ref: '../common/common-components.yaml#/components/schemas/Key' }
+        account: { $ref: '../common/common-components.yaml#/components/schemas/Account' }
+        ownerName: { type: string }
+        nationalIdHash:
+          type: string
+          description: HMAC-SHA-256 of the national ID, for ownership verification (planned feature, not active in phase 1).
+
+    KeyUpdate:
+      type: object
+      properties:
+        account: { $ref: '../common/common-components.yaml#/components/schemas/Account' }
+        ownerName: { type: string }
+
+    KeyRecord:
+      type: object
+      required: [key, participantId, status]
+      properties:
+        key: { $ref: '../common/common-components.yaml#/components/schemas/Key' }
+        participantId: { type: string }
+        status: { $ref: '#/components/schemas/KeyStatus' }
+        updatedDateTime: { type: string, format: date-time }
+
+    PortabilityRequest:
+      type: object
+      required: [receivingParticipantId, account]
+      properties:
+        receivingParticipantId: { type: string, description: Participant that will receive the key (must match the authenticated one). }
+        account: { $ref: '../common/common-components.yaml#/components/schemas/Account' }
+        nationalIdHash: { type: string, description: "Ownership verification: HMAC-SHA-256 of the requester's national ID." }
+
+    PortabilityDecision:
+      type: object
+      required: [portabilityId, decision]
+      properties:
+        portabilityId: { type: string }
+        decision: { type: string, enum: [CONFIRM, OPPOSE] }
+        reasonCode: { type: string, description: Mandatory when opposing. }
+
+    PortabilityStatus:
+      type: object
+      required: [portabilityId, key, status, deadline]
+      properties:
+        portabilityId: { type: string }
+        key: { $ref: '../common/common-components.yaml#/components/schemas/Key' }
+        status: { type: string, enum: [PENDING, CONFIRMED, OPPOSED, EXPIRED_CONFIRMED] }
+        currentParticipantId: { type: string }
+        receivingParticipantId: { type: string }
+        deadline: { type: string, format: date-time, description: End of the 48-hour portability window. }
+
+    NameVerificationRequest:
+      type: object
+      required: [participantId, expectedName]
+      description: Either `account` or `key` must be provided.
+      properties:
+        participantId: { type: string, example: "TELERED" }
+        account: { $ref: '../common/common-components.yaml#/components/schemas/Account' }
+        key: { $ref: '../common/common-components.yaml#/components/schemas/Key' }
+        expectedName: { type: string, example: "Maria Gomez" }
+
+    NameVerificationResponse:
+      type: object
+      required: [match, status]
+      properties:
+        match: { $ref: '#/components/schemas/NameMatch' }
+        accountType: { type: string, example: "CURRENT" }
+        status: { type: string, enum: [VALIDATED, NOT_FOUND] }

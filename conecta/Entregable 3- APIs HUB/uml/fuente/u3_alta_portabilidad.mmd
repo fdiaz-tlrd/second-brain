@@ -1,0 +1,31 @@
+---
+title: "U3 · Secuencia — alta y portabilidad de alias (prxy.001/002)"
+config:
+  theme: neutral
+  themeVariables:
+    primaryColor: "#F4ECEF"
+    primaryBorderColor: "#7A1F3D"
+    lineColor: "#5A5A5A"
+    fontFamily: "Georgia"
+---
+sequenceDiagram
+  autonumber
+  participant PA as Participante A<br/>(nuevo propietario)
+  participant DIR as HUB · Directorio (5.1)
+  participant PB as Participante B<br/>(propietario actual)
+  participant NOT as Motor de notificaciones (5.9)
+
+  PA->>DIR: POST /aliases · prxy.001<br/>(action=REGISTER, key, nationalIdHash [opcional fase 1])
+  DIR->>DIR: Valida formato y titularidad
+  alt Llave libre
+    DIR-->>PA: prxy.002 ACCEPTED · llave ACTIVE en A
+  else Llave registrada en B
+    DIR->>DIR: Marca estado PORTING (action=PORT)
+    DIR->>NOT: Evento KEY_PORTED (webhook JWS)
+    NOT->>PB: Notifica portabilidad saliente
+    PB-->>DIR: Confirma baja local (o vence plazo)
+    DIR->>DIR: Reasigna propietario a A · ACTIVE
+    DIR-->>PA: prxy.002 ACCEPTED (portada)
+    NOT->>PA: Confirmación de portabilidad completada
+  end
+  note over DIR: Toda instrucción es idempotente<br/>(Idempotency-Key) y con código de razón de error del HUB

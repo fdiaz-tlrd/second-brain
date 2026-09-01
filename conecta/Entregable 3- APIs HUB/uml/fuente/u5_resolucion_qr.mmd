@@ -1,0 +1,33 @@
+---
+title: "U5 · Secuencia — resolución de creditor ID desde un QR interoperable"
+config:
+  theme: neutral
+  themeVariables:
+    primaryColor: "#F4ECEF"
+    primaryBorderColor: "#7A1F3D"
+    lineColor: "#5A5A5A"
+    fontFamily: "Georgia"
+---
+sequenceDiagram
+  autonumber
+  participant APP as App pagadora<br/>(red distinta a la emisora)
+  participant PSP as Participante pagador
+  participant DIR as HUB · Directorio (5.1)
+  participant CACHE as Caché P2M
+  participant HUBP as HUB · Enrutador de pagos (5.2)
+
+  APP->>APP: Escanea y parsea TLV EMVCo<br/>Verifica CRC · lee 26.00 GUID
+  APP->>APP: GUID ≠ red propia → pago interoperable
+  APP->>PSP: Inicia pago con creditorId (26.04) + perfil (80.01)
+  PSP->>DIR: POST /merchants/resolve<br/>(creditorId, qrProfile)
+  alt Perfil STC-C con caché válida
+    DIR->>CACHE: Consulta entrada
+    CACHE-->>DIR: HIT (TTL ≤ 2 h)
+  else Sin caché o perfil dinámico
+    DIR->>DIR: Resuelve registro + método de cobro vigente
+    DIR->>CACHE: Escribe solo si perfil STC-C
+  end
+  DIR-->>PSP: RESOLVED · adquirente destino + payeeHandle<br/>+ displayName/city/mcc (contraste con payload)
+  PSP->>PSP: Contrasta 52/59/60 del QR con la resolución<br/>(control de QR sustituido)
+  PSP->>HUBP: Orden de pago / solicitud de cobro<br/>(pacs.008 · pain.013) hacia el adquirente
+  note over DIR: El QR híbrido (26.06) no se resuelve aquí:<br/>la consulta se enruta a la red emisora

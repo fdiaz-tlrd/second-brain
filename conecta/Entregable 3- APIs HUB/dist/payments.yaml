@@ -1,0 +1,503 @@
+openapi: 3.0.3
+info:
+  title: Payments API — Panama Interoperability HUB
+  version: 1.0.0-draft
+  description: |
+    Single transport channel for payment messages: the HUB validates structure, signature and
+    credentials, records the operation for traceability and audit, and routes it to the
+    destination participant (passthrough). This single channel carries the payment order
+    (pacs.008), the reversal (pacs.007), the return (pacs.004) and the cancellation request
+    (camt.056), all correlated to the original operation — **there are no separate reversal
+    or return endpoints**. Status responses use pacs.002 semantics; the status-request message
+    (pacs.028) maps to the status query endpoint. A malformed message is rejected technically
+    with admi.002 semantics (HTTP 400).
+
+    Two representations are supported: `application/xml` carries the ISO 20022 message as-is
+    (canonical passthrough), and `application/json` offers the simplified REST projection for
+    a pacs.008 push order. For P2M payments originated by QR, the creditor may be given only
+    as `creditorId`: the HUB completes the creditor party from the merchant directory.
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@[operator-domain]
+servers:
+  - url: https://sandbox.hub.example.pa/payments/v1
+    description: Sandbox
+  - url: https://hub.example.pa/payments/v1
+    description: Production
+tags:
+  - name: Orders
+    description: Payment message transport (pacs.008 / pacs.007 / pacs.004 / camt.056)
+  - name: Status
+    description: Status queries (pacs.028 / pacs.002 semantics)
+paths:
+  /payments:
+    post:
+      tags:
+        - Orders
+      summary: Submit a payment message
+      description: |
+        Submits a payment message to the HUB. With `application/json`, creates a push transfer
+        (pacs.008 projection). With `application/xml`, transports the ISO 20022 message as-is:
+        pacs.008 (order) and, correlated to the original operation, pacs.007 (reversal),
+        pacs.004 (return) or camt.056 (cancellation request); the message type is declared
+        inside the message itself and the HUB validates, records and routes it (passthrough).
+        Send `Idempotency-Key` and retry with the same key on timeouts.
+      operationId: submitPayment
+      security:
+        - oauth2ClientCredentials:
+            - payments.write
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/FapiInteractionId'
+        - $ref: '#/components/parameters/JwsSignature'
+        - $ref: '#/components/parameters/ParticipantId'
+        - $ref: '#/components/parameters/FapiAuthDate'
+        - $ref: '#/components/parameters/FapiCustomerIpAddress'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentOrderRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Iso20022Message'
+      responses:
+        '201':
+          description: Message accepted; initial status (pacs.002 semantics)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentStatus'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          $ref: '#/components/responses/BusinessRule'
+      callbacks:
+        paymentStatusNotification:
+          '{$request.body#/callbackUrl}':
+            post:
+              summary: Status-change webhook (JWS-signed)
+              description: Deferred status changes and timeout notifications. At-least-once delivery; the receiver deduplicates by `notificationId`.
+              operationId: onPaymentStatus
+              security: []
+              parameters:
+                - $ref: '#/components/parameters/JwsSignature'
+              requestBody:
+                required: true
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/PaymentStatusNotification'
+              responses:
+                '204':
+                  description: Notification received
+                '400':
+                  description: Invalid or unverifiable notification (signature or schema)
+  /payments/{transactionId}:
+    get:
+      tags:
+        - Status
+      summary: Query the status of a transaction
+      description: Returns the current status with pacs.002 semantics; covers the payment status request (pacs.028).
+      operationId: getPaymentStatus
+      security:
+        - oauth2ClientCredentials:
+            - payments.read
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/FapiInteractionId'
+      responses:
+        '200':
+          description: Transaction status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      type: oauth2
+      description: |
+        OAuth 2.0 client credentials + OIDC **over mTLS** (HUB CA certificate at transport level).
+        Access tokens are sender-constrained (certificate-bound, RFC 8705). Per-domain scopes
+        refined as `domain.action` (e.g. `payments.write`, `directory.resolve`). Planned
+        evolution path: full FAPI 2.0 profile.
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.hub.example.pa/oauth2/token
+          scopes:
+            directory.resolve: Resolve person keys (aliases)
+            directory.read: Read own keys, networks and account-name verification
+            directory.write: Manage keys (registration, update, deregistration, portability)
+            merchants.resolve: Resolve merchants (transactional QR path)
+            merchants.read: Read and search merchants
+            merchants.write: Register and maintain merchants and collection methods
+            payments.write: Create payment orders
+            payments.read: Read payment status
+            collections.write: Create collection requests (Request-to-Pay)
+            collections.read: Read collection requests
+            events.manage: Manage event subscriptions
+            operations.read: Read system notifications and operational status
+            operations.write: Participant session (Sign On/Off) and inbound operational events
+            operations.admin: Scheme-operator actions (restricted to the HUB operator)
+            reconciliation.read: Download reconciliation files
+            reconciliation.write: Acknowledge reconciliation files and report discrepancies
+  schemas:
+    PaymentType:
+      type: string
+      enum:
+        - PUSH
+        - REQUEST_TO_PAY
+    TxStatus:
+      type: string
+      enum:
+        - RECEIVED
+        - VALIDATED
+        - ROUTED
+        - CONFIRMED
+        - COMPLETED
+        - REJECTED
+        - FAILED
+        - TIMEOUT
+        - RETURNED
+    SettlementStatus:
+      type: string
+      enum:
+        - PENDING
+        - SETTLED
+        - INFORMED
+    Iso20022Message:
+      type: string
+      description: |
+        ISO 20022 XML message transported as-is (passthrough). Accepted types:
+        pacs.008.001.xx (order), pacs.007.001.xx (reversal), pacs.004.001.xx (return),
+        camt.056.001.xx (cancellation request). The HUB validates schema, JWS signature and
+        credentials; a malformed message is rejected with admi.002 semantics (HTTP 400).
+    PaymentOrderRequest:
+      type: object
+      description: Simplified REST projection of a pacs.008 push order.
+      required:
+        - endToEndId
+        - paymentType
+        - instructedAmount
+        - debtor
+        - creditor
+      properties:
+        endToEndId:
+          type: string
+          example: E2E-2026-0001
+        paymentType:
+          $ref: '#/components/schemas/PaymentType'
+        instructedAmount:
+          $ref: '#/components/schemas/Amount'
+        debtor:
+          $ref: '#/components/schemas/PartyIdentification'
+        creditor:
+          $ref: '#/components/schemas/PartyIdentification'
+        remittanceInformation:
+          type: string
+          example: Lunch payment
+        purpose:
+          type: string
+        channel:
+          type: string
+        callbackUrl:
+          type: string
+          format: uri
+        creationDateTime:
+          type: string
+          format: date-time
+    SettlementInfo:
+      type: object
+      properties:
+        settlementStatus:
+          $ref: '#/components/schemas/SettlementStatus'
+        clearingReference:
+          type: string
+          description: Reconciliation reference (RTGS/BNP).
+    PaymentStatus:
+      type: object
+      required:
+        - transactionId
+        - endToEndId
+        - status
+        - updatedDateTime
+      properties:
+        transactionId:
+          type: string
+          example: HUB-TX-77120
+        endToEndId:
+          type: string
+          example: E2E-2026-0001
+        status:
+          $ref: '#/components/schemas/TxStatus'
+        reasonCode:
+          type: string
+          description: ISO 20022 External Code Set (e.g. AC04, AM04), as carried in pacs.002.
+          example: AC04
+        reasonDescription:
+          type: string
+        settlement:
+          $ref: '#/components/schemas/SettlementInfo'
+        updatedDateTime:
+          type: string
+          format: date-time
+    PaymentStatusNotification:
+      type: object
+      required:
+        - notificationId
+        - status
+      properties:
+        notificationId:
+          type: string
+        subscriptionId:
+          type: string
+        status:
+          $ref: '#/components/schemas/PaymentStatus'
+    Currency:
+      type: string
+      enum:
+        - USD
+      description: Single currency USD 840. PAB reserved as a future evolution.
+    Amount:
+      type: object
+      required:
+        - currency
+        - value
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        value:
+          type: string
+          pattern: ^[0-9]+\.[0-9]{2}$
+          description: Decimal with dot and exactly 2 decimals, no thousands separator.
+          example: '125.00'
+    PartyIdScheme:
+      type: string
+      enum:
+        - OTHR
+        - IBAN
+    Account:
+      type: object
+      required:
+        - scheme
+        - id
+        - institutionCode
+      description: |
+        Account identification (OTHR scheme). `id` is the participant's internal account
+        identifier. Never exposed in resolutions towards third parties.
+      properties:
+        scheme:
+          $ref: '#/components/schemas/PartyIdScheme'
+        id:
+          type: string
+          example: YAP-ACC-7f3a92
+        institutionCode:
+          type: string
+          example: YAPPY
+    ConsentStatus:
+      type: string
+      enum:
+        - AUTHORISED
+        - EXPIRED
+        - REVOKED
+    ConsentReference:
+      type: object
+      required:
+        - consentId
+        - scope
+        - status
+      description: Authorisation complement for participant-side consent flows. The HUB never stores the token.
+      properties:
+        consentId:
+          type: string
+        scope:
+          type: string
+          example: payments:initiate
+        status:
+          $ref: '#/components/schemas/ConsentStatus'
+        validFrom:
+          type: string
+          format: date-time
+        validTo:
+          type: string
+          format: date-time
+    KeyType:
+      type: string
+      enum:
+        - MSISDN
+        - EMAIL
+        - NATIONAL_ID
+        - RUC
+        - MERCHANT_ALIAS
+      description: The QR is not a key; QR resolution belongs to the Merchant Directory API.
+    Key:
+      type: object
+      required:
+        - keyType
+        - keyValue
+      properties:
+        keyType:
+          $ref: '#/components/schemas/KeyType'
+        keyValue:
+          type: string
+          example: '+50760001234'
+        owningParticipantId:
+          type: string
+    CreditorId:
+      type: string
+      pattern: ^CR[0-9]{9}$
+      description: Interoperable merchant identifier (QR subfield 26.04). Assigned by the HUB at registration (permanent and never reused).
+      example: CR000839201
+    PartyIdentification:
+      type: object
+      required:
+        - participantId
+      description: Party of a payment. For a P2M creditor paid by QR, `creditorId` alone is enough — the HUB completes the rest from the merchant directory.
+      properties:
+        name:
+          type: string
+        participantId:
+          type: string
+        account:
+          $ref: '#/components/schemas/Account'
+        consentReference:
+          $ref: '#/components/schemas/ConsentReference'
+        proxy:
+          $ref: '#/components/schemas/Key'
+        creditorId:
+          $ref: '#/components/schemas/CreditorId'
+    Problem:
+      type: object
+      description: |
+        RFC 7807 error. `reasonCode` carries the HUB numeric error code (families: 1xxx directory,
+        3xxx business rejection, 4xxx timeout); `isoReasonCode` carries the ISO 20022 External
+        Code Set value when one applies (e.g. AM04, AC06, FRAD, DUPL).
+      required:
+        - title
+        - status
+        - reasonCode
+      properties:
+        type:
+          type: string
+          format: uri
+          example: https://hub.example.pa/problems/business-rule
+        title:
+          type: string
+          example: Business rule rejected
+        status:
+          type: integer
+          example: 422
+        detail:
+          type: string
+          example: The given MCC is not registered in the master catalogue.
+        reasonCode:
+          type: string
+          description: HUB error code (families 1xxx/3xxx/4xxx).
+          example: '3001'
+        isoReasonCode:
+          type: string
+          description: ISO 20022 External Code Set reason, when applicable.
+          example: AM04
+        traceId:
+          type: string
+          description: Correlation with the HUB telemetry.
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: Idempotency key (UUID) for safe retries (same key, same result).
+      schema:
+        type: string
+        format: uuid
+    FapiInteractionId:
+      name: x-fapi-interaction-id
+      in: header
+      required: false
+      description: Correlation identifier (UUID) for end-to-end traceability.
+      schema:
+        type: string
+    JwsSignature:
+      name: x-jws-signature
+      in: header
+      required: true
+      description: Detached JWS signature of the payload, for integrity and non-repudiation.
+      schema:
+        type: string
+    ParticipantId:
+      name: x-participant-id
+      in: header
+      required: false
+      description: Identifier of the participant originating the request (also asserted by the mTLS certificate and the token).
+      schema:
+        type: string
+    FapiAuthDate:
+      name: x-fapi-auth-date
+      in: header
+      required: false
+      description: Date and time of the customer's last authentication at their operator (only when an end customer is in the flow).
+      schema:
+        type: string
+    FapiCustomerIpAddress:
+      name: x-fapi-customer-ip-address
+      in: header
+      required: false
+      description: End customer's IP address when the flow involves one (anti-fraud input).
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request (syntax or schema)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    Unauthorized:
+      description: Not authenticated (invalid token or mTLS certificate not presented)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    Forbidden:
+      description: Authenticated but not allowed (missing scope or participant not entitled)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    Conflict:
+      description: Idempotency or state conflict
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    BusinessRule:
+      description: Business rule rejected (`reasonCode` from the HUB error code catalogue)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    NotFound:
+      description: Resource not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'

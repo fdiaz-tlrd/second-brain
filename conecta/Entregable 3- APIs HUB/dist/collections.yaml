@@ -1,0 +1,457 @@
+openapi: 3.0.3
+info:
+  title: Collections API — Panama Interoperability HUB
+  version: 1.0.0-draft
+  description: |
+    Collection requests (Request-to-Pay / QR, pain.013/pain.014 semantics): the creditor
+    initiates a collection request that the debtor's participant must accept or reject. For
+    P2M collections the creditor may be given as `creditorId` (subfield 26.04 of the
+    interoperable QR). The debtor's response (pain.014 semantics) is submitted on the response
+    endpoint; an accepted request generates a payment order linked through `requestId`.
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@[operator-domain]
+servers:
+  - url: https://sandbox.hub.example.pa/collections/v1
+    description: Sandbox
+  - url: https://hub.example.pa/collections/v1
+    description: Production
+tags:
+  - name: Collection requests
+    description: Request-to-Pay lifecycle (pain.013 / pain.014)
+paths:
+  /collection-requests:
+    post:
+      tags:
+        - Collection requests
+      summary: Create a collection request (R2P / QR)
+      operationId: createCollectionRequest
+      security:
+        - oauth2ClientCredentials:
+            - collections.write
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/FapiInteractionId'
+        - $ref: '#/components/parameters/JwsSignature'
+        - $ref: '#/components/parameters/FapiAuthDate'
+        - $ref: '#/components/parameters/FapiCustomerIpAddress'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionRequestCreation'
+      responses:
+        '201':
+          description: Collection request created (pain.013 accepted)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionRequest'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/BusinessRule'
+  /collection-requests/{requestId}:
+    parameters:
+      - name: requestId
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - Collection requests
+      summary: Query a collection request
+      operationId: getCollectionRequest
+      security:
+        - oauth2ClientCredentials:
+            - collections.read
+      responses:
+        '200':
+          description: Current state of the collection request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /collection-requests/{requestId}/response:
+    parameters:
+      - name: requestId
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - Collection requests
+      summary: Accept or reject a collection request (pain.014)
+      description: |
+        Submitted by the debtor's participant. Acceptance triggers the linked payment order
+        (`linkedTransactionId` on the request record); rejection closes the request with the
+        given reason.
+      operationId: respondToCollectionRequest
+      security:
+        - oauth2ClientCredentials:
+            - collections.write
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - $ref: '#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionResponse'
+      responses:
+        '200':
+          description: Resulting state of the collection request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: The request is no longer pending (already answered or expired)
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '422':
+          $ref: '#/components/responses/BusinessRule'
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      type: oauth2
+      description: |
+        OAuth 2.0 client credentials + OIDC **over mTLS** (HUB CA certificate at transport level).
+        Access tokens are sender-constrained (certificate-bound, RFC 8705). Per-domain scopes
+        refined as `domain.action` (e.g. `payments.write`, `directory.resolve`). Planned
+        evolution path: full FAPI 2.0 profile.
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.hub.example.pa/oauth2/token
+          scopes:
+            directory.resolve: Resolve person keys (aliases)
+            directory.read: Read own keys, networks and account-name verification
+            directory.write: Manage keys (registration, update, deregistration, portability)
+            merchants.resolve: Resolve merchants (transactional QR path)
+            merchants.read: Read and search merchants
+            merchants.write: Register and maintain merchants and collection methods
+            payments.write: Create payment orders
+            payments.read: Read payment status
+            collections.write: Create collection requests (Request-to-Pay)
+            collections.read: Read collection requests
+            events.manage: Manage event subscriptions
+            operations.read: Read system notifications and operational status
+            operations.write: Participant session (Sign On/Off) and inbound operational events
+            operations.admin: Scheme-operator actions (restricted to the HUB operator)
+            reconciliation.read: Download reconciliation files
+            reconciliation.write: Acknowledge reconciliation files and report discrepancies
+  schemas:
+    CollectionRequestStatus:
+      type: string
+      enum:
+        - PENDING
+        - ACCEPTED
+        - REJECTED
+        - EXPIRED
+    CollectionRequestCreation:
+      type: object
+      required:
+        - debtorKey
+        - instructedAmount
+      description: The creditor is given either as `creditor` (full party) or as `creditorId` (P2M by QR).
+      properties:
+        creditor:
+          $ref: '#/components/schemas/PartyIdentification'
+        creditorId:
+          $ref: '#/components/schemas/CreditorId'
+        debtorKey:
+          $ref: '#/components/schemas/Key'
+        instructedAmount:
+          $ref: '#/components/schemas/Amount'
+        expiryDateTime:
+          type: string
+          format: date-time
+        remittanceInformation:
+          type: string
+        qrProfile:
+          $ref: '#/components/schemas/QrProfile'
+    CollectionResponse:
+      type: object
+      required:
+        - decision
+      description: Debtor-side response with pain.014 semantics.
+      properties:
+        decision:
+          type: string
+          enum:
+            - ACCEPTED
+            - REJECTED
+        reasonCode:
+          type: string
+          description: Mandatory when rejecting (HUB error code catalogue).
+    CollectionRequest:
+      type: object
+      required:
+        - requestId
+        - status
+      properties:
+        requestId:
+          type: string
+          example: RTP-2026-555
+        creditor:
+          $ref: '#/components/schemas/PartyIdentification'
+        debtorKey:
+          $ref: '#/components/schemas/Key'
+        instructedAmount:
+          $ref: '#/components/schemas/Amount'
+        expiryDateTime:
+          type: string
+          format: date-time
+        status:
+          $ref: '#/components/schemas/CollectionRequestStatus'
+        linkedTransactionId:
+          type: string
+          description: Payment order generated upon acceptance.
+    PartyIdScheme:
+      type: string
+      enum:
+        - OTHR
+        - IBAN
+    Account:
+      type: object
+      required:
+        - scheme
+        - id
+        - institutionCode
+      description: |
+        Account identification (OTHR scheme). `id` is the participant's internal account
+        identifier. Never exposed in resolutions towards third parties.
+      properties:
+        scheme:
+          $ref: '#/components/schemas/PartyIdScheme'
+        id:
+          type: string
+          example: YAP-ACC-7f3a92
+        institutionCode:
+          type: string
+          example: YAPPY
+    ConsentStatus:
+      type: string
+      enum:
+        - AUTHORISED
+        - EXPIRED
+        - REVOKED
+    ConsentReference:
+      type: object
+      required:
+        - consentId
+        - scope
+        - status
+      description: Authorisation complement for participant-side consent flows. The HUB never stores the token.
+      properties:
+        consentId:
+          type: string
+        scope:
+          type: string
+          example: payments:initiate
+        status:
+          $ref: '#/components/schemas/ConsentStatus'
+        validFrom:
+          type: string
+          format: date-time
+        validTo:
+          type: string
+          format: date-time
+    KeyType:
+      type: string
+      enum:
+        - MSISDN
+        - EMAIL
+        - NATIONAL_ID
+        - RUC
+        - MERCHANT_ALIAS
+      description: The QR is not a key; QR resolution belongs to the Merchant Directory API.
+    Key:
+      type: object
+      required:
+        - keyType
+        - keyValue
+      properties:
+        keyType:
+          $ref: '#/components/schemas/KeyType'
+        keyValue:
+          type: string
+          example: '+50760001234'
+        owningParticipantId:
+          type: string
+    CreditorId:
+      type: string
+      pattern: ^CR[0-9]{9}$
+      description: Interoperable merchant identifier (QR subfield 26.04). Assigned by the HUB at registration (permanent and never reused).
+      example: CR000839201
+    PartyIdentification:
+      type: object
+      required:
+        - participantId
+      description: Party of a payment. For a P2M creditor paid by QR, `creditorId` alone is enough — the HUB completes the rest from the merchant directory.
+      properties:
+        name:
+          type: string
+        participantId:
+          type: string
+        account:
+          $ref: '#/components/schemas/Account'
+        consentReference:
+          $ref: '#/components/schemas/ConsentReference'
+        proxy:
+          $ref: '#/components/schemas/Key'
+        creditorId:
+          $ref: '#/components/schemas/CreditorId'
+    Currency:
+      type: string
+      enum:
+        - USD
+      description: Single currency USD 840. PAB reserved as a future evolution.
+    Amount:
+      type: object
+      required:
+        - currency
+        - value
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        value:
+          type: string
+          pattern: ^[0-9]+\.[0-9]{2}$
+          description: Decimal with dot and exactly 2 decimals, no thousands separator.
+          example: '125.00'
+    QrProfile:
+      type: string
+      enum:
+        - STC-C
+        - DYN
+        - DYN-POS
+        - DYN-CHECKOUT
+        - HYB-CHECKOUT
+      description: QR standard profile (subfield 80.01). Only STC-C enables caching.
+    Problem:
+      type: object
+      description: |
+        RFC 7807 error. `reasonCode` carries the HUB numeric error code (families: 1xxx directory,
+        3xxx business rejection, 4xxx timeout); `isoReasonCode` carries the ISO 20022 External
+        Code Set value when one applies (e.g. AM04, AC06, FRAD, DUPL).
+      required:
+        - title
+        - status
+        - reasonCode
+      properties:
+        type:
+          type: string
+          format: uri
+          example: https://hub.example.pa/problems/business-rule
+        title:
+          type: string
+          example: Business rule rejected
+        status:
+          type: integer
+          example: 422
+        detail:
+          type: string
+          example: The given MCC is not registered in the master catalogue.
+        reasonCode:
+          type: string
+          description: HUB error code (families 1xxx/3xxx/4xxx).
+          example: '3001'
+        isoReasonCode:
+          type: string
+          description: ISO 20022 External Code Set reason, when applicable.
+          example: AM04
+        traceId:
+          type: string
+          description: Correlation with the HUB telemetry.
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: Idempotency key (UUID) for safe retries (same key, same result).
+      schema:
+        type: string
+        format: uuid
+    FapiInteractionId:
+      name: x-fapi-interaction-id
+      in: header
+      required: false
+      description: Correlation identifier (UUID) for end-to-end traceability.
+      schema:
+        type: string
+    JwsSignature:
+      name: x-jws-signature
+      in: header
+      required: true
+      description: Detached JWS signature of the payload, for integrity and non-repudiation.
+      schema:
+        type: string
+    FapiAuthDate:
+      name: x-fapi-auth-date
+      in: header
+      required: false
+      description: Date and time of the customer's last authentication at their operator (only when an end customer is in the flow).
+      schema:
+        type: string
+    FapiCustomerIpAddress:
+      name: x-fapi-customer-ip-address
+      in: header
+      required: false
+      description: End customer's IP address when the flow involves one (anti-fraud input).
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request (syntax or schema)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    Unauthorized:
+      description: Not authenticated (invalid token or mTLS certificate not presented)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    Forbidden:
+      description: Authenticated but not allowed (missing scope or participant not entitled)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    BusinessRule:
+      description: Business rule rejected (`reasonCode` from the HUB error code catalogue)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    NotFound:
+      description: Resource not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'

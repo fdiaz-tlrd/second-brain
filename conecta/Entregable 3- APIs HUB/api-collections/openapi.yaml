@@ -1,0 +1,149 @@
+openapi: 3.0.3
+info:
+  title: Collections API — Panama Interoperability HUB
+  version: 1.0.0-draft
+  description: |
+    Collection requests (Request-to-Pay / QR, pain.013/pain.014 semantics): the creditor
+    initiates a collection request that the debtor's participant must accept or reject. For
+    P2M collections the creditor may be given as `creditorId` (subfield 26.04 of the
+    interoperable QR). The debtor's response (pain.014 semantics) is submitted on the response
+    endpoint; an accepted request generates a payment order linked through `requestId`.
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@[operator-domain]
+
+servers:
+  - url: https://sandbox.hub.example.pa/collections/v1
+    description: Sandbox
+  - url: https://hub.example.pa/collections/v1
+    description: Production
+
+tags:
+  - name: Collection requests
+    description: Request-to-Pay lifecycle (pain.013 / pain.014)
+
+paths:
+
+  /collection-requests:
+    post:
+      tags: [Collection requests]
+      summary: Create a collection request (R2P / QR)
+      operationId: createCollectionRequest
+      security: [{ oauth2ClientCredentials: [collections.write] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+        - $ref: '../common/common-components.yaml#/components/parameters/FapiInteractionId'
+        - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+        - $ref: '../common/common-components.yaml#/components/parameters/FapiAuthDate'
+        - $ref: '../common/common-components.yaml#/components/parameters/FapiCustomerIpAddress'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CollectionRequestCreation' }
+      responses:
+        '201':
+          description: Collection request created (pain.013 accepted)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CollectionRequest' }
+        '400': { $ref: '../common/common-components.yaml#/components/responses/BadRequest' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '422': { $ref: '../common/common-components.yaml#/components/responses/BusinessRule' }
+
+  /collection-requests/{requestId}:
+    parameters:
+      - { name: requestId, in: path, required: true, schema: { type: string } }
+    get:
+      tags: [Collection requests]
+      summary: Query a collection request
+      operationId: getCollectionRequest
+      security: [{ oauth2ClientCredentials: [collections.read] }]
+      responses:
+        '200':
+          description: Current state of the collection request
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CollectionRequest' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+
+  /collection-requests/{requestId}/response:
+    parameters:
+      - { name: requestId, in: path, required: true, schema: { type: string } }
+    post:
+      tags: [Collection requests]
+      summary: Accept or reject a collection request (pain.014)
+      description: |
+        Submitted by the debtor's participant. Acceptance triggers the linked payment order
+        (`linkedTransactionId` on the request record); rejection closes the request with the
+        given reason.
+      operationId: respondToCollectionRequest
+      security: [{ oauth2ClientCredentials: [collections.write] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+        - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CollectionResponse' }
+      responses:
+        '200':
+          description: Resulting state of the collection request
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CollectionRequest' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+        '409':
+          description: The request is no longer pending (already answered or expired)
+          content:
+            application/problem+json:
+              schema: { $ref: '../common/common-components.yaml#/components/schemas/Problem' }
+        '422': { $ref: '../common/common-components.yaml#/components/responses/BusinessRule' }
+
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      $ref: '../common/common-components.yaml#/components/securitySchemes/oauth2ClientCredentials'
+
+  schemas:
+    CollectionRequestStatus: { type: string, enum: [PENDING, ACCEPTED, REJECTED, EXPIRED] }
+
+    CollectionRequestCreation:
+      type: object
+      required: [debtorKey, instructedAmount]
+      description: The creditor is given either as `creditor` (full party) or as `creditorId` (P2M by QR).
+      properties:
+        creditor: { $ref: '../common/common-components.yaml#/components/schemas/PartyIdentification' }
+        creditorId: { $ref: '../common/common-components.yaml#/components/schemas/CreditorId' }
+        debtorKey: { $ref: '../common/common-components.yaml#/components/schemas/Key' }
+        instructedAmount: { $ref: '../common/common-components.yaml#/components/schemas/Amount' }
+        expiryDateTime: { type: string, format: date-time }
+        remittanceInformation: { type: string }
+        qrProfile: { $ref: '../common/common-components.yaml#/components/schemas/QrProfile' }
+
+    CollectionResponse:
+      type: object
+      required: [decision]
+      description: Debtor-side response with pain.014 semantics.
+      properties:
+        decision: { type: string, enum: [ACCEPTED, REJECTED] }
+        reasonCode: { type: string, description: 'Mandatory when rejecting (HUB error code catalogue).' }
+
+    CollectionRequest:
+      type: object
+      required: [requestId, status]
+      properties:
+        requestId: { type: string, example: "RTP-2026-555" }
+        creditor: { $ref: '../common/common-components.yaml#/components/schemas/PartyIdentification' }
+        debtorKey: { $ref: '../common/common-components.yaml#/components/schemas/Key' }
+        instructedAmount: { $ref: '../common/common-components.yaml#/components/schemas/Amount' }
+        expiryDateTime: { type: string, format: date-time }
+        status: { $ref: '#/components/schemas/CollectionRequestStatus' }
+        linkedTransactionId: { type: string, description: Payment order generated upon acceptance. }

@@ -73,23 +73,27 @@ sequenceDiagram
 ## Componentes agrupados por tipo
 
 ### Interfaces: API Gateway + Lambda
--	API Rest (con sus respectivos end-point) para ser consumido por el Banco Origen
--	API Rest (con sus respectivos end-point) para ser consumido por el HUB
+- INTERHUB API Rest para ser consumido por el Banco Origen
+-	INTERHUB API Rest para ser consumido por el HUB
 
-### Poller - Crontab: EventBridge + Lambda
--	Progamador para hacer Get el ACH Xpress
+### Crontab: EventBridge + Lambda
+-	Programador - Poller para hacer Get el ACH Xpress
+- Programador - Para envio de las disputa al HUB
+- Programador - Para envio de la compensación al LBTR
 
 ### Procesos Batch – Los que se ejecutaran en Premisa
--	Falta especificaciones
+-	Envio de las disputas de premisa a AWS
+
 
 ## Detalle de componente
 
 ### INTERHUB API Rest – Interface para ser consumido por el Banco Origen
 
-API Rest (con sus respectivos end-point) para ser consumido por el Banco Origen
-El mensaje deberá de seguir el estándar de Autopista, pero en el campo parámetros debe regirse por el HUB y PACS
+API Rest para ser consumido por el Banco Origen
+El mensaje deberá de seguir el estándar de Autopista, pero en el campo parámetros debe regirse por el HUB y como este establesca la definición de los PACS y CAMT
 
 Estructura general del resquest
+```json
 {
   "idCanal": "",
   "validador": "",
@@ -106,29 +110,66 @@ Estructura general del resquest
     ]
   }
 }
+```
 
 Donde:
--	“idCanal”: Se comporta igual como se maneja en Xpress
--	"validador”: Corresponde al id del HUB | El HUB será configurado en el PAC como un validador 
+-	"idCanal": Se comporta igual como se maneja en Xpress
+-	"validador": Corresponde al id del HUB. El mismo será un valor fijo definido por Telered 
 
 
 Se debe de crear los siguientes métodos:
 
--	Método: "0026" Consulta del directorio del interoperable
--	Método: "0027" Solicitud de crédito. PACS.008
--	Método: "0028" Consulta de estado una solicitud de crétido. PACS.028
+-	Método: "0027" Consulta del directorio del interoperable
+-	Método: "0028" Solicitud de crédito. PACS.008
+-	Método: "0029" Consulta de estado una solicitud de crétido. PACS.028
 
 Detalle por métodos:
 
-#### Método: "0026" Consulta del directorio del interoperable
+#### Método: "0027" Consulta del directorio interoperable
+Nota: La definición de los esquemas depende del consultor MinaIT, ya que este nos debe de indicar lo campos que deberá los request y response que se manejaran entre los sistemas.
 
-#### Método: "0027" Solicitud de crédito. PACS.008
+Flujo a grandes rasgos:
+-	Recibe una consulta del Banco origen
+-	Mapear la consulta recibida al formato esperado por el HUB
+-	Enviar la consulta al HUB
+-	Esperar la respuesta del HUB
+- Mapear la respuesta recibida al formato esperado por el Banco Origen
+-	Devuelve la respuesta al Banco origen
+
+
+#### Método: "0028" Solicitud de crédito. PACS.008
+Nota: La definición de los esquemas depende del HUB, ya que este nos debe de indicar lo campos que deberá los request y response que se manejaran entre los sistemas.
+
+Flujo a grandes rasgos:
 -	Recibe un PACS.008 del Banco origen
--	Envía él PACS.008 a ACH Xpress
--	Recibe de ACH Xpress el PACS.002
+-	Mapear los valores recibidos del PACS.008 al formato esperado por el ACH Xpress
+-	Envía el PACS.008 a ACH Xpress
+-	Recibe de ACH Xpress el PACS.002 de liquidación
+- Mapear la respuesta del PACS.002 de liquidación recibida al formato esperado por el Banco Origen
 -	Devuelve al PACS.002 al Banco origen
 
-#### Método: "0028" Consulta de estado una solicitud de crétido. PACS.028
+#### Método: "0029" Consulta de estado una solicitud de crétido. PACS.028
+Nota: La definición de los esquemas depende de HUB, ya que este nos debe de indicar lo campos que deberá los request y response que se manejaran entre los sistemas.
+
+Flujo a grandes rasgos:
+-	Recibe un PACS.028 del Banco origen
+-	Mapear los valores recibidos del PACS.028 al formato esperado por el ACH Xpress
+-	Envía el PACS.028 a ACH Xpress
+-	Recibe de ACH Xpress el PACS.002
+- Mapear la respuesta del PACS.002 recibida al formato esperado por el Banco Origen
+-	Devuelve al PACS.002 al Banco origen
+
+
+#### Artefactos:
+
+Versionamiento: GitHub
+Organización: Telered-Autopista
+Repositorios existentes:
+-	tld-matriz
+-	tld-validador-api
+Nuevos:
+-	tld-interhub-api
+
 
 
 
@@ -144,7 +185,7 @@ Como mínimo debemos de exponer métodos para:
 -	Recibir mensaje de reversa (Mensaje estándar del HUB basado en el CAMT.056)
 -	Recibir mensaje de estado de transacción (Mensaje estándar de HUB basado en PACS.028)
 -	Responder estado del procesador Telered (EchoTest)
--	Recibir las notificaciones de Webhook (archivo de incongruencias, archivo de conciliación, estado de procesadores (disponibles, no disponibles), timeouts ***Depende de la validación de Minsait)
+-	Recibir las notificaciones de Webhook (archivo de incongruencias, archivo de conciliación, estado de procesadores (disponibles, no disponibles), timeouts ***Depende de la validación de MinaIT)
 
 
 
@@ -180,7 +221,7 @@ En el punto 5 podemos recibir como estado de la solicitud de crédito (PACS.002)
 
 Worker PACS.028
 
-Worker CAMT.056 ***Depende de la validación de Minsait 
+Worker CAMT.056 ***Depende de la validación de MinaIT 
 
 
 

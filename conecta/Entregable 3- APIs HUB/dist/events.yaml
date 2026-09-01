@@ -1,0 +1,311 @@
+openapi: 3.0.3
+info:
+  title: Events API — Panama Interoperability HUB
+  version: 1.0.0-draft
+  description: |
+    Subscriptions to the HUB's outbound notification channel: JWS-signed webhooks,
+    at-least-once delivery with exponential retries, deduplication by `eventId` at the receiver.
+    Covers directory events (key and merchant changes — merchant events force invalidation of
+    the affected P2M resolution cache) and operational events (system notification messages,
+    availability and maintenance windows, reconciliation windows and file availability).
+    Inbound participant→HUB operational events are posted on the Operations API (`POST /events`).
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@[operator-domain]
+servers:
+  - url: https://sandbox.hub.example.pa/events/v1
+    description: Sandbox
+  - url: https://hub.example.pa/events/v1
+    description: Production
+tags:
+  - name: Subscriptions
+    description: Webhook subscriptions and event delivery
+paths:
+  /event-subscriptions:
+    post:
+      tags:
+        - Subscriptions
+      summary: Subscribe to HUB events
+      operationId: createEventSubscription
+      security:
+        - oauth2ClientCredentials:
+            - events.manage
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventSubscriptionRequest'
+      responses:
+        '201':
+          description: Subscription created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventSubscription'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      callbacks:
+        eventDelivery:
+          '{$request.body#/callbackUrl}':
+            post:
+              summary: Event delivery (JWS-signed)
+              description: At-least-once delivery; the receiver deduplicates by `eventId`.
+              operationId: onEvent
+              security: []
+              parameters:
+                - $ref: '#/components/parameters/JwsSignature'
+              requestBody:
+                required: true
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Event'
+              responses:
+                '204':
+                  description: Event received (idempotent by eventId)
+                '400':
+                  description: Invalid or unverifiable event (signature or schema)
+    get:
+      tags:
+        - Subscriptions
+      summary: List own subscriptions
+      operationId: listEventSubscriptions
+      security:
+        - oauth2ClientCredentials:
+            - events.manage
+      responses:
+        '200':
+          description: Subscriptions of the participant
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventSubscriptionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /event-subscriptions/{subscriptionId}:
+    delete:
+      tags:
+        - Subscriptions
+      summary: Delete a subscription
+      operationId: deleteEventSubscription
+      security:
+        - oauth2ClientCredentials:
+            - events.manage
+      parameters:
+        - name: subscriptionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Subscription deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      type: oauth2
+      description: |
+        OAuth 2.0 client credentials + OIDC **over mTLS** (HUB CA certificate at transport level).
+        Access tokens are sender-constrained (certificate-bound, RFC 8705). Per-domain scopes
+        refined as `domain.action` (e.g. `payments.write`, `directory.resolve`). Planned
+        evolution path: full FAPI 2.0 profile.
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.hub.example.pa/oauth2/token
+          scopes:
+            directory.resolve: Resolve person keys (aliases)
+            directory.read: Read own keys, networks and account-name verification
+            directory.write: Manage keys (registration, update, deregistration, portability)
+            merchants.resolve: Resolve merchants (transactional QR path)
+            merchants.read: Read and search merchants
+            merchants.write: Register and maintain merchants and collection methods
+            payments.write: Create payment orders
+            payments.read: Read payment status
+            collections.write: Create collection requests (Request-to-Pay)
+            collections.read: Read collection requests
+            events.manage: Manage event subscriptions
+            operations.read: Read system notifications and operational status
+            operations.write: Participant session (Sign On/Off) and inbound operational events
+            operations.admin: Scheme-operator actions (restricted to the HUB operator)
+            reconciliation.read: Download reconciliation files
+            reconciliation.write: Acknowledge reconciliation files and report discrepancies
+  schemas:
+    EventType:
+      type: string
+      description: Directory events (keys/merchants) and operational events of the scheme.
+      enum:
+        - KEY_PORT_REQUESTED
+        - KEY_PORTED
+        - KEY_DEREGISTERED
+        - MERCHANT_UPDATED
+        - MERCHANT_SUSPENDED
+        - COLLECTION_METHOD_CHANGED
+        - SYSTEM_NOTIFICATION
+        - AVAILABILITY_CHANGED
+        - MAINTENANCE_WINDOW
+        - RECONCILIATION_WINDOW_OPENED
+        - RECONCILIATION_WINDOW_CLOSED
+        - RECONCILIATION_FILE_AVAILABLE
+    EventSubscriptionRequest:
+      type: object
+      required:
+        - callbackUrl
+        - eventTypes
+      properties:
+        callbackUrl:
+          type: string
+          format: uri
+        eventTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventType'
+    EventSubscription:
+      type: object
+      required:
+        - subscriptionId
+        - callbackUrl
+        - eventTypes
+        - status
+      properties:
+        subscriptionId:
+          type: string
+        callbackUrl:
+          type: string
+          format: uri
+        eventTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventType'
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - SUSPENDED
+    EventSubscriptionList:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventSubscription'
+    Event:
+      type: object
+      required:
+        - eventId
+        - subscriptionId
+        - eventType
+        - occurredAt
+        - payload
+      description: |
+        Delivered at least once, JWS-signed (`x-jws-signature` header). The receiver
+        deduplicates by `eventId`.
+      properties:
+        eventId:
+          type: string
+        subscriptionId:
+          type: string
+        eventType:
+          $ref: '#/components/schemas/EventType'
+        occurredAt:
+          type: string
+          format: date-time
+        correlationId:
+          type: string
+          description: Correlation with the affected operation, when applicable.
+        payload:
+          type: object
+          description: Minimal view of the affected entity (never the account in clear).
+    Problem:
+      type: object
+      description: |
+        RFC 7807 error. `reasonCode` carries the HUB numeric error code (families: 1xxx directory,
+        3xxx business rejection, 4xxx timeout); `isoReasonCode` carries the ISO 20022 External
+        Code Set value when one applies (e.g. AM04, AC06, FRAD, DUPL).
+      required:
+        - title
+        - status
+        - reasonCode
+      properties:
+        type:
+          type: string
+          format: uri
+          example: https://hub.example.pa/problems/business-rule
+        title:
+          type: string
+          example: Business rule rejected
+        status:
+          type: integer
+          example: 422
+        detail:
+          type: string
+          example: The given MCC is not registered in the master catalogue.
+        reasonCode:
+          type: string
+          description: HUB error code (families 1xxx/3xxx/4xxx).
+          example: '3001'
+        isoReasonCode:
+          type: string
+          description: ISO 20022 External Code Set reason, when applicable.
+          example: AM04
+        traceId:
+          type: string
+          description: Correlation with the HUB telemetry.
+  responses:
+    Unauthorized:
+      description: Not authenticated (invalid token or mTLS certificate not presented)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    Forbidden:
+      description: Authenticated but not allowed (missing scope or participant not entitled)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    BadRequest:
+      description: Invalid request (syntax or schema)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    NotFound:
+      description: Resource not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: Idempotency key (UUID) for safe retries (same key, same result).
+      schema:
+        type: string
+        format: uuid
+    JwsSignature:
+      name: x-jws-signature
+      in: header
+      required: true
+      description: Detached JWS signature of the payload, for integrity and non-repudiation.
+      schema:
+        type: string

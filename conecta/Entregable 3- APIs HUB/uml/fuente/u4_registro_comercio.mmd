@@ -1,0 +1,31 @@
+---
+title: "U4 · Secuencia — registro de comercio interoperable"
+config:
+  theme: neutral
+  themeVariables:
+    primaryColor: "#F4ECEF"
+    primaryBorderColor: "#7A1F3D"
+    lineColor: "#5A5A5A"
+    fontFamily: "Georgia"
+---
+sequenceDiagram
+  autonumber
+  participant BCO as Banco adquirente<br/>(canal del comercio)
+  participant RED as Red del comercio<br/>(Telered / Yappy)
+  participant DIR as HUB · Directorio (5.1)
+  participant CACHE as Caché P2M
+
+  BCO->>RED: Alta del comercio en su red<br/>(alias, cuenta, producto, MCC, ciudad, correo, logo)
+  RED->>DIR: POST /merchants<br/>(MerchantRegistration: datos + collection method)
+  DIR->>DIR: Valida alias (alfanumérico), MCC contra catálogo,<br/>cuenta-nombre, unicidad por sucursal
+  alt Registro válido
+    DIR->>DIR: Asigna creditorId interoperable (26.04)
+    DIR-->>RED: ACCEPTED · creditorId
+    RED-->>BCO: p2mId / creditorId para generación de QR
+    note over RED: La red emite el QR EMVCo del estándar<br/>con 26.04 = creditorId
+  else Rechazo
+    DIR-->>RED: REJECTED · reasonCode de error del HUB
+  end
+  RED->>DIR: PUT /merchants/{creditorId} (modificación)
+  DIR->>CACHE: Invalida entrada del comercio
+  DIR->>DIR: Emite MERCHANT_UPDATED (webhook)
