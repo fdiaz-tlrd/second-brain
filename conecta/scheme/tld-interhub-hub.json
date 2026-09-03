@@ -1,0 +1,29 @@
+{
+  "required": [ "tipo", "payload" ],
+  "type": "object",
+  "properties": {
+    "tipo": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "string"
+    }
+  }
+}
+
+
+{
+  "required": [ "tipo", "payload" ],
+  "type": "object",
+  "properties": {
+    "statusCode": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "datos": {
+      "type": "string"
+    }
+  }
+}
