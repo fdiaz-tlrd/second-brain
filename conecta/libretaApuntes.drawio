@@ -410,7 +410,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="8X2JgmaS9IZ9dXXIGhVV" name="Página-2">
-    <mxGraphModel dx="728" dy="410" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1273" dy="718" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -471,7 +471,10 @@
         <mxCell id="9AfRIqPmbgFD2aJeN9pS-1" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" value="tld-interhub-lbtr" vertex="1">
           <mxGeometry height="78" width="78" x="680" y="599" as="geometry" />
         </mxCell>
-        <mxCell id="9AfRIqPmbgFD2aJeN9pS-2" parent="1" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.traditional_server;fillColor=#7D7C7C;gradientColor=none;fontSize=12;fontColor=#FFFFFF;strokeWidth=10;fontStyle=1" value="&lt;font color=&quot;#000000&quot; style=&quot;font-size: 12px;&quot;&gt;LBTR&lt;/font&gt;" vertex="1">
+        <mxCell id="Gk1qRvxpVSlSHeoQ02KL-4" edge="1" parent="1" source="9AfRIqPmbgFD2aJeN9pS-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="Gk1qRvxpVSlSHeoQ02KL-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9AfRIqPmbgFD2aJeN9pS-2" parent="1" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.traditional_server;fillColor=#7D7C7C;gradientColor=none;fontSize=12;fontColor=#FFFFFF;strokeWidth=10;fontStyle=1" value="&lt;font color=&quot;#000000&quot; style=&quot;font-size: 12px;&quot;&gt;Sistema LBTR de Telered&lt;/font&gt;" vertex="1">
           <mxGeometry height="80" width="42" x="1080" y="598" as="geometry" />
         </mxCell>
         <mxCell id="9AfRIqPmbgFD2aJeN9pS-3" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;" value="tld-interhub-lbtr-config" vertex="1">
@@ -494,6 +497,23 @@
         </mxCell>
         <mxCell id="9AfRIqPmbgFD2aJeN9pS-9" edge="1" parent="1" source="9AfRIqPmbgFD2aJeN9pS-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="9AfRIqPmbgFD2aJeN9pS-8">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Gk1qRvxpVSlSHeoQ02KL-2" edge="1" parent="1" source="Gk1qRvxpVSlSHeoQ02KL-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=1 4;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1040" y="640" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Gk1qRvxpVSlSHeoQ02KL-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Generar un archivo y que Control M lo mueva" vertex="1">
+          <mxGeometry height="54" width="140" x="970" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="Gk1qRvxpVSlSHeoQ02KL-3" parent="1" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.traditional_server;fillColor=#7D7C7C;gradientColor=none;fontSize=12;fontColor=#FFFFFF;strokeWidth=10;fontStyle=1" value="&lt;font color=&quot;#000000&quot; style=&quot;font-size: 12px;&quot;&gt;LBTR&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="42" x="1420" y="598" as="geometry" />
+        </mxCell>
+        <mxCell id="Gk1qRvxpVSlSHeoQ02KL-6" edge="1" parent="1" source="Gk1qRvxpVSlSHeoQ02KL-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=1 4;endArrow=none;endFill=0;" target="9AfRIqPmbgFD2aJeN9pS-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Gk1qRvxpVSlSHeoQ02KL-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Tenemos que modificarlo" vertex="1">
+          <mxGeometry height="30" width="100" x="1160" y="770" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

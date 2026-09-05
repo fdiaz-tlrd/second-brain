@@ -74,23 +74,81 @@ sequenceDiagram
 
 ### Interfaces
 Estos componentes son las API Rest que vamos a exponer. En grandes rasgos son la combinación de una API Gateway y una Lambda
-- Xpress para ser consumido por el Banco Origen participante del Servivio de Xpress
-- INTERHUB API Rest para ser consumido por el Banco Origen 
--	INTERHUB API Rest para ser consumido por el HUB
+- Xpress para ser consumido por el Banco Origen participante del Servivio de Xpress ( 20 días)
+- INTERHUB API Rest para ser consumido por el Banco Origen                          ( 30 días)
+-	INTERHUB API Rest para ser consumido por el HUB                                   ( 70 días)
+- INTERHUB API Rest para ser consumido por el Sistema LBTR de Telered               (  5 días)
+-------------------------------------------------------------------------- Subtotal: 125 días
 
 ### Crontab: EventBridge + Lambda
--	Programador - Poller para hacer Get el ACH Xpress
-- Programador - Para envio de las disputa al HUB
-- Programador - Para envio de la compensación al LBTR
+-	Programador - Poller para hacer Get el ACH Xpress                                 (  5 días)
+- Programador - Para envio de las disputa al HUB                                    (  5 días)
+- Programador - Envio del directorio de Alias (Bancos interoperables)               (  2 días)
+- Programador - Descarga y validación del archivo de incongruencia                  (  2 días)
+-------------------------------------------------------------------------- Subtotal:  14 días
 
 ## Conetores
 Estos componentes son los encargados de la conexión con las API Rest externas. Para conectarse con HUB, Ach Xpress y Banco Destino
-- INTERHUB Conector con HUB
-- INTERHUB Conector con Ach Xpress
-- INTERHUB Conector con LBTR
-- Validador Proxy
+- INTERHUB Conector con HUB                                                         ( 25 días)
+- INTERHUB Conector con Ach Xpress                                                  ( 19 días)
+- Sistema LBTR de Telered (Conversion archivo)                                      ( 10 días)
+- Validador Proxy (Conector con Banco Destino)                                      (  5 días)
+-------------------------------------------------------------------------- Subtotal:  59 días
 
-### Procesos Batch – Los que se ejecutaran en Premisa  // NO SE ACLARAN CON ESTO, 02/sep/2026 dijieron otra cosa. Ahora va hacer en nube. No saben lo que quiere
+## Procesos en Premisas
+- Proceso de sincronización no interoperable, los que estan en Xpress               (  3 días)
+- Proceso de Pase de datos de Nubes a Premisa                                       (  3 días)
+- Proceso de Generación del archivo de disputa                                      (  5 días)
+- Proceso de identificación de personas como comercios informales (BD Ach Xpress)   (  2 días)
+- Actualización de comercios informales en Autopista                                (  3 días)
+- Generación de archivos de comisión de personas como comercios informales          (  5 días)
+-------------------------------------------------------------------------- Subtotal:  21 días
+
+## Recopilación de tiempos
+-------------------------------------------------------------------------- Subtotal: 125 días
+-------------------------------------------------------------------------- Subtotal:  14 días
+-------------------------------------------------------------------------- Subtotal:  59 días
+-------------------------------------------------------------------------- Subtotal:  21 días
+---------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------    Total: 219 días
+
+
+
+
+--------------------------------------------------------------------------    Semana 5 días   = 43.8 semanas
+--------------------------------------------------------------------------    Meses 4 semanas = 10.7 meses
+
+
+---------------------------------
+INTERHUB Conector con HUB
+MTLS                       5 días
+Auth 2.0                   2 días
+Convertidos XML <-> JSON   3 días
+consulta                   3 días
+pacs.008                   3 días
+pacs.028                   3 días
+pacs.002                   3 días
+resultado compensación     3 días
+---------------------------------
+Total                     25 días
+
+
+---------------------------------
+INTERHUB Conector con Ach Xpress
+Auth 2.0                   2 días
+Convertidos XML <-> JSON   3 días
+Seguridad del mensaje      5 días
+pacs.008                   3 días
+pacs.028                   3 días
+pacs.002                   3 días
+---------------------------------
+Total                     19 días
+
+
+
+
+
+### Procesos Batch – Los que se ejecutaran en Premisa
 -	Envio de las disputas de premisa a AWS
 
 
@@ -181,11 +239,28 @@ Se cambiará que sea obligatorio el parámetro id, y se hará que la modificaci�
 `"metodo": "0026"` Nueva consulta al directorio de Alias
 Vamos a devolver un campo `p2pId`
 
+
+Contemplar el campo Favorito
+
+
 Versionamiento: GitHub
 Organización: Telered-Autopista
 Repositorios existentes:
 -	tld-api-alias
 
+
+3 métodos modificación
+1 método nuevo (tiene creación de tabla)
+
+Un (1) para método modificado
+Dos (2) para método nuevo
+
+5 días + 1 colchon = 6 días
+
+
+
+Una persona marcada como comercio informales NO es un Comercio
+Seguira siendo una persona
 
 
 ### INTERHUB API Rest – Interface para ser consumido por el Banco Origen
@@ -328,13 +403,15 @@ Ejemplo de un response que daremos al Banco Origen
                             "banco": "TLRDPAPA",
                             "cuenta": "123069852372001",
                             "producto": "PACA",
-                            "nombreBanco": "API Validador Dummy DEV"
+                            "nombreBanco": "API Validador Dummy DEV",
+                            "esFavorito": "Y"
                         },
                         {
                             "banco": "AMIYGATO",
                             "cuenta": "456069852372001",
                             "producto": "PACA",
-                            "nombreBanco": "Amiya Trust & Clearing"
+                            "nombreBanco": "Amiya Trust & Clearing",
+                            "esFavorito": "N"
                         }
                     ],
                     "p2pId": "11faeeaa-a58f-42ce-9dad-86c54980b2af",
@@ -408,10 +485,28 @@ Nuevos:
 -	tld-interhub-api
 
 
+| <porDefinir>| días | Tarea                                                                         |
+| ---------------------------------------------------------------------------------------------------|
+| Método 0027 | 0.5 | Modificación template.yaml (configurando el proyecto base del proyecto SAM)    |
+| Método 0027 | 0.5 | Definición de las variables de entorno                                         |
+| Método 0027 | 1.0 | Validaciones de los campos de entrada, definición de los códigos de respuesta  |
+| Método 0027 | 1.0 | Creación de mapeo Banco Origen -> HUB                                          |
+| Método 0027 | 1.0 | Conexión con el componente tld-interhub-hub                                    |
+| Método 0027 | 1.0 | Creación de mapeo HUB -> Banco Origen                                          |
+| Método 0027 | 1.0 | Creación de escenario de prueba en Postman - Happy Path                        |
+| Método 0027 | 2.0 | Creación de escenario de prueba en Postman - Escenarios de error               |
+| Método 0027 | 2.0 | Pruebas y correcciones
+
+
+2 semanas por métodos = 10 días
+3 métodos = 6 semanas = 30 días
 
 
 
 ### INTERHUB API Rest – Interface para ser consumido por el HUB
+
+6 métodos que debemos de construir para que el Hub nos consuma
+6 * 2 = 12 semanas
 
 API Rest (con sus respectivos end-point) para ser consumido por el HUB
 Este API Rest debe seguir las especificaciones del HUB
@@ -419,10 +514,12 @@ Este API Rest debe seguir las especificaciones del HUB
 Como mínimo debemos de exponer métodos para:
 -	Recibir mensaje de consulta de alias (Mensaje estándar del HUB)
 -	Recibir mensaje de crédito (Mensaje estándar del HUB basado en el PACS.008)
--	Recibir mensaje de reversa (Mensaje estándar del HUB basado en el CAMT.056)
 -	Recibir mensaje de estado de transacción (Mensaje estándar de HUB basado en PACS.028)
 -	Responder estado del procesador Telered (EchoTest)
 -	Recibir las notificaciones de Webhook (archivo de incongruencias, archivo de conciliación, estado de procesadores (disponibles, no disponibles), timeouts ***Depende de la validación de MinaIT)
+
+
+
 
 
 
@@ -506,3 +603,28 @@ Nota:
 
 ###	Envio de las disputas de premisa a AWS
 
+
+## Procesos en Premisas
+
+### Generación de archivos de comisión de personas como comercios informales
+
+monto completo mensual del comercion informal     | Actualmente no tenemos montos de los comercios informales
+Se hace un calculo sobre ese monto                | 
+
+------------- Hoy en día Xpress
+
+Monto de comercios informales es: ¿monto recibido en las transferecias o el monto el envia en las transferecias?
+-                                 Respuesta monto recibido
+En una transferecnias ACH Xpress, se tiene quien recibe el dinero en el campo que indica el número de celular
+Previamente sabemos los celulares que corresponde a los comercios informales
+
+Filtar las transferecnias ACH Xpress para los celulares de comercios informales
+
+------------- Interroperable
+
+Filtrar las transferencias ACH Xpress por:
+- el campo nuevo que indicará el Procesador (el campo se adiciona en requerimeinto a Montran)
+- también se debe de tener un campo para indicar si es P2P o P2M, Nombre del campo: local instruments
+
+Agrupar las transacciones por
+- El campo que indicara el número de comercio informales será: 
