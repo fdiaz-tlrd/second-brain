@@ -53,6 +53,8 @@ Discriminador: CloudWatch `/aws/lambda/tld-alias-cuenta` en el 500 — `URL + pa
 
 **Corrección (2026-09-08 22:25):** no adaptar el `.ps1` a la máquina de despliegue Windows. Esa máquina no es el camino de Alias. No inventar un flujo Windows; ampliar lo que el usuario dijo (EC2 prod + SSH).
 
+**Sonda AWS CLI máquina de despliegue (2026-09-08 22:47):** pedido explícito. Solo `get`/`describe`. Archivo: [`sonda-aws-cli-despliegue.ps1`](sonda-aws-cli-despliegue.ps1). Aporta policy, mapping path y VPCE; no reproduce el curl 403 (eso fue el EC2 Linux).
+
 ## Dónde está la prueba (consola)
 
 1. CloudWatch **`/aws/lambda/tld-alias-cuenta`** (Virginia **y** Oregon) en el minuto del 500. Prod loguea `URL + path` y, si axios falla, `Error en la función requestGet` / `requestPost` (código interno 600).
