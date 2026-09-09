@@ -49,7 +49,9 @@ Discriminador: CloudWatch `/aws/lambda/tld-alias-cuenta` en el 500 — `URL + pa
 
 **Sonda (2026-09-08 22:11):** comando corto GET Alias. Pegar stdout+stderr.
 
-**403 desde EC2 (2026-09-08 22:16):** el usuario hizo curl al custom domain y obtuvo **403 Forbidden**. Eso **llega** a API Gateway y es **rechazado antes de Lambda** (por eso no hay CloudWatch de pregunta-seguridad; Alias traduce el 403 a 500). El Test de consola no aplica resource policy. Sonda completa: [`sonda-403-ec2.sh`](sonda-403-ec2.sh) / [`sonda-403-ec2.ps1`](sonda-403-ec2.ps1).
+**403 desde EC2 (2026-09-08 22:16):** curl al custom domain → **403 Forbidden**. Llega a API Gateway y es rechazado antes de Lambda. Alias traduce eso a 500. Ese EC2 es **Linux** (SSH desde la consola web de AWS, instancia en prod). La sonda que corresponde es [`sonda-403-ec2.sh`](sonda-403-ec2.sh).
+
+**Corrección (2026-09-08 22:25):** no adaptar el `.ps1` a la máquina de despliegue Windows. Esa máquina no es el camino de Alias. No inventar un flujo Windows; ampliar lo que el usuario dijo (EC2 prod + SSH).
 
 ## Dónde está la prueba (consola)
 

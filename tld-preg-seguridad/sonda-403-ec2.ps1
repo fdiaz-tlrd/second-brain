@@ -1,5 +1,6 @@
-# Sonda prod tld-preg-seguridad — EC2 Windows / jump host EN la VPC prod.
-# Ejecutar: powershell -NoProfile -ExecutionPolicy Bypass -File .\sonda-403-ec2.ps1
+# Sonda prod tld-preg-seguridad — Windows DENTRO de la VPC prod.
+# El EC2 de este incidente es Linux (SSH desde la consola AWS): usar sonda-403-ec2.sh.
+# No corre en la máquina de despliegue (no es la red de Alias).
 $ErrorActionPreference = "Continue"
 $HostName = "tld-preg-seguridad.prod.telered.internal"
 $Qs = "/preguntas-sistema?idSistema=ALIA"
@@ -22,8 +23,9 @@ try {
   $Vpc = Invoke-RestMethod -Uri "http://169.254.169.254/latest/meta-data/network/interfaces/macs/$Mac/vpc-id" -Headers $h -TimeoutSec 2
   $Subnet = Invoke-RestMethod -Uri "http://169.254.169.254/latest/meta-data/network/interfaces/macs/$Mac/subnet-id" -Headers $h -TimeoutSec 2
 } catch {
-  $Region = ""
   Write-Output "IMDS fallo: $_"
+  Write-Output "No es un EC2 (o IMDS bloqueado). Esta sonda no aplica aquí."
+  exit 1
 }
 Write-Output "region=$Region"
 Write-Output "az=$Az"
