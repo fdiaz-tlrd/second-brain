@@ -1,0 +1,36 @@
+{
+    "respuesta": {
+        "idPeticion": "MEOWPAPA00000000001788894973",
+        "respuestas": [
+            {
+                "idSolicitud": "1",
+                "resultado": 0,
+                "datos": {
+                    "id": "71507ef4-217b-4a3e-9a8c-ea97f5d127bf",
+                    "identificador": "69852374",
+                    "tipoIdentificador": "CELULAR",
+                    "banco": "MEOWPAPA",
+                    "cuenta": "456069852372001",
+                    "producto": "PACA",
+                    "estado": "A",
+                    "creado": "2026-09-08 14:16:03.427",
+                    "actualizado": "2026-09-08 14:16:03.427",
+                    "cliente": {
+                        "tipoDocumento": "CEDULA",
+                        "documento": "6-123-1234",
+                        "primerNombre": "Luciana",
+                        "segundoNombre": "Auxesis",
+                        "primerApellido": "Theodoro",
+                        "segundoApellido": "de Montefío"
+                    },
+                    "fraudIndicator": {
+                        "flagged": true,
+                        "source": "string",
+                        "reasonCode": "string",
+                        "reportedAt": "2019-08-24T14:15:22Z"
+                    }
+                }
+            }
+        ]
+    }
+}

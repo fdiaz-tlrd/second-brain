@@ -1,0 +1,69 @@
+{
+  "type": "object",
+  "required": [
+    "tipoDocumento",
+    "documento",
+    "primerNombre",
+    "segundoNombre",
+    "primerApellido",
+    "segundoApellido",
+    "fraudIndicator",
+    "esFavorito"
+  ],
+  "properties": {
+    "tipoDocumento": {
+      "type": "string",
+      "enum": [
+        "CEDULA",
+        "PASAPORTE"
+      ]
+    },
+    "documento": {
+      "type": "string",
+      "maxLength": 27
+    },
+    "primerNombre": {
+      "type": "string",
+      "description": "Longitud pendiente de definir."
+    },
+    "segundoNombre": {
+      "type": "string",
+      "description": "Longitud pendiente de definir."
+    },
+    "primerApellido": {
+      "type": "string",
+      "description": "Longitud pendiente de definir."
+    },
+    "segundoApellido": {
+      "type": "string",
+      "description": "Longitud pendiente de definir."
+    },
+    "fraudIndicator": {
+      "type": "object",
+      "required": [
+        "flagged",
+        "source"
+      ],
+      "description": "Signal from the destination's confirmed-fraud list.",
+      "properties": {
+        "flagged": {
+          "type": "boolean"
+        },
+        "source": {
+          "type": "string",
+          "description": "Participant that originated the signal."
+        },
+        "reasonCode": {
+          "type": "string"
+        },
+        "reportedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "esFavorito": {
+      "type": "boolean"
+    }
+  }
+}

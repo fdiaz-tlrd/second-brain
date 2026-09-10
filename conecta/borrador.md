@@ -81,11 +81,11 @@ Estos componentes son las API Rest que vamos a exponer. En grandes rasgos son la
 -------------------------------------------------------------------------- Subtotal: 125 días
 
 ### Crontab: EventBridge + Lambda
--	Programador - Poller para hacer Get el ACH Xpress                                 (  5 días)
+-	Programador - Poller para hacer Get el ACH Xpress + Worker                        ( 15 días)
 - Programador - Para envio de las disputa al HUB                                    (  5 días)
 - Programador - Envio del directorio de Alias (Bancos interoperables)               (  2 días)
 - Programador - Descarga y validación del archivo de incongruencia                  (  2 días)
--------------------------------------------------------------------------- Subtotal:  14 días
+-------------------------------------------------------------------------- Subtotal:  24 días
 
 ## Conetores
 Estos componentes son los encargados de la conexión con las API Rest externas. Para conectarse con HUB, Ach Xpress y Banco Destino
@@ -101,22 +101,21 @@ Estos componentes son los encargados de la conexión con las API Rest externas. 
 - Proceso de Generación del archivo de disputa                                      (  5 días)
 - Proceso de identificación de personas como comercios informales (BD Ach Xpress)   (  2 días)
 - Actualización de comercios informales en Autopista                                (  3 días)
-- Generación de archivos de comisión de personas como comercios informales          (  5 días)
--------------------------------------------------------------------------- Subtotal:  21 días
+-------------------------------------------------------------------------- Subtotal:  16 días
 
 ## Recopilación de tiempos
 -------------------------------------------------------------------------- Subtotal: 125 días
--------------------------------------------------------------------------- Subtotal:  14 días
+-------------------------------------------------------------------------- Subtotal:  24 días
 -------------------------------------------------------------------------- Subtotal:  59 días
--------------------------------------------------------------------------- Subtotal:  21 días
+-------------------------------------------------------------------------- Subtotal:  16 días
 ---------------------------------------------------------------------------------------------
---------------------------------------------------------------------------    Total: 219 días
+--------------------------------------------------------------------------    Total: 224 días
 
 
 
 
---------------------------------------------------------------------------    Semana 5 días   = 43.8 semanas
---------------------------------------------------------------------------    Meses 4 semanas = 10.7 meses
+--------------------------------------------------------------------------    Semana 5 días   = 44.8 semanas
+--------------------------------------------------------------------------    Meses 4 semanas = 11.2 meses
 
 
 ---------------------------------
