@@ -6,9 +6,24 @@
 - Desde la **madrugada**, la última escritura en CloudWatch de la lambda de pregunta-seguridad (y hasta entonces funcionaba).
 - Ejecutó **Lambda** y **API Gateway** desde la consola AWS: **sí** escribió en CloudWatch.
 - 2026-09-08 21:57: insiste en que el problema es el **API Gateway de prod**, porque el Test de la consola (lo describe como test a la URL HTTPS) **funciona**.
-- 2026-09-08 22:09: confirmó en consola que `tld-preg-seguridad.prod.telered.internal` **tiene** mapping al API `tld-preg-seguridad` stage `tlrd-highway`. Esa hipótesis (mapping ausente) **queda cerrada**.
+- 2026-09-08 22:09: confirmó mapping en **Virginia** (`tld-preg-seguridad.prod.telered.internal` → API `tld-preg-seguridad` stage `tlrd-highway`). Eso no cubría Oregon.
+- **2026-09-09 01:33 (causa, usuario):** no es un solo custom domain para ambas regiones. **Oregon no tiene el mapping.** El tráfico **sí** fue a Oregon: se cayó **otra** aplicación y el balanceador mandó las transacciones allá. En CloudWatch de Oregon de pregunta-seguridad no había logs **porque** sin mapping API Gateway responde 403 y **no invoca** la lambda. Subieron esa otra aplicación; el tráfico volvió a Virginia.
 
-## Diagnóstico (evidencia de código + síntoma)
+## Causa
+
+1. Failover a Oregon (otra app caída → balanceador).
+2. Custom domain de **Oregon** sin mapping → 403 a Alias → Alias responde **500**.
+3. Cero logs en lambdas de pregunta-seguridad en Oregon: el request no llega a Lambda.
+4. Virginia tenía mapping y el Test de consola (Virginia) funcionaba. Alias en Oregon no usa ese Test.
+
+**Sigue (2026-09-09 01:36, usuario):** mapping de Oregon **ya está**. Pendiente: réplica DynamoDB Virginia → Oregon en consola AWS. Tablas del stack: `tld-preg-seguridad-sistema` y `tld-preg-seguridad`. Sin esa réplica, un failover a Oregon **ya no** muere en 403 de mapping, pero pregunta-seguridad en Oregon lee Dynamo de esa región (vacío o distinto de Virginia) y Alias puede volver a 500.
+
+Mejora a futuro (acordada, no ahora): `tld-alias-cuenta` invoca las lambdas de pregunta-seguridad (`Invoke`) en lugar de HTTP a API Gateway. Eso no sustituye la réplica de tablas.
+
+Hipótesis de 2026-09-08 22:09 («mapping existe, cerrada») era **solo Virginia**. Queda invalidada como cierre del incidente.
+
+El dominio **no** es único multi-región (no aplicar aquí el patrón de P2M `tld-api-p2m.prod.internal`).
+
 
 **La lambda y la integración API Gateway están vivas.** El Test de consola no pasa por el mismo camino que Alias.
 
@@ -37,7 +52,8 @@ El Test de consola de API Gateway / Lambda **no usa** custom domain, VPCE ni la 
 | VPCE Oregon | `vpce-060f0db9e16d13ea3` |
 | Alias timeout de función | 24 s |
 
-**Mapping custom domain (2026-09-08 22:09): existe** API `tld-preg-seguridad` + stage `tlrd-highway`. Ya no explicar el incidente como “se perdió el mapping”.
+**Mapping custom domain:** Virginia sí (2026-09-08). Oregon sí (usuario 2026-09-09 01:36). El 403/500 de ese día fue Oregon **sin** mapping.
+
 
 Lo que el mapping **no** cubre (y el Test de consola **tampoco**):
 
@@ -52,6 +68,8 @@ Discriminador: CloudWatch `/aws/lambda/tld-alias-cuenta` en el 500 — `URL + pa
 **403 desde EC2 (2026-09-08 22:16):** curl al custom domain → **403 Forbidden**. Llega a API Gateway y es rechazado antes de Lambda. Alias traduce eso a 500. Ese EC2 es **Linux** (SSH desde la consola web de AWS, instancia en prod). La sonda que corresponde es [`sonda-403-ec2.sh`](sonda-403-ec2.sh).
 
 **Corrección (2026-09-08 22:25):** no adaptar el `.ps1` a la máquina de despliegue Windows. Esa máquina no es el camino de Alias. No inventar un flujo Windows; ampliar lo que el usuario dijo (EC2 prod + SSH).
+
+**Sonda AWS CLI máquina de despliegue (2026-09-08 22:47):** pedido explícito. Solo `get`/`describe`. Archivo: [`sonda-aws-cli-despliegue.ps1`](sonda-aws-cli-despliegue.ps1). Aporta policy, mapping path y VPCE; no reproduce el curl 403 (eso fue el EC2 Linux).
 
 ## Dónde está la prueba (consola)
 
