@@ -8,3 +8,4 @@ Memoria viva entre sesiones del agente.
 | **Marketplace tech_doc (VCN/P2P/R2P)** | [`telered_content_mktpl/README.md`](telered_content_mktpl/README.md) |
 | VCN | [`tld-api-cuenta-nombre/ESTADO-ACTUAL.md`](tld-api-cuenta-nombre/ESTADO-ACTUAL.md) |
 | Validador-api | [`tld-validador-api/README.md`](tld-validador-api/README.md) |
+| **samconfig.toml** (VPCe / SG / subnets por ambiente) | [`samconfig.toml/00-estado-y-retomo.md`](samconfig.toml/00-estado-y-retomo.md) · [HTML colores](samconfig.toml/tabla-red-ambientes.html) |
