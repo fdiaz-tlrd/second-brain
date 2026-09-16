@@ -57,12 +57,12 @@ Hay que **eliminar el stack** (como QA) o, si se quisiera conservar el stack, sa
 
 ## QA vs este prod
 
-Script prod: `refactoria/Deploy/limpiar-stack-p2m-prod.ps1` (no usar el de QA). Aborta si STS no es `893506747683`. Descubre el custom domain `*p2m*` o se lo escribes arriba. No retiene el stage si los mappings siguen. Retiene solo `PaymentToMerchantLogGroup`. Corre en la máquina de despliegue con credenciales prod.
+Script prod: `refactoria/Deploy/limpiar-stack-p2m-prod.ps1` (no usar el de QA). Aborta si STS no es `893506747683`. Custom domain único ambas regiones: **`tld-api-p2m.prod.internal`**. No retiene el stage si los mappings siguen. Retiene solo `PaymentToMerchantLogGroup`. Corre en la máquina de despliegue con credenciales prod.
 
 Mismos bloqueos que en QA al `delete-stack`:
 
 - SCP niega `logs:DeleteLogGroup` (`/aws/lambda/tld-p2m`) → `--retain-resources`. El template **ya no** declara ese LogGroup (ajuste de QA).
-- Custom domain **fuera** del stack: hay que quitar base path mappings **del dominio de prod** (no el de QA) o el stage no borra.
+- Custom domain **fuera** del stack: **`tld-api-p2m.prod.internal`** (uno para Virginia y Oregon). Consola (usuario): un solo mapping, solo P2M. El script desasocia esa API; no borra el dominio.
 - Buckets versionados: vaciar antes o el stack no borra.
 - Tablas: Virginia only (`IsVirginiaRegion`); Oregon también tiene stack (Lambda). Borrar **ambas** regiones, como QA.
 - Tras el CREATE: en QA cargaron MCC `7299` en `tld-p2m-mcc`.
