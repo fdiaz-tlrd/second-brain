@@ -1,0 +1,1 @@
+.\deployNewVersion.ps1 -modo deploy -repositorio tld-onpremise-data -ramaGit main -ambiente prod -esReversa no -hashCommit c8f54132cddc2b82a6b66b1bb13d9e155fb8ca9b
