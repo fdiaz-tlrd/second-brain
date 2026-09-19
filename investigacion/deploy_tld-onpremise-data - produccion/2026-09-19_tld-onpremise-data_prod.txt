@@ -1,0 +1,370 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\pbmaplataforma> $Env:AWS_ACCESS_KEY_ID=""
+PS C:\Users\pbmaplataforma> $Env:AWS_SECRET_ACCESS_KEY=""
+PS C:\Users\pbmaplataforma> $Env:AWS_SESSION_TOKEN=""
+PS C:\Users\pbmaplataforma> Set-Location 'C:\AWSdeploy'
+PS C:\AWSdeploy> .\deployNewVersion.ps1 -modo deploy -repositorio tld-onpremise-data -ramaGit main -ambiente prod -esReversa no -hashCommit c8f54132cddc2b82a6b66b1bb13d9e155fb8ca9b
+[2026-09-19 03:25:28] [STEP] INICIO deployNewVersion.ps1
+[2026-09-19 03:25:28] [STEP] RESUMEN - repo=tld-onpremise-data | rama=main | ambiente=prod | modo=deploy | reversa=no
+[INFO] Perfil: Administradores de Plataforma | Usuario: pbmaplataforma
+[INFO] hashCommit: c8f54132cddc2b82a6b66b1bb13d9e155fb8ca9b
+[INFO] Ruta repo: C:\Users\pbmaplataforma\Desktop\GitHub\tld-onpremise-data
+[INFO] Entornos SAM: prod, prod-oregon
+[INFO] Log: C:\AWSdeploy\logs\pbmaplataforma\deploy-tld-onpremise-data-prod-20260919-032528.log
+[INFO] Herramientas: git OK | SAM Python 3.13.13
+[SUCCESS] Precondiciones OK.
+[SUCCESS] hashCommit OK (coincide con HEAD).
+[INFO] Workspace temporal SAM: C:\sam-temp\tld-onpremise-data-20260919-032530-5944
+[SUCCESS] Template deploy-ready generado: C:\Users\pbmaplataforma\Desktop\GitHub\tld-onpremise-data\.aws-sam\build\template.deploy-ready.yaml
+[2026-09-19 03:25:33] [STEP] DEPLOY - inicio entorno 'prod'
+        Uploading to tld-onpremise-data/prod/20260919-032533/1/4488fd718b769a10b5d036ebd0091f41  3855088 / 3855088  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-032533/1/7fa86737c90efa340db36c2fc5dd19f8  5027 / 5027  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-032533/1/727c3342b024fa4f463933802bedfc26  5654 / 5654  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-032533/1/57a6496a911fc74f6f350e19d856ed5c  5628 / 5628  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-032533/1/12105970f43cd1f751bb2c06873c07f5  6718 / 6718  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-032533/1/fd3e7c519c2b6e2bb7ebd09df5d9f00d  5705 / 5705  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-032533/1/34ea56c77c4a89060f1405d1f7b9f143  5731 / 5731  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-032533/1/3d695146f02ea9bfe24da265828a136e  4799 / 4799  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-032533/1/70958bcd7eb5feb543d66fe1ff08beae  4808 / 4808  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-032533/1/8cea6b48f3f88f102fa0735945ccee2e  4788 / 4788  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-032533/1/54bd41efb0fa1910fd56f11f547fa91b  6796 / 6796  (100.00%)
+
+        Deploying with following values
+        ===============================
+        Stack name                   : tld-alias-replica
+        Region                       : us-east-1
+        Confirm changeset            : False
+        Disable rollback             : False
+        Deployment s3 bucket         : aws-sam-cli-managed-default-samclisourcebucket-vds234g4vu9u
+        Capabilities                 : ["CAPABILITY_IAM"]
+        Parameter overrides          : {"DeployEnvironment": "tlrd-highway", "VPCe": "vpce-05fd27576a4f363ff", "SecurityGroup": "sg-013e8ae11b9da29c0", "Subnet1": "subnet-00f7c0df721dcfdc4", "Subnet2": "subnet-06e450fb4c4ea4e65", "Subnet3": "subnet-02a075226b5436af3", "LayerMphOrcl": "arn:aws:lambda:us-east-1:893506747683:layer:tld-orcl:3", "DynamoDBStreamIDAliasCuenta": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-alias-cuenta/stream/2023-04-13T16:35:22.124", "DynamoDBStreamIDBitacora": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-validador-bitacora/stream/2022-11-25T20:19:09.922", "DynamoDBStreamIDCanal": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-validador-canal/stream/2022-11-25T20:19:09.899", "DynamoDBStreamIDP2m": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-p2m/stream/2026-09-05T07:56:14.086", "DynamoDBStreamIDP2mCuenta": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-p2m-cuenta/stream/2026-09-05T07:56:14.110", "DynamoDBStreamIDP2mMcc": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-p2m-mcc/stream/2026-09-05T07:56:14.062"}
+        Signing Profiles             : {}
+
+Initiating deployment
+=====================
+
+        Uploading to tld-onpremise-data/prod/20260919-032533/1/4669261ae34dba4fe2406c523620c07b.template  22787 / 22787  (100.00%)
+
+
+Waiting for changeset to be created..
+
+CloudFormation stack changeset
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Operation                                          LogicalResourceId                                  ResourceType                                       Replacement
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
++ Add                                              AchReintentoLambdaRole                             AWS::IAM::Role                                     N/A
++ Add                                              AchReintentoLambda                                 AWS::Lambda::Function                              N/A
++ Add                                              AchReintentoLogGroup                               AWS::Logs::LogGroup                                N/A
++ Add                                              BitacoraAchLogGroup                                AWS::Logs::LogGroup                                N/A
++ Add                                              CanalAchLogGroup                                   AWS::Logs::LogGroup                                N/A
++ Add                                              OnPremiseLayeraf9f2196a6                           AWS::Lambda::LayerVersion                          N/A
++ Add                                              P2mCuentaLogGroup                                  AWS::Logs::LogGroup                                N/A
++ Add                                              P2mLogGroup                                        AWS::Logs::LogGroup                                N/A
++ Add                                              P2mMccLogGroup                                     AWS::Logs::LogGroup                                N/A
++ Add                                              ReplicaBitacoraAchLambdaRole                       AWS::IAM::Role                                     N/A
++ Add                                              ReplicaBitacoraAchLambdaStream                     AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaBitacoraAchLambda                           AWS::Lambda::Function                              N/A
++ Add                                              ReplicaCanalAchLambdaRole                          AWS::IAM::Role                                     N/A
++ Add                                              ReplicaCanalAchLambdaStream                        AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaCanalAchLambda                              AWS::Lambda::Function                              N/A
++ Add                                              ReplicaP2mCuentaLambdaRole                         AWS::IAM::Role                                     N/A
++ Add                                              ReplicaP2mCuentaLambdaStream                       AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaP2mCuentaLambda                             AWS::Lambda::Function                              N/A
++ Add                                              ReplicaP2mLambdaRole                               AWS::IAM::Role                                     N/A
++ Add                                              ReplicaP2mLambdaStream                             AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaP2mLambda                                   AWS::Lambda::Function                              N/A
++ Add                                              ReplicaP2mMccLambdaRole                            AWS::IAM::Role                                     N/A
++ Add                                              ReplicaP2mMccLambdaStream                          AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaP2mMccLambda                                AWS::Lambda::Function                              N/A
++ Add                                              SecretAchReplica                                   AWS::SecretsManager::Secret                        N/A
++ Add                                              TablaAchReplicacion                                AWS::DynamoDB::Table                               N/A
+* Modify                                           AliasReplicaReintentoLambda                        AWS::Lambda::Function                              False
+* Modify                                           ReplicaAliasCuentaLambda                           AWS::Lambda::Function                              False
+* Modify                                           ReplicaBitacoraLambda                              AWS::Lambda::Function                              False
+* Modify                                           ReplicaCanalLambda                                 AWS::Lambda::Function                              False
+- Delete                                           OnPremiseLayerd91a44ac7e                           AWS::Lambda::LayerVersion                          N/A
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Changeset created successfully. arn:aws:cloudformation:us-east-1:893506747683:changeSet/samcli-deploy1789806356/34d2d8eb-5de9-4b82-b69a-2ee6af9c61df
+
+
+2026-09-19 03:26:14 - Waiting for stack create/update to complete
+
+CloudFormation events from stack operations (refresh every 5.0 seconds)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ResourceStatus                                     ResourceType                                       LogicalResourceId                                  ResourceStatusReason
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UPDATE_IN_PROGRESS                                 AWS::CloudFormation::Stack                         tld-alias-replica                                  User Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::LayerVersion                          OnPremiseLayeraf9f2196a6                           -
+CREATE_IN_PROGRESS                                 AWS::SecretsManager::Secret                        SecretAchReplica                                   -
+CREATE_IN_PROGRESS                                 AWS::DynamoDB::Table                               TablaAchReplicacion                                -
+CREATE_IN_PROGRESS                                 AWS::DynamoDB::Table                               TablaAchReplicacion                                Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::SecretsManager::Secret                        SecretAchReplica                                   Resource creation Initiated
+CREATE_COMPLETE                                    AWS::SecretsManager::Secret                        SecretAchReplica                                   -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mMccLambdaRole                            -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mCuentaLambdaRole                         -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     AchReintentoLambdaRole                             -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mLambdaRole                               -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaCanalAchLambdaRole                          -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaBitacoraAchLambdaRole                       -
+CREATE_IN_PROGRESS                                 AWS::Lambda::LayerVersion                          OnPremiseLayeraf9f2196a6                           Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mMccLambdaRole                            Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     AchReintentoLambdaRole                             Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mLambdaRole                               Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaCanalAchLambdaRole                          Resource creation Initiated
+CREATE_COMPLETE                                    AWS::Lambda::LayerVersion                          OnPremiseLayeraf9f2196a6                           -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mCuentaLambdaRole                         Resource creation Initiated
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaBitacoraLambda                              -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              AliasReplicaReintentoLambda                        -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaAliasCuentaLambda                           -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaCanalLambda                                 -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaBitacoraAchLambdaRole                       Resource creation Initiated
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaBitacoraLambda                              -
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              AliasReplicaReintentoLambda                        -
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaCanalLambda                                 -
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaAliasCuentaLambda                           -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaP2mMccLambdaRole                            -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     AchReintentoLambdaRole                             -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaP2mLambdaRole                               -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaCanalAchLambdaRole                          -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaP2mCuentaLambdaRole                         -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mMccLambda                                -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              AchReintentoLambda                                 -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mLambda                                   -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaCanalAchLambda                              -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mCuentaLambda                             -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mMccLambda                                Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mLambda                                   Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaCanalAchLambda                              Resource creation Initiated
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaBitacoraAchLambdaRole                       -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              AchReintentoLambda                                 Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mCuentaLambda                             Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaBitacoraAchLambda                           -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaBitacoraAchLambda                           Resource creation Initiated
+CREATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaCanalAchLambda                              -
+CREATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaP2mLambda                                   -
+CREATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaP2mMccLambda                                -
+CREATE_COMPLETE                                    AWS::Lambda::Function                              AchReintentoLambda                                 -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                CanalAchLogGroup                                   -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaP2mLambdaStream                             -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mLogGroup                                        -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mMccLogGroup                                     -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaCanalAchLambdaStream                        -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaP2mMccLambdaStream                          -
+CREATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaP2mCuentaLambda                             -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                AchReintentoLogGroup                               -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaP2mCuentaLambdaStream                       -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mCuentaLogGroup                                  -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                CanalAchLogGroup                                   Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mMccLogGroup                                     Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mLogGroup                                        Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                AchReintentoLogGroup                               Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mCuentaLogGroup                                  Resource creation Initiated
+CREATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaBitacoraAchLambda                           -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaCanalAchLambdaStream                        Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaP2mMccLambdaStream                          Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaP2mLambdaStream                             Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                BitacoraAchLogGroup                                -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaBitacoraAchLambdaStream                     -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaP2mCuentaLambdaStream                       Resource creation Initiated
+CREATE_COMPLETE                                    AWS::Lambda::EventSourceMapping                    ReplicaCanalAchLambdaStream                        -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                BitacoraAchLogGroup                                Resource creation Initiated
+CREATE_COMPLETE                                    AWS::Lambda::EventSourceMapping                    ReplicaP2mMccLambdaStream                          -
+CREATE_COMPLETE                                    AWS::Lambda::EventSourceMapping                    ReplicaP2mLambdaStream                             -
+CREATE_COMPLETE                                    AWS::Lambda::EventSourceMapping                    ReplicaP2mCuentaLambdaStream                       -
+CREATE_COMPLETE                                    AWS::DynamoDB::Table                               TablaAchReplicacion                                -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaBitacoraAchLambdaStream                     Resource creation Initiated
+CREATE_COMPLETE                                    AWS::Lambda::EventSourceMapping                    ReplicaBitacoraAchLambdaStream                     -
+CREATE_COMPLETE                                    AWS::Logs::LogGroup                                CanalAchLogGroup                                   -
+CREATE_COMPLETE                                    AWS::Logs::LogGroup                                P2mMccLogGroup                                     -
+CREATE_COMPLETE                                    AWS::Logs::LogGroup                                P2mLogGroup                                        -
+CREATE_COMPLETE                                    AWS::Logs::LogGroup                                AchReintentoLogGroup                               -
+CREATE_COMPLETE                                    AWS::Logs::LogGroup                                P2mCuentaLogGroup                                  -
+CREATE_COMPLETE                                    AWS::Logs::LogGroup                                BitacoraAchLogGroup                                -
+UPDATE_COMPLETE_CLEANUP_IN_PROGRESS                AWS::CloudFormation::Stack                         tld-alias-replica                                  -
+DELETE_SKIPPED                                     AWS::Lambda::LayerVersion                          OnPremiseLayerd91a44ac7e                           -
+UPDATE_COMPLETE                                    AWS::CloudFormation::Stack                         tld-alias-replica                                  -
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Successfully created/updated stack - tld-alias-replica in us-east-1
+
+[2026-09-19 03:27:11] [SUCCESS] DEPLOY - fin entorno 'prod' (exito)
+[2026-09-19 03:27:11] [STEP] DEPLOY - inicio entorno 'prod-oregon'
+        Uploading to tld-onpremise-data/prod-oregon/20260919-032711/1/4488fd718b769a10b5d036ebd0091f41  3855088 / 3855088  (100.00%)
+        Uploading to tld-onpremise-data/prod-oregon/20260919-032711/1/7fa86737c90efa340db36c2fc5dd19f8  5027 / 5027  (100.00%)
+        Uploading to tld-onpremise-data/prod-oregon/20260919-032711/1/727c3342b024fa4f463933802bedfc26  5654 / 5654  (100.00%)
+        Uploading to tld-onpremise-data/prod-oregon/20260919-032711/1/57a6496a911fc74f6f350e19d856ed5c  5628 / 5628  (100.00%)
+        Uploading to tld-onpremise-data/prod-oregon/20260919-032711/1/12105970f43cd1f751bb2c06873c07f5  6718 / 6718  (100.00%)
+        Uploading to tld-onpremise-data/prod-oregon/20260919-032711/1/fd3e7c519c2b6e2bb7ebd09df5d9f00d  5705 / 5705  (100.00%)
+        Uploading to tld-onpremise-data/prod-oregon/20260919-032711/1/34ea56c77c4a89060f1405d1f7b9f143  5731 / 5731  (100.00%)
+        Uploading to tld-onpremise-data/prod-oregon/20260919-032711/1/3d695146f02ea9bfe24da265828a136e  4799 / 4799  (100.00%)
+        Uploading to tld-onpremise-data/prod-oregon/20260919-032711/1/70958bcd7eb5feb543d66fe1ff08beae  4808 / 4808  (100.00%)
+        Uploading to tld-onpremise-data/prod-oregon/20260919-032711/1/8cea6b48f3f88f102fa0735945ccee2e  4788 / 4788  (100.00%)
+        Uploading to tld-onpremise-data/prod-oregon/20260919-032711/1/54bd41efb0fa1910fd56f11f547fa91b  6796 / 6796  (100.00%)
+
+        Deploying with following values
+        ===============================
+        Stack name                   : tld-alias-replica
+        Region                       : us-west-2
+        Confirm changeset            : False
+        Disable rollback             : False
+        Deployment s3 bucket         : aws-sam-cli-managed-default-samclisourcebucket-cytsc7dtvb49
+        Capabilities                 : ["CAPABILITY_IAM"]
+        Parameter overrides          : {"DeployEnvironment": "tlrd-highway", "VPCe": "vpce-060f0db9e16d13ea3", "SecurityGroup": "sg-0020c5cbea750ad63", "Subnet1": "subnet-0c03d3e13e5de8610", "Subnet2": "subnet-07dd5ba31d52b7864", "Subnet3": "subnet-024199d69953e1a25", "LayerMphOrcl": "arn:aws:lambda:us-west-2:893506747683:layer:tld-orcl:2", "DynamoDBStreamIDAliasCuenta": "arn:aws:dynamodb:us-west-2:893506747683:table/tld-alias-cuenta/stream/2023-04-13T16:46:13.325", "DynamoDBStreamIDBitacora": "arn:aws:dynamodb:us-west-2:893506747683:table/tld-validador-bitacora/stream/2022-11-25T20:23:25.846", "DynamoDBStreamIDCanal": "arn:aws:dynamodb:us-west-2:893506747683:table/tld-validador-canal/stream/2022-11-25T20:23:37.343", "DynamoDBStreamIDP2m": "arn:aws:dynamodb:us-west-2:893506747683:table/tld-p2m/stream/2026-09-05T08:08:58.008", "DynamoDBStreamIDP2mCuenta": "arn:aws:dynamodb:us-west-2:893506747683:table/tld-p2m-cuenta/stream/2026-09-05T08:17:20.663", "DynamoDBStreamIDP2mMcc": "arn:aws:dynamodb:us-west-2:893506747683:table/tld-p2m-mcc/stream/2026-09-05T08:19:53.821"}
+        Signing Profiles             : {}
+
+Initiating deployment
+=====================
+
+        Uploading to tld-onpremise-data/prod-oregon/20260919-032711/1/a9655f2471c9881cacdd618dc46a0df3.template  22864 / 22864  (100.00%)
+
+
+Waiting for changeset to be created..
+
+CloudFormation stack changeset
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Operation                                          LogicalResourceId                                  ResourceType                                       Replacement
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
++ Add                                              AchReintentoLambdaRole                             AWS::IAM::Role                                     N/A
++ Add                                              AchReintentoLambda                                 AWS::Lambda::Function                              N/A
++ Add                                              AchReintentoLogGroup                               AWS::Logs::LogGroup                                N/A
++ Add                                              BitacoraAchLogGroup                                AWS::Logs::LogGroup                                N/A
++ Add                                              CanalAchLogGroup                                   AWS::Logs::LogGroup                                N/A
++ Add                                              OnPremiseLayera2c5037edb                           AWS::Lambda::LayerVersion                          N/A
++ Add                                              P2mCuentaLogGroup                                  AWS::Logs::LogGroup                                N/A
++ Add                                              P2mLogGroup                                        AWS::Logs::LogGroup                                N/A
++ Add                                              P2mMccLogGroup                                     AWS::Logs::LogGroup                                N/A
++ Add                                              ReplicaBitacoraAchLambdaRole                       AWS::IAM::Role                                     N/A
++ Add                                              ReplicaBitacoraAchLambdaStream                     AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaBitacoraAchLambda                           AWS::Lambda::Function                              N/A
++ Add                                              ReplicaCanalAchLambdaRole                          AWS::IAM::Role                                     N/A
++ Add                                              ReplicaCanalAchLambdaStream                        AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaCanalAchLambda                              AWS::Lambda::Function                              N/A
++ Add                                              ReplicaP2mCuentaLambdaRole                         AWS::IAM::Role                                     N/A
++ Add                                              ReplicaP2mCuentaLambdaStream                       AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaP2mCuentaLambda                             AWS::Lambda::Function                              N/A
++ Add                                              ReplicaP2mLambdaRole                               AWS::IAM::Role                                     N/A
++ Add                                              ReplicaP2mLambdaStream                             AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaP2mLambda                                   AWS::Lambda::Function                              N/A
++ Add                                              ReplicaP2mMccLambdaRole                            AWS::IAM::Role                                     N/A
++ Add                                              ReplicaP2mMccLambdaStream                          AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaP2mMccLambda                                AWS::Lambda::Function                              N/A
++ Add                                              SecretAchReplica                                   AWS::SecretsManager::Secret                        N/A
+* Modify                                           AliasReplicaReintentoLambda                        AWS::Lambda::Function                              False
+* Modify                                           ReplicaAliasCuentaLambda                           AWS::Lambda::Function                              False
+* Modify                                           ReplicaBitacoraLambda                              AWS::Lambda::Function                              False
+* Modify                                           ReplicaCanalLambda                                 AWS::Lambda::Function                              False
+- Delete                                           OnPremiseLayer6dd4836c65                           AWS::Lambda::LayerVersion                          N/A
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Changeset created successfully. arn:aws:cloudformation:us-west-2:893506747683:changeSet/samcli-deploy1789806454/32e54033-9e78-4e66-ba97-797609d80f1c
+
+
+2026-09-19 03:27:52 - Waiting for stack create/update to complete
+
+CloudFormation events from stack operations (refresh every 5.0 seconds)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ResourceStatus                                     ResourceType                                       LogicalResourceId                                  ResourceStatusReason
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UPDATE_IN_PROGRESS                                 AWS::CloudFormation::Stack                         tld-alias-replica                                  User Initiated
+CREATE_IN_PROGRESS                                 AWS::SecretsManager::Secret                        SecretAchReplica                                   -
+CREATE_IN_PROGRESS                                 AWS::Lambda::LayerVersion                          OnPremiseLayera2c5037edb                           -
+CREATE_IN_PROGRESS                                 AWS::SecretsManager::Secret                        SecretAchReplica                                   Resource creation Initiated
+CREATE_COMPLETE                                    AWS::SecretsManager::Secret                        SecretAchReplica                                   -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaCanalAchLambdaRole                          -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     AchReintentoLambdaRole                             -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mLambdaRole                               -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaBitacoraAchLambdaRole                       -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mCuentaLambdaRole                         -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mMccLambdaRole                            -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     AchReintentoLambdaRole                             Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mCuentaLambdaRole                         Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaBitacoraAchLambdaRole                       Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mMccLambdaRole                            Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaCanalAchLambdaRole                          Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::LayerVersion                          OnPremiseLayera2c5037edb                           Resource creation Initiated
+CREATE_COMPLETE                                    AWS::Lambda::LayerVersion                          OnPremiseLayera2c5037edb                           -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mLambdaRole                               Resource creation Initiated
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaAliasCuentaLambda                           -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaCanalLambda                                 -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              AliasReplicaReintentoLambda                        -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaBitacoraLambda                              -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     AchReintentoLambdaRole                             -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaBitacoraAchLambdaRole                       -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaP2mCuentaLambdaRole                         -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaP2mMccLambdaRole                            -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              AchReintentoLambda                                 -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaBitacoraAchLambda                           -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mCuentaLambda                             -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mMccLambda                                -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaCanalAchLambdaRole                          -
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaCanalLambda                                 -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              AchReintentoLambda                                 Resource creation Initiated
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              AliasReplicaReintentoLambda                        -
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaAliasCuentaLambda                           -
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaBitacoraLambda                              -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mCuentaLambda                             Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaBitacoraAchLambda                           Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mMccLambda                                Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaCanalAchLambda                              -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaP2mLambdaRole                               -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaCanalAchLambda                              Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mLambda                                   -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mLambda                                   Resource creation Initiated
+CREATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaP2mCuentaLambda                             -
+CREATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaBitacoraAchLambda                           -
+CREATE_COMPLETE                                    AWS::Lambda::Function                              AchReintentoLambda                                 -
+CREATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaP2mMccLambda                                -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaP2mCuentaLambdaStream                       -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mCuentaLogGroup                                  -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaBitacoraAchLambdaStream                     -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                BitacoraAchLogGroup                                -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                AchReintentoLogGroup                               -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mMccLogGroup                                     -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaP2mMccLambdaStream                          -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                BitacoraAchLogGroup                                Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                AchReintentoLogGroup                               Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mCuentaLogGroup                                  Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mMccLogGroup                                     Resource creation Initiated
+CREATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaCanalAchLambda                              -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaP2mCuentaLambdaStream                       Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaBitacoraAchLambdaStream                     Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaCanalAchLambdaStream                        -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                CanalAchLogGroup                                   -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaP2mMccLambdaStream                          Resource creation Initiated
+CREATE_COMPLETE                                    AWS::Lambda::EventSourceMapping                    ReplicaBitacoraAchLambdaStream                     -
+CREATE_COMPLETE                                    AWS::Lambda::EventSourceMapping                    ReplicaP2mCuentaLambdaStream                       -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                CanalAchLogGroup                                   Resource creation Initiated
+CREATE_COMPLETE                                    AWS::Lambda::EventSourceMapping                    ReplicaP2mMccLambdaStream                          -
+CREATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaP2mLambda                                   -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaCanalAchLambdaStream                        Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mLogGroup                                        -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaP2mLambdaStream                             -
+CREATE_COMPLETE                                    AWS::Lambda::EventSourceMapping                    ReplicaCanalAchLambdaStream                        -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mLogGroup                                        Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaP2mLambdaStream                             Resource creation Initiated
+CREATE_COMPLETE                                    AWS::Lambda::EventSourceMapping                    ReplicaP2mLambdaStream                             -
+CREATE_COMPLETE                                    AWS::Logs::LogGroup                                BitacoraAchLogGroup                                -
+CREATE_COMPLETE                                    AWS::Logs::LogGroup                                P2mCuentaLogGroup                                  -
+CREATE_COMPLETE                                    AWS::Logs::LogGroup                                P2mMccLogGroup                                     -
+CREATE_COMPLETE                                    AWS::Logs::LogGroup                                AchReintentoLogGroup                               -
+CREATE_COMPLETE                                    AWS::Logs::LogGroup                                CanalAchLogGroup                                   -
+CREATE_COMPLETE                                    AWS::Logs::LogGroup                                P2mLogGroup                                        -
+UPDATE_COMPLETE_CLEANUP_IN_PROGRESS                AWS::CloudFormation::Stack                         tld-alias-replica                                  -
+DELETE_SKIPPED                                     AWS::Lambda::LayerVersion                          OnPremiseLayer6dd4836c65                           -
+UPDATE_COMPLETE                                    AWS::CloudFormation::Stack                         tld-alias-replica                                  -
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Successfully created/updated stack - tld-alias-replica in us-west-2
+
+[2026-09-19 03:28:52] [SUCCESS] DEPLOY - fin entorno 'prod-oregon' (exito)
+[2026-09-19 03:28:52] [SUCCESS] FIN TOTAL - deploy completado en 00:03:23 | log=C:\AWSdeploy\logs\pbmaplataforma\deploy-tld-onpremise-data-prod-20260919-032528.log
+PS C:\Users\pbmaplataforma\Desktop\GitHub\tld-onpremise-data> .\deployNewVersion.ps1 -modo deploy -repositorio tld-onpremise-data -ramaGit main -ambiente prod -esReversa no -hashCommit c8f54132cddc2b82a6b66b1bb13d9e155fb8ca9b
