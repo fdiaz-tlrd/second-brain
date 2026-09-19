@@ -1,0 +1,792 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\pbmaplataforma> $Env:AWS_ACCESS_KEY_ID=""
+PS C:\Users\pbmaplataforma> $Env:AWS_SECRET_ACCESS_KEY=""
+PS C:\Users\pbmaplataforma> $Env:AWS_SESSION_TOKEN=""
+PS C:\Users\pbmaplataforma> Set-Location 'C:\AWSdeploy'
+PS C:\AWSdeploy> .\deployNewVersion.ps1
+
+cmdlet deployNewVersion.ps1 at command pipeline position 1
+Supply values for the following parameters:
+repositorio: tld-onpremise-data
+ramaGit: main
+ambiente: prod
+esReversa: no
+hashCommit: c8f54132cddc2b82a6b66b1bb13d9e155fb8ca9b
+[2026-09-19 01:52:48] [STEP] INICIO deployNewVersion.ps1
+[2026-09-19 01:52:48] [STEP] RESUMEN - repo=tld-onpremise-data | rama=main | ambiente=prod | modo=full | reversa=no
+[INFO] Perfil: Administradores de Plataforma | Usuario: pbmaplataforma
+[INFO] hashCommit: c8f54132cddc2b82a6b66b1bb13d9e155fb8ca9b
+[INFO] Ruta repo: C:\Users\pbmaplataforma\Desktop\GitHub\tld-onpremise-data
+[INFO] Entornos SAM: prod, prod-oregon
+[INFO] Log: C:\AWSdeploy\logs\pbmaplataforma\deploy-tld-onpremise-data-prod-20260919-015248.log
+[INFO] Herramientas: git OK | SAM Python 3.13.13 | npm OK | py -3.14 OK (Python 3.14.6)
+[SUCCESS] Precondiciones OK.
+[2026-09-19 01:53:01] [STEP] GIT - sincronizar repositorio con origin (remote-first)
+remote: Enumerating objects: 22, done.
+remote: Counting objects: 100% (22/22), done.
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 13 (delta 4), reused 9 (delta 4), pack-reused 0 (from 0)
+Unpacking objects: 100% (13/13), 5.92 KiB | 10.00 KiB/s, done.
+From https://github.com/Telered-Autopista/tld-onpremise-data
+   4dcbcce..160faf3  qa         -> origin/qa
+   425b335..f09663b  develop    -> origin/develop
+   139be98..79631e3  feature/ARQ-256_Bajar_a_premisa_P2M -> origin/feature/ARQ-256_Bajar_a_premisa_P2M
+   afd53f7..c8f5413  main       -> origin/main
+   38d2d3f..ce662e9  sandbox    -> origin/sandbox
+HEAD is now at 4dcbcce Merge pull request #45 from Telered-Autopista/sandbox
+Removing .aws-sam/
+Removing lambdas/layer/nodejs/node_modules/
+Removing lambdas/layer/nodejs/package-lock.json
+Switched to and reset branch 'main'
+branch 'main' set up to track 'origin/main'.
+Your branch is up to date with 'origin/main'.
+HEAD is now at c8f5413 Merge pull request #49 from Telered-Autopista/qa
+[INFO] Git rama: main
+[SUCCESS] Git sincronizado: c8f5413 - Merge pull request #49 from Telered-Autopista/qa (rbozav)
+[SUCCESS] hashCommit OK (coincide con HEAD).
+[2026-09-19 01:53:54] [STEP] DEPENDENCIAS - npm (layer Node) y pip (Lambdas Python)
+[SUCCESS] Registry npm local disponible en puerto 4873.
+[INFO] npm: 1 carpeta(s) nodejs
+[WARN] Sin package-lock.json; npm i --omit=dev --ignore-scripts: lambdas\layer\nodejs
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated debuglog@1.0.1: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm warn deprecated readdir-scoped-modules@1.1.0: This functionality has been moved to @npmcli/fs
+npm warn deprecated read-package-json@2.1.2: This package is no longer supported. Please use @npmcli/package-json instead.
+npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+npm warn deprecated read-installed@4.0.3: This package is no longer supported.
+
+added 46 packages, and audited 47 packages in 51s
+
+5 packages are looking for funding
+  run `npm fund` for details
+
+3 high severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[INFO] pip: 0 requirements.txt
+[2026-09-19 01:54:53] [SUCCESS] DEPENDENCIAS OK
+[2026-09-19 01:54:53] [STEP] BUILD - sam build, layer ZIP y template
+[INFO] Workspace temporal SAM: C:\sam-temp\tld-onpremise-data-20260919-015454-4328
+[INFO] sam build: Python 3.14 listo en PATH
+[INFO] Ejecutando sam build...
+Building codeuri: C:\Users\pbmaplataforma\Desktop\GitHub\tld-onpremise-data\lambdas\replica-cuenta runtime: nodejs24.x architecture: x86_64 functions: ReplicaAliasCuentaLambda
+ Running NodejsNpmBuilder:NpmPack
+ Running NodejsNpmBuilder:CopyNpmrcAndLockfile
+ Running NodejsNpmBuilder:CopySource
+ Running NodejsNpmBuilder:NpmInstall
+ Running NodejsNpmBuilder:NpmTest
+ Running NodejsNpmBuilder:CleanUpNpmrc
+ Running NodejsNpmBuilder:LockfileCleanUp
+Building codeuri: C:\Users\pbmaplataforma\Desktop\GitHub\tld-onpremise-data\lambdas\replica-bitacora runtime: nodejs24.x architecture: x86_64 functions: ReplicaBitacoraLambda
+ Running NodejsNpmBuilder:NpmPack
+ Running NodejsNpmBuilder:CopyNpmrcAndLockfile
+ Running NodejsNpmBuilder:CopySource
+ Running NodejsNpmBuilder:NpmInstall
+ Running NodejsNpmBuilder:NpmTest
+ Running NodejsNpmBuilder:CleanUpNpmrc
+ Running NodejsNpmBuilder:LockfileCleanUp
+Building codeuri: C:\Users\pbmaplataforma\Desktop\GitHub\tld-onpremise-data\lambdas\replica-canal runtime: nodejs24.x architecture: x86_64 functions: ReplicaCanalLambda
+ Running NodejsNpmBuilder:NpmPack
+ Running NodejsNpmBuilder:CopyNpmrcAndLockfile
+ Running NodejsNpmBuilder:CopySource
+ Running NodejsNpmBuilder:NpmInstall
+ Running NodejsNpmBuilder:NpmTest
+ Running NodejsNpmBuilder:CleanUpNpmrc
+ Running NodejsNpmBuilder:LockfileCleanUp
+Building codeuri: C:\Users\pbmaplataforma\Desktop\GitHub\tld-onpremise-data\lambdas\alias-reintento runtime: nodejs24.x architecture: x86_64 functions: AliasReplicaReintentoLambda
+ Running NodejsNpmBuilder:NpmPack
+ Running NodejsNpmBuilder:CopyNpmrcAndLockfile
+ Running NodejsNpmBuilder:CopySource
+ Running NodejsNpmBuilder:NpmInstall
+ Running NodejsNpmBuilder:NpmTest
+ Running NodejsNpmBuilder:CleanUpNpmrc
+ Running NodejsNpmBuilder:LockfileCleanUp
+Building codeuri: C:\Users\pbmaplataforma\Desktop\GitHub\tld-onpremise-data\lambdas\replica-canal-ach runtime: nodejs24.x architecture: x86_64 functions: ReplicaCanalAchLambda
+ Running NodejsNpmBuilder:NpmPack
+ Running NodejsNpmBuilder:CopyNpmrcAndLockfile
+ Running NodejsNpmBuilder:CopySource
+ Running NodejsNpmBuilder:NpmInstall
+ Running NodejsNpmBuilder:NpmTest
+ Running NodejsNpmBuilder:CleanUpNpmrc
+ Running NodejsNpmBuilder:LockfileCleanUp
+Building codeuri: C:\Users\pbmaplataforma\Desktop\GitHub\tld-onpremise-data\lambdas\replica-bitacora-ach runtime: nodejs24.x architecture: x86_64 functions: ReplicaBitacoraAchLambda
+ Running NodejsNpmBuilder:NpmPack
+ Running NodejsNpmBuilder:CopyNpmrcAndLockfile
+ Running NodejsNpmBuilder:CopySource
+ Running NodejsNpmBuilder:NpmInstall
+ Running NodejsNpmBuilder:NpmTest
+ Running NodejsNpmBuilder:CleanUpNpmrc
+ Running NodejsNpmBuilder:LockfileCleanUp
+Building codeuri: C:\Users\pbmaplataforma\Desktop\GitHub\tld-onpremise-data\lambdas\replica-p2m runtime: nodejs24.x architecture: x86_64 functions: ReplicaP2mLambda
+ Running NodejsNpmBuilder:NpmPack
+ Running NodejsNpmBuilder:CopyNpmrcAndLockfile
+ Running NodejsNpmBuilder:CopySource
+ Running NodejsNpmBuilder:NpmInstall
+ Running NodejsNpmBuilder:NpmTest
+ Running NodejsNpmBuilder:CleanUpNpmrc
+ Running NodejsNpmBuilder:LockfileCleanUp
+Building codeuri: C:\Users\pbmaplataforma\Desktop\GitHub\tld-onpremise-data\lambdas\replica-p2m-cuenta runtime: nodejs24.x architecture: x86_64 functions: ReplicaP2mCuentaLambda
+ Running NodejsNpmBuilder:NpmPack
+ Running NodejsNpmBuilder:CopyNpmrcAndLockfile
+ Running NodejsNpmBuilder:CopySource
+ Running NodejsNpmBuilder:NpmInstall
+ Running NodejsNpmBuilder:NpmTest
+ Running NodejsNpmBuilder:CleanUpNpmrc
+ Running NodejsNpmBuilder:LockfileCleanUp
+Building codeuri: C:\Users\pbmaplataforma\Desktop\GitHub\tld-onpremise-data\lambdas\replica-p2m-mcc runtime: nodejs24.x architecture: x86_64 functions: ReplicaP2mMccLambda
+ Running NodejsNpmBuilder:NpmPack
+ Running NodejsNpmBuilder:CopyNpmrcAndLockfile
+ Running NodejsNpmBuilder:CopySource
+ Running NodejsNpmBuilder:NpmInstall
+ Running NodejsNpmBuilder:NpmTest
+ Running NodejsNpmBuilder:CleanUpNpmrc
+ Running NodejsNpmBuilder:LockfileCleanUp
+Building codeuri: C:\Users\pbmaplataforma\Desktop\GitHub\tld-onpremise-data\lambdas\ach-reintento runtime: nodejs24.x architecture: x86_64 functions: AchReintentoLambda
+ Running NodejsNpmBuilder:NpmPack
+ Running NodejsNpmBuilder:CopyNpmrcAndLockfile
+ Running NodejsNpmBuilder:CopySource
+ Running NodejsNpmBuilder:NpmInstall
+ Running NodejsNpmBuilder:NpmTest
+ Running NodejsNpmBuilder:CleanUpNpmrc
+ Running NodejsNpmBuilder:LockfileCleanUp
+
+Build Succeeded
+
+Built Artifacts  : .aws-sam\build
+Built Template   : .aws-sam\build\template.yaml
+
+Commands you can use next
+=========================
+[*] Validate SAM template: sam validate
+[*] Invoke Function: sam local invoke
+[*] Test Function in the Cloud: sam sync --stack-name {{stack-name}} --watch
+[*] Deploy: sam deploy --guided
+[2026-09-19 01:57:22] [SUCCESS] BUILD OK
+[INFO] Workspace temporal SAM: C:\sam-temp\tld-onpremise-data-20260919-015722-4328
+[SUCCESS] Template deploy-ready generado: C:\Users\pbmaplataforma\Desktop\GitHub\tld-onpremise-data\.aws-sam\build\template.deploy-ready.yaml
+[2026-09-19 01:57:25] [STEP] DEPLOY - inicio entorno 'prod'
+        Uploading to tld-onpremise-data/prod/20260919-015725/1/4488fd718b769a10b5d036ebd0091f41  3855088 / 3855088  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-015725/1/7fa86737c90efa340db36c2fc5dd19f8  5027 / 5027  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-015725/1/727c3342b024fa4f463933802bedfc26  5654 / 5654  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-015725/1/57a6496a911fc74f6f350e19d856ed5c  5628 / 5628  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-015725/1/12105970f43cd1f751bb2c06873c07f5  6718 / 6718  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-015725/1/fd3e7c519c2b6e2bb7ebd09df5d9f00d  5705 / 5705  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-015725/1/34ea56c77c4a89060f1405d1f7b9f143  5731 / 5731  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-015725/1/3d695146f02ea9bfe24da265828a136e  4799 / 4799  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-015725/1/70958bcd7eb5feb543d66fe1ff08beae  4808 / 4808  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-015725/1/8cea6b48f3f88f102fa0735945ccee2e  4788 / 4788  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-015725/1/54bd41efb0fa1910fd56f11f547fa91b  6796 / 6796  (100.00%)
+
+        Deploying with following values
+        ===============================
+        Stack name                   : tld-alias-replica
+        Region                       : us-east-1
+        Confirm changeset            : False
+        Disable rollback             : False
+        Deployment s3 bucket         : aws-sam-cli-managed-default-samclisourcebucket-vds234g4vu9u
+        Capabilities                 : ["CAPABILITY_IAM"]
+        Parameter overrides          : {"DeployEnvironment": "tlrd-highway", "VPCe": "vpce-05fd27576a4f363ff", "SecurityGroup": "sg-013e8ae11b9da29c0", "Subnet1": "subnet-00f7c0df721dcfdc4", "Subnet2": "subnet-06e450fb4c4ea4e65", "Subnet3": "subnet-02a075226b5436af3", "LayerMphOrcl": "arn:aws:lambda:us-east-1:893506747683:layer:tld-orcl:3", "DynamoDBStreamIDAliasCuenta": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-alias-cuenta/stream/2023-04-13T16:35:22.124", "DynamoDBStreamIDBitacora": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-validador-bitacora/stream/2022-11-25T20:19:09.922", "DynamoDBStreamIDCanal": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-validador-canal/stream/2022-11-25T20:19:09.899", "DynamoDBStreamIDP2m": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-p2m/stream/REEMPLAZAR", "DynamoDBStreamIDP2mCuenta": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-p2m-cuenta/stream/REEMPLAZAR", "DynamoDBStreamIDP2mMcc": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-p2m-mcc/stream/REEMPLAZAR"}
+        Signing Profiles             : {}
+
+Initiating deployment
+=====================
+
+        Uploading to tld-onpremise-data/prod/20260919-015725/1/6df79ee32329b6192e863e8c5a947a13.template  22787 / 22787  (100.00%)
+
+
+Waiting for changeset to be created..
+
+CloudFormation stack changeset
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Operation                                          LogicalResourceId                                  ResourceType                                       Replacement
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
++ Add                                              AchReintentoLambdaRole                             AWS::IAM::Role                                     N/A
++ Add                                              AchReintentoLambda                                 AWS::Lambda::Function                              N/A
++ Add                                              AchReintentoLogGroup                               AWS::Logs::LogGroup                                N/A
++ Add                                              BitacoraAchLogGroup                                AWS::Logs::LogGroup                                N/A
++ Add                                              CanalAchLogGroup                                   AWS::Logs::LogGroup                                N/A
++ Add                                              OnPremiseLayere169df8194                           AWS::Lambda::LayerVersion                          N/A
++ Add                                              P2mCuentaLogGroup                                  AWS::Logs::LogGroup                                N/A
++ Add                                              P2mLogGroup                                        AWS::Logs::LogGroup                                N/A
++ Add                                              P2mMccLogGroup                                     AWS::Logs::LogGroup                                N/A
++ Add                                              ReplicaBitacoraAchLambdaRole                       AWS::IAM::Role                                     N/A
++ Add                                              ReplicaBitacoraAchLambdaStream                     AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaBitacoraAchLambda                           AWS::Lambda::Function                              N/A
++ Add                                              ReplicaCanalAchLambdaRole                          AWS::IAM::Role                                     N/A
++ Add                                              ReplicaCanalAchLambdaStream                        AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaCanalAchLambda                              AWS::Lambda::Function                              N/A
++ Add                                              ReplicaP2mCuentaLambdaRole                         AWS::IAM::Role                                     N/A
++ Add                                              ReplicaP2mCuentaLambdaStream                       AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaP2mCuentaLambda                             AWS::Lambda::Function                              N/A
++ Add                                              ReplicaP2mLambdaRole                               AWS::IAM::Role                                     N/A
++ Add                                              ReplicaP2mLambdaStream                             AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaP2mLambda                                   AWS::Lambda::Function                              N/A
++ Add                                              ReplicaP2mMccLambdaRole                            AWS::IAM::Role                                     N/A
++ Add                                              ReplicaP2mMccLambdaStream                          AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaP2mMccLambda                                AWS::Lambda::Function                              N/A
++ Add                                              SecretAchReplica                                   AWS::SecretsManager::Secret                        N/A
++ Add                                              TablaAchReplicacion                                AWS::DynamoDB::Table                               N/A
+* Modify                                           AliasReplicaReintentoLambda                        AWS::Lambda::Function                              False
+* Modify                                           ReplicaAliasCuentaLambda                           AWS::Lambda::Function                              False
+* Modify                                           ReplicaBitacoraLambda                              AWS::Lambda::Function                              False
+* Modify                                           ReplicaCanalLambda                                 AWS::Lambda::Function                              False
+- Delete                                           OnPremiseLayerd91a44ac7e                           AWS::Lambda::LayerVersion                          N/A
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Changeset created successfully. arn:aws:cloudformation:us-east-1:893506747683:changeSet/samcli-deploy1789801062/ea586210-1ea6-4468-a731-929e0e2d612c
+
+
+2026-09-19 01:57:59 - Waiting for stack create/update to complete
+
+CloudFormation events from stack operations (refresh every 5.0 seconds)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ResourceStatus                                     ResourceType                                       LogicalResourceId                                  ResourceStatusReason
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UPDATE_IN_PROGRESS                                 AWS::CloudFormation::Stack                         tld-alias-replica                                  User Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::LayerVersion                          OnPremiseLayere169df8194                           -
+CREATE_IN_PROGRESS                                 AWS::DynamoDB::Table                               TablaAchReplicacion                                -
+CREATE_IN_PROGRESS                                 AWS::SecretsManager::Secret                        SecretAchReplica                                   -
+CREATE_IN_PROGRESS                                 AWS::SecretsManager::Secret                        SecretAchReplica                                   Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::DynamoDB::Table                               TablaAchReplicacion                                Resource creation Initiated
+CREATE_COMPLETE                                    AWS::SecretsManager::Secret                        SecretAchReplica                                   -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mCuentaLambdaRole                         -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     AchReintentoLambdaRole                             -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mMccLambdaRole                            -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaCanalAchLambdaRole                          -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaBitacoraAchLambdaRole                       -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mLambdaRole                               -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     AchReintentoLambdaRole                             Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mMccLambdaRole                            Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mLambdaRole                               Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mCuentaLambdaRole                         Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaBitacoraAchLambdaRole                       Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaCanalAchLambdaRole                          Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::LayerVersion                          OnPremiseLayere169df8194                           Resource creation Initiated
+CREATE_COMPLETE                                    AWS::Lambda::LayerVersion                          OnPremiseLayere169df8194                           -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              AliasReplicaReintentoLambda                        -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaCanalLambda                                 -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaAliasCuentaLambda                           -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaBitacoraLambda                              -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     AchReintentoLambdaRole                             -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaP2mMccLambdaRole                            -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaP2mLambdaRole                               -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaP2mCuentaLambdaRole                         -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              AchReintentoLambda                                 -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mMccLambda                                -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mLambda                                   -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mCuentaLambda                             -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              AchReintentoLambda                                 Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mMccLambda                                Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mCuentaLambda                             Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mLambda                                   Resource creation Initiated
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaBitacoraAchLambdaRole                       -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaCanalAchLambdaRole                          -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaBitacoraAchLambda                           -
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              AliasReplicaReintentoLambda                        -
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaBitacoraLambda                              -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaCanalAchLambda                              -
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaAliasCuentaLambda                           -
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaCanalLambda                                 -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaBitacoraAchLambda                           Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaCanalAchLambda                              Resource creation Initiated
+CREATE_COMPLETE                                    AWS::Lambda::Function                              AchReintentoLambda                                 -
+CREATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaP2mCuentaLambda                             -
+CREATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaP2mLambda                                   -
+CREATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaP2mMccLambda                                -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                AchReintentoLogGroup                               -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaP2mLambdaStream                             -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mCuentaLogGroup                                  -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaP2mCuentaLambdaStream                       -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mLogGroup                                        -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaP2mMccLambdaStream                          -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mMccLogGroup                                     -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                AchReintentoLogGroup                               Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mCuentaLogGroup                                  Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mLogGroup                                        Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mMccLogGroup                                     Resource creation Initiated
+CREATE_FAILED                                      AWS::Lambda::EventSourceMapping                    ReplicaP2mLambdaStream                             Resource handler returned message: "Invalid
+                                                                                                                                                         request provided: Stream not found:
+                                                                                                                                                         arn:aws:dynamodb:us-east-
+                                                                                                                                                         1:893506747683:table/tld-p2m/stream/REEMPLAZAR
+                                                                                                                                                         (Service: Lambda, Status Code: 400, Request ID:
+                                                                                                                                                         2a7b6fbe-173e-4b9a-a9c1-4b95e9a6e280) (SDK
+                                                                                                                                                         Attempt Count: 1)" (RequestToken:
+                                                                                                                                                         e0582c69-f243-2808-d458-b9332c65f8eb,
+                                                                                                                                                         HandlerErrorCode: InvalidRequest)
+CREATE_FAILED                                      AWS::Lambda::EventSourceMapping                    ReplicaP2mCuentaLambdaStream                       Resource handler returned message: "Invalid
+                                                                                                                                                         request provided: Stream not found:
+                                                                                                                                                         arn:aws:dynamodb:us-east-
+                                                                                                                                                         1:893506747683:table/tld-p2m-
+                                                                                                                                                         cuenta/stream/REEMPLAZAR (Service: Lambda,
+                                                                                                                                                         Status Code: 400, Request ID:
+                                                                                                                                                         94069722-b3a0-4eeb-92d0-493fa17a80d1) (SDK
+                                                                                                                                                         Attempt Count: 1)" (RequestToken:
+                                                                                                                                                         1563d201-ffa5-acb9-78ae-51e54034a133,
+                                                                                                                                                         HandlerErrorCode: InvalidRequest)
+CREATE_FAILED                                      AWS::DynamoDB::Table                               TablaAchReplicacion                                Resource creation cancelled
+CREATE_FAILED                                      AWS::Logs::LogGroup                                P2mCuentaLogGroup                                  Resource creation cancelled
+CREATE_FAILED                                      AWS::Logs::LogGroup                                AchReintentoLogGroup                               Resource creation cancelled
+CREATE_FAILED                                      AWS::Logs::LogGroup                                P2mLogGroup                                        Resource creation cancelled
+CREATE_FAILED                                      AWS::Logs::LogGroup                                P2mMccLogGroup                                     Resource creation cancelled
+CREATE_FAILED                                      AWS::Lambda::EventSourceMapping                    ReplicaP2mMccLambdaStream                          Resource handler returned message: "Invalid
+                                                                                                                                                         request provided: Stream not found:
+                                                                                                                                                         arn:aws:dynamodb:us-east-
+                                                                                                                                                         1:893506747683:table/tld-p2m-
+                                                                                                                                                         mcc/stream/REEMPLAZAR (Service: Lambda, Status
+                                                                                                                                                         Code: 400, Request ID:
+                                                                                                                                                         60d648af-a05c-4199-a974-f3ee53bb48fc) (SDK
+                                                                                                                                                         Attempt Count: 1)" (RequestToken:
+                                                                                                                                                         3250be4e-68f1-2886-d0aa-763f6d25955d,
+                                                                                                                                                         HandlerErrorCode: InvalidRequest)
+CREATE_FAILED                                      AWS::Lambda::Function                              ReplicaCanalAchLambda                              Resource creation cancelled
+CREATE_FAILED                                      AWS::Lambda::Function                              ReplicaBitacoraAchLambda                           Resource creation cancelled
+UPDATE_ROLLBACK_IN_PROGRESS                        AWS::CloudFormation::Stack                         tld-alias-replica                                  The following resource(s) failed to create:
+                                                                                                                                                         [TablaAchReplicacion, P2mLogGroup,
+                                                                                                                                                         P2mMccLogGroup, ReplicaP2mLambdaStream,
+                                                                                                                                                         P2mCuentaLogGroup, ReplicaBitacoraAchLambda,
+                                                                                                                                                         AchReintentoLogGroup,
+                                                                                                                                                         ReplicaP2mCuentaLambdaStream,
+                                                                                                                                                         ReplicaCanalAchLambda,
+                                                                                                                                                         ReplicaP2mMccLambdaStream].
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaAliasCuentaLambda                           -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaBitacoraLambda                              -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaCanalLambda                                 -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              AliasReplicaReintentoLambda                        -
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaBitacoraLambda                              -
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaCanalLambda                                 -
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaAliasCuentaLambda                           -
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              AliasReplicaReintentoLambda                        -
+UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS       AWS::CloudFormation::Stack                         tld-alias-replica                                  -
+DELETE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mMccLogGroup                                     -
+DELETE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaCanalAchLambda                              -
+DELETE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mCuentaLogGroup                                  -
+DELETE_IN_PROGRESS                                 AWS::Logs::LogGroup                                AchReintentoLogGroup                               -
+DELETE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mLogGroup                                        -
+DELETE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaBitacoraAchLambda                           -
+DELETE_IN_PROGRESS                                 AWS::DynamoDB::Table                               TablaAchReplicacion                                -
+DELETE_FAILED                                      AWS::Logs::LogGroup                                P2mCuentaLogGroup                                  Resource handler returned message: "User:
+                                                                                                                                                         arn:aws:sts::893506747683:assumed-role/AWSReserv
+                                                                                                                                                         edSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@
+                                                                                                                                                         telered.com.pa is not authorized to perform:
+                                                                                                                                                         logs:DeleteLogGroup on resource:
+                                                                                                                                                         arn:aws:logs:us-east-1:893506747683:log-
+                                                                                                                                                         group:/aws/lambda/tld-replica-p2m-cuenta with an
+                                                                                                                                                         explicit deny in a service control policy: arn:a
+                                                                                                                                                         ws:organizations::586259428538:policy/o-
+                                                                                                                                                         9lvsq6kh46/service_control_policy/p-agpaki3o
+                                                                                                                                                         (Service: CloudWatchLogs, Status Code: 400,
+                                                                                                                                                         Request ID:
+                                                                                                                                                         4ba8f67f-5f76-477b-8b60-f8b35e462a64) (SDK
+                                                                                                                                                         Attempt Count: 1)" (RequestToken:
+                                                                                                                                                         56191332-47d1-bfa4-8d65-afd616cbc143,
+                                                                                                                                                         HandlerErrorCode: InvalidRequest)
+DELETE_FAILED                                      AWS::Logs::LogGroup                                P2mLogGroup                                        Resource handler returned message: "User:
+                                                                                                                                                         arn:aws:sts::893506747683:assumed-role/AWSReserv
+                                                                                                                                                         edSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@
+                                                                                                                                                         telered.com.pa is not authorized to perform:
+                                                                                                                                                         logs:DeleteLogGroup on resource:
+                                                                                                                                                         arn:aws:logs:us-east-1:893506747683:log-
+                                                                                                                                                         group:/aws/lambda/tld-replica-p2m with an
+                                                                                                                                                         explicit deny in a service control policy: arn:a
+                                                                                                                                                         ws:organizations::586259428538:policy/o-
+                                                                                                                                                         9lvsq6kh46/service_control_policy/p-agpaki3o
+                                                                                                                                                         (Service: CloudWatchLogs, Status Code: 400,
+                                                                                                                                                         Request ID:
+                                                                                                                                                         3f248c56-2135-4f24-8299-90ea6d196af9) (SDK
+                                                                                                                                                         Attempt Count: 1)" (RequestToken:
+                                                                                                                                                         fdaff486-5b2a-156e-6fe5-e75e9d684a85,
+                                                                                                                                                         HandlerErrorCode: InvalidRequest)
+DELETE_FAILED                                      AWS::Logs::LogGroup                                P2mMccLogGroup                                     Resource handler returned message: "User:
+                                                                                                                                                         arn:aws:sts::893506747683:assumed-role/AWSReserv
+                                                                                                                                                         edSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@
+                                                                                                                                                         telered.com.pa is not authorized to perform:
+                                                                                                                                                         logs:DeleteLogGroup on resource:
+                                                                                                                                                         arn:aws:logs:us-east-1:893506747683:log-
+                                                                                                                                                         group:/aws/lambda/tld-replica-p2m-mcc with an
+                                                                                                                                                         explicit deny in a service control policy: arn:a
+                                                                                                                                                         ws:organizations::586259428538:policy/o-
+                                                                                                                                                         9lvsq6kh46/service_control_policy/p-agpaki3o
+                                                                                                                                                         (Service: CloudWatchLogs, Status Code: 400,
+                                                                                                                                                         Request ID:
+                                                                                                                                                         f334f072-675d-4695-b3cd-8b353e3de379) (SDK
+                                                                                                                                                         Attempt Count: 1)" (RequestToken: e5e0d81b-b0ff-
+                                                                                                                                                         bf6b-9bf1-5220d2b645d3, HandlerErrorCode:
+                                                                                                                                                         InvalidRequest)
+DELETE_FAILED                                      AWS::Logs::LogGroup                                AchReintentoLogGroup                               Resource handler returned message: "User:
+                                                                                                                                                         arn:aws:sts::893506747683:assumed-role/AWSReserv
+                                                                                                                                                         edSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@
+                                                                                                                                                         telered.com.pa is not authorized to perform:
+                                                                                                                                                         logs:DeleteLogGroup on resource:
+                                                                                                                                                         arn:aws:logs:us-east-1:893506747683:log-
+                                                                                                                                                         group:/aws/lambda/tld-ach-reintento with an
+                                                                                                                                                         explicit deny in a service control policy: arn:a
+                                                                                                                                                         ws:organizations::586259428538:policy/o-
+                                                                                                                                                         9lvsq6kh46/service_control_policy/p-agpaki3o
+                                                                                                                                                         (Service: CloudWatchLogs, Status Code: 400,
+                                                                                                                                                         Request ID: 53667cbe-
+                                                                                                                                                         fc87-43e9-9b94-cfaa1a24457c) (SDK Attempt Count:
+                                                                                                                                                         1)" (RequestToken:
+                                                                                                                                                         8469ec48-7a0c-2bd6-8144-c7ca52468eaf,
+                                                                                                                                                         HandlerErrorCode: InvalidRequest)
+DELETE_IN_PROGRESS                                 AWS::Lambda::Function                              AchReintentoLambda                                 -
+DELETE_COMPLETE                                    AWS::Lambda::Function                              ReplicaCanalAchLambda                              -
+DELETE_COMPLETE                                    AWS::Lambda::Function                              ReplicaBitacoraAchLambda                           -
+DELETE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaCanalAchLambdaRole                          -
+DELETE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaBitacoraAchLambdaRole                       -
+DELETE_COMPLETE                                    AWS::Lambda::Function                              AchReintentoLambda                                 -
+DELETE_IN_PROGRESS                                 AWS::IAM::Role                                     AchReintentoLambdaRole                             -
+DELETE_COMPLETE                                    AWS::DynamoDB::Table                               TablaAchReplicacion                                -
+DELETE_COMPLETE                                    AWS::IAM::Role                                     ReplicaCanalAchLambdaRole                          -
+DELETE_COMPLETE                                    AWS::IAM::Role                                     ReplicaBitacoraAchLambdaRole                       -
+DELETE_COMPLETE                                    AWS::IAM::Role                                     AchReintentoLambdaRole                             -
+DELETE_COMPLETE                                    AWS::Lambda::EventSourceMapping                    ReplicaP2mCuentaLambdaStream                       -
+DELETE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mCuentaLambda                             -
+DELETE_COMPLETE                                    AWS::Lambda::Function                              ReplicaP2mCuentaLambda                             -
+DELETE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mCuentaLambdaRole                         -
+DELETE_COMPLETE                                    AWS::Lambda::EventSourceMapping                    ReplicaP2mMccLambdaStream                          -
+DELETE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mMccLambda                                -
+DELETE_COMPLETE                                    AWS::IAM::Role                                     ReplicaP2mCuentaLambdaRole                         -
+DELETE_COMPLETE                                    AWS::Lambda::Function                              ReplicaP2mMccLambda                                -
+DELETE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mMccLambdaRole                            -
+DELETE_COMPLETE                                    AWS::Lambda::EventSourceMapping                    ReplicaP2mLambdaStream                             -
+DELETE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mLambda                                   -
+DELETE_COMPLETE                                    AWS::Lambda::Function                              ReplicaP2mLambda                                   -
+DELETE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mLambdaRole                               -
+DELETE_SKIPPED                                     AWS::Lambda::LayerVersion                          OnPremiseLayere169df8194                           -
+DELETE_COMPLETE                                    AWS::IAM::Role                                     ReplicaP2mMccLambdaRole                            -
+DELETE_COMPLETE                                    AWS::IAM::Role                                     ReplicaP2mLambdaRole                               -
+DELETE_IN_PROGRESS                                 AWS::SecretsManager::Secret                        SecretAchReplica                                   -
+DELETE_COMPLETE                                    AWS::SecretsManager::Secret                        SecretAchReplica                                   -
+DELETE_IN_PROGRESS                                 AWS::Logs::LogGroup                                AchReintentoLogGroup                               -
+DELETE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mCuentaLogGroup                                  -
+DELETE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mMccLogGroup                                     -
+DELETE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mLogGroup                                        -
+DELETE_FAILED                                      AWS::Logs::LogGroup                                P2mMccLogGroup                                     Resource handler returned message: "User:
+                                                                                                                                                         arn:aws:sts::893506747683:assumed-role/AWSReserv
+                                                                                                                                                         edSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@
+                                                                                                                                                         telered.com.pa is not authorized to perform:
+                                                                                                                                                         logs:DeleteLogGroup on resource:
+                                                                                                                                                         arn:aws:logs:us-east-1:893506747683:log-
+                                                                                                                                                         group:/aws/lambda/tld-replica-p2m-mcc with an
+                                                                                                                                                         explicit deny in a service control policy: arn:a
+                                                                                                                                                         ws:organizations::586259428538:policy/o-
+                                                                                                                                                         9lvsq6kh46/service_control_policy/p-agpaki3o
+                                                                                                                                                         (Service: CloudWatchLogs, Status Code: 400,
+                                                                                                                                                         Request ID:
+                                                                                                                                                         fea99e0b-e091-4de6-b93b-23969e7d99b6) (SDK
+                                                                                                                                                         Attempt Count: 1)" (RequestToken:
+                                                                                                                                                         6626fec1-d069-a0ca-3abe-fdd83fc6eabc,
+                                                                                                                                                         HandlerErrorCode: InvalidRequest)
+DELETE_FAILED                                      AWS::Logs::LogGroup                                P2mLogGroup                                        Resource handler returned message: "User:
+                                                                                                                                                         arn:aws:sts::893506747683:assumed-role/AWSReserv
+                                                                                                                                                         edSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@
+                                                                                                                                                         telered.com.pa is not authorized to perform:
+                                                                                                                                                         logs:DeleteLogGroup on resource:
+                                                                                                                                                         arn:aws:logs:us-east-1:893506747683:log-
+                                                                                                                                                         group:/aws/lambda/tld-replica-p2m with an
+                                                                                                                                                         explicit deny in a service control policy: arn:a
+                                                                                                                                                         ws:organizations::586259428538:policy/o-
+                                                                                                                                                         9lvsq6kh46/service_control_policy/p-agpaki3o
+                                                                                                                                                         (Service: CloudWatchLogs, Status Code: 400,
+                                                                                                                                                         Request ID:
+                                                                                                                                                         0567f410-57d4-4ad5-aaf9-b9e761a6ac89) (SDK
+                                                                                                                                                         Attempt Count: 1)" (RequestToken: 5b8d3daa-
+                                                                                                                                                         efba-5deb-d5f0-df88d7ffdf72, HandlerErrorCode:
+                                                                                                                                                         InvalidRequest)
+DELETE_FAILED                                      AWS::Logs::LogGroup                                P2mCuentaLogGroup                                  Resource handler returned message: "User:
+                                                                                                                                                         arn:aws:sts::893506747683:assumed-role/AWSReserv
+                                                                                                                                                         edSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@
+                                                                                                                                                         telered.com.pa is not authorized to perform:
+                                                                                                                                                         logs:DeleteLogGroup on resource:
+                                                                                                                                                         arn:aws:logs:us-east-1:893506747683:log-
+                                                                                                                                                         group:/aws/lambda/tld-replica-p2m-cuenta with an
+                                                                                                                                                         explicit deny in a service control policy: arn:a
+                                                                                                                                                         ws:organizations::586259428538:policy/o-
+                                                                                                                                                         9lvsq6kh46/service_control_policy/p-agpaki3o
+                                                                                                                                                         (Service: CloudWatchLogs, Status Code: 400,
+                                                                                                                                                         Request ID:
+                                                                                                                                                         c73b2379-d053-4531-b1bf-6c68b964e134) (SDK
+                                                                                                                                                         Attempt Count: 1)" (RequestToken:
+                                                                                                                                                         806b4349-aceb-4483-d59f-60e5cfe97699,
+                                                                                                                                                         HandlerErrorCode: InvalidRequest)
+DELETE_FAILED                                      AWS::Logs::LogGroup                                AchReintentoLogGroup                               Resource handler returned message: "User:
+                                                                                                                                                         arn:aws:sts::893506747683:assumed-role/AWSReserv
+                                                                                                                                                         edSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@
+                                                                                                                                                         telered.com.pa is not authorized to perform:
+                                                                                                                                                         logs:DeleteLogGroup on resource:
+                                                                                                                                                         arn:aws:logs:us-east-1:893506747683:log-
+                                                                                                                                                         group:/aws/lambda/tld-ach-reintento with an
+                                                                                                                                                         explicit deny in a service control policy: arn:a
+                                                                                                                                                         ws:organizations::586259428538:policy/o-
+                                                                                                                                                         9lvsq6kh46/service_control_policy/p-agpaki3o
+                                                                                                                                                         (Service: CloudWatchLogs, Status Code: 400,
+                                                                                                                                                         Request ID:
+                                                                                                                                                         b50b8c6b-80ee-469e-9813-8dafda8788cb) (SDK
+                                                                                                                                                         Attempt Count: 1)" (RequestToken:
+                                                                                                                                                         577ab366-9532-e9f5-295c-cbaae52a83d4,
+                                                                                                                                                         HandlerErrorCode: InvalidRequest)
+DELETE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mMccLogGroup                                     -
+DELETE_IN_PROGRESS                                 AWS::Logs::LogGroup                                AchReintentoLogGroup                               -
+DELETE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mLogGroup                                        -
+DELETE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mCuentaLogGroup                                  -
+DELETE_FAILED                                      AWS::Logs::LogGroup                                P2mLogGroup                                        Resource handler returned message: "User:
+                                                                                                                                                         arn:aws:sts::893506747683:assumed-role/AWSReserv
+                                                                                                                                                         edSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@
+                                                                                                                                                         telered.com.pa is not authorized to perform:
+                                                                                                                                                         logs:DeleteLogGroup on resource:
+                                                                                                                                                         arn:aws:logs:us-east-1:893506747683:log-
+                                                                                                                                                         group:/aws/lambda/tld-replica-p2m with an
+                                                                                                                                                         explicit deny in a service control policy: arn:a
+                                                                                                                                                         ws:organizations::586259428538:policy/o-
+                                                                                                                                                         9lvsq6kh46/service_control_policy/p-agpaki3o
+                                                                                                                                                         (Service: CloudWatchLogs, Status Code: 400,
+                                                                                                                                                         Request ID:
+                                                                                                                                                         2577ed4c-6b13-45d2-b741-47a451c338a1) (SDK
+                                                                                                                                                         Attempt Count: 1)" (RequestToken:
+                                                                                                                                                         f0190c1b-1d58-75b7-40ec-275a73750d8d,
+                                                                                                                                                         HandlerErrorCode: InvalidRequest)
+DELETE_FAILED                                      AWS::Logs::LogGroup                                P2mCuentaLogGroup                                  Resource handler returned message: "User:
+                                                                                                                                                         arn:aws:sts::893506747683:assumed-role/AWSReserv
+                                                                                                                                                         edSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@
+                                                                                                                                                         telered.com.pa is not authorized to perform:
+                                                                                                                                                         logs:DeleteLogGroup on resource:
+                                                                                                                                                         arn:aws:logs:us-east-1:893506747683:log-
+                                                                                                                                                         group:/aws/lambda/tld-replica-p2m-cuenta with an
+                                                                                                                                                         explicit deny in a service control policy: arn:a
+                                                                                                                                                         ws:organizations::586259428538:policy/o-
+                                                                                                                                                         9lvsq6kh46/service_control_policy/p-agpaki3o
+                                                                                                                                                         (Service: CloudWatchLogs, Status Code: 400,
+                                                                                                                                                         Request ID:
+                                                                                                                                                         6a50e096-c264-4156-89bc-0e9054dab99d) (SDK
+                                                                                                                                                         Attempt Count: 1)" (RequestToken:
+                                                                                                                                                         815cfacb-132c-dc6b-46d0-69156102c7eb,
+                                                                                                                                                         HandlerErrorCode: InvalidRequest)
+DELETE_FAILED                                      AWS::Logs::LogGroup                                P2mMccLogGroup                                     Resource handler returned message: "User:
+                                                                                                                                                         arn:aws:sts::893506747683:assumed-role/AWSReserv
+                                                                                                                                                         edSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@
+                                                                                                                                                         telered.com.pa is not authorized to perform:
+                                                                                                                                                         logs:DeleteLogGroup on resource:
+                                                                                                                                                         arn:aws:logs:us-east-1:893506747683:log-
+                                                                                                                                                         group:/aws/lambda/tld-replica-p2m-mcc with an
+                                                                                                                                                         explicit deny in a service control policy: arn:a
+                                                                                                                                                         ws:organizations::586259428538:policy/o-
+                                                                                                                                                         9lvsq6kh46/service_control_policy/p-agpaki3o
+                                                                                                                                                         (Service: CloudWatchLogs, Status Code: 400,
+                                                                                                                                                         Request ID:
+                                                                                                                                                         e7edfa5f-1630-4b16-b391-12b72eac9dc9) (SDK
+                                                                                                                                                         Attempt Count: 1)" (RequestToken:
+                                                                                                                                                         6d8800af-2854-d90c-81ec-4b03cfd2dcb8,
+                                                                                                                                                         HandlerErrorCode: InvalidRequest)
+DELETE_FAILED                                      AWS::Logs::LogGroup                                AchReintentoLogGroup                               Resource handler returned message: "User:
+                                                                                                                                                         arn:aws:sts::893506747683:assumed-role/AWSReserv
+                                                                                                                                                         edSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@
+                                                                                                                                                         telered.com.pa is not authorized to perform:
+                                                                                                                                                         logs:DeleteLogGroup on resource:
+                                                                                                                                                         arn:aws:logs:us-east-1:893506747683:log-
+                                                                                                                                                         group:/aws/lambda/tld-ach-reintento with an
+                                                                                                                                                         explicit deny in a service control policy: arn:a
+                                                                                                                                                         ws:organizations::586259428538:policy/o-
+                                                                                                                                                         9lvsq6kh46/service_control_policy/p-agpaki3o
+                                                                                                                                                         (Service: CloudWatchLogs, Status Code: 400,
+                                                                                                                                                         Request ID:
+                                                                                                                                                         3c39887b-21aa-4e85-8d6a-c6a00219d0ac) (SDK
+                                                                                                                                                         Attempt Count: 1)" (RequestToken:
+                                                                                                                                                         88c0cb98-3d2e-720d-c885-f648fe8ea141,
+                                                                                                                                                         HandlerErrorCode: InvalidRequest)
+UPDATE_ROLLBACK_COMPLETE                           AWS::CloudFormation::Stack                         tld-alias-replica                                  Update successful. One or more resources could
+                                                                                                                                                         not be deleted.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Error: Failed to create/update the stack: tld-alias-replica, Waiter StackUpdateComplete failed: Waiter encountered a terminal failure state: For expression "Stacks[].StackStatus" we matched expected path: "UPDATE_ROLLBACK_COMPLETE" at least once
+[WARN] Reintento deploy 2/4 para entorno prod. Espera 6s.
+[INFO] Workspace temporal SAM: C:\sam-temp\tld-onpremise-data-20260919-020818-4328
+        Uploading to tld-onpremise-data/prod/20260919-020818/2/4488fd718b769a10b5d036ebd0091f41  3855088 / 3855088  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-020818/2/7fa86737c90efa340db36c2fc5dd19f8  5027 / 5027  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-020818/2/727c3342b024fa4f463933802bedfc26  5654 / 5654  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-020818/2/57a6496a911fc74f6f350e19d856ed5c  5628 / 5628  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-020818/2/12105970f43cd1f751bb2c06873c07f5  6718 / 6718  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-020818/2/fd3e7c519c2b6e2bb7ebd09df5d9f00d  5705 / 5705  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-020818/2/34ea56c77c4a89060f1405d1f7b9f143  5731 / 5731  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-020818/2/3d695146f02ea9bfe24da265828a136e  4799 / 4799  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-020818/2/70958bcd7eb5feb543d66fe1ff08beae  4808 / 4808  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-020818/2/8cea6b48f3f88f102fa0735945ccee2e  4788 / 4788  (100.00%)
+        Uploading to tld-onpremise-data/prod/20260919-020818/2/54bd41efb0fa1910fd56f11f547fa91b  6796 / 6796  (100.00%)
+
+        Deploying with following values
+        ===============================
+        Stack name                   : tld-alias-replica
+        Region                       : us-east-1
+        Confirm changeset            : False
+        Disable rollback             : False
+        Deployment s3 bucket         : aws-sam-cli-managed-default-samclisourcebucket-vds234g4vu9u
+        Capabilities                 : ["CAPABILITY_IAM"]
+        Parameter overrides          : {"DeployEnvironment": "tlrd-highway", "VPCe": "vpce-05fd27576a4f363ff", "SecurityGroup": "sg-013e8ae11b9da29c0", "Subnet1": "subnet-00f7c0df721dcfdc4", "Subnet2": "subnet-06e450fb4c4ea4e65", "Subnet3": "subnet-02a075226b5436af3", "LayerMphOrcl": "arn:aws:lambda:us-east-1:893506747683:layer:tld-orcl:3", "DynamoDBStreamIDAliasCuenta": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-alias-cuenta/stream/2023-04-13T16:35:22.124", "DynamoDBStreamIDBitacora": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-validador-bitacora/stream/2022-11-25T20:19:09.922", "DynamoDBStreamIDCanal": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-validador-canal/stream/2022-11-25T20:19:09.899", "DynamoDBStreamIDP2m": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-p2m/stream/REEMPLAZAR", "DynamoDBStreamIDP2mCuenta": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-p2m-cuenta/stream/REEMPLAZAR", "DynamoDBStreamIDP2mMcc": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-p2m-mcc/stream/REEMPLAZAR"}
+        Signing Profiles             : {}
+
+Initiating deployment
+=====================
+
+        Uploading to tld-onpremise-data/prod/20260919-020818/2/db989b85df140e9fc28668e018a89a0a.template  22787 / 22787  (100.00%)
+
+
+Waiting for changeset to be created..
+
+CloudFormation stack changeset
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Operation                                          LogicalResourceId                                  ResourceType                                       Replacement
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
++ Add                                              AchReintentoLambdaRole                             AWS::IAM::Role                                     N/A
++ Add                                              AchReintentoLambda                                 AWS::Lambda::Function                              N/A
++ Add                                              AchReintentoLogGroup                               AWS::Logs::LogGroup                                N/A
++ Add                                              BitacoraAchLogGroup                                AWS::Logs::LogGroup                                N/A
++ Add                                              CanalAchLogGroup                                   AWS::Logs::LogGroup                                N/A
++ Add                                              OnPremiseLayer6a22a653f5                           AWS::Lambda::LayerVersion                          N/A
++ Add                                              P2mCuentaLogGroup                                  AWS::Logs::LogGroup                                N/A
++ Add                                              P2mLogGroup                                        AWS::Logs::LogGroup                                N/A
++ Add                                              P2mMccLogGroup                                     AWS::Logs::LogGroup                                N/A
++ Add                                              ReplicaBitacoraAchLambdaRole                       AWS::IAM::Role                                     N/A
++ Add                                              ReplicaBitacoraAchLambdaStream                     AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaBitacoraAchLambda                           AWS::Lambda::Function                              N/A
++ Add                                              ReplicaCanalAchLambdaRole                          AWS::IAM::Role                                     N/A
++ Add                                              ReplicaCanalAchLambdaStream                        AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaCanalAchLambda                              AWS::Lambda::Function                              N/A
++ Add                                              ReplicaP2mCuentaLambdaRole                         AWS::IAM::Role                                     N/A
++ Add                                              ReplicaP2mCuentaLambdaStream                       AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaP2mCuentaLambda                             AWS::Lambda::Function                              N/A
++ Add                                              ReplicaP2mLambdaRole                               AWS::IAM::Role                                     N/A
++ Add                                              ReplicaP2mLambdaStream                             AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaP2mLambda                                   AWS::Lambda::Function                              N/A
++ Add                                              ReplicaP2mMccLambdaRole                            AWS::IAM::Role                                     N/A
++ Add                                              ReplicaP2mMccLambdaStream                          AWS::Lambda::EventSourceMapping                    N/A
++ Add                                              ReplicaP2mMccLambda                                AWS::Lambda::Function                              N/A
++ Add                                              SecretAchReplica                                   AWS::SecretsManager::Secret                        N/A
++ Add                                              TablaAchReplicacion                                AWS::DynamoDB::Table                               N/A
+* Modify                                           AliasReplicaReintentoLambda                        AWS::Lambda::Function                              False
+* Modify                                           ReplicaAliasCuentaLambda                           AWS::Lambda::Function                              False
+* Modify                                           ReplicaBitacoraLambda                              AWS::Lambda::Function                              False
+* Modify                                           ReplicaCanalLambda                                 AWS::Lambda::Function                              False
+- Delete                                           OnPremiseLayerd91a44ac7e                           AWS::Lambda::LayerVersion                          N/A
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Changeset created successfully. arn:aws:cloudformation:us-east-1:893506747683:changeSet/samcli-deploy1789801714/066bb456-2162-4859-8bfc-2dd9d7835501
+
+
+2026-09-19 02:08:51 - Waiting for stack create/update to complete
+
+CloudFormation events from stack operations (refresh every 5.0 seconds)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ResourceStatus                                     ResourceType                                       LogicalResourceId                                  ResourceStatusReason
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UPDATE_IN_PROGRESS                                 AWS::CloudFormation::Stack                         tld-alias-replica                                  User Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::LayerVersion                          OnPremiseLayer6a22a653f5                           -
+CREATE_IN_PROGRESS                                 AWS::DynamoDB::Table                               TablaAchReplicacion                                -
+CREATE_IN_PROGRESS                                 AWS::SecretsManager::Secret                        SecretAchReplica                                   -
+CREATE_IN_PROGRESS                                 AWS::SecretsManager::Secret                        SecretAchReplica                                   Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::DynamoDB::Table                               TablaAchReplicacion                                Resource creation Initiated
+CREATE_COMPLETE                                    AWS::SecretsManager::Secret                        SecretAchReplica                                   -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mLambdaRole                               -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     AchReintentoLambdaRole                             -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaCanalAchLambdaRole                          -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mCuentaLambdaRole                         -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaBitacoraAchLambdaRole                       -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mMccLambdaRole                            -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     AchReintentoLambdaRole                             Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mMccLambdaRole                            Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaBitacoraAchLambdaRole                       Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaCanalAchLambdaRole                          Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mLambdaRole                               Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::LayerVersion                          OnPremiseLayer6a22a653f5                           Resource creation Initiated
+CREATE_COMPLETE                                    AWS::Lambda::LayerVersion                          OnPremiseLayer6a22a653f5                           -
+CREATE_IN_PROGRESS                                 AWS::IAM::Role                                     ReplicaP2mCuentaLambdaRole                         Resource creation Initiated
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaBitacoraLambda                              -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaAliasCuentaLambda                           -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              AliasReplicaReintentoLambda                        -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaCanalLambda                                 -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     AchReintentoLambdaRole                             -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaP2mMccLambdaRole                            -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaBitacoraAchLambdaRole                       -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaCanalAchLambdaRole                          -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaP2mLambdaRole                               -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              AchReintentoLambda                                 -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mMccLambda                                -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaBitacoraAchLambda                           -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaCanalAchLambda                              -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mLambda                                   -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              AchReintentoLambda                                 Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mMccLambda                                Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaBitacoraAchLambda                           Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mLambda                                   Resource creation Initiated
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaAliasCuentaLambda                           -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaCanalAchLambda                              Resource creation Initiated
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaBitacoraLambda                              -
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaCanalLambda                                 -
+UPDATE_COMPLETE                                    AWS::Lambda::Function                              AliasReplicaReintentoLambda                        -
+CREATE_COMPLETE                                    AWS::IAM::Role                                     ReplicaP2mCuentaLambdaRole                         -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mCuentaLambda                             -
+CREATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaP2mCuentaLambda                             Resource creation Initiated
+CREATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaP2mMccLambda                                -
+CREATE_COMPLETE                                    AWS::Lambda::Function                              AchReintentoLambda                                 -
+CREATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaBitacoraAchLambda                           -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mMccLogGroup                                     -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                AchReintentoLogGroup                               -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaP2mMccLambdaStream                          -
+CREATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaP2mLambda                                   -
+CREATE_COMPLETE                                    AWS::Lambda::Function                              ReplicaCanalAchLambda                              -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaBitacoraAchLambdaStream                     -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                BitacoraAchLogGroup                                -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaP2mLambdaStream                             -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mLogGroup                                        -
+CREATE_IN_PROGRESS                                 AWS::Lambda::EventSourceMapping                    ReplicaCanalAchLambdaStream                        -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                CanalAchLogGroup                                   -
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                P2mMccLogGroup                                     Resource creation Initiated
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                AchReintentoLogGroup                               Resource creation Initiated
+CREATE_FAILED                                      AWS::Lambda::EventSourceMapping                    ReplicaP2mMccLambdaStream                          Resource handler returned message: "Invalid
+                                                                                                                                                         request provided: Stream not found:
+                                                                                                                                                         arn:aws:dynamodb:us-east-
+                                                                                                                                                         1:893506747683:table/tld-p2m-
+                                                                                                                                                         mcc/stream/REEMPLAZAR (Service: Lambda, Status
+                                                                                                                                                         Code: 400, Request ID:
+                                                                                                                                                         c9ba2981-017c-4d62-9ef4-64641dfcb3dd) (SDK
+                                                                                                                                                         Attempt Count: 1)" (RequestToken:
+                                                                                                                                                         c87be74b-6809-efde-5968-58342f510601,
+                                                                                                                                                         HandlerErrorCode: InvalidRequest)
+CREATE_IN_PROGRESS                                 AWS::Logs::LogGroup                                BitacoraAchLogGroup                                Resource creation Initiated
+CREATE_FAILED                                      AWS::Logs::LogGroup                                CanalAchLogGroup                                   Resource creation cancelled
+CREATE_FAILED                                      AWS::Lambda::Function                              ReplicaP2mCuentaLambda                             Resource creation cancelled
+CREATE_FAILED                                      AWS::Logs::LogGroup                                AchReintentoLogGroup                               Resource creation cancelled
+CREATE_FAILED                                      AWS::DynamoDB::Table                               TablaAchReplicacion                                Resource creation cancelled
+CREATE_FAILED                                      AWS::Logs::LogGroup                                P2mMccLogGroup                                     Resource creation cancelled
+CREATE_FAILED                                      AWS::Lambda::EventSourceMapping                    ReplicaCanalAchLambdaStream                        Resource creation cancelled
+CREATE_FAILED                                      AWS::Logs::LogGroup                                P2mLogGroup                                        Resource creation cancelled
+CREATE_FAILED                                      AWS::Logs::LogGroup                                BitacoraAchLogGroup                                Resource creation cancelled
+CREATE_FAILED                                      AWS::Lambda::EventSourceMapping                    ReplicaP2mLambdaStream                             Resource handler returned message: "Invalid
+                                                                                                                                                         request provided: Stream not found:
+                                                                                                                                                         arn:aws:dynamodb:us-east-
+                                                                                                                                                         1:893506747683:table/tld-p2m/stream/REEMPLAZAR
+                                                                                                                                                         (Service: Lambda, Status Code: 400, Request ID:
+                                                                                                                                                         7d797bc5-4f49-4cda-a696-ad305e79b5fe) (SDK
+                                                                                                                                                         Attempt Count: 1)" (RequestToken:
+                                                                                                                                                         07858dd0-8777-a4fb-7f55-1300da403d6f,
+                                                                                                                                                         HandlerErrorCode: InvalidRequest)
+CREATE_FAILED                                      AWS::Lambda::EventSourceMapping                    ReplicaBitacoraAchLambdaStream                     Resource creation cancelled
+UPDATE_ROLLBACK_IN_PROGRESS                        AWS::CloudFormation::Stack                         tld-alias-replica                                  The following resource(s) failed to create:
+                                                                                                                                                         [TablaAchReplicacion,
+                                                                                                                                                         ReplicaBitacoraAchLambdaStream, P2mLogGroup,
+                                                                                                                                                         P2mMccLogGroup, ReplicaP2mLambdaStream,
+                                                                                                                                                         BitacoraAchLogGroup, CanalAchLogGroup,
+                                                                                                                                                         AchReintentoLogGroup, ReplicaP2mCuentaLambda,
+                                                                                                                                                         ReplicaCanalAchLambdaStream,
+                                                                                                                                                         ReplicaP2mMccLambdaStream].
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaAliasCuentaLambda                           -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaBitacoraLambda                              -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              AliasReplicaReintentoLambda                        -
+UPDATE_IN_PROGRESS                                 AWS::Lambda::Function                              ReplicaCanalLambda                                 -
