@@ -10,7 +10,7 @@
 
 ## Resumen en una frase
 
-**Sandbox:** premisa instalada y stack AWS desplegado (Virginia + Oregon); **pendiente validación funcional** P2P/P2M end-to-end. **QA:** ARNs P2M en `samconfig.toml`, premisa PA_ACH con log anterior OK; **AWS QA sin desplegar** (dato julio; no revalidado). **dev:** streams P2M siguen `REEMPLAZAR`. **prod:** `main` ya tiene ARQ-256 (PR #49, 2026-09-16); el deploy AWS 2026-09-19 **falló** porque `[prod]` / `[prod-oregon]` siguen con `REEMPLAZAR`. Ver [`00-estado-y-retomo.md`](./00-estado-y-retomo.md).
+**Sandbox:** premisa instalada y stack AWS desplegado (Virginia + Oregon); **pendiente validación funcional** P2P/P2M end-to-end. **QA:** ARNs P2M en `samconfig.toml`, premisa PA_ACH con log anterior OK; **AWS QA sin desplegar** (dato julio; no revalidado). **dev:** streams P2M siguen `REEMPLAZAR`. **prod:** `main` ya tiene ARQ-256 (PR #49). Deploy AWS 2026-09-19 **falló** (`REEMPLAZAR`). Diagnóstico: Virginia `UPDATE_ROLLBACK_COMPLETE`; Oregon no se tocó; streams P2M **sí existen** (ARNs 2026-09-05). Ver [`00-estado-y-retomo.md`](./00-estado-y-retomo.md).
 
 ---
 

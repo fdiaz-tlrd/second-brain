@@ -2,7 +2,7 @@
 
 Memoria viva del repositorio **tld-onpremise-data**: lambdas SAM que consumen streams DynamoDB y cargan datos en Oracle on‑premise (esquemas **PA_MAC** para P2P y **PA_ACH** para P2M).
 
-**Handoff de sesión:** leer primero [`00-estado-y-retomo.md`](./00-estado-y-retomo.md). Deploy prod 2026-09-19 **falló** (ARNs P2M `REEMPLAZAR`): [`../investigacion/deploy_tld-onpremise-data - produccion/00-que-paso-2026-09-19.md`](../investigacion/deploy_tld-onpremise-data%20-%20produccion/00-que-paso-2026-09-19.md). Camino git trabajo → develop → sandbox → qa → main (#49): [`09-camino-ramas-develop-sandbox-qa.md`](./09-camino-ramas-develop-sandbox-qa.md). Snapshot operacional julio 2026 (premisa/deploy Sandbox): [`ESTADO-ACTUAL.md`](./ESTADO-ACTUAL.md). Pausas Sandbox: [`08-retomar-pruebas-sandbox.md`](./08-retomar-pruebas-sandbox.md).
+**Handoff de sesión:** leer primero [`00-estado-y-retomo.md`](./00-estado-y-retomo.md). Deploy prod 2026-09-19 **falló**; diagnóstico: [`../investigacion/deploy_tld-onpremise-data - produccion/01-lectura-diagnostico-2026-09-19.md`](../investigacion/deploy_tld-onpremise-data%20-%20produccion/01-lectura-diagnostico-2026-09-19.md). Camino git trabajo → develop → sandbox → qa → main (#49): [`09-camino-ramas-develop-sandbox-qa.md`](./09-camino-ramas-develop-sandbox-qa.md). Snapshot operacional julio 2026 (premisa/deploy Sandbox): [`ESTADO-ACTUAL.md`](./ESTADO-ACTUAL.md). Pausas Sandbox: [`08-retomar-pruebas-sandbox.md`](./08-retomar-pruebas-sandbox.md).
 
 ## Rama de trabajo
 
