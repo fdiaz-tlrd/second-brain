@@ -1,8 +1,10 @@
 # Estado actual — tld-onpremise-data (ARQ-256 / P2M a premisa)
 
-**Última consolidación:** 2026-07-10 (fin de sesión — pausa para pruebas funcionales).
+**Última consolidación operacional:** 2026-07-10 (fin de sesión — pausa para pruebas funcionales).
 
-**Handoff:** leer primero la sección [Al retomar (pruebas Sandbox)](#al-retomar-pruebas-sandbox) al volver en unos días.
+**Git (2026-09-16):** el árbol de `qa` es el de la feature `ARQ-256` punta `79631e3`, llegado por PR **#46** (trabajo → develop) → **#47** → **#48**. Ver [`00-estado-y-retomo.md`](./00-estado-y-retomo.md) y [`09-camino-ramas-develop-sandbox-qa.md`](./09-camino-ramas-develop-sandbox-qa.md). Este archivo **no** se revalidó contra AWS ni premisa en esa fecha.
+
+**Handoff operacional julio:** [Al retomar (pruebas Sandbox)](#al-retomar-pruebas-sandbox).
 
 ---
 

@@ -18,6 +18,8 @@
 
 **Sigue (2026-09-09 01:36, usuario):** mapping de Oregon **ya está**. Pendiente: réplica DynamoDB Virginia → Oregon en consola AWS. Tablas del stack: `tld-preg-seguridad-sistema` y `tld-preg-seguridad`. Sin esa réplica, un failover a Oregon **ya no** muere en 403 de mapping, pero pregunta-seguridad en Oregon lee Dynamo de esa región (vacío o distinto de Virginia) y Alias puede volver a 500.
 
+**Bloqueo réplica (2026-09-17, investigación `template.yaml`):** la réplica en consola **falla si la tabla ya existe en Oregon**. Causa en el template: Conditions `CreateGlobalResources` / `CreateDRResource` **comentadas desde el día 1** y las dos tablas Dynamo **sin** `Condition` → cada `sam deploy` a Oregon **crea** tablas locales. Otros repos solo crean en Virginia y luego replican. Detalle: [`01-dynamodb-virginia-vs-oregon.md`](01-dynamodb-virginia-vs-oregon.md). Sin cambios en el repo en esa sesión (solo doc).
+
 Mejora a futuro (acordada, no ahora): `tld-alias-cuenta` invoca las lambdas de pregunta-seguridad (`Invoke`) en lugar de HTTP a API Gateway. Eso no sustituye la réplica de tablas.
 
 Hipótesis de 2026-09-08 22:09 («mapping existe, cerrada») era **solo Virginia**. Queda invalidada como cierre del incidente.

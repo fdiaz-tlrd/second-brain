@@ -2,11 +2,11 @@
 
 Memoria viva del repositorio **tld-onpremise-data**: lambdas SAM que consumen streams DynamoDB y cargan datos en Oracle on‑premise (esquemas **PA_MAC** para P2P y **PA_ACH** para P2M).
 
-**Handoff de sesión:** leer primero [`ESTADO-ACTUAL.md`](./ESTADO-ACTUAL.md). Si vuelves tras pausa de pruebas Sandbox: [`08-retomar-pruebas-sandbox.md`](./08-retomar-pruebas-sandbox.md).
+**Handoff de sesión:** leer primero [`00-estado-y-retomo.md`](./00-estado-y-retomo.md). Camino git trabajo → develop → sandbox → qa: [`09-camino-ramas-develop-sandbox-qa.md`](./09-camino-ramas-develop-sandbox-qa.md). Snapshot operacional julio 2026 (premisa/deploy): [`ESTADO-ACTUAL.md`](./ESTADO-ACTUAL.md). Pausas Sandbox: [`08-retomar-pruebas-sandbox.md`](./08-retomar-pruebas-sandbox.md).
 
 ## Rama de trabajo
 
-`feature/ARQ-256_Bajar_a_premisa_P2M`
+`feature/ARQ-256_Bajar_a_premisa_P2M` — punta en GitHub `79631e3` (2026-07-17). En QA vía PR **#46** → **#47** → **#48** (2026-07-20). Ver [09](./09-camino-ramas-develop-sandbox-qa.md).
 
 ## Qué hace este repo
 
@@ -31,7 +31,9 @@ Canal y bitácora comparten **un solo stream** DynamoDB cada una; hay **dos lamb
 
 | Archivo | Contenido |
 |---------|-----------|
-| [**ESTADO-ACTUAL.md**](./ESTADO-ACTUAL.md) | Estado al último trabajo: qué pasó en premisa, qué falta, riesgos |
+| [**00-estado-y-retomo.md**](./00-estado-y-retomo.md) | Handoff 2026-09-16: QA = último PR de la feature |
+| [**09-camino-ramas-develop-sandbox-qa.md**](./09-camino-ramas-develop-sandbox-qa.md) | Traza feature / develop / sandbox / qa y PRs #34–#48 |
+| [**ESTADO-ACTUAL.md**](./ESTADO-ACTUAL.md) | Snapshot 2026-07-10: premisa, deploy Sandbox, ARNs |
 | [01-arquitectura.md](./01-arquitectura.md) | Visión general, evolución legacy → PA_MAC/PA_ACH, por qué dos lambdas por stream |
 | [02-pa-mac-p2p.md](./02-pa-mac-p2p.md) | Esquema PA_MAC, tablas, RTP, migración ARQ-256 |
 | [03-pa-ach-p2m.md](./03-pa-ach-p2m.md) | Esquema PA_ACH, mapeos cuenta/mcc, decisiones IPEDA |
