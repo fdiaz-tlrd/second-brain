@@ -118,7 +118,7 @@ Handoff pruebas: [08-retomar-pruebas-sandbox.md](./08-retomar-pruebas-sandbox.md
 | `sandbox`, `sandbox-oregon` | 807262913923 | Sí |
 | `qa`, `qa-oregon` | 823638603844 | Sí |
 | dev | 729330417555 | **`REEMPLAZAR`** |
-| prod / prod-oregon | 893506747683 | **Sí** (ARNs 2026-09-05, clon Lenovo 2026-09-19; falta push a `main`) |
+| prod / prod-oregon | 893506747683 | **Sí en AWS** (deploy 2026-09-19). Git: `d01128d`; PR **[#50](https://github.com/Telered-Autopista/tld-onpremise-data/pull/50)** → `develop` (abierto). `main` aún `REEMPLAZAR`. |
 
 ## Despliegue observado (histórico)
 

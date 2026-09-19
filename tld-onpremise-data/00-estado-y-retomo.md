@@ -2,33 +2,35 @@
 
 | Campo | Valor |
 |-------|-------|
-| **Última actualización** | 2026-09-19 (diagnóstico AWS prod) |
+| **Última actualización** | 2026-09-19 (PR #50 ARN prod) |
 | **Repo** | `tld-onpremise-data` |
-| **Punta `origin/main`** | `c8f5413` — Merge PR **#49** (`qa` → `main`, 2026-09-16, `rbozav`) |
-| **Árbol main = qa = sandbox = develop = feature** | Sí (ARQ-256 completo, punta de contenido `79631e3`) |
+| **Punta `origin/main`** | `c8f5413` — Merge PR **#49** (`qa` → `main`, 2026-09-16) |
+| **samconfig prod en git** | ARN en `feature/ARQ-256_Bajar_a_premisa_P2M` `d01128d`. PR **[#50](https://github.com/Telered-Autopista/tld-onpremise-data/pull/50)** → `develop` (**abierto, sin merge**). `main` sigue con `REEMPLAZAR`. |
 
-## Producción AWS (2026-09-19)
+## Producción AWS (2026-09-19 03:25)
 
-Deploy `main` @ `c8f5413` a prod **falló**. Diagnóstico posterior (`DIAGNOSTICO ONPREMISE.txt`) confirma:
+Segundo intento: `-modo deploy` (sin rebuild). **Virginia y Oregon `UPDATE_COMPLETE`.**
+
+Log: [`../investigacion/deploy_tld-onpremise-data - produccion/2026-09-19_tld-onpremise-data_prod.txt`](../investigacion/deploy_tld-onpremise-data%20-%20produccion/2026-09-19_tld-onpremise-data_prod.txt). Lectura: [`02-deploy-exitoso-2026-09-19.md`](../investigacion/deploy_tld-onpremise-data%20-%20produccion/02-deploy-exitoso-2026-09-19.md).
 
 | | Virginia | Oregon |
 |--|--|--|
-| Stack `tld-alias-replica` | `UPDATE_ROLLBACK_COMPLETE` (reintento 2 terminó 07:19Z) | `UPDATE_COMPLETE` **2026-07-04** — esta noche **no se tocó** |
-| Lambdas ACH | no existen | no existen |
-| Lambdas MAC | Active (rollback reescribió a las 07:10Z) | Active, sin tocar desde julio |
-| Secreto `ach-directo-v2/oracle` | no existe | no existe |
-| Streams P2M | **sí**, ARNs 2026-09-05 | **sí**, ARNs 2026-09-05 |
+| Stack `tld-alias-replica` | `UPDATE_COMPLETE` | `UPDATE_COMPLETE` |
+| Lambdas ACH + mappings P2M | creadas | creadas (sin tabla `tld-ach-replicacion`; esa es Virginia-only) |
+| Lambdas MAC | actualizadas al código de `#49` | actualizadas al código de `#49` |
+| Log groups ACH | `CREATE_COMPLETE` | `CREATE_COMPLETE` |
+| Secreto `ach-directo-v2/oracle` | **cargado** (confirmado usuario 2026-09-19) | **cargado** (confirmado usuario 2026-09-19) |
 
-Causa del fallo: `samconfig.toml` `[prod]` / `[prod-oregon]` tenían `.../stream/REEMPLAZAR`. **2026-09-19:** ARNs reales escritos y pusheados en `feature/ARQ-256_Bajar_a_premisa_P2M` (`d01128d`). **`main` aún no los tiene** — el `deployNewVersion` a prod con rama `main` sigue viendo `REEMPLAZAR`.
+Los log groups del rollback **no** bloquearon.
 
-El update de Virginia puede chocar con log groups en `DELETE_FAILED` (SCP). El secreto ACH se crea vacío.
+**Git:** PR **[#50](https://github.com/Telered-Autopista/tld-onpremise-data/pull/50)** (`feature` → `develop`) lleva los ARN. Sin merge. `origin/main` sigue con `REEMPLAZAR`.
 
-Análisis del log de deploy: [`00-que-paso-2026-09-19.md`](../investigacion/deploy_tld-onpremise-data%20-%20produccion/00-que-paso-2026-09-19.md). Dump diagnóstico: [`DIAGNOSTICO ONPREMISE.txt`](../investigacion/deploy_tld-onpremise-data%20-%20produccion/DIAGNOSTICO%20ONPREMISE.txt).
+Fallo de la madrugada (mismo día): [`00-que-paso-2026-09-19.md`](../investigacion/deploy_tld-onpremise-data%20-%20produccion/00-que-paso-2026-09-19.md). Diagnóstico: [`01-lectura-diagnostico-2026-09-19.md`](../investigacion/deploy_tld-onpremise-data%20-%20produccion/01-lectura-diagnostico-2026-09-19.md).
 
 ## Git
 
-El 16-sep `origin/main` se documentó en `afd53f7` (PR #35). El 16-sep tarde se mergeó **#49** (`qa` → `main`). Traza: [`09-camino-ramas-develop-sandbox-qa.md`](./09-camino-ramas-develop-sandbox-qa.md).
+PR **#49** trajo ARQ-256 a `main`. ARN prod: commit `d01128d`; PR **[#50](https://github.com/Telered-Autopista/tld-onpremise-data/pull/50)** a `develop` (abierto, sin merge). Traza: [`09-camino-ramas-develop-sandbox-qa.md`](./09-camino-ramas-develop-sandbox-qa.md).
 
 ## Snapshot operacional julio (Sandbox / QA premisa)
 
-No se revalidó contra AWS Sandbox/QA ni premisa. Sigue en [`ESTADO-ACTUAL.md`](./ESTADO-ACTUAL.md).
+No se revalidó. [`ESTADO-ACTUAL.md`](./ESTADO-ACTUAL.md).

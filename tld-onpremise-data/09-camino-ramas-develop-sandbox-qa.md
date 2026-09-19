@@ -83,5 +83,5 @@ Los PRs de promoción (#36–#48 de Johany, salvo los de feature que son Felix) 
 ## Lo que esto no afirma
 
 - No se miró CloudFormation ni si QA AWS está desplegado con `160faf3`. [`ESTADO-ACTUAL.md`](./ESTADO-ACTUAL.md) (2026-07-10) decía **AWS QA sin desplegar**; eso es operación, no git.
-- `main` **sí** está en este árbol desde PR **#49** (2026-09-16): `qa` → `main` = `c8f5413`. Producción **AWS** no: el deploy 2026-09-19 falló por ARNs P2M `REEMPLAZAR`. Ver [`00-estado-y-retomo.md`](./00-estado-y-retomo.md).
+- `main` **sí** está en este árbol desde PR **#49** (2026-09-16): `qa` → `main` = `c8f5413`. AWS prod **desplegó** ese árbol el 2026-09-19 03:25. ARN P2M de `samconfig`: feature `d01128d`, PR **[#50](https://github.com/Telered-Autopista/tld-onpremise-data/pull/50)** → `develop` (abierto, sin merge). Ver [`00-estado-y-retomo.md`](./00-estado-y-retomo.md).
 - El clon local **no** está en la punta de la feature (checkout Lenovo histórico `4a2138f`; origin feature `79631e3`).

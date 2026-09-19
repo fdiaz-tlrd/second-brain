@@ -1,3 +1,5 @@
+**Supersedido como estado vivo.** Tras este diagnóstico se desplegó prod con éxito (~03:25): [`02-deploy-exitoso-2026-09-19.md`](./02-deploy-exitoso-2026-09-19.md). Este archivo queda como lectura del dump **antes** de ese deploy.
+
 # Lectura del diagnóstico prod — 2026-09-19
 
 Fuente: [`DIAGNOSTICO ONPREMISE.txt`](./DIAGNOSTICO%20ONPREMISE.txt) (`.\diagnostico-onpremise.ps1` en `C:\AWSdeploy`, cuenta `893506747683`, rol `dbarrera@telered.com.pa`).

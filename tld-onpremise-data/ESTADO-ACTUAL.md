@@ -10,7 +10,7 @@
 
 ## Resumen en una frase
 
-**Sandbox:** premisa instalada y stack AWS desplegado (Virginia + Oregon); **pendiente validación funcional** P2P/P2M end-to-end. **QA:** ARNs P2M en `samconfig.toml`, premisa PA_ACH con log anterior OK; **AWS QA sin desplegar** (dato julio; no revalidado). **dev:** streams P2M siguen `REEMPLAZAR`. **prod:** `main` ya tiene ARQ-256 (PR #49). Deploy AWS 2026-09-19 **falló** (`REEMPLAZAR`). Diagnóstico: Virginia `UPDATE_ROLLBACK_COMPLETE`; Oregon no se tocó; streams P2M **sí existen** (ARNs 2026-09-05). Ver [`00-estado-y-retomo.md`](./00-estado-y-retomo.md).
+**Sandbox:** premisa instalada y stack AWS desplegado (Virginia + Oregon); **pendiente validación funcional** P2P/P2M end-to-end. **QA:** ARNs P2M en `samconfig.toml`, premisa PA_ACH con log anterior OK; **AWS QA sin desplegar** (dato julio; no revalidado). **dev:** streams P2M siguen `REEMPLAZAR`. **prod:** AWS **desplegado** 2026-09-19 (`UPDATE_COMPLETE` Virginia + Oregon). Secreto **cargado**. ARN git: PR **[#50](https://github.com/Telered-Autopista/tld-onpremise-data/pull/50)** → `develop` (abierto). `main` aún `REEMPLAZAR`. Ver [`00-estado-y-retomo.md`](./00-estado-y-retomo.md).
 
 ---
 
@@ -157,8 +157,9 @@ Log crudo `describe-table`: sección «Anexo logs recolección streams» al fina
 | 2 | Completar secreto **`ach-directo-v2/oracle`** Sandbox | Bloqueante runtime P2M si vacío |
 | 3 | Verificar **GRANT EXECUTE** AWSDATA MAC/ACH | Query en § Al retomar |
 | 4 | Deploy **QA** AWS | samconfig listo; premisa PA_ACH ya parcial |
-| 5 | ARNs P2M **dev** y **prod** | Sigue `REEMPLAZAR`. Prod se intentó desplegar igual el 2026-09-19 → `UPDATE_ROLLBACK_COMPLETE`. |
-| 6 | Merge rama → main / PR | **Hecho** 2026-09-16 — PR **#49** `qa` → `main` (`c8f5413`). AWS prod no desplegó. |
+| 5 | ARNs P2M **dev** | Sigue `REEMPLAZAR`. |
+| 6 | ARN prod → git (`samconfig.toml`) | **Hecho** PR **[#50](https://github.com/Telered-Autopista/tld-onpremise-data/pull/50)** (`feature` → `develop`). Sin merge. |
+| 7 | Completar secreto **`ach-directo-v2/oracle` prod** (Virginia y Oregon) | **Hecho** 2026-09-19 (confirmación usuario). |
 
 ---
 
