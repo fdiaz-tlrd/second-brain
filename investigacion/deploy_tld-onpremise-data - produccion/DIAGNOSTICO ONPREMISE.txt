@@ -1,0 +1,737 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Windows\system32> $Env:AWS_ACCESS_KEY_ID=""
+PS C:\Windows\system32> $Env:AWS_SECRET_ACCESS_KEY=""
+PS C:\Windows\system32> $Env:AWS_SESSION_TOKEN=""
+PS C:\Windows\system32> Set-Location 'C:\AWSdeploy'
+PS C:\AWSdeploy> dir
+
+
+    Directory: C:\AWSdeploy
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----         7/16/2026   2:52 PM                logs
+d-----          7/5/2026   8:01 PM                X
+-a----          5/7/2026   1:10 AM          18467 actualizar python,md
+-a----         7/11/2026   3:30 PM          66073 deploy - Copy (2).ps1
+-a----         3/18/2026   3:07 PM           8984 deploy - Copy.ps1
+-a----         7/11/2026   8:48 PM          31541 deploy.ps1
+-a----         5/13/2026   3:48 PM          31366 deployCopia.ps1
+-a----         3/19/2026   9:11 AM           9755 deployExperimentar01.ps1
+-a----         3/19/2026   5:36 PM           9907 deployExperimentar02.ps1
+-a----         6/17/2026   4:48 PM          11666 deployFdiaz - Copy.ps1
+-a----         6/17/2026   4:48 PM          11666 deployFdiaz.ps1
+-a----         5/22/2026   6:55 AM          60389 deployNewVersion.ps1
+-a----         9/19/2026   2:40 AM           3391 diagnostico-onpremise.ps1
+-a----          9/5/2026   2:39 AM           8434 limpiar-stack-p2m-prod.ps1
+-a----         6/24/2026   9:41 PM           8410 limpiar-stack-p2m-qa.ps1
+-a----         4/13/2026   9:04 AM           2019 prueba.ps1
+-a----          7/5/2026  11:55 AM           1244 Refresh-AWSCredentials.ps1
+-a----          7/4/2026   9:41 PM          99850 tld-validador-canal-operacion.json
+-a----          7/4/2026   9:02 PM         134054 tld-validador-canal-operaciones-1008-1016.json
+-a----          7/4/2026   9:34 PM             35 values.json
+
+
+PS C:\AWSdeploy> .\diagnostico-onpremise.ps1
+===== STS =====
+{
+    "UserId": "AROA5ACJG7URTBRCJSV6J:dbarrera@telered.com.pa",
+    "Account": "893506747683",
+    "Arn": "arn:aws:sts::893506747683:assumed-role/AWSReservedSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@telered.com.pa"
+}
+
+
+===== REGION us-east-1 =====
+----- stack tld-alias-replica -----
+{
+    "Status": "UPDATE_ROLLBACK_COMPLETE",
+    "Reason": "Update successful. One or more resources could not be deleted.",
+    "Updated": "2026-09-19T07:09:37.360000+00:00"
+}
+
+----- eventos recientes -----
+[
+    {
+        "t": "2026-09-19T07:19:18.647000+00:00",
+        "s": "UPDATE_ROLLBACK_COMPLETE",
+        "id": "tld-alias-replica",
+        "r": "Update successful. One or more resources could not be deleted."
+    },
+    {
+        "t": "2026-09-19T07:19:18.124000+00:00",
+        "s": "DELETE_FAILED",
+        "id": "BitacoraAchLogGroup",
+        "r": "Resource handler returned message: \"User: arn:aws:sts::893506747683:assumed-role/AWSReservedSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@telered.com.pa is not authorized to perform: logs:DeleteLogGroup on resource: arn:aws:logs:us-east-1:893506747683:log-group:/aws/lambda/tld-replica-bitacora-ach with an explicit deny in a service control policy: arn:aws:organizations::586259428538:policy/o-9lvsq6kh46/service_control_policy/p-agpaki3o (Service: CloudWatchLogs, Status Code: 400, Request ID: 9399f120-2964-44ed-9779-77b7513f8a75) (SDK Attempt Count: 1)\" (RequestToken: 5740a677-9dd5-387b-36e6-61da00045d38, HandlerErrorCode: InvalidRequest)"
+    },
+    {
+        "t": "2026-09-19T07:19:17.825000+00:00",
+        "s": "DELETE_FAILED",
+        "id": "AchReintentoLogGroup",
+        "r": "Resource handler returned message: \"User: arn:aws:sts::893506747683:assumed-role/AWSReservedSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@telered.com.pa is not authorized to perform: logs:DeleteLogGroup on resource: arn:aws:logs:us-east-1:893506747683:log-group:/aws/lambda/tld-ach-reintento with an explicit deny in a service control policy: arn:aws:organizations::586259428538:policy/o-9lvsq6kh46/service_control_policy/p-agpaki3o (Service: CloudWatchLogs, Status Code: 400, Request ID: 93addf83-cabd-40c9-81f8-c0a3f54f1a4d) (SDK Attempt Count: 1)\" (RequestToken: 6d09b050-38ad-1ee5-4a1e-23c35c812f52, HandlerErrorCode: InvalidRequest)"
+    },
+    {
+        "t": "2026-09-19T07:19:17.723000+00:00",
+        "s": "DELETE_FAILED",
+        "id": "P2mMccLogGroup",
+        "r": "Resource handler returned message: \"User: arn:aws:sts::893506747683:assumed-role/AWSReservedSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@telered.com.pa is not authorized to perform: logs:DeleteLogGroup on resource: arn:aws:logs:us-east-1:893506747683:log-group:/aws/lambda/tld-replica-p2m-mcc with an explicit deny in a service control policy: arn:aws:organizations::586259428538:policy/o-9lvsq6kh46/service_control_policy/p-agpaki3o (Service: CloudWatchLogs, Status Code: 400, Request ID: 0c26a2bf-a127-4888-aaff-74ac22563de5) (SDK Attempt Count: 1)\" (RequestToken: 5e29ba73-b228-13b8-be6c-94d1f7313b18, HandlerErrorCode: InvalidRequest)"
+    },
+    {
+        "t": "2026-09-19T07:19:17.704000+00:00",
+        "s": "DELETE_FAILED",
+        "id": "P2mLogGroup",
+        "r": "Resource handler returned message: \"User: arn:aws:sts::893506747683:assumed-role/AWSReservedSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@telered.com.pa is not authorized to perform: logs:DeleteLogGroup on resource: arn:aws:logs:us-east-1:893506747683:log-group:/aws/lambda/tld-replica-p2m with an explicit deny in a service control policy: arn:aws:organizations::586259428538:policy/o-9lvsq6kh46/service_control_policy/p-agpaki3o (Service: CloudWatchLogs, Status Code: 400, Request ID: 77fa32c3-0f30-4369-823f-6a3884fe68d2) (SDK Attempt Count: 1)\" (RequestToken: 14d45392-0e4d-eecb-1fa2-d32d589b67fa, HandlerErrorCode: InvalidRequest)"
+    },
+    {
+        "t": "2026-09-19T07:19:17.308000+00:00",
+        "s": "DELETE_IN_PROGRESS",
+        "id": "BitacoraAchLogGroup",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:19:17.187000+00:00",
+        "s": "DELETE_IN_PROGRESS",
+        "id": "AchReintentoLogGroup",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:19:17.159000+00:00",
+        "s": "DELETE_IN_PROGRESS",
+        "id": "P2mLogGroup",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:19:17.152000+00:00",
+        "s": "DELETE_IN_PROGRESS",
+        "id": "P2mMccLogGroup",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:16:16.159000+00:00",
+        "s": "DELETE_FAILED",
+        "id": "P2mLogGroup",
+        "r": "Resource handler returned message: \"User: arn:aws:sts::893506747683:assumed-role/AWSReservedSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@telered.com.pa is not authorized to perform: logs:DeleteLogGroup on resource: arn:aws:logs:us-east-1:893506747683:log-group:/aws/lambda/tld-replica-p2m with an explicit deny in a service control policy: arn:aws:organizations::586259428538:policy/o-9lvsq6kh46/service_control_policy/p-agpaki3o (Service: CloudWatchLogs, Status Code: 400, Request ID: 0af06235-e5b5-4db6-b896-f8ae22175314) (SDK Attempt Count: 1)\" (RequestToken: d923098e-32d1-b78d-afdf-f781d19ef7f8, HandlerErrorCode: InvalidRequest)"
+    },
+    {
+        "t": "2026-09-19T07:16:16.083000+00:00",
+        "s": "DELETE_FAILED",
+        "id": "BitacoraAchLogGroup",
+        "r": "Resource handler returned message: \"User: arn:aws:sts::893506747683:assumed-role/AWSReservedSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@telered.com.pa is not authorized to perform: logs:DeleteLogGroup on resource: arn:aws:logs:us-east-1:893506747683:log-group:/aws/lambda/tld-replica-bitacora-ach with an explicit deny in a service control policy: arn:aws:organizations::586259428538:policy/o-9lvsq6kh46/service_control_policy/p-agpaki3o (Service: CloudWatchLogs, Status Code: 400, Request ID: 121aafdd-84de-483b-ba29-ed4060c63580) (SDK Attempt Count: 1)\" (RequestToken: 69148521-dd05-d5fc-2b7c-36ac9ed53010, HandlerErrorCode: InvalidRequest)"
+    },
+    {
+        "t": "2026-09-19T07:16:15.934000+00:00",
+        "s": "DELETE_FAILED",
+        "id": "P2mMccLogGroup",
+        "r": "Resource handler returned message: \"User: arn:aws:sts::893506747683:assumed-role/AWSReservedSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@telered.com.pa is not authorized to perform: logs:DeleteLogGroup on resource: arn:aws:logs:us-east-1:893506747683:log-group:/aws/lambda/tld-replica-p2m-mcc with an explicit deny in a service control policy: arn:aws:organizations::586259428538:policy/o-9lvsq6kh46/service_control_policy/p-agpaki3o (Service: CloudWatchLogs, Status Code: 400, Request ID: 962b0567-2673-42df-a1f0-11a2dfe66827) (SDK Attempt Count: 1)\" (RequestToken: eb9131c7-0a9c-a3cf-4c2b-ba23f36576ff, HandlerErrorCode: InvalidRequest)"
+    },
+    {
+        "t": "2026-09-19T07:16:15.852000+00:00",
+        "s": "DELETE_FAILED",
+        "id": "AchReintentoLogGroup",
+        "r": "Resource handler returned message: \"User: arn:aws:sts::893506747683:assumed-role/AWSReservedSSO_TLRD_Plataforma_8b5705ab2d4c522e/dbarrera@telered.com.pa is not authorized to perform: logs:DeleteLogGroup on resource: arn:aws:logs:us-east-1:893506747683:log-group:/aws/lambda/tld-ach-reintento with an explicit deny in a service control policy: arn:aws:organizations::586259428538:policy/o-9lvsq6kh46/service_control_policy/p-agpaki3o (Service: CloudWatchLogs, Status Code: 400, Request ID: 626bed75-ffd9-4250-93ea-095a8f8075a8) (SDK Attempt Count: 1)\" (RequestToken: 054a4399-56b8-fa31-ebbe-c03f3d8a76a0, HandlerErrorCode: InvalidRequest)"
+    },
+    {
+        "t": "2026-09-19T07:16:15.471000+00:00",
+        "s": "DELETE_IN_PROGRESS",
+        "id": "BitacoraAchLogGroup",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:16:15.359000+00:00",
+        "s": "DELETE_IN_PROGRESS",
+        "id": "P2mMccLogGroup",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:16:15.326000+00:00",
+        "s": "DELETE_IN_PROGRESS",
+        "id": "P2mLogGroup",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:16:15.300000+00:00",
+        "s": "DELETE_IN_PROGRESS",
+        "id": "AchReintentoLogGroup",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:13:14.368000+00:00",
+        "s": "DELETE_COMPLETE",
+        "id": "SecretAchReplica",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:13:08.245000+00:00",
+        "s": "DELETE_IN_PROGRESS",
+        "id": "SecretAchReplica",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:13:07.871000+00:00",
+        "s": "DELETE_COMPLETE",
+        "id": "ReplicaP2mLambdaRole",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:13:07.710000+00:00",
+        "s": "DELETE_COMPLETE",
+        "id": "ReplicaP2mMccLambdaRole",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:13:05.978000+00:00",
+        "s": "DELETE_COMPLETE",
+        "id": "ReplicaCanalAchLambdaRole",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:12:56.426000+00:00",
+        "s": "DELETE_SKIPPED",
+        "id": "OnPremiseLayer6a22a653f5",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:12:56.256000+00:00",
+        "s": "DELETE_IN_PROGRESS",
+        "id": "ReplicaP2mMccLambdaRole",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:12:55.947000+00:00",
+        "s": "DELETE_IN_PROGRESS",
+        "id": "ReplicaP2mLambdaRole",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:12:55.920000+00:00",
+        "s": "DELETE_IN_PROGRESS",
+        "id": "ReplicaCanalAchLambdaRole",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:12:55.857000+00:00",
+        "s": "DELETE_COMPLETE",
+        "id": "ReplicaP2mMccLambda",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:12:55.584000+00:00",
+        "s": "DELETE_COMPLETE",
+        "id": "ReplicaP2mLambda",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:12:55.478000+00:00",
+        "s": "DELETE_COMPLETE",
+        "id": "ReplicaCanalAchLambda",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:12:49.596000+00:00",
+        "s": "DELETE_IN_PROGRESS",
+        "id": "ReplicaP2mLambda",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:12:49.544000+00:00",
+        "s": "DELETE_IN_PROGRESS",
+        "id": "ReplicaP2mMccLambda",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:12:49.465000+00:00",
+        "s": "DELETE_IN_PROGRESS",
+        "id": "ReplicaCanalAchLambda",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:12:49.191000+00:00",
+        "s": "DELETE_COMPLETE",
+        "id": "ReplicaP2mLambdaStream",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:12:49.141000+00:00",
+        "s": "DELETE_COMPLETE",
+        "id": "ReplicaP2mMccLambdaStream",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:12:49.093000+00:00",
+        "s": "DELETE_COMPLETE",
+        "id": "ReplicaCanalAchLambdaStream",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:10:58.841000+00:00",
+        "s": "DELETE_COMPLETE",
+        "id": "ReplicaBitacoraAchLambdaRole",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:10:54.124000+00:00",
+        "s": "DELETE_COMPLETE",
+        "id": "AchReintentoLambdaRole",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:10:51.547000+00:00",
+        "s": "DELETE_COMPLETE",
+        "id": "ReplicaP2mCuentaLambdaRole",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:10:45.176000+00:00",
+        "s": "DELETE_COMPLETE",
+        "id": "TablaAchReplicacion",
+        "r": null
+    },
+    {
+        "t": "2026-09-19T07:10:42.223000+00:00",
+        "s": "DELETE_IN_PROGRESS",
+        "id": "ReplicaBitacoraAchLambdaRole",
+        "r": null
+    }
+]
+
+----- tabla tld-p2m -----
+{
+    "Status": "ACTIVE",
+    "Stream": {
+        "StreamEnabled": true,
+        "StreamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "LatestStreamArn": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-p2m/stream/2026-09-05T07:56:14.086"
+}
+
+----- tabla tld-p2m-cuenta -----
+{
+    "Status": "ACTIVE",
+    "Stream": {
+        "StreamEnabled": true,
+        "StreamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "LatestStreamArn": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-p2m-cuenta/stream/2026-09-05T07:56:14.110"
+}
+
+----- tabla tld-p2m-mcc -----
+{
+    "Status": "ACTIVE",
+    "Stream": {
+        "StreamEnabled": true,
+        "StreamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "LatestStreamArn": "arn:aws:dynamodb:us-east-1:893506747683:table/tld-p2m-mcc/stream/2026-09-05T07:56:14.062"
+}
+
+----- log groups huÃ©rfanos (ACH / P2M) -----
+----- secreto ach-directo-v2/oracle -----
+
+aws: [ERROR]: An error occurred (ResourceNotFoundException) when calling the DescribeSecret operation: Secrets Manager can't find the specified secret.
+----- lambdas MAC (deben existir) -----
+{
+    "Name": "tld-replica-canal",
+    "Modified": "2026-09-19T07:10:25.000+0000",
+    "State": "Active"
+}
+
+{
+    "Name": "tld-replica-bitacora",
+    "Modified": "2026-09-19T07:10:24.000+0000",
+    "State": "Active"
+}
+
+{
+    "Name": "tld-replica-alias-cuenta",
+    "Modified": "2026-09-19T07:10:24.000+0000",
+    "State": "Active"
+}
+
+{
+    "Name": "tld-alias-reintento",
+    "Modified": "2026-09-19T07:10:25.000+0000",
+    "State": "Active"
+}
+
+----- lambdas ACH (si el rollback termino, no deberian existir) -----
+
+aws: [ERROR]: An error occurred (ResourceNotFoundException) when calling the GetFunction operation: Function not found: arn:aws:lambda:us-east-1:893506747683:function:tld-replica-p2m
+
+Additional error details:
+Type: User
+
+aws: [ERROR]: An error occurred (ResourceNotFoundException) when calling the GetFunction operation: Function not found: arn:aws:lambda:us-east-1:893506747683:function:tld-replica-p2m-cuenta
+
+Additional error details:
+Type: User
+
+aws: [ERROR]: An error occurred (ResourceNotFoundException) when calling the GetFunction operation: Function not found: arn:aws:lambda:us-east-1:893506747683:function:tld-replica-p2m-mcc
+
+Additional error details:
+Type: User
+
+aws: [ERROR]: An error occurred (ResourceNotFoundException) when calling the GetFunction operation: Function not found: arn:aws:lambda:us-east-1:893506747683:function:tld-replica-canal-ach
+
+Additional error details:
+Type: User
+
+aws: [ERROR]: An error occurred (ResourceNotFoundException) when calling the GetFunction operation: Function not found: arn:aws:lambda:us-east-1:893506747683:function:tld-replica-bitacora-ach
+
+Additional error details:
+Type: User
+
+aws: [ERROR]: An error occurred (ResourceNotFoundException) when calling the GetFunction operation: Function not found: arn:aws:lambda:us-east-1:893506747683:function:tld-ach-reintento
+
+Additional error details:
+Type: User
+
+===== REGION us-west-2 =====
+----- stack tld-alias-replica -----
+{
+    "Status": "UPDATE_COMPLETE",
+    "Reason": null,
+    "Updated": "2026-07-04T08:13:47.061000+00:00"
+}
+
+----- eventos recientes -----
+[
+    {
+        "t": "2026-07-04T08:14:14.640000+00:00",
+        "s": "UPDATE_COMPLETE",
+        "id": "tld-alias-replica",
+        "r": null
+    },
+    {
+        "t": "2026-07-04T08:14:14.380000+00:00",
+        "s": "DELETE_SKIPPED",
+        "id": "OnPremiseLayer210946fb2e",
+        "r": null
+    },
+    {
+        "t": "2026-07-04T08:14:13.397000+00:00",
+        "s": "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS",
+        "id": "tld-alias-replica",
+        "r": null
+    },
+    {
+        "t": "2026-07-04T08:14:11.945000+00:00",
+        "s": "UPDATE_COMPLETE",
+        "id": "ReplicaCanalLambda",
+        "r": null
+    },
+    {
+        "t": "2026-07-04T08:14:11.934000+00:00",
+        "s": "UPDATE_COMPLETE",
+        "id": "ReplicaAliasCuentaLambda",
+        "r": null
+    },
+    {
+        "t": "2026-07-04T08:14:11.924000+00:00",
+        "s": "UPDATE_COMPLETE",
+        "id": "ReplicaBitacoraLambda",
+        "r": null
+    },
+    {
+        "t": "2026-07-04T08:14:11.842000+00:00",
+        "s": "UPDATE_COMPLETE",
+        "id": "AliasReplicaReintentoLambda",
+        "r": null
+    },
+    {
+        "t": "2026-07-04T08:13:57.975000+00:00",
+        "s": "UPDATE_IN_PROGRESS",
+        "id": "ReplicaBitacoraLambda",
+        "r": null
+    },
+    {
+        "t": "2026-07-04T08:13:57.913000+00:00",
+        "s": "UPDATE_IN_PROGRESS",
+        "id": "ReplicaCanalLambda",
+        "r": null
+    },
+    {
+        "t": "2026-07-04T08:13:57.857000+00:00",
+        "s": "UPDATE_IN_PROGRESS",
+        "id": "ReplicaAliasCuentaLambda",
+        "r": null
+    },
+    {
+        "t": "2026-07-04T08:13:57.782000+00:00",
+        "s": "UPDATE_IN_PROGRESS",
+        "id": "AliasReplicaReintentoLambda",
+        "r": null
+    },
+    {
+        "t": "2026-07-04T08:13:56.161000+00:00",
+        "s": "CREATE_COMPLETE",
+        "id": "OnPremiseLayer6dd4836c65",
+        "r": null
+    },
+    {
+        "t": "2026-07-04T08:13:55.688000+00:00",
+        "s": "CREATE_IN_PROGRESS",
+        "id": "OnPremiseLayer6dd4836c65",
+        "r": "Resource creation Initiated"
+    },
+    {
+        "t": "2026-07-04T08:13:49.619000+00:00",
+        "s": "CREATE_IN_PROGRESS",
+        "id": "OnPremiseLayer6dd4836c65",
+        "r": null
+    },
+    {
+        "t": "2026-07-04T08:13:47.061000+00:00",
+        "s": "UPDATE_IN_PROGRESS",
+        "id": "tld-alias-replica",
+        "r": "User Initiated"
+    },
+    {
+        "t": "2026-05-28T08:48:16.154000+00:00",
+        "s": "UPDATE_COMPLETE",
+        "id": "tld-alias-replica",
+        "r": null
+    },
+    {
+        "t": "2026-05-28T08:48:15.952000+00:00",
+        "s": "DELETE_SKIPPED",
+        "id": "OnPremiseLayercf49d78e4b",
+        "r": null
+    },
+    {
+        "t": "2026-05-28T08:48:14.908000+00:00",
+        "s": "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS",
+        "id": "tld-alias-replica",
+        "r": null
+    },
+    {
+        "t": "2026-05-28T08:48:13.489000+00:00",
+        "s": "UPDATE_COMPLETE",
+        "id": "AliasReplicaReintentoLambda",
+        "r": null
+    },
+    {
+        "t": "2026-05-28T08:48:11.310000+00:00",
+        "s": "UPDATE_COMPLETE",
+        "id": "ReplicaCanalLambda",
+        "r": null
+    },
+    {
+        "t": "2026-05-28T08:48:06.952000+00:00",
+        "s": "UPDATE_COMPLETE",
+        "id": "ReplicaBitacoraLambda",
+        "r": null
+    },
+    {
+        "t": "2026-05-28T08:48:06.837000+00:00",
+        "s": "UPDATE_COMPLETE",
+        "id": "ReplicaAliasCuentaLambda",
+        "r": null
+    },
+    {
+        "t": "2026-05-28T08:47:54.805000+00:00",
+        "s": "UPDATE_IN_PROGRESS",
+        "id": "AliasReplicaReintentoLambda",
+        "r": null
+    },
+    {
+        "t": "2026-05-28T08:47:52.620000+00:00",
+        "s": "UPDATE_IN_PROGRESS",
+        "id": "ReplicaCanalLambda",
+        "r": null
+    },
+    {
+        "t": "2026-05-28T08:47:52.483000+00:00",
+        "s": "UPDATE_IN_PROGRESS",
+        "id": "ReplicaAliasCuentaLambda",
+        "r": null
+    },
+    {
+        "t": "2026-05-28T08:47:52.453000+00:00",
+        "s": "UPDATE_IN_PROGRESS",
+        "id": "ReplicaBitacoraLambda",
+        "r": null
+    },
+    {
+        "t": "2026-05-28T08:47:50.735000+00:00",
+        "s": "CREATE_COMPLETE",
+        "id": "OnPremiseLayer210946fb2e",
+        "r": null
+    },
+    {
+        "t": "2026-05-28T08:47:50.201000+00:00",
+        "s": "CREATE_IN_PROGRESS",
+        "id": "OnPremiseLayer210946fb2e",
+        "r": "Resource creation Initiated"
+    },
+    {
+        "t": "2026-05-28T08:47:39.968000+00:00",
+        "s": "CREATE_IN_PROGRESS",
+        "id": "OnPremiseLayer210946fb2e",
+        "r": null
+    },
+    {
+        "t": "2026-05-28T08:47:37.104000+00:00",
+        "s": "UPDATE_IN_PROGRESS",
+        "id": "tld-alias-replica",
+        "r": "User Initiated"
+    },
+    {
+        "t": "2025-08-29T04:08:40.678000+00:00",
+        "s": "UPDATE_COMPLETE",
+        "id": "tld-alias-replica",
+        "r": null
+    },
+    {
+        "t": "2025-08-29T04:08:40.522000+00:00",
+        "s": "DELETE_SKIPPED",
+        "id": "OnPremiseLayerb9dcc4e576",
+        "r": null
+    },
+    {
+        "t": "2025-08-29T04:08:39.178000+00:00",
+        "s": "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS",
+        "id": "tld-alias-replica",
+        "r": null
+    },
+    {
+        "t": "2025-08-29T04:08:37.935000+00:00",
+        "s": "UPDATE_COMPLETE",
+        "id": "AliasReplicaReintentoLambda",
+        "r": null
+    },
+    {
+        "t": "2025-08-29T04:08:32.322000+00:00",
+        "s": "UPDATE_COMPLETE",
+        "id": "ReplicaAliasCuentaLambda",
+        "r": null
+    },
+    {
+        "t": "2025-08-29T04:08:32.281000+00:00",
+        "s": "UPDATE_COMPLETE",
+        "id": "ReplicaCanalLambda",
+        "r": null
+    },
+    {
+        "t": "2025-08-29T04:08:32.122000+00:00",
+        "s": "UPDATE_COMPLETE",
+        "id": "ReplicaBitacoraLambda",
+        "r": null
+    },
+    {
+        "t": "2025-08-29T04:08:24.372000+00:00",
+        "s": "UPDATE_IN_PROGRESS",
+        "id": "ReplicaCanalLambda",
+        "r": null
+    },
+    {
+        "t": "2025-08-29T04:08:24.276000+00:00",
+        "s": "UPDATE_IN_PROGRESS",
+        "id": "ReplicaAliasCuentaLambda",
+        "r": null
+    },
+    {
+        "t": "2025-08-29T04:08:24.139000+00:00",
+        "s": "UPDATE_IN_PROGRESS",
+        "id": "ReplicaBitacoraLambda",
+        "r": null
+    }
+]
+
+----- tabla tld-p2m -----
+{
+    "Status": "ACTIVE",
+    "Stream": {
+        "StreamEnabled": true,
+        "StreamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "LatestStreamArn": "arn:aws:dynamodb:us-west-2:893506747683:table/tld-p2m/stream/2026-09-05T08:08:58.008"
+}
+
+----- tabla tld-p2m-cuenta -----
+{
+    "Status": "ACTIVE",
+    "Stream": {
+        "StreamEnabled": true,
+        "StreamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "LatestStreamArn": "arn:aws:dynamodb:us-west-2:893506747683:table/tld-p2m-cuenta/stream/2026-09-05T08:17:20.663"
+}
+
+----- tabla tld-p2m-mcc -----
+{
+    "Status": "ACTIVE",
+    "Stream": {
+        "StreamEnabled": true,
+        "StreamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "LatestStreamArn": "arn:aws:dynamodb:us-west-2:893506747683:table/tld-p2m-mcc/stream/2026-09-05T08:19:53.821"
+}
+
+----- log groups huÃ©rfanos (ACH / P2M) -----
+----- secreto ach-directo-v2/oracle -----
+
+aws: [ERROR]: An error occurred (ResourceNotFoundException) when calling the DescribeSecret operation: Secrets Manager can't find the specified secret.
+----- lambdas MAC (deben existir) -----
+{
+    "Name": "tld-replica-canal",
+    "Modified": "2026-07-04T08:14:05.000+0000",
+    "State": "Active"
+}
+
+{
+    "Name": "tld-replica-bitacora",
+    "Modified": "2026-07-04T08:14:05.000+0000",
+    "State": "Active"
+}
+
+{
+    "Name": "tld-replica-alias-cuenta",
+    "Modified": "2026-07-04T08:14:05.000+0000",
+    "State": "Active"
+}
+
+{
+    "Name": "tld-alias-reintento",
+    "Modified": "2026-07-04T08:14:05.000+0000",
+    "State": "Active"
+}
+
+----- lambdas ACH (si el rollback termino, no deberian existir) -----
+
+aws: [ERROR]: An error occurred (ResourceNotFoundException) when calling the GetFunction operation: Function not found: arn:aws:lambda:us-west-2:893506747683:function:tld-replica-p2m
+
+Additional error details:
+Type: User
+
+aws: [ERROR]: An error occurred (ResourceNotFoundException) when calling the GetFunction operation: Function not found: arn:aws:lambda:us-west-2:893506747683:function:tld-replica-p2m-cuenta
+
+Additional error details:
+Type: User
+
+aws: [ERROR]: An error occurred (ResourceNotFoundException) when calling the GetFunction operation: Function not found: arn:aws:lambda:us-west-2:893506747683:function:tld-replica-p2m-mcc
+
+Additional error details:
+Type: User
+
+aws: [ERROR]: An error occurred (ResourceNotFoundException) when calling the GetFunction operation: Function not found: arn:aws:lambda:us-west-2:893506747683:function:tld-replica-canal-ach
+
+Additional error details:
+Type: User
+
+aws: [ERROR]: An error occurred (ResourceNotFoundException) when calling the GetFunction operation: Function not found: arn:aws:lambda:us-west-2:893506747683:function:tld-replica-bitacora-ach
+
+Additional error details:
+Type: User
+
+aws: [ERROR]: An error occurred (ResourceNotFoundException) when calling the GetFunction operation: Function not found: arn:aws:lambda:us-west-2:893506747683:function:tld-ach-reintento
+
+Additional error details:
+Type: User
+
+===== FIN =====
+Pegar todo el output desde STS hasta FIN.
+PS C:\AWSdeploy>
