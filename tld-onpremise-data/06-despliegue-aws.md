@@ -117,7 +117,7 @@ Handoff pruebas: [08-retomar-pruebas-sandbox.md](./08-retomar-pruebas-sandbox.md
 |--------|--------|--------------|
 | `sandbox`, `sandbox-oregon` | 807262913923 | Sí |
 | `qa`, `qa-oregon` | 823638603844 | Sí |
-| dev, prod, tlrd-highway | varias | **`REEMPLAZAR`** |
+| dev, prod, tlrd-highway | varias | **`REEMPLAZAR`** — prod se desplegó así el 2026-09-19 y CloudFormation hizo rollback. Ver [`../investigacion/deploy_tld-onpremise-data - produccion/00-que-paso-2026-09-19.md`](../investigacion/deploy_tld-onpremise-data%20-%20produccion/00-que-paso-2026-09-19.md). |
 
 ## Despliegue observado (histórico)
 

@@ -10,7 +10,7 @@
 
 ## Resumen en una frase
 
-**Sandbox:** premisa instalada y stack AWS desplegado (Virginia + Oregon); **pendiente validación funcional** P2P/P2M end-to-end. **QA:** ARNs P2M en `samconfig.toml`, premisa PA_ACH con log anterior OK; **AWS QA sin desplegar**. **dev/prod:** streams P2M siguen `REEMPLAZAR`.
+**Sandbox:** premisa instalada y stack AWS desplegado (Virginia + Oregon); **pendiente validación funcional** P2P/P2M end-to-end. **QA:** ARNs P2M en `samconfig.toml`, premisa PA_ACH con log anterior OK; **AWS QA sin desplegar** (dato julio; no revalidado). **dev:** streams P2M siguen `REEMPLAZAR`. **prod:** `main` ya tiene ARQ-256 (PR #49, 2026-09-16); el deploy AWS 2026-09-19 **falló** porque `[prod]` / `[prod-oregon]` siguen con `REEMPLAZAR`. Ver [`00-estado-y-retomo.md`](./00-estado-y-retomo.md).
 
 ---
 
@@ -157,8 +157,8 @@ Log crudo `describe-table`: sección «Anexo logs recolección streams» al fina
 | 2 | Completar secreto **`ach-directo-v2/oracle`** Sandbox | Bloqueante runtime P2M si vacío |
 | 3 | Verificar **GRANT EXECUTE** AWSDATA MAC/ACH | Query en § Al retomar |
 | 4 | Deploy **QA** AWS | samconfig listo; premisa PA_ACH ya parcial |
-| 5 | ARNs P2M **dev** y **prod** | Sigue `REEMPLAZAR` |
-| 6 | Merge rama → main / PR | Tras pruebas OK |
+| 5 | ARNs P2M **dev** y **prod** | Sigue `REEMPLAZAR`. Prod se intentó desplegar igual el 2026-09-19 → `UPDATE_ROLLBACK_COMPLETE`. |
+| 6 | Merge rama → main / PR | **Hecho** 2026-09-16 — PR **#49** `qa` → `main` (`c8f5413`). AWS prod no desplegó. |
 
 ---
 

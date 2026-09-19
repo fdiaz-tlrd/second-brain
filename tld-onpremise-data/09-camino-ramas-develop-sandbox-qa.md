@@ -1,6 +1,6 @@
 # Camino de ramas — trabajo → develop → sandbox → qa
 
-Revisión **solo lectura** 2026-09-16. Repo: `Telered-Autopista/tld-onpremise-data`. No se modificó el clon.
+Revisión git 2026-09-16; **main actualizado 2026-09-19** al ver el deploy prod (fetch del servidor: `afd53f7..c8f5413`). Repo: `Telered-Autopista/tld-onpremise-data`.
 
 Fuente: refs `origin/*` ya presentes en el clon + `gh pr list/view` (API GitHub). `git fetch` desde Lenovo falló por certificado SSL; los PRs #46–#48 y la lista vacía de PRs abiertos coinciden con esos refs.
 
@@ -13,7 +13,7 @@ Fuente: refs `origin/*` ya presentes en el clon + `gh pr list/view` (API GitHub)
 | `origin/develop` | `f09663b` | 2026-07-20 | Merge PR **#46** (feature → develop) |
 | `origin/sandbox` | `ce662e9` | 2026-07-20 | Merge PR **#47** (develop → sandbox) |
 | `origin/qa` | `160faf3` | 2026-07-20 | Merge PR **#48** (sandbox → qa) |
-| `origin/main` | `afd53f7` | 2026-07-03 | Merge PR **#35** (qa → main). **No** incluye #46–#48 |
+| `origin/main` | `c8f5413` | 2026-09-16 | Merge PR **#49** (qa → main). **Sí** incluye #46–#48 / ARQ-256. Antes: `afd53f7` (PR #35). |
 
 Árbol de archivos (`^{tree}`):
 
@@ -83,5 +83,5 @@ Los PRs de promoción (#36–#48 de Johany, salvo los de feature que son Felix) 
 ## Lo que esto no afirma
 
 - No se miró CloudFormation ni si QA AWS está desplegado con `160faf3`. [`ESTADO-ACTUAL.md`](./ESTADO-ACTUAL.md) (2026-07-10) decía **AWS QA sin desplegar**; eso es operación, no git.
-- `main` / producción git **no** está en este árbol.
-- El clon local **no** está en la punta de la feature.
+- `main` **sí** está en este árbol desde PR **#49** (2026-09-16): `qa` → `main` = `c8f5413`. Producción **AWS** no: el deploy 2026-09-19 falló por ARNs P2M `REEMPLAZAR`. Ver [`00-estado-y-retomo.md`](./00-estado-y-retomo.md).
+- El clon local **no** está en la punta de la feature (checkout Lenovo histórico `4a2138f`; origin feature `79631e3`).
