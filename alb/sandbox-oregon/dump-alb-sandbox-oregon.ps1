@@ -5,7 +5,7 @@
 
 .DESCRIPTION
   Escribe JSON en una carpeta local. Después copiá esa carpeta a:
-  second-brain/alb/sandbox-oregon/raw/
+  second-brain/alb/sandbox-oregon/alb-sandbox-oregon-raw/
 
 .EXAMPLE
   .\dump-alb-sandbox-oregon.ps1
@@ -127,7 +127,7 @@ Write-Host ''
 Write-Host "Listo. Copiá el contenido de:" -ForegroundColor Green
 Write-Host "  $OutDir"
 Write-Host "a:"
-Write-Host "  second-brain/alb/sandbox-oregon/raw/"
+Write-Host "  second-brain/alb/sandbox-oregon/alb-sandbox-oregon-raw/"
 Write-Host ''
 Write-Host 'Mínimo útil: 01, 03, 05, 06, 08. Ideal: todos.'
 Get-ChildItem | Sort-Object Name | Format-Table Name, Length -AutoSize

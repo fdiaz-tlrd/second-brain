@@ -17,6 +17,8 @@ Si PowerShell bloquea la ejecución:
 powershell -ExecutionPolicy Bypass -File .\dump-alb-sandbox-oregon.ps1
 ```
 
-Después copiá el contenido de la carpeta de salida a `second-brain/alb/sandbox-oregon/raw/`.
+Después copiá el contenido de la carpeta de salida a
+`second-brain/alb/sandbox-oregon/alb-sandbox-oregon-raw/`
+(o dejá la carpeta entera ahí, como en el dump 2026-09-23).
 
 Mínimo útil: `01`, `03`, `05`, `06`, `08`. Ideal: todos.
