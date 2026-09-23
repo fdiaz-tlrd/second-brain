@@ -64,13 +64,10 @@ Invoke-AwsJson '03-listeners.json' @(
   'elbv2', 'describe-listeners', '--load-balancer-arn', $AlbArn
 )
 
-$listenerArns = @(
-  Invoke-AwsText @(
-    'elbv2', 'describe-listeners',
-    '--load-balancer-arn', $AlbArn,
-    '--query', 'Listeners[].ListenerArn'
-  ) -split '\s+' | Where-Object { $_ }
-)
+# Leer ARNs desde el JSON ya bajado (no re-llamar AWS).
+# Ojo: `Invoke-AwsText ... -split` sin paréntesis trata -split como parámetro del cmdlet.
+$listenersDoc = Get-Content -Raw '03-listeners.json' | ConvertFrom-Json
+$listenerArns = @($listenersDoc.Listeners | ForEach-Object { $_.ListenerArn })
 
 $i = 0
 foreach ($listenerArn in $listenerArns) {
