@@ -1,24 +1,31 @@
-# Dump AWS CLI — ALB sandbox Oregon
+# Scripts AWS CLI — sandbox Oregon
 
-Script: [`dump-alb-sandbox-oregon.ps1`](dump-alb-sandbox-oregon.ps1)
+## ALB + target health
 
-En la máquina con AWS CLI / credenciales:
+[`dump-alb-sandbox-oregon.ps1`](dump-alb-sandbox-oregon.ps1) → salida en `alb-sandbox-oregon-raw/`
 
 ```powershell
-cd <ruta-donde-copiaste-el-ps1>
 .\dump-alb-sandbox-oregon.ps1
 # o:
-.\dump-alb-sandbox-oregon.ps1 -OutDir C:\temp\alb-sandbox-oregon-raw
-```
-
-Si PowerShell bloquea la ejecución:
-
-```powershell
 powershell -ExecutionPolicy Bypass -File .\dump-alb-sandbox-oregon.ps1
 ```
 
-Después copiá el contenido de la carpeta de salida a
-`second-brain/alb/sandbox-oregon/alb-sandbox-oregon-raw/`
-(o dejá la carpeta entera ahí, como en el dump 2026-09-23).
+## Dominios personalizados API Gateway (+ cruce con Hosts del ALB)
 
-Mínimo útil: `01`, `03`, `05`, `06`, `08`. Ideal: todos.
+[`revisar-dominios-personalizados.ps1`](revisar-dominios-personalizados.ps1) → salida en `dominios-personalizados-raw/`
+
+```powershell
+# Solo dominios + mappings (REST y HTTP/v2) en us-west-2:
+.\revisar-dominios-personalizados.ps1
+
+# Con cruce contra reglas HTTPS del ALB (dump previo):
+.\revisar-dominios-personalizados.ps1 `
+  -AlbRulesJson .\alb-sandbox-oregon-raw\04-rules-listener-0.json
+
+# Otra región:
+.\revisar-dominios-personalizados.ps1 -Region us-east-1
+```
+
+Traé la carpeta a `second-brain/alb/sandbox-oregon/dominios-personalizados-raw/`.
+
+Útil: `05-resumen-dominios.csv` y, si cruzaste, `07-cruce-alb-vs-dominios.csv` (columnas `SinMapping` / nota).

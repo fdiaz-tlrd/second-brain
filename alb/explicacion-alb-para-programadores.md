@@ -83,4 +83,8 @@ Resumen:
 
 Por cada Host de la lista: en **API Gateway → Custom domain names** (Oregon, cuenta sandbox), ver si existe el dominio y un **API mapping** a la API/stage correctos. Eso es independiente de que el ALB tenga la regla.
 
+**Hecho por el usuario (2026-09-23):** al menos cuatro Hosts **no** tenían mapping y los agregó — ver [`sandbox-oregon/hallazgo-mappings-y-cert.md`](sandbox-oregon/hallazgo-mappings-y-cert.md). La hipótesis era correcta.
+
 El Unhealthy del TG es otro tema: matcher espera 200 y el VPCe contesta 403 al probe sin Host útil.
+
+**Además (mismas notas):** el certificado ACM del listener HTTPS del ALB (`24db24a6-…`) figura **Caducada** en la UI; el dump CLI muestra ese ARN en el listener. Capa distinta (TLS cliente→ALB), no el health check del TG.
