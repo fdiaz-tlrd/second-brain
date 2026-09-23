@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |-------|-------|
-| **Estado** | Sandbox Oregon: Unhealthy=403 health check; mappings faltantes (4 corregidos); **cert listener caducado**. Ver [`sandbox-oregon/`](sandbox-oregon/00-estado-y-retomo.md). |
+| **Estado** | Sandbox Oregon: Unhealthy=403 health check; mappings faltantes (4 corregidos); **cert listener caducado**. Scripts/dumps RDP en [`aws-infra-dumps`](https://github.com/fdiaz-tlrd/aws-infra-dumps). Ver [`sandbox-oregon/`](sandbox-oregon/00-estado-y-retomo.md). |
 | **Ambientes** | desarrollo (dev), sandbox, qa, producción |
 | **Regiones** | Virginia (`us-east-1`), Oregon (`us-west-2`) |
 | **Notas tuyas** | `second-brain/investigacion/ALB/` (solo lectura para el agente) |

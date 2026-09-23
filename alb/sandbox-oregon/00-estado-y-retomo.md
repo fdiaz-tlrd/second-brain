@@ -13,7 +13,8 @@
 | **SG ALB** | `sg-01104037a6ec8d4e0` (`alb-sandbox-oregon-sg`) |
 | **Target group** | `vpc-endpoint-apis-oregon` — 3 destinos **unhealthy** |
 | **Notas tuyas** | `second-brain/investigacion/ALB/sandbox.md` |
-| **Script** | [`dump-alb-sandbox-oregon.ps1`](dump-alb-sandbox-oregon.ps1) · [`revisar-dominios-personalizados.ps1`](revisar-dominios-personalizados.ps1) |
+| **Scripts + raw (RDP via git)** | repo **`aws-infra-dumps`**: https://github.com/fdiaz-tlrd/aws-infra-dumps — canonicos ahi; este folder es estudio |
+| **Script (copia estudio)** | [`dump-alb-sandbox-oregon.ps1`](dump-alb-sandbox-oregon.ps1) · [`revisar-dominios-personalizados.ps1`](revisar-dominios-personalizados.ps1) |
 | **Salidas** | [`alb-sandbox-oregon-raw/`](alb-sandbox-oregon-raw/) · `dominios-personalizados-raw/` (cuando lo corras) |
 | **Hallazgos** | [`hallazgo-unhealthy-403.md`](hallazgo-unhealthy-403.md) · [`hallazgo-mappings-y-cert.md`](hallazgo-mappings-y-cert.md) |
 | **Explicación** | [`../explicacion-alb-para-programadores.md`](../explicacion-alb-para-programadores.md) |

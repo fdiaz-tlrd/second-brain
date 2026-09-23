@@ -1,31 +1,18 @@
 # Scripts AWS CLI — sandbox Oregon
 
-## ALB + target health
-
-[`dump-alb-sandbox-oregon.ps1`](dump-alb-sandbox-oregon.ps1) → salida en `alb-sandbox-oregon-raw/`
+**Repo de trabajo en el RDP (scripts + dumps):** https://github.com/fdiaz-tlrd/aws-infra-dumps
 
 ```powershell
+git clone https://github.com/fdiaz-tlrd/aws-infra-dumps.git
+cd aws-infra-dumps\scripts\sandbox-oregon
 .\dump-alb-sandbox-oregon.ps1
-# o:
-powershell -ExecutionPolicy Bypass -File .\dump-alb-sandbox-oregon.ps1
-```
-
-## Dominios personalizados API Gateway (+ cruce con Hosts del ALB)
-
-[`revisar-dominios-personalizados.ps1`](revisar-dominios-personalizados.ps1) → salida en `dominios-personalizados-raw/`
-
-```powershell
-# Solo dominios + mappings (REST y HTTP/v2) en us-west-2:
 .\revisar-dominios-personalizados.ps1
-
-# Con cruce contra reglas HTTPS del ALB (dump previo):
-.\revisar-dominios-personalizados.ps1 `
-  -AlbRulesJson .\alb-sandbox-oregon-raw\04-rules-listener-0.json
-
-# Otra región:
-.\revisar-dominios-personalizados.ps1 -Region us-east-1
+cd ..\..
+git add raw
+git commit -m "dump sandbox oregon"
+git push
 ```
 
-Traé la carpeta a `second-brain/alb/sandbox-oregon/dominios-personalizados-raw/`.
+Salidas en ese repo: `raw/sandbox-oregon/alb/` y `raw/sandbox-oregon/dominios/`.
 
-Útil: `05-resumen-dominios.csv` y, si cruzaste, `07-cruce-alb-vs-dominios.csv` (columnas `SinMapping` / nota).
+Los `.ps1` de esta carpeta en `second-brain` son copia de estudio; el flujo RDP usa **`aws-infra-dumps`**.
