@@ -38,7 +38,7 @@ function Invoke-AwsJson {
     [Parameter(Mandatory)][string]$OutFile,
     [Parameter(Mandatory)][string[]]$AwsArgs
   )
-  Write-Host "→ $OutFile" -ForegroundColor DarkGray
+  Write-Host "-> $OutFile" -ForegroundColor DarkGray
   $json = & aws @AwsArgs --region $Region --output json 2>&1
   if ($LASTEXITCODE -ne 0) {
     $json | Set-Content -Encoding utf8 ($OutFile + '.error.txt')
@@ -130,10 +130,11 @@ foreach ($d in $restItems) {
     if (-not $mappings) { $mappings = @() }
     $sinMapping = ($mappings.Count -eq 0)
   }
-  $mapSummary = ($mappings | ForEach-Object {
-      $bp = if ($_.basePath) { $_.basePath } else { '(none)' }
-      '{0} → {1}/{2}' -f $bp, $_.restApiId, $_.stage
-    }) -join '; '
+  $mapParts = foreach ($m in $mappings) {
+    $bp = if ($m.basePath) { $m.basePath } else { '(none)' }
+    '{0} -> {1}/{2}' -f $bp, $m.restApiId, $m.stage
+  }
+  $mapSummary = @($mapParts) -join '; '
   $rows.Add([pscustomobject]@{
       ApiKind       = 'REST'
       DomainName    = $name
@@ -161,12 +162,13 @@ foreach ($d in $v2Items) {
     if (-not $mappings) { $mappings = @() }
     $sinMapping = ($mappings.Count -eq 0)
   }
-  $mapSummary = ($mappings | ForEach-Object {
-      $bp = if ($_.ApiMappingKey) { $_.ApiMappingKey } elseif ($_.apiMappingKey) { $_.apiMappingKey } else { '(none)' }
-      $api = if ($_.ApiId) { $_.ApiId } else { $_.apiId }
-      $stage = if ($_.Stage) { $_.Stage } else { $_.stage }
-      '{0} → {1}/{2}' -f $bp, $api, $stage
-    }) -join '; '
+  $mapParts = foreach ($m in $mappings) {
+    $bp = if ($m.ApiMappingKey) { $m.ApiMappingKey } elseif ($m.apiMappingKey) { $m.apiMappingKey } else { '(none)' }
+    $api = if ($m.ApiId) { $m.ApiId } else { $m.apiId }
+    $stage = if ($m.Stage) { $m.Stage } else { $m.stage }
+    '{0} -> {1}/{2}' -f $bp, $api, $stage
+  }
+  $mapSummary = @($mapParts) -join '; '
   $regional = ''
   if ($d.DomainNameConfigurations -and $d.DomainNameConfigurations.Count -gt 0) {
     $regional = $d.DomainNameConfigurations[0].ApiGatewayDomainName

@@ -33,11 +33,11 @@ function Invoke-AwsJson {
     [Parameter(Mandatory)][string]$OutFile,
     [Parameter(Mandatory)][string[]]$AwsArgs
   )
-  Write-Host "→ $OutFile" -ForegroundColor DarkGray
+  Write-Host "-> $OutFile" -ForegroundColor DarkGray
   $json = & aws @AwsArgs --output json 2>&1
   if ($LASTEXITCODE -ne 0) {
     $json | Set-Content -Encoding utf8 ($OutFile + '.error.txt')
-    throw "aws falló ($OutFile). Ver $($OutFile).error.txt"
+    throw "aws fallo ($OutFile). Ver $($OutFile).error.txt"
   }
   $json | Set-Content -Encoding utf8 $OutFile
 }
@@ -46,7 +46,7 @@ function Invoke-AwsText {
   param([Parameter(Mandatory)][string[]]$AwsArgs)
   $text = & aws @AwsArgs --output text 2>&1
   if ($LASTEXITCODE -ne 0) {
-    throw "aws falló: $($AwsArgs -join ' ') → $text"
+    throw "aws fallo: $($AwsArgs -join ' ') -> $text"
   }
   return ($text | Out-String).Trim()
 }
