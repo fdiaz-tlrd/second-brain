@@ -1,0 +1,113 @@
+openapi: 3.0.3
+info:
+  title: Participant Payments API — exposed by each processor, consumed by the HUB
+  version: 1.0.0-draft
+  description: |
+    Every participant exposes this interface to receive payment messages routed by the HUB.
+    It accepts the same representations as the HUB Payments API: raw ISO 20022 pacs.008 XML or
+    the JSON projection. The HUB delivers
+    the message that another network originated, and the participant answers with pacs.002
+    semantics within the time budget of the scheme (end-to-end limit; no reply in time triggers
+    the HUB timeout events). The participant must apply idempotent processing: the HUB may
+    retransmit with the same `Idempotency-Key`.
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@hub.example.pa
+  license:
+    name: Proprietary
+    url: https://hub.example.pa/terms
+
+servers:
+  - url: https://{participantBaseUrl}/hub-payments/v1
+    description: Base URL registered by the participant in its HUB onboarding metadata
+    variables:
+      participantBaseUrl:
+        default: api.participant.example.pa
+
+tags:
+  - name: Inbound payments
+    description: Reception of HUB-routed payment messages (pacs.008 → pacs.002 semantics)
+
+paths:
+
+  /payments:
+    post:
+      tags: [Inbound payments]
+      summary: Receive a HUB-routed payment message
+      description: |
+        The HUB delivers the pacs.008 originated at another network (XML as-is, or the JSON
+        scheme JSON projection). The participant validates, applies the credit under
+        its own rules and answers the initial status with pacs.002 semantics; the final status
+        travels back through the same channel in the opposite direction (participant → HUB).
+      operationId: receiveRoutedPayment
+      security: [{ oauth2ClientCredentials: [payments.write] }]
+      parameters:
+        - $ref: '../../common/common-components.yaml#/components/parameters/IdempotencyKey'
+        - $ref: '../../common/common-components.yaml#/components/parameters/FapiInteractionId'
+        - $ref: '../../common/common-components.yaml#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '../../api-payments/openapi.yaml#/components/schemas/PaymentOrderRequest' }
+            examples:
+              routedP2p:
+                summary: P2P order routed by the HUB towards this participant
+                value:
+                  endToEndId: "E2E-2026-0001"
+                  paymentType: PUSH
+                  instructedAmount: { currency: USD, value: "125.00" }
+                  debtor:
+                    participantId: "YAPPY"
+                    name: "Carlos Perez"
+                    account: { scheme: OTHR, id: "YAP-ACC-7f3a92", institutionCode: "YAPPY" }
+                  creditor:
+                    participantId: "TELERED"
+                    name: "Maria Fernanda Gomez"
+                    account: { scheme: OTHR, id: "04-99-0012345678", institutionCode: "BG" }
+          application/xml:
+            schema: { $ref: '../../api-payments/openapi.yaml#/components/schemas/Iso20022Message' }
+      responses:
+        '201':
+          description: Message received; initial status (pacs.002 semantics)
+          content:
+            application/json:
+              schema: { $ref: '../../api-payments/openapi.yaml#/components/schemas/PaymentStatus' }
+              examples:
+                received:
+                  value:
+                    transactionId: "HUB-TX-77120"
+                    endToEndId: "E2E-2026-0001"
+                    status: RECEIVED
+                    updatedDateTime: "2026-09-16T14:03:11Z"
+        '400': { $ref: '../../common/common-components.yaml#/components/responses/BadRequest' }
+        '401': { $ref: '../../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../../common/common-components.yaml#/components/responses/Forbidden' }
+        '409': { $ref: '../../common/common-components.yaml#/components/responses/Conflict' }
+        '422': { $ref: '../../common/common-components.yaml#/components/responses/BusinessRule' }
+
+  /payments/{transactionId}:
+    get:
+      tags: [Inbound payments]
+      summary: Status of a received transaction (pacs.028 coverage, HUB-invoked)
+      description: The HUB queries the participant for the current status of a message it delivered, covering the pacs.028 status request during regularisation and conflict resolution.
+      operationId: getRoutedPaymentStatus
+      security: [{ oauth2ClientCredentials: [payments.read] }]
+      parameters:
+        - { name: transactionId, in: path, required: true, schema: { type: string } }
+        - $ref: '../../common/common-components.yaml#/components/parameters/FapiInteractionId'
+      responses:
+        '200':
+          description: Current status at this participant
+          content:
+            application/json:
+              schema: { $ref: '../../api-payments/openapi.yaml#/components/schemas/PaymentStatus' }
+        '401': { $ref: '../../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../../common/common-components.yaml#/components/responses/NotFound' }
+
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      $ref: '../../common/common-components.yaml#/components/securitySchemes/oauth2ClientCredentials'

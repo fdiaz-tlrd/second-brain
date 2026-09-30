@@ -1,0 +1,105 @@
+---
+title: "U1 · Modelo de datos del Directorio (5.1) — diagrama de clases"
+config:
+  theme: neutral
+  themeVariables:
+    primaryColor: "#F4ECEF"
+    primaryBorderColor: "#7A1F3D"
+    lineColor: "#7A1F3D"
+    fontFamily: "Georgia"
+---
+classDiagram
+  direction LR
+
+  class Participant {
+    +participantId : string
+    +bicfi : string
+    +name : string
+    +type : ParticipantType
+    +networkId : NetworkId
+    +status : string
+  }
+
+  class Key {
+    +keyType : KeyType
+    +keyValue : string
+    +owningParticipantId : string
+    +status : KeyStatus
+    +nationalIdHash : string [planificado fase 2]
+    +registeredAt : datetime
+    +updatedAt : datetime
+  }
+
+  class KeyRegistration {
+    +registrationId : string
+    +action : RegistrationAction
+    +newParticipantId : string
+    +status : RegistrationStatus
+    +reasonCode : string
+  }
+
+  class Merchant {
+    +creditorId : string «26.04»
+    +networkId : NetworkId «26.01»
+    +acquiringParticipantId : string «26.02/26.03»
+    +merchantAlias : string
+    +legalName : string
+    +displayName : string «59»
+    +city : string «60»
+    +countryCode : string «58»
+    +mcc : MccCode «52»
+    +merchantGroupId : string
+    +legacyMerchantId : string «26.05»
+    +status : MerchantStatus
+  }
+
+  class CollectionMethod {
+    +collectionMethodId : string
+    +type : CollectionMethodType
+    +account : Account
+    +accountProduct : PACA_PACC
+    +storeLabel : string «62.03»
+    +terminalLabels : string[] «62.07»
+    +status : string
+  }
+
+  class Account {
+    +scheme : OTHR
+    +id : string (tokenizable)
+    +institutionCode : string
+  }
+
+  class MerchantRegistration {
+    +registrationId : string
+    +action : RegistrationAction
+    +status : RegistrationStatus
+    +reasonCode : string
+  }
+
+  class FraudIndicator {
+    +flagged : boolean
+    +source : string
+    +reasonCode : string
+    +reportedAt : datetime
+  }
+
+  class DirectoryEvent {
+    +eventId : string
+    +eventType : string
+    +payload : object
+    +occurredAt : datetime
+  }
+
+  Participant "1" o-- "0..*" Key : posee registro
+  Key "1" <-- "0..*" KeyRegistration : prxy.001/002
+  Participant "1" o-- "0..*" Merchant : adquirente
+  Merchant "1" *-- "1..*" CollectionMethod : acredita en
+  CollectionMethod "1" *-- "1" Account : liquida sobre
+  Merchant "1" <-- "0..*" MerchantRegistration : alta / mod / baja
+  KeyRegistration ..> FraudIndicator : señal de fraude
+  MerchantRegistration ..> FraudIndicator : señal de fraude
+  Merchant ..> DirectoryEvent : cambios notifican
+  Key ..> DirectoryEvent : portabilidad notifica
+
+  note for Merchant "El QR transporta creditorId (26.04).\nCuenta y producto NUNCA viajan en el payload:\nse resuelven en el directorio."
+  note for CollectionMethod "1 sucursal = 1 registro con su alias\ny su cuenta.\nCaché solo perfil STC-C, TTL 2 h."

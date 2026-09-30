@@ -1,0 +1,273 @@
+openapi: 3.0.3
+info:
+  title: Key Directory API — Panama Interoperability HUB
+  version: 2.0.0-draft
+  description: |
+    Online resolution of person keys (aliases) and account-name verification.
+
+    Key registration, update and deregistration are handled by each participant, including
+    identity checks, account binding and local fraud controls. The HUB does not store person
+    aliases. It resolves a key by consulting the destination participant directory, and
+    cross-network alias uniqueness is enforced by the batch consistency process. This API
+    exposes resolution and account-name verification only.
+
+    A resolution may return **up to 3 accounts** for one key (multi-bank aliases — ACH Xpress).
+    The initiating participant presents every returned account to the payer. The HUB performs
+    the destination participant's confirmed-fraud check during resolution and returns the
+    result as `fraudIndicator`.
+
+    Each resolved account carries only the data required to build the pacs.008 and drive the
+    payer experience:
+    holder name travels in clear over the mTLS channel; the national ID travels **masked**
+    plus as an HMAC-SHA-256 hash (same programme key as the congruence process) so the
+    initiating participant can match exactly without the ID ever leaving its processor
+    in clear.
+
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@hub.example.pa
+  license:
+    name: Proprietary
+    url: https://hub.example.pa/terms
+
+servers:
+  - url: https://sandbox.hub.example.pa/key-directory/v1
+    description: Sandbox
+  - url: https://hub.example.pa/key-directory/v1
+    description: Production
+
+tags:
+  - name: Resolution
+    description: Online key resolution (transactional path, federated across participant directories)
+  - name: Verification
+    description: Account-name verification
+
+paths:
+
+  /keys/resolve:
+    post:
+      tags: [Resolution]
+      summary: Resolve a person key
+      description: |
+        Resolves a key to the destination network and returns **1 to 3 accounts** with the
+        minimum data set to build the pacs.008 and let the payer choose the destination bank.
+        Always online, never cached. The HUB consults the destination participant's directory
+        (federated resolution) and enriches the answer with the confirmed-fraud indicator.
+      operationId: resolveKey
+      security: [{ oauth2ClientCredentials: [directory.resolve] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/FapiInteractionId'
+        - $ref: '../common/common-components.yaml#/components/parameters/ParticipantId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/KeyResolutionRequest' }
+            examples:
+              resolveMsisdn:
+                summary: Yappy resolves a phone alias registered at ACH Xpress
+                value:
+                  keyType: MSISDN
+                  keyValue: "+50761119876"
+                  initiatingParticipantId: "YAPPY"
+      responses:
+        '200':
+          description: Resolution result (including NOT_FOUND, which is not a transport error)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/KeyResolutionResponse' }
+              examples:
+                multiAccount:
+                  summary: Alias with two accounts at ACH Xpress banks
+                  value:
+                    status: RESOLVED
+                    keyType: MSISDN
+                    keyValue: "+50761119876"
+                    accounts:
+                      - participantId: "TELERED"
+                        institutionCode: "BG"
+                        institutionName: "Banco General"
+                        accountType: SAVINGS
+                        account: { scheme: OTHR, id: "04-99-0012345678", institutionCode: "BG" }
+                        holderName: "Maria Fernanda Gomez"
+                        identificationType: "CIP"
+                        identificationIdMasked: "*-***-**67"
+                        nationalIdHash: "b1946ac92492d2347c6235b4d2611184c0e1a4d1f0f7f2b7e9a3c5d4e6f80912"
+                      - participantId: "TELERED"
+                        institutionCode: "BNP"
+                        institutionName: "Banco Nacional de Panamá"
+                        accountType: CURRENT
+                        account: { scheme: OTHR, id: "10-55-0087654321", institutionCode: "BNP" }
+                        holderName: "Maria Fernanda Gomez"
+                        identificationType: "CIP"
+                        identificationIdMasked: "*-***-**67"
+                        nationalIdHash: "b1946ac92492d2347c6235b4d2611184c0e1a4d1f0f7f2b7e9a3c5d4e6f80912"
+                    fraudIndicator: { flagged: false, source: "TELERED" }
+                singleAccountTokenised:
+                  summary: Alias resolved at Yappy (single tokenised wallet account)
+                  value:
+                    status: RESOLVED
+                    keyType: MSISDN
+                    keyValue: "+50760001234"
+                    accounts:
+                      - participantId: "YAPPY"
+                        institutionCode: "YAPPY"
+                        accountType: WALLET
+                        account: { scheme: OTHR, id: "YAP-ACC-7f3a92", institutionCode: "YAPPY" }
+                        holderName: "Carlos Perez"
+                        identificationType: "CIP"
+                        identificationIdMasked: "*-***-**31"
+                        nationalIdHash: "9d5ed678fe57bcca610140957afab571e2c1e0a0b5f2c9e8d7a6b5c4d3e2f101"
+                    fraudIndicator: { flagged: false, source: "YAPPY" }
+                notFound:
+                  summary: Key not registered in any network
+                  value:
+                    status: NOT_FOUND
+                    keyType: EMAIL
+                    keyValue: "nobody@example.com"
+        '400': { $ref: '../common/common-components.yaml#/components/responses/BadRequest' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+
+  /keys/verify-name:
+    post:
+      tags: [Verification]
+      summary: Verify account-name
+      description: |
+        Confirms that the expected name matches the given account or key. Reused during
+        merchant onboarding. The comparison runs on the normalised value (upper case, no
+        accents); the result is expressed as full, partial or no match — the real name is
+        never echoed back.
+      operationId: verifyAccountName
+      security: [{ oauth2ClientCredentials: [directory.read] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/FapiInteractionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/NameVerificationRequest' }
+            examples:
+              byKey:
+                summary: Verify the expected holder name of an alias
+                value:
+                  participantId: "TELERED"
+                  key: { keyType: MSISDN, keyValue: "+50761119876" }
+                  expectedName: "Maria Gomez"
+      responses:
+        '200':
+          description: Verification result
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/NameVerificationResponse' }
+              examples:
+                partial:
+                  summary: Partial match (first surname coincides)
+                  value: { match: PARTIAL_MATCH, accountType: SAVINGS, status: VALIDATED }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      $ref: '../common/common-components.yaml#/components/securitySchemes/oauth2ClientCredentials'
+
+  schemas:
+    NameMatch:
+      type: string
+      description: |
+        Before comparison, trim leading and trailing whitespace, collapse repeated whitespace,
+        convert to upper case, remove diacritics and punctuation, and compare whitespace-delimited
+        tokens. `FULL_MATCH` means the complete normalised strings are equal. `PARTIAL_MATCH`
+        means they are not equal and share at least one complete token of three or more
+        characters. `NO_MATCH` means neither condition is met.
+      enum: [FULL_MATCH, PARTIAL_MATCH, NO_MATCH]
+
+    KeyResolutionRequest:
+      type: object
+      required: [keyType, keyValue, initiatingParticipantId]
+      properties:
+        keyType: { $ref: '../common/common-components.yaml#/components/schemas/KeyType' }
+        keyValue: { type: string, example: "+50761119876" }
+        initiatingParticipantId: { type: string, example: "YAPPY" }
+
+    KeyResolutionResponse:
+      type: object
+      required: [status]
+      description: |
+        `accounts` and `fraudIndicator` are present when `status` is `RESOLVED`; `accounts`
+        contains one to three entries. Both properties are absent for any other status.
+      properties:
+        status: { $ref: '../common/common-components.yaml#/components/schemas/ResolutionStatus' }
+        keyType: { $ref: '../common/common-components.yaml#/components/schemas/KeyType' }
+        keyValue: { type: string, example: "+50761119876" }
+        accounts:
+          type: array
+          description: Accounts registered for the alias. Present only when status is RESOLVED.
+          minItems: 1
+          maxItems: 3
+          items: { $ref: '#/components/schemas/ResolvedAccount' }
+        fraudIndicator: { $ref: '../common/common-components.yaml#/components/schemas/FraudIndicator' }
+
+    ResolvedAccount:
+      type: object
+      description: |
+        Minimum data set per account to build the pacs.008 (creditor party + account) and to
+        drive the payer UX (bank list, holder confirmation). Optional fields may be omitted by
+        a participant that does not manage them — adding optional data never breaks the
+        contract. The national ID never travels in clear: masked representation for display,
+        HMAC hash (programme key, same as the congruence process) for exact matching.
+      required: [participantId, institutionCode, accountType, account, holderName]
+      properties:
+        participantId:
+          type: string
+          description: Destination network/processor that will receive the pacs.008.
+          example: "TELERED"
+        institutionCode:
+          type: string
+          description: Institution holding the account (bank or wallet), shown to the payer when choosing among accounts.
+          example: "BG"
+        institutionName:
+          type: string
+          description: Display name of the institution (optional; the initiating app may resolve it from the participant catalogue).
+          example: "Banco General"
+        accountType:
+          $ref: '../common/common-components.yaml#/components/schemas/AccountType'
+        account:
+          $ref: '../common/common-components.yaml#/components/schemas/Account'
+        holderName:
+          type: string
+          description: Holder name in clear — the value the originator places in the pacs.008 creditor party (machine-to-machine over mTLS; each app applies the scheme masking rule before showing it to an end user when confirmation does not require the full name).
+          example: "Maria Fernanda Gomez"
+        identificationType:
+          type: string
+          description: Holder identification type (e.g. CIP, RUC, PASSPORT).
+          example: "CIP"
+        identificationIdMasked:
+          type: string
+          description: 'Masked national ID for display, per the scheme masking rule (last two characters visible).'
+          example: "*-***-**67"
+        nationalIdHash:
+          type: string
+          description: HMAC-SHA-256 of the national ID with the programme key (same key as the congruence process) — enables exact matching without exposing the ID.
+          example: "b1946ac92492d2347c6235b4d2611184c0e1a4d1f0f7f2b7e9a3c5d4e6f80912"
+
+    NameVerificationRequest:
+      type: object
+      required: [participantId, expectedName]
+      description: Either `account` or `key` must be provided.
+      properties:
+        participantId: { type: string, example: "TELERED" }
+        account: { $ref: '../common/common-components.yaml#/components/schemas/Account' }
+        key: { $ref: '../common/common-components.yaml#/components/schemas/Key' }
+        expectedName: { type: string, example: "Maria Gomez" }
+
+    NameVerificationResponse:
+      type: object
+      required: [match, status]
+      properties:
+        match: { $ref: '#/components/schemas/NameMatch' }
+        accountType: { $ref: '../common/common-components.yaml#/components/schemas/AccountType' }
+        status: { type: string, enum: [VALIDATED, NOT_FOUND] }

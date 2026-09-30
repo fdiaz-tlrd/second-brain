@@ -1,0 +1,70 @@
+openapi: 3.0.3
+info:
+  title: Participant Events API — exposed by each processor, consumed by the HUB
+  version: 1.0.0-draft
+  description: |
+    Every participant exposes this endpoint as the `callbackUrl` registered in its event
+    subscriptions. The HUB uses it to deliver
+    its subscriptions) so the HUB can deliver its notifications: payment timeout and reversal
+    requests, merchant directory changes, operational notices and reconciliation events.
+    Events are NOT ISO 20022 messages: payload unencrypted but JWS-signed over TLS + mTLS, no
+    sensitive data, **no business response** — acknowledge with 204. Delivery is at-least-once
+    with retries until the participant is available; the receiver deduplicates by `eventId`.
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@hub.example.pa
+  license:
+    name: Proprietary
+    url: https://hub.example.pa/terms
+
+servers:
+  - url: https://{participantBaseUrl}/hub-events/v1
+    description: Base URL registered by the participant in its HUB onboarding metadata (the subscription callbackUrl)
+    variables:
+      participantBaseUrl:
+        default: api.participant.example.pa
+
+tags:
+  - name: Event reception
+    description: Reception of HUB events (JWS-signed, at-least-once)
+
+paths:
+
+  /events:
+    post:
+      tags: [Event reception]
+      summary: Receive a HUB event
+      description: |
+        Receives the `eventDelivery` callback defined by the HUB Events API. The participant verifies
+        the JWS signature, deduplicates by `eventId`, acts on the event under its own process
+        (e.g. reverse an applied credit on `PAYMENT_REVERSAL_REQUESTED`) and answers 204 —
+        events carry no business response.
+      operationId: receiveHubEvent
+      security: [{ oauth2ClientCredentials: [events.manage] }]
+      parameters:
+        - $ref: '../../common/common-components.yaml#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '../../api-events/openapi.yaml#/components/schemas/Event' }
+            examples:
+              reversalRequested:
+                summary: Reversal request after a timeout — reverse the credit if it was applied
+                value:
+                  eventId: "EVT-2026-000882"
+                  subscriptionId: "SUB-0042"
+                  eventType: PAYMENT_REVERSAL_REQUESTED
+                  occurredAt: "2026-09-16T14:03:22Z"
+                  correlationId: "HUB-TX-77120"
+                  payload: { transactionId: "HUB-TX-77120", endToEndId: "E2E-2026-0001", reason: "TIMEOUT_NO_FINAL_STATUS" }
+      responses:
+        '204': { description: Event received (idempotent by eventId; no business response) }
+        '400': { description: Invalid or unverifiable event (signature or schema) }
+        '401': { $ref: '../../common/common-components.yaml#/components/responses/Unauthorized' }
+
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      $ref: '../../common/common-components.yaml#/components/securitySchemes/oauth2ClientCredentials'

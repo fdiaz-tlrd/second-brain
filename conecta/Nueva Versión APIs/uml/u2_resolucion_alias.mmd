@@ -1,0 +1,30 @@
+---
+title: "U2 · Secuencia — resolución de alias de persona (P2P)"
+config:
+  theme: neutral
+  themeVariables:
+    primaryColor: "#F4ECEF"
+    primaryBorderColor: "#7A1F3D"
+    lineColor: "#5A5A5A"
+    fontFamily: "Georgia"
+---
+sequenceDiagram
+  autonumber
+  participant APP as App del pagador<br/>(participante origen)
+  participant PSP as Participante origen
+  participant DIR as HUB · Directorio (5.1)
+  participant DB as Registro de llaves
+
+  APP->>PSP: Pago a alias +507########
+  PSP->>DIR: POST /keys/resolve<br/>(keyType=MSISDN, keyValue, mTLS + OAuth scope directorio)
+  DIR->>DIR: Normaliza E.164 · valida scope
+  DIR->>DB: Busca llave activa
+  alt Llave activa
+    DB-->>DIR: owningParticipantId + handle
+    DIR-->>PSP: RESOLVED · resolvedParticipantId + payeeHandle<br/>(sin cuenta en claro · sin caché en P2P)
+    PSP->>PSP: Construye orden de pago (pacs.008)<br/>con Cdtr/Prxy = alias
+  else No existe o suspendida
+    DB-->>DIR: sin registro / SUSPENDED
+    DIR-->>PSP: NOT_FOUND · reasonCode de error del HUB
+    PSP-->>APP: Error presentable al cliente
+  end

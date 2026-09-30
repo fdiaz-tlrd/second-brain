@@ -1,0 +1,165 @@
+openapi: 3.0.3
+info:
+  title: Reconciliation API — Panama Interoperability HUB
+  version: 1.1.0-draft
+  description: |
+    Reconciliation cycle exchange (daily calendar-day cycle, 7×365). The cycle is governed by
+    the HUB calendar: the HUB determines the end of the operating day,
+    closes the cycle, runs the batch reconciliation engine and emits the
+    `RECONCILIATION_FILE_AVAILABLE` event; participants do not push cycle records. The file is
+    retrieved as a **physical file through a short-lived secure URL** (no file payload inside
+    an API response), respecting the exchange security rules; SFTP remains as a bounded
+    compatibility channel. The participant then acknowledges the cycle and reports
+    discrepancies through this API.
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@hub.example.pa
+  license:
+    name: Proprietary
+    url: https://hub.example.pa/terms
+
+servers:
+  - url: https://sandbox.hub.example.pa/reconciliation/v1
+    description: Sandbox
+  - url: https://hub.example.pa/reconciliation/v1
+    description: Production
+
+tags:
+  - name: Files
+    description: Cycle file download and acknowledgement
+
+paths:
+
+  /files/{cycleDate}:
+    parameters:
+      - name: cycleDate
+        in: path
+        required: true
+        description: Calendar day of the reconciliation cycle (ISO 8601 date).
+        schema: { type: string, format: date }
+    get:
+      tags: [Files]
+      summary: Obtain the secure download reference of the cycle file
+      description: |
+        Returns the download descriptor of the file filtered to the authenticated participant's
+        scope (master file = net positions; format based on recon.001). The response carries a
+        **short-lived secure URL** to retrieve the physical file — the file content never
+        travels inside the API payload.
+      operationId: getReconciliationFile
+      security: [{ oauth2ClientCredentials: [reconciliation.read] }]
+      responses:
+        '200':
+          description: Download descriptor of the cycle file
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ReconciliationFileDescriptor' }
+              examples:
+                ready:
+                  value:
+                    cycleDate: "2026-09-16"
+                    downloadUrl: "https://files.hub.example.pa/reconciliation/2026-09-16/TELERED?sig=eyJhbGciOi..."
+                    expiresAt: "2026-09-17T06:00:00Z"
+                    fileHash: "3f8a1c0d9e7b6a5f4e3d2c1b0a998877665544332211ffeeddccbbaa00112233"
+                    sizeBytes: 1048576
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+
+  /files/{cycleDate}/ack:
+    parameters:
+      - name: cycleDate
+        in: path
+        required: true
+        description: Calendar day of the reconciliation cycle (ISO 8601 date).
+        schema: { type: string, format: date }
+    post:
+      tags: [Files]
+      summary: Acknowledge the cycle file and report discrepancies
+      operationId: acknowledgeReconciliationFile
+      security: [{ oauth2ClientCredentials: [reconciliation.write] }]
+      parameters:
+        - $ref: '../common/common-components.yaml#/components/parameters/IdempotencyKey'
+        - $ref: '../common/common-components.yaml#/components/parameters/JwsSignature'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ReconciliationAck' }
+            examples:
+              withDiscrepancies:
+                summary: ACK reporting one amount mismatch
+                value:
+                  status: DISCREPANCIES_REPORTED
+                  fileHash: "3f8a1c0d9e7b6a5f4e3d2c1b0a998877665544332211ffeeddccbbaa00112233"
+                  discrepancies:
+                    - transactionId: "HUB-TX-77213"
+                      discrepancyType: AMOUNT_MISMATCH
+                      expected: "125.00"
+                      observed: "12.50"
+                      comment: "Decimal shift in cycle file"
+      responses:
+        '200':
+          description: Acknowledgement registered
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ReconciliationAckReceipt' }
+        '400': { $ref: '../common/common-components.yaml#/components/responses/BadRequest' }
+        '401': { $ref: '../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../common/common-components.yaml#/components/responses/NotFound' }
+        '409':
+          description: The cycle was already acknowledged by this participant
+          content:
+            application/problem+json:
+              schema: { $ref: '../common/common-components.yaml#/components/schemas/Problem' }
+
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      $ref: '../common/common-components.yaml#/components/securitySchemes/oauth2ClientCredentials'
+
+  schemas:
+    ReconciliationFileDescriptor:
+      type: object
+      required: [cycleDate, downloadUrl, expiresAt, fileHash, sizeBytes]
+      properties:
+        cycleDate: { type: string, format: date, example: "2026-09-16" }
+        downloadUrl:
+          type: string
+          format: uri
+          description: Short-lived secure URL to retrieve the physical file (scoped to the authenticated participant).
+        expiresAt: { type: string, format: date-time, description: Expiry of the secure URL. }
+        fileHash: { type: string, description: 'SHA-256 of the file, to confirm integrity after download.' }
+        sizeBytes: { type: integer, format: int64, minimum: 0, example: 1048576 }
+
+    DiscrepancyType: { type: string, enum: [MISSING_TRANSACTION, UNEXPECTED_TRANSACTION, AMOUNT_MISMATCH, STATUS_MISMATCH, DUPLICATE] }
+
+    Discrepancy:
+      type: object
+      required: [transactionId, discrepancyType]
+      properties:
+        transactionId: { type: string }
+        discrepancyType: { $ref: '#/components/schemas/DiscrepancyType' }
+        expected: { type: string, description: 'Canonical expected value. Amounts use decimal notation with two decimal places; statuses use their API enum value; counts use base-10 integers.' }
+        observed: { type: string, description: 'Canonical value observed in the HUB file, using the same representation as `expected`.' }
+        comment: { type: string }
+
+    ReconciliationAck:
+      type: object
+      required: [status]
+      properties:
+        status: { type: string, enum: [ACCEPTED, DISCREPANCIES_REPORTED] }
+        fileHash: { type: string, description: 'SHA-256 of the downloaded file, for integrity confirmation.' }
+        discrepancies:
+          type: array
+          items: { $ref: '#/components/schemas/Discrepancy' }
+
+    ReconciliationAckReceipt:
+      type: object
+      required: [ackId, cycleDate, status, receivedAt]
+      properties:
+        ackId: { type: string }
+        cycleDate: { type: string, format: date }
+        status: { type: string, enum: [ACCEPTED, DISCREPANCIES_REPORTED] }
+        receivedAt: { type: string, format: date-time }

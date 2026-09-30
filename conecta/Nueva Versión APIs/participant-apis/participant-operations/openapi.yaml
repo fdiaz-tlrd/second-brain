@@ -1,0 +1,59 @@
+openapi: 3.0.3
+info:
+  title: Participant Operations API — exposed by each processor, consumed by the HUB
+  version: 1.0.0-draft
+  description: |
+    Every participant exposes this operational interface so the HUB can verify its
+    availability. The echo test complements the Sign On/Off
+    session model and the availability heartbeat: an unanswered echo contributes to marking the
+    participant unavailable and removing it from routing until it notifies recovery
+    (`POST /events` of the HUB Operations API or this echo turning healthy again).
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@hub.example.pa
+  license:
+    name: Proprietary
+    url: https://hub.example.pa/terms
+
+servers:
+  - url: https://{participantBaseUrl}/hub-operations/v1
+    description: Base URL registered by the participant in its HUB onboarding metadata
+    variables:
+      participantBaseUrl:
+        default: api.participant.example.pa
+
+tags:
+  - name: Availability
+    description: Echo test towards the participant
+
+paths:
+
+  /health/echo:
+    get:
+      tags: [Availability]
+      summary: Echo test (HUB-invoked availability heartbeat)
+      operationId: participantEcho
+      security: [{ oauth2ClientCredentials: [operations.read] }]
+      responses:
+        '200':
+          description: The participant is reachable and processing
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EchoResponse' }
+              examples:
+                healthy:
+                  value: { serverTime: "2026-09-16T09:41:00Z" }
+        '401': { $ref: '../../common/common-components.yaml#/components/responses/Unauthorized' }
+
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      $ref: '../../common/common-components.yaml#/components/securitySchemes/oauth2ClientCredentials'
+
+  schemas:
+    EchoResponse:
+      type: object
+      required: [serverTime]
+      properties:
+        serverTime: { type: string, format: date-time }

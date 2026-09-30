@@ -1,0 +1,144 @@
+openapi: 3.0.3
+info:
+  title: Participant Key Directory API — exposed by each processor, consumed by the HUB
+  version: 1.0.0-draft
+  description: |
+    Every participant exposes this interface so the HUB can resolve keys without participant-
+    specific mappings. Under the federated model the alias registry lives in each
+    processor: the HUB invokes this API during a resolution initiated by another network,
+    including the confirmed-fraud list check and, when required, the account-name verification
+    at destination.
+
+    The participant must sustain this surface with the same security (TLS + mTLS + scheme
+    token + JWS), availability and latency requirements demanded of the HUB, within the
+    end-to-end time budget of the scheme.
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@hub.example.pa
+  license:
+    name: Proprietary
+    url: https://hub.example.pa/terms
+
+servers:
+  - url: https://{participantBaseUrl}/hub-directory/v1
+    description: Base URL registered by the participant in its HUB onboarding metadata
+    variables:
+      participantBaseUrl:
+        default: api.participant.example.pa
+
+tags:
+  - name: Resolution
+    description: Key resolution inside the participant's own directory
+  - name: Fraud
+    description: Confirmed-fraud list check (invoked by the HUB during resolution)
+  - name: Verification
+    description: Account-name verification at destination
+
+paths:
+
+  /keys/resolve:
+    post:
+      tags: [Resolution]
+      summary: Resolve a key in the participant's directory (HUB-invoked)
+      description: |
+        Implements the request and response schemas of `POST /keys/resolve`. The participant answers with the
+        accounts registered for the key in ITS network (1 to 3), with the same minimum data
+        set defined by the scheme (holder name in clear; national ID masked + HMAC hash).
+      operationId: resolveKeyAtParticipant
+      security: [{ oauth2ClientCredentials: [directory.resolve] }]
+      parameters:
+        - $ref: '../../common/common-components.yaml#/components/parameters/FapiInteractionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '../../api-key-directory/openapi.yaml#/components/schemas/KeyResolutionRequest' }
+            examples:
+              hubResolves:
+                summary: The HUB resolves an alias on behalf of the initiating network
+                value:
+                  keyType: MSISDN
+                  keyValue: "+50761119876"
+                  initiatingParticipantId: "YAPPY"
+      responses:
+        '200':
+          description: Resolution result within this participant's directory
+          content:
+            application/json:
+              schema: { $ref: '../../api-key-directory/openapi.yaml#/components/schemas/KeyResolutionResponse' }
+        '400': { $ref: '../../common/common-components.yaml#/components/responses/BadRequest' }
+        '401': { $ref: '../../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../../common/common-components.yaml#/components/responses/Forbidden' }
+
+  /fraud/check:
+    post:
+      tags: [Fraud]
+      summary: Check the confirmed-fraud list (HUB-invoked during resolution)
+      description: |
+        The HUB queries the participant's confirmed-fraud list for the key or account involved
+        in a resolution and returns the indicator inline to the initiating network. Only
+        confirmed-fraud marks are interoperable; internal "undesired client" lists are out of
+        scope. The HUB never blocks by itself: the origin applies its own policy.
+      operationId: checkFraudList
+      security: [{ oauth2ClientCredentials: [directory.resolve] }]
+      parameters:
+        - $ref: '../../common/common-components.yaml#/components/parameters/FapiInteractionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/FraudCheckRequest' }
+            examples:
+              byKey:
+                value:
+                  key: { keyType: MSISDN, keyValue: "+50761119876" }
+      responses:
+        '200':
+          description: Confirmed-fraud indicator
+          content:
+            application/json:
+              schema: { $ref: '../../common/common-components.yaml#/components/schemas/FraudIndicator' }
+              examples:
+                clean: { value: { flagged: false, source: "TELERED" } }
+                flagged:
+                  value: { flagged: true, source: "TELERED", reasonCode: "FRAD", reportedAt: "2026-08-30T10:00:00Z" }
+        '401': { $ref: '../../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../../common/common-components.yaml#/components/responses/Forbidden' }
+
+  /keys/verify-name:
+    post:
+      tags: [Verification]
+      summary: Verify account-name at destination (HUB-invoked)
+      description: Applies the `POST /keys/verify-name` contract against the participant's own records.
+      operationId: verifyAccountNameAtParticipant
+      security: [{ oauth2ClientCredentials: [directory.read] }]
+      parameters:
+        - $ref: '../../common/common-components.yaml#/components/parameters/FapiInteractionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '../../api-key-directory/openapi.yaml#/components/schemas/NameVerificationRequest' }
+      responses:
+        '200':
+          description: Verification result
+          content:
+            application/json:
+              schema: { $ref: '../../api-key-directory/openapi.yaml#/components/schemas/NameVerificationResponse' }
+        '401': { $ref: '../../common/common-components.yaml#/components/responses/Unauthorized' }
+        '403': { $ref: '../../common/common-components.yaml#/components/responses/Forbidden' }
+        '404': { $ref: '../../common/common-components.yaml#/components/responses/NotFound' }
+
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      $ref: '../../common/common-components.yaml#/components/securitySchemes/oauth2ClientCredentials'
+
+  schemas:
+    FraudCheckRequest:
+      type: object
+      description: Either `key` or `account` must be provided.
+      properties:
+        key: { $ref: '../../common/common-components.yaml#/components/schemas/Key' }
+        account: { $ref: '../../common/common-components.yaml#/components/schemas/Account' }
