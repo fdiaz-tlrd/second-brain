@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf8" />
+  <title>Events API — Panama Interoperability HUB</title>
+  <!-- needed for adaptive design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="https://cdn.redocly.com/redoc/v2.5.3/bundles/redoc.standalone.js"></script><style data-styled="true" data-styled-version="6.5.3">.gVqSrK{width:calc(100% - 40%);padding:0 40px;}/*!sc*/
+@media print,screen and (max-width: 75rem){.gVqSrK{width:100%;padding:40px 40px;}}/*!sc*/
+.gOILhW{width:calc(100% - 40%);padding:0 40px;}/*!sc*/
+@media print,screen and (max-width: 75rem){.gOILhW{width:100%;padding:0px 40px;}}/*!sc*/
+data-styled.g5[id="sc-hKwBjT"]{content:"gVqSrK,gOILhW,"}/*!sc*/
+.jVjTxq{padding:40px 0;}/*!sc*/
+.jVjTxq:last-child{min-height:calc(100vh + 1px);}/*!sc*/
+.jVjTxq>.jVjTxq:last-child{min-height:initial;}/*!sc*/
+@media print,screen and (max-width: 75rem){.jVjTxq{padding:0;}}/*!sc*/
+.fwcblJ{padding:40px 0;position:relative;}/*!sc*/
+.fwcblJ:last-child{min-height:calc(100vh + 1px);}/*!sc*/
+.fwcblJ>.fwcblJ:last-child{min-height:initial;}/*!sc*/
+@media print,screen and (max-width: 75rem){.fwcblJ{padding:0;}}/*!sc*/
+.fwcblJ:not(:last-of-type):after{position:absolute;bottom:0;width:100%;display:block;content:'';border-bottom:1px solid rgba(0, 0, 0, 0.2);}/*!sc*/
+data-styled.g6[id="sc-eCIkAO"]{content:"jVjTxq,fwcblJ,"}/*!sc*/
+.eMcwSW{width:40%;color:#ffffff;background-color:#263238;padding:0 40px;}/*!sc*/
+@media print,screen and (max-width: 75rem){.eMcwSW{width:100%;padding:40px 40px;}}/*!sc*/
+data-styled.g7[id="sc-jRQBiJ"]{content:"eMcwSW,"}/*!sc*/
+.hCcvSb{background-color:#263238;}/*!sc*/
+data-styled.g8[id="sc-gKckzE"]{content:"hCcvSb,"}/*!sc*/
+.gBxmSK{display:flex;width:100%;padding:0;}/*!sc*/
+@media print,screen and (max-width: 75rem){.gBxmSK{flex-direction:column;}}/*!sc*/
+data-styled.g9[id="sc-iCfNyT"]{content:"gBxmSK,"}/*!sc*/
+.dJDVAu{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#333333;}/*!sc*/
+data-styled.g10[id="sc-furwPO"]{content:"dJDVAu,"}/*!sc*/
+.chDmIx{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333333;margin:0 0 20px;}/*!sc*/
+data-styled.g11[id="sc-pVUti"]{content:"chDmIx,"}/*!sc*/
+.eLZTZJ{color:#ffffff;}/*!sc*/
+data-styled.g13[id="sc-kDTkBQ"]{content:"eLZTZJ,"}/*!sc*/
+.DLudH{border-bottom:1px solid rgba(38, 50, 56, 0.3);margin:1em 0 1em 0;color:rgba(38, 50, 56, 0.5);font-weight:normal;text-transform:uppercase;font-size:0.929em;line-height:20px;}/*!sc*/
+data-styled.g14[id="sc-iqsgXZ"]{content:"DLudH,"}/*!sc*/
+.bVILEW{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.bVILEW:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+h1:hover>.bVILEW::before,h2:hover>.bVILEW::before,.bVILEW:hover::before{visibility:visible;}/*!sc*/
+data-styled.g15[id="sc-crHjOq"]{content:"bVILEW,"}/*!sc*/
+.enbFWE{height:18px;width:18px;min-width:18px;vertical-align:middle;float:right;transition:transform 0.2s ease-out;transform:rotateZ(-90deg);}/*!sc*/
+.jhElqB{height:1.3em;width:1.3em;min-width:1.3em;vertical-align:middle;transition:transform 0.2s ease-out;transform:rotateZ(-90deg);}/*!sc*/
+.ixKnVW{height:1.5em;width:1.5em;min-width:1.5em;vertical-align:middle;float:left;transition:transform 0.2s ease-out;transform:rotateZ(-90deg);}/*!sc*/
+.ixKnVW polygon{fill:#1d8127;}/*!sc*/
+.kNOxeG{height:1.5em;width:1.5em;min-width:1.5em;vertical-align:middle;float:left;transition:transform 0.2s ease-out;transform:rotateZ(-90deg);}/*!sc*/
+.kNOxeG polygon{fill:#d41f1c;}/*!sc*/
+.hJSvUU{height:1.5em;width:1.5em;min-width:1.5em;vertical-align:middle;float:left;transition:transform 0.2s ease-out;transform:rotateZ(-90deg);}/*!sc*/
+.dSdygy{height:20px;width:20px;min-width:20px;vertical-align:middle;float:right;transition:transform 0.2s ease-out;transform:rotateZ(0);}/*!sc*/
+.dSdygy polygon{fill:white;}/*!sc*/
+data-styled.g16[id="sc-eggkz"]{content:"enbFWE,jhElqB,ixKnVW,kNOxeG,hJSvUU,dSdygy,"}/*!sc*/
+.dNdvDo{border-left:1px solid #7c7cbb;box-sizing:border-box;position:relative;padding:10px 10px 10px 0;}/*!sc*/
+@media screen and (max-width: 50rem){.dNdvDo{display:block;overflow:hidden;}}/*!sc*/
+tr:first-of-type>.dNdvDo,tr.last>.dNdvDo{border-left-width:0;background-position:top left;background-repeat:no-repeat;background-size:1px 100%;}/*!sc*/
+tr:first-of-type>.dNdvDo{background-image:linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 22px,
+      #7c7cbb 22px,
+      #7c7cbb 100%
+    );}/*!sc*/
+tr.last>.dNdvDo{background-image:linear-gradient(
+      to bottom,
+      #7c7cbb 0%,
+      #7c7cbb 22px,
+      transparent 22px,
+      transparent 100%
+    );}/*!sc*/
+tr.last+tr>.dNdvDo{border-left-color:transparent;}/*!sc*/
+tr.last:first-child>.dNdvDo{background:none;border-left-color:transparent;}/*!sc*/
+data-styled.g19[id="sc-hBUSYK"]{content:"dNdvDo,"}/*!sc*/
+.ieQgBm{vertical-align:top;line-height:20px;white-space:nowrap;font-size:13px;font-family:Courier,monospace;}/*!sc*/
+.ieQgBm.deprecated{text-decoration:line-through;color:#707070;}/*!sc*/
+data-styled.g21[id="sc-fFelbd"]{content:"ieQgBm,"}/*!sc*/
+.bFOtZh{border-bottom:1px solid #9fb4be;padding:10px 0;width:75%;box-sizing:border-box;}/*!sc*/
+tr.expanded .bFOtZh{border-bottom:none;}/*!sc*/
+@media screen and (max-width: 50rem){.bFOtZh{padding:0 20px;border-bottom:none;border-left:1px solid #7c7cbb;}tr.last>.bFOtZh{border-left:none;}}/*!sc*/
+data-styled.g22[id="sc-bkkgYE"]{content:"bFOtZh,"}/*!sc*/
+.gBKsqD{color:#7c7cbb;font-family:Courier,monospace;margin-right:10px;}/*!sc*/
+.gBKsqD::before{content:'';display:inline-block;vertical-align:middle;width:10px;height:1px;background:#7c7cbb;}/*!sc*/
+.gBKsqD::after{content:'';display:inline-block;vertical-align:middle;width:1px;background:#7c7cbb;height:7px;}/*!sc*/
+data-styled.g23[id="sc-ieedpP"]{content:"gBKsqD,"}/*!sc*/
+.hVPLuE{border-collapse:separate;border-radius:3px;font-size:14px;border-spacing:0;width:100%;}/*!sc*/
+.hVPLuE >tr{vertical-align:middle;}/*!sc*/
+@media screen and (max-width: 50rem){.hVPLuE{display:block;}.hVPLuE >tr,.hVPLuE >tbody>tr{display:block;}}/*!sc*/
+@media screen and (max-width: 50rem) and (-ms-high-contrast:none){.hVPLuE td{float:left;width:100%;}}/*!sc*/
+.hVPLuE .sc-dJjZnq,.hVPLuE .sc-dJjZnq .sc-dJjZnq .sc-dJjZnq,.hVPLuE .sc-dJjZnq .sc-dJjZnq .sc-dJjZnq .sc-dJjZnq .sc-dJjZnq{margin:1em;margin-right:0;background:#fafafa;}/*!sc*/
+.hVPLuE .sc-dJjZnq .sc-dJjZnq,.hVPLuE .sc-dJjZnq .sc-dJjZnq .sc-dJjZnq .sc-dJjZnq,.hVPLuE .sc-dJjZnq .sc-dJjZnq .sc-dJjZnq .sc-dJjZnq .sc-dJjZnq .sc-dJjZnq{background:#ffffff;}/*!sc*/
+data-styled.g25[id="sc-hGPAwl"]{content:"hVPLuE,"}/*!sc*/
+.eYSiUI >ul{list-style:none;padding:0;margin:0;margin:0 -5px;}/*!sc*/
+.eYSiUI >ul >li{padding:5px 10px;display:inline-block;background-color:#11171a;border-bottom:1px solid rgba(0, 0, 0, 0.5);cursor:pointer;text-align:center;outline:none;color:#ccc;margin:0 5px 5px 5px;border:1px solid #07090b;border-radius:5px;min-width:60px;font-size:0.9em;font-weight:bold;}/*!sc*/
+.eYSiUI >ul >li.react-tabs__tab--selected{color:#333333;background:#ffffff;}/*!sc*/
+.eYSiUI >ul >li.react-tabs__tab--selected:focus{outline:auto;}/*!sc*/
+.eYSiUI >ul >li:only-child{flex:none;min-width:100px;}/*!sc*/
+.eYSiUI >ul >li.tab-success{color:#1d8127;}/*!sc*/
+.eYSiUI >ul >li.tab-redirect{color:#ffa500;}/*!sc*/
+.eYSiUI >ul >li.tab-info{color:#87ceeb;}/*!sc*/
+.eYSiUI >ul >li.tab-error{color:#d41f1c;}/*!sc*/
+.eYSiUI >.react-tabs__tab-panel{background:#11171a;}/*!sc*/
+.eYSiUI >.react-tabs__tab-panel>div,.eYSiUI >.react-tabs__tab-panel>pre{padding:20px;margin:0;}/*!sc*/
+.eYSiUI >.react-tabs__tab-panel>div>pre{padding:0;}/*!sc*/
+data-styled.g31[id="sc-cxpUrY"]{content:"eYSiUI,"}/*!sc*/
+.cJMweq code[class*='language-'],.cJMweq pre[class*='language-']{text-shadow:0 -0.1em 0.2em black;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;}/*!sc*/
+@media print{.cJMweq code[class*='language-'],.cJMweq pre[class*='language-']{text-shadow:none;}}/*!sc*/
+.cJMweq pre[class*='language-']{padding:1em;margin:0.5em 0;overflow:auto;}/*!sc*/
+.cJMweq .token.comment,.cJMweq .token.prolog,.cJMweq .token.doctype,.cJMweq .token.cdata{color:hsl(30, 20%, 50%);}/*!sc*/
+.cJMweq .token.punctuation{opacity:0.7;}/*!sc*/
+.cJMweq .namespace{opacity:0.7;}/*!sc*/
+.cJMweq .token.property,.cJMweq .token.tag,.cJMweq .token.number,.cJMweq .token.constant,.cJMweq .token.symbol{color:#4a8bb3;}/*!sc*/
+.cJMweq .token.boolean{color:#e64441;}/*!sc*/
+.cJMweq .token.selector,.cJMweq .token.attr-name,.cJMweq .token.string,.cJMweq .token.char,.cJMweq .token.builtin,.cJMweq .token.inserted{color:#a0fbaa;}/*!sc*/
+.cJMweq .token.selector+a,.cJMweq .token.attr-name+a,.cJMweq .token.string+a,.cJMweq .token.char+a,.cJMweq .token.builtin+a,.cJMweq .token.inserted+a,.cJMweq .token.selector+a:visited,.cJMweq .token.attr-name+a:visited,.cJMweq .token.string+a:visited,.cJMweq .token.char+a:visited,.cJMweq .token.builtin+a:visited,.cJMweq .token.inserted+a:visited{color:#4ed2ba;text-decoration:underline;}/*!sc*/
+.cJMweq .token.property.string{color:white;}/*!sc*/
+.cJMweq .token.operator,.cJMweq .token.entity,.cJMweq .token.url,.cJMweq .token.variable{color:hsl(40, 90%, 60%);}/*!sc*/
+.cJMweq .token.atrule,.cJMweq .token.attr-value,.cJMweq .token.keyword{color:hsl(350, 40%, 70%);}/*!sc*/
+.cJMweq .token.regex,.cJMweq .token.important{color:#e90;}/*!sc*/
+.cJMweq .token.important,.cJMweq .token.bold{font-weight:bold;}/*!sc*/
+.cJMweq .token.italic{font-style:italic;}/*!sc*/
+.cJMweq .token.entity{cursor:help;}/*!sc*/
+.cJMweq .token.deleted{color:red;}/*!sc*/
+data-styled.g33[id="sc-iJKPHa"]{content:"cJMweq,"}/*!sc*/
+.gwYevq{opacity:0.7;transition:opacity 0.3s ease;text-align:right;}/*!sc*/
+.gwYevq:focus-within{opacity:1;}/*!sc*/
+.gwYevq >button{background-color:transparent;border:0;color:inherit;padding:2px 10px;font-family:Roboto,sans-serif;font-size:14px;line-height:1.5em;cursor:pointer;outline:0;}/*!sc*/
+.gwYevq >button :hover,.gwYevq >button :focus{background:rgba(255, 255, 255, 0.1);}/*!sc*/
+data-styled.g34[id="sc-giYgZj"]{content:"gwYevq,"}/*!sc*/
+.dUzxWi{position:relative;}/*!sc*/
+data-styled.g38[id="sc-kLwfci"]{content:"dUzxWi,"}/*!sc*/
+.jhBcp{position:absolute;pointer-events:none;z-index:1;top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%);right:8px;margin:auto;text-align:center;}/*!sc*/
+.jhBcp polyline{color:white;}/*!sc*/
+data-styled.g39[id="sc-ikJwur"]{content:"jhBcp,"}/*!sc*/
+.ifPiq{box-sizing:border-box;min-width:100px;outline:none;display:inline-block;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.5);vertical-align:bottom;padding:2px 0px 2px 6px;position:relative;width:auto;background:white;color:#263238;font-family:Montserrat,sans-serif;font-size:0.929em;line-height:1.5em;cursor:pointer;transition:border 0.25s ease,color 0.25s ease,box-shadow 0.25s ease;}/*!sc*/
+.ifPiq label{box-sizing:border-box;min-width:100px;outline:none;display:inline-block;font-family:Montserrat,sans-serif;color:#333333;vertical-align:bottom;width:auto;text-transform:none;padding:0 22px 0 4px;font-size:0.929em;line-height:1.5em;font-family:inherit;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}/*!sc*/
+.ifPiq .dropdown-select{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;border:none;appearance:none;cursor:pointer;color:#333333;line-height:inherit;font-family:inherit;}/*!sc*/
+.ifPiq:hover,.ifPiq:focus-within{border:1px solid #32329f;color:#32329f;box-shadow:0px 0px 0px 1px #32329f;}/*!sc*/
+data-styled.g40[id="sc-jJoSXA"]{content:"ifPiq,"}/*!sc*/
+.kNPqqp{margin-left:10px;text-transform:none;font-size:0.929em;color:black;}/*!sc*/
+data-styled.g42[id="sc-gWWZvT"]{content:"kNPqqp,"}/*!sc*/
+.dfyrVQ{font-family:Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.dfyrVQ p:last-child{margin-bottom:0;}/*!sc*/
+.dfyrVQ h1{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.dfyrVQ h2{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.dfyrVQ code{color:#e53935;background-color:rgba(38, 50, 56, 0.05);font-family:Courier,monospace;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.1);padding:0 5px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.dfyrVQ pre{font-family:Courier,monospace;white-space:pre;background-color:#11171a;color:white;padding:20px;overflow-x:auto;line-height:normal;border-radius:0;border:1px solid rgba(38, 50, 56, 0.1);}/*!sc*/
+.dfyrVQ pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.dfyrVQ pre code:before,.dfyrVQ pre code:after{content:none;}/*!sc*/
+.dfyrVQ blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.dfyrVQ img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.dfyrVQ ul,.dfyrVQ ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.dfyrVQ ul ul,.dfyrVQ ol ul,.dfyrVQ ul ol,.dfyrVQ ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.dfyrVQ table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.dfyrVQ table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.dfyrVQ table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.dfyrVQ table th,.dfyrVQ table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.dfyrVQ table th{text-align:left;font-weight:bold;}/*!sc*/
+.dfyrVQ .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.dfyrVQ .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.dfyrVQ h1:hover>.share-link::before,.dfyrVQ h2:hover>.share-link::before,.dfyrVQ .share-link:hover::before{visibility:visible;}/*!sc*/
+.dfyrVQ a{text-decoration:auto;color:#32329f;}/*!sc*/
+.dfyrVQ a:visited{color:#32329f;}/*!sc*/
+.dfyrVQ a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+.eghoXK{font-family:Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.eghoXK p:last-child{margin-bottom:0;}/*!sc*/
+.eghoXK p:first-child{margin-top:0;}/*!sc*/
+.eghoXK p:last-child{margin-bottom:0;}/*!sc*/
+.eghoXK h1{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.eghoXK h2{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.eghoXK code{color:#e53935;background-color:rgba(38, 50, 56, 0.05);font-family:Courier,monospace;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.1);padding:0 5px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.eghoXK pre{font-family:Courier,monospace;white-space:pre;background-color:#11171a;color:white;padding:20px;overflow-x:auto;line-height:normal;border-radius:0;border:1px solid rgba(38, 50, 56, 0.1);}/*!sc*/
+.eghoXK pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.eghoXK pre code:before,.eghoXK pre code:after{content:none;}/*!sc*/
+.eghoXK blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.eghoXK img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.eghoXK ul,.eghoXK ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.eghoXK ul ul,.eghoXK ol ul,.eghoXK ul ol,.eghoXK ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.eghoXK table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.eghoXK table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.eghoXK table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.eghoXK table th,.eghoXK table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.eghoXK table th{text-align:left;font-weight:bold;}/*!sc*/
+.eghoXK .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.eghoXK .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.eghoXK h1:hover>.share-link::before,.eghoXK h2:hover>.share-link::before,.eghoXK .share-link:hover::before{visibility:visible;}/*!sc*/
+.eghoXK a{text-decoration:auto;color:#32329f;}/*!sc*/
+.eghoXK a:visited{color:#32329f;}/*!sc*/
+.eghoXK a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+.tnexS{font-family:Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.tnexS p:last-child{margin-bottom:0;}/*!sc*/
+.tnexS p:first-child{margin-top:0;}/*!sc*/
+.tnexS p:last-child{margin-bottom:0;}/*!sc*/
+.tnexS p{display:inline-block;}/*!sc*/
+.tnexS h1{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.tnexS h2{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.tnexS code{color:#e53935;background-color:rgba(38, 50, 56, 0.05);font-family:Courier,monospace;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.1);padding:0 5px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.tnexS pre{font-family:Courier,monospace;white-space:pre;background-color:#11171a;color:white;padding:20px;overflow-x:auto;line-height:normal;border-radius:0;border:1px solid rgba(38, 50, 56, 0.1);}/*!sc*/
+.tnexS pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.tnexS pre code:before,.tnexS pre code:after{content:none;}/*!sc*/
+.tnexS blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.tnexS img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.tnexS ul,.tnexS ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.tnexS ul ul,.tnexS ol ul,.tnexS ul ol,.tnexS ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.tnexS table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.tnexS table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.tnexS table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.tnexS table th,.tnexS table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.tnexS table th{text-align:left;font-weight:bold;}/*!sc*/
+.tnexS .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.tnexS .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.tnexS h1:hover>.share-link::before,.tnexS h2:hover>.share-link::before,.tnexS .share-link:hover::before{visibility:visible;}/*!sc*/
+.tnexS a{text-decoration:auto;color:#32329f;}/*!sc*/
+.tnexS a:visited{color:#32329f;}/*!sc*/
+.tnexS a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+data-styled.g43[id="sc-cCcVtu"]{content:"dfyrVQ,eghoXK,tnexS,"}/*!sc*/
+.hsJTWw{display:inline;}/*!sc*/
+data-styled.g44[id="sc-cidDfp"]{content:"hsJTWw,"}/*!sc*/
+.jIotxr{position:relative;}/*!sc*/
+data-styled.g45[id="sc-jcFiBM"]{content:"jIotxr,"}/*!sc*/
+.kXuYnm:hover>.sc-giYgZj{opacity:1;}/*!sc*/
+data-styled.g50[id="sc-cTAoCz"]{content:"kXuYnm,"}/*!sc*/
+.fuSywj{font-family:Courier,monospace;font-size:13px;white-space:pre;contain:content;overflow-x:auto;}/*!sc*/
+.fuSywj .redoc-json code>.collapser{display:none;pointer-events:none;}/*!sc*/
+.fuSywj .callback-function{color:gray;}/*!sc*/
+.fuSywj .collapser:after{content:'-';cursor:pointer;}/*!sc*/
+.fuSywj .collapsed>.collapser:after{content:'+';cursor:pointer;}/*!sc*/
+.fuSywj .ellipsis:after{content:' … ';}/*!sc*/
+.fuSywj .collapsible{margin-left:2em;}/*!sc*/
+.fuSywj .hoverable{padding-top:1px;padding-bottom:1px;padding-left:2px;padding-right:2px;border-radius:2px;}/*!sc*/
+.fuSywj .hovered{background-color:rgba(235, 238, 249, 1);}/*!sc*/
+.fuSywj .collapser{background-color:transparent;border:0;color:#fff;font-family:Courier,monospace;font-size:13px;padding-right:6px;padding-left:6px;padding-top:0;padding-bottom:0;display:flex;align-items:center;justify-content:center;width:15px;height:15px;position:absolute;top:4px;left:-1.5em;cursor:default;user-select:none;-webkit-user-select:none;padding:2px;}/*!sc*/
+.fuSywj .collapser:focus{outline-color:#fff;outline-style:dotted;outline-width:1px;}/*!sc*/
+.fuSywj ul{list-style-type:none;padding:0px;margin:0px 0px 0px 26px;}/*!sc*/
+.fuSywj li{position:relative;display:block;}/*!sc*/
+.fuSywj .hoverable{display:inline-block;}/*!sc*/
+.fuSywj .selected{outline-style:solid;outline-width:1px;outline-style:dotted;}/*!sc*/
+.fuSywj .collapsed>.collapsible{display:none;}/*!sc*/
+.fuSywj .ellipsis{display:none;}/*!sc*/
+.fuSywj .collapsed>.ellipsis{display:inherit;}/*!sc*/
+data-styled.g51[id="sc-jObTYW"]{content:"fuSywj,"}/*!sc*/
+.eoIpsO{padding:0.9em;background-color:rgba(38,50,56,0.4);margin:0 0 10px 0;display:block;font-family:Montserrat,sans-serif;font-size:0.929em;line-height:1.5em;}/*!sc*/
+data-styled.g52[id="sc-dPiIMO"]{content:"eoIpsO,"}/*!sc*/
+.cfMJLs{font-family:Montserrat,sans-serif;font-size:12px;position:absolute;z-index:1;top:-11px;left:12px;font-weight:600;color:rgba(255,255,255,0.7);}/*!sc*/
+data-styled.g53[id="sc-bBHFiX"]{content:"cfMJLs,"}/*!sc*/
+.bvzYLa{position:relative;}/*!sc*/
+data-styled.g54[id="sc-cNKpwA"]{content:"bvzYLa,"}/*!sc*/
+.dnfZlI{margin:0 0 10px 0;display:block;background-color:rgba(38,50,56,0.4);border:none;padding:0.9em 1.6em 0.9em 0.9em;box-shadow:none;}/*!sc*/
+.dnfZlI label{color:#ffffff;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;font-size:1em;text-transform:none;border:none;}/*!sc*/
+.dnfZlI:hover,.dnfZlI:focus-within{border:none;box-shadow:none;background-color:rgba(38,50,56,0.7);}/*!sc*/
+data-styled.g55[id="sc-AjlSJ"]{content:"dnfZlI,"}/*!sc*/
+.jWgrtg{margin-top:15px;}/*!sc*/
+data-styled.g57[id="sc-hUpbpP"]{content:"jWgrtg,"}/*!sc*/
+.kfcLvW{vertical-align:middle;font-size:13px;line-height:20px;}/*!sc*/
+data-styled.g59[id="sc-gSQHZB"]{content:"kfcLvW,"}/*!sc*/
+.VdaGx{color:rgba(102,102,102,0.9);}/*!sc*/
+data-styled.g60[id="sc-lbhHsq"]{content:"VdaGx,"}/*!sc*/
+.iHaHZe{color:#666;}/*!sc*/
+data-styled.g61[id="sc-iNGDOz"]{content:"iHaHZe,"}/*!sc*/
+.kwhSjD{color:#666;word-break:break-word;}/*!sc*/
+data-styled.g62[id="sc-jeqZuJ"]{content:"kwhSjD,"}/*!sc*/
+.fHrDUA{color:#d41f1c;font-size:0.9em;font-weight:normal;margin-left:20px;line-height:1;}/*!sc*/
+data-styled.g63[id="sc-eJwVsk"]{content:"fHrDUA,"}/*!sc*/
+.ecXTRB{color:#0e7c86;font-family:Courier,monospace;font-size:12px;}/*!sc*/
+.ecXTRB::before,.ecXTRB::after{content:' ';}/*!sc*/
+data-styled.g66[id="sc-ehCMcF"]{content:"ecXTRB,"}/*!sc*/
+.fcjCOL{border-radius:2px;word-break:break-word;background-color:rgba(51,51,51,0.05);color:rgba(51,51,51,0.9);padding:0 5px;border:1px solid rgba(51,51,51,0.1);font-family:Courier,monospace;}/*!sc*/
+.sc-lcerzc+.sc-lcerzc{margin-left:0;}/*!sc*/
+data-styled.g67[id="sc-lcerzc"]{content:"fcjCOL,"}/*!sc*/
+.ktAicy{border-radius:2px;background-color:rgba(104,104,207,0.05);color:rgba(50,50,159,0.9);margin:0 5px;padding:0 5px;border:1px solid rgba(50,50,159,0.1);}/*!sc*/
+.sc-clIAoS+.sc-clIAoS{margin-left:0;}/*!sc*/
+data-styled.g69[id="sc-clIAoS"]{content:"ktAicy,"}/*!sc*/
+.gSgTgZ:after{content:' and ';font-weight:normal;}/*!sc*/
+.gSgTgZ:last-child:after{content:none;}/*!sc*/
+.gSgTgZ a{text-decoration:auto;color:#32329f;}/*!sc*/
+.gSgTgZ a:visited{color:#32329f;}/*!sc*/
+.gSgTgZ a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+data-styled.g82[id="sc-hOGlKT"]{content:"gSgTgZ,"}/*!sc*/
+.iojsVY{white-space:nowrap;}/*!sc*/
+.iojsVY:after{content:' or ';white-space:pre;}/*!sc*/
+.iojsVY:last-child:after,.iojsVY:only-child:after{content:none;}/*!sc*/
+.iojsVY a{text-decoration:auto;color:#32329f;}/*!sc*/
+.iojsVY a:visited{color:#32329f;}/*!sc*/
+.iojsVY a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+data-styled.g83[id="sc-dtMhIu"]{content:"iojsVY,"}/*!sc*/
+.ikhAfM{flex:1 1 auto;cursor:pointer;}/*!sc*/
+data-styled.g84[id="sc-cZMPup"]{content:"ikhAfM,"}/*!sc*/
+.cUsbao{width:75%;text-overflow:ellipsis;border-radius:4px;overflow:hidden;}/*!sc*/
+@media screen and (max-width: 50rem){.cUsbao{margin-top:10px;}}/*!sc*/
+data-styled.g85[id="sc-jUouQM"]{content:"cUsbao,"}/*!sc*/
+.htATjr{display:inline-block;margin:0;}/*!sc*/
+data-styled.g86[id="sc-jQrBgb"]{content:"htATjr,"}/*!sc*/
+.hwarBd{width:100%;display:flex;margin:1em 0;flex-direction:row;}/*!sc*/
+@media screen and (max-width: 50rem){.hwarBd{flex-direction:column;}}/*!sc*/
+data-styled.g87[id="sc-fvxxdC"]{content:"hwarBd,"}/*!sc*/
+.cpbvgY{margin-top:0;margin-bottom:0.5em;}/*!sc*/
+data-styled.g93[id="sc-ctqRxX"]{content:"cpbvgY,"}/*!sc*/
+.jhhQHs::before{content:'|';display:inline-block;opacity:0.5;width:15px;text-align:center;}/*!sc*/
+.jhhQHs:last-child::after{display:none;}/*!sc*/
+data-styled.g95[id="sc-brSyhJ"]{content:"jhhQHs,"}/*!sc*/
+.flpFfk{overflow:hidden;}/*!sc*/
+data-styled.g96[id="sc-gIDkwW"]{content:"flpFfk,"}/*!sc*/
+.iRGHJs{display:flex;flex-wrap:wrap;margin-left:-15px;}/*!sc*/
+data-styled.g97[id="sc-evcgTf"]{content:"iRGHJs,"}/*!sc*/
+.hBQqbp{width:9ex;display:inline-block;height:13px;line-height:13px;background-color:#333;border-radius:3px;background-repeat:no-repeat;background-position:6px 4px;font-size:7px;font-family:Verdana,sans-serif;color:white;text-transform:uppercase;text-align:center;font-weight:bold;vertical-align:middle;margin-right:6px;margin-top:2px;}/*!sc*/
+.hBQqbp.get{background-color:#2F8132;}/*!sc*/
+.hBQqbp.post{background-color:#186FAF;}/*!sc*/
+.hBQqbp.put{background-color:#95507c;}/*!sc*/
+.hBQqbp.options{background-color:#947014;}/*!sc*/
+.hBQqbp.patch{background-color:#bf581d;}/*!sc*/
+.hBQqbp.delete{background-color:#cc3333;}/*!sc*/
+.hBQqbp.basic{background-color:#707070;}/*!sc*/
+.hBQqbp.link{background-color:#07818F;}/*!sc*/
+.hBQqbp.head{background-color:#A23DAD;}/*!sc*/
+.hBQqbp.hook{background-color:#32329f;}/*!sc*/
+.hBQqbp.schema{background-color:#707070;}/*!sc*/
+data-styled.g101[id="sc-XxOMn"]{content:"hBQqbp,"}/*!sc*/
+.cDvNBV{margin:0;padding:0;}/*!sc*/
+.cDvNBV:first-child{padding-bottom:32px;}/*!sc*/
+.sc-ilfuVi .sc-ilfuVi{font-size:0.929em;}/*!sc*/
+.fmBIVE{margin:0;padding:0;display:none;}/*!sc*/
+.fmBIVE:first-child{padding-bottom:32px;}/*!sc*/
+.sc-ilfuVi .sc-ilfuVi{font-size:0.929em;}/*!sc*/
+data-styled.g102[id="sc-ilfuVi"]{content:"cDvNBV,fmBIVE,"}/*!sc*/
+.kUnzkJ{list-style:none inside none;overflow:hidden;text-overflow:ellipsis;padding:0;}/*!sc*/
+data-styled.g103[id="sc-uokuf"]{content:"kUnzkJ,"}/*!sc*/
+.fVFwKp{cursor:pointer;color:#333333;margin:0;padding:12.5px 20px;display:flex;justify-content:space-between;font-family:Montserrat,sans-serif;font-size:0.929em;text-transform:none;background-color:#fafafa;}/*!sc*/
+.fVFwKp:hover{color:#32329f;background-color:#e1e1e1;}/*!sc*/
+.fVFwKp .sc-eggkz{height:1.5em;width:1.5em;}/*!sc*/
+.fVFwKp .sc-eggkz polygon{fill:#333333;}/*!sc*/
+.hoBsFD{cursor:pointer;color:#333333;margin:0;padding:12.5px 20px;display:flex;justify-content:space-between;font-family:Montserrat,sans-serif;background-color:#fafafa;}/*!sc*/
+.hoBsFD:hover{color:#32329f;background-color:#ededed;}/*!sc*/
+.hoBsFD .sc-eggkz{height:1.5em;width:1.5em;}/*!sc*/
+.hoBsFD .sc-eggkz polygon{fill:#333333;}/*!sc*/
+data-styled.g104[id="sc-bilAXc"]{content:"fVFwKp,hoBsFD,"}/*!sc*/
+.eTOOjH{display:inline-block;vertical-align:middle;width:calc(100% - 38px);overflow:hidden;text-overflow:ellipsis;}/*!sc*/
+data-styled.g105[id="sc-eGPZUV"]{content:"eTOOjH,"}/*!sc*/
+.ibLDaI{font-size:0.8em;margin-top:10px;text-align:center;position:fixed;width:260px;bottom:0;background:#fafafa;}/*!sc*/
+.ibLDaI a,.ibLDaI a:visited,.ibLDaI a:hover{color:#333333!important;padding:5px 0;border-top:1px solid #e1e1e1;text-decoration:none;display:flex;align-items:center;justify-content:center;}/*!sc*/
+.ibLDaI img{width:15px;margin-right:5px;}/*!sc*/
+@media screen and (max-width: 50rem){.ibLDaI{width:100%;}}/*!sc*/
+data-styled.g106[id="sc-hAcEkO"]{content:"ibLDaI,"}/*!sc*/
+.hcqzyz{border:0;width:100%;text-align:left;}/*!sc*/
+.hcqzyz>*{vertical-align:middle;}/*!sc*/
+.hcqzyz .sc-eggkz polygon{fill:#c2c2c2;}/*!sc*/
+data-styled.g107[id="sc-kYHdiH"]{content:"hcqzyz,"}/*!sc*/
+.eIvQVB{text-decoration:none;margin-right:8px;}/*!sc*/
+data-styled.g108[id="sc-xiKmI"]{content:"eIvQVB,"}/*!sc*/
+.eqNmsD{margin:0 5px 0 0;}/*!sc*/
+data-styled.g109[id="sc-dVNjkB"]{content:"eqNmsD,"}/*!sc*/
+.gxzUXD{padding:10px;border-radius:2px;margin-bottom:4px;line-height:1.5em;background-color:#F5F5F5;cursor:pointer;outline-color:#c2c2c2;}/*!sc*/
+data-styled.g110[id="sc-jHkWmS"]{content:"gxzUXD,"}/*!sc*/
+.cElpTj{cursor:pointer;position:relative;margin-bottom:5px;}/*!sc*/
+data-styled.g112[id="sc-fXErrr"]{content:"cElpTj,"}/*!sc*/
+.bwtbsK{font-family:Courier,monospace;margin-left:10px;flex:1;overflow-x:hidden;text-overflow:ellipsis;}/*!sc*/
+data-styled.g113[id="sc-FNYFi"]{content:"bwtbsK,"}/*!sc*/
+.ha-DFEV{outline:0;color:inherit;width:100%;text-align:left;cursor:pointer;padding:10px 30px 10px 20px;border-radius:4px 4px 0 0;background-color:#11171a;display:flex;white-space:nowrap;align-items:center;border:1px solid transparent;border-bottom:0;transition:border-color 0.25s ease;}/*!sc*/
+.ha-DFEV ..sc-FNYFi{color:#ffffff;}/*!sc*/
+.ha-DFEV:focus{box-shadow:inset 0 2px 2px rgba(0, 0, 0, 0.45),0 2px 0 rgba(128, 128, 128, 0.25);}/*!sc*/
+data-styled.g114[id="sc-jWUBOh"]{content:"ha-DFEV,"}/*!sc*/
+.eQMCLm{font-size:0.929em;line-height:20px;background-color:#186FAF;color:#ffffff;padding:3px 10px;text-transform:uppercase;font-family:Montserrat,sans-serif;margin:0;}/*!sc*/
+.iVXwLo{font-size:0.929em;line-height:20px;background-color:#2F8132;color:#ffffff;padding:3px 10px;text-transform:uppercase;font-family:Montserrat,sans-serif;margin:0;}/*!sc*/
+.bKVemE{font-size:0.929em;line-height:20px;background-color:#cc3333;color:#ffffff;padding:3px 10px;text-transform:uppercase;font-family:Montserrat,sans-serif;margin:0;}/*!sc*/
+data-styled.g115[id="sc-eFejbY"]{content:"eQMCLm,iVXwLo,bKVemE,"}/*!sc*/
+.kwmlAj{position:absolute;width:100%;z-index:100;background:#fafafa;color:#263238;box-sizing:border-box;box-shadow:0 0 6px rgba(0, 0, 0, 0.33);overflow:hidden;border-bottom-left-radius:4px;border-bottom-right-radius:4px;transition:all 0.25s ease;visibility:hidden;transform:translateY(-50%) scaleY(0);}/*!sc*/
+data-styled.g116[id="sc-fmBAGX"]{content:"kwmlAj,"}/*!sc*/
+.bQvhWS{padding:10px;}/*!sc*/
+data-styled.g117[id="sc-lkgRtK"]{content:"bQvhWS,"}/*!sc*/
+.fKzojN{padding:5px;border:1px solid #ccc;background:#fff;word-break:break-all;color:#32329f;}/*!sc*/
+.fKzojN >span{color:#333333;}/*!sc*/
+data-styled.g118[id="sc-jlRLdN"]{content:"fKzojN,"}/*!sc*/
+.bFRAqt{text-transform:lowercase;margin-left:0;line-height:1.5em;}/*!sc*/
+data-styled.g119[id="sc-dUbsrE"]{content:"bFRAqt,"}/*!sc*/
+.bSJJYM{display:block;border:0;width:100%;text-align:left;padding:10px;border-radius:2px;margin-bottom:4px;line-height:1.5em;cursor:pointer;color:#1d8127;background-color:rgba(29,129,39,0.07);}/*!sc*/
+.bSJJYM:focus{outline:auto #1d8127;}/*!sc*/
+.gZwrni{display:block;border:0;width:100%;text-align:left;padding:10px;border-radius:2px;margin-bottom:4px;line-height:1.5em;cursor:pointer;color:#d41f1c;background-color:rgba(212,31,28,0.07);}/*!sc*/
+.gZwrni:focus{outline:auto #d41f1c;}/*!sc*/
+.gNcPgO{display:block;border:0;width:100%;text-align:left;padding:10px;border-radius:2px;margin-bottom:4px;line-height:1.5em;cursor:pointer;color:#1d8127;background-color:rgba(29,129,39,0.07);cursor:default;}/*!sc*/
+.gNcPgO:focus{outline:auto #1d8127;}/*!sc*/
+.gNcPgO::before{content:"—";font-weight:bold;width:1.5em;text-align:center;display:inline-block;vertical-align:top;}/*!sc*/
+.gNcPgO:focus{outline:0;}/*!sc*/
+data-styled.g121[id="sc-cbTzWS"]{content:"bSJJYM,gZwrni,gNcPgO,"}/*!sc*/
+.esNchU{vertical-align:top;}/*!sc*/
+data-styled.g124[id="sc-fXeXnG"]{content:"esNchU,"}/*!sc*/
+.decPub{font-size:1.3em;padding:0.2em 0;margin:3em 0 1.1em;color:#333333;font-weight:normal;}/*!sc*/
+data-styled.g125[id="sc-fIotlj"]{content:"decPub,"}/*!sc*/
+.IUTrC{font-size:1.3em;padding:0.2em 0;margin:3em 0 1.1em;color:#333333;font-weight:normal;}/*!sc*/
+data-styled.g127[id="sc-gjNGSd"]{content:"IUTrC,"}/*!sc*/
+.dJeUpV{margin-top:15px;}/*!sc*/
+data-styled.g128[id="sc-fmcgDm"]{content:"dJeUpV,"}/*!sc*/
+.fQSdoz{background:#11171a;padding:20px;}/*!sc*/
+data-styled.g129[id="sc-eXlCAP"]{content:"fQSdoz,"}/*!sc*/
+.kSIwEE{user-select:none;width:20px;height:20px;align-self:center;display:flex;flex-direction:column;color:#32329f;}/*!sc*/
+data-styled.g131[id="sc-iqVYUh"]{content:"kSIwEE,"}/*!sc*/
+.cQlOye{width:260px;background-color:#fafafa;overflow:hidden;display:flex;flex-direction:column;backface-visibility:hidden;height:100vh;position:sticky;position:-webkit-sticky;top:0;}/*!sc*/
+@media screen and (max-width: 50rem){.cQlOye{position:fixed;z-index:20;width:100%;background:#fafafa;display:none;}}/*!sc*/
+@media print{.cQlOye{display:none;}}/*!sc*/
+data-styled.g132[id="sc-eWfYbd"]{content:"cQlOye,"}/*!sc*/
+.cuXdtS{outline:none;user-select:none;background-color:#f2f2f2;color:#32329f;display:none;cursor:pointer;position:fixed;right:20px;z-index:100;border-radius:50%;box-shadow:0 0 20px rgba(0, 0, 0, 0.3);bottom:44px;width:60px;height:60px;padding:0 20px;}/*!sc*/
+@media screen and (max-width: 50rem){.cuXdtS{display:flex;}}/*!sc*/
+.cuXdtS svg{color:#0065FB;}/*!sc*/
+@media print{.cuXdtS{display:none;}}/*!sc*/
+data-styled.g133[id="sc-kTLoNQ"]{content:"cuXdtS,"}/*!sc*/
+.dhKiRr{font-family:Roboto,sans-serif;font-size:14px;font-weight:400;line-height:1.5em;color:#333333;display:flex;position:relative;text-align:left;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;text-rendering:optimizeSpeed!important;tap-highlight-color:rgba(0, 0, 0, 0);text-size-adjust:100%;}/*!sc*/
+.dhKiRr *{box-sizing:border-box;-webkit-tap-highlight-color:rgba(255, 255, 255, 0);}/*!sc*/
+data-styled.g134[id="sc-dwsoFP"]{content:"dhKiRr,"}/*!sc*/
+.jKDppt{z-index:1;position:relative;overflow:hidden;width:calc(100% - 260px);contain:layout;}/*!sc*/
+@media print,screen and (max-width: 50rem){.jKDppt{width:100%;}}/*!sc*/
+data-styled.g135[id="sc-jtXFsC"]{content:"jKDppt,"}/*!sc*/
+.erAVi{background:#263238;position:absolute;top:0;bottom:0;right:0;width:calc((100% - 260px) * 0.4);}/*!sc*/
+@media print,screen and (max-width: 75rem){.erAVi{display:none;}}/*!sc*/
+data-styled.g136[id="sc-eldhqJ"]{content:"erAVi,"}/*!sc*/
+.hciFNy{padding:5px 0;}/*!sc*/
+data-styled.g137[id="sc-kiIydw"]{content:"hciFNy,"}/*!sc*/
+.fDfgqH{width:calc(100% - 40px);box-sizing:border-box;margin:0 20px;padding:5px 10px 5px 20px;border:0;border-bottom:1px solid #e1e1e1;font-family:Roboto,sans-serif;font-weight:bold;font-size:13px;color:#333333;background-color:transparent;outline:none;}/*!sc*/
+data-styled.g138[id="sc-cLpxVv"]{content:"fDfgqH,"}/*!sc*/
+.hclnbu{position:absolute;left:20px;height:1.8em;width:0.9em;}/*!sc*/
+.hclnbu path{fill:#333333;}/*!sc*/
+data-styled.g139[id="sc-iIUOIi"]{content:"hclnbu,"}/*!sc*/
+</style>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+</head>
+
+<body>
+  
+      <div id="redoc"><div class="sc-dwsoFP dhKiRr redoc-wrap"><div class="sc-eWfYbd cQlOye menu-content" style="top:0px;height:calc(100vh - 0px)"><div role="search" class="sc-kiIydw hciFNy"><svg class="sc-iIUOIi hclnbu search-icon" version="1.1" viewBox="0 0 1000 1000" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px"><path d="M968.2,849.4L667.3,549c83.9-136.5,66.7-317.4-51.7-435.6C477.1-25,252.5-25,113.9,113.4c-138.5,138.3-138.5,362.6,0,501C219.2,730.1,413.2,743,547.6,666.5l301.9,301.4c43.6,43.6,76.9,14.9,104.2-12.4C981,928.3,1011.8,893,968.2,849.4z M524.5,522c-88.9,88.7-233,88.7-321.8,0c-88.9-88.7-88.9-232.6,0-321.3c88.9-88.7,233-88.7,321.8,0C613.4,289.4,613.4,433.3,524.5,522z"></path></svg><input placeholder="Search..." aria-label="Search" type="text" class="sc-cLpxVv fDfgqH search-input" value=""/></div><div class="sc-kLwfci dUzxWi scrollbar-container undefined"><ul role="menu" class="sc-ilfuVi cDvNBV"><li tabindex="0" depth="1" data-item-id="tag/Subscriptions" role="menuitem" aria-label="Subscriptions" aria-expanded="false" class="sc-uokuf kUnzkJ"><label class="sc-bilAXc fVFwKp -depth1"><span width="calc(100% - 38px)" title="Subscriptions" class="sc-eGPZUV eTOOjH">Subscriptions</span><svg class="sc-eggkz enbFWE" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></label><ul class="sc-ilfuVi fmBIVE"><li tabindex="0" depth="2" data-item-id="tag/Subscriptions/operation/createEventSubscription" role="menuitem" aria-label="Subscribe to HUB events" aria-expanded="false" class="sc-uokuf kUnzkJ"><label class="sc-bilAXc hoBsFD -depth2"><span type="post" class="sc-XxOMn hBQqbp operation-type post">post</span><span tabindex="0" width="calc(100% - 38px)" class="sc-eGPZUV eTOOjH">Subscribe to HUB events</span></label></li><li tabindex="0" depth="2" data-item-id="tag/Subscriptions/operation/listEventSubscriptions" role="menuitem" aria-label="List own subscriptions" aria-expanded="false" class="sc-uokuf kUnzkJ"><label class="sc-bilAXc hoBsFD -depth2"><span type="get" class="sc-XxOMn hBQqbp operation-type get">get</span><span tabindex="0" width="calc(100% - 38px)" class="sc-eGPZUV eTOOjH">List own subscriptions</span></label></li><li tabindex="0" depth="2" data-item-id="tag/Subscriptions/operation/deleteEventSubscription" role="menuitem" aria-label="Delete a subscription" aria-expanded="false" class="sc-uokuf kUnzkJ"><label class="sc-bilAXc hoBsFD -depth2"><span type="delete" class="sc-XxOMn hBQqbp operation-type delete">del</span><span tabindex="0" width="calc(100% - 38px)" class="sc-eGPZUV eTOOjH">Delete a subscription</span></label></li></ul></li></ul><div class="sc-hAcEkO ibLDaI"><a target="_blank" rel="noopener noreferrer" href="https://redocly.com/redoc/">API docs by Redocly</a></div></div></div><div class="sc-kTLoNQ cuXdtS"><div class="sc-iqVYUh kSIwEE"><svg class="" style="transform:translate(2px, -4px) rotate(180deg);transition:transform 0.2s ease" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="15" height="15"><g transform="translate(904.92214,-879.1482)"><path d="
+          m -673.67664,1221.6502 -231.2455,-231.24803 55.6165,
+          -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894,
+          0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892,
+          -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696,
+          -174.68583 0.6895,0 26.281,25.03215 56.8701,
+          55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864
+          -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688,
+          -104.0616 -231.873,-231.248 z
+        " fill="currentColor"></path></g></svg><svg class="" style="transform:translate(2px, 4px);transition:transform 0.2s ease" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="15" height="15"><g transform="translate(904.92214,-879.1482)"><path d="
+          m -673.67664,1221.6502 -231.2455,-231.24803 55.6165,
+          -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894,
+          0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892,
+          -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696,
+          -174.68583 0.6895,0 26.281,25.03215 56.8701,
+          55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864
+          -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688,
+          -104.0616 -231.873,-231.248 z
+        " fill="currentColor"></path></g></svg></div></div><div class="sc-jtXFsC jKDppt api-content"><div class="sc-eCIkAO jVjTxq"><div class="sc-iCfNyT gBxmSK"><div class="sc-hKwBjT gVqSrK api-info"><h1 class="sc-furwPO sc-ctqRxX dJDVAu cpbvgY">Events API — Panama Interoperability HUB<!-- --> <span>(<!-- -->1.1.0-draft<!-- -->)</span></h1><p>Download OpenAPI specification<!-- -->:</p><div class="sc-iJKPHa sc-cCcVtu cJMweq dfyrVQ"><div class="sc-gIDkwW flpFfk"><div class="sc-evcgTf iRGHJs"><span class="sc-brSyhJ jhhQHs">Panama Interoperability HUB — Developer Support<!-- -->:<!-- --> <a href="mailto:hub-support@hub.example.pa">hub-support@hub.example.pa</a></span> <!-- --> <span class="sc-brSyhJ jhhQHs">License:<!-- --> <a href="https://hub.example.pa/terms">Proprietary</a></span> </div></div></div><div data-role="redoc-summary" html="" class="sc-iJKPHa sc-cCcVtu cJMweq dfyrVQ"></div><div data-role="redoc-description" html="&lt;p&gt;Subscriptions to the HUB&amp;#39;s outbound notification channel: JWS-signed webhooks,
+at-least-once delivery with exponential retries and deduplication by &lt;code&gt;eventId&lt;/code&gt; at the receiver.&lt;/p&gt;
+&lt;p&gt;Events are HUB notifications, not ISO 20022 messages. The JSON payload is not encrypted at
+message level, is signed with JWS and travels over TLS with mTLS. It contains no account or
+payment-message content and requires no business response; the receiver acknowledges it
+with HTTP 204. Payment events are how the HUB
+closes the timeout path: it notifies the origin (which reverses its debit internally) and
+the destination (which reverses the credit if it was applied) — retried until each side is
+available. Corrections beyond that are a regularisation (a new transaction with a new ID);
+there are no reversal invocations between participants through the HUB.&lt;/p&gt;
+&lt;p&gt;Event catalogue by category (see &lt;code&gt;EventType&lt;/code&gt;):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;PAYMENT&lt;/strong&gt; — &lt;code&gt;PAYMENT_TIMEOUT&lt;/code&gt;, &lt;code&gt;PAYMENT_REVERSAL_REQUESTED&lt;/code&gt;, &lt;code&gt;PAYMENT_STATUS_UPDATED&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MERCHANT DIRECTORY&lt;/strong&gt; — &lt;code&gt;MERCHANT_UPDATED&lt;/code&gt;, &lt;code&gt;MERCHANT_SUSPENDED&lt;/code&gt;, &lt;code&gt;COLLECTION_METHOD_CHANGED&lt;/code&gt;
+(merchant events force invalidation of the affected P2M resolution cache)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OPERATIONAL&lt;/strong&gt; — &lt;code&gt;SYSTEM_NOTIFICATION&lt;/code&gt;, &lt;code&gt;AVAILABILITY_CHANGED&lt;/code&gt;, &lt;code&gt;MAINTENANCE_WINDOW&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RECONCILIATION&lt;/strong&gt; — &lt;code&gt;RECONCILIATION_WINDOW_OPENED&lt;/code&gt;, &lt;code&gt;RECONCILIATION_WINDOW_CLOSED&lt;/code&gt;,
+&lt;code&gt;RECONCILIATION_FILE_AVAILABLE&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Person-key lifecycle events are not emitted because key registration is local to each
+participant and the HUB keeps no central register of person aliases.
+Inbound participant→HUB operational events are posted on the Operations API (&lt;code&gt;POST /events&lt;/code&gt;);
+the contract a participant must expose to receive these webhooks is the
+&lt;strong&gt;Participant Events API&lt;/strong&gt;.
+Errors use &lt;code&gt;application/problem+json&lt;/code&gt; with a &lt;code&gt;reasonCode&lt;/code&gt; from the HUB error code catalogue.&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu cJMweq dfyrVQ"><p>Subscriptions to the HUB&#39;s outbound notification channel: JWS-signed webhooks,
+at-least-once delivery with exponential retries and deduplication by <code>eventId</code> at the receiver.</p>
+<p>Events are HUB notifications, not ISO 20022 messages. The JSON payload is not encrypted at
+message level, is signed with JWS and travels over TLS with mTLS. It contains no account or
+payment-message content and requires no business response; the receiver acknowledges it
+with HTTP 204. Payment events are how the HUB
+closes the timeout path: it notifies the origin (which reverses its debit internally) and
+the destination (which reverses the credit if it was applied) — retried until each side is
+available. Corrections beyond that are a regularisation (a new transaction with a new ID);
+there are no reversal invocations between participants through the HUB.</p>
+<p>Event catalogue by category (see <code>EventType</code>):</p>
+<ul>
+<li><strong>PAYMENT</strong> — <code>PAYMENT_TIMEOUT</code>, <code>PAYMENT_REVERSAL_REQUESTED</code>, <code>PAYMENT_STATUS_UPDATED</code></li>
+<li><strong>MERCHANT DIRECTORY</strong> — <code>MERCHANT_UPDATED</code>, <code>MERCHANT_SUSPENDED</code>, <code>COLLECTION_METHOD_CHANGED</code>
+(merchant events force invalidation of the affected P2M resolution cache)</li>
+<li><strong>OPERATIONAL</strong> — <code>SYSTEM_NOTIFICATION</code>, <code>AVAILABILITY_CHANGED</code>, <code>MAINTENANCE_WINDOW</code></li>
+<li><strong>RECONCILIATION</strong> — <code>RECONCILIATION_WINDOW_OPENED</code>, <code>RECONCILIATION_WINDOW_CLOSED</code>,
+<code>RECONCILIATION_FILE_AVAILABLE</code></li>
+</ul>
+<p>Person-key lifecycle events are not emitted because key registration is local to each
+participant and the HUB keeps no central register of person aliases.
+Inbound participant→HUB operational events are posted on the Operations API (<code>POST /events</code>);
+the contract a participant must expose to receive these webhooks is the
+<strong>Participant Events API</strong>.
+Errors use <code>application/problem+json</code> with a <code>reasonCode</code> from the HUB error code catalogue.</p>
+</div></div></div></div><div id="tag/Subscriptions" data-section-id="tag/Subscriptions" class="sc-eCIkAO jVjTxq"><div class="sc-iCfNyT gBxmSK"><div class="sc-hKwBjT gVqSrK"><h2 class="sc-pVUti chDmIx"><a class="sc-crHjOq bVILEW" href="#tag/Subscriptions" aria-label="tag/Subscriptions"></a>Subscriptions</h2></div></div><div class="sc-hKwBjT gOILhW"><div class="sc-iJKPHa sc-cCcVtu cJMweq dfyrVQ redoc-markdown " html="&lt;p&gt;Webhook subscriptions and event delivery&lt;/p&gt;
+"><p>Webhook subscriptions and event delivery</p>
+</div></div></div><div id="tag/Subscriptions/operation/createEventSubscription" data-section-id="tag/Subscriptions/operation/createEventSubscription" class="sc-eCIkAO fwcblJ"><div data-section-id="operation/createEventSubscription" id="operation/createEventSubscription" class="sc-iCfNyT gBxmSK"><div class="sc-hKwBjT gVqSrK"><h2 class="sc-pVUti chDmIx"><a class="sc-crHjOq bVILEW" href="#tag/Subscriptions/operation/createEventSubscription" aria-label="tag/Subscriptions/operation/createEventSubscription"></a>Subscribe to HUB events<!-- --> </h2><div class="sc-fvxxdC hwarBd"><div class="sc-cZMPup ikhAfM"><h5 class="sc-iqsgXZ sc-jQrBgb DLudH htATjr">Authorizations:</h5><svg class="sc-eggkz jhElqB" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></div><div class="sc-jUouQM cUsbao"><span class="sc-dtMhIu iojsVY"><span class="sc-hOGlKT gSgTgZ"><i>oauth2ClientCredentials</i></span></span></div></div><div><h5 class="sc-iqsgXZ DLudH">header<!-- --> Parameters</h5><table class="sc-hGPAwl hVPLuE"><tbody><tr class="last "><td kind="field" title="Idempotency-Key" class="sc-hBUSYK sc-fFelbd dNdvDo ieQgBm"><span class="sc-ieedpP gBKsqD"></span><span class="property-name">Idempotency-Key</span><div class="sc-gSQHZB sc-eJwVsk kfcLvW fHrDUA">required</div></td><td class="sc-bkkgYE bFOtZh"><div><div><span class="sc-gSQHZB sc-lbhHsq kfcLvW VdaGx"></span><span class="sc-gSQHZB sc-iNGDOz kfcLvW iHaHZe">string</span><span class="sc-gSQHZB sc-iNGDOz kfcLvW iHaHZe"> <!-- -->&lt;<!-- -->uuid<!-- -->&gt;<!-- --> </span></div> <div><div html="&lt;p&gt;Idempotency key (UUID) for safe retries (same key, same result).&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu cJMweq eghoXK"><p>Idempotency key (UUID) for safe retries (same key, same result).</p>
+</div></div></div></td></tr></tbody></table></div><h5 class="sc-iqsgXZ DLudH">Request Body schema: <span class="sc-gWWZvT kNPqqp">application/json</span><div class="sc-gSQHZB sc-eJwVsk sc-dUbsrE kfcLvW fHrDUA bFRAqt">required</div></h5><div html="" class="sc-iJKPHa sc-cCcVtu cJMweq dfyrVQ"></div><table class="sc-hGPAwl hVPLuE"><tbody><tr class=""><td kind="field" title="callbackUrl" class="sc-hBUSYK sc-fFelbd dNdvDo ieQgBm"><span class="sc-ieedpP gBKsqD"></span><span class="property-name">callbackUrl</span><div class="sc-gSQHZB sc-eJwVsk kfcLvW fHrDUA">required</div></td><td class="sc-bkkgYE bFOtZh"><div><div><span class="sc-gSQHZB sc-lbhHsq kfcLvW VdaGx"></span><span class="sc-gSQHZB sc-iNGDOz kfcLvW iHaHZe">string</span><span class="sc-gSQHZB sc-iNGDOz kfcLvW iHaHZe"> <!-- -->&lt;<!-- -->uri<!-- -->&gt;<!-- --> </span><span class="sc-gSQHZB sc-ehCMcF kfcLvW ecXTRB">^https://</span></div> <div><div html="&lt;p&gt;HTTPS endpoint with a certificate trusted by the HUB. Registration validates syntax and scheme; availability is handled by the delivery retry policy.&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu cJMweq eghoXK"><p>HTTPS endpoint with a certificate trusted by the HUB. Registration validates syntax and scheme; availability is handled by the delivery retry policy.</p>
+</div></div></div></td></tr><tr class="last "><td kind="field" title="eventTypes" class="sc-hBUSYK sc-fFelbd dNdvDo ieQgBm"><span class="sc-ieedpP gBKsqD"></span><span class="property-name">eventTypes</span><div class="sc-gSQHZB sc-eJwVsk kfcLvW fHrDUA">required</div></td><td class="sc-bkkgYE bFOtZh"><div><div><span class="sc-gSQHZB sc-lbhHsq kfcLvW VdaGx">Array of </span><span class="sc-gSQHZB sc-iNGDOz kfcLvW iHaHZe">strings</span><span class="sc-gSQHZB sc-jeqZuJ kfcLvW kwhSjD"> (<!-- -->EventType<!-- -->) </span><span> <span class="sc-gSQHZB sc-clIAoS kfcLvW ktAicy"> <!-- -->non-empty<!-- --> </span><span class="sc-gSQHZB sc-clIAoS kfcLvW ktAicy"> <!-- -->unique<!-- --> </span></span></div><div><span class="sc-gSQHZB kfcLvW">Items<!-- --> <!-- -->Enum<!-- -->:</span> <span class="sc-gSQHZB sc-lcerzc kfcLvW fcjCOL">&quot;PAYMENT_TIMEOUT&quot;</span> <span class="sc-gSQHZB sc-lcerzc kfcLvW fcjCOL">&quot;PAYMENT_REVERSAL_REQUESTED&quot;</span> <span class="sc-gSQHZB sc-lcerzc kfcLvW fcjCOL">&quot;PAYMENT_STATUS_UPDATED&quot;</span> <span class="sc-gSQHZB sc-lcerzc kfcLvW fcjCOL">&quot;MERCHANT_UPDATED&quot;</span> <span class="sc-gSQHZB sc-lcerzc kfcLvW fcjCOL">&quot;MERCHANT_SUSPENDED&quot;</span> <span class="sc-gSQHZB sc-lcerzc kfcLvW fcjCOL">&quot;COLLECTION_METHOD_CHANGED&quot;</span> <span class="sc-gSQHZB sc-lcerzc kfcLvW fcjCOL">&quot;SYSTEM_NOTIFICATION&quot;</span> <span class="sc-gSQHZB sc-lcerzc kfcLvW fcjCOL">&quot;AVAILABILITY_CHANGED&quot;</span> <span class="sc-gSQHZB sc-lcerzc kfcLvW fcjCOL">&quot;MAINTENANCE_WINDOW&quot;</span> <span class="sc-gSQHZB sc-lcerzc kfcLvW fcjCOL">&quot;RECONCILIATION_WINDOW_OPENED&quot;</span> <span class="sc-gSQHZB sc-lcerzc kfcLvW fcjCOL">&quot;RECONCILIATION_WINDOW_CLOSED&quot;</span> <span class="sc-gSQHZB sc-lcerzc kfcLvW fcjCOL">&quot;RECONCILIATION_FILE_AVAILABLE&quot;</span> </div> <div><div html="" class="sc-iJKPHa sc-cCcVtu cJMweq eghoXK"></div></div></div></td></tr></tbody></table><div><h3 class="sc-fIotlj decPub">Responses</h3><div><button class="sc-cbTzWS bSJJYM"><svg class="sc-eggkz ixKnVW" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-fXeXnG esNchU">201<!-- --> </strong><div html="&lt;p&gt;Subscription created&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu sc-cidDfp cJMweq tnexS hsJTWw"><p>Subscription created</p>
+</div></button></div><div><button class="sc-cbTzWS gZwrni"><svg class="sc-eggkz kNOxeG" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-fXeXnG esNchU">400<!-- --> </strong><div html="&lt;p&gt;Invalid request (syntax or schema)&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu sc-cidDfp cJMweq tnexS hsJTWw"><p>Invalid request (syntax or schema)</p>
+</div></button></div><div><button class="sc-cbTzWS gZwrni"><svg class="sc-eggkz kNOxeG" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-fXeXnG esNchU">401<!-- --> </strong><div html="&lt;p&gt;Not authenticated (invalid token or mTLS certificate not presented)&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu sc-cidDfp cJMweq tnexS hsJTWw"><p>Not authenticated (invalid token or mTLS certificate not presented)</p>
+</div></button></div><div><button class="sc-cbTzWS gZwrni"><svg class="sc-eggkz kNOxeG" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-fXeXnG esNchU">403<!-- --> </strong><div html="&lt;p&gt;Authenticated but not allowed (missing scope or participant not entitled)&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu sc-cidDfp cJMweq tnexS hsJTWw"><p>Authenticated but not allowed (missing scope or participant not entitled)</p>
+</div></button></div></div><div><h3 class="sc-gjNGSd IUTrC"> Callbacks </h3><button class="sc-kYHdiH hcqzyz sc-jHkWmS gxzUXD"><span type="post" class="sc-XxOMn sc-dVNjkB hBQqbp eqNmsD operation-type post">post</span><svg class="sc-eggkz hJSvUU" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><span class="sc-xiKmI eIvQVB">Event delivery (JWS-signed)</span></button></div></div><div class="sc-jRQBiJ sc-gKckzE eMcwSW hCcvSb"><div class="sc-fXErrr cElpTj"><button class="sc-jWUBOh ha-DFEV"><span type="post" class="sc-eFejbY eQMCLm http-verb post">post</span><span class="sc-FNYFi bwtbsK">/event-subscriptions</span><svg class="sc-eggkz dSdygy" style="margin-right:-25px" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></button><div aria-hidden="true" class="sc-fmBAGX kwmlAj"><div class="sc-lkgRtK bQvhWS"><div html="&lt;p&gt;Sandbox&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu cJMweq eghoXK"><p>Sandbox</p>
+</div><div tabindex="0" role="button"><div class="sc-jlRLdN fKzojN"><span>https://sandbox.hub.example.pa/events/v1</span>/event-subscriptions</div></div></div><div class="sc-lkgRtK bQvhWS"><div html="&lt;p&gt;Production&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu cJMweq eghoXK"><p>Production</p>
+</div><div tabindex="0" role="button"><div class="sc-jlRLdN fKzojN"><span>https://hub.example.pa/events/v1</span>/event-subscriptions</div></div></div></div></div><div><h3 class="sc-kDTkBQ eLZTZJ"> <!-- -->Request samples<!-- --> </h3><div class="sc-cxpUrY eYSiUI" data-rttabs="true"><ul class="react-tabs__tab-list" role="tablist"><li class="react-tabs__tab react-tabs__tab--selected" role="tab" id="tab_R_4kmq_0" aria-selected="true" aria-disabled="false" aria-controls="panel_R_4kmq_0" tabindex="0" data-rttab="true">Payload</li></ul><div class="react-tabs__tab-panel react-tabs__tab-panel--selected" role="tabpanel" id="panel_R_4kmq_0" aria-labelledby="tab_R_4kmq_0"><div><div class="sc-cNKpwA bvzYLa"><span class="sc-bBHFiX cfMJLs">Content type</span><div class="sc-dPiIMO eoIpsO">application/json</div></div><div class="sc-hUpbpP jWgrtg"><div class="sc-cTAoCz kXuYnm"><div class="sc-giYgZj gwYevq"><button><div class="sc-jcFiBM jIotxr">Copy</div></button><button> Expand all </button><button> Collapse all </button></div><div tabindex="0" class="sc-iJKPHa cJMweq sc-jObTYW fuSywj"><div class="redoc-json"><code><button class="collapser" aria-label="collapse"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable "><span class="property token string">"callbackUrl"</span>: <span class="token string">&quot;</span><a href="https://api.telered.example.pa/hub-events/v1/events">https://api.telered.example.pa/hub-events/v1/events</a><span class="token string">&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"eventTypes"</span>: <button class="collapser" aria-label="collapse"></button><span class="token punctuation">[</span><span class="ellipsis"></span><ul class="array collapsible"><li><div class="hoverable collapsed"><span class="token string">&quot;PAYMENT_TIMEOUT&quot;</span>,</div></li><li><div class="hoverable collapsed"><span class="token string">&quot;PAYMENT_REVERSAL_REQUESTED&quot;</span>,</div></li><li><div class="hoverable collapsed"><span class="token string">&quot;RECONCILIATION_FILE_AVAILABLE&quot;</span></div></li></ul><span class="token punctuation">]</span></div></li></ul><span class="token punctuation">}</span></code></div></div></div></div></div></div></div></div><div><h3 class="sc-kDTkBQ eLZTZJ"> <!-- -->Response samples<!-- --> </h3><div class="sc-cxpUrY eYSiUI" data-rttabs="true"><ul class="react-tabs__tab-list" role="tablist"><li class="tab-success react-tabs__tab--selected" role="tab" id="tab_R_4smq_0" aria-selected="true" aria-disabled="false" aria-controls="panel_R_4smq_0" tabindex="0" data-rttab="true">201</li><li class="tab-error" role="tab" id="tab_R_4smq_1" aria-selected="false" aria-disabled="false" aria-controls="panel_R_4smq_1" data-rttab="true">400</li><li class="tab-error" role="tab" id="tab_R_4smq_2" aria-selected="false" aria-disabled="false" aria-controls="panel_R_4smq_2" data-rttab="true">401</li><li class="tab-error" role="tab" id="tab_R_4smq_3" aria-selected="false" aria-disabled="false" aria-controls="panel_R_4smq_3" data-rttab="true">403</li></ul><div class="react-tabs__tab-panel react-tabs__tab-panel--selected" role="tabpanel" id="panel_R_4smq_0" aria-labelledby="tab_R_4smq_0"><div><div class="sc-cNKpwA bvzYLa"><span class="sc-bBHFiX cfMJLs">Content type</span><div class="sc-dPiIMO eoIpsO">application/json</div></div><div class="sc-hUpbpP jWgrtg"><div class="sc-cTAoCz kXuYnm"><div class="sc-giYgZj gwYevq"><button><div class="sc-jcFiBM jIotxr">Copy</div></button><button> Expand all </button><button> Collapse all </button></div><div tabindex="0" class="sc-iJKPHa cJMweq sc-jObTYW fuSywj"><div class="redoc-json"><code><button class="collapser" aria-label="collapse"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable "><span class="property token string">"subscriptionId"</span>: <span class="token string">&quot;SUB-0042&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"callbackUrl"</span>: <span class="token string">&quot;</span><a href="https://api.telered.example.pa/hub-events/v1/events">https://api.telered.example.pa/hub-events/v1/events</a><span class="token string">&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"eventTypes"</span>: <button class="collapser" aria-label="collapse"></button><span class="token punctuation">[</span><span class="ellipsis"></span><ul class="array collapsible"><li><div class="hoverable collapsed"><span class="token string">&quot;PAYMENT_TIMEOUT&quot;</span>,</div></li><li><div class="hoverable collapsed"><span class="token string">&quot;PAYMENT_REVERSAL_REQUESTED&quot;</span>,</div></li><li><div class="hoverable collapsed"><span class="token string">&quot;RECONCILIATION_FILE_AVAILABLE&quot;</span></div></li></ul><span class="token punctuation">]</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"status"</span>: <span class="token string">&quot;ACTIVE&quot;</span></div></li></ul><span class="token punctuation">}</span></code></div></div></div></div></div></div><div class="react-tabs__tab-panel" role="tabpanel" id="panel_R_4smq_1" aria-labelledby="tab_R_4smq_1"></div><div class="react-tabs__tab-panel" role="tabpanel" id="panel_R_4smq_2" aria-labelledby="tab_R_4smq_2"></div><div class="react-tabs__tab-panel" role="tabpanel" id="panel_R_4smq_3" aria-labelledby="tab_R_4smq_3"></div></div></div><div><h3 class="sc-kDTkBQ eLZTZJ"> Callback payload samples </h3><div class="sc-eXlCAP fQSdoz"><div class="sc-cNKpwA bvzYLa"><span class="sc-bBHFiX cfMJLs">Callback</span><div class="sc-dPiIMO eoIpsO">POST: Event delivery (JWS-signed)</div></div><div class="sc-fmcgDm dJeUpV"><div class="sc-cNKpwA bvzYLa"><span class="sc-bBHFiX cfMJLs">Content type</span><div class="sc-dPiIMO eoIpsO">application/json</div></div><div class="sc-hUpbpP jWgrtg"><div class="sc-cNKpwA bvzYLa"><span class="sc-bBHFiX cfMJLs">Example</span><div class="sc-jJoSXA sc-AjlSJ ifPiq dnfZlI"><svg class="sc-ikJwur jhBcp" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><select class="dropdown-select"><option value="Timeout notified to the ORIGIN network (it reverses its client&#x27;s debit internally)" selected="">Timeout notified to the ORIGIN network (it reverses its client&#x27;s debit internally)</option><option value="Reversal requested to the DESTINATION network after a timeout (reverse the credit if it was applied)">Reversal requested to the DESTINATION network after a timeout (reverse the credit if it was applied)</option><option value="Reconciliation cycle closed by the HUB calendar; file ready to retrieve">Reconciliation cycle closed by the HUB calendar; file ready to retrieve</option></select><label>Timeout notified to the ORIGIN network (it reverses its client&#x27;s debit internally)</label></div></div><div><div class="sc-cTAoCz kXuYnm"><div class="sc-giYgZj gwYevq"><button><div class="sc-jcFiBM jIotxr">Copy</div></button><button> Expand all </button><button> Collapse all </button></div><div tabindex="0" class="sc-iJKPHa cJMweq sc-jObTYW fuSywj"><div class="redoc-json"><code><button class="collapser" aria-label="collapse"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable "><span class="property token string">"eventId"</span>: <span class="token string">&quot;EVT-2026-000881&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"subscriptionId"</span>: <span class="token string">&quot;SUB-0042&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"eventType"</span>: <span class="token string">&quot;PAYMENT_TIMEOUT&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"occurredAt"</span>: <span class="token string">&quot;2026-09-16T14:03:22Z&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"correlationId"</span>: <span class="token string">&quot;HUB-TX-77120&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"payload"</span>: <button class="collapser" aria-label="collapse"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"transactionId"</span>: <span class="token string">&quot;HUB-TX-77120&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"endToEndId"</span>: <span class="token string">&quot;E2E-2026-0001&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"finalStatus"</span>: <span class="token string">&quot;TIMEOUT&quot;</span></div></li></ul><span class="token punctuation">}</span></div></li></ul><span class="token punctuation">}</span></code></div></div></div></div></div></div></div></div></div></div></div><div id="tag/Subscriptions/operation/listEventSubscriptions" data-section-id="tag/Subscriptions/operation/listEventSubscriptions" class="sc-eCIkAO fwcblJ"><div data-section-id="operation/listEventSubscriptions" id="operation/listEventSubscriptions" class="sc-iCfNyT gBxmSK"><div class="sc-hKwBjT gVqSrK"><h2 class="sc-pVUti chDmIx"><a class="sc-crHjOq bVILEW" href="#tag/Subscriptions/operation/listEventSubscriptions" aria-label="tag/Subscriptions/operation/listEventSubscriptions"></a>List own subscriptions<!-- --> </h2><div class="sc-fvxxdC hwarBd"><div class="sc-cZMPup ikhAfM"><h5 class="sc-iqsgXZ sc-jQrBgb DLudH htATjr">Authorizations:</h5><svg class="sc-eggkz jhElqB" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></div><div class="sc-jUouQM cUsbao"><span class="sc-dtMhIu iojsVY"><span class="sc-hOGlKT gSgTgZ"><i>oauth2ClientCredentials</i></span></span></div></div><div><h3 class="sc-fIotlj decPub">Responses</h3><div><button class="sc-cbTzWS bSJJYM"><svg class="sc-eggkz ixKnVW" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-fXeXnG esNchU">200<!-- --> </strong><div html="&lt;p&gt;Subscriptions of the participant&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu sc-cidDfp cJMweq tnexS hsJTWw"><p>Subscriptions of the participant</p>
+</div></button></div><div><button class="sc-cbTzWS gZwrni"><svg class="sc-eggkz kNOxeG" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-fXeXnG esNchU">401<!-- --> </strong><div html="&lt;p&gt;Not authenticated (invalid token or mTLS certificate not presented)&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu sc-cidDfp cJMweq tnexS hsJTWw"><p>Not authenticated (invalid token or mTLS certificate not presented)</p>
+</div></button></div><div><button class="sc-cbTzWS gZwrni"><svg class="sc-eggkz kNOxeG" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-fXeXnG esNchU">403<!-- --> </strong><div html="&lt;p&gt;Authenticated but not allowed (missing scope or participant not entitled)&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu sc-cidDfp cJMweq tnexS hsJTWw"><p>Authenticated but not allowed (missing scope or participant not entitled)</p>
+</div></button></div></div></div><div class="sc-jRQBiJ sc-gKckzE eMcwSW hCcvSb"><div class="sc-fXErrr cElpTj"><button class="sc-jWUBOh ha-DFEV"><span type="get" class="sc-eFejbY iVXwLo http-verb get">get</span><span class="sc-FNYFi bwtbsK">/event-subscriptions</span><svg class="sc-eggkz dSdygy" style="margin-right:-25px" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></button><div aria-hidden="true" class="sc-fmBAGX kwmlAj"><div class="sc-lkgRtK bQvhWS"><div html="&lt;p&gt;Sandbox&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu cJMweq eghoXK"><p>Sandbox</p>
+</div><div tabindex="0" role="button"><div class="sc-jlRLdN fKzojN"><span>https://sandbox.hub.example.pa/events/v1</span>/event-subscriptions</div></div></div><div class="sc-lkgRtK bQvhWS"><div html="&lt;p&gt;Production&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu cJMweq eghoXK"><p>Production</p>
+</div><div tabindex="0" role="button"><div class="sc-jlRLdN fKzojN"><span>https://hub.example.pa/events/v1</span>/event-subscriptions</div></div></div></div></div><div><h3 class="sc-kDTkBQ eLZTZJ"> <!-- -->Response samples<!-- --> </h3><div class="sc-cxpUrY eYSiUI" data-rttabs="true"><ul class="react-tabs__tab-list" role="tablist"><li class="tab-success react-tabs__tab--selected" role="tab" id="tab_R_4sqq_0" aria-selected="true" aria-disabled="false" aria-controls="panel_R_4sqq_0" tabindex="0" data-rttab="true">200</li><li class="tab-error" role="tab" id="tab_R_4sqq_1" aria-selected="false" aria-disabled="false" aria-controls="panel_R_4sqq_1" data-rttab="true">401</li><li class="tab-error" role="tab" id="tab_R_4sqq_2" aria-selected="false" aria-disabled="false" aria-controls="panel_R_4sqq_2" data-rttab="true">403</li></ul><div class="react-tabs__tab-panel react-tabs__tab-panel--selected" role="tabpanel" id="panel_R_4sqq_0" aria-labelledby="tab_R_4sqq_0"><div><div class="sc-cNKpwA bvzYLa"><span class="sc-bBHFiX cfMJLs">Content type</span><div class="sc-dPiIMO eoIpsO">application/json</div></div><div class="sc-hUpbpP jWgrtg"><div class="sc-cTAoCz kXuYnm"><div class="sc-giYgZj gwYevq"><button><div class="sc-jcFiBM jIotxr">Copy</div></button><button> Expand all </button><button> Collapse all </button></div><div tabindex="0" class="sc-iJKPHa cJMweq sc-jObTYW fuSywj"><div class="redoc-json"><code><button class="collapser" aria-label="collapse"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable "><span class="property token string">"items"</span>: <button class="collapser" aria-label="collapse"></button><span class="token punctuation">[</span><span class="ellipsis"></span><ul class="array collapsible"><li><div class="hoverable collapsed"><button class="collapser" aria-label="expand"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"subscriptionId"</span>: <span class="token string">&quot;SUB-0042&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"callbackUrl"</span>: <span class="token string">&quot;</span><a href="http://example.com">http://example.com</a><span class="token string">&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"eventTypes"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">[</span><span class="ellipsis"></span><ul class="array collapsible"><li><div class="hoverable collapsed"><span class="token string">&quot;PAYMENT_TIMEOUT&quot;</span></div></li></ul><span class="token punctuation">]</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"status"</span>: <span class="token string">&quot;ACTIVE&quot;</span></div></li></ul><span class="token punctuation">}</span></div></li></ul><span class="token punctuation">]</span></div></li></ul><span class="token punctuation">}</span></code></div></div></div></div></div></div><div class="react-tabs__tab-panel" role="tabpanel" id="panel_R_4sqq_1" aria-labelledby="tab_R_4sqq_1"></div><div class="react-tabs__tab-panel" role="tabpanel" id="panel_R_4sqq_2" aria-labelledby="tab_R_4sqq_2"></div></div></div></div></div></div><div id="tag/Subscriptions/operation/deleteEventSubscription" data-section-id="tag/Subscriptions/operation/deleteEventSubscription" class="sc-eCIkAO fwcblJ"><div data-section-id="operation/deleteEventSubscription" id="operation/deleteEventSubscription" class="sc-iCfNyT gBxmSK"><div class="sc-hKwBjT gVqSrK"><h2 class="sc-pVUti chDmIx"><a class="sc-crHjOq bVILEW" href="#tag/Subscriptions/operation/deleteEventSubscription" aria-label="tag/Subscriptions/operation/deleteEventSubscription"></a>Delete a subscription<!-- --> </h2><div class="sc-fvxxdC hwarBd"><div class="sc-cZMPup ikhAfM"><h5 class="sc-iqsgXZ sc-jQrBgb DLudH htATjr">Authorizations:</h5><svg class="sc-eggkz jhElqB" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></div><div class="sc-jUouQM cUsbao"><span class="sc-dtMhIu iojsVY"><span class="sc-hOGlKT gSgTgZ"><i>oauth2ClientCredentials</i></span></span></div></div><div><h5 class="sc-iqsgXZ DLudH">path<!-- --> Parameters</h5><table class="sc-hGPAwl hVPLuE"><tbody><tr class="last "><td kind="field" title="subscriptionId" class="sc-hBUSYK sc-fFelbd dNdvDo ieQgBm"><span class="sc-ieedpP gBKsqD"></span><span class="property-name">subscriptionId</span><div class="sc-gSQHZB sc-eJwVsk kfcLvW fHrDUA">required</div></td><td class="sc-bkkgYE bFOtZh"><div><div><span class="sc-gSQHZB sc-lbhHsq kfcLvW VdaGx"></span><span class="sc-gSQHZB sc-iNGDOz kfcLvW iHaHZe">string</span></div> <div><div html="" class="sc-iJKPHa sc-cCcVtu cJMweq eghoXK"></div></div></div></td></tr></tbody></table></div><div><h3 class="sc-fIotlj decPub">Responses</h3><div><button class="sc-cbTzWS gNcPgO" disabled=""><strong class="sc-fXeXnG esNchU">204<!-- --> </strong><div html="&lt;p&gt;Subscription deleted&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu sc-cidDfp cJMweq tnexS hsJTWw"><p>Subscription deleted</p>
+</div></button></div><div><button class="sc-cbTzWS gZwrni"><svg class="sc-eggkz kNOxeG" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-fXeXnG esNchU">401<!-- --> </strong><div html="&lt;p&gt;Not authenticated (invalid token or mTLS certificate not presented)&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu sc-cidDfp cJMweq tnexS hsJTWw"><p>Not authenticated (invalid token or mTLS certificate not presented)</p>
+</div></button></div><div><button class="sc-cbTzWS gZwrni"><svg class="sc-eggkz kNOxeG" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-fXeXnG esNchU">403<!-- --> </strong><div html="&lt;p&gt;Authenticated but not allowed (missing scope or participant not entitled)&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu sc-cidDfp cJMweq tnexS hsJTWw"><p>Authenticated but not allowed (missing scope or participant not entitled)</p>
+</div></button></div><div><button class="sc-cbTzWS gZwrni"><svg class="sc-eggkz kNOxeG" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-fXeXnG esNchU">404<!-- --> </strong><div html="&lt;p&gt;Resource not found&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu sc-cidDfp cJMweq tnexS hsJTWw"><p>Resource not found</p>
+</div></button></div></div></div><div class="sc-jRQBiJ sc-gKckzE eMcwSW hCcvSb"><div class="sc-fXErrr cElpTj"><button class="sc-jWUBOh ha-DFEV"><span type="delete" class="sc-eFejbY bKVemE http-verb delete">delete</span><span class="sc-FNYFi bwtbsK">/event-subscriptions/{subscriptionId}</span><svg class="sc-eggkz dSdygy" style="margin-right:-25px" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></button><div aria-hidden="true" class="sc-fmBAGX kwmlAj"><div class="sc-lkgRtK bQvhWS"><div html="&lt;p&gt;Sandbox&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu cJMweq eghoXK"><p>Sandbox</p>
+</div><div tabindex="0" role="button"><div class="sc-jlRLdN fKzojN"><span>https://sandbox.hub.example.pa/events/v1</span>/event-subscriptions/{subscriptionId}</div></div></div><div class="sc-lkgRtK bQvhWS"><div html="&lt;p&gt;Production&lt;/p&gt;
+" class="sc-iJKPHa sc-cCcVtu cJMweq eghoXK"><p>Production</p>
+</div><div tabindex="0" role="button"><div class="sc-jlRLdN fKzojN"><span>https://hub.example.pa/events/v1</span>/event-subscriptions/{subscriptionId}</div></div></div></div></div><div><h3 class="sc-kDTkBQ eLZTZJ"> <!-- -->Response samples<!-- --> </h3><div class="sc-cxpUrY eYSiUI" data-rttabs="true"><ul class="react-tabs__tab-list" role="tablist"><li class="tab-error react-tabs__tab--selected" role="tab" id="tab_R_4suq_0" aria-selected="true" aria-disabled="false" aria-controls="panel_R_4suq_0" tabindex="0" data-rttab="true">401</li><li class="tab-error" role="tab" id="tab_R_4suq_1" aria-selected="false" aria-disabled="false" aria-controls="panel_R_4suq_1" data-rttab="true">403</li><li class="tab-error" role="tab" id="tab_R_4suq_2" aria-selected="false" aria-disabled="false" aria-controls="panel_R_4suq_2" data-rttab="true">404</li></ul><div class="react-tabs__tab-panel react-tabs__tab-panel--selected" role="tabpanel" id="panel_R_4suq_0" aria-labelledby="tab_R_4suq_0"><div><div class="sc-cNKpwA bvzYLa"><span class="sc-bBHFiX cfMJLs">Content type</span><div class="sc-dPiIMO eoIpsO">application/problem+json</div></div><div class="sc-hUpbpP jWgrtg"><div class="sc-cTAoCz kXuYnm"><div class="sc-giYgZj gwYevq"><button><div class="sc-jcFiBM jIotxr">Copy</div></button></div><div tabindex="0" class="sc-iJKPHa cJMweq sc-jObTYW fuSywj"><div class="redoc-json"><code><button class="collapser" aria-label="collapse"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable "><span class="property token string">"type"</span>: <span class="token string">&quot;</span><a href="https://hub.example.pa/problems/business-rule">https://hub.example.pa/problems/business-rule</a><span class="token string">&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"title"</span>: <span class="token string">&quot;Business rule rejected&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"status"</span>: <span class="token number">422</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"detail"</span>: <span class="token string">&quot;The given MCC is not registered in the master catalogue.&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"reasonCode"</span>: <span class="token string">&quot;3001&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"isoReasonCode"</span>: <span class="token string">&quot;AM04&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"traceId"</span>: <span class="token string">&quot;string&quot;</span></div></li></ul><span class="token punctuation">}</span></code></div></div></div></div></div></div><div class="react-tabs__tab-panel" role="tabpanel" id="panel_R_4suq_1" aria-labelledby="tab_R_4suq_1"></div><div class="react-tabs__tab-panel" role="tabpanel" id="panel_R_4suq_2" aria-labelledby="tab_R_4suq_2"></div></div></div></div></div></div></div><div class="sc-eldhqJ erAVi"></div></div></div>
+      <script>
+      const __redoc_state = {"menu":{"activeItemIdx":-1},"spec":{"data":{"openapi":"3.0.3","info":{"title":"Events API — Panama Interoperability HUB","version":"1.1.0-draft","description":"Subscriptions to the HUB's outbound notification channel: JWS-signed webhooks,\nat-least-once delivery with exponential retries and deduplication by `eventId` at the receiver.\n\nEvents are HUB notifications, not ISO 20022 messages. The JSON payload is not encrypted at\nmessage level, is signed with JWS and travels over TLS with mTLS. It contains no account or\npayment-message content and requires no business response; the receiver acknowledges it\nwith HTTP 204. Payment events are how the HUB\ncloses the timeout path: it notifies the origin (which reverses its debit internally) and\nthe destination (which reverses the credit if it was applied) — retried until each side is\navailable. Corrections beyond that are a regularisation (a new transaction with a new ID);\nthere are no reversal invocations between participants through the HUB.\n\nEvent catalogue by category (see `EventType`):\n- **PAYMENT** — `PAYMENT_TIMEOUT`, `PAYMENT_REVERSAL_REQUESTED`, `PAYMENT_STATUS_UPDATED`\n- **MERCHANT DIRECTORY** — `MERCHANT_UPDATED`, `MERCHANT_SUSPENDED`, `COLLECTION_METHOD_CHANGED`\n  (merchant events force invalidation of the affected P2M resolution cache)\n- **OPERATIONAL** — `SYSTEM_NOTIFICATION`, `AVAILABILITY_CHANGED`, `MAINTENANCE_WINDOW`\n- **RECONCILIATION** — `RECONCILIATION_WINDOW_OPENED`, `RECONCILIATION_WINDOW_CLOSED`,\n  `RECONCILIATION_FILE_AVAILABLE`\n\nPerson-key lifecycle events are not emitted because key registration is local to each\nparticipant and the HUB keeps no central register of person aliases.\nInbound participant→HUB operational events are posted on the Operations API (`POST /events`);\nthe contract a participant must expose to receive these webhooks is the\n**Participant Events API**.\nErrors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.\n","contact":{"name":"Panama Interoperability HUB — Developer Support","email":"hub-support@hub.example.pa"},"license":{"name":"Proprietary","url":"https://hub.example.pa/terms"}},"servers":[{"url":"https://sandbox.hub.example.pa/events/v1","description":"Sandbox"},{"url":"https://hub.example.pa/events/v1","description":"Production"}],"tags":[{"name":"Subscriptions","description":"Webhook subscriptions and event delivery"}],"paths":{"/event-subscriptions":{"post":{"tags":["Subscriptions"],"summary":"Subscribe to HUB events","operationId":"createEventSubscription","security":[{"oauth2ClientCredentials":["events.manage"]}],"parameters":[{"$ref":"#/components/parameters/IdempotencyKey"}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/EventSubscriptionRequest"},"examples":{"paymentAndReconciliation":{"summary":"Subscribe to payment timeout/reversal and reconciliation events","value":{"callbackUrl":"https://api.telered.example.pa/hub-events/v1/events","eventTypes":["PAYMENT_TIMEOUT","PAYMENT_REVERSAL_REQUESTED","RECONCILIATION_FILE_AVAILABLE"]}}}}}},"responses":{"201":{"description":"Subscription created","content":{"application/json":{"schema":{"$ref":"#/components/schemas/EventSubscription"},"examples":{"created":{"value":{"subscriptionId":"SUB-0042","callbackUrl":"https://api.telered.example.pa/hub-events/v1/events","eventTypes":["PAYMENT_TIMEOUT","PAYMENT_REVERSAL_REQUESTED","RECONCILIATION_FILE_AVAILABLE"],"status":"ACTIVE"}}}}}},"400":{"$ref":"#/components/responses/BadRequest"},"401":{"$ref":"#/components/responses/Unauthorized"},"403":{"$ref":"#/components/responses/Forbidden"}},"callbacks":{"eventDelivery":{"{$request.body#/callbackUrl}":{"post":{"summary":"Event delivery (JWS-signed)","description":"At-least-once delivery. Each attempt has a 10-second response timeout. After a\nfailed attempt, the HUB retries with exponential backoff starting at 30 seconds\nand capped at one hour. Retries continue for 24 hours from `occurredAt`. If no\nattempt succeeds, the HUB suspends the subscription and raises an operational\nalert. The receiver deduplicates by `eventId` and answers 204.\n","operationId":"onEvent","security":[],"parameters":[{"$ref":"#/components/parameters/JwsSignature"}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Event"},"examples":{"paymentTimeout":{"summary":"Timeout notified to the ORIGIN network (it reverses its client's debit internally)","value":{"eventId":"EVT-2026-000881","subscriptionId":"SUB-0042","eventType":"PAYMENT_TIMEOUT","occurredAt":"2026-09-16T14:03:22Z","correlationId":"HUB-TX-77120","payload":{"transactionId":"HUB-TX-77120","endToEndId":"E2E-2026-0001","finalStatus":"TIMEOUT"}}},"reversalRequested":{"summary":"Reversal requested to the DESTINATION network after a timeout (reverse the credit if it was applied)","value":{"eventId":"EVT-2026-000882","subscriptionId":"SUB-0042","eventType":"PAYMENT_REVERSAL_REQUESTED","occurredAt":"2026-09-16T14:03:22Z","correlationId":"HUB-TX-77120","payload":{"transactionId":"HUB-TX-77120","endToEndId":"E2E-2026-0001","reason":"TIMEOUT_NO_FINAL_STATUS"}}},"fileAvailable":{"summary":"Reconciliation cycle closed by the HUB calendar; file ready to retrieve","value":{"eventId":"EVT-2026-000901","subscriptionId":"SUB-0042","eventType":"RECONCILIATION_FILE_AVAILABLE","occurredAt":"2026-09-17T05:00:04Z","payload":{"cycleDate":"2026-09-16"}}}}}}},"responses":{"204":{"description":"Event received (idempotent by eventId; no business response)"},"400":{"description":"Invalid or unverifiable event (signature or schema)"}}}}}}},"get":{"tags":["Subscriptions"],"summary":"List own subscriptions","operationId":"listEventSubscriptions","security":[{"oauth2ClientCredentials":["events.manage"]}],"responses":{"200":{"description":"Subscriptions of the participant","content":{"application/json":{"schema":{"$ref":"#/components/schemas/EventSubscriptionList"}}}},"401":{"$ref":"#/components/responses/Unauthorized"},"403":{"$ref":"#/components/responses/Forbidden"}}}},"/event-subscriptions/{subscriptionId}":{"delete":{"tags":["Subscriptions"],"summary":"Delete a subscription","operationId":"deleteEventSubscription","security":[{"oauth2ClientCredentials":["events.manage"]}],"parameters":[{"name":"subscriptionId","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"204":{"description":"Subscription deleted"},"401":{"$ref":"#/components/responses/Unauthorized"},"403":{"$ref":"#/components/responses/Forbidden"},"404":{"$ref":"#/components/responses/NotFound"}}}}},"components":{"securitySchemes":{"oauth2ClientCredentials":{"type":"oauth2","description":"OAuth 2.0 Client Credentials over mTLS, conforming to the FAPI 2.0 Security Profile.\nAccess tokens are sender-constrained using certificate-bound access tokens as defined\nby RFC 8705. Authorization scopes use the `domain.action` convention. Payload signing\nrequirements are defined by the `x-jws-signature` parameter.\n","flows":{"clientCredentials":{"tokenUrl":"https://auth.hub.example.pa/oauth2/token","scopes":{"directory.resolve":"Resolve person keys (aliases)","directory.read":"Read networks and account-name verification","merchants.resolve":"Resolve merchants (transactional QR path)","merchants.read":"Read and search merchants","merchants.write":"Register and maintain merchants and collection methods","payments.write":"Create payment orders","payments.read":"Read payment status","collections.write":"Create collection requests (Request-to-Pay)","collections.read":"Read collection requests","events.manage":"Manage event subscriptions","operations.read":"Read system notifications and operational status","operations.write":"Participant session (Sign On/Off) and inbound operational events","operations.admin":"Scheme-operator actions (restricted to the HUB operator)","reconciliation.read":"Download reconciliation files","reconciliation.write":"Acknowledge reconciliation files and report discrepancies"}}}}},"schemas":{"EventType":{"type":"string","description":"Event catalogue, categorised. PAYMENT: `PAYMENT_TIMEOUT` — the maximum end-to-end time\nelapsed without a final pacs.002; sent to the origin, which reverses its client's debit\nunder its internal process. `PAYMENT_REVERSAL_REQUESTED` — sent to the destination after\na timeout so it reverses the credit if it was applied; retried until delivered; either\nside may query the final status with pacs.028. `PAYMENT_STATUS_UPDATED` — a\nstatus change confirmed after the synchronous processing window. MERCHANT DIRECTORY:\n`MERCHANT_UPDATED` / `MERCHANT_SUSPENDED` / `COLLECTION_METHOD_CHANGED` — merchant or\ncollection-method change; invalidate the affected P2M cache. OPERATIONAL:\n`SYSTEM_NOTIFICATION` — scheme SNM; `AVAILABILITY_CHANGED` — a participant entered or\nleft the circuit (Sign On/Off, echo failure or recovery); `MAINTENANCE_WINDOW` — start\nor end of a scheduled window. RECONCILIATION: `RECONCILIATION_WINDOW_OPENED` /\n`RECONCILIATION_WINDOW_CLOSED` — cycle window governed by the HUB calendar;\n`RECONCILIATION_FILE_AVAILABLE` — the cycle file is ready to retrieve by secure URL\n(Reconciliation API).\n","enum":["PAYMENT_TIMEOUT","PAYMENT_REVERSAL_REQUESTED","PAYMENT_STATUS_UPDATED","MERCHANT_UPDATED","MERCHANT_SUSPENDED","COLLECTION_METHOD_CHANGED","SYSTEM_NOTIFICATION","AVAILABILITY_CHANGED","MAINTENANCE_WINDOW","RECONCILIATION_WINDOW_OPENED","RECONCILIATION_WINDOW_CLOSED","RECONCILIATION_FILE_AVAILABLE"]},"EventSubscriptionRequest":{"type":"object","required":["callbackUrl","eventTypes"],"properties":{"callbackUrl":{"type":"string","format":"uri","pattern":"^https://","description":"HTTPS endpoint with a certificate trusted by the HUB. Registration validates syntax and scheme; availability is handled by the delivery retry policy.","example":"https://api.telered.example.pa/hub-events/v1/events"},"eventTypes":{"type":"array","minItems":1,"uniqueItems":true,"items":{"$ref":"#/components/schemas/EventType"}}}},"EventSubscription":{"type":"object","required":["subscriptionId","callbackUrl","eventTypes","status"],"properties":{"subscriptionId":{"type":"string","example":"SUB-0042"},"callbackUrl":{"type":"string","format":"uri","pattern":"^https://"},"eventTypes":{"type":"array","items":{"$ref":"#/components/schemas/EventType"}},"status":{"type":"string","enum":["ACTIVE","SUSPENDED"]}}},"EventSubscriptionList":{"type":"object","required":["items"],"properties":{"items":{"type":"array","items":{"$ref":"#/components/schemas/EventSubscription"}}}},"Event":{"oneOf":[{"$ref":"#/components/schemas/PaymentTimeoutEvent"},{"$ref":"#/components/schemas/PaymentReversalRequestedEvent"},{"$ref":"#/components/schemas/PaymentStatusUpdatedEvent"},{"$ref":"#/components/schemas/MerchantUpdatedEvent"},{"$ref":"#/components/schemas/MerchantSuspendedEvent"},{"$ref":"#/components/schemas/CollectionMethodChangedEvent"},{"$ref":"#/components/schemas/SystemNotificationEvent"},{"$ref":"#/components/schemas/AvailabilityChangedEvent"},{"$ref":"#/components/schemas/MaintenanceWindowEvent"},{"$ref":"#/components/schemas/ReconciliationWindowOpenedEvent"},{"$ref":"#/components/schemas/ReconciliationWindowClosedEvent"},{"$ref":"#/components/schemas/ReconciliationFileAvailableEvent"}],"discriminator":{"propertyName":"eventType","mapping":{"PAYMENT_TIMEOUT":"#/components/schemas/PaymentTimeoutEvent","PAYMENT_REVERSAL_REQUESTED":"#/components/schemas/PaymentReversalRequestedEvent","PAYMENT_STATUS_UPDATED":"#/components/schemas/PaymentStatusUpdatedEvent","MERCHANT_UPDATED":"#/components/schemas/MerchantUpdatedEvent","MERCHANT_SUSPENDED":"#/components/schemas/MerchantSuspendedEvent","COLLECTION_METHOD_CHANGED":"#/components/schemas/CollectionMethodChangedEvent","SYSTEM_NOTIFICATION":"#/components/schemas/SystemNotificationEvent","AVAILABILITY_CHANGED":"#/components/schemas/AvailabilityChangedEvent","MAINTENANCE_WINDOW":"#/components/schemas/MaintenanceWindowEvent","RECONCILIATION_WINDOW_OPENED":"#/components/schemas/ReconciliationWindowOpenedEvent","RECONCILIATION_WINDOW_CLOSED":"#/components/schemas/ReconciliationWindowClosedEvent","RECONCILIATION_FILE_AVAILABLE":"#/components/schemas/ReconciliationFileAvailableEvent"}}},"EventEnvelope":{"type":"object","required":["eventId","eventType","occurredAt","payload"],"description":"HUB notification. Not an ISO 20022 message: payload unencrypted, signed with JWS\n(`x-jws-signature` header), no sensitive data, no business response expected.\nDelivered at least once; the receiver deduplicates by `eventId`.\n","properties":{"eventId":{"type":"string","example":"EVT-2026-000881"},"subscriptionId":{"type":"string","example":"SUB-0042"},"eventType":{"$ref":"#/components/schemas/EventType"},"occurredAt":{"type":"string","format":"date-time"},"correlationId":{"type":"string","description":"Correlation with the affected operation, when applicable (e.g. the transactionId of a payment).","example":"HUB-TX-77120"}}},"PaymentTimeoutEvent":{"allOf":[{"$ref":"#/components/schemas/EventEnvelope"},{"type":"object","properties":{"eventType":{"type":"string","enum":["PAYMENT_TIMEOUT"]},"payload":{"$ref":"#/components/schemas/PaymentTimeoutPayload"}}}]},"PaymentReversalRequestedEvent":{"allOf":[{"$ref":"#/components/schemas/EventEnvelope"},{"type":"object","properties":{"eventType":{"type":"string","enum":["PAYMENT_REVERSAL_REQUESTED"]},"payload":{"$ref":"#/components/schemas/PaymentReversalPayload"}}}]},"PaymentStatusUpdatedEvent":{"allOf":[{"$ref":"#/components/schemas/EventEnvelope"},{"type":"object","properties":{"eventType":{"type":"string","enum":["PAYMENT_STATUS_UPDATED"]},"payload":{"$ref":"#/components/schemas/PaymentStatusUpdatedPayload"}}}]},"MerchantUpdatedEvent":{"allOf":[{"$ref":"#/components/schemas/EventEnvelope"},{"type":"object","properties":{"eventType":{"type":"string","enum":["MERCHANT_UPDATED"]},"payload":{"$ref":"#/components/schemas/MerchantEventPayload"}}}]},"MerchantSuspendedEvent":{"allOf":[{"$ref":"#/components/schemas/EventEnvelope"},{"type":"object","properties":{"eventType":{"type":"string","enum":["MERCHANT_SUSPENDED"]},"payload":{"$ref":"#/components/schemas/MerchantEventPayload"}}}]},"CollectionMethodChangedEvent":{"allOf":[{"$ref":"#/components/schemas/EventEnvelope"},{"type":"object","properties":{"eventType":{"type":"string","enum":["COLLECTION_METHOD_CHANGED"]},"payload":{"$ref":"#/components/schemas/CollectionMethodChangedPayload"}}}]},"SystemNotificationEvent":{"allOf":[{"$ref":"#/components/schemas/EventEnvelope"},{"type":"object","properties":{"eventType":{"type":"string","enum":["SYSTEM_NOTIFICATION"]},"payload":{"$ref":"#/components/schemas/SystemNotificationPayload"}}}]},"AvailabilityChangedEvent":{"allOf":[{"$ref":"#/components/schemas/EventEnvelope"},{"type":"object","properties":{"eventType":{"type":"string","enum":["AVAILABILITY_CHANGED"]},"payload":{"$ref":"#/components/schemas/AvailabilityChangedPayload"}}}]},"MaintenanceWindowEvent":{"allOf":[{"$ref":"#/components/schemas/EventEnvelope"},{"type":"object","properties":{"eventType":{"type":"string","enum":["MAINTENANCE_WINDOW"]},"payload":{"$ref":"#/components/schemas/MaintenanceWindowPayload"}}}]},"ReconciliationWindowOpenedEvent":{"allOf":[{"$ref":"#/components/schemas/EventEnvelope"},{"type":"object","properties":{"eventType":{"type":"string","enum":["RECONCILIATION_WINDOW_OPENED"]},"payload":{"$ref":"#/components/schemas/ReconciliationWindowPayload"}}}]},"ReconciliationWindowClosedEvent":{"allOf":[{"$ref":"#/components/schemas/EventEnvelope"},{"type":"object","properties":{"eventType":{"type":"string","enum":["RECONCILIATION_WINDOW_CLOSED"]},"payload":{"$ref":"#/components/schemas/ReconciliationWindowPayload"}}}]},"ReconciliationFileAvailableEvent":{"allOf":[{"$ref":"#/components/schemas/EventEnvelope"},{"type":"object","properties":{"eventType":{"type":"string","enum":["RECONCILIATION_FILE_AVAILABLE"]},"payload":{"$ref":"#/components/schemas/ReconciliationFilePayload"}}}]},"PaymentTimeoutPayload":{"type":"object","required":["transactionId","endToEndId","finalStatus"],"properties":{"transactionId":{"type":"string"},"endToEndId":{"type":"string"},"finalStatus":{"type":"string","enum":["TIMEOUT"]}}},"PaymentReversalPayload":{"type":"object","required":["transactionId","endToEndId","reason"],"properties":{"transactionId":{"type":"string"},"endToEndId":{"type":"string"},"reason":{"type":"string","enum":["TIMEOUT_NO_FINAL_STATUS"]}}},"PaymentStatusUpdatedPayload":{"type":"object","required":["transactionId","endToEndId","status","updatedDateTime"],"properties":{"transactionId":{"type":"string"},"endToEndId":{"type":"string"},"status":{"type":"string","enum":["CONFIRMED","COMPLETED","REJECTED","FAILED"]},"updatedDateTime":{"type":"string","format":"date-time"},"reasonCode":{"type":"string"}}},"MerchantEventPayload":{"type":"object","required":["creditorId"],"properties":{"creditorId":{"$ref":"#/components/schemas/CreditorId"}}},"CollectionMethodChangedPayload":{"type":"object","required":["creditorId","collectionMethodId"],"properties":{"creditorId":{"$ref":"#/components/schemas/CreditorId"},"collectionMethodId":{"type":"string"}}},"SystemNotificationPayload":{"type":"object","required":["notificationId","severity","message"],"properties":{"notificationId":{"type":"string"},"severity":{"type":"string","enum":["INFO","WARNING","CRITICAL"]},"message":{"type":"string"}}},"AvailabilityChangedPayload":{"type":"object","required":["participantId","availability"],"properties":{"participantId":{"type":"string"},"availability":{"type":"string","enum":["AVAILABLE","UNAVAILABLE"]},"reason":{"type":"string"}}},"MaintenanceWindowPayload":{"type":"object","required":["windowId","status","startsAt"],"properties":{"windowId":{"type":"string"},"status":{"type":"string","enum":["SCHEDULED","STARTED","ENDED","CANCELLED"]},"startsAt":{"type":"string","format":"date-time"},"endsAt":{"type":"string","format":"date-time"}}},"ReconciliationWindowPayload":{"type":"object","required":["cycleDate"],"properties":{"cycleDate":{"type":"string","format":"date"}}},"ReconciliationFilePayload":{"type":"object","required":["cycleDate"],"properties":{"cycleDate":{"type":"string","format":"date"}}},"Problem":{"type":"object","description":"RFC 7807 error. `reasonCode` carries the HUB numeric error code (families: 1xxx directory,\n3xxx business rejection, 4xxx timeout); `isoReasonCode` carries the ISO 20022 External\nCode Set value when one applies (e.g. AM04, AC06, FRAD, DUPL).\n","required":["title","status","reasonCode"],"properties":{"type":{"type":"string","format":"uri","example":"https://hub.example.pa/problems/business-rule"},"title":{"type":"string","example":"Business rule rejected"},"status":{"type":"integer","example":422},"detail":{"type":"string","example":"The given MCC is not registered in the master catalogue."},"reasonCode":{"type":"string","description":"HUB error code (families 1xxx/3xxx/4xxx).","example":"3001"},"isoReasonCode":{"type":"string","description":"ISO 20022 External Code Set reason, when applicable.","example":"AM04"},"traceId":{"type":"string","description":"Correlation with the HUB telemetry."}}},"CreditorId":{"type":"string","pattern":"^CR[0-9]{9}$","description":"Interoperable merchant identifier (QR subfield 26.04). Assigned by the HUB at registration (permanent and never reused).","example":"CR000839201"}},"responses":{"Unauthorized":{"description":"Not authenticated (invalid token or mTLS certificate not presented)","content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/Problem"}}}},"Forbidden":{"description":"Authenticated but not allowed (missing scope or participant not entitled)","content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/Problem"}}}},"BadRequest":{"description":"Invalid request (syntax or schema)","content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/Problem"}}}},"NotFound":{"description":"Resource not found","content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/Problem"}}}}},"parameters":{"IdempotencyKey":{"name":"Idempotency-Key","in":"header","required":true,"description":"Idempotency key (UUID) for safe retries (same key, same result).","schema":{"type":"string","format":"uuid"}},"JwsSignature":{"name":"x-jws-signature","in":"header","required":true,"description":"Detached JWS signature of the exact request body, using compact serialization with an\nunencoded payload (`b64=false`) as defined by RFC 7515 and RFC 7797. The protected\nheader must contain `alg`, `kid`, `b64:false` and `crit:[\"b64\"]`. Algorithms are\nrestricted to PS256 or ES256; `none` and symmetric algorithms are forbidden. `kid`\nidentifies an active signing key registered for the authenticated participant. Key\npublication and rotation use the participant metadata registered during onboarding.\n","schema":{"type":"string","minLength":1}}}}}},"searchIndex":{"store":["tag/Subscriptions","tag/Subscriptions/operation/createEventSubscription","tag/Subscriptions/operation/listEventSubscriptions","tag/Subscriptions/operation/deleteEventSubscription"],"index":{"version":"2.3.9","fields":["title","description"],"fieldVectors":[["title/0",[0,0.132]],["description/0",[0,0.069,1,0.789,2,0.454,3,0.789]],["title/1",[2,0.575,4,1,5,1]],["description/1",[6,0.841]],["title/2",[0,0.105,7,1.204]],["description/2",[6,0.841]],["title/3",[0,0.105,8,1.204]],["description/3",[9,1.46]]],"invertedIndex":[["delet",{"_index":8,"title":{"3":{}},"description":{}}],["deliveri",{"_index":3,"title":{},"description":{"0":{}}}],["event",{"_index":2,"title":{"1":{}},"description":{"0":{}}}],["event-subscript",{"_index":6,"title":{},"description":{"1":{},"2":{}}}],["event-subscriptions/{subscriptionid",{"_index":9,"title":{},"description":{"3":{}}}],["hub",{"_index":5,"title":{"1":{}},"description":{}}],["list",{"_index":7,"title":{"2":{}},"description":{}}],["subscrib",{"_index":4,"title":{"1":{}},"description":{}}],["subscript",{"_index":0,"title":{"0":{},"2":{},"3":{}},"description":{"0":{}}}],["webhook",{"_index":1,"title":{},"description":{"0":{}}}]],"pipeline":[]}},"options":{}};
+
+      var container = document.getElementById('redoc');
+      Redoc.hydrate(__redoc_state, container);
+
+      </script>
+</body>
+
+</html>

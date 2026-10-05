@@ -1,0 +1,725 @@
+openapi: 3.0.3
+info:
+  title: Events API — Panama Interoperability HUB
+  version: 1.1.0-draft
+  description: |
+    Subscriptions to the HUB's outbound notification channel: JWS-signed webhooks,
+    at-least-once delivery with exponential retries and deduplication by `eventId` at the receiver.
+
+    Events are HUB notifications, not ISO 20022 messages. The JSON payload is not encrypted at
+    message level, is signed with JWS and travels over TLS with mTLS. It contains no account or
+    payment-message content and requires no business response; the receiver acknowledges it
+    with HTTP 204. Payment events are how the HUB
+    closes the timeout path: it notifies the origin (which reverses its debit internally) and
+    the destination (which reverses the credit if it was applied) — retried until each side is
+    available. Corrections beyond that are a regularisation (a new transaction with a new ID);
+    there are no reversal invocations between participants through the HUB.
+
+    Event catalogue by category (see `EventType`):
+    - **PAYMENT** — `PAYMENT_TIMEOUT`, `PAYMENT_REVERSAL_REQUESTED`, `PAYMENT_STATUS_UPDATED`
+    - **MERCHANT DIRECTORY** — `MERCHANT_UPDATED`, `MERCHANT_SUSPENDED`, `COLLECTION_METHOD_CHANGED`
+      (merchant events force invalidation of the affected P2M resolution cache)
+    - **OPERATIONAL** — `SYSTEM_NOTIFICATION`, `AVAILABILITY_CHANGED`, `MAINTENANCE_WINDOW`
+    - **RECONCILIATION** — `RECONCILIATION_WINDOW_OPENED`, `RECONCILIATION_WINDOW_CLOSED`,
+      `RECONCILIATION_FILE_AVAILABLE`
+
+    Person-key lifecycle events are not emitted because key registration is local to each
+    participant and the HUB keeps no central register of person aliases.
+    Inbound participant→HUB operational events are posted on the Operations API (`POST /events`);
+    the contract a participant must expose to receive these webhooks is the
+    **Participant Events API**.
+    Errors use `application/problem+json` with a `reasonCode` from the HUB error code catalogue.
+  contact:
+    name: Panama Interoperability HUB — Developer Support
+    email: hub-support@hub.example.pa
+  license:
+    name: Proprietary
+    url: https://hub.example.pa/terms
+servers:
+  - url: https://sandbox.hub.example.pa/events/v1
+    description: Sandbox
+  - url: https://hub.example.pa/events/v1
+    description: Production
+tags:
+  - name: Subscriptions
+    description: Webhook subscriptions and event delivery
+paths:
+  /event-subscriptions:
+    post:
+      tags:
+        - Subscriptions
+      summary: Subscribe to HUB events
+      operationId: createEventSubscription
+      security:
+        - oauth2ClientCredentials:
+            - events.manage
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventSubscriptionRequest'
+            examples:
+              paymentAndReconciliation:
+                summary: Subscribe to payment timeout/reversal and reconciliation events
+                value:
+                  callbackUrl: https://api.telered.example.pa/hub-events/v1/events
+                  eventTypes:
+                    - PAYMENT_TIMEOUT
+                    - PAYMENT_REVERSAL_REQUESTED
+                    - RECONCILIATION_FILE_AVAILABLE
+      responses:
+        '201':
+          description: Subscription created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventSubscription'
+              examples:
+                created:
+                  value:
+                    subscriptionId: SUB-0042
+                    callbackUrl: https://api.telered.example.pa/hub-events/v1/events
+                    eventTypes:
+                      - PAYMENT_TIMEOUT
+                      - PAYMENT_REVERSAL_REQUESTED
+                      - RECONCILIATION_FILE_AVAILABLE
+                    status: ACTIVE
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      callbacks:
+        eventDelivery:
+          '{$request.body#/callbackUrl}':
+            post:
+              summary: Event delivery (JWS-signed)
+              description: |
+                At-least-once delivery. Each attempt has a 10-second response timeout. After a
+                failed attempt, the HUB retries with exponential backoff starting at 30 seconds
+                and capped at one hour. Retries continue for 24 hours from `occurredAt`. If no
+                attempt succeeds, the HUB suspends the subscription and raises an operational
+                alert. The receiver deduplicates by `eventId` and answers 204.
+              operationId: onEvent
+              security: []
+              parameters:
+                - $ref: '#/components/parameters/JwsSignature'
+              requestBody:
+                required: true
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Event'
+                    examples:
+                      paymentTimeout:
+                        summary: Timeout notified to the ORIGIN network (it reverses its client's debit internally)
+                        value:
+                          eventId: EVT-2026-000881
+                          subscriptionId: SUB-0042
+                          eventType: PAYMENT_TIMEOUT
+                          occurredAt: '2026-09-16T14:03:22Z'
+                          correlationId: HUB-TX-77120
+                          payload:
+                            transactionId: HUB-TX-77120
+                            endToEndId: E2E-2026-0001
+                            finalStatus: TIMEOUT
+                      reversalRequested:
+                        summary: Reversal requested to the DESTINATION network after a timeout (reverse the credit if it was applied)
+                        value:
+                          eventId: EVT-2026-000882
+                          subscriptionId: SUB-0042
+                          eventType: PAYMENT_REVERSAL_REQUESTED
+                          occurredAt: '2026-09-16T14:03:22Z'
+                          correlationId: HUB-TX-77120
+                          payload:
+                            transactionId: HUB-TX-77120
+                            endToEndId: E2E-2026-0001
+                            reason: TIMEOUT_NO_FINAL_STATUS
+                      fileAvailable:
+                        summary: Reconciliation cycle closed by the HUB calendar; file ready to retrieve
+                        value:
+                          eventId: EVT-2026-000901
+                          subscriptionId: SUB-0042
+                          eventType: RECONCILIATION_FILE_AVAILABLE
+                          occurredAt: '2026-09-17T05:00:04Z'
+                          payload:
+                            cycleDate: '2026-09-16'
+              responses:
+                '204':
+                  description: Event received (idempotent by eventId; no business response)
+                '400':
+                  description: Invalid or unverifiable event (signature or schema)
+    get:
+      tags:
+        - Subscriptions
+      summary: List own subscriptions
+      operationId: listEventSubscriptions
+      security:
+        - oauth2ClientCredentials:
+            - events.manage
+      responses:
+        '200':
+          description: Subscriptions of the participant
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventSubscriptionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /event-subscriptions/{subscriptionId}:
+    delete:
+      tags:
+        - Subscriptions
+      summary: Delete a subscription
+      operationId: deleteEventSubscription
+      security:
+        - oauth2ClientCredentials:
+            - events.manage
+      parameters:
+        - name: subscriptionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Subscription deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      type: oauth2
+      description: |
+        OAuth 2.0 Client Credentials over mTLS, conforming to the FAPI 2.0 Security Profile.
+        Access tokens are sender-constrained using certificate-bound access tokens as defined
+        by RFC 8705. Authorization scopes use the `domain.action` convention. Payload signing
+        requirements are defined by the `x-jws-signature` parameter.
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.hub.example.pa/oauth2/token
+          scopes:
+            directory.resolve: Resolve person keys (aliases)
+            directory.read: Read networks and account-name verification
+            merchants.resolve: Resolve merchants (transactional QR path)
+            merchants.read: Read and search merchants
+            merchants.write: Register and maintain merchants and collection methods
+            payments.write: Create payment orders
+            payments.read: Read payment status
+            collections.write: Create collection requests (Request-to-Pay)
+            collections.read: Read collection requests
+            events.manage: Manage event subscriptions
+            operations.read: Read system notifications and operational status
+            operations.write: Participant session (Sign On/Off) and inbound operational events
+            operations.admin: Scheme-operator actions (restricted to the HUB operator)
+            reconciliation.read: Download reconciliation files
+            reconciliation.write: Acknowledge reconciliation files and report discrepancies
+  schemas:
+    EventType:
+      type: string
+      description: |
+        Event catalogue, categorised. PAYMENT: `PAYMENT_TIMEOUT` — the maximum end-to-end time
+        elapsed without a final pacs.002; sent to the origin, which reverses its client's debit
+        under its internal process. `PAYMENT_REVERSAL_REQUESTED` — sent to the destination after
+        a timeout so it reverses the credit if it was applied; retried until delivered; either
+        side may query the final status with pacs.028. `PAYMENT_STATUS_UPDATED` — a
+        status change confirmed after the synchronous processing window. MERCHANT DIRECTORY:
+        `MERCHANT_UPDATED` / `MERCHANT_SUSPENDED` / `COLLECTION_METHOD_CHANGED` — merchant or
+        collection-method change; invalidate the affected P2M cache. OPERATIONAL:
+        `SYSTEM_NOTIFICATION` — scheme SNM; `AVAILABILITY_CHANGED` — a participant entered or
+        left the circuit (Sign On/Off, echo failure or recovery); `MAINTENANCE_WINDOW` — start
+        or end of a scheduled window. RECONCILIATION: `RECONCILIATION_WINDOW_OPENED` /
+        `RECONCILIATION_WINDOW_CLOSED` — cycle window governed by the HUB calendar;
+        `RECONCILIATION_FILE_AVAILABLE` — the cycle file is ready to retrieve by secure URL
+        (Reconciliation API).
+      enum:
+        - PAYMENT_TIMEOUT
+        - PAYMENT_REVERSAL_REQUESTED
+        - PAYMENT_STATUS_UPDATED
+        - MERCHANT_UPDATED
+        - MERCHANT_SUSPENDED
+        - COLLECTION_METHOD_CHANGED
+        - SYSTEM_NOTIFICATION
+        - AVAILABILITY_CHANGED
+        - MAINTENANCE_WINDOW
+        - RECONCILIATION_WINDOW_OPENED
+        - RECONCILIATION_WINDOW_CLOSED
+        - RECONCILIATION_FILE_AVAILABLE
+    EventSubscriptionRequest:
+      type: object
+      required:
+        - callbackUrl
+        - eventTypes
+      properties:
+        callbackUrl:
+          type: string
+          format: uri
+          pattern: ^https://
+          description: HTTPS endpoint with a certificate trusted by the HUB. Registration validates syntax and scheme; availability is handled by the delivery retry policy.
+          example: https://api.telered.example.pa/hub-events/v1/events
+        eventTypes:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/EventType'
+    EventSubscription:
+      type: object
+      required:
+        - subscriptionId
+        - callbackUrl
+        - eventTypes
+        - status
+      properties:
+        subscriptionId:
+          type: string
+          example: SUB-0042
+        callbackUrl:
+          type: string
+          format: uri
+          pattern: ^https://
+        eventTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventType'
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - SUSPENDED
+    EventSubscriptionList:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventSubscription'
+    Event:
+      oneOf:
+        - $ref: '#/components/schemas/PaymentTimeoutEvent'
+        - $ref: '#/components/schemas/PaymentReversalRequestedEvent'
+        - $ref: '#/components/schemas/PaymentStatusUpdatedEvent'
+        - $ref: '#/components/schemas/MerchantUpdatedEvent'
+        - $ref: '#/components/schemas/MerchantSuspendedEvent'
+        - $ref: '#/components/schemas/CollectionMethodChangedEvent'
+        - $ref: '#/components/schemas/SystemNotificationEvent'
+        - $ref: '#/components/schemas/AvailabilityChangedEvent'
+        - $ref: '#/components/schemas/MaintenanceWindowEvent'
+        - $ref: '#/components/schemas/ReconciliationWindowOpenedEvent'
+        - $ref: '#/components/schemas/ReconciliationWindowClosedEvent'
+        - $ref: '#/components/schemas/ReconciliationFileAvailableEvent'
+      discriminator:
+        propertyName: eventType
+        mapping:
+          PAYMENT_TIMEOUT: '#/components/schemas/PaymentTimeoutEvent'
+          PAYMENT_REVERSAL_REQUESTED: '#/components/schemas/PaymentReversalRequestedEvent'
+          PAYMENT_STATUS_UPDATED: '#/components/schemas/PaymentStatusUpdatedEvent'
+          MERCHANT_UPDATED: '#/components/schemas/MerchantUpdatedEvent'
+          MERCHANT_SUSPENDED: '#/components/schemas/MerchantSuspendedEvent'
+          COLLECTION_METHOD_CHANGED: '#/components/schemas/CollectionMethodChangedEvent'
+          SYSTEM_NOTIFICATION: '#/components/schemas/SystemNotificationEvent'
+          AVAILABILITY_CHANGED: '#/components/schemas/AvailabilityChangedEvent'
+          MAINTENANCE_WINDOW: '#/components/schemas/MaintenanceWindowEvent'
+          RECONCILIATION_WINDOW_OPENED: '#/components/schemas/ReconciliationWindowOpenedEvent'
+          RECONCILIATION_WINDOW_CLOSED: '#/components/schemas/ReconciliationWindowClosedEvent'
+          RECONCILIATION_FILE_AVAILABLE: '#/components/schemas/ReconciliationFileAvailableEvent'
+    EventEnvelope:
+      type: object
+      required:
+        - eventId
+        - eventType
+        - occurredAt
+        - payload
+      description: |
+        HUB notification. Not an ISO 20022 message: payload unencrypted, signed with JWS
+        (`x-jws-signature` header), no sensitive data, no business response expected.
+        Delivered at least once; the receiver deduplicates by `eventId`.
+      properties:
+        eventId:
+          type: string
+          example: EVT-2026-000881
+        subscriptionId:
+          type: string
+          example: SUB-0042
+        eventType:
+          $ref: '#/components/schemas/EventType'
+        occurredAt:
+          type: string
+          format: date-time
+        correlationId:
+          type: string
+          description: Correlation with the affected operation, when applicable (e.g. the transactionId of a payment).
+          example: HUB-TX-77120
+    PaymentTimeoutEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              enum:
+                - PAYMENT_TIMEOUT
+            payload:
+              $ref: '#/components/schemas/PaymentTimeoutPayload'
+    PaymentReversalRequestedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              enum:
+                - PAYMENT_REVERSAL_REQUESTED
+            payload:
+              $ref: '#/components/schemas/PaymentReversalPayload'
+    PaymentStatusUpdatedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              enum:
+                - PAYMENT_STATUS_UPDATED
+            payload:
+              $ref: '#/components/schemas/PaymentStatusUpdatedPayload'
+    MerchantUpdatedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              enum:
+                - MERCHANT_UPDATED
+            payload:
+              $ref: '#/components/schemas/MerchantEventPayload'
+    MerchantSuspendedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              enum:
+                - MERCHANT_SUSPENDED
+            payload:
+              $ref: '#/components/schemas/MerchantEventPayload'
+    CollectionMethodChangedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              enum:
+                - COLLECTION_METHOD_CHANGED
+            payload:
+              $ref: '#/components/schemas/CollectionMethodChangedPayload'
+    SystemNotificationEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              enum:
+                - SYSTEM_NOTIFICATION
+            payload:
+              $ref: '#/components/schemas/SystemNotificationPayload'
+    AvailabilityChangedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              enum:
+                - AVAILABILITY_CHANGED
+            payload:
+              $ref: '#/components/schemas/AvailabilityChangedPayload'
+    MaintenanceWindowEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              enum:
+                - MAINTENANCE_WINDOW
+            payload:
+              $ref: '#/components/schemas/MaintenanceWindowPayload'
+    ReconciliationWindowOpenedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              enum:
+                - RECONCILIATION_WINDOW_OPENED
+            payload:
+              $ref: '#/components/schemas/ReconciliationWindowPayload'
+    ReconciliationWindowClosedEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              enum:
+                - RECONCILIATION_WINDOW_CLOSED
+            payload:
+              $ref: '#/components/schemas/ReconciliationWindowPayload'
+    ReconciliationFileAvailableEvent:
+      allOf:
+        - $ref: '#/components/schemas/EventEnvelope'
+        - type: object
+          properties:
+            eventType:
+              type: string
+              enum:
+                - RECONCILIATION_FILE_AVAILABLE
+            payload:
+              $ref: '#/components/schemas/ReconciliationFilePayload'
+    PaymentTimeoutPayload:
+      type: object
+      required:
+        - transactionId
+        - endToEndId
+        - finalStatus
+      properties:
+        transactionId:
+          type: string
+        endToEndId:
+          type: string
+        finalStatus:
+          type: string
+          enum:
+            - TIMEOUT
+    PaymentReversalPayload:
+      type: object
+      required:
+        - transactionId
+        - endToEndId
+        - reason
+      properties:
+        transactionId:
+          type: string
+        endToEndId:
+          type: string
+        reason:
+          type: string
+          enum:
+            - TIMEOUT_NO_FINAL_STATUS
+    PaymentStatusUpdatedPayload:
+      type: object
+      required:
+        - transactionId
+        - endToEndId
+        - status
+        - updatedDateTime
+      properties:
+        transactionId:
+          type: string
+        endToEndId:
+          type: string
+        status:
+          type: string
+          enum:
+            - CONFIRMED
+            - COMPLETED
+            - REJECTED
+            - FAILED
+        updatedDateTime:
+          type: string
+          format: date-time
+        reasonCode:
+          type: string
+    MerchantEventPayload:
+      type: object
+      required:
+        - creditorId
+      properties:
+        creditorId:
+          $ref: '#/components/schemas/CreditorId'
+    CollectionMethodChangedPayload:
+      type: object
+      required:
+        - creditorId
+        - collectionMethodId
+      properties:
+        creditorId:
+          $ref: '#/components/schemas/CreditorId'
+        collectionMethodId:
+          type: string
+    SystemNotificationPayload:
+      type: object
+      required:
+        - notificationId
+        - severity
+        - message
+      properties:
+        notificationId:
+          type: string
+        severity:
+          type: string
+          enum:
+            - INFO
+            - WARNING
+            - CRITICAL
+        message:
+          type: string
+    AvailabilityChangedPayload:
+      type: object
+      required:
+        - participantId
+        - availability
+      properties:
+        participantId:
+          type: string
+        availability:
+          type: string
+          enum:
+            - AVAILABLE
+            - UNAVAILABLE
+        reason:
+          type: string
+    MaintenanceWindowPayload:
+      type: object
+      required:
+        - windowId
+        - status
+        - startsAt
+      properties:
+        windowId:
+          type: string
+        status:
+          type: string
+          enum:
+            - SCHEDULED
+            - STARTED
+            - ENDED
+            - CANCELLED
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+    ReconciliationWindowPayload:
+      type: object
+      required:
+        - cycleDate
+      properties:
+        cycleDate:
+          type: string
+          format: date
+    ReconciliationFilePayload:
+      type: object
+      required:
+        - cycleDate
+      properties:
+        cycleDate:
+          type: string
+          format: date
+    Problem:
+      type: object
+      description: |
+        RFC 7807 error. `reasonCode` carries the HUB numeric error code (families: 1xxx directory,
+        3xxx business rejection, 4xxx timeout); `isoReasonCode` carries the ISO 20022 External
+        Code Set value when one applies (e.g. AM04, AC06, FRAD, DUPL).
+      required:
+        - title
+        - status
+        - reasonCode
+      properties:
+        type:
+          type: string
+          format: uri
+          example: https://hub.example.pa/problems/business-rule
+        title:
+          type: string
+          example: Business rule rejected
+        status:
+          type: integer
+          example: 422
+        detail:
+          type: string
+          example: The given MCC is not registered in the master catalogue.
+        reasonCode:
+          type: string
+          description: HUB error code (families 1xxx/3xxx/4xxx).
+          example: '3001'
+        isoReasonCode:
+          type: string
+          description: ISO 20022 External Code Set reason, when applicable.
+          example: AM04
+        traceId:
+          type: string
+          description: Correlation with the HUB telemetry.
+    CreditorId:
+      type: string
+      pattern: ^CR[0-9]{9}$
+      description: Interoperable merchant identifier (QR subfield 26.04). Assigned by the HUB at registration (permanent and never reused).
+      example: CR000839201
+  responses:
+    Unauthorized:
+      description: Not authenticated (invalid token or mTLS certificate not presented)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    Forbidden:
+      description: Authenticated but not allowed (missing scope or participant not entitled)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    BadRequest:
+      description: Invalid request (syntax or schema)
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    NotFound:
+      description: Resource not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: Idempotency key (UUID) for safe retries (same key, same result).
+      schema:
+        type: string
+        format: uuid
+    JwsSignature:
+      name: x-jws-signature
+      in: header
+      required: true
+      description: |
+        Detached JWS signature of the exact request body, using compact serialization with an
+        unencoded payload (`b64=false`) as defined by RFC 7515 and RFC 7797. The protected
+        header must contain `alg`, `kid`, `b64:false` and `crit:["b64"]`. Algorithms are
+        restricted to PS256 or ES256; `none` and symmetric algorithms are forbidden. `kid`
+        identifies an active signing key registered for the authenticated participant. Key
+        publication and rotation use the participant metadata registered during onboarding.
+      schema:
+        type: string
+        minLength: 1
