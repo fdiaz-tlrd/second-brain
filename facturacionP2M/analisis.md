@@ -4,15 +4,12 @@ Las siguientes Historias de Usuario fueron recibidas como insumo para el present
 
 ## Historia de Usuario 1
 
-### Datos Originales
-
 **ID Jira:** IPEDA-3605
 
-**Descripción:**
-
+**Descripción:**  
 Reporte de facturación P2M.
 
-**Criterio de aceptación:**
+### Criterios de aceptación
 
 Facturación P2M:
 
@@ -20,39 +17,49 @@ Facturación P2M:
 - Puntos que se consideran consulta al directorio P2M:
   - Catálogo: Cuando el usuario selecciona un comercio para realizar el pago.
   - Lectura del QR: Toda lectura de un QR P2M también debe considerarse una consulta al directorio.
-- Se entregan los datos de facturación en el mismo modelo de la facturación Xpress P2P en Apex (Punto a confirmar con Contabilidad).
+- Se entregan los datos de facturación en el mismo modelo de la facturación Xpress P2P en Apex.
 
 ---
 
 ## Historia de Usuario 2
 
-### Datos Originales
-
 **ID Jira:** IPEDA-3606
 
-**Descripción:**
-
+**Descripción:**  
 Archivo de consultas diarias.
 
-**Criterio de aceptación:**
+### Criterios de aceptación
 
-- Se debe crear un archivo diario generado para cada IF, con estructura similar al formato adoptado en archivo P2P-Xpress.
+- Se debe crear un archivos diarios generados para cada IF, con estructura similar al formato adoptado en archivo P2P-Xpress.
 - Listado de las consultas realizadas en el día anterior por método (Catálogo, QR, etc.).
-- Listado de las transferencias exitosas P2M realizadas en ACH Directo en el día anterior.
-- El archivo debe ser generado y agregado en la carpeta EFT de cada IF cada día.
+- Listado de las transferencias (exitosas o fallidas) P2M realizadas en ACH Directo en el día anterior.
+- Archivo debe ser generado y agregado en carpeta EFT de cada IF cada día.
 
 ---
 
-# Definiciones Confirmadas Durante el Análisis
+# Definiciones Confirmadas
 
-Durante las sesiones de análisis y validaciones posteriores, se confirmaron las siguientes definiciones funcionales:
-
-1. El cobro de **B/.0.03** aplica a las consultas al Directorio P2M.
+1. El cobro de B/.0.03 aplica a las consultas al Directorio P2M.
 2. El cobro aplica independientemente de que posteriormente exista o no una transferencia.
-3. Para el flujo de catálogo, la referencia de la consulta al Directorio corresponde al método **0018**.
-4. La lectura de un QR P2M también debe considerarse una consulta al Directorio P2M.
-5. La información de facturación debe seguir el mismo modelo actualmente utilizado para Xpress P2P en Apex.
-6. Debido a que la facturación se basa en las consultas al Directorio, no es necesario relacionar las consultas con las transferencias ACH Directo para determinar los eventos facturables.
+3. En el flujo de catálogo P2M, la consulta al Directorio P2M que se utiliza para la facturación corresponde al método **0018**, mediante el cual se crea una solicitud de pago.
+4. La lectura de un QR P2M no debe considerarse por sí sola una consulta al Directorio P2M. En el flujo QR P2M se realiza posteriormente una llamada al método **0018**, el cual es el evento considerado para facturación.
+5. Para efectos de facturación, una **Consulta Directorio P2M** corresponde a una ejecución (exitosa o fallidad) del método **0018**.
+6. La generación de los reportes de facturación debe seguir el mismo modelo actualmente utilizado para Xpress P2P en Apex.
+7. La generación de los archivos diarios de consultas y transferencias entregados a las Instituciones Financieras debe seguir el mismo modelo actualmente utilizado para Xpress.
+
+### Flujo de referencia
+
+```text
+Catálogo
+   └─ 0017 (Búsqueda en Directorio)
+      └─ 0018 (Solicitud de Pago)
+             └─ Facturable
+
+QR
+   └─ 0025 (Lectura QR)
+      └─ 0018 (Solicitud de Pago)
+             └─ Facturable
+```
 
 ---
 
@@ -62,7 +69,7 @@ Con el objetivo de facilitar la trazabilidad dentro del presente documento, se a
 
 ## HDU-001
 
-**Jira:** IPEDA-3605
+**Jira de origen:** IPEDA-3605
 
 **Título:** Reporte de facturación P2M
 
@@ -70,39 +77,253 @@ Con el objetivo de facilitar la trazabilidad dentro del presente documento, se a
 
 | ID | Descripción |
 |------|------|
-| CA-001 | La consulta al Directorio tendrá un costo de B/.0.03 independientemente de si la consulta corresponde a una operación propia o cruzada. |
-| CA-002 | La consulta al Directorio realizada mediante el método 0018 durante el flujo de selección de un comercio deberá considerarse una consulta P2M facturable. |
-| CA-003 | La lectura de un QR P2M deberá considerarse una consulta al Directorio P2M facturable. |
-| CA-004 | La información de facturación deberá presentarse utilizando el mismo modelo de facturación utilizado actualmente para Xpress P2P en Apex. |
+| CA-001 | La Consulta Directorio P2M tendrá un costo de B/.0.03 independientemente de si corresponde a una operación propia o cruzada. |
+| CA-002 | Una ejecución exitosa o fallida del método 0018 deberá considerarse una Consulta Directorio P2M facturable. |
+| CA-003 | La información de facturación deberá presentarse utilizando el mismo modelo actualmente utilizado para Xpress P2P en Apex. |
 
 ---
 
 ## HDU-002
 
-**Jira:** IPEDA-3606
+**Jira de origen:** IPEDA-3606
 
-**Título:** Archivo de consultas diarias
+**Título:** Archivo diario de consultas P2M
 
 ### Criterios de Aceptación
 
 | ID | Descripción |
 |------|------|
-| CA-005 | Generar un archivo diario para cada IF. |
-| CA-006 | El archivo deberá mantener una estructura similar al formato actualmente utilizado para P2P-Xpress. |
-| CA-007 | El archivo deberá incluir las consultas realizadas durante el día anterior, identificando el método mediante el cual fueron efectuadas. |
-| CA-008 | El archivo deberá incluir las transferencias exitosas P2M realizadas en ACH Directo durante el día anterior. |
-| CA-009 | El archivo deberá colocarse diariamente en la carpeta EFT correspondiente a cada IF. |
+| CA-004 | Generar un archivo diario de consultas para cada IF. |
+| CA-005 | El archivo deberá mantener una estructura similar al archivo de consultas de P2P-Xpress. |
+| CA-006 | El archivo deberá incluir las consultas realizadas durante el día anterior. |
+| CA-007 | El archivo deberá colocarse diariamente en la carpeta EFT correspondiente a cada IF. |
 
 ---
 
-# Observaciones para el Análisis
+## HDU-003
 
-1. La definición funcional confirmada establece que la facturación se origina por la consulta al Directorio y no por la ejecución posterior de una transferencia.
+**Jira de origen:** IPEDA-3606
 
-2. El criterio **CA-008** solicita incluir transferencias exitosas P2M en el archivo diario. Sin embargo, la necesidad de dicha información deberá validarse durante el análisis detallado, ya que no forma parte de la lógica de determinación de los eventos facturables.
+**Título:** Archivo diario de transferencias P2M
 
-3. El presente análisis considerará como eventos facturables las consultas al Directorio identificadas mediante:
-   - Método 0018 (flujo de catálogo).
-   - Lectura de QR P2M.
+### Criterios de Aceptación
 
-4. La solución deberá mantener alineación funcional y visual con los mecanismos actualmente implementados para Xpress P2P, tanto para reportes de facturación en Apex como para la generación de archivos diarios.
+| ID | Descripción |
+|------|------|
+| CA-008 | Generar un archivo diario de transferencias para cada IF. |
+| CA-009 | El archivo deberá mantener una estructura similar al archivo de transferencias de P2P-Xpress. |
+| CA-010 | El archivo deberá incluir las transferencias (exitosas o fallidas) P2M realizadas en ACH Directo durante el día anterior. |
+| CA-011 | El archivo deberá colocarse diariamente en la carpeta EFT correspondiente a cada IF. |
+
+---
+
+# Requerimientos Funcionales
+
+## RQF-001
+
+Implementar una nueva página denominada **Reportes ACH Directo** dentro de la aplicación **Application 1000 - Reportes de ACH Contabilidad**.
+
+La página deberá permitir la ejecución y descarga de los reportes de facturación P2M.
+
+### Configuración inicial
+
+| Procesar | Descarga | File Name | File Ext | Formats | Heading Label | Rowcount Label | Directory | Separator | Code |
+|------|------|------|------|------|------|------|------|------|------|
+| Botón | Botón | RPT-999-M-COBRAR-DIRECTO | .xlsx | Data | N | N | REPORTES_ACHDIRECTO | - | P2M_RPT_M_COBRAR |
+
+### Trazabilidad
+
+| HDU | CA |
+|------|------|
+| HDU-001 | CA-003 |
+
+---
+
+## RQF-002
+
+Agregar una nueva opción **ACH Directo** en el menú lateral de la aplicación.
+
+### Menú Actual
+
+- Home
+- Cobrar ACH
+- Pagar Resumen Débito
+- ACH Xpress
+
+### Menú Propuesto
+
+- Home
+- Cobrar ACH
+- Pagar Resumen Débito
+- ACH Xpress
+- ACH Directo
+
+La opción **ACH Directo** deberá redirigir a la página **Reportes ACH Directo**.
+
+### Trazabilidad
+
+| HDU | CA |
+|------|------|
+| HDU-001 | CA-003 |
+
+---
+
+## RQF-003
+
+Implementar el reporte **RPT-999-M-COBRAR-DIRECTO** tomando como referencia funcional y visual el reporte **RPT-999-M-COBRAR-XPRESS**.
+
+### Ajustes de Encabezado
+
+| Campo | RPT-999-M-COBRAR-XPRESS | RPT-999-M-COBRAR-DIRECTO |
+|------|------|------|
+| TIPO DE REPORTE | FACTURACION XPRESS | FACTURACION P2M |
+| TRANSACCIONES PROPIAS | 0.015 | 0.03 |
+| NOMBRE DEL REPORTE | CARGO XPRESS COBRAR A BANCOS | CARGO P2M COBRAR A BANCOS |
+
+### Ajustes de Columnas
+
+| RPT-999-M-COBRAR-XPRESS | RPT-999-M-COBRAR-DIRECTO |
+|------|------|
+| TRANSACCIONES CRUZADAS | CONSULTAS CRUZADAS |
+| TRANSACCIONES PROPIAS | CONSULTAS PROPIAS |
+
+### Trazabilidad
+
+| HDU | CA |
+|------|------|
+| HDU-001 | CA-001, CA-003 |
+
+---
+
+## RQF-004
+
+El reporte **RPT-999-M-COBRAR-DIRECTO** deberá calcular la facturación utilizando las ejecuciones (exitosas o fallidas) del método **0018**.
+
+### Estructura esperada
+
+| NOMBRE DE LA INSTITUCIÓN FINANCIERA | CONSULTAS CRUZADAS | CONSULTAS PROPIAS | CARGO CRUZADA | CARGO PROPIA | CARGO TOTAL |
+|------|------|------|------|------|------|
+| ABC | # | # | #.## | #.## | #.## |
+
+### Reglas de Negocio
+
+#### Consulta Cruzada
+
+Se considerará una consulta cruzada cuando:
+
+```text
+bancoOrigen <> banco
+```
+
+#### Consulta Propia
+
+Se considerará una consulta propia cuando:
+
+```text
+bancoOrigen = banco
+```
+
+#### Cargo Cruzada
+
+```text
+CONSULTAS_CRUZADAS x 0.03
+```
+
+#### Cargo Propia
+
+```text
+CONSULTAS_PROPIAS x 0.03
+```
+
+#### Cargo Total
+
+```text
+CARGO_CRUZADA + CARGO_PROPIA
+```
+
+### Trazabilidad
+
+| HDU | CA |
+|------|------|
+| HDU-001 | CA-001, CA-002 |
+
+---
+
+## RQF-005
+
+Generar diariamente un archivo de consultas P2M para cada IF.
+
+El archivo deberá mantener la misma estructura actualmente utilizada para el archivo de consultas de Xpress.
+
+### Máscara de referencia
+
+```text
+AUTO.XPRESS.CONSULTAS.XXXXPAPA.OUT.YYYYDDDD.##
+```
+
+### Máscara propuesta
+
+```text
+AUTO.P2M.CONSULTAS.XXXXPAPA.OUT.YYYYDDDD.##
+```
+
+### Trazabilidad
+
+| HDU | CA |
+|------|------|
+| HDU-002 | CA-004, CA-005, CA-006 |
+
+---
+
+## RQF-006
+
+Generar diariamente un archivo de transferencias P2M para cada IF.
+
+El archivo deberá mantener la misma estructura actualmente utilizada para el archivo de transferencias de Xpress.
+
+### Máscara de referencia
+
+```text
+AUTO.XPRESS.TRANSFERENCIAS.XXXXPAPA.OUT.YYYYDDDD.##
+```
+
+### Máscara propuesta
+
+```text
+AUTO.P2M.TRANSFERENCIAS.XXXXPAPA.OUT.YYYYDDDD.##
+```
+
+### Trazabilidad
+
+| HDU | CA |
+|------|------|
+| HDU-003 | CA-008, CA-009, CA-010 |
+
+# Consideraciones de Implementación
+
+## CI-001
+
+**Título:** Configuración de Control-M para distribución de archivos P2M
+
+### Descripción
+
+Con el fin de cumplir con la entrega diaria de archivos a las Instituciones Financieras, será requerida una configuración operativa equivalente a la utilizada actualmente para los procesos de Xpress.
+
+### Consideraciones
+
+- Los archivos diarios de consultas P2M y transferencias P2M serán generados por la solución propuesta.
+- La distribución de los archivos hacia las carpetas EFT correspondientes a las Instituciones Financieras no forma parte del alcance de desarrollo de la presente iniciativa.
+- Actualmente, para Xpress, la distribución de los archivos es realizada mediante configuraciones administradas por el Área de Plataforma en Control-M.
+- Para P2M deberá considerarse una configuración equivalente.
+- Las configuraciones requeridas deberán ser evaluadas y definidas por el Área de Plataforma.
+
+### Documentación
+
+El Manual de Instalación deberá indicar que la solución requiere configuraciones operativas complementarias para la distribución automática de los archivos generados hacia las carpetas EFT correspondientes.
+
+### Trazabilidad
+
+| HDU | CA |
+|------|------|
+| HDU-002 | CA-007 |
+| HDU-003 | CA-011 |
