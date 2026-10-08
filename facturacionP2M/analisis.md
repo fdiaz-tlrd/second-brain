@@ -32,7 +32,7 @@ Archivo de consultas diarias.
 
 - Se debe crear un archivos diarios generados para cada IF, con estructura similar al formato adoptado en archivo P2P-Xpress.
 - Listado de las consultas realizadas en el día anterior por método (Catálogo, QR, etc.).
-- Listado de las transferencias (exitosas o fallidas) P2M realizadas en ACH Directo en el día anterior.
+- Listado de las transferencias exitosas P2M realizadas en ACH Directo en el día anterior.
 - Archivo debe ser generado y agregado en carpeta EFT de cada IF cada día.
 
 ---
@@ -43,7 +43,7 @@ Archivo de consultas diarias.
 2. El cobro aplica independientemente de que posteriormente exista o no una transferencia.
 3. En el flujo de catálogo P2M, la consulta al Directorio P2M que se utiliza para la facturación corresponde al método **0018**, mediante el cual se crea una solicitud de pago.
 4. La lectura de un QR P2M no debe considerarse por sí sola una consulta al Directorio P2M. En el flujo QR P2M se realiza posteriormente una llamada al método **0018**, el cual es el evento considerado para facturación.
-5. Para efectos de facturación, una **Consulta Directorio P2M** corresponde a una ejecución (exitosa o fallidad) del método **0018**.
+5. Para efectos de facturación, una **Consulta Directorio P2M** corresponde a una ejecución del método **0018**.
 6. La generación de los reportes de facturación debe seguir el mismo modelo actualmente utilizado para Xpress P2P en Apex.
 7. La generación de los archivos diarios de consultas y transferencias entregados a las Instituciones Financieras debe seguir el mismo modelo actualmente utilizado para Xpress.
 
@@ -78,7 +78,7 @@ Con el objetivo de facilitar la trazabilidad dentro del presente documento, se a
 | ID | Descripción |
 |------|------|
 | CA-001 | La Consulta Directorio P2M tendrá un costo de B/.0.03 independientemente de si corresponde a una operación propia o cruzada. |
-| CA-002 | Una ejecución exitosa o fallida del método 0018 deberá considerarse una Consulta Directorio P2M facturable. |
+| CA-002 | Toda ejecución del método 0018 deberá considerarse una Consulta Directorio P2M facturable. |
 | CA-003 | La información de facturación deberá presentarse utilizando el mismo modelo actualmente utilizado para Xpress P2P en Apex. |
 
 ---
@@ -112,7 +112,7 @@ Con el objetivo de facilitar la trazabilidad dentro del presente documento, se a
 |------|------|
 | CA-008 | Generar un archivo diario de transferencias para cada IF. |
 | CA-009 | El archivo deberá mantener una estructura similar al archivo de transferencias de P2P-Xpress. |
-| CA-010 | El archivo deberá incluir las transferencias (exitosas o fallidas) P2M realizadas en ACH Directo durante el día anterior. |
+| CA-010 | El archivo deberá incluir las transferencias P2M realizadas en ACH Directo durante el día anterior. |
 | CA-011 | El archivo deberá colocarse diariamente en la carpeta EFT correspondiente a cada IF. |
 
 ---
@@ -121,11 +121,13 @@ Con el objetivo de facilitar la trazabilidad dentro del presente documento, se a
 
 ## RQF-001
 
+### Descripción
+
 Implementar una nueva página denominada **Reportes ACH Directo** dentro de la aplicación **Application 1000 - Reportes de ACH Contabilidad**.
 
 La página deberá permitir la ejecución y descarga de los reportes de facturación P2M.
 
-### Configuración inicial
+### Configuración Inicial
 
 | Procesar | Descarga | File Name | File Ext | Formats | Heading Label | Rowcount Label | Directory | Separator | Code |
 |------|------|------|------|------|------|------|------|------|------|
@@ -140,6 +142,8 @@ La página deberá permitir la ejecución y descarga de los reportes de facturac
 ---
 
 ## RQF-002
+
+### Descripción
 
 Agregar una nueva opción **ACH Directo** en el menú lateral de la aplicación.
 
@@ -158,6 +162,8 @@ Agregar una nueva opción **ACH Directo** en el menú lateral de la aplicación.
 - ACH Xpress
 - ACH Directo
 
+### Comportamiento
+
 La opción **ACH Directo** deberá redirigir a la página **Reportes ACH Directo**.
 
 ### Trazabilidad
@@ -170,6 +176,8 @@ La opción **ACH Directo** deberá redirigir a la página **Reportes ACH Directo
 
 ## RQF-003
 
+### Descripción
+
 Implementar el reporte **RPT-999-M-COBRAR-DIRECTO** tomando como referencia funcional y visual el reporte **RPT-999-M-COBRAR-XPRESS**.
 
 ### Ajustes de Encabezado
@@ -177,7 +185,7 @@ Implementar el reporte **RPT-999-M-COBRAR-DIRECTO** tomando como referencia func
 | Campo | RPT-999-M-COBRAR-XPRESS | RPT-999-M-COBRAR-DIRECTO |
 |------|------|------|
 | TIPO DE REPORTE | FACTURACION XPRESS | FACTURACION P2M |
-| TRANSACCIONES PROPIAS | 0.015 | 0.03 |
+| TARIFA | 0.015 | 0.03 |
 | NOMBRE DEL REPORTE | CARGO XPRESS COBRAR A BANCOS | CARGO P2M COBRAR A BANCOS |
 
 ### Ajustes de Columnas
@@ -197,9 +205,11 @@ Implementar el reporte **RPT-999-M-COBRAR-DIRECTO** tomando como referencia func
 
 ## RQF-004
 
-El reporte **RPT-999-M-COBRAR-DIRECTO** deberá calcular la facturación utilizando las ejecuciones (exitosas o fallidas) del método **0018**.
+### Descripción
 
-### Estructura esperada
+El reporte **RPT-999-M-COBRAR-DIRECTO** deberá calcular la facturación utilizando como fuente las ejecuciones del método **0018**.
+
+### Estructura Esperada
 
 | NOMBRE DE LA INSTITUCIÓN FINANCIERA | CONSULTAS CRUZADAS | CONSULTAS PROPIAS | CARGO CRUZADA | CARGO PROPIA | CARGO TOTAL |
 |------|------|------|------|------|------|
@@ -251,17 +261,19 @@ CARGO_CRUZADA + CARGO_PROPIA
 
 ## RQF-005
 
+### Descripción
+
 Generar diariamente un archivo de consultas P2M para cada IF.
 
 El archivo deberá mantener la misma estructura actualmente utilizada para el archivo de consultas de Xpress.
 
-### Máscara de referencia
+### Máscara de Referencia
 
 ```text
 AUTO.XPRESS.CONSULTAS.XXXXPAPA.OUT.YYYYDDDD.##
 ```
 
-### Máscara propuesta
+### Máscara Propuesta
 
 ```text
 AUTO.P2M.CONSULTAS.XXXXPAPA.OUT.YYYYDDDD.##
@@ -271,23 +283,25 @@ AUTO.P2M.CONSULTAS.XXXXPAPA.OUT.YYYYDDDD.##
 
 | HDU | CA |
 |------|------|
-| HDU-002 | CA-004, CA-005, CA-006 |
+| HDU-002 | CA-004, CA-005, CA-006, CA-007 |
 
 ---
 
 ## RQF-006
 
+### Descripción
+
 Generar diariamente un archivo de transferencias P2M para cada IF.
 
 El archivo deberá mantener la misma estructura actualmente utilizada para el archivo de transferencias de Xpress.
 
-### Máscara de referencia
+### Máscara de Referencia
 
 ```text
 AUTO.XPRESS.TRANSFERENCIAS.XXXXPAPA.OUT.YYYYDDDD.##
 ```
 
-### Máscara propuesta
+### Máscara Propuesta
 
 ```text
 AUTO.P2M.TRANSFERENCIAS.XXXXPAPA.OUT.YYYYDDDD.##
@@ -297,7 +311,9 @@ AUTO.P2M.TRANSFERENCIAS.XXXXPAPA.OUT.YYYYDDDD.##
 
 | HDU | CA |
 |------|------|
-| HDU-003 | CA-008, CA-009, CA-010 |
+| HDU-003 | CA-008, CA-009, CA-010, CA-011 |
+
+---
 
 # Consideraciones de Implementación
 
