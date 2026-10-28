@@ -1,15 +1,13 @@
-# Scripts AWS CLI — sandbox Oregon / Virginia
+# Scripts / dumps
 
-**Repo RDP:** https://github.com/fdiaz-tlrd/aws-infra-dumps
+Canonico: https://github.com/fdiaz-tlrd/aws-infra-dumps
 
 ```powershell
 cd aws-infra-dumps\scripts
-.\dump-alb.ps1                          # us-east-1 + us-west-2
-.\revisar-dominios-personalizados.ps1   # idem
-cd ..
-git add raw/sandbox
-git commit -m "dump sandbox virginia+oregon"
-git push
+.\dump-alb.ps1
+.\revisar-dominios-personalizados.ps1
 ```
 
-Salidas: `raw/sandbox/virginia/` y `raw/sandbox/oregon/` (`alb/`, `dominios/`).
+Salidas: `raw/sandbox/virginia/` y `raw/sandbox/oregon/`.
+
+Estudio (esta carpeta): [`comparacion-sandbox-virginia-oregon.md`](comparacion-sandbox-virginia-oregon.md).

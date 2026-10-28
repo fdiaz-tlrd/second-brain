@@ -19,7 +19,7 @@ Había regla en el ALB (capa ①) pero **sin** API mapping en API Gateway. El us
 
 Esto **confirma** la pregunta del estudio: sí, un Host en regla ALB puede no tener mapping. Mismo patrón que preg-seguridad Oregon en prod.
 
-**No** se afirma aquí que el resto de Hosts del listener ya tenían mapping; solo estos cuatro constan en las notas.
+**Dump 2026-09-23 (`aws-infra-dumps` cruce Oregon):** los 14 Hosts del ALB sand interno tienen mapping OK (incluidos estos cuatro).
 
 ## 2. Certificado del listener HTTPS — caducado
 

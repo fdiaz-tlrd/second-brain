@@ -50,7 +50,13 @@ El check pide `HTTPS https://<IP-del-target>:443/` y exige status **200**. Recib
 
 En `tld-preg-seguridad`, Oregon sin custom-domain mapping también responde **403** en API Gateway (sin invocar lambda). Aquí el 403 del **health check** es otro síntoma de “APIGW/VPCe rechaza la petición”, no prueba por sí solo que falte un mapping concreto de una API.
 
-## Pendiente (no inventado; falta evidencia)
+## Contrastado con Virginia (dump 2026-09-23)
 
-- Confirmar en consola/CLI que las 3 IPs son ENIs del VPCe execute-api de sandbox Oregon.
-- Decidir si el matcher del TG debería aceptar `403` (práctica habitual en health checks a APIGW privado) u otra ruta/código — **eso es cambio de infra; no se asume aquí.**
+Mismo path `/`, mismo tipo de respuesta **403** esperable del VPCe. En Virginia el matcher es **`200-403`** y el TG esta **healthy**. En Oregon el matcher es solo **`200`** → Unhealthy.
+
+Detalle: [`../comparacion-sandbox-virginia-oregon.md`](../comparacion-sandbox-virginia-oregon.md).
+
+## Pendiente (no inventado; falta evidencia / decision)
+
+- Confirmar IPs = ENIs del VPCe execute-api (opcional).
+- Decidir si Oregon adopta matcher `200-403` como Virginia — **cambio de infra; no se asume aqui.**

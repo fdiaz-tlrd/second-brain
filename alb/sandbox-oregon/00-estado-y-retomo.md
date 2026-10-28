@@ -2,30 +2,37 @@
 
 | Campo | Valor |
 |-------|-------|
-| **Estado** | Tres hilos: (1) Unhealthy = 403 health check; (2) mappings faltantes corregidos por el usuario; (3) cert del listener HTTPS **caducado**. |
+| **Estado** | Dump 2026-09-23 en `aws-infra-dumps`. Unhealthy = 403 + matcher solo `200` (Virginia acepta `200-403`). Mappings ALB Hosts: 14/14 OK. Cert listener `24db24a6` sigue el de la UI caducada. |
 | **Ambiente** | sandbox |
-| **Región** | `us-west-2` (Oregon) |
+| **Region** | `us-west-2` (Oregon) |
 | **Cuenta** | `807262913923` |
-| **ALB** | `alb-sandbox-oregon` (internal, active) |
+| **ALB** | `alb-sandbox-oregon` |
 | **ARN ALB** | `arn:aws:elasticloadbalancing:us-west-2:807262913923:loadbalancer/app/alb-sandbox-oregon/bc8e26a049c22e57` |
 | **DNS** | `internal-alb-sandbox-oregon-650577187.us-west-2.elb.amazonaws.com` |
 | **VPC** | `vpc-0114fe781e9c2d449` |
-| **SG ALB** | `sg-01104037a6ec8d4e0` (`alb-sandbox-oregon-sg`) |
-| **Target group** | `vpc-endpoint-apis-oregon` — 3 destinos **unhealthy** |
+| **SG ALB** | `sg-01104037a6ec8d4e0` |
+| **TG** | `vpc-endpoint-apis-oregon` — 3/3 **unhealthy** (403) |
 | **Notas tuyas** | `second-brain/investigacion/ALB/sandbox.md` |
-| **Scripts + raw (RDP via git)** | repo **`aws-infra-dumps`**: https://github.com/fdiaz-tlrd/aws-infra-dumps — canonicos ahi; este folder es estudio |
-| **Script (copia estudio)** | [`dump-alb-sandbox-oregon.ps1`](dump-alb-sandbox-oregon.ps1) · [`revisar-dominios-personalizados.ps1`](revisar-dominios-personalizados.ps1) |
-| **Salidas** | [`alb-sandbox-oregon-raw/`](alb-sandbox-oregon-raw/) · `dominios-personalizados-raw/` (cuando lo corras) |
-| **Hallazgos** | [`hallazgo-unhealthy-403.md`](hallazgo-unhealthy-403.md) · [`hallazgo-mappings-y-cert.md`](hallazgo-mappings-y-cert.md) |
-| **Explicación** | [`../explicacion-alb-para-programadores.md`](../explicacion-alb-para-programadores.md) |
+| **Dump canonico** | https://github.com/fdiaz-tlrd/aws-infra-dumps → `raw/sandbox/oregon/` |
+| **Comparacion VA/OR** | [`../comparacion-sandbox-virginia-oregon.md`](../comparacion-sandbox-virginia-oregon.md) |
+| **Hallazgos previos** | [`hallazgo-unhealthy-403.md`](hallazgo-unhealthy-403.md) · [`hallazgo-mappings-y-cert.md`](hallazgo-mappings-y-cert.md) |
+| **Corregir** | [`corregir-oregon.md`](corregir-oregon.md) |
 
-## Qué estudiamos aquí
+## Que quedo claro con el dump dual
 
-1. **Unhealthy del TG** — health check HTTPS `/` espera 200, recibe 403 ([detalle](hallazgo-unhealthy-403.md)).
-2. **Mappings** — al menos 4 dominios sand tenían regla ALB sin mapping APIGW; el usuario los mapeó ([detalle](hallazgo-mappings-y-cert.md)).
-3. **TLS del ALB** — listener HTTPS usa cert `24db24a6-…` marcado Caducada (venc. 2025-11-22) ([detalle](hallazgo-mappings-y-cert.md)).
+1. **Unhealthy:** mismo 403 en health check `/`; la diferencia con Virginia es el **matcher** (`200` vs `200-403`).
+2. **Mappings de Hosts del ALB:** todos OK en este dump (post correcciones del usuario).
+3. **Cert** del listener HTTPS: sigue `24db24a6-…` (caducado en notas UI). Independiente del Unhealthy.
 
-## Retomo
+## Que esta mal en Oregon (sandbox)
 
-1. ~~Dump~~ · ~~Unhealthy 403~~ · ~~Mappings (4 corregidos en notas)~~ · cert caducado **sigue** en el listener según dump + UI.
-2. Pendiente solo si lo pedís: auditar mappings del resto de Hosts (`revisar-dominios-personalizados.ps1`); renovar/asignar cert válido al listener; matcher del TG.
+1. Health check Unhealthy: pide `200`, recibe `403`.
+2. Certificado HTTPS del ALB caducado.
+3. Frente a Virginia: alla aceptan `200-403` (healthy) y hay mas Hosts en el ALB.
+
+## Diseno de trafico (usuario, 2026-09-23)
+
+- **Region principal:** Virginia. El trafico debe ir por Virginia.
+- **Oregon:** respaldo si Virginia falla (failover).
+
+Con eso: Oregon tiene que poder recibir trafico real. Unhealthy + cert caducado + Hosts de menos **si importan** en failover, no son “ruido de una region que nadie usa”.
